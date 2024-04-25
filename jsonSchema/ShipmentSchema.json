@@ -1,0 +1,677 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+
+  "title": "MXLIMS schema for data transfer",
+  "description": "<p>This is a first draft of a schema to handle shipments, which leaves the samples, proteins, etc., largely undefined. These will need fleshing out later.</p><h2>Use cases</h2><p>This initial version is intended to support:</p><ul><li>Dewar-pin-puck shipments of frozen crystals, including multiple-position pins</li><li>Plate shipments for in-situ data collection</li><li>Retrieval of plate and crystal information from a LIMS by a home source</li></ul><h3>Dewar-pin-puck shipments</h3><p>For shipments of frozen mounted crystals, define a <code>shipment</code> object with a <code>dewars</code> property.</p><h3>Plate shipments</h3><p>For shipments of crystallization plates, define a <code>shipment</code> object with a <code>plates</code> property.</p><h3>Home-lab in-situ collection</h3><p>The diffractometer reads the plate barcode on plate insertion, and makes a request to the home-lab crystallization LIMS for the plate with that barcode. The LIMS responds with an appropriate <code>plate</code> object, including the locations of crystals.</p><h2>Future use cases</h2><p>Adding plate groups, imager inspections, etc., would enable use of this schema for bulk import of plates, or transfer of inspections and their images.</p><p>Jobs, samples, etc., can also be transferred as standalone objects if their reference is added to the top-level oneOf array.</p>",
+
+  "oneOf": [
+    { "$ref": "#/definitions/shipment" },
+    { "$ref": "#/definitions/plate" }
+  ],
+
+  "definitions":{
+
+    "shipment": {
+      "type": "object",
+      "title": "Shipment",
+      "description": "<p>A shipment.</p><p>If only one of <code>labContactOutbound</code> and <code>labContactReturn</code> is present, both are assumed to be the same. If neither is present, the lab contact for both outbound and return is assumed to be the authenticated user submitting the shipment.</p>",
+      "comment": "TODO diffraction plan for additional properties",
+      "properties": {
+        "proposal": {
+          "type": "string",
+          "description": "The proposal number at the receiving facility.",
+          "examples": ["mx1234"]
+        },
+        "session": {
+          "type": "integer",
+          "description": "The session number within the proposal. This property must be absent if <code>unattendedCollection</code> is present.",
+          "minimum": 1
+        },
+        "comments": {
+          "type":"string",
+          "description": "A comment about the shipment.",
+          "maxLength": 250
+        },
+        "unattendedCollection": {
+          "type": "boolean",
+          "description": "If this shipment is for unattended collection, then this property must be present and true. Otherwise, it must be absent and a <code>session</code> must be present.",
+          "enum": [ true ]
+        },
+        "dewars": {
+          "type":"array",
+          "items": { "$ref": "#/definitions/dewar"},
+          "minItems": 1
+        },
+        "plates": {
+          "type":"array",
+          "items": { "$ref": "#/definitions/plate"},
+          "minItems": 1
+        },
+        "proteins": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/protein" },
+          "minItems": 1
+        },
+        "labContactOutbound": { "$ref": "#/definitions/person"},
+        "labContactReturn": { "$ref": "#/definitions/person"},
+        "identifiers": { "$ref": "#/definitions/identifiers" },
+        "trackingDevice": { "$ref":  "#/definitions/trackingDevice" }
+      },
+      "required": ["proposal","proteins"],
+      "allOf": [
+        {
+          "oneOf": [
+            { "required": ["dewars"] },
+            { "required": ["plates"] }
+          ]
+        },
+        {
+          "oneOf": [
+            { "required": ["session"] },
+            { "required": ["unattendedCollection"] }
+          ]
+        }
+      ]
+
+    },
+
+    "plateType": {
+      "title": "Plate type",
+      "description": "A type of crystallization plate.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the plate type.",
+          "comment": "I'm unaware of any standard that can positively identify a plate type.",
+          "examples": [ "Greiner 1-drop square" ]
+        },
+        "rows": {
+          "type": "integer",
+          "description": "The number of rows in the plate. For a typical 96-well plate, this will be 8.",
+          "minimum": 1
+        },
+        "columns": {
+          "type": "integer",
+          "description": "The number of columns in the plate. For a typical 96-well plate, this will be 12.",
+          "minimum": 1
+        },
+        "subPositions":{
+          "type": "integer",
+          "description": "The number of sub-wells in the plate. For in-situ plates with no dividers, this should be the actual number of drops dispensed.",
+          "minimum": 1
+        },
+        "dropMapping": {
+          "type": "string",
+          "description": "<p>The sender's numbering of the sub-wells. This can be used by the receiver to map the sender's well numbering onto their own.<p><p>It is an error if the sender and receiver disagree on the basic geometry (e.g., three drops across the top with a reservoir underneath). However, they can disagree on the drop order; this property is intended to help overcome such disagreements.</p>",
+          "comment": "Karl and I cooked this up years ago. I'll document it properly later, but basically, take one well and draw a grid with the smallest number of rows and columns needed to represent that geometry.",
+          "examples": [ "123,RRR", "23,1R" ]
+        }
+      },
+      "required": ["rows","columns","subPositions","dropMapping"]
+    },
+
+    "plate": {
+      "title": "Plate",
+      "description": "A crystallization plate",
+      "properties": {
+        "plateType": { "$ref": "#/definitions/plateType"},
+        "wells": {
+          "type": "array",
+          "description": "The wells of the plate. This may be all the wells, or a subset of interesting wells, depending on the application.",
+          "items": { "$ref": "#/definitions/plateWell" },
+          "minItems": 1
+        },
+        "identifiers": { "$ref": "#/definitions/identifiers" },
+        "trackingDevice": { "$ref":  "#/definitions/trackingDevice" }
+      },
+      "required": [ "plateType","wells" ]
+    },
+
+    "plateWell": {
+      "title": "Plate well",
+      "description": "A well in a crystallization plate",
+      "comment": "TODO Maybe attach a screen condition",
+      "properties": {
+        "rowNumber": {
+          "type": "integer",
+          "description": "<p>The row number of this well. This is 1-based, so row A is 1, row H is 8.</p><p>This should be validated against the <code>plateType</code>'s <code>rows</code> property.</p>",
+          "minimum": 1
+        },
+        "columnNumber": {
+          "type": "integer",
+          "description": "<p>The column number of this well. This is 1-based, so should match the column labels on the plate.</p><p>This should be validated against the <code>plateType</code>'s <code>columns</code> property.</p>",
+          "minimum": 1
+        },
+        "drops": {
+          "type": "array",
+          "description": "The drops within the well. This may be all the drops, or a subset of interesting drops, depending on the application.",
+          "items": { "$ref": "#/definitions/wellDrop" },
+          "minItems": 1
+        },
+        "name": {
+          "type": "string",
+          "description": "<p>A human-friendly well identifier</p><p>If present, this should be validated to ensure that it refers to the correct row and column.</p>",
+          "examples": [ "H1", "C03" ]
+        }
+      },
+      "required": [ "rowNumber","columnNumber", "drops" ]
+    },
+
+    "wellDrop": {
+      "title": "Well drop",
+      "description": "A drop within a well of a crystallization plate.",
+      "properties": {
+        "dropNumber": {
+          "type": "integer",
+          "description": "The drop number. This should be validated against the <code>plateType</code>'s <code>subPositions</code> property."
+        },
+        "crystals": {
+          "type": "array",
+          "description": "The crystals within this drop",
+          "items": { "$ref": "#/definitions/inSituCrystal" }
+        }
+      },
+      "required": [ "dropNumber","crystals" ]
+    },
+
+    "pin": {
+      "type": "object",
+      "title": "Pin",
+      "description": "A pin containing a crystal",
+      "properties": {
+        "barcode": {
+          "type": "string",
+          "description": "The pin barcode or RFID code.",
+          "examples":["HA001234"]
+        },
+        "positionInPuck": {
+          "type":"integer",
+          "description":"<p>The puck position occupied by the pin. This should be validated against the puck's <code>positions</code> property.</p>",
+          "minimum": 1,
+          "examples":[16]
+        },
+        "positions": {
+          "type": "integer",
+          "description": "The number of crystal positions available. For a traditional loop, this will always be 1.",
+          "minimum": 1
+        },
+        "contents":{
+          "type": "array",
+          "description": "The crystal(s) mounted on this pin.",
+          "items": { "$ref": "#/definitions/mountedCrystal" },
+          "minItems": 1
+        }
+      },
+      "required": ["positions","contents","positionInPuck"]
+    },
+
+    "puck": {
+      "type": "object",
+      "title": "Puck",
+      "description": "A puck containing mounted crystals on pins.",
+      "properties": {
+        "barcode": {
+          "type": "string",
+          "description":"The puck barcode or RFID code"
+        },
+        "positions": {
+          "type": "integer",
+          "description": "The number of pin positions available.",
+          "minimum": 1
+        },
+        "pins": {
+          "type":"array",
+          "description": "The pins in this puck.",
+          "items": { "$ref": "#/definitions/pin" },
+          "minItems": 1
+        }
+      },
+      "required": [ "pins", "positions" ]
+    },
+
+    "dewar": {
+      "type": "object",
+      "title": "Dewar",
+      "description": "A dewar containing pucks with mounted crystals on pins.",
+      "properties": {
+        "barcode": {
+          "type": "string",
+          "description":"The dewar barcode or RFID code"
+        },
+        "pucks": {
+          "type":"array",
+          "description": "The pucks in this dewar.",
+          "items": { "$ref": "#/definitions/puck" },
+          "minItems": 1
+        },
+        "trackingDevice": { "$ref":  "#/definitions/trackingDevice" }
+      },
+      "required": [ "pucks" ]
+    },
+
+    "mountedCrystal": {
+      "type": "object",
+      "title": "Mounted crystal",
+      "description": "A frozen crystal mounted on a pin.",
+      "properties": {
+        "sample": { "$ref": "#/definitions/sample" },
+        "positionInPin": {
+          "type": "integer",
+          "description": "The crystal's position in the pin. This is to support multi-position pins; for traditional loops, this will always be 1.",
+          "minimum": 1
+        }
+      },
+      "required": ["sample","positionInPin"]
+    },
+
+    "inSituCrystal": {
+      "type": "object",
+      "title": "In-situ crystal",
+      "description": "A crystal in-situ in a crystallization plate.</p>",
+      "properties": {
+        "sample": { "$ref":"#/definitions/sample" },
+        "imageRegion": { "$ref":"#/definitions/imageRegion" },
+        "plateRegion": { "$ref":"#/definitions/plateRegion" }
+      },
+      "required": ["sample"],
+      "oneOf": [
+        { "required": [ "imageRegion" ] },
+        { "required": [ "plateRegion" ] }
+      ]
+    },
+
+    "crystalForm": {
+      "type": "object",
+      "title": "Crystal Form",
+      "description": "Space group and unit cell dimensions. These are the sender's known or predicted values.",
+      "comment": "The intent of this separate crystalForm object is to ensure that either space group and unit cell dimensions are all provided, or none are provided. But it could be in a crystalForms property of the shipment and referenced by UUID, which would avoid repetition.",
+      "properties": {
+        "spaceGroup": {
+          "description": "The space group",
+          "enum": ["P1","P2","P21","C2","P222","P2221","P21212","P212121","C2221","C222","F222","I222",
+          "I212121","P4","P41","P42","P43","I4","I41","P422","P4212","P4122","P41212","P4222","P42212","P4322","P43212",
+          "I422","I4122","P3","P31","P32","R3","H3","P312","P321","P3112","P3121","P3212","P3221","R32","H32","P6",
+          "P61","P65","P62","P64","P63","P622","P6122","P6522","P6222","P6422","P6322","P23","F23","I23","P213","I213",
+          "P432","P4232","F432","F4132","I432","P4332","P4132","I4132"]
+        },
+        "unitCellA": {
+          "type":"number",
+          "description":"The &quot;a&quot; dimension of the unit cell.",
+          "exclusiveMinimum":0,
+          "examples":[55.02]
+        },
+        "unitCellB": {
+          "type":"number",
+          "description":"The &quot;b&quot; dimension of the unit cell.",
+          "exclusiveMinimum":0,
+          "examples":[55.02]
+        },
+        "unitCellC": {
+          "type":"number",
+          "description":"The &quot;c&quot; dimension of the unit cell.",
+          "exclusiveMinimum":0,
+          "examples":[55.02]
+        },
+        "unitCellAlpha":{
+          "type":"number",
+          "description":"The &quot;&#945;&quot; angle of the unit cell.",
+          "exclusiveMinimum":0,
+          "exclusiveMaximum":180,
+          "examples":[90.01]
+        },
+        "unitCellBeta":{
+          "type":"number",
+          "description":"The &quot;&#946;&quot; angle of the unit cell.",
+          "exclusiveMinimum":0,
+          "exclusiveMaximum":180,
+          "examples":[90.01]
+        },
+        "unitCellGamma":{
+          "type":"number",
+          "description":"The &quot;&#947;&quot; angle of the unit cell.",
+          "exclusiveMinimum":0,
+          "exclusiveMaximum":180,
+          "examples":[90.01]
+        }
+      },
+      "required": ["spaceGroup","unitCellA","unitCellB","unitCellC","unitCellAlpha","unitCellBeta","unitCellGamma"]
+    },
+
+    "ligand": {
+      "type": "object",
+      "title": "Ligand",
+      "description": "A ligand.",
+      "comment":"This needs to be fleshed out by someone competent. Needs SMILES, etc.",
+      "properties": {
+        "identifiers": { "$ref": "#/definitions/identifiers" }
+      },
+      "required": ["identifiers"]
+    },
+
+    "sample": {
+      "type": "object",
+      "title": "Sample",
+      "description": "A protein sample for data collection",
+      "comment": "Probably a crystal?",
+      "properties": {
+        "name": {
+          "description": "The sample name",
+          "type": "string"
+        },
+        "experimentPlan": { "$ref": "#/definitions/experimentPlan" },
+        "crystalForm": { "$ref": "#/definitions/crystalForm" },
+        "proteinUuid": {
+          "type": "string",
+          "format": "uuid",
+          "description": "The UUID of the protein in this sample. It is an error if the JSON defines no protein identified by this UUID.",
+          "comment": "<p>Assumes only one protein per sample. If multiple can be present, redefine as per ligands.</p><p>Can the UUID refer to a previously-sent protein?</p>"
+        },
+        "ligandIds": {
+          "type":"array",
+          "description": "The ligands in this sample. Each item must match the <code>id</code> property of a ligand listed in a <code>ligands</code> list.",
+          "comment": "I don't know a way to enforce in JSON Schema the requirement that this ID is one that exists in the document. The alternative is to re-define the ligand every time it appears - allows validation in JSON Schema, but horribly inefficient.",
+          "items": { "type": "string" },
+          "additionalItems": false,
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "identifiers": { "$ref": "#/definitions/identifiers" }
+      },
+      "required": ["name","proteinUuid"]
+    },
+
+    "protein": {
+      "type": "object",
+      "title": "Protein",
+      "description": "A protein.",
+      "comment":"This needs to be fleshed out by someone competent. Needs sequences, etc.",
+      "properties": {
+        "proteinAcronym": {
+          "type": "string",
+          "description": "<p>A short string that identifies the protein in a synchrotron's safety systems.</p>"
+        },
+        "identifiers": { "$ref": "#/definitions/identifiers" }
+      },
+      "required": ["identifiers","proteinAcronym"]
+    },
+
+    "experimentPlan": {
+      "title": "Experiment plan",
+      "description": "Describes an experiment to be carried out on the parent sample.",
+      "comment": "TODO add parameters (centringMethod, experimentKind, etc). If not required by the parent, a default plan should be used."
+    },
+
+    "plateRegion": {
+      "title": "Plate region",
+      "description": "A region defined in absolute plate space.",
+      "comment": "Intended for plates with fiducial marks and a clear origin",
+      "properties": {
+        "region": { "$ref": "#/definitions/region" },
+        "units": {
+          "description": "The units of the region's co-ordinates.",
+          "enum": ["mm","micron"]
+        }
+      },
+      "required": [ "region","units"]
+    },
+
+    "imageRegion": {
+      "title": "Image region",
+      "description": "A region marked on an image",
+      "properties": {
+        "image": { "$ref": "#/definitions/dropImage" },
+        "region": { "$ref": "#/definitions/region" },
+        "units": {
+          "description": "The units of the region's co-ordinates.",
+          "enum": ["mm","micron","pixel"]
+        }
+      }
+    },
+
+    "dropImage": {
+      "title": "Drop image",
+      "description": "An image of a crystallization drop.",
+      "properties": {
+        "mimeType": {
+          "description": "The MIME type of the image.",
+          "type": "string",
+          "enum": [ "image/png","image/jpeg" ]
+        },
+        "lightType": {
+          "description": "The light used to capture the image.",
+          "type": "string",
+          "enum": [ "Visible","UV","other" ]
+        },
+        "dateTime": {
+          "comment": "TODO enforce format",
+          "description": "The date and time when the image was captured. This is to be specified in UTC and conform to ISO 8601.",
+          "examples": [ "2024-04-24T14:30:16Z","20240424T143016Z" ]
+        },
+        "url": {
+          "type": "string",
+          "description": "A URL where the image can be found. It is assumed that no further authentication is needed to read this image.",
+          "format": "uri"
+        },
+        "path": {
+          "type": "string",
+          "description": "A filesystem path where the image can be found. It is assumed that both sender and receiver have permission to read the image."
+        },
+        "data": {
+          "type": "string",
+          "description": "The image, UUencoded."
+        }
+      },
+      "required": [ "mimeType" ],
+      "oneOf": [
+        { "required": ["url"] },
+        { "required": ["path"] },
+        { "required": ["data"] }
+      ]
+    },
+
+    "region": {
+      "title": "Region",
+      "description": "A region or point of interest.",
+      "oneOf":[
+        { "$ref": "#/definitions/point" },
+        { "$ref": "#/definitions/circle" },
+        { "$ref": "#/definitions/line" },
+        { "$ref": "#/definitions/rectangle" },
+        { "$ref": "#/definitions/polygon" }
+      ]
+    },
+
+    "point": {
+      "type": "object",
+      "title": "Point",
+      "description": "A point marked on an image or in absolute plate space.",
+      "properties": {
+        "regionType": {
+          "type": "string",
+          "enum": [ "point" ]
+        },
+        "x": {
+          "type": "number",
+          "description": "The X co-ordinate of the point."
+        },
+        "y": {
+          "type": "number",
+          "description": "The Y co-ordinate of the point."
+        }
+      },
+      "required": [ "regionType","x","y" ]
+    },
+
+    "circle": {
+      "type": "object",
+      "title": "Circle",
+      "description": "A circle marked on an image or in absolute plate space.",
+      "properties": {
+        "regionType": {
+          "type": "string",
+          "enum": [ "circle" ]
+        },
+        "center": { "$ref": "#/definitions/point"},
+        "radius": {
+          "type": "number",
+          "description": "The radius of the circle.",
+          "exclusiveMinimum": 0
+        }
+      },
+      "required": ["regionType","center","radius"]
+    },
+
+    "line": {
+      "type": "object",
+      "title": "Line",
+      "description": "A straight line marked on an image or in absolute plate space.",
+      "properties": {
+        "regionType": {
+          "type": "string",
+          "enum": [ "line" ]
+        },
+        "points": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/point" },
+          "minItems": 2,
+          "maxItems": 2
+        }
+      },
+      "required": ["regionType","points"]
+    },
+
+    "rectangle": {
+      "type": "object",
+      "title": "Rectangle",
+      "description": "<p>A rectangular region marked on an image or in absolute plate space.</p><p>The box is defined by two points on diagonally opposite corners, with its edges parallel to the X and Y axes. Ensure that the two X values are not equal, and that the two Y values are not equal.</p>",
+      "properties": {
+        "regionType": {
+          "type": "string",
+          "enum": [ "rectangle" ]
+        },
+        "points": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/point" },
+          "minItems": 2,
+          "maxItems": 2
+        }
+      },
+      "required": ["regionType","points"]
+    },
+
+    "polygon": {
+      "type": "object",
+      "title": "Polygon",
+      "description": "<p>A polygonal region marked on an image or in absolute plate space.</p><p>The polygon is defined by at least three points, and is assumed to be closed by a line from the last point to the first. The path should not cross itself, including on the closing segment.</p>",
+      "properties": {
+        "regionType": {
+          "type": "string",
+          "enum": [ "polygon" ]
+        },
+        "points": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/point" },
+          "minItems": 3
+        }
+      },
+      "required": ["regionType","points"]
+    },
+
+    "identifiers": {
+      "type": "object",
+      "title": "Identifiers",
+      "description": "The sender's and receiver's IDs and URLs for the parent object. The intent is to allow exchange of this information such that, for example, a user viewing a shipment in ISPyB can click a link to the same shipment in their home-lab LIMS.",
+      "comment": "A response to a successful submission might contain (or be) an array of these objects, with the receiver's IDs/URLs added. Types using this must be added to the <code>objectType</code> enum.",
+      "properties": {
+        "objectType": {
+          "description": "The type of the parent object.",
+          "type": "string",
+          "enum": [ "shipment","sample","plate","protein","ligand" ]
+        },
+        "uuid": {
+          "description": "The unique identifier for the parent object.",
+          "type": "string",
+          "format": "uuid"
+        },
+        "sendersId": {
+          "description": "The ID of the parent object in the sender's system",
+          "type": "integer",
+          "minimum": 1
+        },
+        "sendersUrl": {
+          "type": "string",
+          "description": "The URL of the parent object in the sender's system",
+          "format": "uri",
+          "pattern": "^https?://"
+        },
+        "receiversId": {
+          "type": "integer",
+          "description": "The ID of the parent object in the receiver's system",
+          "minimum": 1
+        },
+        "receiversUrl": {
+          "type": "string",
+          "description": "The URL of the parent object in the receiver's system",
+          "format": "uri",
+          "pattern": "^https?://"
+        }
+      },
+      "required": [ "objectType" ],
+      "oneOf": [
+        { "required": ["uuid"] },
+        { "required": ["sendersId"] },
+        { "required": ["sendersUrl"] }
+      ]
+    },
+
+    "trackingDevice": {
+      "title": "Tracking device",
+      "description": "<p>A tracking device such as a LightBug or AirTag, included with the parent object.</p><p>Note that the tracking URLs for a given device can change, therefore implementers should use any URLs supplied rather than those cached from a previous shipment with the same device.</p>",
+      "comment": "There's probably a lot more we can do with these, and it'll be necessary to flesh this out.",
+      "properties": {
+        "serial": {
+          "type": "string",
+          "description": "The device serial number or other globally unique identifier."
+        },
+        "deviceType": {
+          "type": "string",
+          "description": "The type of tracking device.",
+          "enum": [ "LightBug", "AirTag", "other"]
+        },
+        "humanTrackingUrl": {
+          "type": "string",
+          "description": "A URL where a human can, for example, see the device location on a map.",
+          "format": "uri",
+          "pattern": "^https?://"
+        },
+        "apiTrackingUrl": {
+          "type": "string",
+          "description": "A URL where a computer can, for example, obtain the device's last known latitude and longitude.",
+          "format": "uri",
+          "pattern": "^https?://"
+        }
+      },
+      "required": [ "serial","deviceType" ]
+    },
+
+    "person": {
+      "title": "Person",
+      "description": "Ugh, humans.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The person's full name."
+        },
+        "emailAddress": {
+          "type": "string",
+          "description": "The person's email address."
+        },
+        "phoneNumber": {
+          "type": "string",
+          "description": "The person's phone number."
+        }
+      },
+      "required": [ "name" ]
+    }
+  }
+}

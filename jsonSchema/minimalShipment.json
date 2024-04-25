@@ -1,0 +1,39 @@
+{
+  "proposal": "mx1234",
+  "session": 1,
+  "proteins":[
+    {
+      "proteinAcronym":"BOB",
+      "identifiers":{
+        "objectType":"protein",
+        "uuid":"fda2d01a-8c31-41d1-9049-c24ca3bd89ad"
+      }
+    }
+  ],
+  "dewars":[
+    {
+      "barcode":"DLS-MX-1234",
+      "pucks":[
+        {
+          "barcode":"OUL-001",
+          "positions":16,
+          "pins":[
+            {
+              "positionInPuck":4,
+              "positions":1,
+              "contents":[
+                {
+                  "positionInPin":1,
+                  "sample":{
+                    "name":"P4H_9098A01d1c1",
+                    "proteinUuid":"fda2d01a-8c31-41d1-9049-c24ca3bd89ad"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
