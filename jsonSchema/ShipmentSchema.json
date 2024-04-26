@@ -115,6 +115,10 @@
       "description": "A crystallization plate",
       "properties": {
         "plateType": { "$ref": "#/definitions/plateType"},
+        "barcode": {
+          "type": "string",
+          "description": "<p>The plate barcode or other identifier.</p><p>Note that this barcode should be unique within the sender's facility but is unlikely to be globally unique. For example, Formulatrix installations with Rock Maker typically generate alphanumeric barcodes beginning in the 90xx range.</p>"
+        },
         "wells": {
           "type": "array",
           "description": "The wells of the plate. This may be all the wells, or a subset of interesting wells, depending on the application.",
@@ -124,7 +128,7 @@
         "identifiers": { "$ref": "#/definitions/identifiers" },
         "trackingDevice": { "$ref":  "#/definitions/trackingDevice" }
       },
-      "required": [ "plateType","wells" ]
+      "required": [ "barcode","plateType","wells" ]
     },
 
     "plateWell": {
