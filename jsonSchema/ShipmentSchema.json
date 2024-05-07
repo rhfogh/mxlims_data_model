@@ -287,50 +287,65 @@
     "crystalForm": {
       "type": "object",
       "title": "Crystal Form",
-      "description": "Space group and unit cell dimensions. These are the sender's known or predicted values.",
-      "comment": "The intent of this separate crystalForm object is to ensure that either space group and unit cell dimensions are all provided, or none are provided. But it could be in a crystalForms property of the shipment and referenced by UUID, which would avoid repetition.",
+      "description": "Space group and unit cell dimensions. These are the sender's known or predicted values. Where multiple crystal form objects are supplied, they should be in descending order of preference or expectation.",
       "properties": {
         "spaceGroup": {
           "description": "The space group",
           "enum": ["P1","P2","P21","C2","P222","P2221","P21212","P212121","C2221","C222","F222","I222",
-          "I212121","P4","P41","P42","P43","I4","I41","P422","P4212","P4122","P41212","P4222","P42212","P4322","P43212",
-          "I422","I4122","P3","P31","P32","R3","H3","P312","P321","P3112","P3121","P3212","P3221","R32","H32","P6",
-          "P61","P65","P62","P64","P63","P622","P6122","P6522","P6222","P6422","P6322","P23","F23","I23","P213","I213",
-          "P432","P4232","F432","F4132","I432","P4332","P4132","I4132"]
+            "I212121","P4","P41","P42","P43","I4","I41","P422","P4212","P4122","P41212","P4222","P42212","P4322","P43212",
+            "I422","I4122","P3","P31","P32","R3","H3","P312","P321","P3112","P3121","P3212","P3221","R32","H32","P6",
+            "P61","P65","P62","P64","P63","P622","P6122","P6522","P6222","P6422","P6322","P23","F23","I23","P213","I213",
+            "P432","P4232","F432","F4132","I432","P4332","P4132","I4132"]
         },
-        "unitCellA": {
+        "unitCell": {
+          "$ref": "#/definitions/unitCell"
+        }
+      },
+      "anyOf": [
+        { "required": ["spaceGroup"] },
+        { "required": ["unitCell"] }
+      ]
+
+    },
+
+    "unitCell": {
+      "type":"object",
+      "title": "Unit cell",
+      "description": "Unit cell dimensions",
+      "properties": {
+        "a": {
           "type":"number",
           "description":"The &quot;a&quot; dimension of the unit cell.",
           "exclusiveMinimum":0,
           "examples":[55.02]
         },
-        "unitCellB": {
+        "b": {
           "type":"number",
           "description":"The &quot;b&quot; dimension of the unit cell.",
           "exclusiveMinimum":0,
           "examples":[55.02]
         },
-        "unitCellC": {
+        "c": {
           "type":"number",
           "description":"The &quot;c&quot; dimension of the unit cell.",
           "exclusiveMinimum":0,
           "examples":[55.02]
         },
-        "unitCellAlpha":{
+        "alpha":{
           "type":"number",
           "description":"The &quot;&#945;&quot; angle of the unit cell.",
           "exclusiveMinimum":0,
           "exclusiveMaximum":180,
           "examples":[90.01]
         },
-        "unitCellBeta":{
+        "beta":{
           "type":"number",
           "description":"The &quot;&#946;&quot; angle of the unit cell.",
           "exclusiveMinimum":0,
           "exclusiveMaximum":180,
           "examples":[90.01]
         },
-        "unitCellGamma":{
+        "gamma":{
           "type":"number",
           "description":"The &quot;&#947;&quot; angle of the unit cell.",
           "exclusiveMinimum":0,
@@ -338,7 +353,7 @@
           "examples":[90.01]
         }
       },
-      "required": ["spaceGroup","unitCellA","unitCellB","unitCellC","unitCellAlpha","unitCellBeta","unitCellGamma"]
+      "required": ["a","b","c","alpha","beta","gamma"]
     },
 
     "ligand": {
