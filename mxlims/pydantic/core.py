@@ -28,7 +28,7 @@ __date__ = "17/10/2024"
 import uuid
 import datetime
 import enum
-from typing import Optional, Dict, List, Any
+from typing import Optional, Dict, List, Any,Union
 from pydantic import BaseModel, Field
 
 
@@ -52,14 +52,16 @@ class MxlimsObject(BaseModel):
     extensions: Dict[str, Any] = Field(
         default_factory=dict,
         json_schema_extra={
-            "description": "Keyword-value extensions; use is accepted but discouraged"
+            "description": "Keyword-value dictionary string:Any of extensions."
+            "Use is accepted but discouraged"
         },
     )
     namespace_extensions: Dict[str, BaseModel] = Field(
         default_factory=dict,
         json_schema_extra={
-            "description": "Namespaced extension. Key is an organisation identifier "
-            "(e.g. 'GPhL), value is a Pydantic model defined by this organisation.",
+            "description": "Keyword-value dictionary of namespaced extension. "
+             "Key is an organisation identifier (e.g. 'GPhL' or 'ESRF'),"
+            " value is a Pydantic model defined by this organisation.",
         },
     )
 
@@ -67,11 +69,12 @@ class MxlimsObject(BaseModel):
 class Dataset(MxlimsObject):
     """Base class for MXLIMS Datasets"""
 
-    source: Optional["Job"] = Field(
+    source_id: Optional[str] = Field(
         default=None,
         frozen=True,
         json_schema_extra={
-            "description": "Job that created this Dataset. return link for job.results"
+            "description": "String UUID for Job that created this Dataset."
+                           "return link for job.results"
         },
     )
     role: Optional[str] = Field(
@@ -88,19 +91,18 @@ class Dataset(MxlimsObject):
             ],
         },
     )
-    logistical_sample: Optional["LogisticalSample"] = Field(
+    logistical_sample_id: Optional[str] = Field(
         default=None,
         frozen=True,
         json_schema_extra={
-            "description": "Logistical Sample or Sample location relevant to Dataset."
-            "Overrides Job.logistical_sample; return link for Logisticalsample.datasets"
+            "description": "String UUID for Logistical Sample relevant to Dataset."
         },
     )
-    derived_from_id: Optional[uuid.UUID] = Field(
+    derived_from_id: Optional[str] = Field(
         default=None,
         frozen=True,
         json_schema_extra={
-            "description": "UUID for Dataset from which this Dataset was derived. "
+            "description": "String UUID for Dataset from which this Dataset was derived. "
             "Used for modified Datasets without a 'source' link, "
             "e.g. when removing images from a sweep before processing."
         },
@@ -126,29 +128,31 @@ class Job(MxlimsObject):
             "Overridden by Dataset.logistical_sample; return link for Logisticalsample.jobs"
         },
     )
-    templates: List[Dataset] = Field(
+    templates: Union[List[Dataset], List[str]] = Field(
         default_factory=list,
         json_schema_extra={
-            "description": "Templates with parameters for output datasets "
-            "– e.g. diffraction plan, processing plan",
+            "description": "Lisdt of Templates with parameters for output datasets "
+            "– e.g. diffraction plan, processing plan, or of their String UUID",
         },
     )
-    input_data: List[Dataset] = Field(
+    input_data: Union[List[Dataset], List[str]] = Field(
         default_factory=list,
         json_schema_extra={
-            "description": "Input data sets (pre-existing), used for calculation",
+            "description": "List of pre-existing Input data sets used for calculation,"
+            " or of their String UUID",
         },
     )
-    reference_data: List[Dataset] = Field(
+    reference_data: Union[List[Dataset], List[str]] = Field(
         default_factory=list,
         json_schema_extra={
-            "description": "Reference data sets, e.g. reference mtz file, ",
+            "description": "List of reference data sets, e.g. reference mtz file, "
+            "or of their String UUID",
         },
     )
     results: List[Dataset] = Field(
         default_factory=list,
         json_schema_extra={
-            "description": "Datasets produced by Job",
+            "description": "Datasets produced by Job (match Dataset.source_id",
         },
     )
     start_time: Optional[datetime.datetime] = Field(
@@ -184,10 +188,10 @@ class LogisticalSample(MxlimsObject):
 
     describing Sample containers and locations
     (from Dewars and Plates to drops, pins and crystals)"""
-    sample: Optional["PreparedSample"] = Field(
+    sample_id: Optional[str] = Field(
         default=None,
         json_schema_extra={
-            "description": "The sample preparation that applies "
+            "description": "String UUID for the sample preparation that applies "
             "to this LogisticalSample and all its contents",
         },
     )
@@ -201,20 +205,6 @@ class LogisticalSample(MxlimsObject):
         default_factory=list,
         json_schema_extra={
             "description": "LogisticalSamples contained in this one",
-        },
-    )
-    jobs: List[Job] = Field(
-        default_factory=list,
-        json_schema_extra={
-            "description": "Jobs (templates, planned, initiated or completed)"
-            "for this LogisticalSample",
-        },
-    )
-    datasets: List[Dataset] = Field(
-        default_factory=list,
-        json_schema_extra={
-            "description": "Datasets (templates, planned, initiated or completed)"
-            "for this LogisticalSample",
         },
     )
 

@@ -136,8 +136,8 @@ class Macromolecule(BaseModel):
     identifiers: Dict[str, str] = Field(
         default_factory=dict,
         json_schema_extra={
-            "description": "Dictionary of contextName: identifier."
-            "contectName could refer to a LIMS, database, or web site "
+            "description": "Dictionary str:str  of contextName: identifier."
+            "contextName could refer to a LIMS, database, or web site "
             "but could also be e.g. 'sequence'",
         },
     )
@@ -161,7 +161,7 @@ class Component(BaseModel):
     identifiers: Dict[str, str] = Field(
         default_factory=dict,
         json_schema_extra={
-            "description": "Dictionary of contextName: identifier."
+            "description": "Dictionary str:str of contextName: identifier."
             "contectName will typically refer to a LIMS, database, or web site "
             "but could also be e.g. 'smiles'",
         },
@@ -257,22 +257,22 @@ class MXExperiment(Job):
             "return link for MXSample.jobs"
         },
     )
-    results: List["CollectionSweep"] = Field(
-        default_factory=list,
-        json_schema_extra={
-            "description": "CollectionSweeps produced by Job",
-        },
-    )
-    templates: List["CollectionSweep"] = Field(
+    templates: Union[List["CollectionSweep"], List[str]] = Field(
         default_factory=list,
         json_schema_extra={
             "description": "CollectionSweeps input templates for Job",
         },
     )
-    reference_data: List["ReflectionSet"] = Field(
+    reference_data: Union[List["ReflectionSet"], List[str]] = Field(
         default_factory=list,
         json_schema_extra={
             "description": "Reference ReflectionSets for Job",
+        },
+    )
+    results: List["CollectionSweep"] = Field(
+        default_factory=list,
+        json_schema_extra={
+            "description": "CollectionSweeps produced by Job",
         },
     )
 
@@ -370,15 +370,16 @@ class CollectionSweep(Dataset):
     axis_positions_start: Dict[str, float] = Field(
         default_factory=dict,
         json_schema_extra={
-            "description": "Starting position of axes, rotations or translations, "
-            "including detector distance, by name. "
+            "description": "Dictionary string:float with starting position of all axes,"
+            " rotations or translations, including detector distance, by name. "
             "Units are m for distances, degrees for angles",
         },
     )
     axis_positions_end: Dict[str, float] = Field(
         default_factory=dict,
         json_schema_extra={
-            "description": "Final position of all scanned axes, as for axis_positions_start,"
+            "description": "Dictionary string:float with final position of scanned axes"
+            " as for axis_positions_start,"
             "NB scans may be acquired out of order, so this determines the limits "
             "of the sweep, not the temporal start and end points",
         },
@@ -456,18 +457,10 @@ class CollectionSweep(Dataset):
             "description": "Path to directory containing image files.",
         },
     )
-    # Overriding superclass fields, for more precise typing
-    source: Optional["MXExperiment"] = Field(
-        default=None,
-        frozen=True,
-        json_schema_extra={
-            "description": "MXExperiment that created this Dataset. return link for job.results"
-        },
-    )
 
 
 class Scan(BaseModel):
-    """Subdivision of CollectionSweep
+    """Subdivision of CollectionSweep.
 
     The Scan describes a continuously acquired set of images that forms a subset of the
     CollectionSweep of which they form part. The ordinal gives the acquisition order of
@@ -524,28 +517,30 @@ class MXProcessing(Job):
             "return link for MXSample.jobs"
         },
     )
-    input_data: List[CollectionSweep] = Field(
+    templates: Union[List["ReflectionSet"], List[str]] = Field(
         default_factory=list,
         json_schema_extra={
-            "description": "Input data sets (pre-existing), used for calculation",
+            "description": "Lisdt of Templates with parameters for output datasets "
+            "– e.g. diffraction plan, processing plan, or of their String UUID",
+        },
+    )
+    input_data: Union[List[CollectionSweep], List[str]] = Field(
+        default_factory=list,
+        json_schema_extra={
+            "description": "List of pre-existing Input data sets used for calculation,"
+            " or of their String UUID",
+        },
+    )
+    reference_data: Union[List["ReflectionSet"], List[str]] = Field(
+        default_factory=list,
+        json_schema_extra={
+            "description": "Reference ReflectionSets for Job",
         },
     )
     results: List["ReflectionSet"] = Field(
         default_factory=list,
         json_schema_extra={
             "description": "Datasets produced by Job",
-        },
-    )
-    templates: List["ReflectionSet"] = Field(
-        default_factory=list,
-        json_schema_extra={
-            "description": "CollectionSweeps input templates for Job",
-        },
-    )
-    reference_data: List["ReflectionSet"] = Field(
-        default_factory=list,
-        json_schema_extra={
-            "description": "Reference ReflectionSets for Job",
         },
     )
 
@@ -615,14 +610,13 @@ class ReflectionStatistics(BaseModel):
 
 
 class ReflectionSet(Dataset):
-    """Processed, "Processed reflections, possibly merged or scaled
-
+    """Processed  reflections, possibly merged or scaled
     as might be stored within an MTZ file or as mmCIF.refln"""
 
     anisotropic_diffraction: bool = Field(
         default=False,
         json_schema_extra={
-            "description": "Is diff4raction limit analysis aniosotropic? True/False ",
+            "description": "Is diffraction limit analysis aniosotropic? True/False ",
         },
     )
     resolution_rings_detected: List[Tuple[float, float]] = Field(
@@ -789,14 +783,6 @@ class ReflectionSet(Dataset):
             "description": "Path to directory containing reflection set files.",
         },
     )
-    # Fields overriding superclass for more precise typing
-    source: Optional["MXProcessing"] = Field(
-        default=None,
-        frozen=True,
-        json_schema_extra={
-            "description": "Job that created this Dataset. return link for job.results"
-        },
-    )
 
 
 class MXSample(PreparedSample):
@@ -824,7 +810,7 @@ class MXSample(PreparedSample):
     identifiers: Dict[str, str] = Field(
         default_factory=dict,
         json_schema_extra={
-            "description": "Dictionary of contextName: identifier."
+            "description": "Dictionary str:str of contextName: identifier."
             "contectName will typically refer to a LIMS, database, or web site "
             "and the identifier will point to the ample within thie context",
             "examples": [
@@ -842,44 +828,26 @@ class MXSample(PreparedSample):
         },
     )
 
-class MXLogisticalSample(LogisticalSample):
-    """Logistical Sample (crystal, location, ...) with MX crystallography-specific additions
-"""
-    sample: Optional["MXSample"] = Field(
-        default=None,
-        json_schema_extra={
-            "description": "The sample preparation that applies "
-            "to this MXLogisticalSample and all its contents",
-        },
-    )
-    container: Optional["LogisticalSample"] = Field(
-        default=None,
-        json_schema_extra={
-            "description": "The LogisticalSample containing this one",
-        },
-    )
-    contents: List["LogisticalSample"] = Field(
-        default_factory=list,
-        json_schema_extra={
-            "description": "Do not use - MXLogisticalSamples should not have contents",
-        },
-    )
-    jobs: List[Union[MXExperiment, MXProcessing]] = Field(
-        default_factory=list,
-        json_schema_extra={
-            "description": "Jobs (templates, planned, initiated or completed)"
-            "for this MXLogisticalSample",
-        },
-    )
-
 if __name__ == "__main__":
     # Usage:
+    # In target directory .../mxlims/pydantic/jsonSchema do
     # python -m mxlims.pydantic.crystallography
+    #
+    # NB the result may need some editing
     import json
-    schema = MXLogisticalSample.model_json_schema()
-    fp = open("MXLogisticalSample_schema.json", "w")
-    json.dump(schema, fp, indent=4)
+    for cls in (
+        LogisticalSample,
+        CollectionSweep,
+        ReflectionSet,
+        MXExperiment,
+        MXProcessing,
+        MXSample
+    ):
+        tag = cls.__name__
+        schema = cls.model_json_schema()
+        fp = open("%s_schema.json" % tag, "w")
+        json.dump(schema, fp, indent=4)
 
-    # To generate html odcumentation use
+    # To generate html documentation use e.g.
     # generate-schema-doc --link-to-reused-ref MXLogisticalSample_schema.json ../jsonDocs
 

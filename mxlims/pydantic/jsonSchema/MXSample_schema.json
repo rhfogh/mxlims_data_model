@@ -14,7 +14,7 @@
                     "type": "string"
                 },
                 "extensions": {
-                    "description": "Keyword-value extensions; use is accepted but discouraged",
+                    "description": "Keyword-value dictionary string:Any of extensions.Use is accepted but discouraged",
                     "title": "Extensions",
                     "type": "object"
                 },
@@ -22,21 +22,22 @@
                     "additionalProperties": {
                         "$ref": "#/$defs/BaseModel"
                     },
-                    "description": "Namespaced extension. Key is an organisation identifier (e.g. 'GPhL), value is a Pydantic model defined by this organisation.",
+                    "description": "Keyword-value dictionary of namespaced extension. Key is an organisation identifier (e.g. 'GPhL' or 'ESRF'), value is a Pydantic model defined by this organisation.",
                     "title": "Namespace Extensions",
                     "type": "object"
                 },
-                "source": {
+                "source_id": {
                     "anyOf": [
                         {
-                            "$ref": "#/$defs/MXExperiment"
+                            "type": "string"
                         },
                         {
                             "type": "null"
                         }
                     ],
                     "default": null,
-                    "description": "MXExperiment that created this Dataset. return link for job.results"
+                    "description": "String UUID for Job that created this Dataset.return link for job.results",
+                    "title": "Source Id"
                 },
                 "role": {
                     "anyOf": [
@@ -57,22 +58,9 @@
                     ],
                     "title": "Role"
                 },
-                "logistical_sample": {
+                "logistical_sample_id": {
                     "anyOf": [
                         {
-                            "$ref": "#/$defs/LogisticalSample"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "description": "Logistical Sample or Sample location relevant to Dataset.Overrides Job.logistical_sample; return link for Logisticalsample.datasets"
-                },
-                "derived_from_id": {
-                    "anyOf": [
-                        {
-                            "format": "uuid",
                             "type": "string"
                         },
                         {
@@ -80,7 +68,20 @@
                         }
                     ],
                     "default": null,
-                    "description": "UUID for Dataset from which this Dataset was derived. Used for modified Datasets without a 'source' link, e.g. when removing images from a sweep before processing.",
+                    "description": "String UUID for Logistical Sample relevant to Dataset.",
+                    "title": "Logistical Sample Id"
+                },
+                "derived_from_id": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "String UUID for Dataset from which this Dataset was derived. Used for modified Datasets without a 'source' link, e.g. when removing images from a sweep before processing.",
                     "title": "Derived From Id"
                 },
                 "annotation": {
@@ -257,7 +258,7 @@
                     "additionalProperties": {
                         "type": "number"
                     },
-                    "description": "Starting position of axes, rotations or translations, including detector distance, by name. Units are m for distances, degrees for angles",
+                    "description": "Dictionary string:float with starting position of all axes, rotations or translations, including detector distance, by name. Units are m for distances, degrees for angles",
                     "title": "Axis Positions Start",
                     "type": "object"
                 },
@@ -265,7 +266,7 @@
                     "additionalProperties": {
                         "type": "number"
                     },
-                    "description": "Final position of all scanned axes, as for axis_positions_start,NB scans may be acquired out of order, so this determines the limits of the sweep, not the temporal start and end points",
+                    "description": "Dictionary string:float with final position of scanned axes as for axis_positions_start,NB scans may be acquired out of order, so this determines the limits of the sweep, not the temporal start and end points",
                     "title": "Axis Positions End",
                     "type": "object"
                 },
@@ -408,7 +409,7 @@
                     "type": "string"
                 },
                 "extensions": {
-                    "description": "Keyword-value extensions; use is accepted but discouraged",
+                    "description": "Keyword-value dictionary string:Any of extensions.Use is accepted but discouraged",
                     "title": "Extensions",
                     "type": "object"
                 },
@@ -416,21 +417,22 @@
                     "additionalProperties": {
                         "$ref": "#/$defs/BaseModel"
                     },
-                    "description": "Namespaced extension. Key is an organisation identifier (e.g. 'GPhL), value is a Pydantic model defined by this organisation.",
+                    "description": "Keyword-value dictionary of namespaced extension. Key is an organisation identifier (e.g. 'GPhL' or 'ESRF'), value is a Pydantic model defined by this organisation.",
                     "title": "Namespace Extensions",
                     "type": "object"
                 },
-                "source": {
+                "source_id": {
                     "anyOf": [
                         {
-                            "$ref": "#/$defs/Job"
+                            "type": "string"
                         },
                         {
                             "type": "null"
                         }
                     ],
                     "default": null,
-                    "description": "Job that created this Dataset. return link for job.results"
+                    "description": "String UUID for Job that created this Dataset.return link for job.results",
+                    "title": "Source Id"
                 },
                 "role": {
                     "anyOf": [
@@ -451,22 +453,22 @@
                     ],
                     "title": "Role"
                 },
-                "logistical_sample": {
+                "logistical_sample_id": {
                     "anyOf": [
                         {
-                            "$ref": "#/$defs/LogisticalSample"
+                            "type": "string"
                         },
                         {
                             "type": "null"
                         }
                     ],
                     "default": null,
-                    "description": "Logistical Sample or Sample location relevant to Dataset.Overrides Job.logistical_sample; return link for Logisticalsample.datasets"
+                    "description": "String UUID for Logistical Sample relevant to Dataset.",
+                    "title": "Logistical Sample Id"
                 },
                 "derived_from_id": {
                     "anyOf": [
                         {
-                            "format": "uuid",
                             "type": "string"
                         },
                         {
@@ -474,140 +476,11 @@
                         }
                     ],
                     "default": null,
-                    "description": "UUID for Dataset from which this Dataset was derived. Used for modified Datasets without a 'source' link, e.g. when removing images from a sweep before processing.",
+                    "description": "String UUID for Dataset from which this Dataset was derived. Used for modified Datasets without a 'source' link, e.g. when removing images from a sweep before processing.",
                     "title": "Derived From Id"
                 }
             },
             "title": "Dataset",
-            "type": "object"
-        },
-        "Job": {
-            "description": "Base class for MXLIMS Jobs - an experiment or calculation producing Datasets",
-            "properties": {
-                "uuid": {
-                    "description": "Permanent unique identifier string",
-                    "title": "Uuid",
-                    "type": "string"
-                },
-                "extensions": {
-                    "description": "Keyword-value extensions; use is accepted but discouraged",
-                    "title": "Extensions",
-                    "type": "object"
-                },
-                "namespace_extensions": {
-                    "additionalProperties": {
-                        "$ref": "#/$defs/BaseModel"
-                    },
-                    "description": "Namespaced extension. Key is an organisation identifier (e.g. 'GPhL), value is a Pydantic model defined by this organisation.",
-                    "title": "Namespace Extensions",
-                    "type": "object"
-                },
-                "sample": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/PreparedSample"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "description": "Prepared sample relevant to Job.return link for PreparedSample.jobs"
-                },
-                "logistical_sample": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/LogisticalSample"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "description": "Logistical Sample or Sample location relevant to Job.Overridden by Dataset.logistical_sample; return link for Logisticalsample.jobs"
-                },
-                "templates": {
-                    "description": "Templates with parameters for output datasets \u2013 e.g. diffraction plan, processing plan",
-                    "items": {
-                        "$ref": "#/$defs/Dataset"
-                    },
-                    "title": "Templates",
-                    "type": "array"
-                },
-                "input_data": {
-                    "description": "Input data sets (pre-existing), used for calculation",
-                    "items": {
-                        "$ref": "#/$defs/Dataset"
-                    },
-                    "title": "Input Data",
-                    "type": "array"
-                },
-                "reference_data": {
-                    "description": "Reference data sets, e.g. reference mtz file, ",
-                    "items": {
-                        "$ref": "#/$defs/Dataset"
-                    },
-                    "title": "Reference Data",
-                    "type": "array"
-                },
-                "results": {
-                    "description": "Datasets produced by Job",
-                    "items": {
-                        "$ref": "#/$defs/Dataset"
-                    },
-                    "title": "Results",
-                    "type": "array"
-                },
-                "start_time": {
-                    "anyOf": [
-                        {
-                            "format": "date-time",
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "description": "Actual starting time for job or calculation, ",
-                    "title": "Start Time"
-                },
-                "end_time": {
-                    "anyOf": [
-                        {
-                            "format": "date-time",
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "description": "Actual finishing time for job or calculation, ",
-                    "title": "End Time"
-                },
-                "job_status": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/JobStatus"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "description": "Status of job - enumerated, ",
-                    "examples": [
-                        "Template",
-                        "Ready",
-                        "Running",
-                        "Completed",
-                        "\tFailed",
-                        "Aborted"
-                    ]
-                }
-            },
-            "title": "Job",
             "type": "object"
         },
         "JobStatus": {
@@ -631,7 +504,7 @@
                     "type": "string"
                 },
                 "extensions": {
-                    "description": "Keyword-value extensions; use is accepted but discouraged",
+                    "description": "Keyword-value dictionary string:Any of extensions.Use is accepted but discouraged",
                     "title": "Extensions",
                     "type": "object"
                 },
@@ -639,21 +512,22 @@
                     "additionalProperties": {
                         "$ref": "#/$defs/BaseModel"
                     },
-                    "description": "Namespaced extension. Key is an organisation identifier (e.g. 'GPhL), value is a Pydantic model defined by this organisation.",
+                    "description": "Keyword-value dictionary of namespaced extension. Key is an organisation identifier (e.g. 'GPhL' or 'ESRF'), value is a Pydantic model defined by this organisation.",
                     "title": "Namespace Extensions",
                     "type": "object"
                 },
-                "sample": {
+                "sample_id": {
                     "anyOf": [
                         {
-                            "$ref": "#/$defs/PreparedSample"
+                            "type": "string"
                         },
                         {
                             "type": "null"
                         }
                     ],
                     "default": null,
-                    "description": "The sample preparation that applies to this LogisticalSample and all its contents"
+                    "description": "String UUID for the sample preparation that applies to this LogisticalSample and all its contents",
+                    "title": "Sample Id"
                 },
                 "container": {
                     "anyOf": [
@@ -674,22 +548,6 @@
                     },
                     "title": "Contents",
                     "type": "array"
-                },
-                "jobs": {
-                    "description": "Jobs (templates, planned, initiated or completed)for this LogisticalSample",
-                    "items": {
-                        "$ref": "#/$defs/Job"
-                    },
-                    "title": "Jobs",
-                    "type": "array"
-                },
-                "datasets": {
-                    "description": "Datasets (templates, planned, initiated or completed)for this LogisticalSample",
-                    "items": {
-                        "$ref": "#/$defs/Dataset"
-                    },
-                    "title": "Datasets",
-                    "type": "array"
                 }
             },
             "title": "LogisticalSample",
@@ -704,7 +562,7 @@
                     "type": "string"
                 },
                 "extensions": {
-                    "description": "Keyword-value extensions; use is accepted but discouraged",
+                    "description": "Keyword-value dictionary string:Any of extensions.Use is accepted but discouraged",
                     "title": "Extensions",
                     "type": "object"
                 },
@@ -712,7 +570,7 @@
                     "additionalProperties": {
                         "$ref": "#/$defs/BaseModel"
                     },
-                    "description": "Namespaced extension. Key is an organisation identifier (e.g. 'GPhL), value is a Pydantic model defined by this organisation.",
+                    "description": "Keyword-value dictionary of namespaced extension. Key is an organisation identifier (e.g. 'GPhL' or 'ESRF'), value is a Pydantic model defined by this organisation.",
                     "title": "Namespace Extensions",
                     "type": "object"
                 },
@@ -741,28 +599,58 @@
                     "description": "Logistical Sample or Sample location relevant to Job.Overridden by Dataset.logistical_sample; return link for Logisticalsample.jobs"
                 },
                 "templates": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/CollectionSweep"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        }
+                    ],
                     "description": "CollectionSweeps input templates for Job",
-                    "items": {
-                        "$ref": "#/$defs/CollectionSweep"
-                    },
-                    "title": "Templates",
-                    "type": "array"
+                    "title": "Templates"
                 },
                 "input_data": {
-                    "description": "Input data sets (pre-existing), used for calculation",
-                    "items": {
-                        "$ref": "#/$defs/Dataset"
-                    },
-                    "title": "Input Data",
-                    "type": "array"
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/Dataset"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        }
+                    ],
+                    "description": "List of pre-existing Input data sets used for calculation, or of their String UUID",
+                    "title": "Input Data"
                 },
                 "reference_data": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/ReflectionSet"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        }
+                    ],
                     "description": "Reference ReflectionSets for Job",
-                    "items": {
-                        "$ref": "#/$defs/ReflectionSet"
-                    },
-                    "title": "Reference Data",
-                    "type": "array"
+                    "title": "Reference Data"
                 },
                 "results": {
                     "description": "CollectionSweeps produced by Job",
@@ -976,7 +864,7 @@
                     "type": "string"
                 },
                 "extensions": {
-                    "description": "Keyword-value extensions; use is accepted but discouraged",
+                    "description": "Keyword-value dictionary string:Any of extensions.Use is accepted but discouraged",
                     "title": "Extensions",
                     "type": "object"
                 },
@@ -984,7 +872,7 @@
                     "additionalProperties": {
                         "$ref": "#/$defs/BaseModel"
                     },
-                    "description": "Namespaced extension. Key is an organisation identifier (e.g. 'GPhL), value is a Pydantic model defined by this organisation.",
+                    "description": "Keyword-value dictionary of namespaced extension. Key is an organisation identifier (e.g. 'GPhL' or 'ESRF'), value is a Pydantic model defined by this organisation.",
                     "title": "Namespace Extensions",
                     "type": "object"
                 },
@@ -1013,28 +901,58 @@
                     "description": "Logistical Sample or Sample location relevant to Job.Overridden by Dataset.logistical_sample; return link for Logisticalsample.jobs"
                 },
                 "templates": {
-                    "description": "CollectionSweeps input templates for Job",
-                    "items": {
-                        "$ref": "#/$defs/ReflectionSet"
-                    },
-                    "title": "Templates",
-                    "type": "array"
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/ReflectionSet"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        }
+                    ],
+                    "description": "Lisdt of Templates with parameters for output datasets \u2013 e.g. diffraction plan, processing plan, or of their String UUID",
+                    "title": "Templates"
                 },
                 "input_data": {
-                    "description": "Input data sets (pre-existing), used for calculation",
-                    "items": {
-                        "$ref": "#/$defs/CollectionSweep"
-                    },
-                    "title": "Input Data",
-                    "type": "array"
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/CollectionSweep"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        }
+                    ],
+                    "description": "List of pre-existing Input data sets used for calculation, or of their String UUID",
+                    "title": "Input Data"
                 },
                 "reference_data": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/ReflectionSet"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        }
+                    ],
                     "description": "Reference ReflectionSets for Job",
-                    "items": {
-                        "$ref": "#/$defs/ReflectionSet"
-                    },
-                    "title": "Reference Data",
-                    "type": "array"
+                    "title": "Reference Data"
                 },
                 "results": {
                     "description": "Datasets produced by Job",
@@ -1130,7 +1048,7 @@
                     "type": "string"
                 },
                 "extensions": {
-                    "description": "Keyword-value extensions; use is accepted but discouraged",
+                    "description": "Keyword-value dictionary string:Any of extensions.Use is accepted but discouraged",
                     "title": "Extensions",
                     "type": "object"
                 },
@@ -1138,7 +1056,7 @@
                     "additionalProperties": {
                         "$ref": "#/$defs/BaseModel"
                     },
-                    "description": "Namespaced extension. Key is an organisation identifier (e.g. 'GPhL), value is a Pydantic model defined by this organisation.",
+                    "description": "Keyword-value dictionary of namespaced extension. Key is an organisation identifier (e.g. 'GPhL' or 'ESRF'), value is a Pydantic model defined by this organisation.",
                     "title": "Namespace Extensions",
                     "type": "object"
                 },
@@ -1209,7 +1127,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "Dictionary of contextName: identifier.contectName will typically refer to a LIMS, database, or web site and the identifier will point to the ample within thie context",
+                    "description": "Dictionary str:str of contextName: identifier.contectName will typically refer to a LIMS, database, or web site and the identifier will point to the ample within thie context",
                     "examples": [
                         {
                             "receiversUrl": "http://lims.synchrotron.org/crystal/54321",
@@ -1231,47 +1149,6 @@
             ],
             "title": "PdbxSignalType",
             "type": "string"
-        },
-        "PreparedSample": {
-            "description": "Base class for MXLIMS Prepared Samples, describing sample content",
-            "properties": {
-                "uuid": {
-                    "description": "Permanent unique identifier string",
-                    "title": "Uuid",
-                    "type": "string"
-                },
-                "extensions": {
-                    "description": "Keyword-value extensions; use is accepted but discouraged",
-                    "title": "Extensions",
-                    "type": "object"
-                },
-                "namespace_extensions": {
-                    "additionalProperties": {
-                        "$ref": "#/$defs/BaseModel"
-                    },
-                    "description": "Namespaced extension. Key is an organisation identifier (e.g. 'GPhL), value is a Pydantic model defined by this organisation.",
-                    "title": "Namespace Extensions",
-                    "type": "object"
-                },
-                "logistical_samples": {
-                    "description": "LogisticalSamples with contents from this LogisticalSample",
-                    "items": {
-                        "$ref": "#/$defs/LogisticalSample"
-                    },
-                    "title": "Logistical Samples",
-                    "type": "array"
-                },
-                "jobs": {
-                    "description": "Jobs (templates, planned, initiated or completed)for this PreparedSample",
-                    "items": {
-                        "$ref": "#/$defs/Job"
-                    },
-                    "title": "Jobs",
-                    "type": "array"
-                }
-            },
-            "title": "PreparedSample",
-            "type": "object"
         },
         "QualityFactor": {
             "description": "Reflection shell quality factor. Enumerated type with associated value",
@@ -1333,7 +1210,7 @@
                     "type": "string"
                 },
                 "extensions": {
-                    "description": "Keyword-value extensions; use is accepted but discouraged",
+                    "description": "Keyword-value dictionary string:Any of extensions.Use is accepted but discouraged",
                     "title": "Extensions",
                     "type": "object"
                 },
@@ -1341,21 +1218,22 @@
                     "additionalProperties": {
                         "$ref": "#/$defs/BaseModel"
                     },
-                    "description": "Namespaced extension. Key is an organisation identifier (e.g. 'GPhL), value is a Pydantic model defined by this organisation.",
+                    "description": "Keyword-value dictionary of namespaced extension. Key is an organisation identifier (e.g. 'GPhL' or 'ESRF'), value is a Pydantic model defined by this organisation.",
                     "title": "Namespace Extensions",
                     "type": "object"
                 },
-                "source": {
+                "source_id": {
                     "anyOf": [
                         {
-                            "$ref": "#/$defs/MXProcessing"
+                            "type": "string"
                         },
                         {
                             "type": "null"
                         }
                     ],
                     "default": null,
-                    "description": "Job that created this Dataset. return link for job.results"
+                    "description": "String UUID for Job that created this Dataset.return link for job.results",
+                    "title": "Source Id"
                 },
                 "role": {
                     "anyOf": [
@@ -1376,22 +1254,9 @@
                     ],
                     "title": "Role"
                 },
-                "logistical_sample": {
+                "logistical_sample_id": {
                     "anyOf": [
                         {
-                            "$ref": "#/$defs/LogisticalSample"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "description": "Logistical Sample or Sample location relevant to Dataset.Overrides Job.logistical_sample; return link for Logisticalsample.datasets"
-                },
-                "derived_from_id": {
-                    "anyOf": [
-                        {
-                            "format": "uuid",
                             "type": "string"
                         },
                         {
@@ -1399,7 +1264,20 @@
                         }
                     ],
                     "default": null,
-                    "description": "UUID for Dataset from which this Dataset was derived. Used for modified Datasets without a 'source' link, e.g. when removing images from a sweep before processing.",
+                    "description": "String UUID for Logistical Sample relevant to Dataset.",
+                    "title": "Logistical Sample Id"
+                },
+                "derived_from_id": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "String UUID for Dataset from which this Dataset was derived. Used for modified Datasets without a 'source' link, e.g. when removing images from a sweep before processing.",
                     "title": "Derived From Id"
                 },
                 "anisotropic_diffraction": {
@@ -1980,82 +1858,9 @@
             "type": "object"
         }
     },
-    "description": "Logistical Sample (crystal, location, ...) with MX crystallography-specific additions",
-    "properties": {
-        "uuid": {
-            "description": "Permanent unique identifier string",
-            "title": "Uuid",
-            "type": "string"
-        },
-        "extensions": {
-            "description": "Keyword-value extensions; use is accepted but discouraged",
-            "title": "Extensions",
-            "type": "object"
-        },
-        "namespace_extensions": {
-            "additionalProperties": {
-                "$ref": "#/$defs/BaseModel"
-            },
-            "description": "Namespaced extension. Key is an organisation identifier (e.g. 'GPhL), value is a Pydantic model defined by this organisation.",
-            "title": "Namespace Extensions",
-            "type": "object"
-        },
-        "sample": {
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/MXSample"
-                },
-                {
-                    "type": "null"
-                }
-            ],
-            "default": null,
-            "description": "The sample preparation that applies to this MXLogisticalSample and all its contents"
-        },
-        "container": {
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/LogisticalSample"
-                },
-                {
-                    "type": "null"
-                }
-            ],
-            "default": null,
-            "description": "The LogisticalSample containing this one"
-        },
-        "contents": {
-            "description": "Do not use - MXLogisticalSamples should not have contents",
-            "items": {
-                "$ref": "#/$defs/LogisticalSample"
-            },
-            "title": "Contents",
-            "type": "array"
-        },
-        "jobs": {
-            "description": "Jobs (templates, planned, initiated or completed)for this MXLogisticalSample",
-            "items": {
-                "anyOf": [
-                    {
-                        "$ref": "#/$defs/MXExperiment"
-                    },
-                    {
-                        "$ref": "#/$defs/MXProcessing"
-                    }
-                ]
-            },
-            "title": "Jobs",
-            "type": "array"
-        },
-        "datasets": {
-            "description": "Datasets (templates, planned, initiated or completed)for this LogisticalSample",
-            "items": {
-                "$ref": "#/$defs/Dataset"
-            },
-            "title": "Datasets",
-            "type": "array"
+    "allOf": [
+        {
+            "$ref": "#/$defs/MXSample"
         }
-    },
-    "title": "MXLogisticalSample",
-    "type": "object"
+    ]
 }
