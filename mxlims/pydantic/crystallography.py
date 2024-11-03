@@ -36,6 +36,7 @@ from mxlims.pydantic.core import (
     Dataset,
     PreparedSample,
     LogisticalSample,
+    LogisticalSampleRef,
     MxlimsObjectRef,
 )
 
@@ -75,26 +76,32 @@ class UnitCell(BaseModel):
 
     a: float = Field(
         frozen=True,
+        ge=0,
         json_schema_extra={"": "A axis length (A)"},
     )
     b: float = Field(
         frozen=True,
+        ge=0,
         description="B axis length (A)"
     )
     c: float = Field(
         frozen=True,
+        ge=0,
         description="C axis length (A)"
     )
     alpha: float = Field(
         frozen=True,
+        ge=0,
         description="alpha angle (degres)"
     )
     beta: float = Field(
         frozen=True,
+        ge=0,
         description="beta angle (degres)"
     )
     gamma: float = Field(
         frozen=True,
+        ge=0,
         description="gamma angle (degres)"
     )
 
@@ -157,7 +164,6 @@ class Component(BaseModel):
         "but could also be e.g. 'smiles'",
     )
 
-
 class MXExperiment(Job):
     """MX Crystallographic data acquisition experiment."""
 
@@ -178,35 +184,44 @@ class MXExperiment(Job):
     )
     expected_resolution: Optional[float] = Field(
         default=None,
+        ge=0,
         description="The resolution expected in the experiment "
         "– for positioning the detector and setting up the experiment"
     )
     target_completeness: Optional[float] = Field(
         default=None,
+        ge=0.0,
+        le=100.0,
         description="Minimal completeness expected from experiment",
     )
     target_multiplicity: Optional[float] = Field(
         default=None,
+        ge=0,
         description="Minimal multiplicity expected from experiment",
     )
     dose_budget: Optional[float] = Field(
         default=None,
+        ge=0,
         description="Dose (MGy) to be used in experiment",
     )
     snapshot_count: Optional[int] = Field(
         default=None,
+        ge=0,
         description="Number of snapshots to acquire after each (re)centring",
     )
     wedge_width: Optional[float] = Field(
         default=None,
+        ge=0,
         description="Wedge width (in degrees) to use for interleaving",
     )
     measured_flux: Optional[float] = Field(
         default=None,
+        ge=0,
         description="Measured value of beam flux in photons/s",
     )
     radiation_dose: Optional[float] = Field(
         default=None,
+        ge=0,
         description="Total radiation dose absorbed during experiment",
     )
     unit_cell: Optional[UnitCell] = Field(
@@ -225,23 +240,30 @@ class MXExperiment(Job):
         frozen=True,
         description="MX Crystallographic sample relevant to Job.",
     )
-    templates: List[Union["CollectionSweep", MxlimsReference]] = Field(
+    # NB logistical_sample should be typed more precisely, once we have that modeled
+    logistical_sample: Optional["LogisticalSample"] = Field(
+        default=None,
+        frozen=True,
+        description="Logistical Sample or Sample location relevant to Job."
+        "Overridden by Dataset.logistical_sample; return link for Logisticalsample.jobs"
+    )
+    templates: List["CollectionSweep"] = Field(
         default_factory=list,
         discriminator="mxlims_type",
         description="Templates with parameters for output datasets ",
     )
-    reference_data: List[Union["ReflectionSet", MxlimsReference]] = Field(
+    reference_data: List["ReflectionSet"] = Field(
         default_factory=list,
         discriminator="mxlims_type",
         description="Reference data sets, e.g. reference mtz file, ",
     )
-    results: List[Union["CollectionSweep", MxlimsReference]] = Field(
+    results: List["CollectionSweep"] = Field(
         default_factory=list,
         discriminator="mxlims_type",
-        description="Datasets produced by Job (match Dataset.source_id",
+        description="Datasets produced by Job (match Dataset.source_ref",
     )
 
-class MXExperimentRef(BaseModel):
+class MXExperimentRef(MxlimsObjectRef):
     """Reference to MXExperiment object, for use in JSON files."""
     target_type: Literal["MXExperiment"]
 
@@ -269,15 +291,18 @@ class CollectionSweep(Dataset):
     )
     exposure_time: Optional[float] = Field(
         default=None,
+        ge=0,
         description="Exposure time in seconds",
     )
     image_width: Optional[float] = Field(
         default=None,
+        ge=0,
         description="Width of a single image, along scan_axis. "
         "For rotational axes in degrees, for translations in m.",
     )
     energy: Optional[float] = Field(
         default=None,
+        ge=0,
         description="Energy of the beam in eV",
     )
     transmission: Optional[float] = Field(
@@ -354,11 +379,13 @@ class CollectionSweep(Dataset):
     )
     num_triggers: Optional[int] = Field(
         default=None,
+        ge=0,
         description="Number of triggers. Instruction to detector "
         "- does not modify effect of other parameters.",
     )
     num_images_per_trigger: Optional[int] = Field(
         default=None,
+        ge=0,
         description="Number of images per trigger. Instruction to detector "
         "- does not modify effect of other parameters.",
     )
@@ -387,8 +414,30 @@ class CollectionSweep(Dataset):
         default=None,
         description="Path to directory containing image files.",
     )
+    source_ref:Optional[MXExperimentRef] = Field(
+        default=None,
+        frozen=True,
+        description="Reference to Job that created this Dataset",
+    )
+    # NB This rasies the problem of how to handle an optional Union
+    # As we will surely get a Union here once Logistical Samples are modelled.
+    logistical_sample_ref:Optional[LogisticalSampleRef] = Field(
+        default=None,
+        description="Reference to LogisticalSample"
+        " that pertains specifically this Dataset",
+    )
+    derived_from_ref: Optional["CollectionSweepRef"] = Field(
+        default=None,
+        description="Reference to Dataset from which this Dataset was derived. "
+        "Used for modified Datasets without a 'source_ref' link, "
+        "e.g. when removing images from a sweep before processing.",
+    )
+    derived_dataset_refs: List["CollectionSweepRef"] = Field(
+        default_factory=list,
+        description="List of references to Datasets derived from Dataset.",
+    )
 
-class CollectionSweepRef(BaseModel):
+class CollectionSweepRef(MxlimsObjectRef):
     """Reference to CollectionSweep object, for use in JSON files."""
     target_type: Literal["CollectionSweep"]
 
@@ -409,6 +458,7 @@ class Scan(BaseModel):
         description="Image number to use for first image",
     )
     num_images: int = Field(
+        ge=0,
         description="Number of images to acquire as part of the Scan.",
     )
     ordinal: int = Field(
@@ -434,31 +484,36 @@ class MXProcessing(Job):
     sample: Optional["MXSample"] = Field(
         default=None,
         frozen=True,
-        description="MX Crystallographic sample relevant to Job. ",
+        description="MXsample relevant to Job.",
     )
-    input_data: List[Union["CollectionSweep", MxlimsReference]] = Field(
-        default_factory=list,
-        discriminator="mxlims_type",
-        description="List of pre-existing Input data sets used for calculation,"
-        " or of their String UUID",
+    # NB logistical_sample should be typed more precisely, once we have that modeled
+    logistical_sample: Optional["LogisticalSample"] = Field(
+        default=None,
+        frozen=True,
+        description="Logistical Sample or Sample location relevant to Job."
+        "Overridden by Dataset.logistical_sample; return link for Logisticalsample.jobs"
     )
-    templates: List[Union["ReflectionSet", MxlimsReference]] = Field(
+    templates: List["ReflectionSet"] = Field(
         default_factory=list,
         discriminator="mxlims_type",
         description="Templates with parameters for output datasets ",
     )
-    reference_data: List[Union["ReflectionSet", MxlimsReference]] = Field(
+    reference_data: List["ReflectionSet"] = Field(
         default_factory=list,
         discriminator="mxlims_type",
         description="Reference data sets, e.g. reference mtz file, ",
     )
-    results: List[Union["ReflectionSet", MxlimsReference]] = Field(
+    results: List["ReflectionSet"] = Field(
         default_factory=list,
         discriminator="mxlims_type",
-        description="Datasets produced by Job (match Dataset.source_id",
+        description="Datasets produced by Job (match Dataset.source_ref",
+    )
+    input_data: List[CollectionSweep] = Field(
+        default_factory=list,
+        description="List of pre-existing Input data sets used for calculation,",
     )
 
-class MXProcessingRef(BaseModel):
+class MXProcessingRef(MxlimsObjectRef):
     """Reference to MXProcessing object, for use in JSON files."""
     target_type: Literal["MXProcessing"]
 
@@ -466,14 +521,16 @@ class ReflectionStatistics(BaseModel):
     """Reflection statistics for a shell (or all) of reflections"""
 
     resolution_limits: Tuple[float, float] = Field(
-        description="lower, higher resolution limit fo shell "
+        description="lower, higher resolution limit of shell "
         "– matches mmCIF d_res_high, d_res_low.",
     )
     number_observations: int = Field(
+        ge=0,
         description="total number of observations, "
         "– NBNB matches WHICH mmCIF parameter?",
     )
     number_unique_observations: int = Field(
+        ge=0,
         description="total number of unique observations, "
         "– NBNB matches WHICH mmCIF parameter?",
     )
@@ -495,6 +552,7 @@ class ReflectionStatistics(BaseModel):
     )
     number_rejected_reflns: Optional[int] = Field(
         default=None,
+        ge=0,
         description="Number of rejected reflns for reflection shell, "
         "matches pdbx_rejects"
     )
@@ -554,9 +612,11 @@ class ReflectionSet(Dataset):
         description="lowest and higherst l index - matches mCIF reflens.limit_h_*",
     )
     num_reflections: int = Field(
+        ge=0,
         description="Total number of reflections - matches mmCIF ???? "
     )
     num_unique_reflections: int = Field(
+        ge=0,
         description="Total number of unique reflections - matches mmCIF ???? "
     )
     aniso_B_tensor: Optional[Tensor] = Field(
@@ -634,6 +694,28 @@ class ReflectionSet(Dataset):
         default=None,
         description="Path to directory containing reflection set files.",
     )
+    source_ref:Optional[MXProcessingRef] = Field(
+        default=None,
+        frozen=True,
+        description="Reference to Job that created this Dataset",
+    )
+    # NB This rasies the problem of how to handle an optional Union
+    # As we will surely get a Union here once Logistical Samples are modelled.
+    logistical_sample_ref:Optional[LogisticalSampleRef] = Field(
+        default=None,
+        description="Reference to LogisticalSample"
+        " that pertains specifically this Dataset",
+    )
+    derived_from_ref: Optional["ReflectionSetRef"] = Field(
+        default=None,
+        description="Reference to Dataset from which this Dataset was derived. "
+        "Used for modified Datasets without a 'source_ref' link, "
+        "e.g. when removing images from a sweep before processing.",
+    )
+    derived_dataset_refs: List["ReflectionSetRef"] = Field(
+        default_factory=list,
+        description="List of references to Datasets derived from Dataset.",
+    )
 
 class ReflectionSetRef(BaseModel):
     """Reference to ReflectionSet object, for use in JSON files."""
@@ -681,13 +763,19 @@ class MXSample(PreparedSample):
             ],
         },
     )
-    jobs: List[Union[MXExperiment, MXProcessing]] = Field(
+    job_refs: List[Union[MXExperimentRef, MXProcessingRef]] = Field(
         default_factory=list,
+        discriminator="target_type",
         description="Jobs (templates, planned, initiated or completed)"
         "for this PreparedSample",
     )
+    logistical_sample_refs: List[LogisticalSampleRef] = Field(
+        default_factory=list,
+        discriminator="target_type",
+        description="References to LogisticalSamples using Sample"
+    )
 
-class MXSampleRef(BaseModel):
+class MXSampleRef(MxlimsObjectRef):
     """Reference to MXSample object, for use in JSON files."""
     target_type: Literal["MXSample"]
 
@@ -710,5 +798,5 @@ if __name__ == "__main__":
         json.dump(schema, fp, indent=4)
 
     # To generate html documentation use e.g.
-    # generate-schema-doc --link-to-reused-ref MXLogisticalSample_schema.json ../jsonDocs
+    # generate-schema-doc --link-to-reused-ref LogisticalSample_schema.json ../jsonDocs
 

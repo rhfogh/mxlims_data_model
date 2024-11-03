@@ -75,11 +75,10 @@ class Dataset(MxlimsObject):
     """Base class for MXLIMS Datasets"""
     mxlims_type: Literal["Dataset"]
 
-    source_id: Optional[str] = Field(
+    source_ref: Optional["JobRef"] = Field(
         default=None,
         frozen=True,
-        description="String UUID for Job that created this Dataset."
-        "return link for job.results",
+        description="Reference to Job that created this Dataset.",
     )
     role: Optional[str] = Field(
         default=None,
@@ -95,20 +94,24 @@ class Dataset(MxlimsObject):
             ],
         },
     )
-    logistical_sample_id: Optional[str] = Field(
+    logistical_sample_ref: Optional["LogisticalSampleRef"] = Field(
         default=None,
         frozen=True,
-        description="String UUID for Logistical Sample relevant to Dataset."
+        description="Reference to LogisticalSample relevant to Dataset."
     )
-    derived_from_id: Optional[str] = Field(
+    derived_from_ref: Optional["DatasetRef"] = Field(
         default=None,
         frozen=True,
-        description="String UUID for Dataset from which this Dataset was derived. "
+        description="Reference to Dataset from which this Dataset was derived. "
         "Used for modified Datasets without a 'source' link, "
         "e.g. when removing images from a sweep before processing.",
     )
+    derived_dataset_refs: List["DatasetRef"] = Field(
+        default_factory=list,
+        description="List of references to Datasets derived from Dataset.",
+    )
 
-class DatasetRef(BaseModel):
+class DatasetRef(MxlimsObjectRef):
     """Reference to Dataset object, for use in JSON files."""
     target_type: Literal["Dataset"]
 
@@ -120,33 +123,16 @@ class Job(MxlimsObject):
     sample: Optional["PreparedSample"] = Field(
         default=None,
         frozen=True,
-        description="Prepared sample relevant to Job."
-        "return link for PreparedSample.jobs"
+        description="Prepared sample relevant to Job.",
     )
     logistical_sample: Optional["LogisticalSample"] = Field(
         default=None,
         frozen=True,
-        description="Logistical Sample or Sample location relevant to Job."
-        "Overridden by Dataset.logistical_sample; return link for Logisticalsample.jobs"
-    )
-    templates: Union[List[Dataset], List[str]] = Field(
-        default_factory=list,
-        description="Lisdt of Templates with parameters for output datasets "
-        "– e.g. diffraction plan, processing plan, or of their String UUID",
-    )
-    input_data: Union[List[Dataset], List[str]] = Field(
-        default_factory=list,
-        description="List of pre-existing Input data sets used for calculation,"
-        " or of their String UUID",
-    )
-    reference_data: Union[List[Dataset], List[str]] = Field(
-        default_factory=list,
-        description="List of reference data sets, e.g. reference mtz file, "
-        "or of their String UUID",
+        description="Logistical Sample (or sample location) relevant to Job.",
     )
     results: List[Dataset] = Field(
         default_factory=list,
-        description="Datasets produced by Job (match Dataset.source_id",
+        description="Datasets produced by Job (match Dataset.source_ref",
     )
     start_time: Optional[datetime.datetime] = Field(
         default=None,
@@ -171,7 +157,7 @@ class Job(MxlimsObject):
         },
     )
 
-class JobRef(BaseModel):
+class JobRef(MxlimsObjectRef):
     """Reference to Job object, for use in JSON files."""
     target_type: Literal["Job"]
 
@@ -182,21 +168,34 @@ class LogisticalSample(MxlimsObject):
     (from Dewars and Plates to drops, pins and crystals)"""
 
     mxlims_type: Literal["LogisticalSample"]
-    sample_id: Optional[str] = Field(
+    sample_ref: Optional["PreparedSampleRef"] = Field(
         default=None,
-        description="String UUID for the sample preparation that applies "
+        description="Reference to the PreparedSemple that applies "
         "to this LogisticalSample and all its contents",
     )
-    container: Optional["LogisticalSample"] = Field(
+    container_ref: Optional["LogisticalSampleRef"] = Field(
         default=None,
-        description="The LogisticalSample containing this one",
+        frozen=True,
+        description="Reference to the LogisticalSample containing this one",
     )
     contents: List["LogisticalSample"] = Field(
         default_factory=list,
         description="LogisticalSamples contained in this one",
     )
+    job_refs: List[JobRef] = Field(
+        default_factory=list,
+        discriminator="target_type",
+        description="References to Jobs (templates, planned, initiated or completed)"
+        "applied to this LogisticalSample",
+    )
+    dataset_refs: List[DatasetRef] = Field(
+        default_factory=list,
+        discriminator="target_type",
+        description="References to Datasets "
+        "that pertain specifically to this LogisticalSample",
+    )
 
-class LogisticalSampleRef(BaseModel):
+class LogisticalSampleRef(MxlimsObjectRef):
     """Reference to LogisticalSample object, for use in JSON files."""
     target_type: Literal["LogisticalSample"]
 
@@ -204,16 +203,16 @@ class PreparedSample(MxlimsObject):
     """Base class for MXLIMS Prepared Samples, describing sample content"""
 
     mxlims_type: Literal["PreparedSample"]
-    logistical_samples: List[LogisticalSample] = Field(
+    logistical_sample_refs: List[LogisticalSampleRef] = Field(
         default_factory=list,
-        description="LogisticalSamples with contents from this LogisticalSample",
+        description="LogisticalSamples with contents from this PreparedSample",
     )
-    jobs: List[Job] = Field(
+    job_refs: List[JobRef] = Field(
         default_factory=list,
-        description="Jobs (templates, planned, initiated or completed)"
+        description="References to Jobs (templates, planned, initiated or completed)"
         "for this PreparedSample",
     )
 
-class PreparedSampleRef(BaseModel):
+class PreparedSampleRef(MxlimsObjectRef):
     """Reference to PreparedSample object, for use in JSON files."""
     target_type: Literal["PreparedSample"]

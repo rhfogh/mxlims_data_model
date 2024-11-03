@@ -1,0 +1,359 @@
+{
+    "$defs": {
+        "BaseModel": {
+            "properties": {},
+            "title": "BaseModel",
+            "type": "object"
+        },
+        "Component": {
+            "description": "Additional component of sample ('ligand')\n\n#NB model still incomplete",
+            "properties": {
+                "acronym": {
+                    "description": "Acronynm - short synonym of component (e.g. 'lig1'",
+                    "title": "Acronym",
+                    "type": "string"
+                },
+                "name": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Human readable name of component",
+                    "title": "Name"
+                },
+                "identifiers": {
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Dictionary str:str of contextName: identifier.contectName will typically refer to a LIMS, database, or web site but could also be e.g. 'smiles'",
+                    "title": "Identifiers",
+                    "type": "object"
+                }
+            },
+            "required": [
+                "acronym"
+            ],
+            "title": "Component",
+            "type": "object"
+        },
+        "LogisticalSampleRef": {
+            "description": "Reference to LogisticalSample object, for use in JSON files.",
+            "properties": {
+                "mxlims_type": {
+                    "const": "MxlimsObjectRef",
+                    "enum": [
+                        "MxlimsObjectRef"
+                    ],
+                    "title": "Mxlims Type",
+                    "type": "string"
+                },
+                "target_uuid": {
+                    "description": "UUID of target MXLIMS model object",
+                    "title": "Target Uuid",
+                    "type": "string"
+                },
+                "target_type": {
+                    "const": "LogisticalSample",
+                    "enum": [
+                        "LogisticalSample"
+                    ],
+                    "title": "Target Type",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "mxlims_type",
+                "target_uuid",
+                "target_type"
+            ],
+            "title": "LogisticalSampleRef",
+            "type": "object"
+        },
+        "MXExperimentRef": {
+            "description": "Reference to MXExperiment object, for use in JSON files.",
+            "properties": {
+                "mxlims_type": {
+                    "const": "MxlimsObjectRef",
+                    "enum": [
+                        "MxlimsObjectRef"
+                    ],
+                    "title": "Mxlims Type",
+                    "type": "string"
+                },
+                "target_uuid": {
+                    "description": "UUID of target MXLIMS model object",
+                    "title": "Target Uuid",
+                    "type": "string"
+                },
+                "target_type": {
+                    "const": "MXExperiment",
+                    "enum": [
+                        "MXExperiment"
+                    ],
+                    "title": "Target Type",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "mxlims_type",
+                "target_uuid",
+                "target_type"
+            ],
+            "title": "MXExperimentRef",
+            "type": "object"
+        },
+        "MXProcessingRef": {
+            "description": "Reference to MXProcessing object, for use in JSON files.",
+            "properties": {
+                "mxlims_type": {
+                    "const": "MxlimsObjectRef",
+                    "enum": [
+                        "MxlimsObjectRef"
+                    ],
+                    "title": "Mxlims Type",
+                    "type": "string"
+                },
+                "target_uuid": {
+                    "description": "UUID of target MXLIMS model object",
+                    "title": "Target Uuid",
+                    "type": "string"
+                },
+                "target_type": {
+                    "const": "MXProcessing",
+                    "enum": [
+                        "MXProcessing"
+                    ],
+                    "title": "Target Type",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "mxlims_type",
+                "target_uuid",
+                "target_type"
+            ],
+            "title": "MXProcessingRef",
+            "type": "object"
+        },
+        "Macromolecule": {
+            "description": "Macromolecule - main molecule under investigation\n\n#NB model still incomplete",
+            "properties": {
+                "acronym": {
+                    "description": "Acronynm - short synonym of macromolecule",
+                    "title": "Acronym",
+                    "type": "string"
+                },
+                "name": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Human readable name of macromolecule",
+                    "title": "Name"
+                },
+                "identifiers": {
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Dictionary str:str  of contextName: identifier.contextName could refer to a LIMS, database, or web site but could also be e.g. 'sequence'",
+                    "title": "Identifiers",
+                    "type": "object"
+                }
+            },
+            "required": [
+                "acronym"
+            ],
+            "title": "Macromolecule",
+            "type": "object"
+        },
+        "UnitCell": {
+            "description": "Crystallographic unit cell",
+            "properties": {
+                "a": {
+                    "": "A axis length (A)",
+                    "minimum": 0.0,
+                    "title": "A",
+                    "type": "number"
+                },
+                "b": {
+                    "description": "B axis length (A)",
+                    "minimum": 0.0,
+                    "title": "B",
+                    "type": "number"
+                },
+                "c": {
+                    "description": "C axis length (A)",
+                    "minimum": 0.0,
+                    "title": "C",
+                    "type": "number"
+                },
+                "alpha": {
+                    "description": "alpha angle (degres)",
+                    "minimum": 0.0,
+                    "title": "Alpha",
+                    "type": "number"
+                },
+                "beta": {
+                    "description": "beta angle (degres)",
+                    "minimum": 0.0,
+                    "title": "Beta",
+                    "type": "number"
+                },
+                "gamma": {
+                    "description": "gamma angle (degres)",
+                    "minimum": 0.0,
+                    "title": "Gamma",
+                    "type": "number"
+                }
+            },
+            "required": [
+                "a",
+                "b",
+                "c",
+                "alpha",
+                "beta",
+                "gamma"
+            ],
+            "title": "UnitCell",
+            "type": "object"
+        }
+    },
+    "description": "Prepared Sample with MX crystallography-specific additions\n\nNB this class is still unfinished",
+    "properties": {
+        "mxlims_type": {
+            "const": "MXSample",
+            "enum": [
+                "MXSample"
+            ],
+            "title": "Mxlims Type",
+            "type": "string"
+        },
+        "uuid": {
+            "description": "Permanent unique identifier string",
+            "title": "Uuid",
+            "type": "string"
+        },
+        "extensions": {
+            "description": "Keyword-value dictionary string:Any of extensions.Use is accepted but discouraged",
+            "title": "Extensions",
+            "type": "object"
+        },
+        "namespace_extensions": {
+            "additionalProperties": {
+                "$ref": "#/$defs/BaseModel"
+            },
+            "description": "Keyword-value dictionary of namespaced extension. Key is an organisation identifier (e.g. 'GPhL' or 'ESRF'), value is a Pydantic model defined by this organisation.",
+            "title": "Namespace Extensions",
+            "type": "object"
+        },
+        "logistical_sample_refs": {
+            "description": "References to LogisticalSamples using Sample",
+            "items": {
+                "$ref": "#/$defs/LogisticalSampleRef"
+            },
+            "title": "Logistical Sample Refs",
+            "type": "array"
+        },
+        "job_refs": {
+            "description": "Jobs (templates, planned, initiated or completed)for this PreparedSample",
+            "items": {
+                "anyOf": [
+                    {
+                        "$ref": "#/$defs/MXExperimentRef"
+                    },
+                    {
+                        "$ref": "#/$defs/MXProcessingRef"
+                    }
+                ]
+            },
+            "title": "Job Refs",
+            "type": "array"
+        },
+        "macromolecule": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/Macromolecule"
+                }
+            ],
+            "default": null,
+            "description": "Macromolecule formingt crystal(s) in sample"
+        },
+        "components": {
+            "description": "List of components in sample",
+            "items": {
+                "$ref": "#/$defs/Component"
+            },
+            "title": "Components",
+            "type": "array"
+        },
+        "unit_cell": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/UnitCell"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "Unit cell expected in sample."
+        },
+        "space_group_name": {
+            "anyOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "Name of space group expected in Sample. Names may include alternative settings.",
+            "title": "Space Group Name"
+        },
+        "radiation_sensitivity": {
+            "anyOf": [
+                {
+                    "maximum": 1.0,
+                    "minimum": 0.0,
+                    "type": "number"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "Relative radiation sensitivity of sample.",
+            "title": "Radiation Sensitivity"
+        },
+        "identifiers": {
+            "additionalProperties": {
+                "type": "string"
+            },
+            "description": "Dictionary str:str of contextName: identifier.contectName will typically refer to a LIMS, database, or web site and the identifier will point to the ample within thie context",
+            "examples": [
+                {
+                    "receiversUrl": "http://lims.synchrotron.org/crystal/54321",
+                    "sendersId": "29174"
+                }
+            ],
+            "title": "Identifiers",
+            "type": "object"
+        }
+    },
+    "required": [
+        "mxlims_type"
+    ],
+    "title": "MXSample",
+    "type": "object"
+}

@@ -1,0 +1,799 @@
+{
+    "$defs": {
+        "BaseModel": {
+            "properties": {},
+            "title": "BaseModel",
+            "type": "object"
+        },
+        "LogisticalSampleRef": {
+            "description": "Reference to LogisticalSample object, for use in JSON files.",
+            "properties": {
+                "mxlims_type": {
+                    "const": "MxlimsObjectRef",
+                    "enum": [
+                        "MxlimsObjectRef"
+                    ],
+                    "title": "Mxlims Type",
+                    "type": "string"
+                },
+                "target_uuid": {
+                    "description": "UUID of target MXLIMS model object",
+                    "title": "Target Uuid",
+                    "type": "string"
+                },
+                "target_type": {
+                    "const": "LogisticalSample",
+                    "enum": [
+                        "LogisticalSample"
+                    ],
+                    "title": "Target Type",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "mxlims_type",
+                "target_uuid",
+                "target_type"
+            ],
+            "title": "LogisticalSampleRef",
+            "type": "object"
+        },
+        "MXProcessingRef": {
+            "description": "Reference to MXProcessing object, for use in JSON files.",
+            "properties": {
+                "mxlims_type": {
+                    "const": "MxlimsObjectRef",
+                    "enum": [
+                        "MxlimsObjectRef"
+                    ],
+                    "title": "Mxlims Type",
+                    "type": "string"
+                },
+                "target_uuid": {
+                    "description": "UUID of target MXLIMS model object",
+                    "title": "Target Uuid",
+                    "type": "string"
+                },
+                "target_type": {
+                    "const": "MXProcessing",
+                    "enum": [
+                        "MXProcessing"
+                    ],
+                    "title": "Target Type",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "mxlims_type",
+                "target_uuid",
+                "target_type"
+            ],
+            "title": "MXProcessingRef",
+            "type": "object"
+        },
+        "PdbxSignalType": {
+            "description": "Observability criterion. Matches mmCIF refln.pdbx_signal_status",
+            "enum": [
+                "local <I/sigmaI>",
+                "local wCC_half"
+            ],
+            "title": "PdbxSignalType",
+            "type": "string"
+        },
+        "QualityFactor": {
+            "description": "Reflection shell quality factor. Enumerated type with associated value",
+            "properties": {
+                "type": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/QualityFactorType"
+                        }
+                    ],
+                    "description": "Quality factor type"
+                },
+                "value": {
+                    "description": "Quality factor value",
+                    "title": "Value",
+                    "type": "number"
+                }
+            },
+            "required": [
+                "type",
+                "value"
+            ],
+            "title": "QualityFactor",
+            "type": "object"
+        },
+        "QualityFactorType": {
+            "description": "Name for quality factor type, used in QualityFactor class",
+            "enum": [
+                "R(merge)",
+                "R(meas)",
+                "R(pim)",
+                "I/SigI",
+                "CC(1/2)",
+                "CC(ano)",
+                "SigAno",
+                "Completeness",
+                "Redundancy"
+            ],
+            "title": "QualityFactorType",
+            "type": "string"
+        },
+        "ReflectionBinningMode": {
+            "description": "Reflection binning mode for binning reflection statistics",
+            "enum": [
+                "equal_volume",
+                "equal_number",
+                "dstar_equidistant",
+                "dstar2_equidistant"
+            ],
+            "title": "ReflectionBinningMode",
+            "type": "string"
+        },
+        "ReflectionSetRef": {
+            "description": "Reference to ReflectionSet object, for use in JSON files.",
+            "properties": {
+                "target_type": {
+                    "const": "ReflectionSet",
+                    "enum": [
+                        "ReflectionSet"
+                    ],
+                    "title": "Target Type",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "target_type"
+            ],
+            "title": "ReflectionSetRef",
+            "type": "object"
+        },
+        "ReflectionStatistics": {
+            "description": "Reflection statistics for a shell (or all) of reflections",
+            "properties": {
+                "resolution_limits": {
+                    "description": "lower, higher resolution limit of shell \u2013 matches mmCIF d_res_high, d_res_low.",
+                    "maxItems": 2,
+                    "minItems": 2,
+                    "prefixItems": [
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "number"
+                        }
+                    ],
+                    "title": "Resolution Limits",
+                    "type": "array"
+                },
+                "number_observations": {
+                    "description": "total number of observations, \u2013 NBNB matches WHICH mmCIF parameter?",
+                    "minimum": 0,
+                    "title": "Number Observations",
+                    "type": "integer"
+                },
+                "number_unique_observations": {
+                    "description": "total number of unique observations, \u2013 NBNB matches WHICH mmCIF parameter?",
+                    "minimum": 0,
+                    "title": "Number Unique Observations",
+                    "type": "integer"
+                },
+                "quality_factors": {
+                    "description": "Quality factors for reflection shell, ",
+                    "items": {
+                        "$ref": "#/$defs/QualityFactor"
+                    },
+                    "title": "Quality Factors",
+                    "type": "array"
+                },
+                "completeness": {
+                    "description": "Completeness for reflection shell in %, matches mmCIF percent_possible_all. NBNB What about ...._obs??",
+                    "maximum": 100.0,
+                    "minimum": 0.0,
+                    "title": "Completeness",
+                    "type": "number"
+                },
+                "chi_squared": {
+                    "anyOf": [
+                        {
+                            "minimum": 0.0,
+                            "type": "number"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Chi-squared statistic for reflection shell, matches mmCIF pdbx_chi_squared",
+                    "title": "Chi Squared"
+                },
+                "number_rejected_reflns": {
+                    "anyOf": [
+                        {
+                            "minimum": 0,
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Number of rejected reflns for reflection shell, matches pdbx_rejects",
+                    "title": "Number Rejected Reflns"
+                },
+                "redundancy": {
+                    "description": "Redundancy of data collected in this shell \u2013 matches mmCIF pdbx_redundancy",
+                    "minimum": 0.0,
+                    "title": "Redundancy",
+                    "type": "number"
+                },
+                "redundancy_anomalous": {
+                    "description": "Redundancy of anomalous data collected in this shell \u2013 matches mmCIF pdbx_redundancy_anomalous",
+                    "minimum": 0.0,
+                    "title": "Redundancy Anomalous",
+                    "type": "number"
+                }
+            },
+            "required": [
+                "resolution_limits",
+                "number_observations",
+                "number_unique_observations",
+                "completeness",
+                "redundancy",
+                "redundancy_anomalous"
+            ],
+            "title": "ReflectionStatistics",
+            "type": "object"
+        },
+        "Tensor": {
+            "description": "Tensor",
+            "properties": {
+                "eigenvalues": {
+                    "description": "Eigenvalues of tensor",
+                    "maxItems": 3,
+                    "minItems": 3,
+                    "prefixItems": [
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "number"
+                        }
+                    ],
+                    "title": "Eigenvalues",
+                    "type": "array"
+                },
+                "eigenvectors": {
+                    "description": "Eigenvectors (unit vectors) of tensor, in same order as eigenvalues",
+                    "items": {
+                        "maxItems": 3,
+                        "minItems": 3,
+                        "prefixItems": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "number"
+                            }
+                        ],
+                        "type": "array"
+                    },
+                    "title": "Eigenvectors",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "eigenvalues",
+                "eigenvectors"
+            ],
+            "title": "Tensor",
+            "type": "object"
+        },
+        "UnitCell": {
+            "description": "Crystallographic unit cell",
+            "properties": {
+                "a": {
+                    "": "A axis length (A)",
+                    "minimum": 0.0,
+                    "title": "A",
+                    "type": "number"
+                },
+                "b": {
+                    "description": "B axis length (A)",
+                    "minimum": 0.0,
+                    "title": "B",
+                    "type": "number"
+                },
+                "c": {
+                    "description": "C axis length (A)",
+                    "minimum": 0.0,
+                    "title": "C",
+                    "type": "number"
+                },
+                "alpha": {
+                    "description": "alpha angle (degres)",
+                    "minimum": 0.0,
+                    "title": "Alpha",
+                    "type": "number"
+                },
+                "beta": {
+                    "description": "beta angle (degres)",
+                    "minimum": 0.0,
+                    "title": "Beta",
+                    "type": "number"
+                },
+                "gamma": {
+                    "description": "gamma angle (degres)",
+                    "minimum": 0.0,
+                    "title": "Gamma",
+                    "type": "number"
+                }
+            },
+            "required": [
+                "a",
+                "b",
+                "c",
+                "alpha",
+                "beta",
+                "gamma"
+            ],
+            "title": "UnitCell",
+            "type": "object"
+        }
+    },
+    "description": "Processed  reflections, possibly merged or scaled\nas might be stored within an MTZ file or as mmCIF.refln",
+    "properties": {
+        "mxlims_type": {
+            "const": "ReflectionSet",
+            "enum": [
+                "ReflectionSet"
+            ],
+            "title": "Mxlims Type",
+            "type": "string"
+        },
+        "uuid": {
+            "description": "Permanent unique identifier string",
+            "title": "Uuid",
+            "type": "string"
+        },
+        "extensions": {
+            "description": "Keyword-value dictionary string:Any of extensions.Use is accepted but discouraged",
+            "title": "Extensions",
+            "type": "object"
+        },
+        "namespace_extensions": {
+            "additionalProperties": {
+                "$ref": "#/$defs/BaseModel"
+            },
+            "description": "Keyword-value dictionary of namespaced extension. Key is an organisation identifier (e.g. 'GPhL' or 'ESRF'), value is a Pydantic model defined by this organisation.",
+            "title": "Namespace Extensions",
+            "type": "object"
+        },
+        "source_ref": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/MXProcessingRef"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "Reference to Job that created this Dataset"
+        },
+        "role": {
+            "anyOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "Role of Dataset realtive to the source Job.Intended for filtering of Datasets",
+            "examples": [
+                "Result",
+                "Intermediate",
+                "Characterisation",
+                "Centring"
+            ],
+            "title": "Role"
+        },
+        "logistical_sample_ref": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/LogisticalSampleRef"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "Reference to LogisticalSample that pertains specifically this Dataset"
+        },
+        "derived_from_ref": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/ReflectionSetRef"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "Reference to Dataset from which this Dataset was derived. Used for modified Datasets without a 'source_ref' link, e.g. when removing images from a sweep before processing."
+        },
+        "derived_dataset_refs": {
+            "description": "List of references to Datasets derived from Dataset.",
+            "items": {
+                "$ref": "#/$defs/ReflectionSetRef"
+            },
+            "title": "Derived Dataset Refs",
+            "type": "array"
+        },
+        "anisotropic_diffraction": {
+            "default": false,
+            "description": "Is diffraction limit analysis aniosotropic? True/False ",
+            "title": "Anisotropic Diffraction",
+            "type": "boolean"
+        },
+        "resolution_rings_detected": {
+            "description": "Resolution rings detected as originating from ice, powder diffraction etc.",
+            "items": {
+                "maxItems": 2,
+                "minItems": 2,
+                "prefixItems": [
+                    {
+                        "type": "number"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ],
+                "type": "array"
+            },
+            "title": "Resolution Rings Detected",
+            "type": "array"
+        },
+        "resolution_rings_excluded": {
+            "description": "Resolution rings excluded from calculation",
+            "items": {
+                "maxItems": 2,
+                "minItems": 2,
+                "prefixItems": [
+                    {
+                        "type": "number"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ],
+                "type": "array"
+            },
+            "title": "Resolution Rings Excluded",
+            "type": "array"
+        },
+        "unit_cell": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/UnitCell"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "Unit cell determined."
+        },
+        "space_group_name": {
+            "anyOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "Name of detected space group. Names may include alternative settings.",
+            "title": "Space Group Name"
+        },
+        "operational_resolution": {
+            "anyOf": [
+                {
+                    "type": "number"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "Operation resolution in A matchingobserved_criteria.",
+            "title": "Operational Resolution"
+        },
+        "B_iso_Wilson_estimate": {
+            "anyOf": [
+                {
+                    "type": "number"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "matches mmCIF reflns.B_iso_Wilson_estimate",
+            "title": "B Iso Wilson Estimate"
+        },
+        "h_index_range": {
+            "description": "lowest and higherst h index - matches mCIF reflens.limit_h_*",
+            "maxItems": 2,
+            "minItems": 2,
+            "prefixItems": [
+                {
+                    "type": "integer"
+                },
+                {
+                    "type": "integer"
+                }
+            ],
+            "title": "H Index Range",
+            "type": "array"
+        },
+        "k_index_range": {
+            "description": "lowest and higherst k index - matches mCIF reflens.limit_h_*",
+            "maxItems": 2,
+            "minItems": 2,
+            "prefixItems": [
+                {
+                    "type": "integer"
+                },
+                {
+                    "type": "integer"
+                }
+            ],
+            "title": "K Index Range",
+            "type": "array"
+        },
+        "l_index_range": {
+            "description": "lowest and higherst l index - matches mCIF reflens.limit_h_*",
+            "maxItems": 2,
+            "minItems": 2,
+            "prefixItems": [
+                {
+                    "type": "integer"
+                },
+                {
+                    "type": "integer"
+                }
+            ],
+            "title": "L Index Range",
+            "type": "array"
+        },
+        "num_reflections": {
+            "description": "Total number of reflections - matches mmCIF ???? ",
+            "minimum": 0,
+            "title": "Num Reflections",
+            "type": "integer"
+        },
+        "num_unique_reflections": {
+            "description": "Total number of unique reflections - matches mmCIF ???? ",
+            "minimum": 0,
+            "title": "Num Unique Reflections",
+            "type": "integer"
+        },
+        "aniso_B_tensor": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/Tensor"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "Anisotropic B tensor, matching mmCIF reflns.pdbx_aniso_B_tensor"
+        },
+        "diffraction_limits_estimated": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/Tensor"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "Ellipsoid of observable reflections (unit:A), regardless whether all have actually been observed. Matches mmCIF reflns.pdbx_anisodiffraction_limit"
+        },
+        "overall_refln_statistics": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/ReflectionStatistics"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "Reflection statistics for all measured reflections"
+        },
+        "refln_shells": {
+            "description": "Reflection statistics per reflection shell",
+            "items": {
+                "$ref": "#/$defs/ReflectionStatistics"
+            },
+            "title": "Refln Shells",
+            "type": "array"
+        },
+        "observed_criterion_sigma_F": {
+            "anyOf": [
+                {
+                    "type": "number"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "Criterion for when a reflection counts as observed, as a multiple of sigma(F) \u2013 matches mmCIF reflns.observed_criterion_sigma_F",
+            "title": "Observed Criterion Sigma F"
+        },
+        "observed_criterion_sigma_I": {
+            "anyOf": [
+                {
+                    "type": "number"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "Criterion for when a reflection counts as observed, as a multiple of sigma(I) \u2013 matches mmCIF reflns.observed_criterion_sigma_I",
+            "title": "Observed Criterion Sigma I"
+        },
+        "signal_type": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/PdbxSignalType"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "local <I/sigmaI>\u2019, \u2018local wCC_half'; matches reflns.pdbx_signal_type. Criterion for observability, as used in mmCIF revln.pdbx_signal_status"
+        },
+        "signal_cutoff": {
+            "anyOf": [
+                {
+                    "type": "number"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "Limiting value for signal calculation; matches reflns.pdbx_observed_signal_threshold. Cutoff for observability, as used in mmCIF refln.pdbx_signal_status",
+            "title": "Signal Cutoff"
+        },
+        "resolution_cutoffs": {
+            "description": "MRFANA resolution cutoff criteria",
+            "items": {
+                "$ref": "#/$defs/QualityFactor"
+            },
+            "title": "Resolution Cutoffs",
+            "type": "array"
+        },
+        "binning_mode": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/ReflectionBinningMode"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "Binning mode for reflection binning"
+        },
+        "number_bins": {
+            "anyOf": [
+                {
+                    "exclusiveMinimum": 0,
+                    "type": "integer"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "Number of equal volume bins for reflection binning",
+            "title": "Number Bins"
+        },
+        "refln_per_bin": {
+            "anyOf": [
+                {
+                    "exclusiveMinimum": 0,
+                    "type": "integer"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "Number of reflections per bin",
+            "title": "Refln Per Bin"
+        },
+        "refln_per_bin_per_sweep": {
+            "anyOf": [
+                {
+                    "exclusiveMinimum": 0,
+                    "type": "integer"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "Number of reflections per bin for per-run statistics",
+            "title": "Refln Per Bin Per Sweep"
+        },
+        "file_type": {
+            "anyOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "Type of file NBNB Should be enum What values??",
+            "title": "File Type"
+        },
+        "filename": {
+            "anyOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "File name NBNB What about multiple files?.",
+            "title": "Filename"
+        },
+        "path": {
+            "anyOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "Path to directory containing reflection set files.",
+            "title": "Path"
+        }
+    },
+    "required": [
+        "mxlims_type",
+        "h_index_range",
+        "k_index_range",
+        "l_index_range",
+        "num_reflections",
+        "num_unique_reflections"
+    ],
+    "title": "ReflectionSet",
+    "type": "object"
+}

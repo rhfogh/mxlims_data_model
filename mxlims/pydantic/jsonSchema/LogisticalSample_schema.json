@@ -1,0 +1,230 @@
+{
+    "$defs": {
+        "BaseModel": {
+            "properties": {},
+            "title": "BaseModel",
+            "type": "object"
+        },
+        "DatasetRef": {
+            "description": "Reference to Dataset object, for use in JSON files.",
+            "properties": {
+                "mxlims_type": {
+                    "const": "MxlimsObjectRef",
+                    "enum": [
+                        "MxlimsObjectRef"
+                    ],
+                    "title": "Mxlims Type",
+                    "type": "string"
+                },
+                "target_uuid": {
+                    "description": "UUID of target MXLIMS model object",
+                    "title": "Target Uuid",
+                    "type": "string"
+                },
+                "target_type": {
+                    "const": "Dataset",
+                    "enum": [
+                        "Dataset"
+                    ],
+                    "title": "Target Type",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "mxlims_type",
+                "target_uuid",
+                "target_type"
+            ],
+            "title": "DatasetRef",
+            "type": "object"
+        },
+        "JobRef": {
+            "description": "Reference to Job object, for use in JSON files.",
+            "properties": {
+                "mxlims_type": {
+                    "const": "MxlimsObjectRef",
+                    "enum": [
+                        "MxlimsObjectRef"
+                    ],
+                    "title": "Mxlims Type",
+                    "type": "string"
+                },
+                "target_uuid": {
+                    "description": "UUID of target MXLIMS model object",
+                    "title": "Target Uuid",
+                    "type": "string"
+                },
+                "target_type": {
+                    "const": "Job",
+                    "enum": [
+                        "Job"
+                    ],
+                    "title": "Target Type",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "mxlims_type",
+                "target_uuid",
+                "target_type"
+            ],
+            "title": "JobRef",
+            "type": "object"
+        },
+        "LogisticalSample": {
+            "description": "Base class for MXLIMS Logistical Samples\n\ndescribing Sample containers and locations\n(from Dewars and Plates to drops, pins and crystals)",
+            "properties": {
+                "mxlims_type": {
+                    "const": "LogisticalSample",
+                    "enum": [
+                        "LogisticalSample"
+                    ],
+                    "title": "Mxlims Type",
+                    "type": "string"
+                },
+                "uuid": {
+                    "description": "Permanent unique identifier string",
+                    "title": "Uuid",
+                    "type": "string"
+                },
+                "extensions": {
+                    "description": "Keyword-value dictionary string:Any of extensions.Use is accepted but discouraged",
+                    "title": "Extensions",
+                    "type": "object"
+                },
+                "namespace_extensions": {
+                    "additionalProperties": {
+                        "$ref": "#/$defs/BaseModel"
+                    },
+                    "description": "Keyword-value dictionary of namespaced extension. Key is an organisation identifier (e.g. 'GPhL' or 'ESRF'), value is a Pydantic model defined by this organisation.",
+                    "title": "Namespace Extensions",
+                    "type": "object"
+                },
+                "sample_ref": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/PreparedSampleRef"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Reference to the PreparedSemple that applies to this LogisticalSample and all its contents"
+                },
+                "container_ref": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/LogisticalSampleRef"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Reference to the LogisticalSample containing this one"
+                },
+                "contents": {
+                    "description": "LogisticalSamples contained in this one",
+                    "items": {
+                        "$ref": "#/$defs/LogisticalSample"
+                    },
+                    "title": "Contents",
+                    "type": "array"
+                },
+                "job_refs": {
+                    "description": "References to Jobs (templates, planned, initiated or completed)applied to this LogisticalSample",
+                    "items": {
+                        "$ref": "#/$defs/JobRef"
+                    },
+                    "title": "Job Refs",
+                    "type": "array"
+                },
+                "dataset_refs": {
+                    "description": "References to Datasets that pertain specifically to this LogisticalSample",
+                    "items": {
+                        "$ref": "#/$defs/DatasetRef"
+                    },
+                    "title": "Dataset Refs",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "mxlims_type"
+            ],
+            "title": "LogisticalSample",
+            "type": "object"
+        },
+        "LogisticalSampleRef": {
+            "description": "Reference to LogisticalSample object, for use in JSON files.",
+            "properties": {
+                "mxlims_type": {
+                    "const": "MxlimsObjectRef",
+                    "enum": [
+                        "MxlimsObjectRef"
+                    ],
+                    "title": "Mxlims Type",
+                    "type": "string"
+                },
+                "target_uuid": {
+                    "description": "UUID of target MXLIMS model object",
+                    "title": "Target Uuid",
+                    "type": "string"
+                },
+                "target_type": {
+                    "const": "LogisticalSample",
+                    "enum": [
+                        "LogisticalSample"
+                    ],
+                    "title": "Target Type",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "mxlims_type",
+                "target_uuid",
+                "target_type"
+            ],
+            "title": "LogisticalSampleRef",
+            "type": "object"
+        },
+        "PreparedSampleRef": {
+            "description": "Reference to PreparedSample object, for use in JSON files.",
+            "properties": {
+                "mxlims_type": {
+                    "const": "MxlimsObjectRef",
+                    "enum": [
+                        "MxlimsObjectRef"
+                    ],
+                    "title": "Mxlims Type",
+                    "type": "string"
+                },
+                "target_uuid": {
+                    "description": "UUID of target MXLIMS model object",
+                    "title": "Target Uuid",
+                    "type": "string"
+                },
+                "target_type": {
+                    "const": "PreparedSample",
+                    "enum": [
+                        "PreparedSample"
+                    ],
+                    "title": "Target Type",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "mxlims_type",
+                "target_uuid",
+                "target_type"
+            ],
+            "title": "PreparedSampleRef",
+            "type": "object"
+        }
+    },
+    "allOf": [
+        {
+            "$ref": "#/$defs/LogisticalSample"
+        }
+    ]
+}
