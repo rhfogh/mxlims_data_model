@@ -36,7 +36,7 @@ from mxlims.pydantic.core import (
     Dataset,
     PreparedSample,
     LogisticalSample,
-    MxlimsReference,
+    MxlimsObjectRef,
 )
 
 
@@ -241,6 +241,9 @@ class MXExperiment(Job):
         description="Datasets produced by Job (match Dataset.source_id",
     )
 
+class MXExperimentRef(BaseModel):
+    """Reference to MXExperiment object, for use in JSON files."""
+    target_type: Literal["MXExperiment"]
 
 class CollectionSweep(Dataset):
     """
@@ -385,6 +388,9 @@ class CollectionSweep(Dataset):
         description="Path to directory containing image files.",
     )
 
+class CollectionSweepRef(BaseModel):
+    """Reference to CollectionSweep object, for use in JSON files."""
+    target_type: Literal["CollectionSweep"]
 
 class Scan(BaseModel):
     """Subdivision of CollectionSweep.
@@ -452,6 +458,9 @@ class MXProcessing(Job):
         description="Datasets produced by Job (match Dataset.source_id",
     )
 
+class MXProcessingRef(BaseModel):
+    """Reference to MXProcessing object, for use in JSON files."""
+    target_type: Literal["MXProcessing"]
 
 class ReflectionStatistics(BaseModel):
     """Reflection statistics for a shell (or all) of reflections"""
@@ -626,6 +635,9 @@ class ReflectionSet(Dataset):
         description="Path to directory containing reflection set files.",
     )
 
+class ReflectionSetRef(BaseModel):
+    """Reference to ReflectionSet object, for use in JSON files."""
+    target_type: Literal["ReflectionSet"]
 
 class MXSample(PreparedSample):
     """Prepared Sample with MX crystallography-specific additions
@@ -674,6 +686,10 @@ class MXSample(PreparedSample):
         description="Jobs (templates, planned, initiated or completed)"
         "for this PreparedSample",
     )
+
+class MXSampleRef(BaseModel):
+    """Reference to MXSample object, for use in JSON files."""
+    target_type: Literal["MXSample"]
 
 if __name__ == "__main__":
     # Usage:
