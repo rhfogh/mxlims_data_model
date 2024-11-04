@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "mxlims"
+version = "0.2.0"
+license = "LGPL-3.0-or-later"
+description = "Data model for Macromolecula cryystallography and related areas"
+authors = ["The MXLIMS collaboration"]
+maintainers = [
+    "Rasmus H. Fogh <rhfogh@globalphasing.com>",
+]
+readme = "README.md"
+homepage = "https://github.com/rhfogh/mxlims_data_model"
+repository = "https://github.com/rhfogh/mxlims_data_model"
+documentation = "https://github.com/rhfogh/mxlims_data_model"
+keywords = ["data", "exchange", "model", "crystalllography", "JSON", "schema"]
+classifiers = [
+    "Development Status :: 1 - Prototype",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Natural Language :: English",
+    "Topic :: Scientific/Engineering",
+]
+
+[tool.poetry.dependencies]
+python = ">=3.8,<3.12"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
