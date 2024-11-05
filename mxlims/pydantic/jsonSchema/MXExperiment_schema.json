@@ -6,7 +6,7 @@
             "type": "object"
         },
         "CollectionSweep": {
-            "description": "MX  Crystallographic data collection sweep, may be subdivided for acquisition\n\n Note that the CollectionSweep specifies a single, continuous sweep range,\n with equidistant images given by image_width, and all starting motor positions\n in axis_position_start. axis_positions_end contain the end point of the sweep,\n and must have at least the value for the scan_axis; sweeps changing more than\n one motor (e.g. helical scan) can be represented by adding more values\n to axis_positions_end. The default number of images can be calculated from the\n sweep range and image_width. The actual number of images, the image numbering,\n and the order of acquisition (including interleaving) follows from the list of\n Scans. The role should be set to \u2018Result\u2019 for those sweeps that are deemed to\n be the desired result of the experiment; in templates you would prefer to use\n Acquisition for the Dataset that gives the acquisition parameters.\n ",
+            "description": "MX  Crystallographic data collection sweep, may be subdivided for acquisition\n\n Note that the CollectionSweep specifies a single, continuous sweep range,\n with equidistant images given by image_width, and all starting motor positions\n in axis_position_start. axis_positions_end contain the end point of the sweep,\n and must have at least the value for the scan_axis; sweeps changing more than\n one motor (e.g. helical scan) can be represented by adding more values\n to axis_positions_end. The default number of images can be calculated from the\n sweep range and image_width. The actual number of images, the image numbering,\n and the order of acquisition (including interleaving) follows from the list of\n Scans. The role should be set to 'Result' for those sweeps that are deemed to\n be the desired result of the experiment; in templates you would prefer to use\n Acquisition for the Dataset that gives the acquisition parameters.",
             "properties": {
                 "mxlims_type": {
                     "const": "CollectionSweep",
@@ -521,6 +521,18 @@
             "title": "DatasetRef",
             "type": "object"
         },
+        "FileType": {
+            "description": "Name for file type, used in ReflectionSet class",
+            "enum": [
+                "scaled and merged MTZ",
+                "scaled and unmerged MTZ",
+                "unmerged MTZ",
+                "XDS INTEGRATE.HKL (https://xds.mr.mpg.de/html_doc/xds_files.html#INTEGRATE.HKL); unmerged",
+                "XDS XDS_ASCII.HKL (https://xds.mr.mpg.de/html_doc/xds_files.html#XDS_ASCII.HKL); scaled and unmerged"
+            ],
+            "title": "FileType",
+            "type": "string"
+        },
         "JobRef": {
             "description": "Reference to Job object, for use in JSON files.",
             "properties": {
@@ -958,7 +970,7 @@
             "type": "object"
         },
         "QualityFactor": {
-            "description": "Reflection shell quality factor. Enumerated type with associated value",
+            "description": "Reflection shell quality factor. Enumerated type with associated value\n\nCompleteness is given in %, 0 <= Completeness <= 100",
             "properties": {
                 "type": {
                     "allOf": [
@@ -992,7 +1004,8 @@
                 "CC(ano)",
                 "SigAno",
                 "Completeness",
-                "Redundancy"
+                "Redundancy",
+                "RedundancyAno"
             ],
             "title": "QualityFactorType",
             "type": "string"
@@ -1009,7 +1022,7 @@
             "type": "string"
         },
         "ReflectionSet": {
-            "description": "Processed  reflections, possibly merged or scaled\nas might be stored within an MTZ file or as mmCIF.refln",
+            "description": "Processed reflections, possibly merged or scaled\n\nas might be stored within a MTZ or mmCIF reflection file",
             "properties": {
                 "mxlims_type": {
                     "const": "ReflectionSet",
@@ -1102,12 +1115,12 @@
                 },
                 "anisotropic_diffraction": {
                     "default": false,
-                    "description": "Is diffraction limit analysis aniosotropic? True/False ",
+                    "description": "Is diffraction limit analysis based on aniosotropic diffraction limits? True/False ",
                     "title": "Anisotropic Diffraction",
                     "type": "boolean"
                 },
                 "resolution_rings_detected": {
-                    "description": "Resolution rings detected as originating from ice, powder diffraction etc.",
+                    "description": "Resolution rings detected as originating from ice, powder diffraction etc.; given as a pair of floats (A) with decreasing value, i.e. low- and high-resolution limits",
                     "items": {
                         "maxItems": 2,
                         "minItems": 2,
@@ -1125,7 +1138,7 @@
                     "type": "array"
                 },
                 "resolution_rings_excluded": {
-                    "description": "Resolution rings excluded from calculation",
+                    "description": "Resolution rings excluded from calculation; given as a pair of floats (A) with decreasing value, i.e. low- and high-resolution limits)",
                     "items": {
                         "maxItems": 2,
                         "minItems": 2,
@@ -1152,7 +1165,7 @@
                         }
                     ],
                     "default": null,
-                    "description": "Unit cell determined."
+                    "description": "Unit cell determined"
                 },
                 "space_group_name": {
                     "anyOf": [
@@ -1177,7 +1190,7 @@
                         }
                     ],
                     "default": null,
-                    "description": "Operation resolution in A matchingobserved_criteria.",
+                    "description": "Operational resolution (A) matching observed_criteria.",
                     "title": "Operational Resolution"
                 },
                 "B_iso_Wilson_estimate": {
@@ -1190,11 +1203,11 @@
                         }
                     ],
                     "default": null,
-                    "description": "matches mmCIF reflns.B_iso_Wilson_estimate",
+                    "description": "estimated (isotropic) temperature factor from slope of Wilson plot - matches mmCIF reflns.B_iso_Wilson_estimate (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.B_iso_Wilson_estimate.html)",
                     "title": "B Iso Wilson Estimate"
                 },
                 "h_index_range": {
-                    "description": "lowest and higherst h index - matches mCIF reflens.limit_h_*",
+                    "description": "low and high limit on Miller index h - matches mmCIF reflns.limit_h_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_h_min.html) and reflns.limit_h_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_h_max.html)",
                     "maxItems": 2,
                     "minItems": 2,
                     "prefixItems": [
@@ -1209,7 +1222,7 @@
                     "type": "array"
                 },
                 "k_index_range": {
-                    "description": "lowest and higherst k index - matches mCIF reflens.limit_h_*",
+                    "description": "low and high limit on Miller index k - matches mmCIF reflns.limit_k_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_k_min.html) and reflns.limit_k_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_k_max.html)",
                     "maxItems": 2,
                     "minItems": 2,
                     "prefixItems": [
@@ -1224,7 +1237,7 @@
                     "type": "array"
                 },
                 "l_index_range": {
-                    "description": "lowest and higherst l index - matches mCIF reflens.limit_h_*",
+                    "description": "low and high limit on Miller index l - matches mmCIF reflns.limit_l_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_l_min.html) and reflns.limit_l_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_l_max.html)",
                     "maxItems": 2,
                     "minItems": 2,
                     "prefixItems": [
@@ -1239,16 +1252,32 @@
                     "type": "array"
                 },
                 "num_reflections": {
-                    "description": "Total number of reflections - matches mmCIF ???? ",
-                    "minimum": 0,
-                    "title": "Num Reflections",
-                    "type": "integer"
+                    "anyOf": [
+                        {
+                            "minimum": 0,
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Total number of measured reflections - matches mmCIF reflns.pdbx_number_measured_all (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_number_measured_all.html)",
+                    "title": "Num Reflections"
                 },
                 "num_unique_reflections": {
-                    "description": "Total number of unique reflections - matches mmCIF ???? ",
-                    "minimum": 0,
-                    "title": "Num Unique Reflections",
-                    "type": "integer"
+                    "anyOf": [
+                        {
+                            "minimum": 0,
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Total number of unique reflections - matches mmCIF reflns.number_obs (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.number_obs.html)",
+                    "title": "Num Unique Reflections"
                 },
                 "aniso_B_tensor": {
                     "anyOf": [
@@ -1260,7 +1289,7 @@
                         }
                     ],
                     "default": null,
-                    "description": "Anisotropic B tensor, matching mmCIF reflns.pdbx_aniso_B_tensor"
+                    "description": "Anisotropic B tensor, matching mmCIF items reflns.pdbx_aniso_B_tensor_eigenvalue_{1,2,3} and reflns.pdbx_aniso_B_tensor_eigenvector_{1,2,3}_ortho[{1,2,3}] (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_aniso_B_tensor_eigenvalue_1.html)"
                 },
                 "diffraction_limits_estimated": {
                     "anyOf": [
@@ -1272,7 +1301,7 @@
                         }
                     ],
                     "default": null,
-                    "description": "Ellipsoid of observable reflections (unit:A), regardless whether all have actually been observed. Matches mmCIF reflns.pdbx_anisodiffraction_limit"
+                    "description": "Principal axes lengths (A) of ellipsoid describing reciprocal space region containing observable reflections, regardless whether all have actually been observed. Matches mmCIF reflns.pdbx_aniso_diffraction_limit_{1,2,3} (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_aniso_diffraction_limit_1.html)"
                 },
                 "overall_refln_statistics": {
                     "anyOf": [
@@ -1284,41 +1313,15 @@
                         }
                     ],
                     "default": null,
-                    "description": "Reflection statistics for all measured reflections"
+                    "description": "Reflection statistics for all processed reflections"
                 },
                 "refln_shells": {
-                    "description": "Reflection statistics per reflection shell",
+                    "description": "Reflection statistics per resolution shell",
                     "items": {
                         "$ref": "#/$defs/ReflectionStatistics"
                     },
                     "title": "Refln Shells",
                     "type": "array"
-                },
-                "observed_criterion_sigma_F": {
-                    "anyOf": [
-                        {
-                            "type": "number"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "description": "Criterion for when a reflection counts as observed, as a multiple of sigma(F) \u2013 matches mmCIF reflns.observed_criterion_sigma_F",
-                    "title": "Observed Criterion Sigma F"
-                },
-                "observed_criterion_sigma_I": {
-                    "anyOf": [
-                        {
-                            "type": "number"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "description": "Criterion for when a reflection counts as observed, as a multiple of sigma(I) \u2013 matches mmCIF reflns.observed_criterion_sigma_I",
-                    "title": "Observed Criterion Sigma I"
                 },
                 "signal_type": {
                     "anyOf": [
@@ -1330,7 +1333,7 @@
                         }
                     ],
                     "default": null,
-                    "description": "local <I/sigmaI>\u2019, \u2018local wCC_half'; matches reflns.pdbx_signal_type. Criterion for observability, as used in mmCIF revln.pdbx_signal_status"
+                    "description": "'local <I/sigmaI>', 'local wCC_half'; matches reflns.pdbx_signal_type (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_signal_type.html). Criterion for observability, as used in mmCIF refln.pdbx_signal_status (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_refln.pdbx_signal_status.html)"
                 },
                 "signal_cutoff": {
                     "anyOf": [
@@ -1342,11 +1345,11 @@
                         }
                     ],
                     "default": null,
-                    "description": "Limiting value for signal calculation; matches reflns.pdbx_observed_signal_threshold. Cutoff for observability, as used in mmCIF refln.pdbx_signal_status",
+                    "description": "Limiting value for signal calculation; matches reflns.pdbx_observed_signal_threshold (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_observed_signal_threshold.html). Cutoff for observability, as used in mmCIF refln.pdbx_signal_status (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_refln.pdbx_signal_status.html)",
                     "title": "Signal Cutoff"
                 },
                 "resolution_cutoffs": {
-                    "description": "MRFANA resolution cutoff criteria",
+                    "description": "Criteria used in determination of isotropic resolution cut-off (e.g. as implemented in MRFANA, https://github.com/githubgphl/MRFANA)",
                     "items": {
                         "$ref": "#/$defs/QualityFactor"
                     },
@@ -1363,7 +1366,7 @@
                         }
                     ],
                     "default": null,
-                    "description": "Binning mode for reflection binning"
+                    "description": "Binning mode for definition of resolution shells"
                 },
                 "number_bins": {
                     "anyOf": [
@@ -1376,7 +1379,7 @@
                         }
                     ],
                     "default": null,
-                    "description": "Number of equal volume bins for reflection binning",
+                    "description": "Number of bins",
                     "title": "Number Bins"
                 },
                 "refln_per_bin": {
@@ -1404,21 +1407,20 @@
                         }
                     ],
                     "default": null,
-                    "description": "Number of reflections per bin for per-run statistics",
+                    "description": "Number of reflections per bin per sweep (in multi-sweep experiment)",
                     "title": "Refln Per Bin Per Sweep"
                 },
                 "file_type": {
                     "anyOf": [
                         {
-                            "type": "string"
+                            "$ref": "#/$defs/FileType"
                         },
                         {
                             "type": "null"
                         }
                     ],
                     "default": null,
-                    "description": "Type of file NBNB Should be enum What values??",
-                    "title": "File Type"
+                    "description": "Type of file"
                 },
                 "filename": {
                     "anyOf": [
@@ -1430,7 +1432,7 @@
                         }
                     ],
                     "default": null,
-                    "description": "File name NBNB What about multiple files?.",
+                    "description": "File name.",
                     "title": "Filename"
                 },
                 "path": {
@@ -1443,7 +1445,7 @@
                         }
                     ],
                     "default": null,
-                    "description": "Path to directory containing reflection set files.",
+                    "description": "Path to directory containing reflection set file (defined by filename).",
                     "title": "Path"
                 }
             },
@@ -1451,9 +1453,7 @@
                 "mxlims_type",
                 "h_index_range",
                 "k_index_range",
-                "l_index_range",
-                "num_reflections",
-                "num_unique_reflections"
+                "l_index_range"
             ],
             "title": "ReflectionSet",
             "type": "object"
@@ -1480,7 +1480,7 @@
             "description": "Reflection statistics for a shell (or all) of reflections",
             "properties": {
                 "resolution_limits": {
-                    "description": "lower, higher resolution limit of shell \u2013 matches mmCIF d_res_high, d_res_low.",
+                    "description": "lower, higher resolution limit of shell - matches mmCIF d_res_high, d_res_low.",
                     "maxItems": 2,
                     "minItems": 2,
                     "prefixItems": [
@@ -1495,16 +1495,32 @@
                     "type": "array"
                 },
                 "number_observations": {
-                    "description": "total number of observations, \u2013 NBNB matches WHICH mmCIF parameter?",
-                    "minimum": 0,
-                    "title": "Number Observations",
-                    "type": "integer"
+                    "anyOf": [
+                        {
+                            "minimum": 0,
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "total number of observations, - NBNB matches WHICH mmCIF parameter?",
+                    "title": "Number Observations"
                 },
                 "number_unique_observations": {
-                    "description": "total number of unique observations, \u2013 NBNB matches WHICH mmCIF parameter?",
-                    "minimum": 0,
-                    "title": "Number Unique Observations",
-                    "type": "integer"
+                    "anyOf": [
+                        {
+                            "minimum": 0,
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "total number of unique observations, - NBNB matches WHICH mmCIF parameter?",
+                    "title": "Number Unique Observations"
                 },
                 "quality_factors": {
                     "description": "Quality factors for reflection shell, ",
@@ -1513,13 +1529,6 @@
                     },
                     "title": "Quality Factors",
                     "type": "array"
-                },
-                "completeness": {
-                    "description": "Completeness for reflection shell in %, matches mmCIF percent_possible_all. NBNB What about ...._obs??",
-                    "maximum": 100.0,
-                    "minimum": 0.0,
-                    "title": "Completeness",
-                    "type": "number"
                 },
                 "chi_squared": {
                     "anyOf": [
@@ -1548,27 +1557,10 @@
                     "default": null,
                     "description": "Number of rejected reflns for reflection shell, matches pdbx_rejects",
                     "title": "Number Rejected Reflns"
-                },
-                "redundancy": {
-                    "description": "Redundancy of data collected in this shell \u2013 matches mmCIF pdbx_redundancy",
-                    "minimum": 0.0,
-                    "title": "Redundancy",
-                    "type": "number"
-                },
-                "redundancy_anomalous": {
-                    "description": "Redundancy of anomalous data collected in this shell \u2013 matches mmCIF pdbx_redundancy_anomalous",
-                    "minimum": 0.0,
-                    "title": "Redundancy Anomalous",
-                    "type": "number"
                 }
             },
             "required": [
-                "resolution_limits",
-                "number_observations",
-                "number_unique_observations",
-                "completeness",
-                "redundancy",
-                "redundancy_anomalous"
+                "resolution_limits"
             ],
             "title": "ReflectionStatistics",
             "type": "object"
@@ -1661,7 +1653,7 @@
             "description": "Crystallographic unit cell",
             "properties": {
                 "a": {
-                    "": "A axis length (A)",
+                    "description": "A axis length (A)",
                     "minimum": 0.0,
                     "title": "A",
                     "type": "number"
@@ -1679,19 +1671,19 @@
                     "type": "number"
                 },
                 "alpha": {
-                    "description": "alpha angle (degres)",
+                    "description": "alpha angle (degree)",
                     "minimum": 0.0,
                     "title": "Alpha",
                     "type": "number"
                 },
                 "beta": {
-                    "description": "beta angle (degres)",
+                    "description": "beta angle (degree)",
                     "minimum": 0.0,
                     "title": "Beta",
                     "type": "number"
                 },
                 "gamma": {
-                    "description": "gamma angle (degres)",
+                    "description": "gamma angle (degree)",
                     "minimum": 0.0,
                     "title": "Gamma",
                     "type": "number"
@@ -1762,7 +1754,7 @@
             "description": "Logistical Sample or Sample location relevant to Job.Overridden by Dataset.logistical_sample; return link for Logisticalsample.jobs"
         },
         "results": {
-            "description": "Datasets produced by Job (match Dataset.source_ref",
+            "description": "Datasets produced by Job (match Dataset.source_ref)",
             "items": {
                 "$ref": "#/$defs/CollectionSweep"
             },
@@ -1842,7 +1834,7 @@
                 }
             ],
             "default": null,
-            "description": "The resolution expected in the experiment \u2013 for positioning the detector and setting up the experiment",
+            "description": "The resolution expected in the experiment - for positioning the detector and setting up the experiment",
             "title": "Expected Resolution"
         },
         "target_completeness": {
@@ -1954,7 +1946,7 @@
                 }
             ],
             "default": null,
-            "description": "Crystallographic unit cell, as determined during charaterisation"
+            "description": "Crystallographic unit cell, as determined during characterisation"
         },
         "space_group_name": {
             "anyOf": [
@@ -1978,7 +1970,7 @@
             "type": "array"
         },
         "reference_data": {
-            "description": "Reference data sets, e.g. reference mtz file, ",
+            "description": "Reference data sets, e.g. a reference MTZ file, ",
             "items": {
                 "$ref": "#/$defs/ReflectionSet"
             },

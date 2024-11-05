@@ -60,6 +60,7 @@ class QualityFactorType(str, enum.Enum):
     SigAno = "SigAno"
     Completeness = "Completeness"
     Redundancy = "Redundancy"
+    RedundancyAno = "RedundancyAno"
 
 
 class ReflectionBinningMode(str, enum.Enum):
@@ -71,47 +72,31 @@ class ReflectionBinningMode(str, enum.Enum):
     dstar2_equidistant = "dstar2_equidistant"
 
 
+class FileType(str, enum.Enum):
+    """Name for file type, used in ReflectionSet class"""
+
+    MTZ_scaled_merged = "scaled and merged MTZ"
+    MTZ_scaled_unmerged = "scaled and unmerged MTZ"
+    MTZ_unmerged = "unmerged MTZ"
+    XDS_INTEGRATE = "XDS INTEGRATE.HKL (https://xds.mr.mpg.de/html_doc/xds_files.html#INTEGRATE.HKL); unmerged"
+    XDS_ASCII = "XDS XDS_ASCII.HKL (https://xds.mr.mpg.de/html_doc/xds_files.html#XDS_ASCII.HKL); scaled and unmerged"
+
+
 class UnitCell(BaseModel):
     """Crystallographic unit cell"""
 
-    a: float = Field(
-        frozen=True,
-        ge=0,
-        json_schema_extra={"": "A axis length (A)"},
-    )
-    b: float = Field(
-        frozen=True,
-        ge=0,
-        description="B axis length (A)"
-    )
-    c: float = Field(
-        frozen=True,
-        ge=0,
-        description="C axis length (A)"
-    )
-    alpha: float = Field(
-        frozen=True,
-        ge=0,
-        description="alpha angle (degres)"
-    )
-    beta: float = Field(
-        frozen=True,
-        ge=0,
-        description="beta angle (degres)"
-    )
-    gamma: float = Field(
-        frozen=True,
-        ge=0,
-        description="gamma angle (degres)"
-    )
+    a: float = Field(frozen=True, ge=0, description="A axis length (A)")
+    b: float = Field(frozen=True, ge=0, description="B axis length (A)")
+    c: float = Field(frozen=True, ge=0, description="C axis length (A)")
+    alpha: float = Field(frozen=True, ge=0, description="alpha angle (degree)")
+    beta: float = Field(frozen=True, ge=0, description="beta angle (degree)")
+    gamma: float = Field(frozen=True, ge=0, description="gamma angle (degree)")
 
 
 class Tensor(BaseModel):
     """Tensor"""
 
-    eigenvalues: Tuple[float, float, float] = Field(
-        description="Eigenvalues of tensor"
-    )
+    eigenvalues: Tuple[float, float, float] = Field(description="Eigenvalues of tensor")
     eigenvectors: List[Tuple[float, float, float]] = Field(
         description="Eigenvectors (unit vectors) of tensor, "
         "in same order as eigenvalues"
@@ -119,22 +104,20 @@ class Tensor(BaseModel):
 
 
 class QualityFactor(BaseModel):
-    """Reflection shell quality factor. Enumerated type with associated value"""
+    """Reflection shell quality factor. Enumerated type with associated value
 
-    type: QualityFactorType = Field(
-        description="Quality factor type"
-    )
-    value: float = Field(
-        description="Quality factor value"
-    )
+    Completeness is given in %, 0 <= Completeness <= 100"""
+
+    type: QualityFactorType = Field(description="Quality factor type")
+    value: float = Field(description="Quality factor value")
+
 
 class Macromolecule(BaseModel):
     """Macromolecule - main molecule under investigation
 
     #NB model still incomplete"""
-    acronym: str = Field(
-        description="Acronynm - short synonym of macromolecule"
-    )
+
+    acronym: str = Field(description="Acronynm - short synonym of macromolecule")
     name: Optional[str] = Field(
         default=None,
         description="Human readable name of macromolecule",
@@ -146,16 +129,17 @@ class Macromolecule(BaseModel):
         "but could also be e.g. 'sequence'",
     )
 
+
 class Component(BaseModel):
     """Additional component of sample ('ligand')
 
     #NB model still incomplete"""
+
     acronym: str = Field(
         description="Acronynm - short synonym of component (e.g. 'lig1'"
     )
     name: Optional[str] = Field(
-        default=None,
-        description="Human readable name of component"
+        default=None, description="Human readable name of component"
     )
     identifiers: Dict[str, str] = Field(
         default_factory=dict,
@@ -163,6 +147,7 @@ class Component(BaseModel):
         "contectName will typically refer to a LIMS, database, or web site "
         "but could also be e.g. 'smiles'",
     )
+
 
 class MXExperiment(Job):
     """MX Crystallographic data acquisition experiment."""
@@ -186,7 +171,7 @@ class MXExperiment(Job):
         default=None,
         ge=0,
         description="The resolution expected in the experiment "
-        "– for positioning the detector and setting up the experiment"
+        "- for positioning the detector and setting up the experiment",
     )
     target_completeness: Optional[float] = Field(
         default=None,
@@ -227,7 +212,7 @@ class MXExperiment(Job):
     unit_cell: Optional[UnitCell] = Field(
         default=None,
         description="Crystallographic unit cell, "
-            "as determined during charaterisation",
+        "as determined during characterisation",
     )
     space_group_name: Optional[str] = Field(
         default=None,
@@ -245,7 +230,7 @@ class MXExperiment(Job):
         default=None,
         frozen=True,
         description="Logistical Sample or Sample location relevant to Job."
-        "Overridden by Dataset.logistical_sample; return link for Logisticalsample.jobs"
+        "Overridden by Dataset.logistical_sample; return link for Logisticalsample.jobs",
     )
     templates: List["CollectionSweep"] = Field(
         default_factory=list,
@@ -255,33 +240,36 @@ class MXExperiment(Job):
     reference_data: List["ReflectionSet"] = Field(
         default_factory=list,
         discriminator="mxlims_type",
-        description="Reference data sets, e.g. reference mtz file, ",
+        description="Reference data sets, e.g. a reference MTZ file, ",
     )
     results: List["CollectionSweep"] = Field(
         default_factory=list,
         discriminator="mxlims_type",
-        description="Datasets produced by Job (match Dataset.source_ref",
+        description="Datasets produced by Job (match Dataset.source_ref)",
     )
+
 
 class MXExperimentRef(MxlimsObjectRef):
     """Reference to MXExperiment object, for use in JSON files."""
+
     target_type: Literal["MXExperiment"]
+
 
 class CollectionSweep(Dataset):
     """
-   MX  Crystallographic data collection sweep, may be subdivided for acquisition
+    MX  Crystallographic data collection sweep, may be subdivided for acquisition
 
-    Note that the CollectionSweep specifies a single, continuous sweep range,
-    with equidistant images given by image_width, and all starting motor positions
-    in axis_position_start. axis_positions_end contain the end point of the sweep,
-    and must have at least the value for the scan_axis; sweeps changing more than
-    one motor (e.g. helical scan) can be represented by adding more values
-    to axis_positions_end. The default number of images can be calculated from the
-    sweep range and image_width. The actual number of images, the image numbering,
-    and the order of acquisition (including interleaving) follows from the list of
-    Scans. The role should be set to ‘Result’ for those sweeps that are deemed to
-    be the desired result of the experiment; in templates you would prefer to use
-    Acquisition for the Dataset that gives the acquisition parameters.
+     Note that the CollectionSweep specifies a single, continuous sweep range,
+     with equidistant images given by image_width, and all starting motor positions
+     in axis_position_start. axis_positions_end contain the end point of the sweep,
+     and must have at least the value for the scan_axis; sweeps changing more than
+     one motor (e.g. helical scan) can be represented by adding more values
+     to axis_positions_end. The default number of images can be calculated from the
+     sweep range and image_width. The actual number of images, the image numbering,
+     and the order of acquisition (including interleaving) follows from the list of
+     Scans. The role should be set to 'Result' for those sweeps that are deemed to
+     be the desired result of the experiment; in templates you would prefer to use
+     Acquisition for the Dataset that gives the acquisition parameters.
     """
 
     mxlims_type: Literal["CollectionSweep"]
@@ -318,13 +306,12 @@ class CollectionSweep(Dataset):
     )
     detector_binning_mode: Optional[str] = Field(
         default=None,
-        description="Binning mode of detector. "
-            "Should be made into an enumeration",
+        description="Binning mode of detector. Should be made into an enumeration",
     )
     detector_roi_mode: Optional[str] = Field(
         default=None,
         description="Region-of-interest mode of detector. "
-            "Should be made into an enumeration",
+        "Should be made into an enumeration",
     )
     beam_position: Optional[Tuple[float, float]] = Field(
         default=None,
@@ -356,7 +343,7 @@ class CollectionSweep(Dataset):
     )
     scan_axis: str = Field(
         description="Name of main scanned axis. "
-            "Other axes may be scanned in parallel.",
+        "Other axes may be scanned in parallel.",
         json_schema_extra={
             "examples": [
                 "Omega",
@@ -370,7 +357,7 @@ class CollectionSweep(Dataset):
                 "DetectorX",
                 "DetectorY",
             ],
-        }
+        },
     )
     overlap: Optional[float] = Field(
         default=None,
@@ -414,14 +401,14 @@ class CollectionSweep(Dataset):
         default=None,
         description="Path to directory containing image files.",
     )
-    source_ref:Optional[MXExperimentRef] = Field(
+    source_ref: Optional[MXExperimentRef] = Field(
         default=None,
         frozen=True,
         description="Reference to Job that created this Dataset",
     )
     # NB This rasies the problem of how to handle an optional Union
     # As we will surely get a Union here once Logistical Samples are modelled.
-    logistical_sample_ref:Optional[LogisticalSampleRef] = Field(
+    logistical_sample_ref: Optional[LogisticalSampleRef] = Field(
         default=None,
         description="Reference to LogisticalSample"
         " that pertains specifically this Dataset",
@@ -437,9 +424,12 @@ class CollectionSweep(Dataset):
         description="List of references to Datasets derived from Dataset.",
     )
 
+
 class CollectionSweepRef(MxlimsObjectRef):
     """Reference to CollectionSweep object, for use in JSON files."""
+
     target_type: Literal["CollectionSweep"]
+
 
 class Scan(BaseModel):
     """Subdivision of CollectionSweep.
@@ -452,7 +442,7 @@ class Scan(BaseModel):
 
     scan_position_start: float = Field(
         description="Value of scan axis for the first image, "
-            "in units matching axis type",
+        "in units matching axis type",
     )
     first_image_no: int = Field(
         description="Image number to use for first image",
@@ -463,7 +453,7 @@ class Scan(BaseModel):
     )
     ordinal: int = Field(
         description="Ordinal defining the ordering of all scans within the "
-            "experiment (not just within the scan)",
+        "experiment (not just within the scan)",
     )
 
 
@@ -491,7 +481,7 @@ class MXProcessing(Job):
         default=None,
         frozen=True,
         description="Logistical Sample or Sample location relevant to Job."
-        "Overridden by Dataset.logistical_sample; return link for Logisticalsample.jobs"
+        "Overridden by Dataset.logistical_sample; return link for Logisticalsample.jobs",
     )
     templates: List["ReflectionSet"] = Field(
         default_factory=list,
@@ -501,93 +491,87 @@ class MXProcessing(Job):
     reference_data: List["ReflectionSet"] = Field(
         default_factory=list,
         discriminator="mxlims_type",
-        description="Reference data sets, e.g. reference mtz file, ",
+        description="Reference data sets, e.g. a reference MTZ file, ",
     )
     results: List["ReflectionSet"] = Field(
         default_factory=list,
         discriminator="mxlims_type",
-        description="Datasets produced by Job (match Dataset.source_ref",
+        description="Datasets produced by Job (match Dataset.source_ref)",
     )
     input_data: List[CollectionSweep] = Field(
         default_factory=list,
         description="List of pre-existing Input data sets used for calculation,",
     )
 
+
 class MXProcessingRef(MxlimsObjectRef):
     """Reference to MXProcessing object, for use in JSON files."""
+
     target_type: Literal["MXProcessing"]
+
 
 class ReflectionStatistics(BaseModel):
     """Reflection statistics for a shell (or all) of reflections"""
 
     resolution_limits: Tuple[float, float] = Field(
         description="lower, higher resolution limit of shell "
-        "– matches mmCIF d_res_high, d_res_low.",
+        "- matches mmCIF d_res_high, d_res_low.",
     )
-    number_observations: int = Field(
+    number_observations: Optional[int] = Field(
+        default=None,
         ge=0,
         description="total number of observations, "
-        "– NBNB matches WHICH mmCIF parameter?",
+        "- NBNB matches WHICH mmCIF parameter?",
     )
-    number_unique_observations: int = Field(
+    number_unique_observations: Optional[int] = Field(
+        default=None,
         ge=0,
         description="total number of unique observations, "
-        "– NBNB matches WHICH mmCIF parameter?",
+        "- NBNB matches WHICH mmCIF parameter?",
     )
     quality_factors: List[QualityFactor] = Field(
-        default_factory=list,
-        description="Quality factors for reflection shell, "
-    )
-    completeness: float = Field(
-        ge=0.0,
-        le=100.0,
-        description="Completeness for reflection shell in %, "
-        "matches mmCIF percent_possible_all. NBNB What about ...._obs??"
+        default_factory=list, description="Quality factors for reflection shell, "
     )
     chi_squared: Optional[float] = Field(
         default=None,
         ge=0.0,
         description="Chi-squared statistic for reflection shell, "
-        "matches mmCIF pdbx_chi_squared"
+        "matches mmCIF pdbx_chi_squared",
     )
     number_rejected_reflns: Optional[int] = Field(
         default=None,
         ge=0,
         description="Number of rejected reflns for reflection shell, "
-        "matches pdbx_rejects"
-    )
-    redundancy: float = Field(
-        ge=0.0,
-        description="Redundancy of data collected in this shell "
-        "– matches mmCIF pdbx_redundancy",
-    )
-    redundancy_anomalous: float = Field(
-        ge=0.0,
-        description="Redundancy of anomalous data collected in this shell "
-        "– matches mmCIF pdbx_redundancy_anomalous"
+        "matches pdbx_rejects",
     )
 
+
 class ReflectionSet(Dataset):
-    """Processed  reflections, possibly merged or scaled
-    as might be stored within an MTZ file or as mmCIF.refln"""
+    """Processed reflections, possibly merged or scaled
+
+    as might be stored within a MTZ or mmCIF reflection file
+    """
 
     mxlims_type: Literal["ReflectionSet"]
     anisotropic_diffraction: bool = Field(
         default=False,
-        description="Is diffraction limit analysis aniosotropic? True/False ",
+        description="Is diffraction limit analysis based on aniosotropic diffraction limits? True/False ",
     )
     resolution_rings_detected: List[Tuple[float, float]] = Field(
         default_factory=list,
         description="Resolution rings detected as originating from ice, powder "
-        "diffraction etc.",
+        "diffraction etc.; given as a pair of floats (A) with decreasing value, "
+        "i.e. low- and high-resolution limits",
     )
     resolution_rings_excluded: List[Tuple[float, float]] = Field(
         default_factory=list,
-        description="Resolution rings excluded from calculation",
+        description="Resolution rings excluded from calculation; "
+        "given as a pair of floats (A) with decreasing value, "
+        "i.e. low- and high-resolution limits)",
     )
     unit_cell: Optional[UnitCell] = Field(
         default=None,
-        description="Unit cell determined.",
+        description="Unit cell determined",
     )
     space_group_name: Optional[str] = Field(
         default=None,
@@ -596,81 +580,87 @@ class ReflectionSet(Dataset):
     )
     operational_resolution: Optional[float] = Field(
         default=None,
-        description="Operation resolution in A matchingobserved_criteria.",
+        description="Operational resolution (A) matching observed_criteria.",
     )
     B_iso_Wilson_estimate: Optional[float] = Field(
         default=None,
-        description="matches mmCIF reflns.B_iso_Wilson_estimate",
+        description="estimated (isotropic) temperature factor from slope of Wilson plot"
+        " - matches mmCIF reflns.B_iso_Wilson_estimate "
+        "(https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.B_iso_Wilson_estimate.html)",
     )
     h_index_range: Tuple[int, int] = Field(
-        description="lowest and higherst h index - matches mCIF reflens.limit_h_*",
+        description="low and high limit on Miller index h - matches mmCIF "
+        "reflns.limit_h_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_h_min.html) and reflns.limit_h_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_h_max.html)",
     )
     k_index_range: Tuple[int, int] = Field(
-        description="lowest and higherst k index - matches mCIF reflens.limit_h_*",
+        description="low and high limit on Miller index k - matches mmCIF "
+        "reflns.limit_k_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_k_min.html) and reflns.limit_k_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_k_max.html)",
     )
     l_index_range: Tuple[int, int] = Field(
-        description="lowest and higherst l index - matches mCIF reflens.limit_h_*",
+        description="low and high limit on Miller index l - matches mmCIF "
+        "reflns.limit_l_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_l_min.html) and reflns.limit_l_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_l_max.html)",
     )
-    num_reflections: int = Field(
+    num_reflections: Optional[int] = Field(
+        default=None,
         ge=0,
-        description="Total number of reflections - matches mmCIF ???? "
+        description="Total number of measured reflections - matches mmCIF "
+        "reflns.pdbx_number_measured_all (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_number_measured_all.html)",
     )
-    num_unique_reflections: int = Field(
+    num_unique_reflections: Optional[int] = Field(
+        default=None,
         ge=0,
-        description="Total number of unique reflections - matches mmCIF ???? "
+        description="Total number of unique reflections - matches mmCIF "
+        "reflns.number_obs (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.number_obs.html)",
     )
     aniso_B_tensor: Optional[Tensor] = Field(
         default=None,
-        description="Anisotropic B tensor, matching mmCIF reflns.pdbx_aniso_B_tensor"
+        description="Anisotropic B tensor, matching mmCIF items "
+        "reflns.pdbx_aniso_B_tensor_eigenvalue_{1,2,3} and reflns.pdbx_aniso_B_tensor_eigenvector_{1,2,3}_ortho[{1,2,3}] (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_aniso_B_tensor_eigenvalue_1.html)",
     )
     diffraction_limits_estimated: Optional[Tensor] = Field(
         default=None,
-        description="Ellipsoid of observable reflections (unit:A), "
-            "regardless whether all have actually been observed. "
-            "Matches mmCIF reflns.pdbx_anisodiffraction_limit",
+        description="Principal axes lengths (A) of ellipsoid "
+        "describing reciprocal space region containing observable reflections, "
+        "regardless whether all have actually been observed. "
+        "Matches mmCIF reflns.pdbx_aniso_diffraction_limit_{1,2,3} "
+        "(https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_aniso_diffraction_limit_1.html)",
     )
     overall_refln_statistics: Optional[ReflectionStatistics] = Field(
         default=None,
-        description="Reflection statistics for all measured reflections",
+        description="Reflection statistics for all processed reflections",
     )
     refln_shells: List[ReflectionStatistics] = Field(
         default_factory=list,
-        description="Reflection statistics per reflection shell",
-    )
-    observed_criterion_sigma_F: Optional[float] = Field(
-        default=None,
-        description="Criterion for when a reflection counts as observed, as a "
-        "multiple of sigma(F) – matches mmCIF reflns.observed_criterion_sigma_F",
-    )
-    observed_criterion_sigma_I: Optional[float] = Field(
-        default=None,
-        description="Criterion for when a reflection counts as observed, as a "
-        "multiple of sigma(I) – matches mmCIF reflns.observed_criterion_sigma_I",
+        description="Reflection statistics per resolution shell",
     )
     signal_type: Optional[PdbxSignalType] = Field(
         default=None,
-        description="local <I/sigmaI>’, ‘local wCC_half'; "
-            "matches reflns.pdbx_signal_type. Criterion for observability, "
-            "as used in mmCIF revln.pdbx_signal_status",
+        description="'local <I/sigmaI>', 'local wCC_half'; "
+        "matches reflns.pdbx_signal_type "
+        "(https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_signal_type.html)."
+        " Criterion for observability, as used in mmCIF refln.pdbx_signal_status "
+        "(https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_refln.pdbx_signal_status.html)",
     )
     signal_cutoff: Optional[float] = Field(
         default=None,
         description="Limiting value for signal calculation; "
-        "matches reflns.pdbx_observed_signal_threshold. Cutoff for observability, "
-        "as used in mmCIF refln.pdbx_signal_status",
+        "matches reflns.pdbx_observed_signal_threshold "
+        "(https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_observed_signal_threshold.html)."
+        " Cutoff for observability, as used in mmCIF refln.pdbx_signal_status "
+        "(https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_refln.pdbx_signal_status.html)",
     )
     resolution_cutoffs: List[QualityFactor] = Field(
         default_factory=list,
-        description="MRFANA resolution cutoff criteria"
+        description="Criteria used in determination of isotropic resolution cut-off "
+        "(e.g. as implemented in MRFANA, https://github.com/githubgphl/MRFANA)",
     )
     binning_mode: Optional[ReflectionBinningMode] = Field(
-        default=None,
-        description="Binning mode for reflection binning"
+        default=None, description="Binning mode for definition of resolution shells"
     )
     number_bins: Optional[int] = Field(
         default=None,
         gt=0,
-        description="Number of equal volume bins for reflection binning",
+        description="Number of bins",
     )
     refln_per_bin: Optional[int] = Field(
         default=None,
@@ -680,28 +670,29 @@ class ReflectionSet(Dataset):
     refln_per_bin_per_sweep: Optional[int] = Field(
         default=None,
         gt=0,
-        description="Number of reflections per bin for per-run statistics",
+        description="Number of reflections per bin per sweep (in multi-sweep experiment)",
     )
-    file_type: Optional[str] = Field(
+    file_type: Optional[FileType] = Field(
         default=None,
-        description="Type of file NBNB Should be enum What values??",
+        description="Type of file",
     )
     filename: Optional[str] = Field(
         default=None,
-        description="File name NBNB What about multiple files?.",
+        description="File name.",
     )
     path: Optional[str] = Field(
         default=None,
-        description="Path to directory containing reflection set files.",
+        description="Path to directory containing reflection set file "
+        "(defined by filename).",
     )
-    source_ref:Optional[MXProcessingRef] = Field(
+    source_ref: Optional[MXProcessingRef] = Field(
         default=None,
         frozen=True,
         description="Reference to Job that created this Dataset",
     )
     # NB This rasies the problem of how to handle an optional Union
     # As we will surely get a Union here once Logistical Samples are modelled.
-    logistical_sample_ref:Optional[LogisticalSampleRef] = Field(
+    logistical_sample_ref: Optional[LogisticalSampleRef] = Field(
         default=None,
         description="Reference to LogisticalSample"
         " that pertains specifically this Dataset",
@@ -717,9 +708,12 @@ class ReflectionSet(Dataset):
         description="List of references to Datasets derived from Dataset.",
     )
 
+
 class ReflectionSetRef(BaseModel):
     """Reference to ReflectionSet object, for use in JSON files."""
+
     target_type: Literal["ReflectionSet"]
+
 
 class MXSample(PreparedSample):
     """Prepared Sample with MX crystallography-specific additions
@@ -748,7 +742,7 @@ class MXSample(PreparedSample):
         default=None,
         ge=0.0,
         le=1.0,
-        description="Relative radiation sensitivity of sample."
+        description="Relative radiation sensitivity of sample.",
     )
     identifiers: Dict[str, str] = Field(
         default_factory=dict,
@@ -757,8 +751,9 @@ class MXSample(PreparedSample):
         "and the identifier will point to the ample within thie context",
         json_schema_extra={
             "examples": [
-                {'sendersId':'29174',
-                 'receiversUrl':'http://lims.synchrotron.org/crystal/54321'
+                {
+                    "sendersId": "29174",
+                    "receiversUrl": "http://lims.synchrotron.org/crystal/54321",
                 },
             ],
         },
@@ -772,25 +767,29 @@ class MXSample(PreparedSample):
     logistical_sample_refs: List[LogisticalSampleRef] = Field(
         default_factory=list,
         discriminator="target_type",
-        description="References to LogisticalSamples using Sample"
+        description="References to LogisticalSamples using Sample",
     )
+
 
 class MXSampleRef(MxlimsObjectRef):
     """Reference to MXSample object, for use in JSON files."""
+
     target_type: Literal["MXSample"]
+
 
 if __name__ == "__main__":
     # Usage:
     # In target directory .../mxlims/pydantic/jsonSchema do
     # python -m mxlims.pydantic.crystallography
     import json
+
     for cls in (
         LogisticalSample,
         CollectionSweep,
         ReflectionSet,
         MXExperiment,
         MXProcessing,
-        MXSample
+        MXSample,
     ):
         tag = cls.__name__
         schema = cls.model_json_schema()
@@ -799,4 +798,3 @@ if __name__ == "__main__":
 
     # To generate html documentation use e.g.
     # generate-schema-doc --link-to-reused-ref LogisticalSample_schema.json ../jsonDocs
-

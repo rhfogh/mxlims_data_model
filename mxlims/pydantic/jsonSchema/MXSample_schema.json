@@ -180,7 +180,7 @@
             "description": "Crystallographic unit cell",
             "properties": {
                 "a": {
-                    "": "A axis length (A)",
+                    "description": "A axis length (A)",
                     "minimum": 0.0,
                     "title": "A",
                     "type": "number"
@@ -198,19 +198,19 @@
                     "type": "number"
                 },
                 "alpha": {
-                    "description": "alpha angle (degres)",
+                    "description": "alpha angle (degree)",
                     "minimum": 0.0,
                     "title": "Alpha",
                     "type": "number"
                 },
                 "beta": {
-                    "description": "beta angle (degres)",
+                    "description": "beta angle (degree)",
                     "minimum": 0.0,
                     "title": "Beta",
                     "type": "number"
                 },
                 "gamma": {
-                    "description": "gamma angle (degres)",
+                    "description": "gamma angle (degree)",
                     "minimum": 0.0,
                     "title": "Gamma",
                     "type": "number"
