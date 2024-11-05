@@ -29,6 +29,8 @@ import uuid
 import datetime
 import enum
 from typing import Optional, Dict, List, Any, Union, Literal
+
+import mxlims
 from pydantic import BaseModel, Field
 
 
@@ -43,6 +45,8 @@ class JobStatus(str, enum.Enum):
 class MxlimsObject(BaseModel):
     """Basic abstract MXLIMS object, with attributes shared by all MXLIMS objects"""
     mxlims_type: Literal["MxlimsObject"]
+
+    version: Literal[mxlims.version()]
 
     uuid: str = Field(
         default_factory=lambda: uuid.uuid4().hex,

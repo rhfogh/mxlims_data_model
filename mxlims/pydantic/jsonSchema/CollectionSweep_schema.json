@@ -149,6 +149,14 @@
             "title": "Mxlims Type",
             "type": "string"
         },
+        "version": {
+            "const": "0.2.2",
+            "enum": [
+                "0.2.2"
+            ],
+            "title": "Version",
+            "type": "string"
+        },
         "uuid": {
             "description": "Permanent unique identifier string",
             "title": "Uuid",
@@ -547,6 +555,7 @@
     },
     "required": [
         "mxlims_type",
+        "version",
         "scan_axis"
     ],
     "title": "CollectionSweep",
