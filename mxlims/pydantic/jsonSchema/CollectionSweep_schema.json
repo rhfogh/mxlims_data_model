@@ -112,15 +112,15 @@
                     "title": "Scan Position Start",
                     "type": "number"
                 },
-                "first_image_no": {
+                "first_image_number": {
                     "description": "Image number to use for first image",
-                    "title": "First Image No",
+                    "title": "First Image Number",
                     "type": "integer"
                 },
-                "num_images": {
+                "number_images": {
                     "description": "Number of images to acquire as part of the Scan.",
                     "minimum": 0,
-                    "title": "Num Images",
+                    "title": "Number Images",
                     "type": "integer"
                 },
                 "ordinal": {
@@ -131,8 +131,8 @@
             },
             "required": [
                 "scan_position_start",
-                "first_image_no",
-                "num_images",
+                "first_image_number",
+                "number_images",
                 "ordinal"
             ],
             "title": "Scan",
@@ -449,7 +449,7 @@
             "description": "Overlap between successivce images, in degrees. May be negtive for non-contiguous images.",
             "title": "Overlap"
         },
-        "num_triggers": {
+        "number_triggers": {
             "anyOf": [
                 {
                     "minimum": 0,
@@ -461,9 +461,9 @@
             ],
             "default": null,
             "description": "Number of triggers. Instruction to detector - does not modify effect of other parameters.",
-            "title": "Num Triggers"
+            "title": "Number Triggers"
         },
-        "num_images_per_trigger": {
+        "number_images_per_trigger": {
             "anyOf": [
                 {
                     "minimum": 0,
@@ -475,7 +475,7 @@
             ],
             "default": null,
             "description": "Number of images per trigger. Instruction to detector - does not modify effect of other parameters.",
-            "title": "Num Images Per Trigger"
+            "title": "Number Images Per Trigger"
         },
         "scans": {
             "description": "List of Snas i.e. subdivisions of CollectionSweepNB Scans need not be contiguous or in order or add up to entire sweep",

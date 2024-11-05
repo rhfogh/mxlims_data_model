@@ -316,7 +316,7 @@
                     "description": "Overlap between successivce images, in degrees. May be negtive for non-contiguous images.",
                     "title": "Overlap"
                 },
-                "num_triggers": {
+                "number_triggers": {
                     "anyOf": [
                         {
                             "minimum": 0,
@@ -328,9 +328,9 @@
                     ],
                     "default": null,
                     "description": "Number of triggers. Instruction to detector - does not modify effect of other parameters.",
-                    "title": "Num Triggers"
+                    "title": "Number Triggers"
                 },
-                "num_images_per_trigger": {
+                "number_images_per_trigger": {
                     "anyOf": [
                         {
                             "minimum": 0,
@@ -342,7 +342,7 @@
                     ],
                     "default": null,
                     "description": "Number of images per trigger. Instruction to detector - does not modify effect of other parameters.",
-                    "title": "Num Images Per Trigger"
+                    "title": "Number Images Per Trigger"
                 },
                 "scans": {
                     "description": "List of Snas i.e. subdivisions of CollectionSweepNB Scans need not be contiguous or in order or add up to entire sweep",
@@ -1207,51 +1207,75 @@
                     "title": "B Iso Wilson Estimate"
                 },
                 "h_index_range": {
-                    "description": "low and high limit on Miller index h - matches mmCIF reflns.limit_h_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_h_min.html) and reflns.limit_h_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_h_max.html)",
-                    "maxItems": 2,
-                    "minItems": 2,
-                    "prefixItems": [
+                    "anyOf": [
                         {
-                            "type": "integer"
+                            "maxItems": 2,
+                            "minItems": 2,
+                            "prefixItems": [
+                                {
+                                    "type": "integer"
+                                },
+                                {
+                                    "type": "integer"
+                                }
+                            ],
+                            "type": "array"
                         },
                         {
-                            "type": "integer"
+                            "type": "null"
                         }
                     ],
-                    "title": "H Index Range",
-                    "type": "array"
+                    "default": null,
+                    "description": "low and high limit on Miller index h - matches mmCIF reflns.limit_h_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_h_min.html) and reflns.limit_h_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_h_max.html)",
+                    "title": "H Index Range"
                 },
                 "k_index_range": {
-                    "description": "low and high limit on Miller index k - matches mmCIF reflns.limit_k_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_k_min.html) and reflns.limit_k_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_k_max.html)",
-                    "maxItems": 2,
-                    "minItems": 2,
-                    "prefixItems": [
+                    "anyOf": [
                         {
-                            "type": "integer"
+                            "maxItems": 2,
+                            "minItems": 2,
+                            "prefixItems": [
+                                {
+                                    "type": "integer"
+                                },
+                                {
+                                    "type": "integer"
+                                }
+                            ],
+                            "type": "array"
                         },
                         {
-                            "type": "integer"
+                            "type": "null"
                         }
                     ],
-                    "title": "K Index Range",
-                    "type": "array"
+                    "default": null,
+                    "description": "low and high limit on Miller index k - matches mmCIF reflns.limit_k_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_k_min.html) and reflns.limit_k_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_k_max.html)",
+                    "title": "K Index Range"
                 },
                 "l_index_range": {
-                    "description": "low and high limit on Miller index l - matches mmCIF reflns.limit_l_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_l_min.html) and reflns.limit_l_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_l_max.html)",
-                    "maxItems": 2,
-                    "minItems": 2,
-                    "prefixItems": [
+                    "anyOf": [
                         {
-                            "type": "integer"
+                            "maxItems": 2,
+                            "minItems": 2,
+                            "prefixItems": [
+                                {
+                                    "type": "integer"
+                                },
+                                {
+                                    "type": "integer"
+                                }
+                            ],
+                            "type": "array"
                         },
                         {
-                            "type": "integer"
+                            "type": "null"
                         }
                     ],
-                    "title": "L Index Range",
-                    "type": "array"
+                    "default": null,
+                    "description": "low and high limit on Miller index l - matches mmCIF reflns.limit_l_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_l_min.html) and reflns.limit_l_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_l_max.html)",
+                    "title": "L Index Range"
                 },
-                "num_reflections": {
+                "number_reflections": {
                     "anyOf": [
                         {
                             "minimum": 0,
@@ -1263,9 +1287,9 @@
                     ],
                     "default": null,
                     "description": "Total number of measured reflections - matches mmCIF reflns.pdbx_number_measured_all (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_number_measured_all.html)",
-                    "title": "Num Reflections"
+                    "title": "Number Reflections"
                 },
-                "num_unique_reflections": {
+                "number_reflections_unique": {
                     "anyOf": [
                         {
                             "minimum": 0,
@@ -1277,7 +1301,7 @@
                     ],
                     "default": null,
                     "description": "Total number of unique reflections - matches mmCIF reflns.number_obs (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.number_obs.html)",
-                    "title": "Num Unique Reflections"
+                    "title": "Number Reflections Unique"
                 },
                 "aniso_B_tensor": {
                     "anyOf": [
@@ -1303,7 +1327,7 @@
                     "default": null,
                     "description": "Principal axes lengths (A) of ellipsoid describing reciprocal space region containing observable reflections, regardless whether all have actually been observed. Matches mmCIF reflns.pdbx_aniso_diffraction_limit_{1,2,3} (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_aniso_diffraction_limit_1.html)"
                 },
-                "overall_refln_statistics": {
+                "reflection_statistics_overall": {
                     "anyOf": [
                         {
                             "$ref": "#/$defs/ReflectionStatistics"
@@ -1315,12 +1339,12 @@
                     "default": null,
                     "description": "Reflection statistics for all processed reflections"
                 },
-                "refln_shells": {
+                "reflection_statistics_shells": {
                     "description": "Reflection statistics per resolution shell",
                     "items": {
                         "$ref": "#/$defs/ReflectionStatistics"
                     },
-                    "title": "Refln Shells",
+                    "title": "Reflection Statistics Shells",
                     "type": "array"
                 },
                 "signal_type": {
@@ -1382,7 +1406,7 @@
                     "description": "Number of bins",
                     "title": "Number Bins"
                 },
-                "refln_per_bin": {
+                "reflections_per_bin": {
                     "anyOf": [
                         {
                             "exclusiveMinimum": 0,
@@ -1394,9 +1418,9 @@
                     ],
                     "default": null,
                     "description": "Number of reflections per bin",
-                    "title": "Refln Per Bin"
+                    "title": "Reflections Per Bin"
                 },
-                "refln_per_bin_per_sweep": {
+                "reflections_per_bin_per_sweep": {
                     "anyOf": [
                         {
                             "exclusiveMinimum": 0,
@@ -1408,7 +1432,7 @@
                     ],
                     "default": null,
                     "description": "Number of reflections per bin per sweep (in multi-sweep experiment)",
-                    "title": "Refln Per Bin Per Sweep"
+                    "title": "Reflections Per Bin Per Sweep"
                 },
                 "file_type": {
                     "anyOf": [
@@ -1450,10 +1474,7 @@
                 }
             },
             "required": [
-                "mxlims_type",
-                "h_index_range",
-                "k_index_range",
-                "l_index_range"
+                "mxlims_type"
             ],
             "title": "ReflectionSet",
             "type": "object"
@@ -1508,7 +1529,7 @@
                     "description": "total number of observations, - NBNB matches WHICH mmCIF parameter?",
                     "title": "Number Observations"
                 },
-                "number_unique_observations": {
+                "number_observations_unique": {
                     "anyOf": [
                         {
                             "minimum": 0,
@@ -1520,7 +1541,7 @@
                     ],
                     "default": null,
                     "description": "total number of unique observations, - NBNB matches WHICH mmCIF parameter?",
-                    "title": "Number Unique Observations"
+                    "title": "Number Observations Unique"
                 },
                 "quality_factors": {
                     "description": "Quality factors for reflection shell, ",
@@ -1573,15 +1594,15 @@
                     "title": "Scan Position Start",
                     "type": "number"
                 },
-                "first_image_no": {
+                "first_image_number": {
                     "description": "Image number to use for first image",
-                    "title": "First Image No",
+                    "title": "First Image Number",
                     "type": "integer"
                 },
-                "num_images": {
+                "number_images": {
                     "description": "Number of images to acquire as part of the Scan.",
                     "minimum": 0,
-                    "title": "Num Images",
+                    "title": "Number Images",
                     "type": "integer"
                 },
                 "ordinal": {
@@ -1592,8 +1613,8 @@
             },
             "required": [
                 "scan_position_start",
-                "first_image_no",
-                "num_images",
+                "first_image_number",
+                "number_images",
                 "ordinal"
             ],
             "title": "Scan",

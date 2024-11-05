@@ -364,13 +364,13 @@ class CollectionSweep(Dataset):
         description="Overlap between successivce images, in degrees. "
         "May be negtive for non-contiguous images.",
     )
-    num_triggers: Optional[int] = Field(
+    number_triggers: Optional[int] = Field(
         default=None,
         ge=0,
         description="Number of triggers. Instruction to detector "
         "- does not modify effect of other parameters.",
     )
-    num_images_per_trigger: Optional[int] = Field(
+    number_images_per_trigger: Optional[int] = Field(
         default=None,
         ge=0,
         description="Number of images per trigger. Instruction to detector "
@@ -444,10 +444,10 @@ class Scan(BaseModel):
         description="Value of scan axis for the first image, "
         "in units matching axis type",
     )
-    first_image_no: int = Field(
+    first_image_number: int = Field(
         description="Image number to use for first image",
     )
-    num_images: int = Field(
+    number_images: int = Field(
         ge=0,
         description="Number of images to acquire as part of the Scan.",
     )
@@ -523,7 +523,7 @@ class ReflectionStatistics(BaseModel):
         description="total number of observations, "
         "- NBNB matches WHICH mmCIF parameter?",
     )
-    number_unique_observations: Optional[int] = Field(
+    number_observations_unique: Optional[int] = Field(
         default=None,
         ge=0,
         description="total number of unique observations, "
@@ -588,25 +588,28 @@ class ReflectionSet(Dataset):
         " - matches mmCIF reflns.B_iso_Wilson_estimate "
         "(https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.B_iso_Wilson_estimate.html)",
     )
-    h_index_range: Tuple[int, int] = Field(
+    h_index_range: Optional[Tuple[int, int]] = Field(
+        default=None,
         description="low and high limit on Miller index h - matches mmCIF "
         "reflns.limit_h_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_h_min.html) and reflns.limit_h_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_h_max.html)",
     )
-    k_index_range: Tuple[int, int] = Field(
+    k_index_range: Optional[Tuple[int, int]] = Field(
+        default=None,
         description="low and high limit on Miller index k - matches mmCIF "
         "reflns.limit_k_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_k_min.html) and reflns.limit_k_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_k_max.html)",
     )
-    l_index_range: Tuple[int, int] = Field(
+    l_index_range: Optional[Tuple[int, int]] = Field(
+        default=None,
         description="low and high limit on Miller index l - matches mmCIF "
         "reflns.limit_l_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_l_min.html) and reflns.limit_l_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_l_max.html)",
     )
-    num_reflections: Optional[int] = Field(
+    number_reflections: Optional[int] = Field(
         default=None,
         ge=0,
         description="Total number of measured reflections - matches mmCIF "
         "reflns.pdbx_number_measured_all (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_number_measured_all.html)",
     )
-    num_unique_reflections: Optional[int] = Field(
+    number_reflections_unique: Optional[int] = Field(
         default=None,
         ge=0,
         description="Total number of unique reflections - matches mmCIF "
@@ -625,11 +628,11 @@ class ReflectionSet(Dataset):
         "Matches mmCIF reflns.pdbx_aniso_diffraction_limit_{1,2,3} "
         "(https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_aniso_diffraction_limit_1.html)",
     )
-    overall_refln_statistics: Optional[ReflectionStatistics] = Field(
+    reflection_statistics_overall: Optional[ReflectionStatistics] = Field(
         default=None,
         description="Reflection statistics for all processed reflections",
     )
-    refln_shells: List[ReflectionStatistics] = Field(
+    reflection_statistics_shells: List[ReflectionStatistics] = Field(
         default_factory=list,
         description="Reflection statistics per resolution shell",
     )
@@ -662,12 +665,12 @@ class ReflectionSet(Dataset):
         gt=0,
         description="Number of bins",
     )
-    refln_per_bin: Optional[int] = Field(
+    reflections_per_bin: Optional[int] = Field(
         default=None,
         gt=0,
         description="Number of reflections per bin",
     )
-    refln_per_bin_per_sweep: Optional[int] = Field(
+    reflections_per_bin_per_sweep: Optional[int] = Field(
         default=None,
         gt=0,
         description="Number of reflections per bin per sweep (in multi-sweep experiment)",
