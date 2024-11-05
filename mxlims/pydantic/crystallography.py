@@ -161,9 +161,9 @@ class MXExperiment(Job):
                 "OSC",
                 "Helical",
                 "MXPressE",
-                "GPhL_native_basic",
-                "GPhL_SAD_advanced",
-                "GPhL_2wvl_basic",
+                "GPhL.native.basic",
+                "GPhL.SAD.advanced",
+                "GPhL.2wvlMAD.basic",
             ],
         },
     )
