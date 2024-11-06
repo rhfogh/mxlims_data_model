@@ -11,8 +11,8 @@
                 "scaled and merged MTZ",
                 "scaled and unmerged MTZ",
                 "unmerged MTZ",
-                "XDS INTEGRATE.HKL (https://xds.mr.mpg.de/html_doc/xds_files.html#INTEGRATE.HKL); unmerged",
-                "XDS XDS_ASCII.HKL (https://xds.mr.mpg.de/html_doc/xds_files.html#XDS_ASCII.HKL); scaled and unmerged"
+                "XDS INTEGRATE.HKL; unmerged (https://xds.mr.mpg.de/html_doc/xds_files.html#INTEGRATE.HKL)",
+                "XDS XDS_ASCII.HKL; scaled and unmerged (https://xds.mr.mpg.de/html_doc/xds_files.html#XDS_ASCII.HKL)"
             ],
             "title": "FileType",
             "type": "string"
@@ -84,7 +84,7 @@
             "type": "object"
         },
         "PdbxSignalType": {
-            "description": "Observability criterion. Matches mmCIF refln.pdbx_signal_status",
+            "description": "Observability criterion. Matches mmCIF item reflns.pdbx_signal_type\n\nhttps://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_signal_type.html)",
             "enum": [
                 "local <I/sigmaI>",
                 "local wCC_half"
@@ -93,7 +93,7 @@
             "type": "string"
         },
         "QualityFactor": {
-            "description": "Reflection shell quality factor. Enumerated type with associated value\n\nCompleteness is given in %, 0 <= Completeness <= 100",
+            "description": "Reflection shell quality factor. Enumerated type with associated value\n\nCorrespondence with mmCIF items:\n\n  Overall (mmCIF reflns category, https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Categories/reflns.html)\n\n    R(merge)                      reflns.pdbx_Rmerge_I_obs                                 https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_Rmerge_I_obs.html\n    R(meas)                       reflns.pdbx_Rrim_I_all                                   https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_Rrim_I_all.html\n    R(pim)                        reflns.pdbx_Rpim_I_all                                   https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_Rpim_I_all.html\n    I/SigI                        reflns.pdbx_netI_over_sigmaI                             https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_netI_over_sigmaI.html\n    CC(1/2)                       reflns.pdbx_CC_half                                      https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_CC_half.html\n    CC(ano)                       reflns.pdbx_CC_half_anomalous                            https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_CC_half_anomalous.html\n    SigAno                        reflns.pdbx_absDiff_over_sigma_anomalous                 https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_absDiff_over_sigma_anomalous.html\n    Completeness                  reflns.percent_possible_obs                              https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.percent_possible_obs.html\n    CompletenessSpherical         reflns.pdbx_percent_possible_spherical_anomalous         https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_percent_possible_spherical_anomalous.html\n    CompletenessEllipsoidal       reflns.pdbx_percent_possible_ellipsoidal_anomalous       https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_percent_possible_ellipsoidal_anomalous.html\n    Redundancy                    reflns.pdbx_redundancy                                   https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_redundancy.html\n    CompletenessAno               reflns.pdbx_percent_possible_anomalous                   https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_percent_possible_anomalous.html\n    CompletenessAnoSpherical      reflns.pdbx_percent_possible_spherical_anomalous         https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_percent_possible_spherical_anomalous.html\n    CompletenessAnoEllipsoidal    reflns.pdbx_percent_possible_ellipsoidal_anomalous       https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_percent_possible_ellipsoidal_anomalous.html\n    RedundancyAno                 reflns.pdbx_redundancy_anomalous                         https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_redundancy_anomalous.html\n\n  Resolution shell (mmCIF reflns_shell category, https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.number_unique_all.html):\n\n    R(merge)                      reflns_shell.pdbx_Rmerge_I_obs                           https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_Rmerge_I_obs.html\n    R(meas)                       reflns_shell.pdbx_Rrim_I_all                             https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_Rrim_I_all.html\n    R(pim)                        reflns_shell.pdbx_Rpim_I_all                             https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_Rpim_I_all.html\n    I/SigI                        reflns_shell.meanI_over_sigI_obs                         https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.meanI_over_sigI_obs.html\n    CC(1/2)                       reflns_shell.pdbx_CC_half                                https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_CC_half.html\n    CC(ano)                       reflns_shell.pdbx_CC_half_anomalous                      https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_CC_half_anomalous.html\n    SigAno                        reflns_shell.pdbx_absDiff_over_sigma_anomalous           https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_absDiff_over_sigma_anomalous.html\n    Completeness                  reflns_shell.percent_possible_all                        https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.percent_possible_all.html\n    CompletenessSpherical         reflns_shell.pdbx_percent_possible_spherical_anomalous   https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_percent_possible_spherical_anomalous.html\n    CompletenessEllipsoidal       reflns_shell.pdbx_percent_possible_ellipsoidal_anomalous https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_percent_possible_ellipsoidal_anomalous.html\n    Redundancy                    reflns_shell.pdbx_redundancy                             https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_redundancy.html\n    CompletenessAno               reflns_shell.pdbx_percent_possible_anomalous             https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_percent_possible_anomalous.html\n    CompletenessAnoSpherical      reflns_shell.pdbx_percent_possible_spherical_anomalous   https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_percent_possible_spherical_anomalous.html\n    CompletenessAnoEllipsoidal    reflns_shell.pdbx_percent_possible_ellipsoidal_anomalous https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_percent_possible_ellipsoidal_anomalous.html\n    RedundancyAno                 reflns_shell.pdbx_redundancy_anomalous                   https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_redundancy_anomalous.html\n\nCompleteness values are given in %, 0 <= Completeness <= 100",
             "properties": {
                 "type": {
                     "allOf": [
@@ -127,7 +127,12 @@
                 "CC(ano)",
                 "SigAno",
                 "Completeness",
+                "CompletenessSpherical",
+                "CompletenessEllipsoidal",
                 "Redundancy",
+                "CompletenessAno",
+                "CompletenessAnoSpherical",
+                "CompletenessAnoEllipsoidal",
                 "RedundancyAno"
             ],
             "title": "QualityFactorType",
@@ -166,7 +171,7 @@
             "description": "Reflection statistics for a shell (or all) of reflections",
             "properties": {
                 "resolution_limits": {
-                    "description": "lower, higher resolution limit of shell - matches mmCIF d_res_high, d_res_low.",
+                    "description": "lower, higher resolution limit of shell, matches mmCIF items reflns_shell.d_res_low (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.d_res_low.html) and reflns_shell.d_res_high (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.d_res_high.html)",
                     "maxItems": 2,
                     "minItems": 2,
                     "prefixItems": [
@@ -191,7 +196,7 @@
                         }
                     ],
                     "default": null,
-                    "description": "total number of observations, - NBNB matches WHICH mmCIF parameter?",
+                    "description": "total number of observations, matches mmCIF item reflns_shell.number_measured_all (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.number_measured_all.html)",
                     "title": "Number Observations"
                 },
                 "number_observations_unique": {
@@ -205,7 +210,7 @@
                         }
                     ],
                     "default": null,
-                    "description": "total number of unique observations, - NBNB matches WHICH mmCIF parameter?",
+                    "description": "total number of unique observations, matches mmCIF item reflns_shell.number_unique_all (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.number_unique_all.html)",
                     "title": "Number Observations Unique"
                 },
                 "quality_factors": {
@@ -227,10 +232,10 @@
                         }
                     ],
                     "default": null,
-                    "description": "Chi-squared statistic for reflection shell, matches mmCIF pdbx_chi_squared",
+                    "description": "Chi-squared statistic for reflection shell, matches mmCIF item reflns_shell.pdbx_chi_squared (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_chi_squared.html)",
                     "title": "Chi Squared"
                 },
-                "number_rejected_reflns": {
+                "number_reflections_rejected": {
                     "anyOf": [
                         {
                             "minimum": 0,
@@ -241,8 +246,8 @@
                         }
                     ],
                     "default": null,
-                    "description": "Number of rejected reflns for reflection shell, matches pdbx_rejects",
-                    "title": "Number Rejected Reflns"
+                    "description": "Number of rejected reflections within this resolution shell, matches mmCIF item reflns_shell.pdbx_rejects.html (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_rejects.html)",
+                    "title": "Number Reflections Rejected"
                 }
             },
             "required": [
@@ -302,7 +307,7 @@
             "type": "object"
         },
         "UnitCell": {
-            "description": "Crystallographic unit cell",
+            "description": "Crystallographic unit cell,\n\nmatches mmCIF items cell.length_{a,b,c} and cell.angle_{alpha,beta,gamma} in category\ncell (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Categories/cell.html)",
             "properties": {
                 "a": {
                     "description": "A axis length (A)",
@@ -454,7 +459,7 @@
         },
         "anisotropic_diffraction": {
             "default": false,
-            "description": "Is diffraction limit analysis based on aniosotropic diffraction limits? True/False ",
+            "description": "Is diffraction limit analysis based on anisotropic diffraction limits? True/False ",
             "title": "Anisotropic Diffraction",
             "type": "boolean"
         },
@@ -542,7 +547,7 @@
                 }
             ],
             "default": null,
-            "description": "estimated (isotropic) temperature factor from slope of Wilson plot - matches mmCIF reflns.B_iso_Wilson_estimate (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.B_iso_Wilson_estimate.html)",
+            "description": "estimated (isotropic) temperature factor from slope of Wilson plot, matches mmCIF item reflns.B_iso_Wilson_estimate (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.B_iso_Wilson_estimate.html)",
             "title": "B Iso Wilson Estimate"
         },
         "h_index_range": {
@@ -565,7 +570,7 @@
                 }
             ],
             "default": null,
-            "description": "low and high limit on Miller index h - matches mmCIF reflns.limit_h_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_h_min.html) and reflns.limit_h_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_h_max.html)",
+            "description": "low and high limit on Miller index h, matches mmCIF item reflns.limit_h_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_h_min.html) and reflns.limit_h_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_h_max.html)",
             "title": "H Index Range"
         },
         "k_index_range": {
@@ -588,7 +593,7 @@
                 }
             ],
             "default": null,
-            "description": "low and high limit on Miller index k - matches mmCIF reflns.limit_k_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_k_min.html) and reflns.limit_k_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_k_max.html)",
+            "description": "low and high limit on Miller index k, matches mmCIF item reflns.limit_k_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_k_min.html) and reflns.limit_k_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_k_max.html)",
             "title": "K Index Range"
         },
         "l_index_range": {
@@ -611,7 +616,7 @@
                 }
             ],
             "default": null,
-            "description": "low and high limit on Miller index l - matches mmCIF reflns.limit_l_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_l_min.html) and reflns.limit_l_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_l_max.html)",
+            "description": "low and high limit on Miller index l, matches mmCIF item reflns.limit_l_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_l_min.html) and reflns.limit_l_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_l_max.html)",
             "title": "L Index Range"
         },
         "number_reflections": {
@@ -625,7 +630,7 @@
                 }
             ],
             "default": null,
-            "description": "Total number of measured reflections - matches mmCIF reflns.pdbx_number_measured_all (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_number_measured_all.html)",
+            "description": "Total number of measured reflections, matches mmCIF item reflns.pdbx_number_measured_all (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_number_measured_all.html)",
             "title": "Number Reflections"
         },
         "number_reflections_unique": {
@@ -639,7 +644,7 @@
                 }
             ],
             "default": null,
-            "description": "Total number of unique reflections - matches mmCIF reflns.number_obs (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.number_obs.html)",
+            "description": "Total number of unique reflections, matches mmCIF item reflns.number_obs (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.number_obs.html)",
             "title": "Number Reflections Unique"
         },
         "aniso_B_tensor": {
@@ -664,7 +669,7 @@
                 }
             ],
             "default": null,
-            "description": "Principal axes lengths (A) of ellipsoid describing reciprocal space region containing observable reflections, regardless whether all have actually been observed. Matches mmCIF reflns.pdbx_aniso_diffraction_limit_{1,2,3} (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_aniso_diffraction_limit_1.html)"
+            "description": "Principal axes lengths (A) of ellipsoid describing reciprocal space region containing observable reflections, regardless whether all have actually been observed. Matches mmCIF items reflns.pdbx_aniso_diffraction_limit_{1,2,3} (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_aniso_diffraction_limit_1.html)"
         },
         "reflection_statistics_overall": {
             "anyOf": [

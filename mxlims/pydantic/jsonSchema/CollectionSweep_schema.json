@@ -318,7 +318,7 @@
                 }
             ],
             "default": null,
-            "description": "Type of detector, using enumeration of mmCIF Items/_diffrn_detector.type.html",
+            "description": "Type of detector, using enumeration of mmCIF items diffrn_detector.type (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_diffrn_detector.type.html)",
             "title": "Detector Type"
         },
         "detector_binning_mode": {

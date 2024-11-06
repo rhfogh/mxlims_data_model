@@ -177,7 +177,7 @@
             "type": "object"
         },
         "UnitCell": {
-            "description": "Crystallographic unit cell",
+            "description": "Crystallographic unit cell,\n\nmatches mmCIF items cell.length_{a,b,c} and cell.angle_{alpha,beta,gamma} in category\ncell (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Categories/cell.html)",
             "properties": {
                 "a": {
                     "description": "A axis length (A)",
@@ -286,6 +286,19 @@
             },
             "title": "Job Refs",
             "type": "array"
+        },
+        "name": {
+            "anyOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "Short identifying name for Sample",
+            "title": "Name"
         },
         "macromolecule": {
             "allOf": [
