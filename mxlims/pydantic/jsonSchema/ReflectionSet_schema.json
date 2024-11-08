@@ -213,13 +213,19 @@
                     "description": "total number of unique observations, matches mmCIF item reflns_shell.number_unique_all (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.number_unique_all.html)",
                     "title": "Number Observations Unique"
                 },
-                "quality_factors": {
-                    "description": "Quality factors for reflection shell, ",
-                    "items": {
-                        "$ref": "#/$defs/QualityFactor"
-                    },
-                    "title": "Quality Factors",
-                    "type": "array"
+                "number_reflections_rejected": {
+                    "anyOf": [
+                        {
+                            "minimum": 0,
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Number of rejected reflections within this resolution shell, matches mmCIF item reflns_shell.pdbx_rejects.html (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_rejects.html)",
+                    "title": "Number Reflections Rejected"
                 },
                 "chi_squared": {
                     "anyOf": [
@@ -235,19 +241,13 @@
                     "description": "Chi-squared statistic for reflection shell, matches mmCIF item reflns_shell.pdbx_chi_squared (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_chi_squared.html)",
                     "title": "Chi Squared"
                 },
-                "number_reflections_rejected": {
-                    "anyOf": [
-                        {
-                            "minimum": 0,
-                            "type": "integer"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "description": "Number of rejected reflections within this resolution shell, matches mmCIF item reflns_shell.pdbx_rejects.html (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_rejects.html)",
-                    "title": "Number Reflections Rejected"
+                "quality_factors": {
+                    "description": "Quality factors for reflection shell, ",
+                    "items": {
+                        "$ref": "#/$defs/QualityFactor"
+                    },
+                    "title": "Quality Factors",
+                    "type": "array"
                 }
             },
             "required": [
@@ -369,9 +369,9 @@
             "type": "string"
         },
         "version": {
-            "const": "0.2.2",
+            "const": "0.2.3",
             "enum": [
-                "0.2.2"
+                "0.2.3"
             ],
             "title": "Version",
             "type": "string"
@@ -463,42 +463,6 @@
             "title": "Anisotropic Diffraction",
             "type": "boolean"
         },
-        "resolution_rings_detected": {
-            "description": "Resolution rings detected as originating from ice, powder diffraction etc.; given as a pair of floats (A) with decreasing value, i.e. low- and high-resolution limits",
-            "items": {
-                "maxItems": 2,
-                "minItems": 2,
-                "prefixItems": [
-                    {
-                        "type": "number"
-                    },
-                    {
-                        "type": "number"
-                    }
-                ],
-                "type": "array"
-            },
-            "title": "Resolution Rings Detected",
-            "type": "array"
-        },
-        "resolution_rings_excluded": {
-            "description": "Resolution rings excluded from calculation; given as a pair of floats (A) with decreasing value, i.e. low- and high-resolution limits)",
-            "items": {
-                "maxItems": 2,
-                "minItems": 2,
-                "prefixItems": [
-                    {
-                        "type": "number"
-                    },
-                    {
-                        "type": "number"
-                    }
-                ],
-                "type": "array"
-            },
-            "title": "Resolution Rings Excluded",
-            "type": "array"
-        },
         "unit_cell": {
             "anyOf": [
                 {
@@ -537,6 +501,26 @@
             "description": "Operational resolution (A) matching observed_criteria.",
             "title": "Operational Resolution"
         },
+        "diffraction_limits_estimated": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/Tensor"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "Principal axes lengths (A) of ellipsoid describing reciprocal space region containing observable reflections, regardless whether all have actually been observed. Matches mmCIF items reflns.pdbx_aniso_diffraction_limit_{1,2,3} (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_aniso_diffraction_limit_1.html)"
+        },
+        "wavelengths": {
+            "description": "Wavelengths (A) at chich reflections were measured",
+            "items": {
+                "type": "number"
+            },
+            "title": "Wavelengths",
+            "type": "array"
+        },
         "B_iso_Wilson_estimate": {
             "anyOf": [
                 {
@@ -549,6 +533,46 @@
             "default": null,
             "description": "estimated (isotropic) temperature factor from slope of Wilson plot, matches mmCIF item reflns.B_iso_Wilson_estimate (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.B_iso_Wilson_estimate.html)",
             "title": "B Iso Wilson Estimate"
+        },
+        "aniso_B_tensor": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/Tensor"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "Anisotropic B tensor, matching mmCIF items reflns.pdbx_aniso_B_tensor_eigenvalue_{1,2,3} and reflns.pdbx_aniso_B_tensor_eigenvector_{1,2,3}_ortho[{1,2,3}] (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_aniso_B_tensor_eigenvalue_1.html)"
+        },
+        "number_reflections": {
+            "anyOf": [
+                {
+                    "minimum": 0,
+                    "type": "integer"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "Total number of measured reflections, matches mmCIF item reflns.pdbx_number_measured_all (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_number_measured_all.html)",
+            "title": "Number Reflections"
+        },
+        "number_reflections_unique": {
+            "anyOf": [
+                {
+                    "minimum": 0,
+                    "type": "integer"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "Total number of unique reflections, matches mmCIF item reflns.number_obs (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.number_obs.html)",
+            "title": "Number Reflections Unique"
         },
         "h_index_range": {
             "anyOf": [
@@ -618,58 +642,6 @@
             "default": null,
             "description": "low and high limit on Miller index l, matches mmCIF item reflns.limit_l_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_l_min.html) and reflns.limit_l_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_l_max.html)",
             "title": "L Index Range"
-        },
-        "number_reflections": {
-            "anyOf": [
-                {
-                    "minimum": 0,
-                    "type": "integer"
-                },
-                {
-                    "type": "null"
-                }
-            ],
-            "default": null,
-            "description": "Total number of measured reflections, matches mmCIF item reflns.pdbx_number_measured_all (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_number_measured_all.html)",
-            "title": "Number Reflections"
-        },
-        "number_reflections_unique": {
-            "anyOf": [
-                {
-                    "minimum": 0,
-                    "type": "integer"
-                },
-                {
-                    "type": "null"
-                }
-            ],
-            "default": null,
-            "description": "Total number of unique reflections, matches mmCIF item reflns.number_obs (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.number_obs.html)",
-            "title": "Number Reflections Unique"
-        },
-        "aniso_B_tensor": {
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/Tensor"
-                },
-                {
-                    "type": "null"
-                }
-            ],
-            "default": null,
-            "description": "Anisotropic B tensor, matching mmCIF items reflns.pdbx_aniso_B_tensor_eigenvalue_{1,2,3} and reflns.pdbx_aniso_B_tensor_eigenvector_{1,2,3}_ortho[{1,2,3}] (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_aniso_B_tensor_eigenvalue_1.html)"
-        },
-        "diffraction_limits_estimated": {
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/Tensor"
-                },
-                {
-                    "type": "null"
-                }
-            ],
-            "default": null,
-            "description": "Principal axes lengths (A) of ellipsoid describing reciprocal space region containing observable reflections, regardless whether all have actually been observed. Matches mmCIF items reflns.pdbx_aniso_diffraction_limit_{1,2,3} (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_aniso_diffraction_limit_1.html)"
         },
         "reflection_statistics_overall": {
             "anyOf": [
@@ -777,6 +749,42 @@
             "default": null,
             "description": "Number of reflections per bin per sweep (in multi-sweep experiment)",
             "title": "Reflections Per Bin Per Sweep"
+        },
+        "resolution_rings_detected": {
+            "description": "Resolution rings detected as originating from ice, powder diffraction etc.; given as a pair of floats (A) with decreasing value, i.e. low- and high-resolution limits",
+            "items": {
+                "maxItems": 2,
+                "minItems": 2,
+                "prefixItems": [
+                    {
+                        "type": "number"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ],
+                "type": "array"
+            },
+            "title": "Resolution Rings Detected",
+            "type": "array"
+        },
+        "resolution_rings_excluded": {
+            "description": "Resolution rings excluded from calculation; given as a pair of floats (A) with decreasing value, i.e. low- and high-resolution limits)",
+            "items": {
+                "maxItems": 2,
+                "minItems": 2,
+                "prefixItems": [
+                    {
+                        "type": "number"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ],
+                "type": "array"
+            },
+            "title": "Resolution Rings Excluded",
+            "type": "array"
         },
         "file_type": {
             "anyOf": [

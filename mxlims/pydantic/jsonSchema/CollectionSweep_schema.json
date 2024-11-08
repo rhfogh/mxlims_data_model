@@ -150,9 +150,9 @@
             "type": "string"
         },
         "version": {
-            "const": "0.2.2",
+            "const": "0.2.3",
             "enum": [
-                "0.2.2"
+                "0.2.3"
             ],
             "title": "Version",
             "type": "string"
@@ -276,8 +276,49 @@
                 }
             ],
             "default": null,
-            "description": "Width of a single image, along scan_axis. For rotational axes in degrees, for translations in m.",
+            "description": "Width of a single image, along scan_axis. For rotational axes in degrees, for translations in mm.",
             "title": "Image Width"
+        },
+        "overlap": {
+            "anyOf": [
+                {
+                    "type": "number"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "Overlap between successivce images, in degrees. May be negtive for non-contiguous images.",
+            "title": "Overlap"
+        },
+        "number_triggers": {
+            "anyOf": [
+                {
+                    "minimum": 0,
+                    "type": "integer"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "Number of triggers. Instruction to detector - does not modify effect of other parameters.",
+            "title": "Number Triggers"
+        },
+        "number_images_per_trigger": {
+            "anyOf": [
+                {
+                    "minimum": 0,
+                    "type": "integer"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "Number of images per trigger. Instruction to detector - does not modify effect of other parameters.",
+            "title": "Number Images Per Trigger"
         },
         "energy": {
             "anyOf": [
@@ -308,31 +349,18 @@
             "description": "Transmission setting in %",
             "title": "Transmission"
         },
-        "detector_type": {
+        "resolution": {
             "anyOf": [
                 {
-                    "type": "string"
+                    "type": "number"
                 },
                 {
                     "type": "null"
                 }
             ],
             "default": null,
-            "description": "Type of detector, using enumeration of mmCIF items diffrn_detector.type (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_diffrn_detector.type.html)",
-            "title": "Detector Type"
-        },
-        "detector_binning_mode": {
-            "anyOf": [
-                {
-                    "type": "string"
-                },
-                {
-                    "type": "null"
-                }
-            ],
-            "default": null,
-            "description": "Binning mode of detector. Should be made into an enumeration",
-            "title": "Detector Binning Mode"
+            "description": "Resolution that the sweep was intended to measureFor offset or unusual detectors this may *not* determine the detector distanceThe actual detector distance can be found in axis_positions_start",
+            "title": "Resolution"
         },
         "detector_roi_mode": {
             "anyOf": [
@@ -390,7 +418,7 @@
                 }
             ],
             "default": null,
-            "description": "x,y size of the beam on the detector in m",
+            "description": "x,y size of the beam on the detector in mm",
             "title": "Beam Size"
         },
         "beam_shape": {
@@ -410,6 +438,32 @@
                 "ellipsoid"
             ],
             "title": "Beam Shape"
+        },
+        "detector_type": {
+            "anyOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "Type of detector, using enumeration of mmCIF items diffrn_detector.type (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_diffrn_detector.type.html)",
+            "title": "Detector Type"
+        },
+        "detector_binning_mode": {
+            "anyOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "Binning mode of detector. Should be made into an enumeration",
+            "title": "Detector Binning Mode"
         },
         "axis_positions_start": {
             "additionalProperties": {
@@ -443,47 +497,6 @@
             ],
             "title": "Scan Axis",
             "type": "string"
-        },
-        "overlap": {
-            "anyOf": [
-                {
-                    "type": "number"
-                },
-                {
-                    "type": "null"
-                }
-            ],
-            "default": null,
-            "description": "Overlap between successivce images, in degrees. May be negtive for non-contiguous images.",
-            "title": "Overlap"
-        },
-        "number_triggers": {
-            "anyOf": [
-                {
-                    "minimum": 0,
-                    "type": "integer"
-                },
-                {
-                    "type": "null"
-                }
-            ],
-            "default": null,
-            "description": "Number of triggers. Instruction to detector - does not modify effect of other parameters.",
-            "title": "Number Triggers"
-        },
-        "number_images_per_trigger": {
-            "anyOf": [
-                {
-                    "minimum": 0,
-                    "type": "integer"
-                },
-                {
-                    "type": "null"
-                }
-            ],
-            "default": null,
-            "description": "Number of images per trigger. Instruction to detector - does not modify effect of other parameters.",
-            "title": "Number Images Per Trigger"
         },
         "scans": {
             "description": "List of Snas i.e. subdivisions of CollectionSweepNB Scans need not be contiguous or in order or add up to entire sweep",

@@ -342,7 +342,24 @@ class CollectionSweep(Dataset):
         default=None,
         ge=0,
         description="Width of a single image, along scan_axis. "
-        "For rotational axes in degrees, for translations in m.",
+        "For rotational axes in degrees, for translations in mm.",
+    )
+    overlap: Optional[float] = Field(
+        default=None,
+        description="Overlap between successivce images, in degrees. "
+        "May be negtive for non-contiguous images.",
+    )
+    number_triggers: Optional[int] = Field(
+        default=None,
+        ge=0,
+        description="Number of triggers. Instruction to detector "
+        "- does not modify effect of other parameters.",
+    )
+    number_images_per_trigger: Optional[int] = Field(
+        default=None,
+        ge=0,
+        description="Number of images per trigger. Instruction to detector "
+        "- does not modify effect of other parameters.",
     )
     energy: Optional[float] = Field(
         default=None,
@@ -355,15 +372,11 @@ class CollectionSweep(Dataset):
         le=100,
         description="Transmission setting in %",
     )
-    detector_type: Optional[str] = Field(
+    resolution: Optional[float] = Field(
         default=None,
-        description="Type of detector, "
-        "using enumeration of mmCIF items diffrn_detector.type "
-        "(https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_diffrn_detector.type.html)",
-    )
-    detector_binning_mode: Optional[str] = Field(
-        default=None,
-        description="Binning mode of detector. Should be made into an enumeration",
+        description="Resolution that the sweep was intended to measure"
+        "For offset or unusual detectors this may *not* determine the detector distance"
+        "The actual detector distance can be found in axis_positions_start",
     )
     detector_roi_mode: Optional[str] = Field(
         default=None,
@@ -376,7 +389,7 @@ class CollectionSweep(Dataset):
     )
     beam_size: Optional[Tuple[float, float]] = Field(
         default=None,
-        description="x,y size of the beam on the detector in m",
+        description="x,y size of the beam on the detector in mm",
     )
     beam_shape: Optional[str] = Field(
         default=None,
@@ -384,6 +397,16 @@ class CollectionSweep(Dataset):
         json_schema_extra={
             "examples": ["unknown", "rectangular", "ellipsoid"],
         },
+    )
+    detector_type: Optional[str] = Field(
+        default=None,
+        description="Type of detector, "
+        "using enumeration of mmCIF items diffrn_detector.type "
+        "(https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_diffrn_detector.type.html)",
+    )
+    detector_binning_mode: Optional[str] = Field(
+        default=None,
+        description="Binning mode of detector. Should be made into an enumeration",
     )
     axis_positions_start: Dict[str, float] = Field(
         default_factory=dict,
@@ -415,23 +438,6 @@ class CollectionSweep(Dataset):
                 "DetectorY",
             ],
         },
-    )
-    overlap: Optional[float] = Field(
-        default=None,
-        description="Overlap between successivce images, in degrees. "
-        "May be negtive for non-contiguous images.",
-    )
-    number_triggers: Optional[int] = Field(
-        default=None,
-        ge=0,
-        description="Number of triggers. Instruction to detector "
-        "- does not modify effect of other parameters.",
-    )
-    number_images_per_trigger: Optional[int] = Field(
-        default=None,
-        ge=0,
-        description="Number of images per trigger. Instruction to detector "
-        "- does not modify effect of other parameters.",
     )
     scans: List["Scan"] = Field(
         default_factory=list,
@@ -593,8 +599,12 @@ class ReflectionStatistics(BaseModel):
         "matches mmCIF item reflns_shell.number_unique_all "
         "(https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.number_unique_all.html)",
     )
-    quality_factors: List[QualityFactor] = Field(
-        default_factory=list, description="Quality factors for reflection shell, "
+    number_reflections_rejected: Optional[int] = Field(
+        default=None,
+        ge=0,
+        description="Number of rejected reflections within this resolution shell, "
+        "matches mmCIF item reflns_shell.pdbx_rejects.html "
+        "(https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_rejects.html)",
     )
     chi_squared: Optional[float] = Field(
         default=None,
@@ -603,12 +613,8 @@ class ReflectionStatistics(BaseModel):
         "matches mmCIF item reflns_shell.pdbx_chi_squared "
         "(https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_chi_squared.html)",
     )
-    number_reflections_rejected: Optional[int] = Field(
-        default=None,
-        ge=0,
-        description="Number of rejected reflections within this resolution shell, "
-        "matches mmCIF item reflns_shell.pdbx_rejects.html "
-        "(https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_rejects.html)",
+    quality_factors: List[QualityFactor] = Field(
+        default_factory=list, description="Quality factors for reflection shell, "
     )
 
 
@@ -624,18 +630,6 @@ class ReflectionSet(Dataset):
         description="Is diffraction limit analysis based on anisotropic diffraction "
         "limits? True/False ",
     )
-    resolution_rings_detected: List[Tuple[float, float]] = Field(
-        default_factory=list,
-        description="Resolution rings detected as originating from ice, powder "
-        "diffraction etc.; given as a pair of floats (A) with decreasing value, "
-        "i.e. low- and high-resolution limits",
-    )
-    resolution_rings_excluded: List[Tuple[float, float]] = Field(
-        default_factory=list,
-        description="Resolution rings excluded from calculation; "
-        "given as a pair of floats (A) with decreasing value, "
-        "i.e. low- and high-resolution limits)",
-    )
     unit_cell: Optional[UnitCell] = Field(
         default=None,
         description="Unit cell determined",
@@ -649,11 +643,43 @@ class ReflectionSet(Dataset):
         default=None,
         description="Operational resolution (A) matching observed_criteria.",
     )
+    diffraction_limits_estimated: Optional[Tensor] = Field(
+        default=None,
+        description="Principal axes lengths (A) of ellipsoid "
+        "describing reciprocal space region containing observable reflections, "
+        "regardless whether all have actually been observed. "
+        "Matches mmCIF items reflns.pdbx_aniso_diffraction_limit_{1,2,3} "
+        "(https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_aniso_diffraction_limit_1.html)",
+    )
+    wavelengths:List[float] = Field(
+        default_factory=list,
+        description="Wavelengths (A) at chich reflections were measured",
+    )
     B_iso_Wilson_estimate: Optional[float] = Field(
         default=None,
         description="estimated (isotropic) temperature factor from slope of Wilson plot, "
         "matches mmCIF item reflns.B_iso_Wilson_estimate "
         "(https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.B_iso_Wilson_estimate.html)",
+    )
+    aniso_B_tensor: Optional[Tensor] = Field(
+        default=None,
+        description="Anisotropic B tensor, matching mmCIF items "
+        "reflns.pdbx_aniso_B_tensor_eigenvalue_{1,2,3} "
+        "and reflns.pdbx_aniso_B_tensor_eigenvector_{1,2,3}_ortho[{1,2,3}] "
+        "(https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_aniso_B_tensor_eigenvalue_1.html)",
+    )
+    number_reflections: Optional[int] = Field(
+        default=None,
+        ge=0,
+        description="Total number of measured reflections, matches mmCIF item "
+        "reflns.pdbx_number_measured_all "
+        "(https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_number_measured_all.html)",
+    )
+    number_reflections_unique: Optional[int] = Field(
+        default=None,
+        ge=0,
+        description="Total number of unique reflections, matches mmCIF item "
+        "reflns.number_obs (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.number_obs.html)",
     )
     h_index_range: Optional[Tuple[int, int]] = Field(
         default=None,
@@ -678,34 +704,6 @@ class ReflectionSet(Dataset):
         "(https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_l_min.html)"
         " and reflns.limit_l_max "
         "(https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_l_max.html)",
-    )
-    number_reflections: Optional[int] = Field(
-        default=None,
-        ge=0,
-        description="Total number of measured reflections, matches mmCIF item "
-        "reflns.pdbx_number_measured_all "
-        "(https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_number_measured_all.html)",
-    )
-    number_reflections_unique: Optional[int] = Field(
-        default=None,
-        ge=0,
-        description="Total number of unique reflections, matches mmCIF item "
-        "reflns.number_obs (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.number_obs.html)",
-    )
-    aniso_B_tensor: Optional[Tensor] = Field(
-        default=None,
-        description="Anisotropic B tensor, matching mmCIF items "
-        "reflns.pdbx_aniso_B_tensor_eigenvalue_{1,2,3} "
-        "and reflns.pdbx_aniso_B_tensor_eigenvector_{1,2,3}_ortho[{1,2,3}] "
-        "(https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_aniso_B_tensor_eigenvalue_1.html)",
-    )
-    diffraction_limits_estimated: Optional[Tensor] = Field(
-        default=None,
-        description="Principal axes lengths (A) of ellipsoid "
-        "describing reciprocal space region containing observable reflections, "
-        "regardless whether all have actually been observed. "
-        "Matches mmCIF items reflns.pdbx_aniso_diffraction_limit_{1,2,3} "
-        "(https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_aniso_diffraction_limit_1.html)",
     )
     reflection_statistics_overall: Optional[ReflectionStatistics] = Field(
         default=None,
@@ -754,6 +752,18 @@ class ReflectionSet(Dataset):
         gt=0,
         description="Number of reflections per bin per sweep (in multi-sweep experiment)",
     )
+    resolution_rings_detected: List[Tuple[float, float]] = Field(
+        default_factory=list,
+        description="Resolution rings detected as originating from ice, powder "
+        "diffraction etc.; given as a pair of floats (A) with decreasing value, "
+        "i.e. low- and high-resolution limits",
+    )
+    resolution_rings_excluded: List[Tuple[float, float]] = Field(
+        default_factory=list,
+        description="Resolution rings excluded from calculation; "
+        "given as a pair of floats (A) with decreasing value, "
+        "i.e. low- and high-resolution limits)",
+    )
     file_type: Optional[FileType] = Field(
         default=None,
         description="Type of file",
@@ -772,7 +782,7 @@ class ReflectionSet(Dataset):
         frozen=True,
         description="Reference to Job that created this Dataset",
     )
-    # NB This rasies the problem of how to handle an optional Union
+    # NB This raises the problem of how to handle an optional Union
     # As we will surely get a Union here once Logistical Samples are modelled.
     logistical_sample_ref: Optional[LogisticalSampleRef] = Field(
         default=None,

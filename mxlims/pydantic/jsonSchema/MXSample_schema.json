@@ -239,9 +239,9 @@
             "type": "string"
         },
         "version": {
-            "const": "0.2.2",
+            "const": "0.2.3",
             "enum": [
-                "0.2.2"
+                "0.2.3"
             ],
             "title": "Version",
             "type": "string"
