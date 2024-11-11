@@ -26,13 +26,16 @@ __author__ = "rhfogh"
 __date__ = "17/10/2024"
 
 import uuid
-import datetime
+from datetime import datetime
 import enum
 from typing import Optional, Dict, List, Any, Union, Literal
+from typing_extensions import Annotated
 
 import mxlims
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, PlainSerializer
 
+# Datetime type that prints to JSON as isoformat (e.g. '2019-05-18T15:17:08.132263')
+DatetimeStr = Annotated[datetime, PlainSerializer(datetime.isoformat)]
 
 class JobStatus(str, enum.Enum):
     Template = "Template"
@@ -44,9 +47,15 @@ class JobStatus(str, enum.Enum):
 
 class MxlimsObject(BaseModel):
     """Basic abstract MXLIMS object, with attributes shared by all MXLIMS objects"""
-    mxlims_type: Literal["MxlimsObject"]
+    mxlims_type: Literal["MxlimsObject"] = Field(
+        default="MxlimsObject",
+        description="The type of MXLIMS object.",
+    )
 
-    version: Literal[mxlims.version()]
+    version: Literal[mxlims.version()] = Field(
+        default=mxlims.version(),
+        description="MXLIMS version for current model",
+    )
 
     uuid: str = Field(
         default_factory=lambda: uuid.uuid4().hex,
@@ -67,17 +76,26 @@ class MxlimsObject(BaseModel):
 
 class MxlimsObjectRef(BaseModel):
     """Reference to MXLIMS model object, for use in JSON files."""
-    mxlims_type: Literal["MxlimsObjectRef"]
+    mxlims_type: Literal["MxlimsObjectRef"] = Field(
+        default="MxlimsObjectRef",
+        description="The type of MXLIMS object.",
+    )
     target_uuid: str = Field(
         frozen=True,
         description="UUID of target MXLIMS model object",
     )
-    target_type: Literal["MxlimsObject"]
+    target_type: Literal["MxlimsObject"] = Field(
+        default="MxlimsObject",
+        description="The type of MXLIMS object linked to.",
+    )
 
 
 class Dataset(MxlimsObject):
     """Base class for MXLIMS Datasets"""
-    mxlims_type: Literal["Dataset"]
+    mxlims_type: Literal["Dataset"] = Field(
+        default="Dataset",
+        description="The type of MXLIMS object.",
+    )
 
     source_ref: Optional["JobRef"] = Field(
         default=None,
@@ -117,13 +135,19 @@ class Dataset(MxlimsObject):
 
 class DatasetRef(MxlimsObjectRef):
     """Reference to Dataset object, for use in JSON files."""
-    target_type: Literal["Dataset"]
+    target_type: Literal["Dataset"] = Field(
+        default="Dataset",
+        description="The type of MXLIMS object linked to.",
+    )
 
 
 class Job(MxlimsObject):
     """Base class for MXLIMS Jobs - an experiment or calculation producing Datasets"""
 
-    mxlims_type: Literal["Job"]
+    mxlims_type: Literal["Job"] = Field(
+        default="Job",
+        description="The type of MXLIMS object.",
+    )
     sample: Optional["PreparedSample"] = Field(
         default=None,
         frozen=True,
@@ -138,11 +162,11 @@ class Job(MxlimsObject):
         default_factory=list,
         description="Datasets produced by Job (match Dataset.source_ref",
     )
-    start_time: Optional[datetime.datetime] = Field(
+    start_time: Optional[DatetimeStr] = Field(
         default=None,
         description="Actual starting time for job or calculation, ",
     )
-    end_time: Optional[datetime.datetime] = Field(
+    end_time: Optional[DatetimeStr] = Field(
         default=None,
         description="Actual finishing time for job or calculation, ",
     )
@@ -163,7 +187,10 @@ class Job(MxlimsObject):
 
 class JobRef(MxlimsObjectRef):
     """Reference to Job object, for use in JSON files."""
-    target_type: Literal["Job"]
+    target_type: Literal["Job"] = Field(
+        default="Job",
+        description="The type of MXLIMS object linked to.",
+    )
 
 class LogisticalSample(MxlimsObject):
     """Base class for MXLIMS Logistical Samples
@@ -171,7 +198,10 @@ class LogisticalSample(MxlimsObject):
     describing Sample containers and locations
     (from Dewars and Plates to drops, pins and crystals)"""
 
-    mxlims_type: Literal["LogisticalSample"]
+    mxlims_type: Literal["LogisticalSample"] = Field(
+        default="LogisticalSample",
+        description="The type of MXLIMS object."
+    )
     sample_ref: Optional["PreparedSampleRef"] = Field(
         default=None,
         description="Reference to the PreparedSemple that applies "
@@ -201,12 +231,18 @@ class LogisticalSample(MxlimsObject):
 
 class LogisticalSampleRef(MxlimsObjectRef):
     """Reference to LogisticalSample object, for use in JSON files."""
-    target_type: Literal["LogisticalSample"]
+    target_type: Literal["LogisticalSample"] = Field(
+        default="LogisticalSample",
+        description="The type of MXLIMS object linked to.",
+    )
 
 class PreparedSample(MxlimsObject):
     """Base class for MXLIMS Prepared Samples, describing sample content"""
 
-    mxlims_type: Literal["PreparedSample"]
+    mxlims_type: Literal["PreparedSample"] = Field(
+        default="PreparedSample",
+        description="The type of MXLIMS object.",
+    )
     logistical_sample_refs: List[LogisticalSampleRef] = Field(
         default_factory=list,
         description="LogisticalSamples with contents from this PreparedSample",
@@ -219,4 +255,7 @@ class PreparedSample(MxlimsObject):
 
 class PreparedSampleRef(MxlimsObjectRef):
     """Reference to PreparedSample object, for use in JSON files."""
-    target_type: Literal["PreparedSample"]
+    target_type: Literal["PreparedSample"] = Field(
+        default="PreparedSample",
+        description="The type of MXLIMS object linked to.",
+    )
