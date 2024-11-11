@@ -58,7 +58,7 @@ class MxlimsObject(BaseModel):
     )
 
     uuid: str = Field(
-        default_factory=lambda: uuid.uuid4().hex,
+        default_factory=lambda: uuid.uuid1().hex,
         frozen=True,
         json_schema_extra={"description": "Permanent unique identifier string"},
     )

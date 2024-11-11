@@ -32,14 +32,6 @@ from typing import Optional, Dict, List, Tuple, Union, Literal
 from pydantic import BaseModel, Field
 
 from mxlims.pydantic import core
-# from mxlims.pydantic.core import (
-#     Job,
-#     Dataset,
-#     PreparedSample,
-#     LogisticalSample,
-#     LogisticalSampleRef,
-#     MxlimsObjectRef,
-# )
 
 
 class PdbxSignalType(str, enum.Enum):
@@ -213,7 +205,7 @@ class MXExperiment(core.Job):
         default="MXExperiment",
         description="The type of MXLIMS object.",
     )
-    experiment_strategy: str = Field(
+    experiment_strategy: Optional[str] = Field(
         default=None,
         description="Experiment strategy indicator",
         json_schema_extra={

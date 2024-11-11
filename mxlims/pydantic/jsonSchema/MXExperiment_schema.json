@@ -10,6 +10,8 @@
             "properties": {
                 "mxlims_type": {
                     "const": "CollectionSweep",
+                    "default": "CollectionSweep",
+                    "description": "The type of MXLIMS object.",
                     "enum": [
                         "CollectionSweep"
                     ],
@@ -17,9 +19,11 @@
                     "type": "string"
                 },
                 "version": {
-                    "const": "0.2.3",
+                    "const": "0.2.4",
+                    "default": "0.2.4",
+                    "description": "MXLIMS version for current model",
                     "enum": [
-                        "0.2.3"
+                        "0.2.4"
                     ],
                     "title": "Version",
                     "type": "string"
@@ -83,7 +87,7 @@
                         }
                     ],
                     "default": null,
-                    "description": "Reference to LogisticalSample that pertains specifically this Dataset"
+                    "description": "Reference to LogisticalSample that pertains this Dataset"
                 },
                 "derived_from_ref": {
                     "anyOf": [
@@ -336,7 +340,7 @@
                     "additionalProperties": {
                         "type": "number"
                     },
-                    "description": "Dictionary string:float with starting position of all axes, rotations or translations, including detector distance, by name. Units are m for distances, degrees for angles",
+                    "description": "Dictionary string:float with starting position of all axes, rotations or translations, including detector distance, by name. Units are m for distances, degrees for anglesNBNB do we use internal motor names (e.g. 'phi'), or std. names (e.g. 'omega')?",
                     "title": "Axis Positions Start",
                     "type": "object"
                 },
@@ -351,16 +355,16 @@
                 "scan_axis": {
                     "description": "Name of main scanned axis. Other axes may be scanned in parallel.",
                     "examples": [
-                        "Omega",
-                        "Kappa",
-                        "Phi",
-                        "Chi",
-                        "TwoTheta",
-                        "SampleX",
-                        "SampleY",
-                        "SampleZ",
-                        "DetectorX",
-                        "DetectorY"
+                        "omega",
+                        "kappa",
+                        "phi",
+                        "chi",
+                        "twoTheta",
+                        "sampleX",
+                        "sampleY",
+                        "sampleZ",
+                        "detectorX",
+                        "detectorY"
                     ],
                     "title": "Scan Axis",
                     "type": "string"
@@ -434,8 +438,6 @@
                 }
             },
             "required": [
-                "mxlims_type",
-                "version",
                 "scan_axis"
             ],
             "title": "CollectionSweep",
@@ -446,6 +448,8 @@
             "properties": {
                 "mxlims_type": {
                     "const": "MxlimsObjectRef",
+                    "default": "MxlimsObjectRef",
+                    "description": "The type of MXLIMS object.",
                     "enum": [
                         "MxlimsObjectRef"
                     ],
@@ -459,6 +463,8 @@
                 },
                 "target_type": {
                     "const": "CollectionSweep",
+                    "default": "CollectionSweep",
+                    "description": "Type of MXLIMS object linked to",
                     "enum": [
                         "CollectionSweep"
                     ],
@@ -467,9 +473,7 @@
                 }
             },
             "required": [
-                "mxlims_type",
-                "target_uuid",
-                "target_type"
+                "target_uuid"
             ],
             "title": "CollectionSweepRef",
             "type": "object"
@@ -515,6 +519,8 @@
             "properties": {
                 "mxlims_type": {
                     "const": "MxlimsObjectRef",
+                    "default": "MxlimsObjectRef",
+                    "description": "The type of MXLIMS object.",
                     "enum": [
                         "MxlimsObjectRef"
                     ],
@@ -528,6 +534,8 @@
                 },
                 "target_type": {
                     "const": "Dataset",
+                    "default": "Dataset",
+                    "description": "The type of MXLIMS object linked to.",
                     "enum": [
                         "Dataset"
                     ],
@@ -536,9 +544,7 @@
                 }
             },
             "required": [
-                "mxlims_type",
-                "target_uuid",
-                "target_type"
+                "target_uuid"
             ],
             "title": "DatasetRef",
             "type": "object"
@@ -560,6 +566,8 @@
             "properties": {
                 "mxlims_type": {
                     "const": "MxlimsObjectRef",
+                    "default": "MxlimsObjectRef",
+                    "description": "The type of MXLIMS object.",
                     "enum": [
                         "MxlimsObjectRef"
                     ],
@@ -573,6 +581,8 @@
                 },
                 "target_type": {
                     "const": "Job",
+                    "default": "Job",
+                    "description": "The type of MXLIMS object linked to.",
                     "enum": [
                         "Job"
                     ],
@@ -581,9 +591,7 @@
                 }
             },
             "required": [
-                "mxlims_type",
-                "target_uuid",
-                "target_type"
+                "target_uuid"
             ],
             "title": "JobRef",
             "type": "object"
@@ -605,6 +613,8 @@
             "properties": {
                 "mxlims_type": {
                     "const": "LogisticalSample",
+                    "default": "LogisticalSample",
+                    "description": "The type of MXLIMS object.",
                     "enum": [
                         "LogisticalSample"
                     ],
@@ -612,9 +622,11 @@
                     "type": "string"
                 },
                 "version": {
-                    "const": "0.2.3",
+                    "const": "0.2.4",
+                    "default": "0.2.4",
+                    "description": "MXLIMS version for current model",
                     "enum": [
-                        "0.2.3"
+                        "0.2.4"
                     ],
                     "title": "Version",
                     "type": "string"
@@ -686,10 +698,6 @@
                     "type": "array"
                 }
             },
-            "required": [
-                "mxlims_type",
-                "version"
-            ],
             "title": "LogisticalSample",
             "type": "object"
         },
@@ -698,6 +706,8 @@
             "properties": {
                 "mxlims_type": {
                     "const": "MxlimsObjectRef",
+                    "default": "MxlimsObjectRef",
+                    "description": "The type of MXLIMS object.",
                     "enum": [
                         "MxlimsObjectRef"
                     ],
@@ -711,6 +721,8 @@
                 },
                 "target_type": {
                     "const": "LogisticalSample",
+                    "default": "LogisticalSample",
+                    "description": "The type of MXLIMS object linked to.",
                     "enum": [
                         "LogisticalSample"
                     ],
@@ -719,9 +731,7 @@
                 }
             },
             "required": [
-                "mxlims_type",
-                "target_uuid",
-                "target_type"
+                "target_uuid"
             ],
             "title": "LogisticalSampleRef",
             "type": "object"
@@ -731,6 +741,8 @@
             "properties": {
                 "mxlims_type": {
                     "const": "MxlimsObjectRef",
+                    "default": "MxlimsObjectRef",
+                    "description": "The type of MXLIMS object.",
                     "enum": [
                         "MxlimsObjectRef"
                     ],
@@ -744,6 +756,8 @@
                 },
                 "target_type": {
                     "const": "MXExperiment",
+                    "default": "MXExperiment",
+                    "description": "The type of MXLIMS object linked to.",
                     "enum": [
                         "MXExperiment"
                     ],
@@ -752,9 +766,7 @@
                 }
             },
             "required": [
-                "mxlims_type",
-                "target_uuid",
-                "target_type"
+                "target_uuid"
             ],
             "title": "MXExperimentRef",
             "type": "object"
@@ -764,6 +776,8 @@
             "properties": {
                 "mxlims_type": {
                     "const": "MxlimsObjectRef",
+                    "default": "MxlimsObjectRef",
+                    "description": "The type of MXLIMS object.",
                     "enum": [
                         "MxlimsObjectRef"
                     ],
@@ -777,6 +791,8 @@
                 },
                 "target_type": {
                     "const": "MXProcessing",
+                    "default": "MXProcessing",
+                    "description": "Type of MXLIMS object linked to",
                     "enum": [
                         "MXProcessing"
                     ],
@@ -785,9 +801,7 @@
                 }
             },
             "required": [
-                "mxlims_type",
-                "target_uuid",
-                "target_type"
+                "target_uuid"
             ],
             "title": "MXProcessingRef",
             "type": "object"
@@ -797,6 +811,8 @@
             "properties": {
                 "mxlims_type": {
                     "const": "MXSample",
+                    "default": "MXSample",
+                    "description": "Type of MXLIMS object.",
                     "enum": [
                         "MXSample"
                     ],
@@ -804,9 +820,11 @@
                     "type": "string"
                 },
                 "version": {
-                    "const": "0.2.3",
+                    "const": "0.2.4",
+                    "default": "0.2.4",
+                    "description": "MXLIMS version for current model",
                     "enum": [
-                        "0.2.3"
+                        "0.2.4"
                     ],
                     "title": "Version",
                     "type": "string"
@@ -937,10 +955,6 @@
                     "type": "object"
                 }
             },
-            "required": [
-                "mxlims_type",
-                "version"
-            ],
             "title": "MXSample",
             "type": "object"
         },
@@ -994,6 +1008,8 @@
             "properties": {
                 "mxlims_type": {
                     "const": "MxlimsObjectRef",
+                    "default": "MxlimsObjectRef",
+                    "description": "The type of MXLIMS object.",
                     "enum": [
                         "MxlimsObjectRef"
                     ],
@@ -1007,6 +1023,8 @@
                 },
                 "target_type": {
                     "const": "PreparedSample",
+                    "default": "PreparedSample",
+                    "description": "The type of MXLIMS object linked to.",
                     "enum": [
                         "PreparedSample"
                     ],
@@ -1015,9 +1033,7 @@
                 }
             },
             "required": [
-                "mxlims_type",
-                "target_uuid",
-                "target_type"
+                "target_uuid"
             ],
             "title": "PreparedSampleRef",
             "type": "object"
@@ -1084,6 +1100,8 @@
             "properties": {
                 "mxlims_type": {
                     "const": "ReflectionSet",
+                    "default": "ReflectionSet",
+                    "description": "Type of MXLIMS object linked to.",
                     "enum": [
                         "ReflectionSet"
                     ],
@@ -1091,9 +1109,11 @@
                     "type": "string"
                 },
                 "version": {
-                    "const": "0.2.3",
+                    "const": "0.2.4",
+                    "default": "0.2.4",
+                    "description": "MXLIMS version for current model",
                     "enum": [
-                        "0.2.3"
+                        "0.2.4"
                     ],
                     "title": "Version",
                     "type": "string"
@@ -1547,10 +1567,6 @@
                     "title": "Path"
                 }
             },
-            "required": [
-                "mxlims_type",
-                "version"
-            ],
             "title": "ReflectionSet",
             "type": "object"
         },
@@ -1559,6 +1575,8 @@
             "properties": {
                 "target_type": {
                     "const": "ReflectionSet",
+                    "default": "ReflectionSet",
+                    "description": "Type of MXLISM object linked to.",
                     "enum": [
                         "ReflectionSet"
                     ],
@@ -1566,9 +1584,6 @@
                     "type": "string"
                 }
             },
-            "required": [
-                "target_type"
-            ],
             "title": "ReflectionSetRef",
             "type": "object"
         },
@@ -1801,6 +1816,8 @@
     "properties": {
         "mxlims_type": {
             "const": "MXExperiment",
+            "default": "MXExperiment",
+            "description": "The type of MXLIMS object.",
             "enum": [
                 "MXExperiment"
             ],
@@ -1808,9 +1825,11 @@
             "type": "string"
         },
         "version": {
-            "const": "0.2.3",
+            "const": "0.2.4",
+            "default": "0.2.4",
+            "description": "MXLIMS version for current model",
             "enum": [
-                "0.2.3"
+                "0.2.4"
             ],
             "title": "Version",
             "type": "string"
@@ -1914,6 +1933,14 @@
             ]
         },
         "experiment_strategy": {
+            "anyOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "null"
+                }
+            ],
             "default": null,
             "description": "Experiment strategy indicator",
             "examples": [
@@ -1924,8 +1951,7 @@
                 "GPhL.SAD.advanced",
                 "GPhL.2wvlMAD.basic"
             ],
-            "title": "Experiment Strategy",
-            "type": "string"
+            "title": "Experiment Strategy"
         },
         "expected_resolution": {
             "anyOf": [
@@ -2082,10 +2108,6 @@
             "type": "array"
         }
     },
-    "required": [
-        "mxlims_type",
-        "version"
-    ],
     "title": "MXExperiment",
     "type": "object"
 }
