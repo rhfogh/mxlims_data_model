@@ -158,11 +158,11 @@
             "type": "string"
         },
         "version": {
-            "const": "0.2.4",
-            "default": "0.2.4",
+            "const": "0.2.5",
+            "default": "0.2.5",
             "description": "MXLIMS version for current model",
             "enum": [
-                "0.2.4"
+                "0.2.5"
             ],
             "title": "Version",
             "type": "string"
