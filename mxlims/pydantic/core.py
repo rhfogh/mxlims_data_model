@@ -62,6 +62,10 @@ class MxlimsObject(BaseModel):
         frozen=True,
         json_schema_extra={"description": "Permanent unique identifier string"},
     )
+    parameters: Dict[str, Any] = Field(
+        default_factory=dict,
+        description="Keyword-value dictionary string:Any for metadata.",
+    )
     extensions: Dict[str, Any] = Field(
         default_factory=dict,
         description="Keyword-value dictionary string:Any of extensions."
@@ -128,10 +132,6 @@ class Dataset(MxlimsObject):
         "Used for modified Datasets without a 'source' link, "
         "e.g. when removing images from a sweep before processing.",
     )
-    derived_dataset_refs: List["DatasetRef"] = Field(
-        default_factory=list,
-        description="List of references to Datasets derived from Dataset.",
-    )
 
 class DatasetRef(MxlimsObjectRef):
     """Reference to Dataset object, for use in JSON files."""
@@ -148,19 +148,21 @@ class Job(MxlimsObject):
         default="Job",
         description="The type of MXLIMS object.",
     )
-    sample: Optional["PreparedSample"] = Field(
+    sample_ref: Optional["PreparedSampleRef"] = Field(
         default=None,
         frozen=True,
-        description="Prepared sample relevant to Job.",
+        description="Reference to the PreparedSemple that applies "
+        "to this Job",
     )
-    logistical_sample: Optional["LogisticalSample"] = Field(
+    logistical_sample_ref: Optional["LogisticalSampleRef"] = Field(
         default=None,
         frozen=True,
-        description="Logistical Sample (or sample location) relevant to Job.",
+        description="Reference to LogisticalSample relevant to this Job."
     )
-    results: List[Dataset] = Field(
-        default_factory=list,
-        description="Datasets produced by Job (match Dataset.source_ref",
+    started_from_ref: Optional["JobRef"] = Field(
+        default=None,
+        frozen=True,
+        description="Reference to the Job from which this Job was started."
     )
     start_time: Optional[DatetimeStr] = Field(
         default=None,
@@ -212,22 +214,6 @@ class LogisticalSample(MxlimsObject):
         frozen=True,
         description="Reference to the LogisticalSample containing this one",
     )
-    contents: List["LogisticalSample"] = Field(
-        default_factory=list,
-        description="LogisticalSamples contained in this one",
-    )
-    job_refs: List[JobRef] = Field(
-        default_factory=list,
-        discriminator="target_type",
-        description="References to Jobs (templates, planned, initiated or completed)"
-        "applied to this LogisticalSample",
-    )
-    dataset_refs: List[DatasetRef] = Field(
-        default_factory=list,
-        discriminator="target_type",
-        description="References to Datasets "
-        "that pertain specifically to this LogisticalSample",
-    )
 
 class LogisticalSampleRef(MxlimsObjectRef):
     """Reference to LogisticalSample object, for use in JSON files."""
@@ -243,19 +229,15 @@ class PreparedSample(MxlimsObject):
         default="PreparedSample",
         description="The type of MXLIMS object.",
     )
-    logistical_sample_refs: List[LogisticalSampleRef] = Field(
-        default_factory=list,
-        description="LogisticalSamples with contents from this PreparedSample",
-    )
-    job_refs: List[JobRef] = Field(
-        default_factory=list,
-        description="References to Jobs (templates, planned, initiated or completed)"
-        "for this PreparedSample",
-    )
 
 class PreparedSampleRef(MxlimsObjectRef):
     """Reference to PreparedSample object, for use in JSON files."""
     target_type: Literal["PreparedSample"] = Field(
         default="PreparedSample",
         description="The type of MXLIMS object linked to.",
+    )
+
+class MxlimsMesage(BaseModel):
+    samples: List[PreparedSample] = Field(
+        
     )
