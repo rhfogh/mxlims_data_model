@@ -198,8 +198,8 @@ class Component(BaseModel):
     )
 
 
-class MXExperiment(core.Job):
-    """MX Crystallographic data acquisition experiment."""
+class MXExperimentData(core.MxlimsData):
+    """Metadata for MX Crystallographic data acquisition experiment."""
 
     mxlims_type: Literal["MXExperiment"] = Field(
         default="MXExperiment",
@@ -271,48 +271,11 @@ class MXExperiment(core.Job):
         description="Name of space group, as determined during characterisation. "
         "Names may include alternative settings.",
     )
-    # Overriding superclass fields, for more precise typing
-    sample: Optional["MXSample"] = Field(
-        default=None,
-        frozen=True,
-        description="MX Crystallographic sample relevant to Job.",
-    )
-    # NB logistical_sample should be typed more precisely, once we have that modeled
-    logistical_sample: Optional[core.LogisticalSample] = Field(
-        default=None,
-        frozen=True,
-        description="Logistical Sample or Sample location relevant to Job."
-        "Overridden by Dataset.logistical_sample; return link for Logisticalsample.jobs",
-    )
-    templates: List["CollectionSweep"] = Field(
-        default_factory=list,
-        discriminator="mxlims_type",
-        description="Templates with parameters for output datasets ",
-    )
-    reference_data: List["ReflectionSet"] = Field(
-        default_factory=list,
-        discriminator="mxlims_type",
-        description="Reference data sets, e.g. a reference MTZ file, ",
-    )
-    results: List["CollectionSweep"] = Field(
-        default_factory=list,
-        discriminator="mxlims_type",
-        description="Datasets produced by Job (match Dataset.source_ref)",
-    )
 
-
-class MXExperimentRef(core.MxlimsObjectRef):
-    """Reference to MXExperiment object, for use in JSON files."""
-
-    target_type: Literal["MXExperiment"]= Field(
-        default="MXExperiment",
-        description="The type of MXLIMS object linked to.",
-    )
-
-
-class CollectionSweep(core.Dataset):
+class CollectionSweepData(core.MxlimsData):
     """
-    MX  Crystallographic data collection sweep, may be subdivided for acquisition
+    Metadata for MX  Crystallographic data collection sweep,
+    may be subdivided for acquisition
 
      Note that the CollectionSweep specifies a single, continuous sweep range,
      with equidistant images given by image_width, and all starting motor positions
@@ -335,6 +298,11 @@ class CollectionSweep(core.Dataset):
         default=None,
         description="Annotation string for sweep",
     )
+    sweep_type: Optional[str] = Field(
+        default="simple",
+        description="Type of sweep: 'simple', 'mesh', 'line', 'helical, 'xray_centring'"
+        "Should be made into an enumeration",
+    )
     exposure_time: Optional[float] = Field(
         default=None,
         ge=0,
@@ -346,9 +314,17 @@ class CollectionSweep(core.Dataset):
         description="Width of a single image, along scan_axis. "
         "For rotational axes in degrees, for translations in mm.",
     )
+    number_images: Optional[int] = Field(
+        default=None,
+        ge=0,
+        description="Number of images from start to end of sweep."
+        "Defines image numbering and final axis position."
+        "NB Only certain parts of the sweep may be acquired (see 'scans'),"
+        "so the total number of images acquired may be less.",
+    )
     overlap: Optional[float] = Field(
         default=None,
-        description="Overlap between successivce images, in degrees. "
+        description="Overlap between successivce images, in units of image_width. "
         "May be negtive for non-contiguous images.",
     )
     number_triggers: Optional[int] = Field(
@@ -362,6 +338,16 @@ class CollectionSweep(core.Dataset):
         ge=0,
         description="Number of images per trigger. Instruction to detector "
         "- does not modify effect of other parameters.",
+    )
+    number_lines: Optional[int] = Field(
+        default=None,
+        ge=0,
+        description="Number of scanned lines used for mesh scans. "
+        "Must divide number_images",
+    )
+    mesh_range: Optional[Tuple[float, float]] = Field(
+        default=None,
+        description="Mesh scan range (horizontal, vertical) in mm",
     )
     energy: Optional[float] = Field(
         default=None,
@@ -414,19 +400,22 @@ class CollectionSweep(core.Dataset):
         default_factory=dict,
         description="Dictionary string:float with starting position of all axes,"
         " rotations or translations, including detector distance, by name. "
-        "Units are m for distances, degrees for angles"
+        "Units are mm for distances, degrees for angles"
         "NBNB do we use internal motor names (e.g. 'phi'), or std. names (e.g. 'omega')?",
     )
     axis_positions_end: Dict[str, float] = Field(
         default_factory=dict,
         description="Dictionary string:float with final position of scanned axes"
-        " as for axis_positions_start,"
+        " as for axis_positions_start."
+        "scanned_axis position is NOT given here, but is calculated"
+        "from image_width, overlap, number_images, and axis_position_start"
         "NB scans may be acquired out of order, so this determines the limits "
         "of the sweep, not the temporal start and end points",
     )
     scan_axis: str = Field(
         description="Name of main scanned axis. "
-        "Other axes may be scanned in parallel.",
+        "Other axes may be scanned in parallel."
+        "For mesh scans name of fastest scanned axis",
         json_schema_extra={
             "examples": [
                 "omega",
@@ -439,12 +428,14 @@ class CollectionSweep(core.Dataset):
                 "sampleZ",
                 "detectorX",
                 "detectorY",
+                "horizontal",
+                "vertical",
             ],
         },
     )
     scans: List["Scan"] = Field(
         default_factory=list,
-        description="List of Snas i.e. subdivisions of CollectionSweep"
+        description="List of Scans i.e. subdivisions of CollectionSweep"
         "NB Scans need not be contiguous or in order or add up to entire sweep",
     )
     file_type: Optional[str] = Field(
@@ -467,37 +458,6 @@ class CollectionSweep(core.Dataset):
         default=None,
         description="Path to directory containing image files.",
     )
-    source_ref: Optional[MXExperimentRef] = Field(
-        default=None,
-        frozen=True,
-        description="Reference to Job that created this Dataset",
-    )
-    # NB This rasies the problem of how to handle an optional Union
-    # As we will surely get a Union here once Logistical Samples are modelled.
-    logistical_sample_ref: Optional[core.LogisticalSampleRef] = Field(
-        default=None,
-        description="Reference to LogisticalSample that pertains this Dataset",
-    )
-    derived_from_ref: Optional["CollectionSweepRef"] = Field(
-        default=None,
-        description="Reference to Dataset from which this Dataset was derived. "
-        "Used for modified Datasets without a 'source_ref' link, "
-        "e.g. when removing images from a sweep before processing.",
-    )
-    derived_dataset_refs: List["CollectionSweepRef"] = Field(
-        default_factory=list,
-        description="List of references to Datasets derived from Dataset.",
-    )
-
-
-class CollectionSweepRef(core.MxlimsObjectRef):
-    """Reference to CollectionSweep object, for use in JSON files."""
-
-    target_type: Literal["CollectionSweep"]= Field(
-        default="CollectionSweep",
-        description="Type of MXLIMS object linked to",
-    )
-
 
 class Scan(BaseModel):
     """Subdivision of CollectionSweep.
@@ -525,8 +485,10 @@ class Scan(BaseModel):
     )
 
 
-class MXProcessing(core.Job):
-    """MX Crystallographic processing calculation, going from images to reflection sets"""
+class MXProcessingData(core.MxlimsData):
+    """Metadata for MX Crystallographic processing calculation,
+
+    going from images to reflection sets"""
 
     mxlims_type: Literal["MXProcessing"]= Field(
         default="MXProcessing",
@@ -542,47 +504,6 @@ class MXProcessing(core.Job):
         "Names may include alternative settings. "
         "Matches mmCIF item symmetry.space_group_name_H-M "
         "(https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_symmetry.space_group_name_H-M.html).",
-    )
-    # Overriding superclass fields, for more precise typing
-    sample: Optional["MXSample"] = Field(
-        default=None,
-        frozen=True,
-        description="MXsample relevant to Job.",
-    )
-    # NB logistical_sample should be typed more precisely, once we have that modeled
-    logistical_sample: Optional[core.LogisticalSample] = Field(
-        default=None,
-        frozen=True,
-        description="Logistical Sample or Sample location relevant to Job."
-        "Overridden by Dataset.logistical_sample; return link for Logisticalsample.jobs",
-    )
-    templates: List["ReflectionSet"] = Field(
-        default_factory=list,
-        discriminator="mxlims_type",
-        description="Templates with parameters for output datasets ",
-    )
-    reference_data: List["ReflectionSet"] = Field(
-        default_factory=list,
-        discriminator="mxlims_type",
-        description="Reference data sets, e.g. a reference MTZ file, ",
-    )
-    results: List["ReflectionSet"] = Field(
-        default_factory=list,
-        discriminator="mxlims_type",
-        description="Datasets produced by Job (match Dataset.source_ref)",
-    )
-    input_data: List[CollectionSweep] = Field(
-        default_factory=list,
-        description="List of pre-existing Input data sets used for calculation,",
-    )
-
-
-class MXProcessingRef(core.MxlimsObjectRef):
-    """Reference to MXProcessing object, for use in JSON files."""
-
-    target_type: Literal["MXProcessing"]= Field(
-        default="MXProcessing",
-        description="Type of MXLIMS object linked to",
     )
 
 
@@ -629,8 +550,8 @@ class ReflectionStatistics(BaseModel):
     )
 
 
-class ReflectionSet(core.Dataset):
-    """Processed reflections, possibly merged or scaled
+class ReflectionSetData(core.MxlimsData):
+    """Metadata for Processed reflections, possibly merged or scaled
 
     as might be stored within a MTZ or mmCIF reflection file
     """
@@ -791,41 +712,10 @@ class ReflectionSet(core.Dataset):
         description="Path to directory containing reflection set file "
         "(defined by filename).",
     )
-    source_ref: Optional[MXProcessingRef] = Field(
-        default=None,
-        frozen=True,
-        description="Reference to Job that created this Dataset",
-    )
-    # NB This raises the problem of how to handle an optional Union
-    # As we will surely get a Union here once Logistical Samples are modelled.
-    logistical_sample_ref: Optional[core.LogisticalSampleRef] = Field(
-        default=None,
-        description="Reference to LogisticalSample"
-        " that pertains specifically this Dataset",
-    )
-    derived_from_ref: Optional["ReflectionSetRef"] = Field(
-        default=None,
-        description="Reference to Dataset from which this Dataset was derived. "
-        "Used for modified Datasets without a 'source_ref' link, "
-        "e.g. when removing images from a sweep before processing.",
-    )
-    derived_dataset_refs: List["ReflectionSetRef"] = Field(
-        default_factory=list,
-        description="List of references to Datasets derived from Dataset.",
-    )
 
 
-class ReflectionSetRef(BaseModel):
-    """Reference to ReflectionSet object, for use in JSON files."""
-
-    target_type: Literal["ReflectionSet"]= Field(
-        default="ReflectionSet",
-        description="Type of MXLISM object linked to.",
-    )
-
-
-class MXSample(core.PreparedSample):
-    """Prepared Sample with MX crystallography-specific additions
+class MXSampleData(core.PreparedSample):
+    """Metadata for Prepared Sample with MX crystallography-specific additions
 
     NB this class is still unfinished"""
 
@@ -874,25 +764,49 @@ class MXSample(core.PreparedSample):
             ],
         },
     )
-    job_refs: List[Union[MXExperimentRef, MXProcessingRef]] = Field(
-        default_factory=list,
-        discriminator="target_type",
-        description="Jobs (templates, planned, initiated or completed)"
-        "for this PreparedSample",
+
+####################################################################################
+#
+# Example of message, here allowing all classses defined so far
+#
+####################################################################################
+
+class MXJob(core.Job):
+    """Job, limited to Jobs defined in this file"""
+    data: Union[MXExperimentData, MXProcessingData] = Field(
+        description="Metadata object, also defining the precise type.",
     )
-    logistical_sample_refs: List[core.LogisticalSampleRef] = Field(
-        default_factory=list,
-        discriminator="target_type",
-        description="References to LogisticalSamples using Sample",
+
+class MXDataset(core.Job):
+    """Dataset, limited to Datasets defined in this file"""
+    data: Union[CollectionSweepData, ReflectionSetData] = Field(
+        description="Metadata object, also defining the precise type.",
+    )
+
+class MXSample(core.PreparedSample):
+    """PreparedSample, limited to Samples defined in this file"""
+    data: MXSampleData = Field(
+        description="Metadata object, also defining the precise type.",
     )
 
 
-class MXSampleRef(core.MxlimsObjectRef):
-    """Reference to MXSample object, for use in JSON files."""
-
-    target_type: Literal["MXSample"]= Field(
-        default="MXSample",
-        description="Type of MXLIMS object linked to.",
+class MXMessage(core.MxlimsMessage):
+    """Example message for MX, showing all classes"""
+    samples: List[MXSample] = Field(
+        default_factory=list,
+        description="List of directly contained PreparedSamples."
+    )
+    logistical_samples: List[core.LogisticalSample] = Field(
+        default_factory=list,
+        description="List of directly contained LogisticalSamples."
+    )
+    jobs: List[MXJob] = Field(
+        default_factory=list,
+        description="List of directly contained Jobs."
+    )
+    datasets: List[MXDataset] = Field(
+        default_factory=list,
+        description="List of directly contained Datasets."
     )
 
 
@@ -903,12 +817,7 @@ if __name__ == "__main__":
     import json
 
     for cls in (
-        core.LogisticalSample,
-        CollectionSweep,
-        ReflectionSet,
-        MXExperiment,
-        MXProcessing,
-        MXSample,
+        MXMessage,
     ):
         tag = cls.__name__
         schema = cls.model_json_schema()

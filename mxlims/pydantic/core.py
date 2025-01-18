@@ -45,31 +45,14 @@ class JobStatus(str, enum.Enum):
     Failed = "	Failed"
     Aborted = "Aborted"
 
-class MxlimsObject(BaseModel):
-    """Basic abstract MXLIMS object, with attributes shared by all MXLIMS objects"""
-    mxlims_type: Literal["MxlimsObject"] = Field(
-        default="MxlimsObject",
-        description="The type of MXLIMS object.",
+class MxlimsData(BaseModel):
+    """Abstract superclass for Metadata"""
+    mxlims_type: str = Field(
+        description="The type of MXLIMS data. May be restricted to enum in subclasses",
     )
-
-    version: Literal[mxlims.version()] = Field(
+    version: str = Field(
         default=mxlims.version(),
-        description="MXLIMS version for current model",
-    )
-
-    uuid: str = Field(
-        default_factory=lambda: str(uuid.uuid1()),
-        frozen=True,
-        json_schema_extra={"description": "Permanent unique identifier string"},
-    )
-    parameters: Dict[str, Any] = Field(
-        default_factory=dict,
-        description="Keyword-value dictionary string:Any for metadata.",
-    )
-    extensions: Dict[str, Any] = Field(
-        default_factory=dict,
-        description="Keyword-value dictionary string:Any of extensions."
-        "Use is accepted but discouraged",
+        description="MXLIMS version for specific Metadata class",
     )
     namespace_extensions: Dict[str, BaseModel] = Field(
         default_factory=dict,
@@ -78,33 +61,33 @@ class MxlimsObject(BaseModel):
         " value is a Pydantic model defined by this organisation.",
     )
 
-class MxlimsObjectRef(BaseModel):
-    """Reference to MXLIMS model object, for use in JSON files."""
-    mxlims_type: Literal["MxlimsObjectRef"] = Field(
-        default="MxlimsObjectRef",
-        description="The type of MXLIMS object.",
+class MxlimsObject(BaseModel):
+    """Basic abstract MXLIMS object, with attributes shared by all MXLIMS objects"""
+    version: Literal[mxlims.version()] = Field(
+        default=mxlims.version(),
+        description="MXLIMS version for current model",
     )
-    target_uuid: str = Field(
+    uuid: str = Field(
+        default_factory=lambda: str(uuid.uuid1()),
         frozen=True,
-        description="UUID of target MXLIMS model object",
+        json_schema_extra={"description": "Permanent unique identifier string"},
     )
-    target_type: Literal["MxlimsObject"] = Field(
-        default="MxlimsObject",
-        description="The type of MXLIMS object linked to.",
+    data: MxlimsData = Field(
+        description="Metadata object, also defining the precise type.",
+    )
+    extensions: Dict[str, Any] = Field(
+        default_factory=dict,
+        description="Keyword-value dictionary string:Any of extensions."
+        "Use is accepted but discouraged",
     )
 
 
 class Dataset(MxlimsObject):
     """Base class for MXLIMS Datasets"""
-    mxlims_type: Literal["Dataset"] = Field(
-        default="Dataset",
-        description="The type of MXLIMS object.",
-    )
-
-    source_ref: Optional["JobRef"] = Field(
+    source_id: str = Field(
         default=None,
         frozen=True,
-        description="Reference to Job that created this Dataset.",
+        description="String UUID of Job that created this Dataset.",
     )
     role: Optional[str] = Field(
         default=None,
@@ -120,49 +103,37 @@ class Dataset(MxlimsObject):
             ],
         },
     )
-    logistical_sample_ref: Optional["LogisticalSampleRef"] = Field(
+    logistical_sample_id: Optional[str] = Field(
         default=None,
         frozen=True,
-        description="Reference to LogisticalSample relevant to Dataset."
+        description="String UUID of LogisticalSample relevant to Dataset."
     )
-    derived_from_ref: Optional["DatasetRef"] = Field(
+    derived_from_id: Optional[str] = Field(
         default=None,
         frozen=True,
-        description="Reference to Dataset from which this Dataset was derived. "
+        description="String UUID of Dataset from which this Dataset was derived. "
         "Used for modified Datasets without a 'source' link, "
         "e.g. when removing images from a sweep before processing.",
-    )
-
-class DatasetRef(MxlimsObjectRef):
-    """Reference to Dataset object, for use in JSON files."""
-    target_type: Literal["Dataset"] = Field(
-        default="Dataset",
-        description="The type of MXLIMS object linked to.",
     )
 
 
 class Job(MxlimsObject):
     """Base class for MXLIMS Jobs - an experiment or calculation producing Datasets"""
 
-    mxlims_type: Literal["Job"] = Field(
-        default="Job",
-        description="The type of MXLIMS object.",
-    )
-    sample_ref: Optional["PreparedSampleRef"] = Field(
+    sample_id: Optional[str] = Field(
         default=None,
         frozen=True,
-        description="Reference to the PreparedSemple that applies "
-        "to this Job",
+        description="String UUID of the PreparedSample that applies to this Job",
     )
-    logistical_sample_ref: Optional["LogisticalSampleRef"] = Field(
+    logistical_sample_id: Optional[str] = Field(
         default=None,
         frozen=True,
-        description="Reference to LogisticalSample relevant to this Job."
+        description="String UUID of LogisticalSample relevant to this Job."
     )
-    started_from_ref: Optional["JobRef"] = Field(
+    started_from_id: Optional[str] = Field(
         default=None,
         frozen=True,
-        description="Reference to the Job from which this Job was started."
+        description="String UUID of the Job from which this Job was started."
     )
     start_time: Optional[DatetimeStr] = Field(
         default=None,
@@ -186,12 +157,39 @@ class Job(MxlimsObject):
             ],
         },
     )
-
-class JobRef(MxlimsObjectRef):
-    """Reference to Job object, for use in JSON files."""
-    target_type: Literal["Job"] = Field(
-        default="Job",
-        description="The type of MXLIMS object linked to.",
+    input_data_ids: List[str] = Field(
+        default_factory=list,
+        description="String UUID of input Datasets for this Job."
+    )
+    reference_data_ids: List[str] = Field(
+        default_factory=list,
+        description="String UUID of reference Datasets for this Job."
+    )
+    template_data_ids: List[str] = Field(
+        default_factory=list,
+        description="String UUID of template Datasets for this Job."
+    )
+    subjobs: List[Job] = Field(
+        default_factory=list,
+        description="List of Jobs started from this job."
+        "NB the started_from_id of the jobs must point to this Job."
+        "This field allows attached jobs to be contained directly in the JSON file"
+        "and allows for constraining job types in subtypes"
+    )
+    results: List[Dataset] = Field(
+        default_factory=list,
+        description="List of Datasets created from this job."
+        "NB the source_id of the datasets must point to this Job."
+        "This field allows result Datasets to be contained directly in the JSON file"
+        "and allows for constraining Dataset types in subtypes"
+    )
+    template_data: List[Dataset] = Field(
+        default_factory=list,
+        description="List of Template Datasets used for this job."
+        "NB the id of the datasets must match the IDs in template_data_ids."
+        "This field allows template Datasets to be contained directly in the JSON file"
+        "and allows for constraining Dataset types in subtypes."
+        "NB Note that two different specifications of a dataset cannot have the same ID"
     )
 
 class LogisticalSample(MxlimsObject):
@@ -200,44 +198,56 @@ class LogisticalSample(MxlimsObject):
     describing Sample containers and locations
     (from Dewars and Plates to drops, pins and crystals)"""
 
-    mxlims_type: Literal["LogisticalSample"] = Field(
-        default="LogisticalSample",
-        description="The type of MXLIMS object."
-    )
-    sample_ref: Optional["PreparedSampleRef"] = Field(
+    sample_id: Optional[str] = Field(
         default=None,
-        description="Reference to the PreparedSemple that applies "
+        description="String UUID of the PreparedSemple that applies "
         "to this LogisticalSample and all its contents",
     )
-    container_ref: Optional["LogisticalSampleRef"] = Field(
+    container_id: Optional[str] = Field(
         default=None,
         frozen=True,
-        description="Reference to the LogisticalSample containing this one",
+        description="String UUID of the LogisticalSample containing this one",
     )
-
-class LogisticalSampleRef(MxlimsObjectRef):
-    """Reference to LogisticalSample object, for use in JSON files."""
-    target_type: Literal["LogisticalSample"] = Field(
-        default="LogisticalSample",
-        description="The type of MXLIMS object linked to.",
+    contents: List[LogisticalSample] = Field(
+        default_factory=list,
+        description="List of directly contained LogisticalSamples."
+        "NB the container_id of the contents must point to this LogisticalSample."
+        "This field allows contents to be contained directly in the JSON file"
+        "and allows for constraining content types in subtypes"
+        "(E.g. Pucks can only contain contain Pins"
+    )
+    jobs: List[Job] = Field(
+        default_factory=list,
+        description="List of directly attached Jobs."
+        "NB the logistical_sample_id of the jobs must point to this LogisticalSample."
+        "This field allows attached jobs to be contained directly in the JSON file"
+        "and allows for constraining job types in subtypes"
     )
 
 class PreparedSample(MxlimsObject):
     """Base class for MXLIMS Prepared Samples, describing sample content"""
+    pass
 
-    mxlims_type: Literal["PreparedSample"] = Field(
-        default="PreparedSample",
-        description="The type of MXLIMS object.",
-    )
+class MxlimsMessage(BaseModel):
+    """Generic MXLIMS message.
 
-class PreparedSampleRef(MxlimsObjectRef):
-    """Reference to PreparedSample object, for use in JSON files."""
-    target_type: Literal["PreparedSample"] = Field(
-        default="PreparedSample",
-        description="The type of MXLIMS object linked to.",
-    )
-
-class MxlimsMesage(BaseModel):
+    Links between objects are defined by the IDs they contain
+    and must be dereferenced appropraitely by the reding application.
+    The types and numbers of allowed contents can be restricted in subtypes of message.
+    """
     samples: List[PreparedSample] = Field(
-        
+        default_factory=list,
+        description="List of directly contained PreparedSamples."
+    )
+    logistical_samples: List[LogisticalSample] = Field(
+        default_factory=list,
+        description="List of directly contained LogisticalSamples."
+    )
+    jobs: List[Job] = Field(
+        default_factory=list,
+        description="List of directly contained Jobs."
+    )
+    samples: List[Dataset] = Field(
+        default_factory=list,
+        description="List of directly contained Datasets."
     )
