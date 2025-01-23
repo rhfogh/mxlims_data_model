@@ -1,0 +1,123 @@
+{
+    "description": "Base class for MXLIMS Jobs - an experiment or calculation producing Datasets",
+    "title": "Job",
+    "type": "object",
+    "id": "Job.json",
+    "allOf": [
+        {
+            "$ref": "MxlimsObject.json"
+        }
+    ],
+    "$defs": {
+        "JobStatus": {
+            "enum": [
+                "Template",
+                "Ready",
+                "Running",
+                "Completed",
+                "Failed",
+                "Aborted"
+            ],
+            "title": "JobStatus",
+            "type": "string"
+        }
+    },
+    "properties": {
+        "sample_id": {
+            "type": "string",
+            "description": "String UUID of the PreparedSample that applies to this Job",
+            "title": "Sample Id"
+        },
+        "logistical_sample_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "String UUID of LogisticalSample relevant to this Job.",
+            "title": "Logistical Sample Id"
+        },
+        "started_from_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "String UUID of the Job from which this Job was started.",
+            "title": "Started From Id"
+        },
+        "start_time": {
+            "format": "date-time",
+            "type": "string",
+            "description": "Actual starting time for job or calculation, ",
+            "title": "Start Time"
+        },
+        "end_time": {
+            "format": "date-time",
+            "type": "string",
+            "description": "Actual finishing time for job or calculation, ",
+            "title": "End Time"
+        },
+        "job_status": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/JobStatus"
+                }
+            ],
+            "description": "Status of job - enumerated, ",
+            "examples": [
+                "Template",
+                "Ready",
+                "Running",
+                "Completed",
+                "Failed",
+                "Aborted"
+            ]
+        },
+        "input_data_ids": {
+            "description": "String UUID of input Datasets for this Job.",
+            "items": {
+                "type": "string",
+                "format": "uuid"
+            },
+            "title": "Input Data Ids",
+            "type": "array"
+        },
+        "reference_data_ids": {
+            "description": "String UUID of reference Datasets for this Job.",
+            "items": {
+                "type": "string",
+                "format": "uuid"
+            },
+            "title": "Reference Data Ids",
+            "type": "array"
+        },
+        "template_data_ids": {
+            "description": "String UUID of template Datasets for this Job.",
+            "items": {
+                "type": "string",
+                "format": "uuid"
+            },
+            "title": "Template Data Ids",
+            "type": "array"
+        },
+        "subjobs": {
+            "description": "List of Jobs started from this job. NB the started_from_id of the jobs must point to this Job.This field allows attached jobs to be contained directly in the JSON fileand allows for constraining job types in subtypes",
+            "items": {
+                "$ref": "Job.json"
+            },
+            "title": "Subjobs",
+            "type": "array"
+        },
+        "results": {
+            "description": "List of Datasets created from this job. NB the source_id of the datasets must point to this Job.This field allows result Datasets to be contained directly in the JSON fileand allows for constraining Dataset types in subtypes",
+            "items": {
+                "$ref": "Dataset.json"
+            },
+            "title": "Results",
+            "type": "array"
+        },
+        "template_data": {
+            "description": "List of Template Datasets used for this job. NB the id of the datasets must match the IDs in template_data_ids.This field allows template Datasets to be contained directly in the JSON fileand allows for constraining Dataset types in subtypes.NB Note that two different specifications of a dataset cannot have the same ID",
+            "items": {
+                "$ref": "Dataset.json"
+            },
+            "title": "Template Data",
+            "type": "array"
+        }
+    }
+}

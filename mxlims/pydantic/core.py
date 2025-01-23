@@ -169,7 +169,7 @@ class Job(MxlimsObject):
         default_factory=list,
         description="String UUID of template Datasets for this Job."
     )
-    subjobs: List[Job] = Field(
+    subjobs: List["Job"] = Field(
         default_factory=list,
         description="List of Jobs started from this job."
         "NB the started_from_id of the jobs must point to this Job."
@@ -208,7 +208,7 @@ class LogisticalSample(MxlimsObject):
         frozen=True,
         description="String UUID of the LogisticalSample containing this one",
     )
-    contents: List[LogisticalSample] = Field(
+    contents: List["LogisticalSample"] = Field(
         default_factory=list,
         description="List of directly contained LogisticalSamples."
         "NB the container_id of the contents must point to this LogisticalSample."

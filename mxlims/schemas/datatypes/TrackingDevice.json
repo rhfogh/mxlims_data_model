@@ -1,0 +1,37 @@
+{
+    "description": "<p>A tracking device such as a LightBug or AirTag, included with the parent object.</p><p>Note that the tracking URLs for a given device can change, therefore implementers should use any URLs supplied rather than those cached from a previous shipment with the same device.</p>",
+    "title": "Tracking Device",
+    "type": "object",
+    "id": "TrackingDevice.json",
+    "properties": {
+        "identifier": {
+            "type": "string",
+            "description": "The device serial number or other globally unique identifier."
+        },
+        "deviceType": {
+            "type": "string",
+            "description": "The type of tracking device.",
+            "enum": [
+                "LightBug",
+                "AirTag",
+                "other"
+            ]
+        },
+        "humanTrackingUrl": {
+            "type": "string",
+            "description": "A URL where a human can, for example, see the device location on a map.",
+            "format": "uri",
+            "pattern": "^https?://"
+        },
+        "apiTrackingUrl": {
+            "type": "string",
+            "description": "A URL where a computer can, for example, obtain the device's last known latitude and longitude.",
+            "format": "uri",
+            "pattern": "^https?://"
+        }
+    },
+    "required": [
+        "identifier",
+        "deviceType"
+    ]
+}

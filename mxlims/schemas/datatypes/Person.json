@@ -1,0 +1,21 @@
+{
+    "description": "Person",
+    "title": "Person",
+    "type": "object",
+    "id": "Person.json",
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "The person's full name."
+        },
+        "emailAddress": {
+            "type": "string",
+            "description": "The person's email address."
+        },
+        "phoneNumber": {
+            "type": "string",
+            "description": "The person's phone number."
+        }
+    },
+    "required": ["name"]
+}
