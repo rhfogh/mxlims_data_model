@@ -1,0 +1,91 @@
+{
+    "description": "A crystallization plate",
+    "title": "Plate",
+    "type": "object",
+    "id": "Plate.json",
+    "allOf": [
+        {
+            "$ref": "../core/LogisticalSample.json"
+        }
+    ],
+    "$defs": {
+        "PlateData": {
+            "type": "object",
+            "title": "Plate Data",
+            "description": "Data for crystallisation plate.",
+            "allOf": [
+                {
+                    "$ref": "../core/MxlimsData.json"
+                }
+            ],
+            "properties": {
+                "barcode": {
+                    "type": "string",
+                    "description": "The plate barcode or otehr identifier"
+                },
+                "plate_type": { "$ref": "#/$defs/PlateType"},
+                "identifiers": {
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Dictionary str:str of contextName: identifier. ContextName will typically refer to a LIMS, database, or web site but could also be e.g. 'smiles' or 'sequence'",
+                    "title": "Identifiers",
+                    "type": "object"
+                },
+                "tracking_device": {
+                    "$ref": "../datatypes/TrackingDevice.json"
+                }
+            }
+        },
+        "PlateType": {
+            "title": "Plate type",
+            "description": "A type of crystallization plate.",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the plate type.",
+                    "comment": "I'm unaware of any standard that can positively identify a plate type.",
+                    "examples": [ "Greiner 1-drop square" ]
+                },
+                "number_rows": {
+                    "type": "integer",
+                    "description": "The number of rows in the plate. For a typical 96-well plate, this will be 8.",
+                    "minimum": 1
+                },
+                "number_columns": {
+                    "type": "integer",
+                    "description": "The number of columns in the plate. For a typical 96-well plate, this will be 12.",
+                    "minimum": 1
+                },
+                "number_sub_positions":{
+                    "type": "integer",
+                    "description": "The number of sub-wells in the plate. For in-situ plates with no dividers, this should be the actual number of drops dispensed.",
+                    "minimum": 1
+                },
+                "drop_mapping": {
+                    "type": "string",
+                    "description": "<p>The sender's numbering of the sub-wells. This can be used by the receiver to map the sender's well numbering onto their own.<p><p>It is an error if the sender and receiver disagree on the basic geometry (e.g., three drops across the top with a reservoir underneath). However, they can disagree on the drop order; this property is intended to help overcome such disagreements.</p>",
+                    "comment": "Karl and I cooked this up years ago. I'll document it properly later, but basically, take one well and draw a grid with the smallest number of rows and columns needed to represent that geometry.",
+                    "examples": [ "123,RRR", "23,1R" ]
+                }
+            },
+            "required": ["number_rows","number_columns","number_sub_positions","drop_mapping"]
+        }
+    },
+    "properties": {
+        "data": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/PlateData"
+                }
+            ]
+        },
+        "contents": {
+            "type": "array",
+            "items": {
+                "$ref": "PlateWell.json"
+            },
+            "minItems": 1
+        }
+    }
+}

@@ -11,7 +11,7 @@
     "$defs": {
         "MxProcessingData": {
             "description": "Metadata for MX Crystallographic processing calculation,\n\ngoing from images to reflection sets",
-            "title": "MXProcessingData",
+            "title": "MXProcessing Data",
             "type": "object",
             "allOf": [
                 {
@@ -43,6 +43,13 @@
                     "$ref": "#/$defs/MxProcessingData"
                 }
             ]
+        },
+        "contents": {
+            "type": "array",
+            "items": {
+                "$ref": "ReflectionSet.json"
+            },
+            "minItems": 1
         }
     }
 }

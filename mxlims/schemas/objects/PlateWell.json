@@ -1,0 +1,64 @@
+{
+    "description": "A well in a crystallization plate",
+    "title": "PlateWell",
+    "type": "object",
+    "id": "PlateWell.json",
+    "allOf": [
+        {
+            "$ref": "../core/LogisticalSample.json"
+        }
+    ],
+    "$defs": {
+        "PlateWellData": {
+            "type": "object",
+            "title": "PlateWell Data",
+            "description": "Data for well in crystallisation plate.",
+            "allOf": [
+                {
+                    "$ref": "../core/MxlimsData.json"
+                }
+            ],
+            "properties": {
+                "row_number": {
+                    "type": "integer",
+                    "description": "<The row number of this well. This is 1-based, so row A is 1, row H is 8. This should be validated against the plateType's rows property.",
+                    "minimum": 1
+                },
+                "column_number": {
+                    "type": "integer",
+                    "description": "<The column number of this well. This is 1-based, so should match the column labels on the plate. This should be validated against the plateType's columns property.",
+                    "minimum": 1
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A human-friendly well identifier. If present, this should be validated to ensure that it refers to the correct row and column.",
+                    "examples": [
+                        "H1",
+                        "C03"
+                    ]
+                }
+            },
+            "required": [
+                "rowNumber",
+                "columnNumber",
+                "drops"
+            ]
+        }
+    },
+    "properties": {
+        "data": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/PlateWellData"
+                }
+            ]
+        },
+        "contents": {
+            "type": "array",
+            "items": {
+                "$ref": "WellDrop.json"
+            },
+            "minItems": 1
+        }
+    }
+}

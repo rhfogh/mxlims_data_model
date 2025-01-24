@@ -3,9 +3,10 @@
     "$defs": {
         "MxProcessing": {"$ref": "objects/MxProcessing.json"},
         "MxExperiment": {"$ref": "objects/MxExperiment.json"},
-        "Dataset": {"$ref": "core/Dataset.json"},
+        "CollectionSweep": {"$ref": "objects/CollectionSweep.json"},
+        "ReflectionSet": {"$ref": "objects/ReflectionSet.json"},
         "CrystallographicSample": {"$ref": "objects/CrystallographicSample.json"},
-        "LogisticalSample": {"$ref": "core/LogisticalSample.json"}
+        "Shipment": {"$ref": "objects/Shipment.json"}
     },
     "properties": {
         "jobs": {
@@ -26,7 +27,14 @@
         "datasets": {
             "description": "List of directly contained Datasets.",
             "items": {
-                "$ref": "#/$defs/Dataset"
+                "anyOf": [
+                    {
+                        "$ref": "#/$defs/CollectionSweep"
+                    },
+                    {
+                        "$ref": "#/$defs/ReflectionSet"
+                    }
+                ]
             },
             "title": "Datasets",
             "type": "array"
@@ -42,7 +50,7 @@
         "logistical_samples": {
             "description": "List of directly contained Logistical Samples.",
             "items": {
-                "$ref": "#/$defs/LogisticalSample"
+                "$ref": "#/$defs/Shipment"
             },
             "title": "Logistical Samples",
             "type": "array"

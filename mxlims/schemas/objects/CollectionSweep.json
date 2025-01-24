@@ -11,7 +11,7 @@
     "$defs": {
         "CollectionSweepData": {
             "description": "Metadata for MX  Crystallographic data collection sweep,\nmay be subdivided for acquisition\n\n Note that the CollectionSweep specifies a single, continuous sweep range,\n with equidistant images given by image_width, and all starting motor positions\n in axis_position_start. axis_positions_end contain the end point of the sweep,\n and must have at least the value for the scan_axis; sweeps changing more than\n one motor (e.g. helical scan) can be represented by adding more values\n to axis_positions_end. The default number of images can be calculated from the\n sweep range and image_width. The actual number of images, the image numbering,\n and the order of acquisition (including interleaving) follows from the list of\n Scans. The role should be set to 'Result' for those sweeps that are deemed to\n be the desired result of the experiment; in templates you would prefer to use\n Acquisition for the Dataset that gives the acquisition parameters.",
-            "title": "CollectionSweepData",
+            "title": "CollectionSweep Data",
             "type": "object",
             "allOf": [
                 {

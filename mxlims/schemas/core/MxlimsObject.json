@@ -1,4 +1,5 @@
 {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Base object for all MXLISM objects: Jobm, Dataset, PreparedSample, and LogisticalSample",
     "title": "MxlimsObject",
     "type": "object",
@@ -30,5 +31,10 @@
             "title": "Extensions",
             "type": "object"
         }
-    }
+    },
+    "required": [
+        "version",
+        "uuid",
+        "data"
+    ]
 }

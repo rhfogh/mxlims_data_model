@@ -11,7 +11,7 @@
     "$defs": {
         "MxExperimentData": {
             "description": "Metadata for MX Crystallographic data acquisition experiment.",
-            "title": "MXExperimentData",
+            "title": "MXExperiment Data",
             "type": "object",
             "allOf": [
                 {
@@ -106,6 +106,13 @@
                     "$ref": "#/$defs/MxExperimentData"
                 }
             ]
+        },
+        "contents": {
+            "type": "array",
+            "items": {
+                "$ref": "CollectionSweep.json"
+            },
+            "minItems": 1
         }
     }
 }

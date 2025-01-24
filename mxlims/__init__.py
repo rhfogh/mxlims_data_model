@@ -21,11 +21,11 @@ You should have received a copy of the GNU Lesser General Public License
 along with MXLIMS. If not, see <https://www.gnu.org/licenses/>.
 """
 
-__copyright__ = """ Copyright © 2024 -  2024 MXLIMS collaboration."""
+__copyright__ = """ Copyright © 2024 -  2025 MXLIMS collaboration."""
 __author__ = "rhfogh"
 __date__ = "01/11/2024"
 
-__version__ = "0.2.5"
+__version__ = "0.3.0"
 
 
 def version():

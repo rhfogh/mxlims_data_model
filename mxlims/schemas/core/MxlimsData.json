@@ -1,4 +1,5 @@
 {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Abstract superclass for Metadata",
     "title": "MxlimsData",
     "type": "object",
@@ -22,12 +23,6 @@
         "mxlims_type": {
             "description": "The type of MXLIMS data. May be restricted to enum in subclasses",
             "title": "Mxlims Type",
-            "type": "string"
-        },
-        "version": {
-            "default": "0.3.0",
-            "description": "MXLIMS version for specific Metadata class",
-            "title": "Version",
             "type": "string"
         },
         "namespaced_extensions": {

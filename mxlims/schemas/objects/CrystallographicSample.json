@@ -11,6 +11,7 @@
     "$defs": {
         "CrystallographicSampleData": {
             "type": "object",
+            "title": "CrystallographicSample Data",
             "allOf": [
                 {
                     "$ref": "../core/MxlimsData.json"

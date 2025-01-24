@@ -10,7 +10,7 @@
     ],
     "$defs": {
         "ReflectionSetData": {
-            "title": "ReflectionSetData",
+            "title": "ReflectionSet Data",
             "type": "object",
             "allOf": [
                 {

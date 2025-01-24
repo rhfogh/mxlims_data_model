@@ -1,6 +1,6 @@
 {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Crystal form, fully or partially specified",
-
     "title": "Crystal Form",
     "type": "object",
     "id": "CrystalForm.json",
