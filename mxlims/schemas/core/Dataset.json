@@ -15,6 +15,12 @@
             "type": "string",
             "format": "uuid"
         },
+        "derived_from_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "String UUID of Dataset from which this Dataset was derived. Used for modified Datasets without a 'source' link, e.g. when removing images from a sweep before processing.",
+            "title": "Derived From Id"
+        },
         "role": {
             "type": "string",
             "description": "Role of Dataset realtive to the source Job. Intended for filtering of Datasets",
@@ -31,12 +37,22 @@
             "format": "uuid",
             "description": "String UUID of LogisticalSample relevant to Dataset.",
             "title": "Logistical Sample Id"
-        },
-        "derived_from_id": {
-            "type": "string",
-            "format": "uuid",
-            "description": "String UUID of Dataset from which this Dataset was derived. Used for modified Datasets without a 'source' link, e.g. when removing images from a sweep before processing.",
-            "title": "Derived From Id"
         }
-    }
+    },
+    "anyOf": [
+        {
+            "not": {
+                "required": [
+                    "source_id"
+                ]
+            }
+        },
+        {
+            "not": {
+                "required": [
+                    "derived_from_id"
+                ]
+            }
+        }
+    ]
 }
