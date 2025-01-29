@@ -11,7 +11,7 @@
     "$defs": {
         "MxExperimentData": {
             "description": "Metadata for MX Crystallographic data acquisition experiment.",
-            "title": "MXExperiment Data",
+            "title": "MxExperiment Data",
             "type": "object",
             "allOf": [
                 {
@@ -20,7 +20,7 @@
             ],
             "properties": {
                 "mxlims_type": {
-                    "const": "MXExperiment",
+                    "const": "MxExperiment",
                     "description": "The type of MXLIMS object.",
                     "title": "Mxlims Type",
                     "type": "string"
