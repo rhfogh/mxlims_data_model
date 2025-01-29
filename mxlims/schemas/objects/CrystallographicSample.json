@@ -19,6 +19,12 @@
             ],
             "description": "PreparedSample for crystallographic experiments",
             "properties": {
+                "mxlims_type": {
+                    "const": "CrystallographicSample",
+                    "description": "The type of MXLIMS object.",
+                    "title": "Mxlims Type",
+                    "type": "string"
+                },
                 "macromolecule": {
                     "allOf": [
                         {
@@ -42,6 +48,13 @@
                         }
                     ],
                     "description": "Crystal form, with unit cell and space group, as determined during processing"
+                },
+                "radiation_sensitivity": {
+                    "maximum": 1.0,
+                    "minimum": 0.0,
+                    "type": "number",
+                    "description": "Relative radiation sensitivity of sample.",
+                    "title": "Radiation Sensitivity"
                 },
                 "identifiers": {
                     "additionalProperties": {

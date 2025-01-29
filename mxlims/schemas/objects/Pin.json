@@ -19,6 +19,12 @@
                 }
             ],
             "properties": {
+                "mxlims_type": {
+                    "const": "Pin",
+                    "description": "The type of MXLIMS object.",
+                    "title": "Mxlims Type",
+                    "type": "string"
+                },
                 "barcode": {
                     "type": "string",
                     "description": "The Pin barcode or RFID code"

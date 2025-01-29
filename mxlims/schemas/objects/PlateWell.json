@@ -19,6 +19,12 @@
                 }
             ],
             "properties": {
+                "mxlims_type": {
+                    "const": "PlateWell",
+                    "description": "The type of MXLIMS object.",
+                    "title": "Mxlims Type",
+                    "type": "string"
+                },
                 "row_number": {
                     "type": "integer",
                     "description": "<The row number of this well. This is 1-based, so row A is 1, row H is 8. This should be validated against the plateType's rows property.",
