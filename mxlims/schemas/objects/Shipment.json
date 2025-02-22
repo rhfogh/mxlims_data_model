@@ -1,0 +1,110 @@
+{
+    "description": "Shipment",
+    "title": "Shipment",
+    "type": "object",
+    "id": "Shipment.json",
+    "allOf": [
+        {
+            "$ref": "../core/LogisticalSample.json"
+        }
+    ],
+    "$defs": {
+        "ShipmentData": {
+            "type": "object",
+            "title": "Shipment Data",
+            "description": "<p>Data for a shipment.</p><p>If only one of <code>labContactOutbound</code> and <code>labContactReturn</code> is present, both are assumed to be the same. If neither is present, the lab contact for both outbound and return is assumed to be the authenticated user submitting the shipment.</p>",
+            "comment": "TODO diffraction plan for additional properties",
+            "allOf": [
+                {
+                    "$ref": "../core/MxlimsData.json"
+                }
+            ],
+            "properties": {
+                "proposal_code": {
+                    "type": "string",
+                    "description": "The proposal number at the receiving facility.",
+                    "examples": [
+                        "mx1234"
+                    ]
+                },
+                "session_number": {
+                    "type": "integer",
+                    "description": "The session number within the proposal. This property must be absent if <code>unattendedCollection</code> is present.",
+                    "minimum": 1
+                },
+                "comments": {
+                    "type": "string",
+                    "description": "A comment about the shipment.",
+                    "maxLength": 250
+                },
+                "unattended_collection": {
+                    "type": "boolean",
+                    "description": "If this shipment is for unattended collection, then this property must be present and true. Otherwise, it must be absent and a <code>session</code> must be present.",
+                    "enum": [
+                        true
+                    ]
+                },
+                "labContactOutbound": {
+                    "$ref": "../datatypes/Person.json"
+                },
+                "labContactReturn": {
+                    "$ref": "../datatypes/Person.json"
+                },
+                "identifiers": {
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Dictionary str:str of contextName: identifier. ContextName will typically refer to a LIMS, database, or web site but could also be e.g. 'smiles' or 'sequence'",
+                    "title": "Identifiers",
+                    "type": "object"
+                },
+                "trackingDevice": {
+                    "$ref": "../datatypes/TrackingDevice.json"
+                }
+            },
+            "required": [
+                "proposal_code",
+                "contents"
+            ],
+            "oneOf": [
+                {
+                    "required": [
+                        "session_number"
+                    ]
+                },
+                {
+                    "required": [
+                        "unattended_collection"
+                    ]
+                }
+            ]
+        }
+    },
+    "properties": {
+        "data": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/ShipmentData"
+                }
+            ]
+        },
+        "contents": {
+            "oneOf": [
+                {
+                    "type": "array",
+                    "items": {
+                        "$ref": "Dewar.json"
+                    },
+                    "minItems": 1
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "$ref": "Plate.json"
+                    },
+                    "minItems": 1
+                }
+            ]
+        }
+    }
+}

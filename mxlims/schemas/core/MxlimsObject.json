@@ -1,0 +1,40 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "description": "Base object for all MXLISM objects: Jobm, Dataset, PreparedSample, and LogisticalSample",
+    "title": "MxlimsObject",
+    "type": "object",
+    "id": "MxlimsObject.json",
+    "properties": {
+        "version": {
+            "const": "0.3.0",
+            "default": "0.3.0",
+            "description": "MXLIMS version for current model",
+            "title": "Version",
+            "type": "string"
+        },
+        "uuid": {
+            "description": "Permanent unique identifier string",
+            "title": "Uuid",
+            "type": "string",
+            "format": "uuid"
+        },
+        "data": {
+            "allOf": [
+                {
+                    "$ref": "MxlimsData.json"
+                }
+            ],
+            "description": "Metadata object, also defining the precise type."
+        },
+        "extensions": {
+            "description": "Keyword-value dictionary string:Any of extensions. Use is accepted but discouraged",
+            "title": "Extensions",
+            "type": "object"
+        }
+    },
+    "required": [
+        "version",
+        "uuid",
+        "data"
+    ]
+}

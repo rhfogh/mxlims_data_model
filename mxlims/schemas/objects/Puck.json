@@ -1,0 +1,53 @@
+{
+    "description": "A puck containing mounted crystals on pins.",
+    "title": "Puck",
+    "type": "object",
+    "id": "Puck.json",
+    "allOf": [
+        {
+            "$ref": "../core/LogisticalSample.json"
+        }
+    ],
+    "$defs": {
+        "PuckData": {
+            "type": "object",
+            "title": "Puck Data",
+            "description": "Data for pucks containing mounted crystals on pins.",
+            "allOf": [
+                {
+                    "$ref": "../core/MxlimsData.json"
+                }
+            ],
+            "properties": {
+                "barcode": {
+                    "type": "string",
+                    "description": "The Puck barcode or RFID code"
+                },
+                "number_positions": {
+                    "type": "integer",
+                    "description": "The number of pin positions available.",
+                    "minimum": 1
+                }
+            },
+            "required": [
+                "number_positions"
+            ]
+        }
+    },
+    "properties": {
+        "data": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/PuckData"
+                }
+            ]
+        },
+        "contents": {
+            "type": "array",
+            "items": {
+                "$ref": "Pin.json"
+            },
+            "minItems": 1
+        }
+    }
+}

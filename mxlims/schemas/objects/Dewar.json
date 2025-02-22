@@ -1,0 +1,48 @@
+{
+    "description": "A dewar containing pucks with mounted crystals on pins.",
+    "title": "Dewar",
+    "type": "object",
+    "id": "Dewar.json",
+    "allOf": [
+        {
+            "$ref": "../core/LogisticalSample.json"
+        }
+    ],
+    "$defs": {
+        "DewarData": {
+            "type": "object",
+            "title": "Dewar Data",
+            "description": "Data for dewar containing pucks with mounted crystals on pins.",
+            "allOf": [
+                {
+                    "$ref": "../core/MxlimsData.json"
+                }
+            ],
+            "properties": {
+                "barcode": {
+                    "type": "string",
+                    "description": "The dewar barcode or RFID code"
+                },
+                "tracking_device": {
+                    "$ref": "../datatypes/TrackingDevice.json"
+                }
+            }
+        }
+    },
+    "properties": {
+        "data": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/DewarData"
+                }
+            ]
+        },
+        "contents": {
+            "type": "array",
+            "items": {
+                "$ref": "Puck.json"
+            },
+            "minItems": 1
+        }
+    }
+}

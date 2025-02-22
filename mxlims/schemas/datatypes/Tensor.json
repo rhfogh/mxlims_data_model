@@ -1,0 +1,52 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "description": "Tensor",
+    "title": "Tensor",
+    "type": "object",
+    "id": "Tensor.json",
+    "properties": {
+        "eigenvalues": {
+            "description": "Eigenvalues of tensor",
+            "maxItems": 3,
+            "minItems": 3,
+            "prefixItems": [
+                {
+                    "type": "number"
+                },
+                {
+                    "type": "number"
+                },
+                {
+                    "type": "number"
+                }
+            ],
+            "title": "Eigenvalues",
+            "type": "array"
+        },
+        "eigenvectors": {
+            "description": "Eigenvectors (unit vectors) of tensor, in same order as eigenvalues",
+            "items": {
+                "maxItems": 3,
+                "minItems": 3,
+                "prefixItems": [
+                    {
+                        "type": "number"
+                    },
+                    {
+                        "type": "number"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ],
+                "type": "array"
+            },
+            "title": "Eigenvectors",
+            "type": "array"
+        }
+    },
+    "required": [
+        "eigenvalues",
+        "eigenvectors"
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "description": "Base class for MXLIMS Prepared Samples describing Sample content",
+    "title": "Prepared Sample",
+    "type": "object",
+    "id": "PreparedSample.json",
+    "allOf": [
+        {
+            "$ref": "MxlimsObject.json"
+        }
+    ]
+}

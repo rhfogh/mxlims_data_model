@@ -1,0 +1,41 @@
+{
+    "description": "Base class for MXLIMS Logistical Samples\n\ndescribing Sample containers and locations\n(from Dewars and Plates to drops, pins and crystals)",
+    "title": "LogisticalSample",
+    "type": "object",
+    "id": "LogisticalSample.json",
+    "allOf": [
+        {
+            "$ref": "MxlimsObject.json"
+        }
+    ],
+    "properties": {
+        "sample_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "String UUID of the PreparedSemple that applies to this LogisticalSample and all its contents",
+            "title": "Sample Id"
+        },
+        "container_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "String UUID of the LogisticalSample containing this one",
+            "title": "Container Id"
+        },
+        "contents": {
+            "description": "List of directly contained LogisticalSamples.NB the container_id of the contents must point to this LogisticalSample.This field allows contents to be contained directly in the JSON fileand allows for constraining content types in subtypes(E.g. Pucks can only contain contain Pins",
+            "items": {
+                "$ref": "#"
+            },
+            "title": "Contents",
+            "type": "array"
+        },
+        "jobs": {
+            "description": "List of directly attached Jobs.NB the logistical_sample_id of the jobs must point to this LogisticalSample.This field allows attached jobs to be contained directly in the JSON fileand allows for constraining job types in subtypes",
+            "items": {
+                "$ref": "Job.json"
+            },
+            "title": "Jobs",
+            "type": "array"
+        }
+    }
+}

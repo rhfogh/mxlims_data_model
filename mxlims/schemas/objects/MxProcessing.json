@@ -1,0 +1,55 @@
+{
+    "description": "Crystallography Processing calculation,",
+    "title": "MxProcessing",
+    "type": "object",
+    "id": "MxProcessing.json",
+    "allOf": [
+        {
+            "$ref": "../core/Job.json"
+        }
+    ],
+    "$defs": {
+        "MxProcessingData": {
+            "description": "Metadata for MX Crystallographic processing calculation,\n\ngoing from images to reflection sets",
+            "title": "MXProcessing Data",
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "../core/MxlimsData.json"
+                }
+            ],
+            "properties": {
+                "mxlims_type": {
+                    "const": "MXProcessing",
+                    "description": "Type of MXLIMS object.",
+                    "title": "Mxlims Type",
+                    "type": "string"
+                },
+                "crystal_form": {
+                    "allOf": [
+                        {
+                            "$ref": "../datatypes/CrystalForm.json"
+                        }
+                    ],
+                    "description": "Crystal form, with unit cell and space group, to use for processing"
+                }
+            }
+        }
+    },
+    "properties": {
+        "data": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/MxProcessingData"
+                }
+            ]
+        },
+        "contents": {
+            "type": "array",
+            "items": {
+                "$ref": "ReflectionSet.json"
+            },
+            "minItems": 1
+        }
+    }
+}

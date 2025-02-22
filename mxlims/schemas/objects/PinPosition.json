@@ -1,0 +1,50 @@
+{
+    "description": "An independent Position within a Pin where crystals can be located.",
+    "title": "PinPosition",
+    "type": "object",
+    "id": "PinPosition.json",
+    "allOf": [
+        {
+            "$ref": "../core/LogisticalSample.json"
+        }
+    ],
+    "$defs": {
+        "PinPositionData": {
+            "type": "object",
+            "title": "PinPosition Data",
+            "description": "Data for a position within a pin mounted forming a slot for crystals.",
+            "allOf": [
+                {
+                    "$ref": "../core/MxlimsData.json"
+                }
+            ],
+            "properties": {
+                "position_in_pin": {
+                  "type":"integer",
+                  "description":"The pin position within  the pin. This should be validated against the pin's number_positions property.",
+                  "minimum": 1,
+                  "examples":[4]
+                }
+            },
+            "required": [
+                "position_in_pin"
+            ]
+        }
+    },
+    "properties": {
+        "data": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/PinPositionData"
+                }
+            ]
+        },
+        "contents": {
+            "type": "array",
+            "items": {
+                "$ref": "Crystal.json"
+            },
+            "minItems": 1
+        }
+    }
+}

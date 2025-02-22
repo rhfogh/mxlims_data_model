@@ -1,0 +1,118 @@
+{
+    "description": "Crystallography experiment, producing data",
+    "title": "MxExperiment",
+    "type": "object",
+    "id": "MxExperiment.json",
+    "allOf": [
+        {
+            "$ref": "../core/Job.json"
+        }
+    ],
+    "$defs": {
+        "MxExperimentData": {
+            "description": "Metadata for MX Crystallographic data acquisition experiment.",
+            "title": "MxExperiment Data",
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "../core/MxlimsData.json"
+                }
+            ],
+            "properties": {
+                "mxlims_type": {
+                    "const": "MxExperiment",
+                    "description": "The type of MXLIMS object.",
+                    "title": "Mxlims Type",
+                    "type": "string"
+                },
+                "experiment_strategy": {
+                    "type": "string",
+                    "description": "Experiment strategy indicator",
+                    "examples": [
+                        "OSC",
+                        "Helical",
+                        "MXPressE",
+                        "GPhL.native.basic",
+                        "GPhL.SAD.advanced",
+                        "GPhL.2wvlMAD.basic"
+                    ],
+                    "title": "Experiment Strategy"
+                },
+                "expected_resolution": {
+                    "minimum": 0.0,
+                    "type": "number",
+                    "description": "The resolution expected in the experiment - for positioning the detector and setting up the experiment",
+                    "title": "Expected Resolution"
+                },
+                "target_completeness": {
+                    "maximum": 100.0,
+                    "minimum": 0.0,
+                    "type": "number",
+                    "description": "Minimal completeness expected from experiment",
+                    "title": "Target Completeness"
+                },
+                "target_multiplicity": {
+                    "minimum": 0.0,
+                    "type": "number",
+                    "description": "Minimal multiplicity expected from experiment",
+                    "title": "Target Multiplicity"
+                },
+                "dose_budget": {
+                    "minimum": 0.0,
+                    "type": "number",
+                    "description": "Dose (MGy) to be used in experiment",
+                    "title": "Dose Budget"
+                },
+                "snapshot_count": {
+                    "minimum": 0,
+                    "type": "integer",
+                    "default": 0,
+                    "description": "Number of snapshots to acquire after each (re)centring",
+                    "title": "Snapshot Count"
+                },
+                "wedge_width": {
+                    "minimum": 0.0,
+                    "type": "number",
+                    "description": "Wedge width (in degrees) to use for interleaving",
+                    "title": "Wedge Width"
+                },
+                "measured_flux": {
+                    "minimum": 0.0,
+                    "type": "number",
+                    "description": "Measured value of beam flux in photons/s",
+                    "title": "Measured Flux"
+                },
+                "radiation_dose": {
+                    "minimum": 0.0,
+                    "type": "number",
+                    "description": "Total radiation dose absorbed during experiment",
+                    "title": "Radiation Dose"
+                },
+                "crystal_form": {
+                    "allOf": [
+                        {
+                            "$ref": "../datatypes/CrystalForm.json"
+                        }
+                    ],
+                    "description": "Crystal form, with unit cell and space group, as determined during characterisation"
+                }
+            }
+        }
+    },
+    "properties": {
+        "data": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/MxExperimentData"
+                }
+            ]
+        },
+        "contents": {
+            "type": "array",
+            "items": {
+                "$ref": "CollectionSweep.json"
+            },
+            "minItems": 1
+        }
+    }
+}
