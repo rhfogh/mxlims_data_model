@@ -1,0 +1,575 @@
+{
+    "job": {
+        "version": "0.3.0",
+        "uuid": "dfc3d783-7e73-48a6-8482-09b00ba8494f",
+        "data": {
+            "mxlims_type": "MxExperiment",
+            "expected_resolution": 1.7,
+            "snapshot_count": 0,
+            "measured_flux": 229932592692.77942
+        },
+        "sample_id": "fbe02704-df0e-11ef-81a1-1cc10cdf7983",
+        "logistical_sample_id": "fbe02952-df0e-11ef-81a1-1cc10cdf7983",
+        "start_time": "2025-01-30T13:34:52.007966",
+        "end_time": "2025-01-30T13:45:24.896117",
+        "results": [
+            {
+                "version": "0.3.0",
+                "uuid": "7443127b-00dc-43e3-90bd-a1ae05fb8d7a",
+                "data": {
+                    "mxlims_type": "CollectionSweep",
+                    "sweep_type": "simple",
+                    "exposure_time": 0.04,
+                    "image_width": 0.1,
+                    "overlap": 0.0,
+                    "number_triggers": 0,
+                    "number_images_per_trigger": 0,
+                    "energy": 12.4,
+                    "transmission": 99.9,
+                    "resolution": 2.7000174028279242,
+                    "detector_roi_mode": "0",
+                    "beam_position": [
+                        1565.715,
+                        1713.974888
+                    ],
+                    "beam_size": [
+                        0.05,
+                        0.05
+                    ],
+                    "beam_shape": "rectangular",
+                    "axis_positions_start": {
+                        "phi": 0.0,
+                        "kappa": 11.0,
+                        "kappa_phi": 22.0,
+                        "phiy": 0.9766589636903855,
+                        "sampx": -0.023686396638198614,
+                        "sampy": -1.0103490650779992,
+                        "omega": 0.0,
+                        "detector_distance": 296.44
+                    },
+                    "axis_positions_end": {
+                        "omega": 181.2
+                    },
+                    "scan_axis": "omega",
+                    "scans": [
+                        {
+                            "scan_position_start": 0.0,
+                            "first_image_number": 1,
+                            "number_images": 12,
+                            "ordinal": 0
+                        },
+                        {
+                            "scan_position_start": 45.0,
+                            "first_image_number": 451,
+                            "number_images": 12,
+                            "ordinal": 1
+                        },
+                        {
+                            "scan_position_start": 90.0,
+                            "first_image_number": 901,
+                            "number_images": 12,
+                            "ordinal": 2
+                        },
+                        {
+                            "scan_position_start": 135.0,
+                            "first_image_number": 1351,
+                            "number_images": 12,
+                            "ordinal": 3
+                        },
+                        {
+                            "scan_position_start": 180.0,
+                            "first_image_number": 1801,
+                            "number_images": 12,
+                            "ordinal": 4
+                        }
+                    ],
+                    "file_type": "cbf",
+                    "prefix": "4k61",
+                    "filename_template": "4k61_1_%05d.cbf",
+                    "path": "/alt/rhfogh/calc/mxcube_data/visitor/idtest0/eh1/20250130/RAW_DATA/4k61_001/characterisation"
+                },
+                "source_id": "dfc3d783-7e73-48a6-8482-09b00ba8494f",
+                "role": "Characterisation",
+                "logistical_sample_id": "fbe02952-df0e-11ef-81a1-1cc10cdf7983"
+            },
+            {
+                "version": "0.3.0",
+                "uuid": "f6b3382a-71e8-4080-9cf1-fc6d0269baaa",
+                "data": {
+                    "mxlims_type": "CollectionSweep",
+                    "sweep_type": "simple",
+                    "exposure_time": 0.127701,
+                    "image_width": 0.2,
+                    "overlap": 0.0,
+                    "number_triggers": 0,
+                    "number_images_per_trigger": 0,
+                    "energy": 12.4,
+                    "transmission": 99.984,
+                    "resolution": 2.7000174028279242,
+                    "detector_roi_mode": "0",
+                    "beam_position": [
+                        1565.715,
+                        1713.974888
+                    ],
+                    "beam_size": [
+                        0.05,
+                        0.05
+                    ],
+                    "beam_shape": "rectangular",
+                    "axis_positions_start": {
+                        "phi": 6.82493970681199,
+                        "kappa": 78.8254015477211,
+                        "kappa_phi": 69.3024865364905,
+                        "phiy": 0.9793377404131831,
+                        "sampx": 0.06454384281169706,
+                        "sampy": -1.0431954795508387,
+                        "omega": 6.82493970681199,
+                        "detector_distance": 296.44
+                    },
+                    "axis_positions_end": {
+                        "omega": 186.824939706812
+                    },
+                    "scan_axis": "omega",
+                    "scans": [
+                        {
+                            "scan_position_start": 6.82493970681199,
+                            "first_image_number": 1,
+                            "number_images": 300,
+                            "ordinal": 5
+                        },
+                        {
+                            "scan_position_start": 66.82493970681199,
+                            "first_image_number": 301,
+                            "number_images": 300,
+                            "ordinal": 7
+                        },
+                        {
+                            "scan_position_start": 126.82493970681199,
+                            "first_image_number": 601,
+                            "number_images": 300,
+                            "ordinal": 9
+                        }
+                    ],
+                    "file_type": "cbf",
+                    "prefix": "4k61_G1B1",
+                    "filename_template": "4k61_G1B1_2_%05d.cbf",
+                    "path": "/alt/rhfogh/calc/mxcube_data/visitor/idtest0/eh1/20250130/RAW_DATA/4k61_001/main"
+                },
+                "source_id": "dfc3d783-7e73-48a6-8482-09b00ba8494f",
+                "role": "Result",
+                "logistical_sample_id": "fbe02952-df0e-11ef-81a1-1cc10cdf7983"
+            },
+            {
+                "version": "0.3.0",
+                "uuid": "2a19c0ff-e1f4-4d85-bb71-68d3509c0ced",
+                "data": {
+                    "mxlims_type": "CollectionSweep",
+                    "sweep_type": "simple",
+                    "exposure_time": 0.127701,
+                    "image_width": 0.2,
+                    "overlap": 0.0,
+                    "number_triggers": 0,
+                    "number_images_per_trigger": 0,
+                    "energy": 12.41,
+                    "transmission": 99.984,
+                    "resolution": 2.7000174028279242,
+                    "detector_roi_mode": "0",
+                    "beam_position": [
+                        1565.715,
+                        1713.974888
+                    ],
+                    "beam_size": [
+                        0.05,
+                        0.05
+                    ],
+                    "beam_shape": "rectangular",
+                    "axis_positions_start": {
+                        "phi": 6.82493970681199,
+                        "omega": 6.82493970681199,
+                        "detector_distance": 296.44
+                    },
+                    "axis_positions_end": {
+                        "omega": 186.824939706812
+                    },
+                    "scan_axis": "omega",
+                    "scans": [
+                        {
+                            "scan_position_start": 6.82493970681199,
+                            "first_image_number": 1,
+                            "number_images": 300,
+                            "ordinal": 6
+                        },
+                        {
+                            "scan_position_start": 66.82493970681199,
+                            "first_image_number": 301,
+                            "number_images": 300,
+                            "ordinal": 8
+                        },
+                        {
+                            "scan_position_start": 126.82493970681199,
+                            "first_image_number": 601,
+                            "number_images": 300,
+                            "ordinal": 10
+                        }
+                    ],
+                    "file_type": "cbf",
+                    "prefix": "4k61_G1B2",
+                    "filename_template": "4k61_G1B2_2_%05d.cbf",
+                    "path": "/alt/rhfogh/calc/mxcube_data/visitor/idtest0/eh1/20250130/RAW_DATA/4k61_001/main"
+                },
+                "source_id": "dfc3d783-7e73-48a6-8482-09b00ba8494f",
+                "role": "Result",
+                "logistical_sample_id": "fbe02952-df0e-11ef-81a1-1cc10cdf7983"
+            },
+            {
+                "version": "0.3.0",
+                "uuid": "062f2393-59e2-4015-8e54-98fdffae5e1c",
+                "data": {
+                    "mxlims_type": "CollectionSweep",
+                    "sweep_type": "simple",
+                    "exposure_time": 0.127701,
+                    "image_width": 0.2,
+                    "overlap": 0.0,
+                    "number_triggers": 0,
+                    "number_images_per_trigger": 0,
+                    "energy": 12.4,
+                    "transmission": 99.984,
+                    "resolution": 2.7000174028279242,
+                    "detector_roi_mode": "0",
+                    "beam_position": [
+                        1565.715,
+                        1713.974888
+                    ],
+                    "beam_size": [
+                        0.05,
+                        0.05
+                    ],
+                    "beam_shape": "rectangular",
+                    "axis_positions_start": {
+                        "phi": 355.82136256602496,
+                        "kappa": 78.8327114931052,
+                        "kappa_phi": -110.701090604297,
+                        "phiz": 1.1,
+                        "phiy": 0.9487468077920228,
+                        "sampx": 0.027743118614087445,
+                        "sampy": -0.9366612782360959,
+                        "omega": 175.821362566025,
+                        "detector_distance": 296.44
+                    },
+                    "axis_positions_end": {
+                        "omega": 208.821362566025
+                    },
+                    "scan_axis": "omega",
+                    "scans": [
+                        {
+                            "scan_position_start": 175.821362566025,
+                            "first_image_number": 956,
+                            "number_images": 165,
+                            "ordinal": 11
+                        }
+                    ],
+                    "file_type": "cbf",
+                    "prefix": "4k61_G2B1",
+                    "filename_template": "4k61_G2B1_2_%05d.cbf",
+                    "path": "/alt/rhfogh/calc/mxcube_data/visitor/idtest0/eh1/20250130/RAW_DATA/4k61_001/main"
+                },
+                "source_id": "dfc3d783-7e73-48a6-8482-09b00ba8494f",
+                "role": "Result",
+                "logistical_sample_id": "fbe02952-df0e-11ef-81a1-1cc10cdf7983"
+            },
+            {
+                "version": "0.3.0",
+                "uuid": "e85e7946-d7f8-4d01-abdd-43d588d0260c",
+                "data": {
+                    "mxlims_type": "CollectionSweep",
+                    "sweep_type": "simple",
+                    "exposure_time": 0.127701,
+                    "image_width": 0.2,
+                    "overlap": 0.0,
+                    "number_triggers": 0,
+                    "number_images_per_trigger": 0,
+                    "energy": 12.41,
+                    "transmission": 99.984,
+                    "resolution": 2.7000174028279242,
+                    "detector_roi_mode": "0",
+                    "beam_position": [
+                        1565.715,
+                        1713.974888
+                    ],
+                    "beam_size": [
+                        0.05,
+                        0.05
+                    ],
+                    "beam_shape": "rectangular",
+                    "axis_positions_start": {
+                        "phi": 175.821362566025,
+                        "omega": 175.821362566025,
+                        "detector_distance": 296.44
+                    },
+                    "axis_positions_end": {
+                        "omega": 208.821362566025
+                    },
+                    "scan_axis": "omega",
+                    "scans": [
+                        {
+                            "scan_position_start": 175.821362566025,
+                            "first_image_number": 956,
+                            "number_images": 165,
+                            "ordinal": 12
+                        }
+                    ],
+                    "file_type": "cbf",
+                    "prefix": "4k61_G2B2",
+                    "filename_template": "4k61_G2B2_2_%05d.cbf",
+                    "path": "/alt/rhfogh/calc/mxcube_data/visitor/idtest0/eh1/20250130/RAW_DATA/4k61_001/main"
+                },
+                "source_id": "dfc3d783-7e73-48a6-8482-09b00ba8494f",
+                "role": "Result",
+                "logistical_sample_id": "fbe02952-df0e-11ef-81a1-1cc10cdf7983"
+            },
+            {
+                "version": "0.3.0",
+                "uuid": "a3e4d3b5-4595-4f0e-aa1f-81c7a3658bf0",
+                "data": {
+                    "mxlims_type": "CollectionSweep",
+                    "sweep_type": "simple",
+                    "exposure_time": 0.127701,
+                    "image_width": 0.2,
+                    "overlap": 0.0,
+                    "number_triggers": 0,
+                    "number_images_per_trigger": 0,
+                    "energy": 12.4,
+                    "transmission": 99.984,
+                    "resolution": 2.7000174028279242,
+                    "detector_roi_mode": "0",
+                    "beam_position": [
+                        1565.715,
+                        1713.974888
+                    ],
+                    "beam_size": [
+                        0.05,
+                        0.05
+                    ],
+                    "beam_shape": "rectangular",
+                    "axis_positions_start": {
+                        "phi": 164.821362566025,
+                        "omega": 164.821362566025,
+                        "detector_distance": 296.44
+                    },
+                    "axis_positions_end": {
+                        "omega": 175.821362566025
+                    },
+                    "scan_axis": "omega",
+                    "scans": [
+                        {
+                            "scan_position_start": 164.821362566025,
+                            "first_image_number": 901,
+                            "number_images": 55,
+                            "ordinal": 13
+                        }
+                    ],
+                    "file_type": "cbf",
+                    "prefix": "4k61_G2B1",
+                    "filename_template": "4k61_G2B1_2_%05d.cbf",
+                    "path": "/alt/rhfogh/calc/mxcube_data/visitor/idtest0/eh1/20250130/RAW_DATA/4k61_001/main"
+                },
+                "source_id": "dfc3d783-7e73-48a6-8482-09b00ba8494f",
+                "role": "Result",
+                "logistical_sample_id": "fbe02952-df0e-11ef-81a1-1cc10cdf7983"
+            },
+            {
+                "version": "0.3.0",
+                "uuid": "f77e92b1-44ad-496d-bfb7-408003018398",
+                "data": {
+                    "mxlims_type": "CollectionSweep",
+                    "sweep_type": "simple",
+                    "exposure_time": 0.127701,
+                    "image_width": 0.2,
+                    "overlap": 0.0,
+                    "number_triggers": 0,
+                    "number_images_per_trigger": 0,
+                    "energy": 12.41,
+                    "transmission": 99.984,
+                    "resolution": 2.7000174028279242,
+                    "detector_roi_mode": "0",
+                    "beam_position": [
+                        1565.715,
+                        1713.974888
+                    ],
+                    "beam_size": [
+                        0.05,
+                        0.05
+                    ],
+                    "beam_shape": "rectangular",
+                    "axis_positions_start": {
+                        "phi": 164.821362566025,
+                        "omega": 164.821362566025,
+                        "detector_distance": 296.44
+                    },
+                    "axis_positions_end": {
+                        "omega": 175.821362566025
+                    },
+                    "scan_axis": "omega",
+                    "scans": [
+                        {
+                            "scan_position_start": 164.821362566025,
+                            "first_image_number": 901,
+                            "number_images": 55,
+                            "ordinal": 14
+                        }
+                    ],
+                    "file_type": "cbf",
+                    "prefix": "4k61_G2B2",
+                    "filename_template": "4k61_G2B2_2_%05d.cbf",
+                    "path": "/alt/rhfogh/calc/mxcube_data/visitor/idtest0/eh1/20250130/RAW_DATA/4k61_001/main"
+                },
+                "source_id": "dfc3d783-7e73-48a6-8482-09b00ba8494f",
+                "role": "Result",
+                "logistical_sample_id": "fbe02952-df0e-11ef-81a1-1cc10cdf7983"
+            },
+            {
+                "version": "0.3.0",
+                "uuid": "0555111c-ca73-48fd-8b55-eb2037b60de1",
+                "data": {
+                    "mxlims_type": "CollectionSweep",
+                    "sweep_type": "simple",
+                    "exposure_time": 0.127701,
+                    "image_width": 0.2,
+                    "overlap": 0.0,
+                    "number_triggers": 0,
+                    "number_images_per_trigger": 0,
+                    "energy": 12.4,
+                    "transmission": 99.984,
+                    "resolution": 2.7000174028279242,
+                    "detector_roi_mode": "0",
+                    "beam_position": [
+                        1565.715,
+                        1713.974888
+                    ],
+                    "beam_size": [
+                        0.05,
+                        0.05
+                    ],
+                    "beam_shape": "rectangular",
+                    "axis_positions_start": {
+                        "phi": -15.1786374339754,
+                        "omega": -15.1786374339754,
+                        "detector_distance": 296.44
+                    },
+                    "axis_positions_end": {
+                        "omega": 164.82136256602462
+                    },
+                    "scan_axis": "omega",
+                    "scans": [
+                        {
+                            "scan_position_start": -15.1786374339754,
+                            "first_image_number": 1,
+                            "number_images": 300,
+                            "ordinal": 15
+                        },
+                        {
+                            "scan_position_start": 44.821362566024604,
+                            "first_image_number": 301,
+                            "number_images": 300,
+                            "ordinal": 17
+                        },
+                        {
+                            "scan_position_start": 104.8213625660246,
+                            "first_image_number": 601,
+                            "number_images": 300,
+                            "ordinal": 19
+                        }
+                    ],
+                    "file_type": "cbf",
+                    "prefix": "4k61_G2B1",
+                    "filename_template": "4k61_G2B1_2_%05d.cbf",
+                    "path": "/alt/rhfogh/calc/mxcube_data/visitor/idtest0/eh1/20250130/RAW_DATA/4k61_001/main"
+                },
+                "source_id": "dfc3d783-7e73-48a6-8482-09b00ba8494f",
+                "role": "Result",
+                "logistical_sample_id": "fbe02952-df0e-11ef-81a1-1cc10cdf7983"
+            },
+            {
+                "version": "0.3.0",
+                "uuid": "256b60e6-79b4-493b-9942-a5be074105fa",
+                "data": {
+                    "mxlims_type": "CollectionSweep",
+                    "sweep_type": "simple",
+                    "exposure_time": 0.127701,
+                    "image_width": 0.2,
+                    "overlap": 0.0,
+                    "number_triggers": 0,
+                    "number_images_per_trigger": 0,
+                    "energy": 12.41,
+                    "transmission": 99.984,
+                    "resolution": 2.7000174028279242,
+                    "detector_roi_mode": "0",
+                    "beam_position": [
+                        1565.715,
+                        1713.974888
+                    ],
+                    "beam_size": [
+                        0.05,
+                        0.05
+                    ],
+                    "beam_shape": "rectangular",
+                    "axis_positions_start": {
+                        "phi": -15.1786374339754,
+                        "omega": -15.1786374339754,
+                        "detector_distance": 296.44
+                    },
+                    "axis_positions_end": {
+                        "omega": 164.82136256602462
+                    },
+                    "scan_axis": "omega",
+                    "scans": [
+                        {
+                            "scan_position_start": -15.1786374339754,
+                            "first_image_number": 1,
+                            "number_images": 300,
+                            "ordinal": 16
+                        },
+                        {
+                            "scan_position_start": 44.821362566024604,
+                            "first_image_number": 301,
+                            "number_images": 300,
+                            "ordinal": 18
+                        },
+                        {
+                            "scan_position_start": 104.8213625660246,
+                            "first_image_number": 601,
+                            "number_images": 300,
+                            "ordinal": 20
+                        }
+                    ],
+                    "file_type": "cbf",
+                    "prefix": "4k61_G2B2",
+                    "filename_template": "4k61_G2B2_2_%05d.cbf",
+                    "path": "/alt/rhfogh/calc/mxcube_data/visitor/idtest0/eh1/20250130/RAW_DATA/4k61_001/main"
+                },
+                "source_id": "dfc3d783-7e73-48a6-8482-09b00ba8494f",
+                "role": "Result",
+                "logistical_sample_id": "fbe02952-df0e-11ef-81a1-1cc10cdf7983"
+            }
+        ]
+    },
+    "sample": {
+        "version": "0.3.0",
+        "uuid": "fbe02704-df0e-11ef-81a1-1cc10cdf7983",
+        "data": {
+            "mxlims_type": "CrystallographicSample",
+            "crystal_form": {
+                "space_group_name": "I4"
+            },
+            "radiation_sensitivity": 1.0
+        }
+    },
+    "logistical_sample": {
+        "version": "0.3.0",
+        "uuid": "fbe02952-df0e-11ef-81a1-1cc10cdf7983",
+        "data": {
+            "mxlims_type": "Crystal"
+        },
+        "sample_id": "fbe02704-df0e-11ef-81a1-1cc10cdf7983"
+    }
+}

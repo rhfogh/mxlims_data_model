@@ -19,6 +19,12 @@
                 }
             ],
             "properties": {
+                "mxlims_type": {
+                    "const": "Crystal",
+                    "description": "The type of MXLIMS object.",
+                    "title": "Mxlims Type",
+                    "type": "string"
+                },
                 "comment": {
                     "type": "string",
                     "description": "Comment or annotation."

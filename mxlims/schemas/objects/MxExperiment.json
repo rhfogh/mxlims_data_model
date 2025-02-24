@@ -107,7 +107,7 @@
                 }
             ]
         },
-        "contents": {
+        "results": {
             "type": "array",
             "items": {
                 "$ref": "CollectionSweep.json"

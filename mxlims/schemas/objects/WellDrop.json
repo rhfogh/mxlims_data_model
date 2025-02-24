@@ -19,6 +19,12 @@
                 }
             ],
             "properties": {
+                "mxlims_type": {
+                    "const": "WellDrop",
+                    "description": "The type of MXLIMS object.",
+                    "title": "Mxlims Type",
+                    "type": "string"
+                },
                 "drop_number": {
                     "type": "integer",
                     "description": "The drop number. This should be validated against the plateType's number_sub_positions property.",

@@ -19,11 +19,17 @@
                 }
             ],
             "properties": {
+                "mxlims_type": {
+                    "const": "PinPosition",
+                    "description": "The type of MXLIMS object.",
+                    "title": "Mxlims Type",
+                    "type": "string"
+                },
                 "position_in_pin": {
-                  "type":"integer",
-                  "description":"The pin position within  the pin. This should be validated against the pin's number_positions property.",
-                  "minimum": 1,
-                  "examples":[4]
+                    "type":"integer",
+                    "description":"The pin position within  the pin. This should be validated against the pin's number_positions property.",
+                    "minimum": 1,
+                    "examples":[4]
                 }
             },
             "required": [

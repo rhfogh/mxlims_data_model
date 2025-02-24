@@ -25,6 +25,7 @@
     "properties": {
         "sample_id": {
             "type": "string",
+            "format": "uuid",
             "description": "String UUID of the PreparedSample that applies to this Job",
             "title": "Sample Id"
         },

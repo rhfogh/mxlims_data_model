@@ -19,6 +19,12 @@
                 }
             ],
             "properties": {
+                "mxlims_type": {
+                    "const": "Dewar",
+                    "description": "The type of MXLIMS object.",
+                    "title": "Mxlims Type",
+                    "type": "string"
+                },
                 "barcode": {
                     "type": "string",
                     "description": "The dewar barcode or RFID code"

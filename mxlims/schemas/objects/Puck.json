@@ -19,6 +19,12 @@
                 }
             ],
             "properties": {
+                "mxlims_type": {
+                    "const": "Puck",
+                    "description": "The type of MXLIMS object.",
+                    "title": "Mxlims Type",
+                    "type": "string"
+                },
                 "barcode": {
                     "type": "string",
                     "description": "The Puck barcode or RFID code"
