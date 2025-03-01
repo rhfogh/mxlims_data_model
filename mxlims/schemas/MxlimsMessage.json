@@ -39,7 +39,7 @@
             "title": "Datasets",
             "type": "array"
         },
-        "prepared_samples": {
+        "preparedSamples": {
             "description": "List of directly contained Prepared Samples.",
             "items": {
                 "$ref": "#/$defs/CrystallographicSample"
@@ -47,7 +47,7 @@
             "title": "Prepared Samples",
             "type": "array"
         },
-        "logistical_samples": {
+        "logisticalSamples": {
             "description": "List of directly contained Logistical Samples.",
             "items": {
                 "$ref": "#/$defs/Shipment"

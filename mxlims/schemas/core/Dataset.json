@@ -9,13 +9,13 @@
         }
     ],
     "properties": {
-        "source_id": {
+        "sourceId": {
             "description": "String UUID of Job that created this Dataset.",
             "title": "Source Id",
             "type": "string",
             "format": "uuid"
         },
-        "derived_from_id": {
+        "derivedFromId": {
             "type": "string",
             "format": "uuid",
             "description": "String UUID of Dataset from which this Dataset was derived. Used for modified Datasets without a 'source' link, e.g. when removing images from a sweep before processing.",
@@ -32,7 +32,7 @@
             ],
             "title": "Role"
         },
-        "logistical_sample_id": {
+        "logisticalSampleId": {
             "type": "string",
             "format": "uuid",
             "description": "String UUID of LogisticalSample relevant to Dataset.",
@@ -43,14 +43,14 @@
         {
             "not": {
                 "required": [
-                    "source_id"
+                    "sourceId"
                 ]
             }
         },
         {
             "not": {
                 "required": [
-                    "derived_from_id"
+                    "derivedFromId"
                 ]
             }
         }

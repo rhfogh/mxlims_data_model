@@ -19,20 +19,20 @@
                 }
             ],
             "properties": {
-                "mxlims_type": {
+                "mxlimsType": {
                     "const": "WellDrop",
                     "description": "The type of MXLIMS object.",
                     "title": "Mxlims Type",
                     "type": "string"
                 },
-                "drop_number": {
+                "dropNumber": {
                     "type": "integer",
-                    "description": "The drop number. This should be validated against the plateType's number_sub_positions property.",
+                    "description": "The drop number. This should be validated against the plateType's numberSubPositions property.",
                     "minimum": 1
                 }
             },
             "required": [
-                "drop_number"
+                "dropNumber"
             ]
         }
     },

@@ -20,20 +20,20 @@
                 }
             ],
             "properties": {
-                "mxlims_type": {
+                "mxlimsType": {
                     "const": "Shipment",
                     "description": "The type of MXLIMS object.",
                     "title": "Mxlims Type",
                     "type": "string"
                 },
-                "proposal_code": {
+                "proposalCode": {
                     "type": "string",
                     "description": "The proposal number at the receiving facility.",
                     "examples": [
                         "mx1234"
                     ]
                 },
-                "session_number": {
+                "sessionNumber": {
                     "type": "integer",
                     "description": "The session number within the proposal. This property must be absent if <code>unattendedCollection</code> is present.",
                     "minimum": 1
@@ -43,7 +43,7 @@
                     "description": "A comment about the shipment.",
                     "maxLength": 250
                 },
-                "unattended_collection": {
+                "unattendedCollection": {
                     "type": "boolean",
                     "description": "If this shipment is for unattended collection, then this property must be present and true. Otherwise, it must be absent and a <code>session</code> must be present.",
                     "enum": [
@@ -69,18 +69,18 @@
                 }
             },
             "required": [
-                "proposal_code",
+                "proposalCode",
                 "contents"
             ],
             "oneOf": [
                 {
                     "required": [
-                        "session_number"
+                        "sessionNumber"
                     ]
                 },
                 {
                     "required": [
-                        "unattended_collection"
+                        "unattendedCollection"
                     ]
                 }
             ]

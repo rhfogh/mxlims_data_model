@@ -19,7 +19,7 @@
                 }
             ],
             "properties": {
-                "mxlims_type": {
+                "mxlimsType": {
                     "const": "Crystal",
                     "description": "The type of MXLIMS object.",
                     "title": "Mxlims Type",

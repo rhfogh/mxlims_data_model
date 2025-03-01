@@ -19,7 +19,7 @@
                 }
             ],
             "properties": {
-                "mxlims_type": {
+                "mxlimsType": {
                     "const": "Pin",
                     "description": "The type of MXLIMS object.",
                     "title": "Mxlims Type",
@@ -29,22 +29,22 @@
                     "type": "string",
                     "description": "The Pin barcode or RFID code"
                 },
-                "number_positions": {
+                "numberPositions": {
                     "type": "integer",
                     "description": "The number of positions available in the Pin.",
                     "default": 1,
                     "minimum": 1
                 },
-                "position_in_puck": {
+                "positionInPuck": {
                     "type":"integer",
-                    "description":"The puck position occupied by the pin. This should be validated against the puck's number_positions property.",
+                    "description":"The puck position occupied by the pin. This should be validated against the puck's numberPositions property.",
                     "minimum": 1,
                     "examples":[16]
                 }
             },
             "required": [
-                "number_positions",
-                "position_in_puck"
+                "numberPositions",
+                "positionInPuck"
             ]
         }
     },

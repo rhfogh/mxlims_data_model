@@ -19,28 +19,28 @@
                 }
             ],
             "properties": {
-                "mxlims_type": {
+                "mxlimsType": {
                     "const": "DropRegion",
                     "description": "The type of MXLIMS object.",
                     "title": "Mxlims Type",
                     "type": "string"
                 },
-                "image_region": {
+                "imageRegion": {
                     "$ref": "#/$defs/ImageRegion"
                 },
-                "plate_region": {
+                "plateRegion": {
                     "$ref": "#/$defs/PlateRegion"
                 }
             },
             "oneOf": [
                 {
                     "required": [
-                        "image_region"
+                        "imageRegion"
                     ]
                 },
                 {
                     "required": [
-                        "plate_region"
+                        "plateRegion"
                     ]
                 }
             ]
@@ -102,7 +102,7 @@
                         "image/jpeg"
                     ]
                 },
-                "light_type": {
+                "lightType": {
                     "description": "The light used to capture the image.",
                     "type": "string",
                     "enum": [
@@ -181,7 +181,7 @@
             "title": "Point",
             "description": "A point marked on an image or in absolute plate space.",
             "properties": {
-                "region_type": {
+                "regionType": {
                     "type": "string",
                     "enum": [
                         "point"
@@ -197,7 +197,7 @@
                 }
             },
             "required": [
-                "region_type",
+                "regionType",
                 "x",
                 "y"
             ]
@@ -207,7 +207,7 @@
             "title": "Circle",
             "description": "A circle marked on an image or in absolute plate space.",
             "properties": {
-                "region_type": {
+                "regionType": {
                     "type": "string",
                     "enum": [
                         "circle"
@@ -223,7 +223,7 @@
                 }
             },
             "required": [
-                "region_type",
+                "regionType",
                 "center",
                 "radius"
             ]
@@ -258,7 +258,7 @@
             "title": "Rectangle",
             "description": "<A rectangular region marked on an image or in absolute plate space. The box is defined by two points on diagonally opposite corners, with its edges parallel to the X and Y axes. Ensure that the two X values are not equal, and that the two Y values are not equal.",
             "properties": {
-                "region_type": {
+                "regionType": {
                     "type": "string",
                     "enum": [
                         "rectangle"
@@ -274,7 +274,7 @@
                 }
             },
             "required": [
-                "region_type",
+                "regionType",
                 "points"
             ]
         },

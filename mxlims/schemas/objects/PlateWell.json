@@ -19,18 +19,18 @@
                 }
             ],
             "properties": {
-                "mxlims_type": {
+                "mxlimsType": {
                     "const": "PlateWell",
                     "description": "The type of MXLIMS object.",
                     "title": "Mxlims Type",
                     "type": "string"
                 },
-                "row_number": {
+                "rowNumber": {
                     "type": "integer",
                     "description": "<The row number of this well. This is 1-based, so row A is 1, row H is 8. This should be validated against the plateType's rows property.",
                     "minimum": 1
                 },
-                "column_number": {
+                "columnNumber": {
                     "type": "integer",
                     "description": "<The column number of this well. This is 1-based, so should match the column labels on the plate. This should be validated against the plateType's columns property.",
                     "minimum": 1

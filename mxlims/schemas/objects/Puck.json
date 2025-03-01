@@ -19,7 +19,7 @@
                 }
             ],
             "properties": {
-                "mxlims_type": {
+                "mxlimsType": {
                     "const": "Puck",
                     "description": "The type of MXLIMS object.",
                     "title": "Mxlims Type",
@@ -29,14 +29,14 @@
                     "type": "string",
                     "description": "The Puck barcode or RFID code"
                 },
-                "number_positions": {
+                "numberPositions": {
                     "type": "integer",
                     "description": "The number of pin positions available.",
                     "minimum": 1
                 }
             },
             "required": [
-                "number_positions"
+                "numberPositions"
             ]
         }
     },

@@ -20,12 +20,12 @@
         }
     },
     "properties": {
-        "mxlims_type": {
+        "mxlimsType": {
             "description": "The type of MXLIMS data. May be restricted to enum in subclasses",
             "title": "Mxlims Type",
             "type": "string"
         },
-        "namespaced_extensions": {
+        "namespacedExtensions": {
             "description": "List of extensions to metadata, each defined in a NamespacedExtension schema",
             "items": {
                 "$ref": "#/$defs/NamespacedExtension"
@@ -35,6 +35,6 @@
         }
     },
     "required": [
-        "mxlims_type"
+        "mxlimsType"
     ]
 }

@@ -19,7 +19,7 @@
                 }
             ],
             "properties": {
-                "mxlims_type": {
+                "mxlimsType": {
                     "const": "Dewar",
                     "description": "The type of MXLIMS object.",
                     "title": "Mxlims Type",
@@ -29,7 +29,7 @@
                     "type": "string",
                     "description": "The dewar barcode or RFID code"
                 },
-                "tracking_device": {
+                "trackingDevice": {
                     "$ref": "../datatypes/TrackingDevice.json"
                 }
             }

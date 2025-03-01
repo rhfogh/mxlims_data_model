@@ -20,7 +20,7 @@
             "title": "Prepared Samples",
             "$ref": "#/$defs/CrystallographicSample"
         },
-        "logistical_sample": {
+        "logisticalSample": {
             "description": "Logistical Sample used for experiment. May contain nested content",
             "title": "Logistical Samples",
             "oneOf": [
@@ -34,7 +34,7 @@
     "required": [
         "job",
         "sample",
-        "logistical_sample"
+        "logisticalSample"
     ],
     "title": "MxExperimentMessage",
     "type": "object"

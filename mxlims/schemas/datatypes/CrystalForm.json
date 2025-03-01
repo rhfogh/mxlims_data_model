@@ -799,7 +799,7 @@
         }
     },
     "properties": {
-        "unit_cell": {
+        "unitCell": {
             "allOf": [
                 {
                     "$ref": "#/$defs/UnitCell"
@@ -807,7 +807,7 @@
             ],
             "description": "Unit cell for Crystal form."
         },
-        "space_group_name": {
+        "spaceGroupName": {
             "allOf": [
                 {
                     "$ref": "#/$defs/SpacegroupName"
@@ -820,12 +820,12 @@
     "anyOf": [
         {
             "required": [
-                "space_group_name"
+                "spaceGroupName"
             ]
         },
         {
             "required": [
-                "unit_cell"
+                "unitCell"
             ]
         }
     ]

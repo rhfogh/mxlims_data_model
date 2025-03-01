@@ -19,7 +19,7 @@
             ],
             "description": "PreparedSample for crystallographic experiments",
             "properties": {
-                "mxlims_type": {
+                "mxlimsType": {
                     "const": "CrystallographicSample",
                     "description": "The type of MXLIMS object.",
                     "title": "Mxlims Type",
@@ -41,7 +41,7 @@
                     "title": "Sample components",
                     "type": "array"
                 },
-                "crystal_form": {
+                "crystalForm": {
                     "allOf": [
                         {
                             "$ref": "../datatypes/CrystalForm.json"
@@ -49,7 +49,7 @@
                     ],
                     "description": "Crystal form, with unit cell and space group, as determined during processing"
                 },
-                "radiation_sensitivity": {
+                "radiationSensitivity": {
                     "maximum": 1.0,
                     "minimum": 0.0,
                     "type": "number",
