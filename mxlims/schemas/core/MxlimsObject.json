@@ -21,7 +21,7 @@
         "data": {
             "allOf": [
                 {
-                    "$ref": "MxlimsData.json"
+                    "$ref": "../core/MxlimsData.json"
                 }
             ],
             "description": "Metadata object, also defining the precise type."

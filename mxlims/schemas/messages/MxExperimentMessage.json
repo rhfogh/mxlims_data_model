@@ -1,13 +1,14 @@
 {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Message containg one MxExperiment and its saample and logistical sample",
     "$defs": {
-        "MxExperiment": {"$ref": "objects/MxExperiment.json"},
-        "CollectionSweep": {"$ref": "objects/CollectionSweep.json"},
-        "CrystallographicSample": {"$ref": "objects/CrystallographicSample.json"},
-        "Crystal": {"$ref": "objects/Crystal.json"},
-        "PinPosition": {"$ref": "objects/PinPosition.json"},
-        "DropRegion": {"$ref": "objects/DropRegion.json"},
-        "WellDrop": {"$ref": "objects/WellDrop.json"}
+        "MxExperiment": {"$ref": "../objects/MxExperiment.json"},
+        "CollectionSweep": {"$ref": "../objects/CollectionSweep.json"},
+        "CrystallographicSample": {"$ref": "../objects/CrystallographicSample.json"},
+        "Crystal": {"$ref": "../objects/Crystal.json"},
+        "PinPosition": {"$ref": "../objects/PinPosition.json"},
+        "DropRegion": {"$ref": "../objects/DropRegion.json"},
+        "WellDrop": {"$ref": "../objects/WellDrop.json"}
     },
     "properties": {
         "job": {

@@ -1,12 +1,13 @@
 {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Example message for MX, showing all classes",
     "$defs": {
-        "MxProcessing": {"$ref": "objects/MxProcessing.json"},
-        "MxExperiment": {"$ref": "objects/MxExperiment.json"},
-        "CollectionSweep": {"$ref": "objects/CollectionSweep.json"},
-        "ReflectionSet": {"$ref": "objects/ReflectionSet.json"},
-        "CrystallographicSample": {"$ref": "objects/CrystallographicSample.json"},
-        "Shipment": {"$ref": "objects/Shipment.json"}
+        "MxProcessing": {"$ref": "../objects/MxProcessing.json"},
+        "MxExperiment": {"$ref": "../objects/MxExperiment.json"},
+        "CollectionSweep": {"$ref": "../objects/CollectionSweep.json"},
+        "ReflectionSet": {"$ref": "../objects/ReflectionSet.json"},
+        "CrystallographicSample": {"$ref": "../objects/CrystallographicSample.json"},
+        "Shipment": {"$ref": "../objects/Shipment.json"}
     },
     "properties": {
         "jobs": {

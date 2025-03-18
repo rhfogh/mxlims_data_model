@@ -5,7 +5,7 @@
     "id": "Dataset.json",
     "allOf": [
         {
-            "$ref": "MxlimsObject.json"
+            "$ref": "../core/MxlimsObject.json"
         }
     ],
     "properties": {
