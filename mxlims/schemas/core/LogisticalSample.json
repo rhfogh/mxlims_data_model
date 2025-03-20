@@ -1,4 +1,5 @@
 {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Base class for MXLIMS Logistical Samples\n\ndescribing Sample containers and locations\n(from Dewars and Plates to drops, pins and crystals)",
     "title": "LogisticalSample",
     "type": "object",
@@ -32,7 +33,7 @@
         "jobs": {
             "description": "List of directly attached Jobs.NB the logisticalSampleId of the jobs must point to this LogisticalSample.This field allows attached jobs to be contained directly in the JSON fileand allows for constraining job types in subtypes",
             "items": {
-                "$ref": "Job.json"
+                "$ref": "../core/Job.json"
             },
             "title": "Jobs",
             "type": "array"

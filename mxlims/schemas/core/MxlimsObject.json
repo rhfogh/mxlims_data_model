@@ -7,7 +7,6 @@
     "properties": {
         "version": {
             "const": "0.3.0",
-            "default": "0.3.0",
             "description": "MXLIMS version for current model",
             "title": "Version",
             "type": "string"

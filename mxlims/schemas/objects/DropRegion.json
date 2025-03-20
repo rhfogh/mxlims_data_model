@@ -1,4 +1,5 @@
 {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "A region in a well drop where crystals may be found",
     "title": "DropRegion",
     "type": "object",
@@ -26,10 +27,10 @@
                     "type": "string"
                 },
                 "imageRegion": {
-                    "$ref": "#/$defs/ImageRegion"
+                    "$ref": "../datatypes/ImageRegion.json"
                 },
                 "plateRegion": {
-                    "$ref": "#/$defs/PlateRegion"
+                    "$ref": "../datatypes/PlateRegion.json"
                 }
             },
             "oneOf": [
@@ -44,263 +45,6 @@
                     ]
                 }
             ]
-        },
-        "PlateRegion": {
-            "title": "Plate region",
-            "description": "A region defined in absolute plate space.",
-            "comment": "Intended for plates with fiducial marks and a clear origin",
-            "properties": {
-                "region": {
-                    "$ref": "#/$defs/Region"
-                },
-                "units": {
-                    "description": "The units of the region's co-ordinates.",
-                    "enum": [
-                        "mm",
-                        "micron"
-                    ]
-                }
-            },
-            "required": [
-                "region",
-                "units"
-            ]
-        },
-        "ImageRegion": {
-            "title": "Image region",
-            "description": "A region marked on an image.",
-            "properties": {
-                "region": {
-                    "$ref": "#/$defs/Region"
-                },
-                "image": {
-                    "$ref": "#/$defs/DropImage"
-                },
-                "units": {
-                    "description": "The units of the region's co-ordinates.",
-                    "enum": [
-                        "mm",
-                        "micron",
-                        "pixel"
-                    ]
-                }
-            },
-            "required": [
-                "region",
-                "units"
-            ]
-        },
-        "DropImage": {
-            "title": "Drop image",
-            "description": "An image of a crystallization drop.",
-            "properties": {
-                "mimeType": {
-                    "description": "The MIME type of the image.",
-                    "type": "string",
-                    "enum": [
-                        "image/png",
-                        "image/jpeg"
-                    ]
-                },
-                "lightType": {
-                    "description": "The light used to capture the image.",
-                    "type": "string",
-                    "enum": [
-                        "Visible",
-                        "UV",
-                        "other"
-                    ]
-                },
-                "timestamp": {
-                    "format": "date-time",
-                    "type": "string",
-                    "description": "The date and time when the image was captured. This is to be specified in UTC and conform to ISO 8601.",
-                    "examples": [
-                        "2024-04-24T14:30:16Z",
-                        "20240424T143016Z"
-                    ]
-                },
-                "url": {
-                    "type": "string",
-                    "description": "A URL where the image can be found. It is assumed that no further authentication is needed to read this image.",
-                    "format": "uri"
-                },
-                "path": {
-                    "type": "string",
-                    "description": "A filesystem path where the image can be found. It is assumed that both sender and receiver have permission to read the image."
-                },
-                "data": {
-                    "type": "string",
-                    "description": "The image, UUencoded."
-                }
-            },
-            "required": [
-                "mimeType"
-            ],
-            "oneOf": [
-                {
-                    "required": [
-                        "url"
-                    ]
-                },
-                {
-                    "required": [
-                        "path"
-                    ]
-                },
-                {
-                    "required": [
-                        "data"
-                    ]
-                }
-            ]
-        },
-        "Region": {
-            "title": "Region",
-            "description": "A region or point of interest.",
-            "oneOf": [
-                {
-                    "$ref": "#/$defs/Point"
-                },
-                {
-                    "$ref": "#/$defs/Circle"
-                },
-                {
-                    "$ref": "#/$defs/Line"
-                },
-                {
-                    "$ref": "#/$defs/Rectangle"
-                },
-                {
-                    "$ref": "#/$defs/Polygon"
-                }
-            ]
-        },
-        "Point": {
-            "type": "object",
-            "title": "Point",
-            "description": "A point marked on an image or in absolute plate space.",
-            "properties": {
-                "regionType": {
-                    "type": "string",
-                    "enum": [
-                        "point"
-                    ]
-                },
-                "x": {
-                    "type": "number",
-                    "description": "The X co-ordinate of the point."
-                },
-                "y": {
-                    "type": "number",
-                    "description": "The Y co-ordinate of the point."
-                }
-            },
-            "required": [
-                "regionType",
-                "x",
-                "y"
-            ]
-        },
-        "Circle": {
-            "type": "object",
-            "title": "Circle",
-            "description": "A circle marked on an image or in absolute plate space.",
-            "properties": {
-                "regionType": {
-                    "type": "string",
-                    "enum": [
-                        "circle"
-                    ]
-                },
-                "center": {
-                    "$ref": "#/$defs/Point"
-                },
-                "radius": {
-                    "type": "number",
-                    "description": "The radius of the circle.",
-                    "exclusiveMinimum": 0
-                }
-            },
-            "required": [
-                "regionType",
-                "center",
-                "radius"
-            ]
-        },
-        "Line": {
-            "type": "object",
-            "title": "Line",
-            "description": "A straight line marked on an image or in absolute plate space.",
-            "properties": {
-                "regionType": {
-                    "type": "string",
-                    "enum": [
-                        "line"
-                    ]
-                },
-                "points": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/$defs/Point"
-                    },
-                    "minItems": 2,
-                    "maxItems": 2
-                }
-            },
-            "required": [
-                "regionType",
-                "points"
-            ]
-        },
-        "Rectangle": {
-            "type": "object",
-            "title": "Rectangle",
-            "description": "<A rectangular region marked on an image or in absolute plate space. The box is defined by two points on diagonally opposite corners, with its edges parallel to the X and Y axes. Ensure that the two X values are not equal, and that the two Y values are not equal.",
-            "properties": {
-                "regionType": {
-                    "type": "string",
-                    "enum": [
-                        "rectangle"
-                    ]
-                },
-                "points": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/$defs/Point"
-                    },
-                    "minItems": 2,
-                    "maxItems": 2
-                }
-            },
-            "required": [
-                "regionType",
-                "points"
-            ]
-        },
-        "Polygon": {
-            "type": "object",
-            "title": "Polygon",
-            "description": "<A polygonal region marked on an image or in absolute plate space.The polygon is defined by at least three points, and is assumed to be closed by a line from the last point to the first. The path should not cross itself, including on the closing segment.",
-            "properties": {
-                "regionType": {
-                    "type": "string",
-                    "enum": [
-                        "polygon"
-                    ]
-                },
-                "points": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/$defs/Point"
-                    },
-                    "minItems": 3
-                }
-            },
-            "required": [
-                "regionType",
-                "points"
-            ]
         }
     },
     "properties": {
@@ -314,7 +58,7 @@
         "contents": {
             "type": "array",
             "items": {
-                "$ref": "Crystal.json"
+                "$ref": "../objects/Crystal.json"
             },
             "minItems": 1
         }

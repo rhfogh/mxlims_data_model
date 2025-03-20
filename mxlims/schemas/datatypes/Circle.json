@@ -1,0 +1,28 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "description": "A circle marked on an image or in absolute plate space.",
+    "type": "object",
+    "title": "Circle",
+    "id": "Circle.json",
+    "properties": {
+        "regionType": {
+            "const": "circle",
+            "title": "Region type",
+            "description": "Type of region",
+            "type": "string"
+        },
+        "center": {
+                "$ref": "../datatypes/Point.json"
+        },
+        "radius": {
+            "type": "number",
+            "description": "The radius of the circle.",
+            "exclusiveMinimum": 0
+        }
+    },
+    "required": [
+        "regionType",
+        "center",
+        "radius"
+    ]
+}

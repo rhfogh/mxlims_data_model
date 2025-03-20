@@ -1,4 +1,5 @@
 {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Crystallography Processing calculation,",
     "title": "MxProcessing",
     "type": "object",
@@ -47,7 +48,7 @@
         "results": {
             "type": "array",
             "items": {
-                "$ref": "ReflectionSet.json"
+                "$ref": "../objects/ReflectionSet.json"
             },
             "minItems": 1
         }

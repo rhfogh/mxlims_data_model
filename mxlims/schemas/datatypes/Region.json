@@ -1,0 +1,23 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "description": "A region or point of interest.",
+    "title": "Region",
+    "id": "Region.json",
+    "oneOf": [
+        {
+            "$ref": "../datatypes/Point.json"
+        },
+        {
+            "$ref": "../datatypes/Circle.json"
+        },
+        {
+            "$ref": "../datatypes/Line.json"
+        },
+        {
+            "$ref": "../datatypes/Rectangle.json"
+        },
+        {
+            "$ref": "../datatypes/Polygon.json"
+        }
+    ]
+}

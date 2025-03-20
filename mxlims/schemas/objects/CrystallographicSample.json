@@ -1,4 +1,5 @@
 {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Crystallographic Sample",
     "title": "Crystallographic Sample",
     "type": "object",
@@ -28,7 +29,7 @@
                 "macromolecule": {
                     "allOf": [
                         {
-                            "$ref": "#/$defs/SampleComponent"
+                            "$ref": "../datatypes/SampleComponent.json"
                         }
                     ],
                     "description":"Macromolecule being studied - main component of the sample"
@@ -36,7 +37,7 @@
                 "components": {
                     "description": "Other components of Sample",
                     "items": {
-                        "$ref": "#/$defs/SampleComponent"
+                        "$ref": "../datatypes/SampleComponent.json"
                     },
                     "title": "Sample components",
                     "type": "array"
@@ -55,43 +56,6 @@
                     "type": "number",
                     "description": "Relative radiation sensitivity of sample.",
                     "title": "Radiation Sensitivity"
-                },
-                "identifiers": {
-                    "additionalProperties": {
-                        "type": "string"
-                    },
-                    "description": "Dictionary str:str of contextName: identifier. ContextName will typically refer to a LIMS, database, or web site but could also be e.g. 'smiles' or 'sequence'",
-                    "title": "Identifiers",
-                    "type": "object"
-                }
-            }
-        },
-        "SampleComponent": {
-            "description": "Component of Sample.",
-            "title": "Sample Component",
-            "type": "object",
-            "properties": {
-                "acronym": {
-                    "description": "Acronynm - short synonym of component (e.g. 'lig1'",
-                    "title": "Acronym",
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "Human readable name of component",
-                    "title": "Name"
-                },
-                "role": {
-                    "type": "string",
-                    "title": "Role",
-                    "description": "Role of component in PreparedSample",
-                    "examples": [
-                        "solvent",
-                        "cryoprotectant",
-                        "ligand",
-                        "inhibitor",
-                        "target"
-                    ]
                 },
                 "identifiers": {
                     "additionalProperties": {

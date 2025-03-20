@@ -1,34 +1,25 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "description": "Message containg one MxExperiment and its saample and logistical sample",
-    "$defs": {
-        "MxExperiment": {"$ref": "../objects/MxExperiment.json"},
-        "CollectionSweep": {"$ref": "../objects/CollectionSweep.json"},
-        "CrystallographicSample": {"$ref": "../objects/CrystallographicSample.json"},
-        "Crystal": {"$ref": "../objects/Crystal.json"},
-        "PinPosition": {"$ref": "../objects/PinPosition.json"},
-        "DropRegion": {"$ref": "../objects/DropRegion.json"},
-        "WellDrop": {"$ref": "../objects/WellDrop.json"}
-    },
+    "description": "Message containing one MxExperiment and its sample and logistical sample",
     "properties": {
         "job": {
             "description": "MxExperiment, with included results. Job may contain subjobs.",
             "title": "MxExperiment job",
-            "$ref": "#/$defs/MxExperiment"
+            "$ref": "../objects/MxExperiment.json"
         },
         "sample": {
             "description": "Prepared Sample on which experiment was performed.",
             "title": "Prepared Samples",
-            "$ref": "#/$defs/CrystallographicSample"
+            "$ref": "../objects/CrystallographicSample.json"
         },
         "logisticalSample": {
             "description": "Logistical Sample used for experiment. May contain nested content",
             "title": "Logistical Samples",
             "oneOf": [
-                {"$ref": "#/$defs/Crystal"},
-                {"$ref": "#/$defs/PinPosition"},
-                {"$ref": "#/$defs/DropRegion"},
-                {"$ref": "#/$defs/WellDrop"}
+                {"$ref": "../objects/Crystal.json"},
+                {"$ref": "../objects/PinPosition.json"},
+                {"$ref": "../objects/DropRegion.json"},
+                {"$ref": "../objects/WellDrop.json"}
             ]
         }
     },

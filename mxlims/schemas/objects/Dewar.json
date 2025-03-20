@@ -1,4 +1,5 @@
 {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "A dewar containing pucks with mounted crystals on pins.",
     "title": "Dewar",
     "type": "object",
@@ -46,7 +47,7 @@
         "contents": {
             "type": "array",
             "items": {
-                "$ref": "Puck.json"
+                "$ref": "../objects/Puck.json"
             },
             "minItems": 1
         }

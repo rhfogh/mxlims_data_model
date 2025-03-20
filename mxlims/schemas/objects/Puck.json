@@ -1,4 +1,5 @@
 {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "A puck containing mounted crystals on pins.",
     "title": "Puck",
     "type": "object",
@@ -51,7 +52,7 @@
         "contents": {
             "type": "array",
             "items": {
-                "$ref": "Pin.json"
+                "$ref": "../objects/Pin.json"
             },
             "minItems": 1
         }

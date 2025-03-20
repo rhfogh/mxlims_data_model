@@ -1,0 +1,21 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Plate region",
+    "description": "A region defined in absolute plate space.",
+    "comment": "Intended for plates with fiducial marks and a clear origin",
+    "type": "object",
+    "id": "PlateRegion.json",
+    "properties": {
+        "region": {
+            "$ref": "../datatypes/Region.json"
+        },
+        "units": {
+            "description": "The units of the region's co-ordinates.",
+            "$ref": "../datatypes/PlateRegionUnit.json"
+        }
+    },
+    "required": [
+        "region",
+        "units"
+    ]
+}

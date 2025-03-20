@@ -1,4 +1,5 @@
 {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "A Pin mounted on a puck with one or more slots for crystals.",
     "title": "Pin",
     "type": "object",
@@ -59,7 +60,7 @@
         "contents": {
             "type": "array",
             "items": {
-                "$ref": "PinPosition.json"
+                "$ref": "../objects/PinPosition.json"
             },
             "minItems": 1
         }

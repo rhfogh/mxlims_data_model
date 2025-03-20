@@ -1,4 +1,5 @@
 {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Base class for MXLIMS Jobs - an experiment or calculation producing Datasets",
     "title": "Job",
     "type": "object",
@@ -8,20 +9,6 @@
             "$ref": "../core/MxlimsObject.json"
         }
     ],
-    "$defs": {
-        "JobStatus": {
-            "enum": [
-                "Template",
-                "Ready",
-                "Running",
-                "Completed",
-                "Failed",
-                "Aborted"
-            ],
-            "title": "JobStatus",
-            "type": "string"
-        }
-    },
     "properties": {
         "sampleId": {
             "type": "string",
@@ -56,7 +43,7 @@
         "jobStatus": {
             "allOf": [
                 {
-                    "$ref": "#/$defs/JobStatus"
+                    "$ref": "../datatypes/JobStatus.json"
                 }
             ],
             "description": "Status of job - enumerated, ",
@@ -97,25 +84,25 @@
             "type": "array"
         },
         "subjobs": {
-            "description": "List of Jobs started from this job. NB the startedFromId of the jobs must point to this Job.This field allows attached jobs to be contained directly in the JSON fileand allows for constraining job types in subtypes",
+            "description": "List of Jobs started from this job. NB the startedFromId of the jobs must point to this Job.This field allows attached jobs to be contained directly in the JSON file and allows for constraining job types in subtypes",
             "items": {
-                "$ref": "Job.json"
+                "$ref": "../core/Job.json"
             },
             "title": "Subjobs",
             "type": "array"
         },
         "results": {
-            "description": "List of Datasets created from this job. NB the sourceId of the datasets must point to this Job.This field allows result Datasets to be contained directly in the JSON fileand allows for constraining Dataset types in subtypes",
+            "description": "List of Datasets created from this job. NB the sourceId of the datasets must point to this Job.This field allows result Datasets to be contained directly in the JSON file and allows for constraining Dataset types in subtypes",
             "items": {
-                "$ref": "Dataset.json"
+                "$ref": "../core/Dataset.json"
             },
             "title": "Results",
             "type": "array"
         },
         "templateData": {
-            "description": "List of Template Datasets used for this job. NB the id of the datasets must match the IDs in templateDataIds.This field allows template Datasets to be contained directly in the JSON fileand allows for constraining Dataset types in subtypes.NB Note that two different specifications of a dataset cannot have the same ID",
+            "description": "List of Template Datasets used for this job. NB the id of the datasets must match the IDs in templateDataIds.This field allows template Datasets to be contained directly in the JSON file and allows for constraining Dataset types in subtypes.NB Note that two different specifications of a dataset cannot have the same ID",
             "items": {
-                "$ref": "Dataset.json"
+                "$ref": "../core/Dataset.json"
             },
             "title": "Template Data",
             "type": "array"

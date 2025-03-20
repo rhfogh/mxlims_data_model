@@ -1,0 +1,10 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "description": "Observability criterion. Matches mmCIF item reflns.pdbx_signal_type\n\nhttps://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_signal_type.html)",
+    "title": "PdbxSignalType",
+    "type": "string",
+    "enum": [
+        "local <I/sigmaI>",
+        "local wCC_half"
+    ]
+}

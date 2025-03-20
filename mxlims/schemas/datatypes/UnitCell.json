@@ -1,0 +1,53 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "description": "Crystallographic unit cell,\n\nmatches mmCIF items cell.length_{a,b,c} and cell.angle_{alpha,beta,gamma} in category\ncell (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Categories/cell.html)",
+    "title": "Unit Cell",
+    "type": "object",
+    "id": "UnitCell.json",
+    "properties": {
+        "a": {
+            "description": "A axis length (A)",
+            "minimum": 0.0,
+            "title": "A",
+            "type": "number"
+        },
+        "b": {
+            "description": "B axis length (A)",
+            "minimum": 0.0,
+            "title": "B",
+            "type": "number"
+        },
+        "c": {
+            "description": "C axis length (A)",
+            "minimum": 0.0,
+            "title": "C",
+            "type": "number"
+        },
+        "alpha": {
+            "description": "alpha angle (degree)",
+            "minimum": 0.0,
+            "title": "Alpha",
+            "type": "number"
+        },
+        "beta": {
+            "description": "beta angle (degree)",
+            "minimum": 0.0,
+            "title": "Beta",
+            "type": "number"
+        },
+        "gamma": {
+            "description": "gamma angle (degree)",
+            "minimum": 0.0,
+            "title": "Gamma",
+            "type": "number"
+        }
+    },
+    "required": [
+        "a",
+        "b",
+        "c",
+        "alpha",
+        "beta",
+        "gamma"
+    ]
+}

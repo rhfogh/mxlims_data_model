@@ -1,0 +1,23 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "title": "Image region",
+    "description": "A region marked on an image.",
+    "id": "ImageRegion.json",
+    "properties": {
+        "region": {
+            "$ref": "../datatypes/Region.json"
+        },
+        "image": {
+            "$ref": "../datatypes/DropImage.json"
+        },
+        "units": {
+            "description": "The units of the region's co-ordinates.",
+            "$ref": "../datatypes/ImageRegionUnit.json"
+        }
+    },
+    "required": [
+        "region",
+        "units"
+    ]
+}

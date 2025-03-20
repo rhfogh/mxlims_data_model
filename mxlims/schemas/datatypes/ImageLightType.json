@@ -1,0 +1,11 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "description": "Type of light used e.g. for capturing an image",
+    "title": "Image light type",
+    "type": "string",
+    "enum": [
+        "Visible",
+        "UV",
+        "other"
+    ]
+}

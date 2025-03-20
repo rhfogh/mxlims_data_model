@@ -1,4 +1,5 @@
 {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Shipment",
     "title": "Shipment",
     "type": "object",
@@ -35,7 +36,7 @@
                 },
                 "sessionNumber": {
                     "type": "integer",
-                    "description": "The session number within the proposal. This property must be absent if <code>unattendedCollection</code> is present.",
+                    "description": "The session number within the proposal. This property must be absent if unattendedCollection is present.",
                     "minimum": 1
                 },
                 "comments": {
@@ -44,11 +45,12 @@
                     "maxLength": 250
                 },
                 "unattendedCollection": {
-                    "type": "boolean",
-                    "description": "If this shipment is for unattended collection, then this property must be present and true. Otherwise, it must be absent and a <code>session</code> must be present.",
-                    "enum": [
-                        true
-                    ]
+                    "allOf": [
+                        {
+                            "$ref": "../datatypes/EnumerateTrue.json"
+                        }
+                    ],
+                    "description": "If this shipment is for unattended collection, then this property must be present and true. Otherwise, it must be absent and a sessionNumber must be present."
                 },
                 "labContactOutbound": {
                     "$ref": "../datatypes/Person.json"
@@ -69,8 +71,7 @@
                 }
             },
             "required": [
-                "proposalCode",
-                "contents"
+                "proposalCode"
             ],
             "oneOf": [
                 {
@@ -99,14 +100,14 @@
                 {
                     "type": "array",
                     "items": {
-                        "$ref": "Dewar.json"
+                        "$ref": "../objects/Dewar.json"
                     },
                     "minItems": 1
                 },
                 {
                     "type": "array",
                     "items": {
-                        "$ref": "Plate.json"
+                        "$ref": "../objects/Plate.json"
                     },
                     "minItems": 1
                 }

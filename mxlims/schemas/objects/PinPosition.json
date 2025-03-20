@@ -1,4 +1,5 @@
 {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "An independent Position within a Pin where crystals can be located.",
     "title": "PinPosition",
     "type": "object",
@@ -48,7 +49,7 @@
         "contents": {
             "type": "array",
             "items": {
-                "$ref": "Crystal.json"
+                "$ref": "../objects/Crystal.json"
             },
             "minItems": 1
         }

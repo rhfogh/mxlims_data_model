@@ -4,21 +4,6 @@
     "title": "MxlimsData",
     "type": "object",
     "id": "MxlimsData.json",
-    "$defs": {
-        "NamespacedExtension": {
-            "description" : "JSON schema extending MxlimsData. To be subclassed",
-            "properties" : {
-                "namespace" : {
-                    "description" : "Namespace string defining 'owner' of the namespace, e.g. 'ESRF, 'GPhL",
-                    "title": "Namespace",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "namespace"
-            ]
-        }
-    },
     "properties": {
         "mxlimsType": {
             "description": "The type of MXLIMS data. May be restricted to enum in subclasses",
@@ -28,7 +13,7 @@
         "namespacedExtensions": {
             "description": "List of extensions to metadata, each defined in a NamespacedExtension schema",
             "items": {
-                "$ref": "../datatypes/NamespacedExtension.json"
+                "$ref": "../core/NamespacedExtension.json"
             },
             "title": "Namespaced Extensions",
             "type": "array"

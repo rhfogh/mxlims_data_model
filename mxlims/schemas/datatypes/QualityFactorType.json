@@ -1,0 +1,23 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "description": "Name for quality factor type, used in QualityFactor class",
+    "title": "Quality Factor Type",
+    "type": "string",
+    "enum": [
+        "R(merge)",
+        "R(meas)",
+        "R(pim)",
+        "I/SigI",
+        "CC(1/2)",
+        "CC(ano)",
+        "SigAno",
+        "Completeness",
+        "CompletenessSpherical",
+        "CompletenessEllipsoidal",
+        "Redundancy",
+        "CompletenessAno",
+        "CompletenessAnoSpherical",
+        "CompletenessAnoEllipsoidal",
+        "RedundancyAno"
+    ]
+}

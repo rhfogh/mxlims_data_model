@@ -1,0 +1,11 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "description": "Type of tracking device for tracking samples, Dewars, etc.",
+    "title": "Tracking device type",
+    "type": "string",
+    "enum": [
+        "LightBug",
+        "AirTag",
+        "other"
+    ]
+}

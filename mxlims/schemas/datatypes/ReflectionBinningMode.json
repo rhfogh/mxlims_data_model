@@ -1,0 +1,12 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "description": "Reflection binning mode for binning reflection statistics",
+    "title": "ReflectionBinningMode",
+    "type": "string",
+    "enum": [
+        "equalVolume",
+        "equalNumber",
+        "dstarEquidistant",
+        "dstar2Equidistant"
+    ]
+}

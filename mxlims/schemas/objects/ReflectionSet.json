@@ -1,4 +1,5 @@
 {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Set of processed reflections, possibly merged or scaled, as might be stored within a MTZ or mmCIF reflection file",
     "title": "ReflectionSet",
     "type": "object",
@@ -134,7 +135,7 @@
                 "reflectionStatisticsOverall": {
                     "allOf": [
                         {
-                            "$ref": "#/$defs/ReflectionStatistics"
+                            "$ref": "../datatypes/ReflectionStatistics.json"
                         }
                     ],
                     "description": "Reflection statistics for all processed reflections"
@@ -142,7 +143,7 @@
                 "reflectionStatisticsShells": {
                     "description": "Reflection statistics per resolution shell",
                     "items": {
-                        "$ref": "#/$defs/ReflectionStatistics"
+                        "$ref": "../datatypes/ReflectionStatistics.json"
                     },
                     "title": "Reflection Statistics Shells",
                     "type": "array"
@@ -150,7 +151,7 @@
                 "signalType": {
                     "allOf": [
                         {
-                            "$ref": "#/$defs/PdbxSignalType"
+                            "$ref": "../datatypes/PdbxSignalType.json"
                         }
                     ],
                     "description": "'local <I/sigmaI>', 'local wCC_half'; matches reflns.pdbx_signal_type (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_signal_type.html). Criterion for observability, as used in mmCIF refln.pdbx_signal_status (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_refln.pdbx_signal_status.html)"
@@ -163,7 +164,7 @@
                 "resolutionCutoffs": {
                     "description": "Criteria used in determination of isotropic resolution cut-off (e.g. as implemented in MRFANA, https://github.com/githubgphl/MRFANA)",
                     "items": {
-                        "$ref": "#/$defs/QualityFactor"
+                        "$ref": "../datatypes/QualityFactor.json"
                     },
                     "title": "Resolution Cutoffs",
                     "type": "array"
@@ -171,7 +172,7 @@
                 "binningMode": {
                     "allOf": [
                         {
-                            "$ref": "#/$defs/ReflectionBinningMode"
+                            "$ref": "../datatypes/ReflectionBinningMode.json"
                         }
                     ],
                     "description": "Binning mode for definition of resolution shells"
@@ -233,7 +234,7 @@
                 "fileType": {
                     "allOf": [
                         {
-                            "$ref": "#/$defs/ReflectionFileType"
+                            "$ref": "../datatypes/ReflectionFileType.json"
                         }
                     ],
                     "description": "Type of file"
@@ -249,141 +250,6 @@
                     "title": "Path"
                 }
             }
-        },
-        "ReflectionStatistics": {
-            "description": "Reflection statistics for a shell (or all) of reflections",
-            "title": "ReflectionStatistics",
-            "type": "object",
-            "properties": {
-                "resolutionLimits": {
-                    "description": "lower, higher resolution limit of shell, matches mmCIF items reflns_shell.d_res_low (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.d_res_low.html) and reflns_shell.d_res_high (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.d_res_high.html)",
-                    "maxItems": 2,
-                    "minItems": 2,
-                    "prefixItems": [
-                        {
-                            "type": "number"
-                        },
-                        {
-                            "type": "number"
-                        }
-                    ],
-                    "title": "Resolution Limits",
-                    "type": "array"
-                },
-                "numberObservations": {
-                    "minimum": 0,
-                    "type": "integer",
-                    "description": "total number of observations, matches mmCIF item reflns_shell.number_measured_all (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.number_measured_all.html)",
-                    "title": "Number Observations"
-                },
-                "numberObservationsUnique": {
-                    "minimum": 0,
-                    "type": "integer",
-                    "description": "total number of unique observations, matches mmCIF item reflns_shell.number_unique_all (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.number_unique_all.html)",
-                    "title": "Number Observations Unique"
-                },
-                "numberReflectionsRejected": {
-                    "minimum": 0,
-                    "type": "integer",
-                    "description": "Number of rejected reflections within this resolution shell, matches mmCIF item reflns_shell.pdbx_rejects.html (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_rejects.html)",
-                    "title": "Number Reflections Rejected"
-                },
-                "chiSquared": {
-                    "minimum": 0.0,
-                    "type": "number",
-                    "description": "Chi-squared statistic for reflection shell, matches mmCIF item reflns_shell.pdbx_chi_squared (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_chi_squared.html)",
-                    "title": "Chi Squared"
-                },
-                "qualityFactors": {
-                    "description": "Quality factors for reflection shell, ",
-                    "items": {
-                        "$ref": "#/$defs/QualityFactor"
-                    },
-                    "title": "Quality Factors",
-                    "type": "array"
-                }
-            },
-            "required": [
-                "resolutionLimits"
-            ]
-        },
-        "PdbxSignalType": {
-            "description": "Observability criterion. Matches mmCIF item reflns.pdbx_signal_type\n\nhttps://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_signal_type.html)",
-            "enum": [
-                "local <I/sigmaI>",
-                "local wCC_half"
-            ],
-            "title": "PdbxSignalType",
-            "type": "string"
-        },
-        "QualityFactor": {
-            "description": "Reflection shell quality factor. Enumerated type with associated value\n. Correspondence with mmCIF items:\n\n  Overall (mmCIF reflns category, https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Categories/reflns.html)\n\n    R(merge)                      reflns.pdbx_Rmerge_I_obs                                 https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_Rmerge_I_obs.html\n    R(meas)                       reflns.pdbx_Rrim_I_all                                   https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_Rrim_I_all.html\n    R(pim)                        reflns.pdbx_Rpim_I_all                                   https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_Rpim_I_all.html\n    I/SigI                        reflns.pdbx_netI_over_sigmaI                             https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_netI_over_sigmaI.html\n    CC(1/2)                       reflns.pdbx_CC_half                                      https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_CC_half.html\n    CC(ano)                       reflns.pdbx_CC_half_anomalous                            https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_CC_half_anomalous.html\n    SigAno                        reflns.pdbx_absDiff_over_sigma_anomalous                 https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_absDiff_over_sigma_anomalous.html\n    Completeness                  reflns.percent_possible_obs                              https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.percent_possible_obs.html\n    CompletenessSpherical         reflns.pdbx_percent_possible_spherical_anomalous         https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_percent_possible_spherical_anomalous.html\n    CompletenessEllipsoidal       reflns.pdbx_percent_possible_ellipsoidal_anomalous       https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_percent_possible_ellipsoidal_anomalous.html\n    Redundancy                    reflns.pdbx_redundancy                                   https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_redundancy.html\n    CompletenessAno               reflns.pdbx_percent_possible_anomalous                   https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_percent_possible_anomalous.html\n    CompletenessAnoSpherical      reflns.pdbx_percent_possible_spherical_anomalous         https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_percent_possible_spherical_anomalous.html\n    CompletenessAnoEllipsoidal    reflns.pdbx_percent_possible_ellipsoidal_anomalous       https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_percent_possible_ellipsoidal_anomalous.html\n    RedundancyAno                 reflns.pdbx_redundancy_anomalous                         https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_redundancy_anomalous.html\n\n  Resolution shell (mmCIF reflns_shell category, https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.number_unique_all.html):\n\n    R(merge)                      reflns_shell.pdbx_Rmerge_I_obs                           https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_Rmerge_I_obs.html\n    R(meas)                       reflns_shell.pdbx_Rrim_I_all                             https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_Rrim_I_all.html\n    R(pim)                        reflns_shell.pdbx_Rpim_I_all                             https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_Rpim_I_all.html\n    I/SigI                        reflns_shell.meanI_over_sigI_obs                         https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.meanI_over_sigI_obs.html\n    CC(1/2)                       reflns_shell.pdbx_CC_half                                https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_CC_half.html\n    CC(ano)                       reflns_shell.pdbx_CC_half_anomalous                      https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_CC_half_anomalous.html\n    SigAno                        reflns_shell.pdbx_absDiff_over_sigma_anomalous           https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_absDiff_over_sigma_anomalous.html\n    Completeness                  reflns_shell.percent_possible_all                        https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.percent_possible_all.html\n    CompletenessSpherical         reflns_shell.pdbx_percent_possible_spherical_anomalous   https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_percent_possible_spherical_anomalous.html\n    CompletenessEllipsoidal       reflns_shell.pdbx_percent_possible_ellipsoidal_anomalous https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_percent_possible_ellipsoidal_anomalous.html\n    Redundancy                    reflns_shell.pdbx_redundancy                             https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_redundancy.html\n    CompletenessAno               reflns_shell.pdbx_percent_possible_anomalous             https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_percent_possible_anomalous.html\n    CompletenessAnoSpherical      reflns_shell.pdbx_percent_possible_spherical_anomalous   https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_percent_possible_spherical_anomalous.html\n    CompletenessAnoEllipsoidal    reflns_shell.pdbx_percent_possible_ellipsoidal_anomalous https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_percent_possible_ellipsoidal_anomalous.html\n    RedundancyAno                 reflns_shell.pdbx_redundancy_anomalous                   https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_redundancy_anomalous.html\n\nCompleteness values are given in %, 0 <= Completeness <= 100",
-            "properties": {
-                "type": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/QualityFactorType"
-                        }
-                    ],
-                    "description": "Quality factor type"
-                },
-                "value": {
-                    "description": "Quality factor value",
-                    "title": "Value",
-                    "type": "number"
-                }
-            },
-            "required": [
-                "type",
-                "value"
-            ],
-            "title": "QualityFactor",
-            "type": "object"
-        },
-        "QualityFactorType": {
-            "description": "Name for quality factor type, used in QualityFactor class",
-            "enum": [
-                "R(merge)",
-                "R(meas)",
-                "R(pim)",
-                "I/SigI",
-                "CC(1/2)",
-                "CC(ano)",
-                "SigAno",
-                "Completeness",
-                "CompletenessSpherical",
-                "CompletenessEllipsoidal",
-                "Redundancy",
-                "CompletenessAno",
-                "CompletenessAnoSpherical",
-                "CompletenessAnoEllipsoidal",
-                "RedundancyAno"
-            ],
-            "title": "Quality Factor Type",
-            "type": "string"
-        },
-        "ReflectionBinningMode": {
-            "description": "Reflection binning mode for binning reflection statistics",
-            "enum": [
-                "equalVolume",
-                "equalNumber",
-                "dstarEquidistant",
-                "dstar2Equidistant"
-            ],
-            "title": "ReflectionBinningMode",
-            "type": "string"
-        },
-        "ReflectionFileType": {
-            "description": "Name for file type, used in ReflectionSet class",
-            "enum": [
-                "scaled and merged MTZ",
-                "scaled and unmerged MTZ",
-                "unmerged MTZ",
-                "XDS INTEGRATE.HKL; unmerged (https://xds.mr.mpg.de/html_doc/xds_files.html#INTEGRATE.HKL)",
-                "XDS XDS_ASCII.HKL; scaled and unmerged (https://xds.mr.mpg.de/html_doc/xds_files.html#XDS_ASCII.HKL)"
-            ],
-            "title": "FileType",
-            "type": "string"
         }
     },
     "properties": {

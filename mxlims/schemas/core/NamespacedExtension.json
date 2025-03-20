@@ -1,0 +1,17 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "description" : "JSON schema for extending MxlimsData. To be subclassed",
+    "title": "Namespaced Extension",
+    "type": "object",
+    "id": "NamespacedExtension.json",
+    "properties" : {
+        "namespace" : {
+            "description" : "Namespace string defining 'owner' of the namespace, e.g. 'ESRF, 'GPhL",
+            "title": "Namespace",
+            "type": "string"
+        }
+    },
+    "required": [
+        "namespace"
+    ]
+}

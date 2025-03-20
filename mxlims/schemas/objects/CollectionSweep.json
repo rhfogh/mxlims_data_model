@@ -1,4 +1,5 @@
 {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Crystallographic sweep data set, containing images",
     "title": "CollectionSweep",
     "type": "object",
@@ -202,7 +203,7 @@
                 "scans": {
                     "description": "List of Scans i.e. subdivisions of CollectionSweepNB Scans need not be contiguous or in order or add up to entire sweep",
                     "items": {
-                        "$ref": "#/$defs/Scan"
+                        "$ref": "../datatypes/Scan.json"
                     },
                     "title": "Scans",
                     "type": "array"
@@ -237,40 +238,6 @@
             },
             "required": [
                 "scanAxis"
-            ]
-        },
-        "Scan": {
-            "description": "Subdivision of CollectionSweep.\n\nThe Scan describes a continuously acquired set of images that forms a subset of the\nCollectionSweep of which they form part. The ordinal gives the acquisition order of\nsweeps across an entire multi-sweep experiment; this allows you to describe\nout-of-order acquisition and interleaving.",
-            "title": "Scan",
-            "type": "object",
-            "properties": {
-                "scanPositionStart": {
-                    "description": "Value of scan axis for the first image, in units matching axis type",
-                    "title": "Scan Position Start",
-                    "type": "number"
-                },
-                "firstImageNumber": {
-                    "description": "Image number to use for first image",
-                    "title": "First Image Number",
-                    "type": "integer"
-                },
-                "numberImages": {
-                    "description": "Number of images to acquire as part of the Scan.",
-                    "minimum": 0,
-                    "title": "Number Images",
-                    "type": "integer"
-                },
-                "ordinal": {
-                    "description": "Ordinal defining the ordering of all scans within the experiment (not just within the scan)",
-                    "title": "Ordinal",
-                    "type": "integer"
-                }
-            },
-            "required": [
-                "scanPositionStart",
-                "firstImageNumber",
-                "numberImages",
-                "ordinal"
             ]
         }
     },

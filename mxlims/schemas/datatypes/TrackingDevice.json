@@ -10,13 +10,12 @@
             "description": "The device serial number or other globally unique identifier."
         },
         "deviceType": {
-            "type": "string",
-            "description": "The type of tracking device.",
-            "enum": [
-                "LightBug",
-                "AirTag",
-                "other"
-            ]
+            "allOf": [
+                {
+                    "$ref": "../datatypes/TrackingDeviceType.json"
+                }
+            ],
+            "description": "The type of tracking device."
         },
         "humanTrackingUrl": {
             "type": "string",

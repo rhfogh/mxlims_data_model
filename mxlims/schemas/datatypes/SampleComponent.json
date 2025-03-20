@@ -1,0 +1,39 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "description" : "Component of Sample.",
+    "title": "Sample Component",
+    "type": "object",
+    "id": "SampleComponent.json",
+    "properties": {
+        "acronym": {
+            "description": "Acronym - short synonym of component (e.g. 'lig1'",
+            "title": "Acronym",
+            "type": "string"
+        },
+        "name": {
+            "type": "string",
+            "description": "Human readable name of component",
+            "title": "Name"
+        },
+        "role": {
+            "type": "string",
+            "title": "Role",
+            "description": "Role of component in PreparedSample",
+            "examples": [
+                "solvent",
+                "cryoprotectant",
+                "ligand",
+                "inhibitor",
+                "target"
+            ]
+        },
+        "identifiers": {
+            "additionalProperties": {
+                "type": "string"
+            },
+            "description": "Dictionary str:str of contextName: identifier. ContextName will typically refer to a LIMS, database, or web site but could also be e.g. 'smiles' or 'sequence'",
+            "title": "Identifiers",
+            "type": "object"
+        }
+    }
+}
