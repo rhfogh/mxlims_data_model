@@ -37,7 +37,7 @@
         "subjobs": {
             "type": "array",
             "items": {
-                "$ref": "../objects/MxProcessing.json"
+                "$ref": "../rawobjects/RawMxProcessing.json"
             }
         }
     }

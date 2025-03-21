@@ -6,7 +6,7 @@
     "id": "MxExperiment.json",
     "allOf": [
         {
-            "$ref": "../objects/MxExperiment.json"
+            "$ref": "../rawobjects/RawMxExperiment.json"
         }
     ],
     "properties": {
@@ -31,7 +31,7 @@
         "subjobs": {
             "type": "array",
             "items": {
-                "$ref": "../objects/MxExperiment.json"
+                "$ref": "../rawobjects/RawMxExperiment.json"
             }
         }
     }

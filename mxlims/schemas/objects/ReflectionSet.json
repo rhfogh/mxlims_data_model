@@ -13,7 +13,7 @@
         "derivedDataSets": {
             "type": "array",
             "items": {
-                "$ref": "../objects/ReflectionSet.json"
+                "$ref": "../rawobjects/RawReflectionSet.json"
             }
         }
     }

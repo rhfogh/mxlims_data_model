@@ -1,0 +1,21 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "description": "Example message for generating documentation, showing all classes with JSON content",
+    "title": "ShipmentMessage",
+    "type": "object",
+    "properties": {
+        "shipment": {
+            "oneOf": [
+                {
+                    "$ref": "../objects/DewarShipment.json"
+                },
+                {
+                    "$ref": "../objects/PlateShipment.json"
+                }
+            ]
+        },
+        "sample": {
+            "$ref": "../objects/CrystallographicSample.json"
+        }
+    }
+}
