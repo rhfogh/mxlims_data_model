@@ -1,0 +1,27 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "description": "A dewar containing pucks with mounted crystals on pins.",
+    "title": "RawDewar",
+    "type": "object",
+    "id": "RawDewar.json",
+    "allOf": [
+        {
+            "$ref": "../core/LogisticalSample.json"
+        }
+    ],
+    "properties": {
+        "mxlimsType": {
+            "const": "Dewar",
+            "description": "The type of MXLIMS object.",
+            "title": "Mxlims Type",
+            "type": "string"
+        },
+        "barcode": {
+            "type": "string",
+            "description": "The dewar barcode or RFID code"
+        },
+        "trackingDevice": {
+            "$ref": "../datatypes/TrackingDevice.json"
+        }
+    }
+}

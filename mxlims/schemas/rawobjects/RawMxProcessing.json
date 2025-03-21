@@ -1,0 +1,28 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "description": "Crystallography Processing calculation,",
+    "title": "RawMxProcessing",
+    "type": "object",
+    "id": "RawMxProcessing.json",
+    "allOf": [
+        {
+            "$ref": "../core/Job.json"
+        }
+    ],
+    "properties": {
+        "mxlimsType": {
+            "const": "MXProcessing",
+            "description": "Type of MXLIMS object.",
+            "title": "Mxlims Type",
+            "type": "string"
+        },
+        "crystalForm": {
+            "allOf": [
+                {
+                    "$ref": "../datatypes/CrystalForm.json"
+                }
+            ],
+            "description": "Crystal form, with unit cell and space group, to use for processing"
+        }
+    }
+}

@@ -1,0 +1,57 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "description": "Shipment",
+    "title": "RawShipment",
+    "type": "object",
+    "id": "RawShipment.json",
+    "allOf": [
+        {
+            "$ref": "../core/LogisticalSample.json"
+        }
+    ],
+    "properties": {
+        "mxlimsType": {
+            "const": "Shipment",
+            "description": "The type of MXLIMS object.",
+            "title": "Mxlims Type",
+            "type": "string"
+        },
+        "proposalCode": {
+            "type": "string",
+            "description": "The proposal number at the receiving facility.",
+            "examples": [
+                "mx1234"
+            ]
+        },
+        "sessionNumber": {
+            "type": "integer",
+            "description": "The session number within the proposal. If this property is not set, the shipment is for unattended collection.",
+            "minimum": 1
+        },
+        "comments": {
+            "type": "string",
+            "description": "A comment about the shipment.",
+            "maxLength": 250
+        },
+        "labContactOutbound": {
+            "$ref": "../datatypes/Person.json"
+        },
+        "labContactReturn": {
+            "$ref": "../datatypes/Person.json"
+        },
+        "identifiers": {
+            "additionalProperties": {
+                "type": "string"
+            },
+            "description": "Dictionary str:str of contextName: identifier. ContextName will typically refer to a LIMS, database, or web site but could also be e.g. 'smiles' or 'sequence'",
+            "title": "Identifiers",
+            "type": "object"
+        },
+        "trackingDevice": {
+            "$ref": "../datatypes/TrackingDevice.json"
+        }
+    },
+    "required": [
+        "proposalCode"
+    ]
+}

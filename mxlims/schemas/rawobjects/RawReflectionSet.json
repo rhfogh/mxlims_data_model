@@ -1,0 +1,243 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "description": "Set of processed reflections, possibly merged or scaled, as might be stored within a MTZ or mmCIF reflection file",
+    "title": "RawReflectionSet",
+    "type": "object",
+    "id": "RawReflectionSet.json",
+    "allOf": [
+        {
+            "$ref": "../core/Dataset.json"
+        }
+    ],
+    "properties": {
+        "mxlimsType": {
+            "const": "ReflectionSet",
+            "description": "Type of MXLIMS object linked to.",
+            "title": "Mxlims Type",
+            "type": "string"
+        },
+        "anisotropicDiffraction": {
+            "default": false,
+            "description": "Is diffraction limit analysis based on anisotropic diffraction limits? True/False ",
+            "title": "Anisotropic Diffraction",
+            "type": "boolean"
+        },
+        "crystalForm": {
+            "allOf": [
+                {
+                    "$ref": "../datatypes/CrystalForm.json"
+                }
+            ],
+            "description": "Crystal form, with unit cell and space group, as determined during processing"
+        },
+        "operationalResolution": {
+            "type": "number",
+            "description": "Operational resolution (A) matching resolutionCutoffs.",
+            "title": "Operational Resolution"
+        },
+        "diffractionLimitsEstimated": {
+            "allOf": [
+                {
+                    "$ref": "../datatypes/Tensor.json"
+                }
+            ],
+            "description": "Principal axes lengths (A) of ellipsoid describing reciprocal space region containing observable reflections, regardless whether all have actually been observed. Matches mmCIF items reflns.pdbx_aniso_diffraction_limit_{1,2,3} (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_aniso_diffraction_limit_1.html)"
+        },
+        "wavelengths": {
+            "description": "Wavelengths (A) at which reflections were measured",
+            "items": {
+                "type": "number",
+                "minimum": 0.0
+            },
+            "title": "Wavelengths",
+            "type": "array"
+        },
+        "isoBWilsonEstimate": {
+            "type": "number",
+            "description": "estimated (isotropic) temperature factor from slope of Wilson plot, matches mmCIF item reflns.B_iso_Wilson_estimate (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.B_iso_Wilson_estimate.html)",
+            "title": "B Iso Wilson Estimate"
+        },
+        "anisoBtensor": {
+            "allOf": [
+                {
+                    "$ref": "../datatypes/Tensor.json"
+                }
+            ],
+            "description": "Anisotropic B tensor, matching mmCIF items reflns.pdbx_aniso_B_tensor_eigenvalue_{1,2,3} and reflns.pdbx_aniso_B_tensor_eigenvector_{1,2,3}_ortho[{1,2,3}] (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_aniso_B_tensor_eigenvalue_1.html)"
+        },
+        "numberReflections": {
+            "minimum": 0,
+            "type": "integer",
+            "description": "Total number of measured reflections, matches mmCIF item reflns.pdbx_number_measured_all (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_number_measured_all.html)",
+            "title": "Number of Reflections"
+        },
+        "numberReflectionsUnique": {
+            "minimum": 0,
+            "type": "integer",
+            "description": "Total number of unique reflections, matches mmCIF item reflns.number_obs (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.number_obs.html)",
+            "title": "Number Reflections Unique"
+        },
+        "hIndexRange": {
+            "maxItems": 2,
+            "minItems": 2,
+            "prefixItems": [
+                {
+                    "type": "integer"
+                },
+                {
+                    "type": "integer"
+                }
+            ],
+            "type": "array",
+            "description": "low and high limit on Miller index h, matches mmCIF item reflns.limit_h_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_h_min.html) and reflns.limit_h_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_h_max.html)",
+            "title": "H Index Range"
+        },
+        "kIndexRange": {
+            "maxItems": 2,
+            "minItems": 2,
+            "prefixItems": [
+                {
+                    "type": "integer"
+                },
+                {
+                    "type": "integer"
+                }
+            ],
+            "type": "array",
+            "description": "low and high limit on Miller index k, matches mmCIF item reflns.limit_k_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_k_min.html) and reflns.limit_k_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_k_max.html)",
+            "title": "K Index Range"
+        },
+        "lIndexRange": {
+            "maxItems": 2,
+            "minItems": 2,
+            "prefixItems": [
+                {
+                    "type": "integer"
+                },
+                {
+                    "type": "integer"
+                }
+            ],
+            "type": "array",
+            "description": "low and high limit on Miller index l, matches mmCIF item reflns.limit_l_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_l_min.html) and reflns.limit_l_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_l_max.html)",
+            "title": "L Index Range"
+        },
+        "reflectionStatisticsOverall": {
+            "allOf": [
+                {
+                    "$ref": "../datatypes/ReflectionStatistics.json"
+                }
+            ],
+            "description": "Reflection statistics for all processed reflections"
+        },
+        "reflectionStatisticsShells": {
+            "description": "Reflection statistics per resolution shell",
+            "items": {
+                "$ref": "../datatypes/ReflectionStatistics.json"
+            },
+            "title": "Reflection Statistics Shells",
+            "type": "array"
+        },
+        "signalType": {
+            "allOf": [
+                {
+                    "$ref": "../datatypes/PdbxSignalType.json"
+                }
+            ],
+            "description": "'local <I/sigmaI>', 'local wCC_half'; matches reflns.pdbx_signal_type (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_signal_type.html). Criterion for observability, as used in mmCIF refln.pdbx_signal_status (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_refln.pdbx_signal_status.html)"
+        },
+        "signalCutoff": {
+            "type": "number",
+            "description": "Limiting value for signal calculation; matches reflns.pdbx_observed_signal_threshold (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_observed_signal_threshold.html). Cutoff for observability, as used in mmCIF refln.pdbx_signal_status (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_refln.pdbx_signal_status.html)",
+            "title": "Signal Cutoff"
+        },
+        "resolutionCutoffs": {
+            "description": "Criteria used in determination of isotropic resolution cut-off (e.g. as implemented in MRFANA, https://github.com/githubgphl/MRFANA)",
+            "items": {
+                "$ref": "../datatypes/QualityFactor.json"
+            },
+            "title": "Resolution Cutoffs",
+            "type": "array"
+        },
+        "binningMode": {
+            "allOf": [
+                {
+                    "$ref": "../datatypes/ReflectionBinningMode.json"
+                }
+            ],
+            "description": "Binning mode for definition of resolution shells"
+        },
+        "numberBins": {
+            "exclusiveMinimum": 0,
+            "type": "integer",
+            "description": "Number of bins",
+            "title": "Number Bins"
+        },
+        "reflectionsPerBin": {
+            "exclusiveMinimum": 0,
+            "type": "integer",
+            "description": "Number of reflections per bin",
+            "title": "Reflections Per Bin"
+        },
+        "reflectionsPerBinPerSweep": {
+            "exclusiveMinimum": 0,
+            "type": "integer",
+            "description": "Number of reflections per bin per sweep (in multi-sweep experiment)",
+            "title": "Reflections Per Bin Per Sweep"
+        },
+        "resolutionRingsDetected": {
+            "description": "Resolution rings detected as originating from ice, powder diffraction etc.; given as a pair of floats (A) with decreasing value, i.e. low- and high-resolution limits",
+            "items": {
+                "maxItems": 2,
+                "minItems": 2,
+                "prefixItems": [
+                    {
+                        "type": "number"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ],
+                "type": "array"
+            },
+            "title": "Resolution Rings Detected",
+            "type": "array"
+        },
+        "resolutionRingsExcluded": {
+            "description": "Resolution rings excluded from calculation; given as a pair of floats (A) with decreasing value, i.e. low- and high-resolution limits)",
+            "items": {
+                "maxItems": 2,
+                "minItems": 2,
+                "prefixItems": [
+                    {
+                        "type": "number"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ],
+                "type": "array"
+            },
+            "title": "Resolution Rings Excluded",
+            "type": "array"
+        },
+        "fileType": {
+            "allOf": [
+                {
+                    "$ref": "../datatypes/ReflectionFileType.json"
+                }
+            ],
+            "description": "Type of file"
+        },
+        "filename": {
+            "type": "string",
+            "description": "File name.",
+            "title": "Filename"
+        },
+        "path": {
+            "type": "string",
+            "description": "Path to directory containing reflection set file (defined by filename).",
+            "title": "Path"
+        }
+    }
+}
