@@ -2,7 +2,7 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "type": "object",
     "id": "DropImage.json",
-    "title": "Drop image",
+    "title": "Dropimage",
     "description": "An image of a crystallization drop.",
     "properties": {
         "mimeType": {

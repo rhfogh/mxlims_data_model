@@ -10,24 +10,6 @@
         }
     ],
     "properties": {
-        "sampleId": {
-            "type": "string",
-            "format": "uuid",
-            "description": "String UUID of the PreparedSample that applies to this Job",
-            "title": "Sample Id"
-        },
-        "logisticalSampleId": {
-            "type": "string",
-            "format": "uuid",
-            "description": "String UUID of LogisticalSample relevant to this Job.",
-            "title": "Logistical Sample Id"
-        },
-        "startedFromId": {
-            "type": "string",
-            "format": "uuid",
-            "description": "String UUID of the Job from which this Job was started.",
-            "title": "Started From Id"
-        },
         "startTime": {
             "format": "date-time",
             "type": "string",
@@ -56,6 +38,24 @@
                 "Aborted"
             ]
         },
+        "sampleId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "String UUID of the PreparedSample that applies to this Job",
+            "title": "Sample Id"
+        },
+        "logisticalSampleId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "String UUID of LogisticalSample relevant to this Job.",
+            "title": "Logistical Sample Id"
+        },
+        "startedFromId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "String UUID of the Job from which this Job was started.",
+            "title": "Started From Id"
+        },
         "inputDataIds": {
             "description": "String UUID of input Datasets for this Job.",
             "items": {
@@ -81,30 +81,6 @@
                 "format": "uuid"
             },
             "title": "Template Data Ids",
-            "type": "array"
-        },
-        "subjobs": {
-            "description": "List of Jobs started from this job. NB the startedFromId of the jobs must point to this Job.This field allows attached jobs to be contained directly in the JSON file and allows for constraining job types in subtypes",
-            "items": {
-                "$ref": "../core/Job.json"
-            },
-            "title": "Subjobs",
-            "type": "array"
-        },
-        "results": {
-            "description": "List of Datasets created from this job. NB the sourceId of the datasets must point to this Job.This field allows result Datasets to be contained directly in the JSON file and allows for constraining Dataset types in subtypes",
-            "items": {
-                "$ref": "../core/Dataset.json"
-            },
-            "title": "Results",
-            "type": "array"
-        },
-        "templateData": {
-            "description": "List of Template Datasets used for this job. NB the id of the datasets must match the IDs in templateDataIds.This field allows template Datasets to be contained directly in the JSON file and allows for constraining Dataset types in subtypes.NB Note that two different specifications of a dataset cannot have the same ID",
-            "items": {
-                "$ref": "../core/Dataset.json"
-            },
-            "title": "Template Data",
             "type": "array"
         }
     }

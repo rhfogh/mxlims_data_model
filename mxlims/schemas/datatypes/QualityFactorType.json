@@ -1,7 +1,7 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Name for quality factor type, used in QualityFactor class",
-    "title": "Quality Factor Type",
+    "title": "QualityFactorType",
     "type": "string",
     "enum": [
         "R(merge)",

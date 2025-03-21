@@ -1,80 +1,39 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "description": "Crystallographic Sample",
+    "description": "Crystallographic Sample, with typed JSON containment lists",
     "title": "Crystallographic Sample",
     "type": "object",
     "id": "CrystallographicSample.json",
     "allOf": [
         {
-            "$ref": "../core/PreparedSample.json"
+            "$ref": "../rawobjects/RawCrystallographicSample.json"
         }
     ],
-    "$defs": {
-        "CrystallographicSampleData": {
-            "type": "object",
-            "title": "CrystallographicSample Data",
-            "allOf": [
-                {
-                    "$ref": "../core/MxlimsData.json"
-                }
-            ],
-            "description": "PreparedSample for crystallographic experiments",
-            "properties": {
-                "mxlimsType": {
-                    "const": "CrystallographicSample",
-                    "description": "The type of MXLIMS object.",
-                    "title": "Mxlims Type",
-                    "type": "string"
-                },
-                "macromolecule": {
-                    "allOf": [
-                        {
-                            "$ref": "../datatypes/SampleComponent.json"
-                        }
-                    ],
-                    "description":"Macromolecule being studied - main component of the sample"
-                },
-                "components": {
-                    "description": "Other components of Sample",
-                    "items": {
-                        "$ref": "../datatypes/SampleComponent.json"
-                    },
-                    "title": "Sample components",
-                    "type": "array"
-                },
-                "crystalForm": {
-                    "allOf": [
-                        {
-                            "$ref": "../datatypes/CrystalForm.json"
-                        }
-                    ],
-                    "description": "Crystal form, with unit cell and space group, as determined during processing"
-                },
-                "radiationSensitivity": {
-                    "maximum": 1.0,
-                    "minimum": 0.0,
-                    "type": "number",
-                    "description": "Relative radiation sensitivity of sample.",
-                    "title": "Radiation Sensitivity"
-                },
-                "identifiers": {
-                    "additionalProperties": {
-                        "type": "string"
-                    },
-                    "description": "Dictionary str:str of contextName: identifier. ContextName will typically refer to a LIMS, database, or web site but could also be e.g. 'smiles' or 'sequence'",
-                    "title": "Identifiers",
-                    "type": "object"
-                }
-            }
-        }
-    },
     "properties": {
-        "data": {
-            "allOf": [
-                {
-                    "$ref": "#/$defs/CrystallographicSampleData"
-                }
-            ]
+        "logisticalSamples": {
+            "type": "array",
+            "items": {
+                "anyOf": [
+                    {
+                        "$ref": "../objects/Crystal.json"
+                    },
+                    {
+                        "$ref": "../objects/DropRegion.json"
+                    },
+                    {
+                        "$ref": "../objects/Pin.json"
+                    },
+                    {
+                        "$ref": "../objects/PinPosition.json"
+                    },
+                    {
+                        "$ref": "../objects/PlateWell.json"
+                    },
+                    {
+                        "$ref": "../objects/WellDrop.json"
+                    }
+                ]
+            }
         }
     }
 }

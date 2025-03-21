@@ -1,62 +1,85 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "description": "Example message for MX, showing all classes",
-    "$defs": {
-        "MxProcessing": {"$ref": "../objects/MxProcessing.json"},
-        "MxExperiment": {"$ref": "../objects/MxExperiment.json"},
-        "CollectionSweep": {"$ref": "../objects/CollectionSweep.json"},
-        "ReflectionSet": {"$ref": "../objects/ReflectionSet.json"},
-        "CrystallographicSample": {"$ref": "../objects/CrystallographicSample.json"},
-        "Shipment": {"$ref": "../objects/Shipment.json"}
-    },
+    "description": "Message containing all possible objects, none with JSON content links",
+    "title": "GenericMessage",
+    "type": "object",
     "properties": {
         "jobs": {
             "description": "List of directly contained Jobs.",
+            "title": "Jobs",
+            "type": "array",
             "items": {
                 "anyOf": [
                     {
-                        "$ref": "#/$defs/MxProcessing"
+                        "$ref": "../rawobjects/RawMxProcessing.json"
                     },
                     {
-                        "$ref": "#/$defs/MxExperiment"
+                        "$ref": "../rawobjects/RawMxExperiment.json"
                     }
                 ]
-            },
-            "title": "Jobs",
-            "type": "array"
+            }
         },
         "datasets": {
             "description": "List of directly contained Datasets.",
+            "title": "Datasets",
+            "type": "array",
             "items": {
                 "anyOf": [
                     {
-                        "$ref": "#/$defs/CollectionSweep"
+                        "$ref": "../rawobjects/RawCollectionSweep.json"
                     },
                     {
-                        "$ref": "#/$defs/ReflectionSet"
+                        "$ref": "../rawobjects/RawReflectionSet.json"
                     }
                 ]
-            },
-            "title": "Datasets",
-            "type": "array"
+            }
         },
         "preparedSamples": {
             "description": "List of directly contained Prepared Samples.",
-            "items": {
-                "$ref": "#/$defs/CrystallographicSample"
-            },
             "title": "Prepared Samples",
-            "type": "array"
+            "type": "array",
+            "items": {
+                "$ref": "../rawobjects/RawCrystallographicSample.json"
+            }
         },
         "logisticalSamples": {
             "description": "List of directly contained Logistical Samples.",
-            "items": {
-                "$ref": "#/$defs/Shipment"
-            },
             "title": "Logistical Samples",
-            "type": "array"
+            "type": "array",
+            "items": {
+                "anyOf": [
+                    {
+                        "$ref": "../rawobjects/RawShipment.json"
+                    },
+                    {
+                        "$ref": "../rawobjects/RawDewar.json"
+                    },
+                    {
+                        "$ref": "../rawobjects/RawPlate.json"
+                    },
+                    {
+                        "$ref": "../rawobjects/RawPuck.json"
+                    },
+                    {
+                        "$ref": "../rawobjects/RawPlateWell.json"
+                    },
+                    {
+                        "$ref": "../rawobjects/RawPin.json"
+                    },
+                    {
+                        "$ref": "../rawobjects/RawWellDrop.json"
+                    },
+                    {
+                        "$ref": "../rawobjects/RawPinPosition.json"
+                    },
+                    {
+                        "$ref": "../rawobjects/RawDropRegion.json"
+                    },
+                    {
+                        "$ref": "../rawobjects/RawCrystal.json"
+                    }
+                ]
+            }
         }
-    },
-    "title": "MxlimsMessage",
-    "type": "object"
+    }
 }

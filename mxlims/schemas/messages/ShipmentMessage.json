@@ -1,0 +1,33 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "description": "Example message for MX, showing all classes",
+    "title": "ShipmentMessage",
+    "type": "object",
+    "properties": {
+        "shipment": {
+            "oneOf": [
+                {
+                    "$ref": "../objects/DewarShipment.json"
+                },
+                {
+                    "$ref": "../objects/PlateShipment.json"
+                }
+            ]
+        },
+        "samples": {
+            "type": "array",
+            "items": {
+                "anyOf": [
+                    {
+                        "$ref": "../rawobjects/RawCrystallographicSample.json"
+                    }
+                ]
+            },
+            "minItems": 1
+        }
+    },
+    "required": [
+      "shipment",
+      "samples"
+    ]
+}

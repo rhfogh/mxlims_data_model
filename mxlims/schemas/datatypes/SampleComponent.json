@@ -1,7 +1,7 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description" : "Component of Sample.",
-    "title": "Sample Component",
+    "title": "SampleComponent",
     "type": "object",
     "id": "SampleComponent.json",
     "properties": {

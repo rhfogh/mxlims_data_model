@@ -1,7 +1,7 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Canonic space group names for chiral space groups",
-    "title": "Spacegroup Names Chiral",
+    "title": "SpacegroupNameChiral",
     "type": "string",
     "enum": [
         "P1",

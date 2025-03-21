@@ -1,19 +1,19 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "description": "A dewar containing pucks with mounted crystals on pins, with typed JSON containment lists.",
-    "title": "Dewar",
+    "description": "Shipment of Dewars, with typed JSON containment lists",
+    "title": "DewarShipment",
     "type": "object",
-    "id": "Dewar.json",
+    "id": "DewarShipment.json",
     "allOf": [
         {
-            "$ref": "../rawobjects/RawDewar.json"
+            "$ref": "../rawobjects/RawShipment.json"
         }
     ],
     "properties": {
         "contents": {
             "type": "array",
             "items": {
-                "$ref": "../objects/Puck.json"
+                "$ref": "../objects/Dewar.json"
             },
             "minItems": 1
         }

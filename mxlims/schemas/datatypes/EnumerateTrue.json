@@ -1,7 +1,7 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Enumeration containing only `true`, to use for optional single-value property",
-    "title": "Enumerate True",
+    "title": "EnumerateTrue",
     "type": "boolean",
     "enum": [
         true

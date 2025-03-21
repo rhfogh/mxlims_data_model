@@ -1,56 +1,44 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "description": "Crystallography Processing calculation,",
+    "description": "Crystallography Processing calculation, with typed JSON containment lists",
     "title": "MxProcessing",
     "type": "object",
     "id": "MxProcessing.json",
     "allOf": [
         {
-            "$ref": "../core/Job.json"
+            "$ref": "../rawobjects/RawMxProcessing.json"
         }
     ],
-    "$defs": {
-        "MxProcessingData": {
-            "description": "Metadata for MX Crystallographic processing calculation,\n\ngoing from images to reflection sets",
-            "title": "MXProcessing Data",
-            "type": "object",
-            "allOf": [
-                {
-                    "$ref": "../core/MxlimsData.json"
-                }
-            ],
-            "properties": {
-                "mxlimsType": {
-                    "const": "MXProcessing",
-                    "description": "Type of MXLIMS object.",
-                    "title": "Mxlims Type",
-                    "type": "string"
-                },
-                "crystalForm": {
-                    "allOf": [
-                        {
-                            "$ref": "../datatypes/CrystalForm.json"
-                        }
-                    ],
-                    "description": "Crystal form, with unit cell and space group, to use for processing"
-                }
-            }
-        }
-    },
     "properties": {
-        "data": {
-            "allOf": [
-                {
-                    "$ref": "#/$defs/MxProcessingData"
-                }
-            ]
-        },
         "results": {
             "type": "array",
             "items": {
                 "$ref": "../objects/ReflectionSet.json"
-            },
-            "minItems": 1
+            }
+        },
+        "templateData": {
+            "type": "array",
+            "items": {
+                "$ref": "../objects/ReflectionSet.json"
+            }
+        },
+        "referenceData": {
+            "type": "array",
+            "items": {
+                "$ref": "../objects/ReflectionSet.json"
+            }
+        },
+        "inputData": {
+            "type": "array",
+            "items": {
+                "$ref": "../objects/CollectionSweep.json"
+            }
+        },
+        "subjobs": {
+            "type": "array",
+            "items": {
+                "$ref": "../objects/MxProcessing.json"
+            }
         }
     }
 }

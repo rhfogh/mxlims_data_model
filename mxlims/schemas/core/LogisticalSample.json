@@ -21,22 +21,6 @@
             "format": "uuid",
             "description": "String UUID of the LogisticalSample containing this one",
             "title": "Container Id"
-        },
-        "contents": {
-            "description": "List of directly contained LogisticalSamples.NB the containerId of the contents must point to this LogisticalSample.This field allows contents to be contained directly in the JSON fileand allows for constraining content types in subtypes(E.g. Pucks can only contain contain Pins",
-            "items": {
-                "$ref": "#"
-            },
-            "title": "Contents",
-            "type": "array"
-        },
-        "jobs": {
-            "description": "List of directly attached Jobs.NB the logisticalSampleId of the jobs must point to this LogisticalSample.This field allows attached jobs to be contained directly in the JSON fileand allows for constraining job types in subtypes",
-            "items": {
-                "$ref": "../core/Job.json"
-            },
-            "title": "Jobs",
-            "type": "array"
         }
     }
 }

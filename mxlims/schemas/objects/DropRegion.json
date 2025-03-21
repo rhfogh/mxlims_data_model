@@ -1,66 +1,34 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "description": "A region in a well drop where crystals may be found",
+    "description": "A region in a well drop where crystals may be found, with typed JSON containment lists",
     "title": "DropRegion",
     "type": "object",
     "id": "DropRegion.json",
     "allOf": [
         {
-            "$ref": "../core/LogisticalSample.json"
+            "$ref": "../rawobjects/RawDropRegion.json"
         }
     ],
-    "$defs": {
-        "DropRegionData": {
-            "type": "object",
-            "title": "DropRegion Data",
-            "description": "Data for a region in a well drop where crystals may be found.",
-            "allOf": [
-                {
-                    "$ref": "../core/MxlimsData.json"
-                }
-            ],
-            "properties": {
-                "mxlimsType": {
-                    "const": "DropRegion",
-                    "description": "The type of MXLIMS object.",
-                    "title": "Mxlims Type",
-                    "type": "string"
-                },
-                "imageRegion": {
-                    "$ref": "../datatypes/ImageRegion.json"
-                },
-                "plateRegion": {
-                    "$ref": "../datatypes/PlateRegion.json"
-                }
-            },
-            "oneOf": [
-                {
-                    "required": [
-                        "imageRegion"
-                    ]
-                },
-                {
-                    "required": [
-                        "plateRegion"
-                    ]
-                }
-            ]
-        }
-    },
     "properties": {
-        "data": {
-            "allOf": [
-                {
-                    "$ref": "#/$defs/DropRegionData"
-                }
-            ]
-        },
         "contents": {
             "type": "array",
             "items": {
                 "$ref": "../objects/Crystal.json"
             },
             "minItems": 1
+        },
+        "jobs": {
+            "type": "array",
+            "items": {
+                "anyOf": [
+                    {
+                        "$ref": "../objects/MxExperiment.json"
+                    },
+                    {
+                        "$ref": "../objects/MxProcessing.json"
+                    }
+                ]
+            }
         }
     }
 }

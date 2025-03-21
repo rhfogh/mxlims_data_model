@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "description": "A crystallization plate",
+    "description": "A crystallization plate, with typed JSON containment lists",
     "title": "Plate",
     "type": "object",
     "id": "Plate.json",
@@ -9,50 +9,7 @@
             "$ref": "../core/LogisticalSample.json"
         }
     ],
-    "$defs": {
-        "PlateData": {
-            "type": "object",
-            "title": "Plate Data",
-            "description": "Data for crystallisation plate.",
-            "allOf": [
-                {
-                    "$ref": "../core/MxlimsData.json"
-                }
-            ],
-            "properties": {
-                "mxlimsType": {
-                    "const": "Plate",
-                    "description": "The type of MXLIMS object.",
-                    "title": "Mxlims Type",
-                    "type": "string"
-                },
-                "barcode": {
-                    "type": "string",
-                    "description": "The plate barcode or otehr identifier"
-                },
-                "plateType": { "$ref": "../datatypes/PlateType.json"},
-                "identifiers": {
-                    "additionalProperties": {
-                        "type": "string"
-                    },
-                    "description": "Dictionary str:str of contextName: identifier. ContextName will typically refer to a LIMS, database, or web site but could also be e.g. 'smiles' or 'sequence'",
-                    "title": "Identifiers",
-                    "type": "object"
-                },
-                "trackingDevice": {
-                    "$ref": "../datatypes/TrackingDevice.json"
-                }
-            }
-        }
-    },
     "properties": {
-        "data": {
-            "allOf": [
-                {
-                    "$ref": "#/$defs/PlateData"
-                }
-            ]
-        },
         "contents": {
             "type": "array",
             "items": {

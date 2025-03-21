@@ -1,56 +1,34 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "description": "A drop in a well in a crystallization plate",
+    "description": "A drop in a well in a crystallization plate with typed JSON containment lists",
     "title": "WellDrop",
     "type": "object",
     "id": "WellDrop.json",
     "allOf": [
         {
-            "$ref": "../core/LogisticalSample.json"
+            "$ref": "../rawobjects/RawPlateWell.json"
         }
     ],
-    "$defs": {
-        "WellDropData": {
-            "type": "object",
-            "title": "WellDrop Data",
-            "description": "Data for drop in a well in crystallisation plate.",
-            "allOf": [
-                {
-                    "$ref": "../core/MxlimsData.json"
-                }
-            ],
-            "properties": {
-                "mxlimsType": {
-                    "const": "WellDrop",
-                    "description": "The type of MXLIMS object.",
-                    "title": "Mxlims Type",
-                    "type": "string"
-                },
-                "dropNumber": {
-                    "type": "integer",
-                    "description": "The drop number. This should be validated against the plateType's numberSubPositions property.",
-                    "minimum": 1
-                }
-            },
-            "required": [
-                "dropNumber"
-            ]
-        }
-    },
     "properties": {
-        "data": {
-            "allOf": [
-                {
-                    "$ref": "#/$defs/WellDropData"
-                }
-            ]
-        },
         "contents": {
             "type": "array",
             "items": {
                 "$ref": "../objects/DropRegion.json"
             },
             "minItems": 1
+        },
+        "jobs": {
+            "type": "array",
+            "items": {
+                "anyOf": [
+                    {
+                        "$ref": "../objects/MxExperiment.json"
+                    },
+                    {
+                        "$ref": "../objects/MxProcessing.json"
+                    }
+                ]
+            }
         }
     }
 }

@@ -1,7 +1,7 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Crystallographic unit cell,\n\nmatches mmCIF items cell.length_{a,b,c} and cell.angle_{alpha,beta,gamma} in category\ncell (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Categories/cell.html)",
-    "title": "Unit Cell",
+    "title": "UnitCell",
     "type": "object",
     "id": "UnitCell.json",
     "properties": {
