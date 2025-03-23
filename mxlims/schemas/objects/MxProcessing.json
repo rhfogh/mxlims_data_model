@@ -1,9 +1,8 @@
 {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$schema": "https://json-schema.org/draft-07/schema",
     "description": "Crystallography Processing calculation, with typed JSON containment lists",
     "title": "MxProcessing",
     "type": "object",
-    "id": "MxProcessing.json",
     "allOf": [
         {
             "$ref": "../rawobjects/RawMxProcessing.json"
@@ -37,7 +36,7 @@
         "subjobs": {
             "type": "array",
             "items": {
-                "$ref": "../rawobjects/RawMxProcessing.json"
+                "$ref": "../objects/MxProcessing.json"
             }
         }
     }

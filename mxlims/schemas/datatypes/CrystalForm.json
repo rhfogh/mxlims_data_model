@@ -1,9 +1,8 @@
 {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$schema": "https://json-schema.org/draft-07/schema",
     "description": "Crystal form, fully or partially specified",
     "title": "CrystalForm",
     "type": "object",
-    "id": "CrystalForm.json",
     "properties": {
         "unitCell": {
             "allOf": [
@@ -16,7 +15,7 @@
         "spaceGroupName": {
             "allOf": [
                 {
-                    "$ref": "../datatypes/SpacegroupName.json"
+                    "$ref": "../datatypes/SpaceGroupName.json"
                 }
             ],
             "description": "Name of expected space group, for processing. Names may include alternative settings. Matches mmCIF item symmetry.space_group_name_H-M (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_symmetry.space_group_name_H-M.html).",

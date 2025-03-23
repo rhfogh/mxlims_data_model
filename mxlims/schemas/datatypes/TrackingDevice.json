@@ -1,9 +1,8 @@
 {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$schema": "https://json-schema.org/draft-07/schema",
     "description": "<p>A tracking device such as a LightBug or AirTag, included with the parent object.</p><p>Note that the tracking URLs for a given device can change, therefore implementers should use any URLs supplied rather than those cached from a previous shipment with the same device.</p>",
     "title": "TrackingDevice",
     "type": "object",
-    "id": "TrackingDevice.json",
     "properties": {
         "identifier": {
             "type": "string",

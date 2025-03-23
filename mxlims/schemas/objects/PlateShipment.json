@@ -1,9 +1,8 @@
 {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$schema": "https://json-schema.org/draft-07/schema",
     "description": "Shipment of Plates, with typed JSON containment lists",
     "title": "PlateShipment",
     "type": "object",
-    "id": "PlateShipment.json",
     "allOf": [
         {
             "$ref": "../rawobjects/RawShipment.json"

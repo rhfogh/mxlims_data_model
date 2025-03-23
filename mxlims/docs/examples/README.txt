@@ -1,0 +1,1 @@
+This directory will contain examples of data stored with the MXLIMS model

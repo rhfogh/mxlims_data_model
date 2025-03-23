@@ -1,9 +1,8 @@
 {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$schema": "https://json-schema.org/draft-07/schema",
     "description": "Subdivision of CollectionSweep.\n\nThe Scan describes a continuously acquired set of images that forms a subset of the\nCollectionSweep of which they form part. The ordinal gives the acquisition order of\nsweeps across an entire multi-sweep experiment; this allows you to describe\nout-of-order acquisition and interleaving.",
     "title": "Scan",
     "type": "object",
-    "id": "Scan.json",
     "properties": {
         "scanPositionStart": {
             "description": "Value of scan axis for the first image, in units matching axis type",

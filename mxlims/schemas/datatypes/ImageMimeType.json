@@ -1,6 +1,6 @@
 {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "description": "Mimetype deccribign image format",
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "Mimetype describing image format",
     "title": "ImageMimetype",
     "type": "string",
     "enum": [

@@ -1,9 +1,8 @@
 {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$schema": "https://json-schema.org/draft-07/schema",
     "description": "A point marked on an image or in absolute plate space.",
     "type": "object",
     "title": "Point",
-    "id": "Point.json",
     "properties": {
         "regionType": {
             "const": "point",

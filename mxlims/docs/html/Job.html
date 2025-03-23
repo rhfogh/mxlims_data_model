@@ -1,0 +1,693 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Overpass:300,400,600,800">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="schema_doc.css">
+    <script src="https://use.fontawesome.com/facf9fa52c.js"></script>
+    <script src="schema_doc.min.js"></script>
+    <meta charset="utf-8"/>
+        
+    
+    <title>Job</title>
+</head>
+<body onload="anchorOnLoad();" id="root">
+
+    <div class="breadcrumbs"></div> <h1>Job</h1><span class="badge badge-dark value-type">Type: object</span><br/>
+<span class="description"><p>Base class for MXLIMS Jobs - an experiment or calculation producing Datasets</p>
+</span>
+
+    
+        
+
+        
+        
+
+        
+<div class="accordion" id="accordionversion">
+    <div class="card">
+        <div class="card-header" id="headingversion">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#version"
+                        aria-expanded="" aria-controls="version" onclick="setAnchor('#version')"><span class="property-name">version</span> <span class="badge badge-warning required-property">Required</span></button>
+            </h2>
+        </div>
+
+        <div id="version"
+             class="collapse property-definition-div" aria-labelledby="headingversion"
+             data-parent="#accordionversion">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#version" onclick="anchorLink('version')">version</a></div><h4>Version</h4><span class="badge badge-dark value-type">Type: const</span><br/>
+<span class="description"><p>MXLIMS version for current model</p>
+</span><span class="const-value" id="version_const">Specific value: <code>"0.5.0"</code></span>
+        
+
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionmxlimsType">
+    <div class="card">
+        <div class="card-header" id="headingmxlimsType">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#mxlimsType"
+                        aria-expanded="" aria-controls="mxlimsType" onclick="setAnchor('#mxlimsType')"><span class="property-name">mxlimsType</span> <span class="badge badge-warning required-property">Required</span></button>
+            </h2>
+        </div>
+
+        <div id="mxlimsType"
+             class="collapse property-definition-div" aria-labelledby="headingmxlimsType"
+             data-parent="#accordionmxlimsType">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#mxlimsType" onclick="anchorLink('mxlimsType')">mxlimsType</a></div><h4>Mxlims Type</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>The type of the MXLIMS object. Fixed for each subtype schema</p>
+</span>
+        
+
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionuuid">
+    <div class="card">
+        <div class="card-header" id="headinguuid">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#uuid"
+                        aria-expanded="" aria-controls="uuid" onclick="setAnchor('#uuid')"><span class="property-name">uuid</span></button>
+            </h2>
+        </div>
+
+        <div id="uuid"
+             class="collapse property-definition-div" aria-labelledby="headinguuid"
+             data-parent="#accordionuuid">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#uuid" onclick="anchorLink('uuid')">uuid</a></div><h4>Uuid</h4><span class="badge badge-dark value-type">Type: string</span><span class="badge badge-info value-type">Format: uuid</span><br/>
+<span class="description"><p>Permanent unique identifier string</p>
+</span>
+        
+
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionnamespacedExtensions">
+    <div class="card">
+        <div class="card-header" id="headingnamespacedExtensions">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#namespacedExtensions"
+                        aria-expanded="" aria-controls="namespacedExtensions" onclick="setAnchor('#namespacedExtensions')"><span class="property-name">namespacedExtensions</span></button>
+            </h2>
+        </div>
+
+        <div id="namespacedExtensions"
+             class="collapse property-definition-div" aria-labelledby="headingnamespacedExtensions"
+             data-parent="#accordionnamespacedExtensions">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#namespacedExtensions" onclick="anchorLink('namespacedExtensions')">namespacedExtensions</a></div><h4>Namespaced Extensions</h4><span class="badge badge-dark value-type">Type: array</span><br/>
+<span class="description"><p>List of extensions to metadata, each defined in a NamespacedExtension schema</p>
+</span>
+        
+
+        
+        
+
+         <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
+    <div class="card">
+        <div class="card-body items-definition" id="namespacedExtensions_items">
+            
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#namespacedExtensions" onclick="anchorLink('namespacedExtensions')">namespacedExtensions</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#namespacedExtensions_items" onclick="anchorLink('namespacedExtensions_items')">Namespaced Extension</a></div><h4>Namespaced Extension</h4><span class="badge badge-dark value-type">Type: object</span><br/>
+<span class="description"><p>JSON schema for extending MxlimsData. To be subclassed</p>
+</span>
+
+    
+        
+
+        
+        
+
+        
+<div class="accordion" id="accordionnamespacedExtensions_items_namespace">
+    <div class="card">
+        <div class="card-header" id="headingnamespacedExtensions_items_namespace">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#namespacedExtensions_items_namespace"
+                        aria-expanded="" aria-controls="namespacedExtensions_items_namespace" onclick="setAnchor('#namespacedExtensions_items_namespace')"><span class="property-name">namespace</span> <span class="badge badge-warning required-property">Required</span></button>
+            </h2>
+        </div>
+
+        <div id="namespacedExtensions_items_namespace"
+             class="collapse property-definition-div" aria-labelledby="headingnamespacedExtensions_items_namespace"
+             data-parent="#accordionnamespacedExtensions_items_namespace">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#namespacedExtensions" onclick="anchorLink('namespacedExtensions')">namespacedExtensions</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#namespacedExtensions_items" onclick="anchorLink('namespacedExtensions_items')">Namespaced Extension</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#namespacedExtensions_items_namespace" onclick="anchorLink('namespacedExtensions_items_namespace')">namespace</a></div><h4>Namespace</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>Namespace string defining 'owner' of the namespace, e.g. 'ESRF, 'GPhL</p>
+</span>
+        
+
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
+        </div>
+    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionextensions">
+    <div class="card">
+        <div class="card-header" id="headingextensions">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#extensions"
+                        aria-expanded="" aria-controls="extensions" onclick="setAnchor('#extensions')"><span class="property-name">extensions</span></button>
+            </h2>
+        </div>
+
+        <div id="extensions"
+             class="collapse property-definition-div" aria-labelledby="headingextensions"
+             data-parent="#accordionextensions">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#extensions" onclick="anchorLink('extensions')">extensions</a></div><h4>Extensions</h4><span class="badge badge-dark value-type">Type: object</span><br/>
+<span class="description"><p>Keyword-value dictionary string:Any of extensions. Use is accepted but discouraged</p>
+</span>
+        
+
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionstartTime">
+    <div class="card">
+        <div class="card-header" id="headingstartTime">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#startTime"
+                        aria-expanded="" aria-controls="startTime" onclick="setAnchor('#startTime')"><span class="property-name">startTime</span></button>
+            </h2>
+        </div>
+
+        <div id="startTime"
+             class="collapse property-definition-div" aria-labelledby="headingstartTime"
+             data-parent="#accordionstartTime">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#startTime" onclick="anchorLink('startTime')">startTime</a></div><h4>Start Time</h4><span class="badge badge-dark value-type">Type: string</span><span class="badge badge-info value-type">Format: date-time</span><br/>
+<span class="description"><p>Actual starting time for job or calculation, </p>
+</span>
+        
+
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionendTime">
+    <div class="card">
+        <div class="card-header" id="headingendTime">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#endTime"
+                        aria-expanded="" aria-controls="endTime" onclick="setAnchor('#endTime')"><span class="property-name">endTime</span></button>
+            </h2>
+        </div>
+
+        <div id="endTime"
+             class="collapse property-definition-div" aria-labelledby="headingendTime"
+             data-parent="#accordionendTime">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#endTime" onclick="anchorLink('endTime')">endTime</a></div><h4>End Time</h4><span class="badge badge-dark value-type">Type: string</span><span class="badge badge-info value-type">Format: date-time</span><br/>
+<span class="description"><p>Actual finishing time for job or calculation, </p>
+</span>
+        
+
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionjobStatus">
+    <div class="card">
+        <div class="card-header" id="headingjobStatus">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#jobStatus"
+                        aria-expanded="" aria-controls="jobStatus" onclick="setAnchor('#jobStatus')"><span class="property-name">jobStatus</span></button>
+            </h2>
+        </div>
+
+        <div id="jobStatus"
+             class="collapse property-definition-div" aria-labelledby="headingjobStatus"
+             data-parent="#accordionjobStatus">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#jobStatus" onclick="anchorLink('jobStatus')">jobStatus</a></div><h4>JobStatus</h4><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
+<span class="description"><p>Status of job - enumerated, </p>
+</span>
+
+    <div class="enum-value" id="jobStatus_enum">
+            <h4>Must be one of:</h4>
+            <ul class="list-group"><li class="list-group-item enum-item">"Template"</li><li class="list-group-item enum-item">"Ready"</li><li class="list-group-item enum-item">"Running"</li><li class="list-group-item enum-item">"Completed"</li><li class="list-group-item enum-item">"Failed"</li><li class="list-group-item enum-item">"Aborted"</li></ul>
+            </div>
+        
+
+        
+        
+
+        <br/>
+<div class="badge badge-secondary">Examples:</div>
+<br/><div id="jobStatus_ex1" class="jumbotron examples"><div class="highlight"><pre><span></span><span class="s2">&quot;Template&quot;</span>
+</pre></div>
+</div><div id="jobStatus_ex2" class="jumbotron examples"><div class="highlight"><pre><span></span><span class="s2">&quot;Ready&quot;</span>
+</pre></div>
+</div><div id="jobStatus_ex3" class="jumbotron examples"><div class="highlight"><pre><span></span><span class="s2">&quot;Running&quot;</span>
+</pre></div>
+</div><div id="jobStatus_ex4" class="jumbotron examples"><div class="highlight"><pre><span></span><span class="s2">&quot;Completed&quot;</span>
+</pre></div>
+</div><div id="jobStatus_ex5" class="jumbotron examples"><div class="highlight"><pre><span></span><span class="s2">&quot;Failed&quot;</span>
+</pre></div>
+</div><div id="jobStatus_ex6" class="jumbotron examples"><div class="highlight"><pre><span></span><span class="s2">&quot;Aborted&quot;</span>
+</pre></div>
+</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionsampleId">
+    <div class="card">
+        <div class="card-header" id="headingsampleId">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#sampleId"
+                        aria-expanded="" aria-controls="sampleId" onclick="setAnchor('#sampleId')"><span class="property-name">sampleId</span></button>
+            </h2>
+        </div>
+
+        <div id="sampleId"
+             class="collapse property-definition-div" aria-labelledby="headingsampleId"
+             data-parent="#accordionsampleId">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#sampleId" onclick="anchorLink('sampleId')">sampleId</a></div><h4>Sample Id</h4><span class="badge badge-dark value-type">Type: string</span><span class="badge badge-info value-type">Format: uuid</span><br/>
+<span class="description"><p>String UUID of the PreparedSample that applies to this Job</p>
+</span>
+        
+
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionlogisticalSampleId">
+    <div class="card">
+        <div class="card-header" id="headinglogisticalSampleId">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#logisticalSampleId"
+                        aria-expanded="" aria-controls="logisticalSampleId" onclick="setAnchor('#logisticalSampleId')"><span class="property-name">logisticalSampleId</span></button>
+            </h2>
+        </div>
+
+        <div id="logisticalSampleId"
+             class="collapse property-definition-div" aria-labelledby="headinglogisticalSampleId"
+             data-parent="#accordionlogisticalSampleId">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#logisticalSampleId" onclick="anchorLink('logisticalSampleId')">logisticalSampleId</a></div><h4>Logistical Sample Id</h4><span class="badge badge-dark value-type">Type: string</span><span class="badge badge-info value-type">Format: uuid</span><br/>
+<span class="description"><p>String UUID of LogisticalSample relevant to this Job.</p>
+</span>
+        
+
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionstartedFromId">
+    <div class="card">
+        <div class="card-header" id="headingstartedFromId">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#startedFromId"
+                        aria-expanded="" aria-controls="startedFromId" onclick="setAnchor('#startedFromId')"><span class="property-name">startedFromId</span></button>
+            </h2>
+        </div>
+
+        <div id="startedFromId"
+             class="collapse property-definition-div" aria-labelledby="headingstartedFromId"
+             data-parent="#accordionstartedFromId">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#startedFromId" onclick="anchorLink('startedFromId')">startedFromId</a></div><h4>Started From Id</h4><span class="badge badge-dark value-type">Type: string</span><span class="badge badge-info value-type">Format: uuid</span><br/>
+<span class="description"><p>String UUID of the Job from which this Job was started.</p>
+</span>
+        
+
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordioninputDataIds">
+    <div class="card">
+        <div class="card-header" id="headinginputDataIds">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#inputDataIds"
+                        aria-expanded="" aria-controls="inputDataIds" onclick="setAnchor('#inputDataIds')"><span class="property-name">inputDataIds</span></button>
+            </h2>
+        </div>
+
+        <div id="inputDataIds"
+             class="collapse property-definition-div" aria-labelledby="headinginputDataIds"
+             data-parent="#accordioninputDataIds">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#inputDataIds" onclick="anchorLink('inputDataIds')">inputDataIds</a></div><h4>Input Data Ids</h4><span class="badge badge-dark value-type">Type: array of string</span><br/>
+<span class="description"><p>String UUID of input Datasets for this Job. For pure Database implementations this field is replaced bu JobInputLinks.</p>
+</span>
+        
+
+        
+        
+
+         <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
+    <div class="card">
+        <div class="card-body items-definition" id="inputDataIds_items">
+            
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#inputDataIds" onclick="anchorLink('inputDataIds')">inputDataIds</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#inputDataIds_items" onclick="anchorLink('inputDataIds_items')">inputDataIds items</a></div><span class="badge badge-dark value-type">Type: string</span><span class="badge badge-info value-type">Format: uuid</span><br/>
+
+        
+
+        
+        
+
+        
+        </div>
+    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionreferenceDataIds">
+    <div class="card">
+        <div class="card-header" id="headingreferenceDataIds">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#referenceDataIds"
+                        aria-expanded="" aria-controls="referenceDataIds" onclick="setAnchor('#referenceDataIds')"><span class="property-name">referenceDataIds</span></button>
+            </h2>
+        </div>
+
+        <div id="referenceDataIds"
+             class="collapse property-definition-div" aria-labelledby="headingreferenceDataIds"
+             data-parent="#accordionreferenceDataIds">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#referenceDataIds" onclick="anchorLink('referenceDataIds')">referenceDataIds</a></div><h4>Reference Data Ids</h4><span class="badge badge-dark value-type">Type: array of string</span><br/>
+<span class="description"><p>String UUID of reference Datasets for this Job. For pure Database implementations this field is replaced bu JobInputLinks.</p>
+</span>
+        
+
+        
+        
+
+         <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
+    <div class="card">
+        <div class="card-body items-definition" id="referenceDataIds_items">
+            
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#referenceDataIds" onclick="anchorLink('referenceDataIds')">referenceDataIds</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#referenceDataIds_items" onclick="anchorLink('referenceDataIds_items')">referenceDataIds items</a></div><span class="badge badge-dark value-type">Type: string</span><span class="badge badge-info value-type">Format: uuid</span><br/>
+
+        
+
+        
+        
+
+        
+        </div>
+    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordiontemplateDataIds">
+    <div class="card">
+        <div class="card-header" id="headingtemplateDataIds">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#templateDataIds"
+                        aria-expanded="" aria-controls="templateDataIds" onclick="setAnchor('#templateDataIds')"><span class="property-name">templateDataIds</span></button>
+            </h2>
+        </div>
+
+        <div id="templateDataIds"
+             class="collapse property-definition-div" aria-labelledby="headingtemplateDataIds"
+             data-parent="#accordiontemplateDataIds">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#templateDataIds" onclick="anchorLink('templateDataIds')">templateDataIds</a></div><h4>Template Data Ids</h4><span class="badge badge-dark value-type">Type: array of string</span><br/>
+<span class="description"><p>String UUID of template Datasets for this Job. For pure Database implementations this field is replaced bu JobInputLinks.</p>
+</span>
+        
+
+        
+        
+
+         <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
+    <div class="card">
+        <div class="card-body items-definition" id="templateDataIds_items">
+            
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#templateDataIds" onclick="anchorLink('templateDataIds')">templateDataIds</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#templateDataIds_items" onclick="anchorLink('templateDataIds_items')">templateDataIds items</a></div><span class="badge badge-dark value-type">Type: string</span><span class="badge badge-info value-type">Format: uuid</span><br/>
+
+        
+
+        
+        
+
+        
+        </div>
+    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <footer>
+        <p class="generated-by-footer">Generated using <a href="https://github.com/coveooss/json-schema-for-humans">json-schema-for-humans</a> on 2025-03-23 at 15:25:51 +0000</p>
+    </footer></body>
+</html>

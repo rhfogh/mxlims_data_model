@@ -1,9 +1,8 @@
 {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$schema": "https://json-schema.org/draft-07/schema",
     "description": "Crystallographic sweep data set, containing images",
     "title": "RawCollectionSweep",
     "type": "object",
-    "id": "RawCollectionSweep.json",
     "allOf": [
         {
             "$ref": "../core/Dataset.json"
@@ -47,7 +46,7 @@
         },
         "overlap": {
             "type": "number",
-            "description": "Overlap between successivce images, in units of imageWidth. May be negtive for non-contiguous images.",
+            "description": "Overlap between successive images, in units of imageWidth. May be negative for non-contiguous images.",
             "title": "Overlap"
         },
         "numberTriggers": {
@@ -159,7 +158,7 @@
             "additionalProperties": {
                 "type": "number"
             },
-            "description": "Dictionary string:float with starting position of all axes, rotations or translations, including detector distance, by name. Units are mm for distances, degrees for anglesNBNB do we use internal motor names (e.g. 'phi'), or std. names (e.g. 'omega')?",
+            "description": "Dictionary string:float with starting position of all axes, rotations or translations, including detector distance, by name. Units are mm for distances, degrees for angles NBNB do we use internal motor names (e.g. 'phi'), or std. names (e.g. 'omega')?",
             "title": "Axis Positions Start",
             "type": "object"
         },

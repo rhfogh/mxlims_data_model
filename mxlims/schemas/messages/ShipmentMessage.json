@@ -1,8 +1,7 @@
 {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$schema": "https://json-schema.org/draft-07/schema",
     "description": "Message used for shipments. Samples have no content links and must be linked using preparedSampleId",
     "title": "ShipmentMessage",
-    "id": "ShipmentMessage.json",
     "type": "object",
     "properties": {
         "shipment": {

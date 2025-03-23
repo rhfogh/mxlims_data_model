@@ -1,9 +1,8 @@
 {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$schema": "https://json-schema.org/draft-07/schema",
     "description" : "A type of crystallization plate.",
     "title": "PlateType",
     "type": "object",
-    "id": "PlateType.json",
     "properties": {
         "name": {
             "type": "string",

@@ -1,9 +1,8 @@
 {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$schema": "https://json-schema.org/draft-07/schema",
     "description": "Base class for MXLIMS Jobs - an experiment or calculation producing Datasets",
     "title": "Job",
     "type": "object",
-    "id": "Job.json",
     "allOf": [
         {
             "$ref": "../core/MxlimsObject.json"
@@ -57,7 +56,7 @@
             "title": "Started From Id"
         },
         "inputDataIds": {
-            "description": "String UUID of input Datasets for this Job.",
+            "description": "String UUID of input Datasets for this Job. For pure Database implementations this field is replaced bu JobInputLinks.",
             "items": {
                 "type": "string",
                 "format": "uuid"
@@ -66,7 +65,7 @@
             "type": "array"
         },
         "referenceDataIds": {
-            "description": "String UUID of reference Datasets for this Job.",
+            "description": "String UUID of reference Datasets for this Job. For pure Database implementations this field is replaced bu JobInputLinks.",
             "items": {
                 "type": "string",
                 "format": "uuid"
@@ -75,7 +74,7 @@
             "type": "array"
         },
         "templateDataIds": {
-            "description": "String UUID of template Datasets for this Job.",
+            "description": "String UUID of template Datasets for this Job. For pure Database implementations this field is replaced bu JobInputLinks.",
             "items": {
                 "type": "string",
                 "format": "uuid"

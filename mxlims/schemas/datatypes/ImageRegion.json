@@ -1,9 +1,8 @@
 {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$schema": "https://json-schema.org/draft-07/schema",
     "type": "object",
     "title": "ImageRegion",
     "description": "A region marked on an image.",
-    "id": "ImageRegion.json",
     "properties": {
         "region": {
             "$ref": "../datatypes/Region.json"

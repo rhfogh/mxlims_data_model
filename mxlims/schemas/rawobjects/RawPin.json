@@ -1,9 +1,8 @@
 {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$schema": "https://json-schema.org/draft-07/schema",
     "description": "A Pin mounted on a puck with one or more slots for crystals.",
     "title": "RawPin",
     "type": "object",
-    "id": "RawPin.json",
     "allOf": [
         {
             "$ref": "../core/LogisticalSample.json"

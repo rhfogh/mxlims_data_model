@@ -1,9 +1,8 @@
 {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$schema": "https://json-schema.org/draft-07/schema",
     "description": "Shipment of Dewars, with typed JSON containment lists",
     "title": "DewarShipment",
     "type": "object",
-    "id": "DewarShipment.json",
     "allOf": [
         {
             "$ref": "../rawobjects/RawShipment.json"
