@@ -78,13 +78,22 @@
             "description": "Total radiation dose absorbed during experiment",
             "title": "Radiation Dose"
         },
-        "crystalForm": {
+        "spaceGroupName": {
             "allOf": [
                 {
-                    "$ref": "../datatypes/CrystalForm.json"
+                    "$ref": "../datatypes/SpaceGroupName.json"
                 }
             ],
-            "description": "Crystal form, with unit cell and space group, as determined during characterisation"
+            "description": "Name of space group, as determined during characterisation. Names may include alternative settings. Matches mmCIF item symmetry.space_group_name_H-M (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_symmetry.space_group_name_H-M.html).",
+            "title": "Space Group Name"
+        },
+        "unitCell": {
+            "allOf": [
+                {
+                    "$ref": "../datatypes/UnitCell.json"
+                }
+            ],
+            "description": "Unit cell of crystal, as determined during characterisation."
         }
     }
 }

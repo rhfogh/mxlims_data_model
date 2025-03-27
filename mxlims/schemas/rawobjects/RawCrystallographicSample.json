@@ -31,13 +31,22 @@
             "title": "Sample components",
             "type": "array"
         },
-        "crystalForm": {
+        "spaceGroupName": {
             "allOf": [
                 {
-                    "$ref": "../datatypes/CrystalForm.json"
+                    "$ref": "../datatypes/SpaceGroupName.json"
                 }
             ],
-            "description": "Crystal form, with unit cell and space group, as determined during processing"
+            "description": "Name of expected space group, for processing. Names may include alternative settings. Matches mmCIF item symmetry.space_group_name_H-M (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_symmetry.space_group_name_H-M.html).",
+            "title": "Space Group Name"
+        },
+        "unitCell": {
+            "allOf": [
+                {
+                    "$ref": "../datatypes/UnitCell.json"
+                }
+            ],
+            "description": "Unit cell expected for crystals of this material"
         },
         "radiationSensitivity": {
             "maximum": 1.0,

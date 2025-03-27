@@ -5,10 +5,33 @@
     "description": "A region marked on an image.",
     "properties": {
         "region": {
-            "$ref": "../datatypes/Region.json"
+            "oneOf": [
+                {
+                    "$ref": "../datatypes/Point.json"
+                },
+                {
+                    "$ref": "../datatypes/Circle.json"
+                },
+                {
+                    "$ref": "../datatypes/Line.json"
+                },
+                {
+                    "$ref": "../datatypes/Rectangle.json"
+                },
+                {
+                    "$ref": "../datatypes/Polygon.json"
+                }
+            ]
         },
         "image": {
-            "$ref": "../datatypes/DropImage.json"
+            "oneOf": [
+                {
+                    "$ref": "../datatypes/DropImageData.json"
+                },
+                {
+                    "$ref": "../datatypes/DropImageUrl.json"
+                }
+            ]
         },
         "units": {
             "description": "The units of the region's co-ordinates.",
