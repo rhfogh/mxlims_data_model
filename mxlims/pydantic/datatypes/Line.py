@@ -9,7 +9,7 @@ from mxlims.pydantic.MxBaseModel import BaseModel
 
 from pydantic import Field
 
-from . import Point
+from .Point import Point
 
 
 class Line(BaseModel):

@@ -9,7 +9,7 @@ from mxlims.pydantic.MxBaseModel import BaseModel
 
 from pydantic import Field, PositiveFloat
 
-from . import Point
+from .Point import Point
 
 
 class Circle(BaseModel):

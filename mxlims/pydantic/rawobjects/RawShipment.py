@@ -8,7 +8,8 @@ from typing import Dict, Literal, Optional
 from pydantic import Field, conint, constr
 
 from ..core.LogisticalSample import LogisticalSample
-from ..datatypes import Person, TrackingDevice
+from ..datatypes.Person import Person
+from ..datatypes.TrackingDevice import TrackingDevice
 
 
 class RawShipment(LogisticalSample):

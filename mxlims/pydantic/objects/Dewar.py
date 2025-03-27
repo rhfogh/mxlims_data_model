@@ -8,7 +8,7 @@ from typing import List, Optional
 from pydantic import Field
 
 from ..rawobjects.RawDewar import RawDewar
-from . import Puck
+from .Puck import Puck
 
 
 class Dewar(RawDewar):

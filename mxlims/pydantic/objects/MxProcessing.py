@@ -8,7 +8,8 @@ from typing import List, Optional
 from pydantic import Field
 
 from ..rawobjects.RawMxProcessing import RawMxProcessing
-from . import CollectionSweep, ReflectionSet
+from .CollectionSweep import CollectionSweep
+from .ReflectionSet import ReflectionSet
 
 
 class MxProcessing(RawMxProcessing):

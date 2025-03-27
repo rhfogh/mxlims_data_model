@@ -10,7 +10,7 @@ from mxlims.pydantic.MxBaseModel import BaseModel
 
 from pydantic import Field
 
-from . import NamespacedExtension
+from .NamespacedExtension import NamespacedExtension
 
 
 class MxlimsObject(BaseModel):

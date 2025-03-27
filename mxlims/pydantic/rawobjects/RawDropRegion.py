@@ -8,7 +8,8 @@ from typing import Literal, Union
 from pydantic import Field
 
 from ..core.LogisticalSample import LogisticalSample
-from ..datatypes import ImageRegion, PlateRegion
+from ..datatypes.ImageRegion import ImageRegion
+from ..datatypes.PlateRegion import PlateRegion
 
 
 class RawDropRegion(LogisticalSample):

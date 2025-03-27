@@ -9,7 +9,7 @@ from mxlims.pydantic.MxBaseModel import BaseModel
 
 from pydantic import AnyUrl, Field
 
-from . import TrackingDeviceType
+from .TrackingDeviceType import TrackingDeviceType
 
 
 class TrackingDevice(BaseModel):

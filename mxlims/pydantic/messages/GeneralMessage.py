@@ -9,23 +9,21 @@ from mxlims.pydantic.MxBaseModel import BaseModel
 
 from pydantic import Field
 
-from ..rawobjects import (
-    RawCollectionSweep,
-    RawCrystal,
-    RawCrystallographicSample,
-    RawDewar,
-    RawDropRegion,
-    RawMxExperiment,
-    RawMxProcessing,
-    RawPin,
-    RawPinPosition,
-    RawPlate,
-    RawPlateWell,
-    RawPuck,
-    RawReflectionSet,
-    RawShipment,
-    RawWellDrop,
-)
+from ..rawobjects.RawCollectionSweep import RawCollectionSweep
+from ..rawobjects.RawCrystal import RawCrystal
+from ..rawobjects.RawCrystallographicSample import RawCrystallographicSample
+from ..rawobjects.RawDewar import RawDewar
+from ..rawobjects.RawDropRegion import RawDropRegion
+from ..rawobjects.RawMxExperiment import RawMxExperiment
+from ..rawobjects.RawMxProcessing import RawMxProcessing
+from ..rawobjects.RawPin import RawPin
+from ..rawobjects.RawPinPosition import RawPinPosition
+from ..rawobjects.RawPlate import RawPlate
+from ..rawobjects.RawPlateWell import RawPlateWell
+from ..rawobjects.RawPuck import RawPuck
+from ..rawobjects.RawReflectionSet import RawReflectionSet
+from ..rawobjects.RawShipment import RawShipment
+from ..rawobjects.RawWellDrop import RawWellDrop
 
 
 class GeneralMessage(BaseModel):

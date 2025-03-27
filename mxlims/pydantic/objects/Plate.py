@@ -8,7 +8,7 @@ from typing import List, Optional
 from pydantic import Field
 
 from ..core.LogisticalSample import LogisticalSample
-from . import PlateWell
+from .PlateWell import PlateWell
 
 
 class Plate(LogisticalSample):

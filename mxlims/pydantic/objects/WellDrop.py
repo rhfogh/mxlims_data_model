@@ -8,7 +8,9 @@ from typing import List, Optional, Union
 from pydantic import Field
 
 from ..rawobjects.RawPlateWell import RawPlateWell
-from . import DropRegion, MxExperiment, MxProcessing
+from .DropRegion import DropRegion
+from .MxExperiment import MxExperiment
+from .MxProcessing import MxProcessing
 
 
 class WellDrop(RawPlateWell):

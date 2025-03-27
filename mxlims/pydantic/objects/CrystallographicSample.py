@@ -8,7 +8,12 @@ from typing import List, Optional, Union
 from pydantic import Field
 
 from ..rawobjects.RawCrystallographicSample import RawCrystallographicSample
-from . import Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop
+from .Crystal import Crystal
+from .DropRegion import DropRegion
+from .Pin import Pin
+from .PinPosition import PinPosition
+from .PlateWell import PlateWell
+from .WellDrop import WellDrop
 
 
 class CrystallographicSample(RawCrystallographicSample):

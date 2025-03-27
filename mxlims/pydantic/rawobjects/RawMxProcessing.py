@@ -8,7 +8,8 @@ from typing import Literal, Optional
 from pydantic import Field
 
 from ..core.Job import Job
-from ..datatypes import SpaceGroupName, UnitCell
+from ..datatypes.SpaceGroupName import SpaceGroupName
+from ..datatypes.UnitCell import UnitCell
 
 
 class RawMxProcessing(Job):

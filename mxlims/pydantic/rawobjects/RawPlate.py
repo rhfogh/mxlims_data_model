@@ -8,7 +8,8 @@ from typing import Dict, Literal, Optional
 from pydantic import Field
 
 from ..core.LogisticalSample import LogisticalSample
-from ..datatypes import PlateType, TrackingDevice
+from ..datatypes.PlateType import PlateType
+from ..datatypes.TrackingDevice import TrackingDevice
 
 
 class RawPlate(LogisticalSample):

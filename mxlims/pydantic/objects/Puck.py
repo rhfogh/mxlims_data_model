@@ -8,7 +8,7 @@ from typing import List, Optional
 from pydantic import Field
 
 from ..rawobjects.RawPuck import RawPuck
-from . import Pin
+from .Pin import Pin
 
 
 class Puck(RawPuck):

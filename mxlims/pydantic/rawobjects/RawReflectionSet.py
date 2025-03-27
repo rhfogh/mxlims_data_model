@@ -8,16 +8,14 @@ from typing import List, Literal, Optional
 from pydantic import Field, PositiveInt, confloat, conint
 
 from ..core.Dataset import Dataset
-from ..datatypes import (
-    PdbxSignalType,
-    QualityFactor,
-    ReflectionBinningMode,
-    ReflectionFileType,
-    ReflectionStatistics,
-    SpaceGroupName,
-    Tensor,
-    UnitCell,
-)
+from ..datatypes.PdbxSignalType import PdbxSignalType
+from ..datatypes.QualityFactor import QualityFactor
+from ..datatypes.ReflectionBinningMode import ReflectionBinningMode
+from ..datatypes.ReflectionFileType import ReflectionFileType
+from ..datatypes.ReflectionStatistics import ReflectionStatistics
+from ..datatypes.SpaceGroupName import SpaceGroupName
+from ..datatypes.Tensor import Tensor
+from ..datatypes.UnitCell import UnitCell
 
 
 class RawReflectionSet(Dataset):

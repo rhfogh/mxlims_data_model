@@ -9,16 +9,14 @@ from mxlims.pydantic.MxBaseModel import BaseModel
 
 from pydantic import Field
 
-from . import (
-    Circle,
-    DropImageData,
-    DropImageUrl,
-    ImageRegionUnit,
-    Line,
-    Point,
-    Polygon,
-    Rectangle,
-)
+from .Circle import Circle
+from .DropImageData import DropImageData
+from .DropImageUrl import DropImageData as DropImageData_1
+from .ImageRegionUnit import ImageRegionUnit
+from .Line import Line
+from .Point import Point
+from .Polygon import Polygon
+from .Rectangle import Rectangle
 
 
 class ImageRegion(BaseModel):
@@ -27,7 +25,7 @@ class ImageRegion(BaseModel):
     """
 
     region: Union[Point, Circle, Line, Rectangle, Polygon]
-    image: Optional[Union[DropImageData, DropImageUrl.DropImageData]] = None
+    image: Optional[Union[DropImageData, DropImageData_1]] = None
     units: ImageRegionUnit = Field(
         ..., description="The units of the region's co-ordinates."
     )

@@ -10,7 +10,8 @@ from mxlims.pydantic.MxBaseModel import BaseModel
 
 from pydantic import AnyUrl, Field
 
-from . import ImageLightType, ImageMimeType
+from .ImageLightType import ImageLightType
+from .ImageMimeType import ImageMimetype
 
 
 class Dropimage(BaseModel):
@@ -18,7 +19,7 @@ class Dropimage(BaseModel):
     An image of a crystallization drop.
     """
 
-    mime_type: ImageMimeType.ImageMimetype = Field(
+    mime_type: ImageMimetype = Field(
         ..., alias="mimeType", description="The MIME type of the image."
     )
     light_type: Optional[ImageLightType] = Field(

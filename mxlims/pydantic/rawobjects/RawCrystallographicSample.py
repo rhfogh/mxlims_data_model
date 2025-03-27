@@ -8,7 +8,9 @@ from typing import Dict, List, Literal, Optional
 from pydantic import Field, confloat
 
 from ..core.PreparedSample import PreparedSample
-from ..datatypes import SampleComponent, SpaceGroupName, UnitCell
+from ..datatypes.SampleComponent import SampleComponent
+from ..datatypes.SpaceGroupName import SpaceGroupName
+from ..datatypes.UnitCell import UnitCell
 
 
 class RawCrystallographicSample(PreparedSample):

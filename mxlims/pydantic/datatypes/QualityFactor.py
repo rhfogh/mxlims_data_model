@@ -7,7 +7,7 @@ from mxlims.pydantic.MxBaseModel import BaseModel
 
 from pydantic import Field
 
-from . import QualityFactorType
+from .QualityFactorType import QualityFactorType
 
 
 class QualityFactor(BaseModel):

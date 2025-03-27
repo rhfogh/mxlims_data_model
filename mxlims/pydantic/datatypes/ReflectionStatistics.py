@@ -9,7 +9,7 @@ from mxlims.pydantic.MxBaseModel import BaseModel
 
 from pydantic import Field, confloat, conint
 
-from . import QualityFactor
+from .QualityFactor import QualityFactor
 
 
 class ReflectionStatistics(BaseModel):

@@ -8,7 +8,7 @@ from typing import List, Optional
 from pydantic import Field
 
 from ..rawobjects.RawShipment import RawShipment
-from . import Plate
+from .Plate import Plate
 
 
 class PlateShipment(RawShipment):

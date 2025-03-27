@@ -6,7 +6,8 @@ from __future__ import annotations
 from typing import List, Optional, Union
 
 from ..rawobjects.RawCrystal import RawCrystal
-from . import MxExperiment, MxProcessing
+from .MxExperiment import MxExperiment
+from .MxProcessing import MxProcessing
 
 
 class Crystal(RawCrystal):

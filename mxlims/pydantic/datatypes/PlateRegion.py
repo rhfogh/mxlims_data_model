@@ -9,7 +9,12 @@ from mxlims.pydantic.MxBaseModel import BaseModel
 
 from pydantic import Field
 
-from . import Circle, Line, PlateRegionUnit, Point, Polygon, Rectangle
+from .Circle import Circle
+from .Line import Line
+from .PlateRegionUnit import PlateRegionUnit
+from .Point import Point
+from .Polygon import Polygon
+from .Rectangle import Rectangle
 
 
 class PlateRegion(BaseModel):

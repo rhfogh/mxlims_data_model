@@ -8,7 +8,7 @@ from typing import Literal, Optional
 from pydantic import Field
 
 from ..core.LogisticalSample import LogisticalSample
-from ..datatypes import TrackingDevice
+from ..datatypes.TrackingDevice import TrackingDevice
 
 
 class RawDewar(LogisticalSample):

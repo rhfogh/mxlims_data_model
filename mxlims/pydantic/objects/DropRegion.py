@@ -8,7 +8,9 @@ from typing import List, Optional, Union
 from pydantic import Field
 
 from ..rawobjects.RawDropRegion import RawDropRegion
-from . import Crystal, MxExperiment, MxProcessing
+from .Crystal import Crystal
+from .MxExperiment import MxExperiment
+from .MxProcessing import MxProcessing
 
 
 class DropRegion(RawDropRegion):

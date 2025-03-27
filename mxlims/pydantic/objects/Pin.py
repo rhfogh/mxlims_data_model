@@ -8,7 +8,9 @@ from typing import List, Optional, Union
 from pydantic import Field
 
 from ..rawobjects.RawPin import RawPin
-from . import MxExperiment, MxProcessing, PinPosition
+from .MxExperiment import MxExperiment
+from .MxProcessing import MxProcessing
+from .PinPosition import PinPosition
 
 
 class Pin(RawPin):

@@ -7,8 +7,9 @@ from typing import Union
 
 from mxlims.pydantic.MxBaseModel import BaseModel
 
-from ..objects import MxExperiment, MxProcessing
-from ..rawobjects import RawCrystallographicSample
+from ..objects.MxExperiment import MxExperiment
+from ..objects.MxProcessing import MxProcessing
+from ..rawobjects.RawCrystallographicSample import RawCrystallographicSample
 
 
 class JobMessage(BaseModel):

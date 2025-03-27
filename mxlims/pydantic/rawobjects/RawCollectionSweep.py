@@ -8,7 +8,7 @@ from typing import Any, Dict, List, Literal, Optional
 from pydantic import Field, confloat, conint
 
 from ..core.Dataset import Dataset
-from ..datatypes import Scan
+from ..datatypes.Scan import Scan
 
 
 class RawCollectionSweep(Dataset):

@@ -8,7 +8,7 @@ from typing import List, Optional
 from pydantic import Field
 
 from ..rawobjects.RawShipment import RawShipment
-from . import Dewar
+from .Dewar import Dewar
 
 
 class DewarShipment(RawShipment):

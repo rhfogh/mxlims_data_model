@@ -9,7 +9,7 @@ from uuid import UUID
 
 from pydantic import Field
 
-from ..datatypes import JobStatus
+from ..datatypes.JobStatus import JobStatus
 from .MxlimsObject import MxlimsObject
 
 

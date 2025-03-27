@@ -9,7 +9,7 @@ from mxlims.pydantic.MxBaseModel import BaseModel
 
 from pydantic import Field
 
-from ..datatypes import JobInputRole
+from ..datatypes.JobInputRole import JobInputRole
 
 
 class JobInputLink(BaseModel):
