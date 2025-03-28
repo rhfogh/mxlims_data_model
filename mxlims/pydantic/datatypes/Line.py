@@ -18,6 +18,6 @@ class Line(BaseModel):
     """
 
     region_type: Literal["line"] = Field(
-        ..., alias="regionType", description="Type of region", title="Region type"
+        "line", alias="regionType", description="Type of region", title="Region type"
     )
     points: List[Point] = Field(..., max_length=2, min_length=2)

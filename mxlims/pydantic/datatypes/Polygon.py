@@ -18,6 +18,6 @@ class Polygon(BaseModel):
     """
 
     region_type: Literal["polygon"] = Field(
-        ..., alias="regionType", description="Type of region", title="Region type"
+        "polygon", alias="regionType", description="Type of region", title="Region type"
     )
     points: List[Point] = Field(..., min_length=3)

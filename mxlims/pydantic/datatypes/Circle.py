@@ -18,7 +18,7 @@ class Circle(BaseModel):
     """
 
     region_type: Literal["circle"] = Field(
-        ..., alias="regionType", description="Type of region", title="Region type"
+        "circle", alias="regionType", description="Type of region", title="Region type"
     )
     center: Point
     radius: PositiveFloat = Field(..., description="The radius of the circle.")

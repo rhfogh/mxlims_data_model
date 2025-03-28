@@ -15,6 +15,10 @@
             "title": "Mxlims Type",
             "type": "string"
         },
+        "name": {
+            "type": "string",
+            "description": "Sample human-readable name or acronym."
+        },
         "macromolecule": {
             "allOf": [
                 {

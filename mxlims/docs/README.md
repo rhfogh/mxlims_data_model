@@ -37,9 +37,9 @@ They are organised as follows:
 docs/html contains linked html files for all JSON objects and datatypes in the model.
 
 The documentation is generated using the program https://coveooss.github.io/json-schema-for-humans/#/
-with the command
+with the command (starting in the mxlims directory)
 
-generate-schema-doc --link-to-reused-ref schemas docs/html
+generate-schema-doc --config-file docs/schemadoc_config.json schemas docs/html
 
 To cover the entire model starting from the top containers you should begin with the following files>
 
@@ -67,9 +67,9 @@ To cover the entire model starting from the top containers you should begin with
 
 The pydantic files are generated from the JSON schemas using
 https://docs.pydantic.dev/latest/integrations/datamodel_code_generator/
-with the command
+with the command (starting in the mxlims directory)
 
-datamodel-codegen --input-file-type jsonschema --output-model-type pydantic_v2.BaseModel --use-schema-description --use-double-quotes --use-default --target-python-version 3.10 --snake-case-field --capitalise-enum-members --use-title-as-name --input schemas --output pydantic
+datamodel-codegen --input-file-type jsonschema --output-model-type pydantic_v2.BaseModel  --base-class mxlims.pydantic.MxBaseModel.BaseModel --use-schema-description --use-double-quotes --disable-timestamp --use-default --target-python-version 3.10 --snake-case-field --use-exact-imports --capitalise-enum-members --use-title-as-name --use-one-literal-as-default --input schemas --output pydantic
 
 The Pydantic should be a faithful copy of the model in the JSON schemas, except that
 it may lack certain constraints. For instance the constraint that a Dataset cannot

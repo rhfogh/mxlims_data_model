@@ -1,0 +1,159 @@
+{
+    "job": {
+        "version": "0.5.0",
+        "mxlimsType": "MxExperiment",
+        "uuid": "17bdc850-aa6f-4c2b-9e5c-36a029d39a53",
+        "startTime": "2025-03-28T16:38:20.338649",
+        "endTime": "2025-03-28T16:42:48.246919",
+        "sampleId": "0ee5d82e-0bf3-11f0-80ab-c4474e33fb12",
+        "expectedResolution": 1.7,
+        "snapshotCount": 0,
+        "measuredFlux": 229829745766.99048,
+        "results": [
+            {
+                "version": "0.5.0",
+                "mxlimsType": "CollectionSweep",
+                "uuid": "462d462a-a9b7-4067-96f9-a60adc2b8775",
+                "sourceId": "17bdc850-aa6f-4c2b-9e5c-36a029d39a53",
+                "role": "Characterisation",
+                "sweepType": "simple",
+                "exposureTime": 0.04,
+                "imageWidth": 0.1,
+                "overlap": 0.0,
+                "numberTriggers": 0,
+                "numberImagesPerTrigger": 0,
+                "energy": 12.4,
+                "transmission": 100.0,
+                "resolution": 2.7000174028279242,
+                "detectorRoiMode": "0",
+                "beamPosition": [
+                    1565.715,
+                    1713.974888
+                ],
+                "beamSize": [
+                    0.05,
+                    0.05
+                ],
+                "beamShape": "rectangular",
+                "axisPositionsStart": {
+                    "phi": 0.0,
+                    "kappa": 11.0,
+                    "kappa_phi": 22.0,
+                    "phiy": 1.0223504124898515,
+                    "sampx": 0.00559150892980095,
+                    "sampy": -0.9912818787560331,
+                    "omega": 0.0,
+                    "detector_distance": 296.44
+                },
+                "axisPositionsEnd": {
+                    "omega": 181.2
+                },
+                "scanAxis": "omega",
+                "scans": [
+                    {
+                        "scanPositionStart": 0.0,
+                        "firstImageNumber": 1,
+                        "numberImages": 12,
+                        "ordinal": 0
+                    },
+                    {
+                        "scanPositionStart": 45.0,
+                        "firstImageNumber": 451,
+                        "numberImages": 12,
+                        "ordinal": 1
+                    },
+                    {
+                        "scanPositionStart": 90.0,
+                        "firstImageNumber": 901,
+                        "numberImages": 12,
+                        "ordinal": 2
+                    },
+                    {
+                        "scanPositionStart": 135.0,
+                        "firstImageNumber": 1351,
+                        "numberImages": 12,
+                        "ordinal": 3
+                    },
+                    {
+                        "scanPositionStart": 180.0,
+                        "firstImageNumber": 1801,
+                        "numberImages": 12,
+                        "ordinal": 4
+                    }
+                ],
+                "fileType": "cbf",
+                "prefix": "4k61",
+                "filenameTemplate": "4k61_1_%05d.cbf",
+                "path": "/home/rhfogh/calc/mxcube_data/visitor/idtest0/eh1/20250328/RAW_DATA/4k61_001/characterisation"
+            },
+            {
+                "version": "0.5.0",
+                "mxlimsType": "CollectionSweep",
+                "uuid": "07cc6758-18ac-4efa-9a19-2153250c85fa",
+                "sourceId": "17bdc850-aa6f-4c2b-9e5c-36a029d39a53",
+                "role": "Result",
+                "sweepType": "simple",
+                "exposureTime": 0.268667,
+                "imageWidth": 0.2,
+                "overlap": 0.0,
+                "numberTriggers": 0,
+                "numberImagesPerTrigger": 0,
+                "energy": 12.4,
+                "transmission": 100.0,
+                "resolution": 2.7000174028279242,
+                "detectorRoiMode": "0",
+                "beamPosition": [
+                    1565.715,
+                    1713.974888
+                ],
+                "beamSize": [
+                    0.05,
+                    0.05
+                ],
+                "beamShape": "rectangular",
+                "axisPositionsStart": {
+                    "phi": -142.290339901033,
+                    "kappa": 0.0,
+                    "kappa_phi": 0.0,
+                    "phiy": 0.9899257015236942,
+                    "sampx": 0.037145601881516666,
+                    "sampy": -0.9690276488655328,
+                    "omega": -142.290339901033,
+                    "detector_distance": 296.44
+                },
+                "axisPositionsEnd": {
+                    "omega": 49.70966009896699
+                },
+                "scanAxis": "omega",
+                "scans": [
+                    {
+                        "scanPositionStart": -142.290339901033,
+                        "firstImageNumber": 1,
+                        "numberImages": 960,
+                        "ordinal": 5
+                    }
+                ],
+                "fileType": "cbf",
+                "prefix": "4k61_G1B1",
+                "filenameTemplate": "4k61_G1B1_2_%05d.cbf",
+                "path": "/home/rhfogh/calc/mxcube_data/visitor/idtest0/eh1/20250328/RAW_DATA/4k61_001/main"
+            }
+        ]
+    },
+    "sample": {
+        "version": "0.5.0",
+        "mxlimsType": "CrystallographicSample",
+        "uuid": "0ee5d82e-0bf3-11f0-80ab-c4474e33fb12",
+        "name": "4k61",
+        "spaceGroupName": "I4",
+        "unitCell": {
+            "a": 86.75,
+            "b": 86.75,
+            "c": 85.6276,
+            "alpha": 90.0,
+            "beta": 90.0,
+            "gamma": 90.0
+        },
+        "radiationSensitivity": 1.0
+    }
+}

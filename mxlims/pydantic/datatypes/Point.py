@@ -16,7 +16,7 @@ class Point(BaseModel):
     """
 
     region_type: Literal["point"] = Field(
-        ..., alias="regionType", description="Type of region", title="Region type"
+        "point", alias="regionType", description="Type of region", title="Region type"
     )
     x: float = Field(..., description="The X co-ordinate of the point.")
     y: float = Field(..., description="The Y co-ordinate of the point.")

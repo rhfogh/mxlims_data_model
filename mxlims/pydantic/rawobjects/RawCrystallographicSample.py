@@ -24,6 +24,9 @@ class RawCrystallographicSample(PreparedSample):
         description="The type of MXLIMS object.",
         title="Mxlims Type",
     )
+    name: Optional[str] = Field(
+        None, description="Sample human-readable name or acronym."
+    )
     macromolecule: Optional[SampleComponent] = Field(
         None, description="Macromolecule being studied - main component of the sample"
     )

@@ -19,7 +19,7 @@ class MxlimsObject(BaseModel):
     """
 
     version: Literal["0.5.0"] = Field(
-        ..., description="MXLIMS version for current model", title="Version"
+        "0.5.0", description="MXLIMS version for current model", title="Version"
     )
     mxlims_type: str = Field(
         ...,

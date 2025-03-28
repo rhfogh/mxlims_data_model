@@ -18,6 +18,6 @@ class Rectangle(BaseModel):
     """
 
     region_type: Literal["rectangle"] = Field(
-        ..., alias="regionType", description="Type of region"
+        "rectangle", alias="regionType", description="Type of region"
     )
     points: List[Point] = Field(..., max_length=2, min_length=2)
