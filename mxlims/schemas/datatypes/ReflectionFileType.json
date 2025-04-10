@@ -1,0 +1,13 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "Name for file type, used in ReflectionSet class",
+    "title": "ReflectionFileType",
+    "type": "string",
+    "enum": [
+        "scaled and merged MTZ",
+        "scaled and unmerged MTZ",
+        "unmerged MTZ",
+        "XDS INTEGRATE.HKL; unmerged (https://xds.mr.mpg.de/html_doc/xds_files.html#INTEGRATE.HKL)",
+        "XDS XDS_ASCII.HKL; scaled and unmerged (https://xds.mr.mpg.de/html_doc/xds_files.html#XDS_ASCII.HKL)"
+    ]
+}

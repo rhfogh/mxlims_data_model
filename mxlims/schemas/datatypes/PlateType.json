@@ -1,0 +1,36 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description" : "A type of crystallization plate.",
+    "title": "PlateType",
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "The name of the plate type.",
+            "comment": "I'm unaware of any standard that can positively identify a plate type.",
+            "examples": [ "Greiner 1-drop square" ]
+        },
+        "numberRows": {
+            "type": "integer",
+            "description": "The number of rows in the plate. For a typical 96-well plate, this will be 8.",
+            "minimum": 1
+        },
+        "numberColumns": {
+            "type": "integer",
+            "description": "The number of columns in the plate. For a typical 96-well plate, this will be 12.",
+            "minimum": 1
+        },
+        "numberSubPositions":{
+            "type": "integer",
+            "description": "The number of sub-wells in the plate. For in-situ plates with no dividers, this should be the actual number of drops dispensed.",
+            "minimum": 1
+        },
+        "dropMapping": {
+            "type": "string",
+            "description": "<p>The sender's numbering of the sub-wells. This can be used by the receiver to map the sender's well numbering onto their own.<p><p>It is an error if the sender and receiver disagree on the basic geometry (e.g., three drops across the top with a reservoir underneath). However, they can disagree on the drop order; this property is intended to help overcome such disagreements.</p>",
+            "comment": "Karl and I cooked this up years ago. I'll document it properly later, but basically, take one well and draw a grid with the smallest number of rows and columns needed to represent that geometry.",
+            "examples": [ "123,RRR", "23,1R" ]
+        }
+    },
+    "required": ["numberRows","numberColumns","numberSubPositions","dropMapping"]
+}

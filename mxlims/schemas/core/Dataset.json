@@ -1,21 +1,21 @@
 {
+    "$schema": "https://json-schema.org/draft-07/schema",
     "description": "Base class for MXLIMS Datasets",
     "title": "Dataset",
     "type": "object",
-    "id": "Dataset.json",
     "allOf": [
         {
-            "$ref": "MxlimsObject.json"
+            "$ref": "../core/MxlimsObject.json"
         }
     ],
     "properties": {
-        "source_id": {
+        "sourceId": {
             "description": "String UUID of Job that created this Dataset.",
-            "title": "Source Id",
+            "title": "SourceId",
             "type": "string",
             "format": "uuid"
         },
-        "derived_from_id": {
+        "derivedFromId": {
             "type": "string",
             "format": "uuid",
             "description": "String UUID of Dataset from which this Dataset was derived. Used for modified Datasets without a 'source' link, e.g. when removing images from a sweep before processing.",
@@ -23,7 +23,7 @@
         },
         "role": {
             "type": "string",
-            "description": "Role of Dataset realtive to the source Job. Intended for filtering of Datasets",
+            "description": "Role of Dataset relative to the source Job. Intended for filtering of Datasets",
             "examples": [
                 "Result",
                 "Intermediate",
@@ -32,25 +32,25 @@
             ],
             "title": "Role"
         },
-        "logistical_sample_id": {
+        "logisticalSampleId": {
             "type": "string",
             "format": "uuid",
             "description": "String UUID of LogisticalSample relevant to Dataset.",
             "title": "Logistical Sample Id"
         }
     },
-    "anyOf": [
+    "oneOf": [
         {
             "not": {
                 "required": [
-                    "source_id"
+                    "sourceId"
                 ]
             }
         },
         {
             "not": {
                 "required": [
-                    "derived_from_id"
+                    "derivedFromId"
                 ]
             }
         }

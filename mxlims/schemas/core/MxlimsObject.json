@@ -1,15 +1,18 @@
 {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "description": "Base object for all MXLISM objects: Jobm, Dataset, PreparedSample, and LogisticalSample",
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "Base object for all MXLIMS objects: Job, Dataset, PreparedSample, and LogisticalSample",
     "title": "MxlimsObject",
     "type": "object",
-    "id": "MxlimsObject.json",
     "properties": {
         "version": {
-            "const": "0.3.0",
-            "default": "0.3.0",
+            "const": "0.5.0",
             "description": "MXLIMS version for current model",
             "title": "Version",
+            "type": "string"
+        },
+        "mxlimsType": {
+            "description": "The type of the MXLIMS object. Fixed for each subtype schema",
+            "title": "Mxlims Type",
             "type": "string"
         },
         "uuid": {
@@ -18,13 +21,13 @@
             "type": "string",
             "format": "uuid"
         },
-        "data": {
-            "allOf": [
-                {
-                    "$ref": "MxlimsData.json"
-                }
-            ],
-            "description": "Metadata object, also defining the precise type."
+        "namespacedExtensions": {
+            "description": "List of extensions to metadata, each defined in a NamespacedExtension schema",
+            "items": {
+                "$ref": "../core/NamespacedExtension.json"
+            },
+            "title": "Namespaced Extensions",
+            "type": "array"
         },
         "extensions": {
             "description": "Keyword-value dictionary string:Any of extensions. Use is accepted but discouraged",
@@ -34,7 +37,6 @@
     },
     "required": [
         "version",
-        "uuid",
-        "data"
+        "mxlimsType"
     ]
 }

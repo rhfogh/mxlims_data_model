@@ -1,52 +1,18 @@
 {
-    "description": "A dewar containing pucks with mounted crystals on pins.",
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "A dewar containing pucks with mounted crystals on pins, with typed JSON containment lists.",
     "title": "Dewar",
     "type": "object",
-    "id": "Dewar.json",
     "allOf": [
         {
-            "$ref": "../core/LogisticalSample.json"
+            "$ref": "../rawobjects/RawDewar.json"
         }
     ],
-    "$defs": {
-        "DewarData": {
-            "type": "object",
-            "title": "Dewar Data",
-            "description": "Data for dewar containing pucks with mounted crystals on pins.",
-            "allOf": [
-                {
-                    "$ref": "../core/MxlimsData.json"
-                }
-            ],
-            "properties": {
-                "mxlims_type": {
-                    "const": "Dewar",
-                    "description": "The type of MXLIMS object.",
-                    "title": "Mxlims Type",
-                    "type": "string"
-                },
-                "barcode": {
-                    "type": "string",
-                    "description": "The dewar barcode or RFID code"
-                },
-                "tracking_device": {
-                    "$ref": "../datatypes/TrackingDevice.json"
-                }
-            }
-        }
-    },
     "properties": {
-        "data": {
-            "allOf": [
-                {
-                    "$ref": "#/$defs/DewarData"
-                }
-            ]
-        },
         "contents": {
             "type": "array",
             "items": {
-                "$ref": "Puck.json"
+                "$ref": "../objects/Puck.json"
             },
             "minItems": 1
         }

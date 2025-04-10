@@ -1,0 +1,28 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "A drop in a well in a crystallization plate",
+    "title": "RawWellDrop",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../core/LogisticalSample.json"
+        }
+    ],
+    "properties": {
+        "mxlimsType": {
+            "const": "WellDrop",
+            "description": "The type of MXLIMS object.",
+            "title": "Mxlims Type",
+            "type": "string"
+        },
+        "dropNumber": {
+            "type": "integer",
+            "description": "The drop number. This should be validated against the plateType's numberSubPositions property.",
+            "minimum": 1
+        }
+    },
+    "required": [
+        "dropNumber"
+    ]
+}
+

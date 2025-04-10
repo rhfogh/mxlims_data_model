@@ -1,57 +1,18 @@
 {
-    "description": "A puck containing mounted crystals on pins.",
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "A puck containing mounted crystals on pins, with typed JSON containment lists.",
     "title": "Puck",
     "type": "object",
-    "id": "Puck.json",
     "allOf": [
         {
-            "$ref": "../core/LogisticalSample.json"
+            "$ref": "../rawobjects/RawPuck.json"
         }
     ],
-    "$defs": {
-        "PuckData": {
-            "type": "object",
-            "title": "Puck Data",
-            "description": "Data for pucks containing mounted crystals on pins.",
-            "allOf": [
-                {
-                    "$ref": "../core/MxlimsData.json"
-                }
-            ],
-            "properties": {
-                "mxlims_type": {
-                    "const": "Puck",
-                    "description": "The type of MXLIMS object.",
-                    "title": "Mxlims Type",
-                    "type": "string"
-                },
-                "barcode": {
-                    "type": "string",
-                    "description": "The Puck barcode or RFID code"
-                },
-                "number_positions": {
-                    "type": "integer",
-                    "description": "The number of pin positions available.",
-                    "minimum": 1
-                }
-            },
-            "required": [
-                "number_positions"
-            ]
-        }
-    },
     "properties": {
-        "data": {
-            "allOf": [
-                {
-                    "$ref": "#/$defs/PuckData"
-                }
-            ]
-        },
         "contents": {
             "type": "array",
             "items": {
-                "$ref": "Pin.json"
+                "$ref": "../objects/Pin.json"
             },
             "minItems": 1
         }

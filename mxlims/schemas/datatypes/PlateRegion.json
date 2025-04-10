@@ -1,0 +1,36 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "title": "PlateRegion",
+    "description": "A region defined in absolute plate space.",
+    "comment": "Intended for plates with fiducial marks and a clear origin",
+    "type": "object",
+    "properties": {
+        "region": {
+            "oneOf": [
+                {
+                    "$ref": "../datatypes/Point.json"
+                },
+                {
+                    "$ref": "../datatypes/Circle.json"
+                },
+                {
+                    "$ref": "../datatypes/Line.json"
+                },
+                {
+                    "$ref": "../datatypes/Rectangle.json"
+                },
+                {
+                    "$ref": "../datatypes/Polygon.json"
+                }
+            ]
+        },
+        "units": {
+            "description": "The units of the region's co-ordinates.",
+            "$ref": "../datatypes/PlateRegionUnit.json"
+        }
+    },
+    "required": [
+        "region",
+        "units"
+    ]
+}

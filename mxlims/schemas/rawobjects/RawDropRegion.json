@@ -1,0 +1,28 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "A region in a well drop where crystals may be found",
+    "title": "RawDropRegion",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../core/LogisticalSample.json"
+        }
+    ],
+    "properties": {
+        "mxlimsType": {
+            "const": "DropRegion",
+            "description": "The type of MXLIMS object.",
+            "title": "Mxlims Type",
+            "type": "string"
+        },
+        "region": {
+            "oneOf": [
+                {"$ref": "../datatypes/ImageRegion.json"},
+                {"$ref": "../datatypes/PlateRegion.json"}
+            ]
+        }
+    },
+    "required": [
+        "region"
+    ]
+}

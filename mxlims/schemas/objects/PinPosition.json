@@ -1,56 +1,33 @@
 {
-    "description": "An independent Position within a Pin where crystals can be located.",
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "An independent Position within a Pin where crystals can be located, with typed JSON containment lists.",
     "title": "PinPosition",
     "type": "object",
-    "id": "PinPosition.json",
     "allOf": [
         {
-            "$ref": "../core/LogisticalSample.json"
+            "$ref": "../rawobjects/RawPinPosition.json"
         }
     ],
-    "$defs": {
-        "PinPositionData": {
-            "type": "object",
-            "title": "PinPosition Data",
-            "description": "Data for a position within a pin mounted forming a slot for crystals.",
-            "allOf": [
-                {
-                    "$ref": "../core/MxlimsData.json"
-                }
-            ],
-            "properties": {
-                "mxlims_type": {
-                    "const": "PinPosition",
-                    "description": "The type of MXLIMS object.",
-                    "title": "Mxlims Type",
-                    "type": "string"
-                },
-                "position_in_pin": {
-                    "type":"integer",
-                    "description":"The pin position within  the pin. This should be validated against the pin's number_positions property.",
-                    "minimum": 1,
-                    "examples":[4]
-                }
-            },
-            "required": [
-                "position_in_pin"
-            ]
-        }
-    },
     "properties": {
-        "data": {
-            "allOf": [
-                {
-                    "$ref": "#/$defs/PinPositionData"
-                }
-            ]
-        },
         "contents": {
             "type": "array",
             "items": {
-                "$ref": "Crystal.json"
+                "$ref": "../objects/Crystal.json"
             },
             "minItems": 1
+        },
+        "jobs": {
+            "type": "array",
+            "items": {
+                "anyOf": [
+                    {
+                        "$ref": "../objects/MxExperiment.json"
+                    },
+                    {
+                        "$ref": "../objects/MxProcessing.json"
+                    }
+                ]
+            }
         }
     }
 }

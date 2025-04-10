@@ -1,67 +1,33 @@
 {
-    "description": "A Pin mounted on a puck with one or more slots for crystals.",
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "A Pin mounted on a puck with one or more slots for crystals, with typed JSON containment lists.",
     "title": "Pin",
     "type": "object",
-    "id": "Pin.json",
     "allOf": [
         {
-            "$ref": "../core/LogisticalSample.json"
+            "$ref": "../rawobjects/RawPin.json"
         }
     ],
-    "$defs": {
-        "PinData": {
-            "type": "object",
-            "title": "Pin Data",
-            "description": "Data for a pin mounted on a puck with one or more slots for crystals.",
-            "allOf": [
-                {
-                    "$ref": "../core/MxlimsData.json"
-                }
-            ],
-            "properties": {
-                "mxlims_type": {
-                    "const": "Pin",
-                    "description": "The type of MXLIMS object.",
-                    "title": "Mxlims Type",
-                    "type": "string"
-                },
-                "barcode": {
-                    "type": "string",
-                    "description": "The Pin barcode or RFID code"
-                },
-                "number_positions": {
-                    "type": "integer",
-                    "description": "The number of positions available in the Pin.",
-                    "default": 1,
-                    "minimum": 1
-                },
-                "position_in_puck": {
-                    "type":"integer",
-                    "description":"The puck position occupied by the pin. This should be validated against the puck's number_positions property.",
-                    "minimum": 1,
-                    "examples":[16]
-                }
-            },
-            "required": [
-                "number_positions",
-                "position_in_puck"
-            ]
-        }
-    },
     "properties": {
-        "data": {
-            "allOf": [
-                {
-                    "$ref": "#/$defs/PinData"
-                }
-            ]
-        },
         "contents": {
             "type": "array",
             "items": {
-                "$ref": "PinPosition.json"
+                "$ref": "../objects/PinPosition.json"
             },
             "minItems": 1
+        },
+        "jobs": {
+            "type": "array",
+            "items": {
+                "anyOf": [
+                    {
+                        "$ref": "../objects/MxExperiment.json"
+                    },
+                    {
+                        "$ref": "../objects/MxProcessing.json"
+                    }
+                ]
+            }
         }
     }
 }

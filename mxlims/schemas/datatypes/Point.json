@@ -1,0 +1,27 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "A point marked on an image or in absolute plate space.",
+    "type": "object",
+    "title": "Point",
+    "properties": {
+        "regionType": {
+            "const": "point",
+            "title": "Region type",
+            "description": "Type of region",
+            "type": "string"
+        },
+        "x": {
+            "type": "number",
+            "description": "The X co-ordinate of the point."
+        },
+        "y": {
+            "type": "number",
+            "description": "The Y co-ordinate of the point."
+        }
+    },
+    "required": [
+        "regionType",
+        "x",
+        "y"
+    ]
+}

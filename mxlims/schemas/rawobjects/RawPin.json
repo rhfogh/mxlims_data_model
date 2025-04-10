@@ -1,0 +1,39 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "A Pin mounted on a puck with one or more slots for crystals.",
+    "title": "RawPin",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../core/LogisticalSample.json"
+        }
+    ],
+    "properties": {
+        "mxlimsType": {
+            "const": "Pin",
+            "description": "The type of MXLIMS object.",
+            "title": "Mxlims Type",
+            "type": "string"
+        },
+        "barcode": {
+            "type": "string",
+            "description": "The Pin barcode or RFID code"
+        },
+        "numberPositions": {
+            "type": "integer",
+            "description": "The number of positions available in the Pin.",
+            "default": 1,
+            "minimum": 1
+        },
+        "positionInPuck": {
+            "type":"integer",
+            "description":"The puck position occupied by the pin. This should be validated against the puck's numberPositions property.",
+            "minimum": 1,
+            "examples":[16]
+        }
+    },
+    "required": [
+        "numberPositions",
+        "positionInPuck"
+    ]
+}

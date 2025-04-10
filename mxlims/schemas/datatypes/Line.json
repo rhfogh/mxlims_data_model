@@ -1,0 +1,26 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "type": "object",
+    "title": "Line",
+    "description": "A straight line marked on an image or in absolute plate space.",
+    "properties": {
+        "regionType": {
+            "const": "line",
+            "title": "Region type",
+            "description": "Type of region",
+            "type": "string"
+        },
+        "points": {
+            "type": "array",
+            "items": {
+                "$ref": "../datatypes/Point.json"
+            },
+            "minItems": 2,
+            "maxItems": 2
+        }
+    },
+    "required": [
+        "regionType",
+        "points"
+    ]
+}
