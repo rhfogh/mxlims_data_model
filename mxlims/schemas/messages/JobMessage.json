@@ -7,15 +7,15 @@
         "job": {
             "oneOf": [
                 {
-                    "$ref": "../objects/MxExperiment.json"
+                    "$ref": "../logical_model/MxExperiment.json"
                 },
                 {
-                    "$ref": "../objects/MxProcessing.json"
+                    "$ref": "../logical_model/MxProcessing.json"
                 }
             ]
         },
         "sample": {
-            "$ref": "../rawobjects/RawCrystallographicSample.json"
+            "$ref": "../data/CrystallographicSample.json"
         }
     },
     "required": [

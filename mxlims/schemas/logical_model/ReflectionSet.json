@@ -1,0 +1,53 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "Set of processed reflections, possibly merged or scaled, as might be stored within a MTZ or mmCIF reflection file",
+    "title": "ReflectionSet",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../db_model/ReflectionSet.json"
+        }
+    ],
+    "properties": {
+        "source": {
+            "$ref": "../logical_model/MxProcessing.json"
+        },
+        "derivedFrom": {
+            "$ref": "../logical_model/ReflectionSet.json"
+        },
+        "logisticalSample": {
+            "$ref": "../logical_model/Crystal.json"
+        },
+        "derivedDataSets": {
+            "type": "array",
+            "items": {
+                "$ref": "../logical_model/ReflectionSet.json"
+            }
+        },
+        "referenceFor": {
+            "type": "array",
+            "items": {
+                "anyOf": [
+                    {
+                        "$ref": "../logical_model/MxExperiment.json"
+                    },
+                    {
+                        "$ref": "../logical_model/MxProcessing.json"
+                    }
+                ]
+            }
+        },
+        "templateFor": {
+            "type": "array",
+            "items": {
+                "$ref": "../logical_model/MxProcessing.json"
+            }
+        },
+        "inputFor": {
+            "type": "array",
+            "items": {
+                "$ref": "../logical_model/MxProcessing.json"
+            }
+        }
+    }
+}

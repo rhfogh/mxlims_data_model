@@ -5,52 +5,52 @@
     "type": "object",
     "anyOf": [
         {
-            "$ref": "../objects/CrystallographicSample.json"
+            "$ref": "../logical_model/CrystallographicSample.json"
         },
         {
-            "$ref": "../objects/MxExperiment.json"
+            "$ref": "../logical_model/MxExperiment.json"
         },
         {
-            "$ref": "../objects/MxProcessing.json"
+            "$ref": "../logical_model/MxProcessing.json"
         },
         {
-            "$ref": "../objects/CollectionSweep.json"
+            "$ref": "../logical_model/CollectionSweep.json"
         },
         {
-            "$ref": "../objects/ReflectionSet.json"
+            "$ref": "../logical_model/ReflectionSet.json"
         },
         {
-            "$ref": "../objects/DewarShipment.json"
+            "$ref": "../logical_model/DewarShipment.json"
         },
         {
-            "$ref": "../objects/Dewar.json"
+            "$ref": "../logical_model/Dewar.json"
         },
         {
-            "$ref": "../objects/Puck.json"
+            "$ref": "../logical_model/Puck.json"
         },
         {
-            "$ref": "../objects/Pin.json"
+            "$ref": "../logical_model/Pin.json"
         },
         {
-            "$ref": "../objects/PinPosition.json"
+            "$ref": "../logical_model/PinPosition.json"
         },
         {
-            "$ref": "../objects/PlateShipment.json"
+            "$ref": "../logical_model/PlateShipment.json"
         },
         {
-            "$ref": "../objects/Plate.json"
+            "$ref": "../logical_model/Plate.json"
         },
         {
-            "$ref": "../objects/PlateWell.json"
+            "$ref": "../logical_model/PlateWell.json"
         },
         {
-            "$ref": "../objects/WellDrop.json"
+            "$ref": "../logical_model/WellDrop.json"
         },
         {
-            "$ref": "../objects/DropRegion.json"
+            "$ref": "../logical_model/DropRegion.json"
         },
         {
-            "$ref": "../objects/Crystal.json"
+            "$ref": "../logical_model/Crystal.json"
         }
     ]
 }

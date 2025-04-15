@@ -1,0 +1,31 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "Base class for MXLIMS Jobs - an experiment or calculation producing Datasets",
+    "title": "Job",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../data/Job.json"
+        }
+    ],
+    "properties": {
+        "sampleId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "String UUID of the PreparedSample that applies to this Job",
+            "title": "Sample Id"
+        },
+        "logisticalSampleId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "String UUID of LogisticalSample relevant to this Job.",
+            "title": "Logistical Sample Id"
+        },
+        "startedFromId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "String UUID of the Job from which this Job was started.",
+            "title": "Started From Id"
+        }
+    }
+}

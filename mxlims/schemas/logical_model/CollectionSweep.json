@@ -1,0 +1,40 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "Crystallographic sweep data set, with typed JSON containment lists",
+    "title": "CollectionSweep",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../db_model/CollectionSweep.json"
+        }
+    ],
+    "properties": {
+        "source": {
+            "$ref": "../logical_model/MxExperiment.json"
+        },
+        "derivedFrom": {
+            "$ref": "../logical_model/CollectionSweep.json"
+        },
+        "logisticalSample": {
+            "$ref": "../logical_model/Crystal.json"
+        },
+        "derivedDataSets": {
+            "type": "array",
+            "items": {
+                "$ref": "../logical_model/CollectionSweep.json"
+            }
+        },
+        "templateFor": {
+            "type": "array",
+            "items": {
+                "$ref": "../logical_model/MxExperiment.json"
+            }
+        },
+        "inputFor": {
+            "type": "array",
+            "items": {
+                "$ref": "../logical_model/MxProcessing.json"
+            }
+        }
+    }
+}

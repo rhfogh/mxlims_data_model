@@ -9,7 +9,7 @@ from mxlims.pydantic.MxBaseModel import BaseModel
 
 from pydantic import Field
 
-from ..objects.CrystallographicSample import CrystallographicSample
+from ..logical_model.CrystallographicSample import CrystallographicSample
 
 
 class SamplesMessage(BaseModel):

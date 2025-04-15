@@ -1,0 +1,23 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "Crystal or location for measuring diffraction. Note that crystals are optional and are generally used ONLY where a region, loop, or other LogisticalSample is found to have several crystals during the actual experiment.",
+    "title": "Crystal",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../data/LogisticalSample.json"
+        }
+    ],
+    "properties": {
+        "mxlimsType": {
+            "const": "Crystal",
+            "description": "The type of MXLIMS object.",
+            "title": "Mxlims Type",
+            "type": "string"
+        },
+        "comment": {
+            "type": "string",
+            "description": "Comment or annotation."
+        }
+    }
+}

@@ -7,9 +7,9 @@ from typing import Union
 
 from mxlims.pydantic.MxBaseModel import BaseModel
 
-from ..objects.MxExperiment import MxExperiment
-from ..objects.MxProcessing import MxProcessing
-from ..rawobjects.RawCrystallographicSample import RawCrystallographicSample
+from ..data.CrystallographicSample import CrystallographicSample
+from ..logical_model.MxExperiment import MxExperiment
+from ..logical_model.MxProcessing import MxProcessing
 
 
 class JobMessage(BaseModel):
@@ -18,4 +18,7 @@ class JobMessage(BaseModel):
     """
 
     job: Union[MxExperiment, MxProcessing]
-    sample: RawCrystallographicSample
+    sample: CrystallographicSample
+
+
+JobMessage.model_rebuild()

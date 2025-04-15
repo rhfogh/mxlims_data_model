@@ -1,0 +1,14 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "Shipment of Plates or Dewars",
+    "title": "Shipment",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../data/Shipment.json"
+        },
+        {
+            "$ref": "../data/LogisticalSample.json"
+        }
+    ]
+}

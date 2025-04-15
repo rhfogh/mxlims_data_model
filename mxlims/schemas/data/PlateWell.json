@@ -1,0 +1,41 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "A well in a crystallization plate",
+    "title": "PlateWell",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../data/LogisticalSample.json"
+        }
+    ],
+    "properties": {
+        "mxlimsType": {
+            "const": "PlateWell",
+            "description": "The type of MXLIMS object.",
+            "title": "Mxlims Type",
+            "type": "string"
+        },
+        "rowNumber": {
+            "type": "integer",
+            "description": "<The row number of this well. This is 1-based, so row A is 1, row H is 8. This should be validated against the plateType's rows property.",
+            "minimum": 1
+        },
+        "columnNumber": {
+            "type": "integer",
+            "description": "<The column number of this well. This is 1-based, so should match the column labels on the plate. This should be validated against the plateType's columns property.",
+            "minimum": 1
+        },
+        "name": {
+            "type": "string",
+            "description": "A human-friendly well identifier. If present, this should be validated to ensure that it refers to the correct row and column.",
+            "examples": [
+                "H1",
+                "C03"
+            ]
+        }
+    },
+    "required": [
+        "rowNumber",
+        "columnNumber"
+    ]
+}

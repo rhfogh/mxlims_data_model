@@ -1,0 +1,11 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "Base class for MXLIMS Prepared Samples describing Sample content",
+    "title": "PreparedSample",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../data/MxlimsObject.json"
+        }
+    ]
+}

@@ -7,10 +7,10 @@
         "shipment": {
             "oneOf": [
                 {
-                    "$ref": "../objects/DewarShipment.json"
+                    "$ref": "../logical_model/DewarShipment.json"
                 },
                 {
-                    "$ref": "../objects/PlateShipment.json"
+                    "$ref": "../logical_model/PlateShipment.json"
                 }
             ]
         },
@@ -19,7 +19,7 @@
             "items": {
                 "anyOf": [
                     {
-                        "$ref": "../rawobjects/RawCrystallographicSample.json"
+                        "$ref": "../data/CrystallographicSample.json"
                     }
                 ]
             },

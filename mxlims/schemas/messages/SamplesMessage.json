@@ -9,7 +9,7 @@
             "items": {
                 "anyOf": [
                     {
-                        "$ref": "../objects/CrystallographicSample.json"
+                        "$ref": "../logical_model/CrystallographicSample.json"
                     }
                 ]
             },

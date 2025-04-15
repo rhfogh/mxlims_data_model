@@ -11,10 +11,10 @@
             "items": {
                 "anyOf": [
                     {
-                        "$ref": "../rawobjects/RawMxProcessing.json"
+                        "$ref": "../data/MxProcessing.json"
                     },
                     {
-                        "$ref": "../rawobjects/RawMxExperiment.json"
+                        "$ref": "../data/MxExperiment.json"
                     }
                 ]
             }
@@ -26,10 +26,10 @@
             "items": {
                 "anyOf": [
                     {
-                        "$ref": "../rawobjects/RawCollectionSweep.json"
+                        "$ref": "../data/CollectionSweep.json"
                     },
                     {
-                        "$ref": "../rawobjects/RawReflectionSet.json"
+                        "$ref": "../data/ReflectionSet.json"
                     }
                 ]
             }
@@ -39,7 +39,7 @@
             "title": "Prepared Samples",
             "type": "array",
             "items": {
-                "$ref": "../rawobjects/RawCrystallographicSample.json"
+                "$ref": "../data/CrystallographicSample.json"
             }
         },
         "logisticalSamples": {
@@ -49,34 +49,34 @@
             "items": {
                 "anyOf": [
                     {
-                        "$ref": "../rawobjects/RawShipment.json"
+                        "$ref": "../data/Shipment.json"
                     },
                     {
-                        "$ref": "../rawobjects/RawDewar.json"
+                        "$ref": "../data/Dewar.json"
                     },
                     {
-                        "$ref": "../rawobjects/RawPlate.json"
+                        "$ref": "../data/Plate.json"
                     },
                     {
-                        "$ref": "../rawobjects/RawPuck.json"
+                        "$ref": "../data/Puck.json"
                     },
                     {
-                        "$ref": "../rawobjects/RawPlateWell.json"
+                        "$ref": "../data/PlateWell.json"
                     },
                     {
-                        "$ref": "../rawobjects/RawPin.json"
+                        "$ref": "../data/Pin.json"
                     },
                     {
-                        "$ref": "../rawobjects/RawWellDrop.json"
+                        "$ref": "../data/WellDrop.json"
                     },
                     {
-                        "$ref": "../rawobjects/RawPinPosition.json"
+                        "$ref": "../data/PinPosition.json"
                     },
                     {
-                        "$ref": "../rawobjects/RawDropRegion.json"
+                        "$ref": "../data/DropRegion.json"
                     },
                     {
-                        "$ref": "../rawobjects/RawCrystal.json"
+                        "$ref": "../data/Crystal.json"
                     }
                 ]
             }

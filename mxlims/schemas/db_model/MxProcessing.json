@@ -1,0 +1,14 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "Crystallography Processing calculation, with typed JSON containment lists",
+    "title": "MxProcessing",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../data/MxProcessing.json"
+        },
+        {
+            "$ref": "../db_model/Job.json"
+        }
+    ]
+}

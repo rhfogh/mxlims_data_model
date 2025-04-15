@@ -1,0 +1,46 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "Base class for MXLIMS Jobs - an experiment or calculation producing Datasets",
+    "title": "Job",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../db_model/Job.json"
+        }
+    ],
+    "properties": {
+        "logisticalSample": {
+            "$ref": "../logical_model/LogisticalSample.json"
+        },
+        "sample": {
+            "$ref": "../logical_model/PreparedSample.json"
+        },
+        "startedFrom": {
+            "$ref": "../logical_model/Job.json"
+        },
+        "results": {
+            "type": "array",
+            "items": {
+                "$ref": "../logical_model/Dataset.json"
+            }
+        },
+        "referenceData": {
+            "type": "array",
+            "items": {
+                "$ref": "../logical_model/Dataset.json"
+            }
+        },
+        "templateData": {
+            "type": "array",
+            "items": {
+                "$ref": "../logical_model/Dataset.json"
+            }
+        },
+        "inputData": {
+            "type": "array",
+            "items": {
+                "$ref": "../logical_model/Dataset.json"
+            }
+        }
+    }
+}

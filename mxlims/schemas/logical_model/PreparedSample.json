@@ -1,0 +1,25 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "Base class for MXLIMS Prepared Samples describing Sample content",
+    "title": "PreparedSample",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../db_model/PreparedSample.json"
+        }
+    ],
+    "properties": {
+        "jobs": {
+            "type": "array",
+            "items": {
+                "$ref": "../logical_model/Job.json"
+            }
+        },
+        "logisticalSamples": {
+            "type": "array",
+            "items": {
+                "$ref": "../logical_model/LogisticalSample.json"
+            }
+        }
+    }
+}

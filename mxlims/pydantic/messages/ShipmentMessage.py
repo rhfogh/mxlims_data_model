@@ -9,9 +9,9 @@ from mxlims.pydantic.MxBaseModel import BaseModel
 
 from pydantic import Field
 
-from ..objects.DewarShipment import DewarShipment
-from ..objects.PlateShipment import PlateShipment
-from ..rawobjects.RawCrystallographicSample import RawCrystallographicSample
+from ..data.CrystallographicSample import CrystallographicSample
+from ..logical_model.DewarShipment import DewarShipment
+from ..logical_model.PlateShipment import PlateShipment
 
 
 class ShipmentMessage(BaseModel):
@@ -20,4 +20,4 @@ class ShipmentMessage(BaseModel):
     """
 
     shipment: Union[DewarShipment, PlateShipment]
-    samples: List[RawCrystallographicSample] = Field(..., min_length=1)
+    samples: List[CrystallographicSample] = Field(..., min_length=1)

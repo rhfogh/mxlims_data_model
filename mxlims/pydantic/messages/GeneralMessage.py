@@ -9,21 +9,21 @@ from mxlims.pydantic.MxBaseModel import BaseModel
 
 from pydantic import Field
 
-from ..rawobjects.RawCollectionSweep import RawCollectionSweep
-from ..rawobjects.RawCrystal import RawCrystal
-from ..rawobjects.RawCrystallographicSample import RawCrystallographicSample
-from ..rawobjects.RawDewar import RawDewar
-from ..rawobjects.RawDropRegion import RawDropRegion
-from ..rawobjects.RawMxExperiment import RawMxExperiment
-from ..rawobjects.RawMxProcessing import RawMxProcessing
-from ..rawobjects.RawPin import RawPin
-from ..rawobjects.RawPinPosition import RawPinPosition
-from ..rawobjects.RawPlate import RawPlate
-from ..rawobjects.RawPlateWell import RawPlateWell
-from ..rawobjects.RawPuck import RawPuck
-from ..rawobjects.RawReflectionSet import RawReflectionSet
-from ..rawobjects.RawShipment import RawShipment
-from ..rawobjects.RawWellDrop import RawWellDrop
+from ..data.CollectionSweep import CollectionSweep
+from ..data.Crystal import Crystal
+from ..data.CrystallographicSample import CrystallographicSample
+from ..data.Dewar import Dewar
+from ..data.DropRegion import DropRegion
+from ..data.MxExperiment import MxExperiment
+from ..data.MxProcessing import MxProcessing
+from ..data.Pin import Pin
+from ..data.PinPosition import PinPosition
+from ..data.Plate import Plate
+from ..data.PlateWell import PlateWell
+from ..data.Puck import Puck
+from ..data.ReflectionSet import ReflectionSet
+from ..data.Shipment import Shipment
+from ..data.WellDrop import WellDrop
 
 
 class GeneralMessage(BaseModel):
@@ -31,13 +31,13 @@ class GeneralMessage(BaseModel):
     Message containing all possible objects, without JSON content links
     """
 
-    jobs: Optional[List[Union[RawMxProcessing, RawMxExperiment]]] = Field(
+    jobs: Optional[List[Union[MxProcessing, MxExperiment]]] = Field(
         None, description="List of directly contained Jobs.", title="Jobs"
     )
-    datasets: Optional[List[Union[RawCollectionSweep, RawReflectionSet]]] = Field(
+    datasets: Optional[List[Union[CollectionSweep, ReflectionSet]]] = Field(
         None, description="List of directly contained Datasets.", title="Datasets"
     )
-    prepared_samples: Optional[List[RawCrystallographicSample]] = Field(
+    prepared_samples: Optional[List[CrystallographicSample]] = Field(
         None,
         alias="preparedSamples",
         description="List of directly contained Prepared Samples.",
@@ -46,16 +46,16 @@ class GeneralMessage(BaseModel):
     logistical_samples: Optional[
         List[
             Union[
-                RawShipment,
-                RawDewar,
-                RawPlate,
-                RawPuck,
-                RawPlateWell,
-                RawPin,
-                RawWellDrop,
-                RawPinPosition,
-                RawDropRegion,
-                RawCrystal,
+                Shipment,
+                Dewar,
+                Plate,
+                Puck,
+                PlateWell,
+                Pin,
+                WellDrop,
+                PinPosition,
+                DropRegion,
+                Crystal,
             ]
         ]
     ] = Field(

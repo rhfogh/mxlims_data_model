@@ -1,0 +1,46 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "Abstract class for MXLIMS Datasets",
+    "title": "Dataset",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../db_model/Dataset.json"
+        }
+    ],
+    "properties": {
+        "source": {
+            "$ref": "../logical_model/Job.json"
+        },
+        "derivedFrom": {
+            "$ref": "../logical_model/Dataset.json"
+        },
+        "logisticalSample": {
+            "$ref": "../logical_model/LogisticalSample.json"
+        },
+        "derivedDataSets": {
+            "type": "array",
+            "items": {
+                "$ref": "../logical_model/Dataset.json"
+            }
+        },
+        "referenceFor": {
+            "type": "array",
+            "items": {
+                "$ref": "../logical_model/Job.json"
+            }
+        },
+        "templateFor": {
+            "type": "array",
+            "items": {
+                "$ref": "../logical_model/Job.json"
+            }
+        },
+        "inputFor": {
+            "type": "array",
+            "items": {
+                "$ref": "../logical_model/Job.json"
+            }
+        }
+    }
+}
