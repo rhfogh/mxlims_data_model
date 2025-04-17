@@ -1,0 +1,44 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "Set of processed reflections, possibly merged or scaled, as might be stored within a MTZ or mmCIF reflection file",
+    "title": "ReflectionSet",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../data/ReflectionSet.json"
+        },
+        {
+            "$ref": "../objects/Dataset.json"
+        }
+    ],
+    "properties": {
+        "sourceRef": {
+            "$ref": "../references/MxProcessingRef.json"
+        },
+        "derivedFromRef": {
+            "$ref": "../references/ReflectionSetRef.json"
+        },
+        "logisticalSampleRef": {
+            "oneOf": [
+                {
+                    "$ref": "../references/CrystalRef.json"
+                },
+                {
+                    "$ref": "../references/PinRef.json"
+                },
+                {
+                    "$ref": "../references/PinPositionRef.json"
+                },
+                {
+                    "$ref": "../references/PlateWellRef.json"
+                },
+                {
+                    "$ref": "../references/WellDropRef.json"
+                },
+                {
+                    "$ref": "../references/DropRegionRef.json"
+                }
+            ]
+        }
+    }
+}

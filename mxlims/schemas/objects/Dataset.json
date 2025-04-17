@@ -1,0 +1,17 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "Base class for MXLIMS Datasets",
+    "title": "Dataset",
+    "type": "object",
+    "properties": {
+        "sourceRef": {
+            "$ref": "../references/MxlimsRef.json"
+        },
+        "derivedFromRef": {
+            "$ref": "../references/MxlimsRef.json"
+        },
+        "logisticalSampleRef": {
+            "$ref": "../references/MxlimsRef.json"
+        }
+    }
+}

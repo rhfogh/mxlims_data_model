@@ -1,0 +1,24 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "Reference to Shipment",
+    "title": "ShipmentRef",
+    "type": "object",
+    "properties": {
+        "mxlimsType": {
+            "description": "The type of the MXLIMS object referred to.",
+            "title": "Mxlims Type",
+            "type": "string",
+            "const": "Shipment"
+        },
+        "uuid": {
+            "description": "Permanent unique identifier string of referenced object",
+            "title": "Uuid",
+            "type": "string",
+            "format": "uuid"
+        }
+    },
+    "required": [
+        "uuid",
+        "mxlimsType"
+    ]
+}

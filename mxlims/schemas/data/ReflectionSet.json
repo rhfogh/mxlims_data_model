@@ -5,7 +5,7 @@
     "type": "object",
     "allOf": [
         {
-            "$ref": "../db_model/Dataset.json"
+            "$ref": "../data/Dataset.json"
         }
     ],
     "properties": {

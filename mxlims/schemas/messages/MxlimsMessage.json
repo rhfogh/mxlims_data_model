@@ -1,0 +1,233 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "Message containing all possible objects, by type",
+    "title": "MxlimsMessage",
+    "type": "object",
+    "properties": {
+        "CollectionSweep": {
+            "description": "Uuid:object dictionary of CollectionSweeps.",
+            "title": "CollectionSweeps",
+            "type": "object",
+            "additionalProperties": {
+                "oneOf": [
+                    {
+                        "$ref": "../objects/CollectionSweep.json"
+                    },
+                    {
+                        "$ref": "../references/MxlimsRef.json"
+                    }
+                ]
+            }
+        },
+        "Crystal": {
+            "description": "Uuid:object dictionary of Crystals.",
+            "title": "Crystals",
+            "type": "object",
+            "additionalProperties": {
+                "oneOf": [
+                    {
+                        "$ref": "../objects/Crystal.json"
+                    },
+                    {
+                        "$ref": "../references/MxlimsRef.json"
+                    }
+                ]
+            }
+        },
+        "CrystallographicSample": {
+            "description": "Uuid:object dictionary of CrystallographicSamples.",
+            "title": "CrystallographicSamples",
+            "type": "object",
+            "additionalProperties": {
+                "oneOf": [
+                    {
+                        "$ref": "../objects/CrystallographicSample.json"
+                    },
+                    {
+                        "$ref": "../references/MxlimsRef.json"
+                    }
+                ]
+            }
+        },
+        "Dewar": {
+            "description": "Uuid:object dictionary of Dewars.",
+            "title": "Dewars",
+            "type": "object",
+            "additionalProperties": {
+                "oneOf": [
+                    {
+                        "$ref": "../objects/Dewar.json"
+                    },
+                    {
+                        "$ref": "../references/MxlimsRef.json"
+                    }
+                ]
+            }
+        },
+        "DropRegion": {
+            "description": "Uuid:object dictionary of DropRegions.",
+            "title": "DropRegions",
+            "type": "object",
+            "additionalProperties": {
+                "oneOf": [
+                    {
+                        "$ref": "../objects/DropRegion.json"
+                    },
+                    {
+                        "$ref": "../references/MxlimsRef.json"
+                    }
+                ]
+            }
+        },
+        "MxExperiment": {
+            "description": "Uuid:object dictionary of MxExperiments.",
+            "title": "MxExperiments",
+            "type": "object",
+            "additionalProperties": {
+                "oneOf": [
+                    {
+                        "$ref": "../objects/MxExperiment.json"
+                    },
+                    {
+                        "$ref": "../references/MxlimsRef.json"
+                    }
+                ]
+            }
+        },
+        "MxProcessing": {
+            "description": "Uuid:object dictionary of MxProcessings.",
+            "title": "MxProcessings",
+            "type": "object",
+            "additionalProperties": {
+                "oneOf": [
+                    {
+                        "$ref": "../objects/MxProcessing.json"
+                    },
+                    {
+                        "$ref": "../references/MxlimsRef.json"
+                    }
+                ]
+            }
+        },
+        "Pin": {
+            "description": "Uuid:object dictionary of Pins.",
+            "title": "Pins",
+            "type": "object",
+            "additionalProperties": {
+                "oneOf": [
+                    {
+                        "$ref": "../objects/Pin.json"
+                    },
+                    {
+                        "$ref": "../references/MxlimsRef.json"
+                    }
+                ]
+            }
+        },
+        "PinPosition": {
+            "description": "Uuid:object dictionary of PinPositions.",
+            "title": "PinPositions",
+            "type": "object",
+            "additionalProperties": {
+                "oneOf": [
+                    {
+                        "$ref": "../objects/PinPosition.json"
+                    },
+                    {
+                        "$ref": "../references/MxlimsRef.json"
+                    }
+                ]
+            }
+        },
+        "Plate": {
+            "description": "Uuid:object dictionary of Plates.",
+            "title": "Plates",
+            "type": "object",
+            "additionalProperties": {
+                "oneOf": [
+                    {
+                        "$ref": "../objects/Plate.json"
+                    },
+                    {
+                        "$ref": "../references/MxlimsRef.json"
+                    }
+                ]
+            }
+        },
+        "PlateWell": {
+            "description": "Uuid:object dictionary of PlateWells.",
+            "title": "PlateWells",
+            "type": "object",
+            "additionalProperties": {
+                "oneOf": [
+                    {
+                        "$ref": "../objects/PlateWell.json"
+                    },
+                    {
+                        "$ref": "../references/MxlimsRef.json"
+                    }
+                ]
+            }
+        },
+        "Puck": {
+            "description": "Uuid:object dictionary of Pucks.",
+            "title": "Pucks",
+            "type": "object",
+            "additionalProperties": {
+                "oneOf": [
+                    {
+                        "$ref": "../objects/Puck.json"
+                    },
+                    {
+                        "$ref": "../references/MxlimsRef.json"
+                    }
+                ]
+            }
+        },
+        "ReflectionSet": {
+            "description": "Uuid:object dictionary of ReflectionSets.",
+            "title": "ReflectionSets",
+            "type": "object",
+            "additionalProperties": {
+                "oneOf": [
+                    {
+                        "$ref": "../objects/ReflectionSet.json"
+                    },
+                    {
+                        "$ref": "../references/MxlimsRef.json"
+                    }
+                ]
+            }
+        },
+        "Shipment": {
+            "description": "Uuid:object dictionary of Shipments.",
+            "title": "Shipments",
+            "type": "object",
+            "additionalProperties": {
+                "oneOf": [
+                    {
+                        "$ref": "../objects/Shipment.json"
+                    },
+                    {
+                        "$ref": "../references/MxlimsRef.json"
+                    }
+                ]
+            }
+        },
+        "WellDrop": {
+            "description": "Uuid:object dictionary of WellDrops.",
+            "title": "WellDrops",
+            "type": "object",
+            "additionalProperties": {
+                "oneOf": [
+                    {
+                        "$ref": "../objects/WellDrop.json"
+                    },
+                    {
+                        "$ref": "../references/MxlimsRef.json"
+                    }
+                ]
+            }
+        }
+    }
+}
