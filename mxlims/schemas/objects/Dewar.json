@@ -12,6 +12,10 @@
         }
     ],
     "properties": {
+        "sampleRef": {
+            "type": "null",
+            "default": null
+        },
         "containerRef": {
             "$ref": "../references/ShipmentRef.json"
         }

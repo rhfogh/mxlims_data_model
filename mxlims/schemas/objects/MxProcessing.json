@@ -51,6 +51,12 @@
             "items": {
                 "$ref": "../references/ReflectionSetRef.json"
             }
+        },
+        "inputDataRefs": {
+            "type": "array",
+            "items": {
+                "$ref": "../references/CollectionSweepRef.json"
+            }
         }
     }
 }

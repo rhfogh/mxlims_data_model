@@ -51,6 +51,13 @@
             "items": {
                 "$ref": "../references/CollectionSweepRef.json"
             }
+        },
+        "inputDataRefs": {
+            "type": "array",
+            "items": {
+                "$ref": "../references/MxlimsRef.json"
+            },
+            "maxItems": 0
         }
     }
 }
