@@ -1,11 +1,11 @@
 {
     "$schema": "https://json-schema.org/draft-07/schema",
     "description": "Shipment",
-    "title": "Shipment",
+    "title": "ShipmentData",
     "type": "object",
     "allOf": [
         {
-            "$ref": "../data/LogisticalSample.json"
+            "$ref": "../data/LogisticalSampleData.json"
         }
     ],
     "properties": {

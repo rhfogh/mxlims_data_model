@@ -21,5 +21,6 @@
     "required": [
         "factorType",
         "value"
-    ]
+    ],
+    "additionalProperties": false
 }

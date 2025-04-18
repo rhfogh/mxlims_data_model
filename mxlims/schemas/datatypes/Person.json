@@ -17,5 +17,6 @@
             "description": "The person's phone number."
         }
     },
-    "required": ["name"]
+    "required": ["name"],
+    "additionalProperties": false
 }

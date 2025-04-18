@@ -5,7 +5,7 @@
     "type": "object",
     "allOf": [
         {
-            "$ref": "../data/Pin.json"
+            "$ref": "../data/PinData.json"
         },
         {
             "$ref": "../objects/LogisticalSample.json"

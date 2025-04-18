@@ -1,11 +1,11 @@
 {
     "$schema": "https://json-schema.org/draft-07/schema",
     "description": "Crystallography experiment, producing data",
-    "title": "MxExperiment",
+    "title": "MxExperimentData",
     "type": "object",
     "allOf": [
         {
-            "$ref": "../data/Job.json"
+            "$ref": "../data/JobData.json"
         }
     ],
     "properties": {

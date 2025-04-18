@@ -7,7 +7,7 @@ from typing import Union
 
 from mxlims.pydantic.MxBaseModel import BaseModel
 
-from pydantic import Field
+from pydantic import ConfigDict, Field
 
 from .Circle import Circle
 from .Line import Line
@@ -22,6 +22,9 @@ class PlateRegion(BaseModel):
     A region defined in absolute plate space.
     """
 
+    model_config = ConfigDict(
+        extra="forbid",
+    )
     region: Union[Point, Circle, Line, Rectangle, Polygon]
     units: PlateRegionUnit = Field(
         ..., description="The units of the region's co-ordinates."

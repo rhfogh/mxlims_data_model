@@ -22,5 +22,6 @@
     "required": [
         "regionType",
         "points"
-    ]
+    ],
+    "additionalProperties": false
 }

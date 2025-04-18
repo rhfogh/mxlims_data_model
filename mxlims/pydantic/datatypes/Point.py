@@ -7,7 +7,7 @@ from typing import Literal
 
 from mxlims.pydantic.MxBaseModel import BaseModel
 
-from pydantic import Field
+from pydantic import ConfigDict, Field
 
 
 class Point(BaseModel):
@@ -15,6 +15,9 @@ class Point(BaseModel):
     A point marked on an image or in absolute plate space.
     """
 
+    model_config = ConfigDict(
+        extra="forbid",
+    )
     region_type: Literal["point"] = Field(
         "point", alias="regionType", description="Type of region", title="Region type"
     )

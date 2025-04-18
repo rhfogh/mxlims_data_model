@@ -7,7 +7,7 @@ from typing import List, Literal
 
 from mxlims.pydantic.MxBaseModel import BaseModel
 
-from pydantic import Field
+from pydantic import ConfigDict, Field
 
 from .Point import Point
 
@@ -17,6 +17,9 @@ class Line(BaseModel):
     A straight line marked on an image or in absolute plate space.
     """
 
+    model_config = ConfigDict(
+        extra="forbid",
+    )
     region_type: Literal["line"] = Field(
         "line", alias="regionType", description="Type of region", title="Region type"
     )

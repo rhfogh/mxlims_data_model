@@ -1,11 +1,11 @@
 {
     "$schema": "https://json-schema.org/draft-07/schema",
     "description": "A puck containing mounted crystals on pins.",
-    "title": "Puck",
+    "title": "PuckData",
     "type": "object",
     "allOf": [
         {
-            "$ref": "../data/LogisticalSample.json"
+            "$ref": "../data/LogisticalSampleData.json"
         }
     ],
     "properties": {

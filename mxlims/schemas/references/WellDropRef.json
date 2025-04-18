@@ -20,5 +20,6 @@
     "required": [
         "uuid",
         "mxlimsType"
-    ]
+    ],
+    "additionalProperties": false
 }

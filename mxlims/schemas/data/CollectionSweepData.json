@@ -1,11 +1,11 @@
 {
     "$schema": "https://json-schema.org/draft-07/schema",
     "description": "Crystallographic sweep data set, containing images",
-    "title": "CollectionSweep",
+    "title": "CollectionSweepData",
     "type": "object",
     "allOf": [
         {
-            "$ref": "../data/Dataset.json"
+            "$ref": "../data/DatasetData.json"
         }
     ],
     "properties": {

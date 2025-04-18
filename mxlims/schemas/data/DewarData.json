@@ -1,11 +1,11 @@
 {
     "$schema": "https://json-schema.org/draft-07/schema",
     "description": "A dewar containing pucks with mounted crystals on pins.",
-    "title": "Dewar",
+    "title": "DewarData",
     "type": "object",
     "allOf": [
         {
-            "$ref": "../data/LogisticalSample.json"
+            "$ref": "../data/LogisticalSampleData.json"
         }
     ],
     "properties": {

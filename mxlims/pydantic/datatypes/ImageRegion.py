@@ -7,11 +7,11 @@ from typing import Optional, Union
 
 from mxlims.pydantic.MxBaseModel import BaseModel
 
-from pydantic import Field
+from pydantic import ConfigDict, Field
 
 from .Circle import Circle
 from .DropImageData import DropImageData
-from .DropImageUrl import DropImageData as DropImageData_1
+from .DropImageUrl import DropImageUrl
 from .ImageRegionUnit import ImageRegionUnit
 from .Line import Line
 from .Point import Point
@@ -24,8 +24,11 @@ class ImageRegion(BaseModel):
     A region marked on an image.
     """
 
+    model_config = ConfigDict(
+        extra="forbid",
+    )
     region: Union[Point, Circle, Line, Rectangle, Polygon]
-    image: Optional[Union[DropImageData, DropImageData_1]] = None
+    image: Optional[Union[DropImageData, DropImageUrl]] = None
     units: ImageRegionUnit = Field(
         ..., description="The units of the region's co-ordinates."
     )

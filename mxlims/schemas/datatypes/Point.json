@@ -23,5 +23,6 @@
         "regionType",
         "x",
         "y"
-    ]
+    ],
+    "additionalProperties": false
 }

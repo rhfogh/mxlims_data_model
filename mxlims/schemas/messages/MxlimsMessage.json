@@ -9,7 +9,7 @@
             "title": "CollectionSweeps",
             "type": "object",
             "additionalProperties": {
-                "oneOf": [
+                "anyOf": [
                     {
                         "$ref": "../objects/CollectionSweep.json"
                     },
@@ -24,7 +24,7 @@
             "title": "Crystals",
             "type": "object",
             "additionalProperties": {
-                "oneOf": [
+                "anyOf": [
                     {
                         "$ref": "../objects/Crystal.json"
                     },
@@ -39,7 +39,7 @@
             "title": "CrystallographicSamples",
             "type": "object",
             "additionalProperties": {
-                "oneOf": [
+                "anyOf": [
                     {
                         "$ref": "../objects/CrystallographicSample.json"
                     },
@@ -54,7 +54,7 @@
             "title": "Dewars",
             "type": "object",
             "additionalProperties": {
-                "oneOf": [
+                "anyOf": [
                     {
                         "$ref": "../objects/Dewar.json"
                     },
@@ -69,7 +69,7 @@
             "title": "DropRegions",
             "type": "object",
             "additionalProperties": {
-                "oneOf": [
+                "anyOf": [
                     {
                         "$ref": "../objects/DropRegion.json"
                     },
@@ -84,7 +84,7 @@
             "title": "MxExperiments",
             "type": "object",
             "additionalProperties": {
-                "oneOf": [
+                "anyOf": [
                     {
                         "$ref": "../objects/MxExperiment.json"
                     },
@@ -99,7 +99,7 @@
             "title": "MxProcessings",
             "type": "object",
             "additionalProperties": {
-                "oneOf": [
+                "anyOf": [
                     {
                         "$ref": "../objects/MxProcessing.json"
                     },
@@ -114,7 +114,7 @@
             "title": "Pins",
             "type": "object",
             "additionalProperties": {
-                "oneOf": [
+                "anyOf": [
                     {
                         "$ref": "../objects/Pin.json"
                     },
@@ -129,7 +129,7 @@
             "title": "PinPositions",
             "type": "object",
             "additionalProperties": {
-                "oneOf": [
+                "anyOf": [
                     {
                         "$ref": "../objects/PinPosition.json"
                     },
@@ -144,7 +144,7 @@
             "title": "Plates",
             "type": "object",
             "additionalProperties": {
-                "oneOf": [
+                "anyOf": [
                     {
                         "$ref": "../objects/Plate.json"
                     },
@@ -159,7 +159,7 @@
             "title": "PlateWells",
             "type": "object",
             "additionalProperties": {
-                "oneOf": [
+                "anyOf": [
                     {
                         "$ref": "../objects/PlateWell.json"
                     },
@@ -174,7 +174,7 @@
             "title": "Pucks",
             "type": "object",
             "additionalProperties": {
-                "oneOf": [
+                "anyOf": [
                     {
                         "$ref": "../objects/Puck.json"
                     },
@@ -189,7 +189,7 @@
             "title": "ReflectionSets",
             "type": "object",
             "additionalProperties": {
-                "oneOf": [
+                "anyOf": [
                     {
                         "$ref": "../objects/ReflectionSet.json"
                     },
@@ -204,7 +204,7 @@
             "title": "Shipments",
             "type": "object",
             "additionalProperties": {
-                "oneOf": [
+                "anyOf": [
                     {
                         "$ref": "../objects/Shipment.json"
                     },
@@ -219,7 +219,7 @@
             "title": "WellDrops",
             "type": "object",
             "additionalProperties": {
-                "oneOf": [
+                "anyOf": [
                     {
                         "$ref": "../objects/WellDrop.json"
                     },

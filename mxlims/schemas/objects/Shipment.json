@@ -5,10 +5,10 @@
     "type": "object",
     "allOf": [
         {
-            "$ref": "../data/Shipment.json"
+            "$ref": "../data/ShipmentData.json"
         },
         {
-            "$ref": "../data/LogisticalSample.json"
+            "$ref": "../data/LogisticalSampleData.json"
         }
     ]
 }

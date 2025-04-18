@@ -7,7 +7,7 @@ from typing import Optional
 
 from mxlims.pydantic.MxBaseModel import BaseModel
 
-from pydantic import Field
+from pydantic import ConfigDict, Field
 
 
 class Person(BaseModel):
@@ -15,6 +15,9 @@ class Person(BaseModel):
     Person
     """
 
+    model_config = ConfigDict(
+        extra="forbid",
+    )
     name: str = Field(..., description="The person's full name.")
     email_address: Optional[str] = Field(
         None, alias="emailAddress", description="The person's email address."
