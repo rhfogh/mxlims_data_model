@@ -12,7 +12,7 @@
         },
         "mxlimsType": {
             "description": "The type of the MXLIMS object. Fixed for each subtype schema",
-            "title": "Mxlims Type",
+            "title": "MxlimsType",
             "type": "string"
         },
         "uuid": {

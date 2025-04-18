@@ -12,7 +12,7 @@
         "mxlimsType": {
             "const": "Pin",
             "description": "The type of MXLIMS object.",
-            "title": "Mxlims Type",
+            "title": "MxlimsType",
             "type": "string"
         },
         "barcode": {

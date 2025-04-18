@@ -12,7 +12,7 @@
         "mxlimsType": {
             "const": "ReflectionSet",
             "description": "Type of MXLIMS object linked to.",
-            "title": "Mxlims Type",
+            "title": "MxlimsType",
             "type": "string"
         },
         "anisotropicDiffraction": {

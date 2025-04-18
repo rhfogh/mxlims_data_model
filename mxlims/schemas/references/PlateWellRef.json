@@ -6,7 +6,7 @@
     "properties": {
         "mxlimsType": {
             "description": "The type of the MXLIMS object referred to.",
-            "title": "Mxlims Type",
+            "title": "MxlimsType",
             "type": "string",
             "const": "PlateWell"
         },

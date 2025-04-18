@@ -12,7 +12,7 @@
         "mxlimsType": {
             "const": "MXProcessing",
             "description": "Type of MXLIMS object.",
-            "title": "Mxlims Type",
+            "title": "MxlimsType",
             "type": "string"
         },
         "spaceGroupName": {

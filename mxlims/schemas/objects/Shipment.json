@@ -8,7 +8,7 @@
             "$ref": "../data/ShipmentData.json"
         },
         {
-            "$ref": "../data/LogisticalSampleData.json"
+            "$ref": "../objects/LogisticalSample.json"
         }
     ]
 }
