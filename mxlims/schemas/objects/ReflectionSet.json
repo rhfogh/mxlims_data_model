@@ -40,5 +40,19 @@
                 }
             ]
         }
+    },
+    "not": {
+        "oneOf": [
+            {
+                "required": [
+                    "sourceRef"
+                ]
+            },
+            {
+                "required": [
+                    "derivedFromRef"
+                ]
+            }
+        ]
     }
 }

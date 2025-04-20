@@ -13,5 +13,19 @@
         "logisticalSampleRef": {
             "$ref": "../references/MxlimsRef.json"
         }
+    },
+    "not": {
+        "oneOf": [
+            {
+                "required": [
+                    "sourceRef"
+                ]
+            },
+            {
+                "required": [
+                    "derivedFromRef"
+                ]
+            }
+        ]
     }
 }
