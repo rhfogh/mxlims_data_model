@@ -9,6 +9,7 @@ from mxlims.pydantic.MxBaseModel import BaseModel
 
 from pydantic import Field
 
+from ..core.UuidStub import UuidStub
 from ..objects.CollectionSweep import CollectionSweep
 from ..objects.Crystal import Crystal
 from ..objects.CrystallographicSample import CrystallographicSample
@@ -24,7 +25,6 @@ from ..objects.Puck import Puck
 from ..objects.ReflectionSet import ReflectionSet
 from ..objects.Shipment import Shipment
 from ..objects.WellDrop import WellDrop
-from ..references.MxlimsRef import MxlimsRef
 
 
 class MxlimsMessage(BaseModel):
@@ -32,90 +32,90 @@ class MxlimsMessage(BaseModel):
     Message containing all possible objects, by type
     """
 
-    collection_sweep: Optional[Dict[str, Union[CollectionSweep, MxlimsRef]]] = Field(
+    collection_sweep: Optional[Dict[str, Union[CollectionSweep, UuidStub]]] = Field(
         None,
         alias="CollectionSweep",
         description="Uuid:object dictionary of CollectionSweeps.",
         title="CollectionSweeps",
     )
-    crystal: Optional[Dict[str, Union[Crystal, MxlimsRef]]] = Field(
+    crystal: Optional[Dict[str, Union[Crystal, UuidStub]]] = Field(
         None,
         alias="Crystal",
         description="Uuid:object dictionary of Crystals.",
         title="Crystals",
     )
     crystallographic_sample: Optional[
-        Dict[str, Union[CrystallographicSample, MxlimsRef]]
+        Dict[str, Union[CrystallographicSample, UuidStub]]
     ] = Field(
         None,
         alias="CrystallographicSample",
         description="Uuid:object dictionary of CrystallographicSamples.",
         title="CrystallographicSamples",
     )
-    dewar: Optional[Dict[str, Union[Dewar, MxlimsRef]]] = Field(
+    dewar: Optional[Dict[str, Union[Dewar, UuidStub]]] = Field(
         None,
         alias="Dewar",
         description="Uuid:object dictionary of Dewars.",
         title="Dewars",
     )
-    drop_region: Optional[Dict[str, Union[DropRegion, MxlimsRef]]] = Field(
+    drop_region: Optional[Dict[str, Union[DropRegion, UuidStub]]] = Field(
         None,
         alias="DropRegion",
         description="Uuid:object dictionary of DropRegions.",
         title="DropRegions",
     )
-    mx_experiment: Optional[Dict[str, Union[MxExperiment, MxlimsRef]]] = Field(
+    mx_experiment: Optional[Dict[str, Union[MxExperiment, UuidStub]]] = Field(
         None,
         alias="MxExperiment",
         description="Uuid:object dictionary of MxExperiments.",
         title="MxExperiments",
     )
-    mx_processing: Optional[Dict[str, Union[MxProcessing, MxlimsRef]]] = Field(
+    mx_processing: Optional[Dict[str, Union[MxProcessing, UuidStub]]] = Field(
         None,
         alias="MxProcessing",
         description="Uuid:object dictionary of MxProcessings.",
         title="MxProcessings",
     )
-    pin: Optional[Dict[str, Union[Pin, MxlimsRef]]] = Field(
+    pin: Optional[Dict[str, Union[Pin, UuidStub]]] = Field(
         None, alias="Pin", description="Uuid:object dictionary of Pins.", title="Pins"
     )
-    pin_position: Optional[Dict[str, Union[PinPosition, MxlimsRef]]] = Field(
+    pin_position: Optional[Dict[str, Union[PinPosition, UuidStub]]] = Field(
         None,
         alias="PinPosition",
         description="Uuid:object dictionary of PinPositions.",
         title="PinPositions",
     )
-    plate: Optional[Dict[str, Union[Plate, MxlimsRef]]] = Field(
+    plate: Optional[Dict[str, Union[Plate, UuidStub]]] = Field(
         None,
         alias="Plate",
         description="Uuid:object dictionary of Plates.",
         title="Plates",
     )
-    plate_well: Optional[Dict[str, Union[PlateWell, MxlimsRef]]] = Field(
+    plate_well: Optional[Dict[str, Union[PlateWell, UuidStub]]] = Field(
         None,
         alias="PlateWell",
         description="Uuid:object dictionary of PlateWells.",
         title="PlateWells",
     )
-    puck: Optional[Dict[str, Union[Puck, MxlimsRef]]] = Field(
+    puck: Optional[Dict[str, Union[Puck, UuidStub]]] = Field(
         None,
         alias="Puck",
         description="Uuid:object dictionary of Pucks.",
         title="Pucks",
     )
-    reflection_set: Optional[Dict[str, Union[ReflectionSet, MxlimsRef]]] = Field(
+    reflection_set: Optional[Dict[str, Union[ReflectionSet, UuidStub]]] = Field(
         None,
         alias="ReflectionSet",
         description="Uuid:object dictionary of ReflectionSets.",
         title="ReflectionSets",
     )
-    shipment: Optional[Dict[str, Union[Shipment, MxlimsRef]]] = Field(
+    shipment: Optional[Dict[str, Union[Shipment, UuidStub]]] = Field(
         None,
         alias="Shipment",
         description="Uuid:object dictionary of Shipments.",
         title="Shipments",
     )
-    well_drop: Optional[Dict[str, Union[WellDrop, MxlimsRef]]] = Field(
+    well_drop: Optional[Dict[str, Union[WellDrop, UuidStub]]] = Field(
         None,
         alias="WellDrop",
         description="Uuid:object dictionary of WellDrops.",

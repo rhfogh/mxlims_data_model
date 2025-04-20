@@ -5,10 +5,10 @@
     "type": "object",
     "properties": {
         "sampleRef": {
-            "$ref": "../references/MxlimsRef.json"
+            "$ref": "../core/PreparedSampleRef.json"
         },
         "containerRef": {
-            "$ref": "../references/MxlimsRef.json"
+            "$ref": "../core/LogisticalSampleRef.json"
         }
     }
 }

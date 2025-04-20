@@ -4,11 +4,10 @@
 from __future__ import annotations
 
 from typing import Literal
-from uuid import UUID
 
 from mxlims.pydantic.MxBaseModel import BaseModel
 
-from pydantic import ConfigDict, Field
+from pydantic import ConfigDict, Field, constr
 
 
 class WellDropRef(BaseModel):
@@ -25,8 +24,10 @@ class WellDropRef(BaseModel):
         description="The type of the MXLIMS object referred to.",
         title="MxlimsType",
     )
-    uuid: UUID = Field(
+    ref: constr(
+        pattern=r"^/WellDrop/[a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[1-5][a-fA-F0-9]{3}-?[89abAB][a-fA-F0-9]{3}-?[a-fA-F0-9]{12}$"
+    ) = Field(
         ...,
-        description="Permanent unique identifier string of referenced object",
-        title="Uuid",
+        description="JSON reference to object in std. message, using uuid-based links.",
+        title="JSONreference",
     )

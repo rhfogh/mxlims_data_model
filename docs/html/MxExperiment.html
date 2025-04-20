@@ -1518,8 +1518,8 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#allOf_i1_sampleRef" onclick="anchorLink('allOf_i1_sampleRef')">sampleRef</a></div><h4>MxlimsRef</h4><span class="badge badge-dark value-type">Type: object</span><br/>
-<span class="description"><p>Base object for references to MXLIMS objects</p>
+    <a href="#allOf_i1_sampleRef" onclick="anchorLink('allOf_i1_sampleRef')">sampleRef</a></div><h4>PreparedSampleRef</h4><span class="badge badge-dark value-type">Type: object</span><br/>
+<span class="description"><p>Reference to PreparedSample</p>
 </span>
 
      <span class="badge badge-info no-additional">No Additional Properties</span>
@@ -1571,9 +1571,9 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#allOf_i1_sampleRef_mxlimsType" onclick="anchorLink('allOf_i1_sampleRef_mxlimsType')">mxlimsType</a></div><h4>MxlimsType</h4><span class="badge badge-dark value-type">Type: string</span><br/>
-<span class="description"><p>The type of the MXLIMS object referred to. restricted in specific cases</p>
-</span>
+    <a href="#allOf_i1_sampleRef_mxlimsType" onclick="anchorLink('allOf_i1_sampleRef_mxlimsType')">mxlimsType</a></div><h4>MxlimsType</h4><span class="badge badge-dark value-type">Type: const</span><br/>
+<span class="description"><p>The type of the MXLIMS object referred to.</p>
+</span><span class="const-value" id="allOf_i1_sampleRef_mxlimsType_const">Specific value: <code>"PreparedSample"</code></span>
         
 
         
@@ -1584,18 +1584,18 @@
         </div>
     </div>
 </div>
-<div class="accordion" id="accordionallOf_i1_sampleRef_uuid">
+<div class="accordion" id="accordionallOf_i1_sampleRef_ref">
     <div class="card">
-        <div class="card-header" id="headingallOf_i1_sampleRef_uuid">
+        <div class="card-header" id="headingallOf_i1_sampleRef_ref">
             <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i1_sampleRef_uuid"
-                        aria-expanded="" aria-controls="allOf_i1_sampleRef_uuid" onclick="setAnchor('#allOf_i1_sampleRef_uuid')"><span class="property-name">uuid</span> <span class="badge badge-warning required-property">Required</span></button>
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i1_sampleRef_ref"
+                        aria-expanded="" aria-controls="allOf_i1_sampleRef_ref" onclick="setAnchor('#allOf_i1_sampleRef_ref')"><span class="property-name">ref</span> <span class="badge badge-warning required-property">Required</span></button>
             </h2>
         </div>
 
-        <div id="allOf_i1_sampleRef_uuid"
-             class="collapse property-definition-div" aria-labelledby="headingallOf_i1_sampleRef_uuid"
-             data-parent="#accordionallOf_i1_sampleRef_uuid">
+        <div id="allOf_i1_sampleRef_ref"
+             class="collapse property-definition-div" aria-labelledby="headingallOf_i1_sampleRef_ref"
+             data-parent="#accordionallOf_i1_sampleRef_ref">
             <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
@@ -1626,9 +1626,9 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#allOf_i1_sampleRef_uuid" onclick="anchorLink('allOf_i1_sampleRef_uuid')">uuid</a></div><h4>Uuid</h4><span class="badge badge-dark value-type">Type: string</span><span class="badge badge-info value-type">Format: uuid</span><br/>
-<span class="description"><p>Permanent unique identifier string of object referred to</p>
-</span>
+    <a href="#allOf_i1_sampleRef_ref" onclick="anchorLink('allOf_i1_sampleRef_ref')">ref</a></div><h4>JSONreference</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>JSON reference to object in std. message, using uuid-based links.</p>
+</span><span class="pattern-value" id="allOf_i1_sampleRef_ref_pattern">Must match regular expression: <code>^/PreparedSample/[a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[1-5][a-fA-F0-9]{3}-?[89abAB][a-fA-F0-9]{3}-?[a-fA-F0-9]{12}$</code></span>
         
 
         
@@ -1678,9 +1678,127 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#allOf_i1_startedFromRef" onclick="anchorLink('allOf_i1_startedFromRef')">startedFromRef</a></div><h4>MxlimsRef</h4><span class="badge badge-dark value-type">Type: object</span><br/>
-<span class="description"><p>Base object for references to MXLIMS objects</p>
-</span><a href="#allOf_i1_sampleRef" onclick="anchorLink('allOf_i1_sampleRef')" class="ref-link">Same definition as sampleRef</a>
+    <a href="#allOf_i1_startedFromRef" onclick="anchorLink('allOf_i1_startedFromRef')">startedFromRef</a></div><h4>JobRef</h4><span class="badge badge-dark value-type">Type: object</span><br/>
+<span class="description"><p>Reference to Job</p>
+</span>
+
+     <span class="badge badge-info no-additional">No Additional Properties</span>
+        
+
+        
+        
+
+        
+<div class="accordion" id="accordionallOf_i1_startedFromRef_mxlimsType">
+    <div class="card">
+        <div class="card-header" id="headingallOf_i1_startedFromRef_mxlimsType">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i1_startedFromRef_mxlimsType"
+                        aria-expanded="" aria-controls="allOf_i1_startedFromRef_mxlimsType" onclick="setAnchor('#allOf_i1_startedFromRef_mxlimsType')"><span class="property-name">mxlimsType</span></button>
+            </h2>
+        </div>
+
+        <div id="allOf_i1_startedFromRef_mxlimsType"
+             class="collapse property-definition-div" aria-labelledby="headingallOf_i1_startedFromRef_mxlimsType"
+             data-parent="#accordionallOf_i1_startedFromRef_mxlimsType">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i1" onclick="anchorLink('allOf_i1')">Job</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i1_startedFromRef" onclick="anchorLink('allOf_i1_startedFromRef')">startedFromRef</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i1_startedFromRef_mxlimsType" onclick="anchorLink('allOf_i1_startedFromRef_mxlimsType')">mxlimsType</a></div><h4>MxlimsType</h4><span class="badge badge-dark value-type">Type: const</span><br/>
+<span class="description"><p>The type of the MXLIMS object referred to.</p>
+</span><span class="const-value" id="allOf_i1_startedFromRef_mxlimsType_const">Specific value: <code>"Job"</code></span>
+        
+
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionallOf_i1_startedFromRef_ref">
+    <div class="card">
+        <div class="card-header" id="headingallOf_i1_startedFromRef_ref">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i1_startedFromRef_ref"
+                        aria-expanded="" aria-controls="allOf_i1_startedFromRef_ref" onclick="setAnchor('#allOf_i1_startedFromRef_ref')"><span class="property-name">ref</span> <span class="badge badge-warning required-property">Required</span></button>
+            </h2>
+        </div>
+
+        <div id="allOf_i1_startedFromRef_ref"
+             class="collapse property-definition-div" aria-labelledby="headingallOf_i1_startedFromRef_ref"
+             data-parent="#accordionallOf_i1_startedFromRef_ref">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i1" onclick="anchorLink('allOf_i1')">Job</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i1_startedFromRef" onclick="anchorLink('allOf_i1_startedFromRef')">startedFromRef</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i1_startedFromRef_ref" onclick="anchorLink('allOf_i1_startedFromRef_ref')">ref</a></div><h4>JSONreference</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>JSON reference to object in std. message, using uuid-based links.</p>
+</span><span class="pattern-value" id="allOf_i1_startedFromRef_ref_pattern">Must match regular expression: <code>^/Job/[a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[1-5][a-fA-F0-9]{3}-?[89abAB][a-fA-F0-9]{3}-?[a-fA-F0-9]{12}$</code></span>
+        
+
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
             </div>
         </div>
     </div>
@@ -1720,9 +1838,127 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#allOf_i1_logisticalSampleRef" onclick="anchorLink('allOf_i1_logisticalSampleRef')">logisticalSampleRef</a></div><h4>MxlimsRef</h4><span class="badge badge-dark value-type">Type: object</span><br/>
-<span class="description"><p>Base object for references to MXLIMS objects</p>
-</span><a href="#allOf_i1_sampleRef" onclick="anchorLink('allOf_i1_sampleRef')" class="ref-link">Same definition as sampleRef</a>
+    <a href="#allOf_i1_logisticalSampleRef" onclick="anchorLink('allOf_i1_logisticalSampleRef')">logisticalSampleRef</a></div><h4>LogisticalSampleRef</h4><span class="badge badge-dark value-type">Type: object</span><br/>
+<span class="description"><p>Reference to LogisticalSample</p>
+</span>
+
+     <span class="badge badge-info no-additional">No Additional Properties</span>
+        
+
+        
+        
+
+        
+<div class="accordion" id="accordionallOf_i1_logisticalSampleRef_mxlimsType">
+    <div class="card">
+        <div class="card-header" id="headingallOf_i1_logisticalSampleRef_mxlimsType">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i1_logisticalSampleRef_mxlimsType"
+                        aria-expanded="" aria-controls="allOf_i1_logisticalSampleRef_mxlimsType" onclick="setAnchor('#allOf_i1_logisticalSampleRef_mxlimsType')"><span class="property-name">mxlimsType</span></button>
+            </h2>
+        </div>
+
+        <div id="allOf_i1_logisticalSampleRef_mxlimsType"
+             class="collapse property-definition-div" aria-labelledby="headingallOf_i1_logisticalSampleRef_mxlimsType"
+             data-parent="#accordionallOf_i1_logisticalSampleRef_mxlimsType">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i1" onclick="anchorLink('allOf_i1')">Job</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i1_logisticalSampleRef" onclick="anchorLink('allOf_i1_logisticalSampleRef')">logisticalSampleRef</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i1_logisticalSampleRef_mxlimsType" onclick="anchorLink('allOf_i1_logisticalSampleRef_mxlimsType')">mxlimsType</a></div><h4>MxlimsType</h4><span class="badge badge-dark value-type">Type: const</span><br/>
+<span class="description"><p>The type of the MXLIMS object referred to.</p>
+</span><span class="const-value" id="allOf_i1_logisticalSampleRef_mxlimsType_const">Specific value: <code>"LogisticalSample"</code></span>
+        
+
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionallOf_i1_logisticalSampleRef_ref">
+    <div class="card">
+        <div class="card-header" id="headingallOf_i1_logisticalSampleRef_ref">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i1_logisticalSampleRef_ref"
+                        aria-expanded="" aria-controls="allOf_i1_logisticalSampleRef_ref" onclick="setAnchor('#allOf_i1_logisticalSampleRef_ref')"><span class="property-name">ref</span> <span class="badge badge-warning required-property">Required</span></button>
+            </h2>
+        </div>
+
+        <div id="allOf_i1_logisticalSampleRef_ref"
+             class="collapse property-definition-div" aria-labelledby="headingallOf_i1_logisticalSampleRef_ref"
+             data-parent="#accordionallOf_i1_logisticalSampleRef_ref">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i1" onclick="anchorLink('allOf_i1')">Job</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i1_logisticalSampleRef" onclick="anchorLink('allOf_i1_logisticalSampleRef')">logisticalSampleRef</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i1_logisticalSampleRef_ref" onclick="anchorLink('allOf_i1_logisticalSampleRef_ref')">ref</a></div><h4>JSONreference</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>JSON reference to object in std. message, using uuid-based links.</p>
+</span><span class="pattern-value" id="allOf_i1_logisticalSampleRef_ref_pattern">Must match regular expression: <code>^/LogisticalSample/[a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[1-5][a-fA-F0-9]{3}-?[89abAB][a-fA-F0-9]{3}-?[a-fA-F0-9]{12}$</code></span>
+        
+
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
             </div>
         </div>
     </div>
@@ -1802,9 +2038,141 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#allOf_i1_referenceDataRefs_items" onclick="anchorLink('allOf_i1_referenceDataRefs_items')">MxlimsRef</a></div><h4>MxlimsRef</h4><span class="badge badge-dark value-type">Type: object</span><br/>
-<span class="description"><p>Base object for references to MXLIMS objects</p>
-</span><a href="#allOf_i1_sampleRef" onclick="anchorLink('allOf_i1_sampleRef')" class="ref-link">Same definition as sampleRef</a>
+    <a href="#allOf_i1_referenceDataRefs_items" onclick="anchorLink('allOf_i1_referenceDataRefs_items')">DatasetRef</a></div><h4>DatasetRef</h4><span class="badge badge-dark value-type">Type: object</span><br/>
+<span class="description"><p>Reference to Dataset</p>
+</span>
+
+     <span class="badge badge-info no-additional">No Additional Properties</span>
+        
+
+        
+        
+
+        
+<div class="accordion" id="accordionallOf_i1_referenceDataRefs_items_mxlimsType">
+    <div class="card">
+        <div class="card-header" id="headingallOf_i1_referenceDataRefs_items_mxlimsType">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i1_referenceDataRefs_items_mxlimsType"
+                        aria-expanded="" aria-controls="allOf_i1_referenceDataRefs_items_mxlimsType" onclick="setAnchor('#allOf_i1_referenceDataRefs_items_mxlimsType')"><span class="property-name">mxlimsType</span></button>
+            </h2>
+        </div>
+
+        <div id="allOf_i1_referenceDataRefs_items_mxlimsType"
+             class="collapse property-definition-div" aria-labelledby="headingallOf_i1_referenceDataRefs_items_mxlimsType"
+             data-parent="#accordionallOf_i1_referenceDataRefs_items_mxlimsType">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i1" onclick="anchorLink('allOf_i1')">Job</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i1_referenceDataRefs" onclick="anchorLink('allOf_i1_referenceDataRefs')">referenceDataRefs</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i1_referenceDataRefs_items" onclick="anchorLink('allOf_i1_referenceDataRefs_items')">DatasetRef</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i1_referenceDataRefs_items_mxlimsType" onclick="anchorLink('allOf_i1_referenceDataRefs_items_mxlimsType')">mxlimsType</a></div><h4>MxlimsType</h4><span class="badge badge-dark value-type">Type: const</span><br/>
+<span class="description"><p>The type of the MXLIMS object referred to.</p>
+</span><span class="const-value" id="allOf_i1_referenceDataRefs_items_mxlimsType_const">Specific value: <code>"Dataset"</code></span>
+        
+
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionallOf_i1_referenceDataRefs_items_ref">
+    <div class="card">
+        <div class="card-header" id="headingallOf_i1_referenceDataRefs_items_ref">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i1_referenceDataRefs_items_ref"
+                        aria-expanded="" aria-controls="allOf_i1_referenceDataRefs_items_ref" onclick="setAnchor('#allOf_i1_referenceDataRefs_items_ref')"><span class="property-name">ref</span> <span class="badge badge-warning required-property">Required</span></button>
+            </h2>
+        </div>
+
+        <div id="allOf_i1_referenceDataRefs_items_ref"
+             class="collapse property-definition-div" aria-labelledby="headingallOf_i1_referenceDataRefs_items_ref"
+             data-parent="#accordionallOf_i1_referenceDataRefs_items_ref">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i1" onclick="anchorLink('allOf_i1')">Job</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i1_referenceDataRefs" onclick="anchorLink('allOf_i1_referenceDataRefs')">referenceDataRefs</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i1_referenceDataRefs_items" onclick="anchorLink('allOf_i1_referenceDataRefs_items')">DatasetRef</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i1_referenceDataRefs_items_ref" onclick="anchorLink('allOf_i1_referenceDataRefs_items_ref')">ref</a></div><h4>JSONreference</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>JSON reference to object in std. message, using uuid-based links.</p>
+</span><span class="pattern-value" id="allOf_i1_referenceDataRefs_items_ref_pattern">Must match regular expression: <code>^/Dataset/[a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[1-5][a-fA-F0-9]{3}-?[89abAB][a-fA-F0-9]{3}-?[a-fA-F0-9]{12}$</code></span>
+        
+
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
         </div>
     </div>
             </div>
@@ -1886,9 +2254,9 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#allOf_i1_templateDataRefs_items" onclick="anchorLink('allOf_i1_templateDataRefs_items')">MxlimsRef</a></div><h4>MxlimsRef</h4><span class="badge badge-dark value-type">Type: object</span><br/>
-<span class="description"><p>Base object for references to MXLIMS objects</p>
-</span><a href="#allOf_i1_sampleRef" onclick="anchorLink('allOf_i1_sampleRef')" class="ref-link">Same definition as sampleRef</a>
+    <a href="#allOf_i1_templateDataRefs_items" onclick="anchorLink('allOf_i1_templateDataRefs_items')">DatasetRef</a></div><h4>DatasetRef</h4><span class="badge badge-dark value-type">Type: object</span><br/>
+<span class="description"><p>Reference to Dataset</p>
+</span><a href="#allOf_i1_referenceDataRefs_items" onclick="anchorLink('allOf_i1_referenceDataRefs_items')" class="ref-link">Same definition as DatasetRef</a>
         </div>
     </div>
             </div>
@@ -1970,9 +2338,9 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#allOf_i1_inputDataRefs_items" onclick="anchorLink('allOf_i1_inputDataRefs_items')">MxlimsRef</a></div><h4>MxlimsRef</h4><span class="badge badge-dark value-type">Type: object</span><br/>
-<span class="description"><p>Base object for references to MXLIMS objects</p>
-</span><a href="#allOf_i1_sampleRef" onclick="anchorLink('allOf_i1_sampleRef')" class="ref-link">Same definition as sampleRef</a>
+    <a href="#allOf_i1_inputDataRefs_items" onclick="anchorLink('allOf_i1_inputDataRefs_items')">DatasetRef</a></div><h4>DatasetRef</h4><span class="badge badge-dark value-type">Type: object</span><br/>
+<span class="description"><p>Reference to Dataset</p>
+</span><a href="#allOf_i1_referenceDataRefs_items" onclick="anchorLink('allOf_i1_referenceDataRefs_items')" class="ref-link">Same definition as DatasetRef</a>
         </div>
     </div>
             </div>
@@ -2023,7 +2391,7 @@
         <div class="card-header" id="headingsampleRef_mxlimsType">
             <h2 class="mb-0">
                 <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#sampleRef_mxlimsType"
-                        aria-expanded="" aria-controls="sampleRef_mxlimsType" onclick="setAnchor('#sampleRef_mxlimsType')"><span class="property-name">mxlimsType</span> <span class="badge badge-warning required-property">Required</span></button>
+                        aria-expanded="" aria-controls="sampleRef_mxlimsType" onclick="setAnchor('#sampleRef_mxlimsType')"><span class="property-name">mxlimsType</span></button>
             </h2>
         </div>
 
@@ -2059,18 +2427,18 @@
         </div>
     </div>
 </div>
-<div class="accordion" id="accordionsampleRef_uuid">
+<div class="accordion" id="accordionsampleRef_ref">
     <div class="card">
-        <div class="card-header" id="headingsampleRef_uuid">
+        <div class="card-header" id="headingsampleRef_ref">
             <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#sampleRef_uuid"
-                        aria-expanded="" aria-controls="sampleRef_uuid" onclick="setAnchor('#sampleRef_uuid')"><span class="property-name">uuid</span> <span class="badge badge-warning required-property">Required</span></button>
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#sampleRef_ref"
+                        aria-expanded="" aria-controls="sampleRef_ref" onclick="setAnchor('#sampleRef_ref')"><span class="property-name">ref</span> <span class="badge badge-warning required-property">Required</span></button>
             </h2>
         </div>
 
-        <div id="sampleRef_uuid"
-             class="collapse property-definition-div" aria-labelledby="headingsampleRef_uuid"
-             data-parent="#accordionsampleRef_uuid">
+        <div id="sampleRef_ref"
+             class="collapse property-definition-div" aria-labelledby="headingsampleRef_ref"
+             data-parent="#accordionsampleRef_ref">
             <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
@@ -2087,9 +2455,9 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#sampleRef_uuid" onclick="anchorLink('sampleRef_uuid')">uuid</a></div><h4>Uuid</h4><span class="badge badge-dark value-type">Type: string</span><span class="badge badge-info value-type">Format: uuid</span><br/>
-<span class="description"><p>Permanent unique identifier string of referenced object</p>
-</span>
+    <a href="#sampleRef_ref" onclick="anchorLink('sampleRef_ref')">ref</a></div><h4>JSONreference</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>JSON reference to object in std. message, using uuid-based links.</p>
+</span><span class="pattern-value" id="sampleRef_ref_pattern">Must match regular expression: <code>^/CrystallographicSample/[a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[1-5][a-fA-F0-9]{3}-?[89abAB][a-fA-F0-9]{3}-?[a-fA-F0-9]{12}$</code></span>
         
 
         
@@ -2141,7 +2509,7 @@
         <div class="card-header" id="headingstartedFromRef_mxlimsType">
             <h2 class="mb-0">
                 <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#startedFromRef_mxlimsType"
-                        aria-expanded="" aria-controls="startedFromRef_mxlimsType" onclick="setAnchor('#startedFromRef_mxlimsType')"><span class="property-name">mxlimsType</span> <span class="badge badge-warning required-property">Required</span></button>
+                        aria-expanded="" aria-controls="startedFromRef_mxlimsType" onclick="setAnchor('#startedFromRef_mxlimsType')"><span class="property-name">mxlimsType</span></button>
             </h2>
         </div>
 
@@ -2177,18 +2545,18 @@
         </div>
     </div>
 </div>
-<div class="accordion" id="accordionstartedFromRef_uuid">
+<div class="accordion" id="accordionstartedFromRef_ref">
     <div class="card">
-        <div class="card-header" id="headingstartedFromRef_uuid">
+        <div class="card-header" id="headingstartedFromRef_ref">
             <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#startedFromRef_uuid"
-                        aria-expanded="" aria-controls="startedFromRef_uuid" onclick="setAnchor('#startedFromRef_uuid')"><span class="property-name">uuid</span> <span class="badge badge-warning required-property">Required</span></button>
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#startedFromRef_ref"
+                        aria-expanded="" aria-controls="startedFromRef_ref" onclick="setAnchor('#startedFromRef_ref')"><span class="property-name">ref</span> <span class="badge badge-warning required-property">Required</span></button>
             </h2>
         </div>
 
-        <div id="startedFromRef_uuid"
-             class="collapse property-definition-div" aria-labelledby="headingstartedFromRef_uuid"
-             data-parent="#accordionstartedFromRef_uuid">
+        <div id="startedFromRef_ref"
+             class="collapse property-definition-div" aria-labelledby="headingstartedFromRef_ref"
+             data-parent="#accordionstartedFromRef_ref">
             <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
@@ -2205,9 +2573,9 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#startedFromRef_uuid" onclick="anchorLink('startedFromRef_uuid')">uuid</a></div><h4>Uuid</h4><span class="badge badge-dark value-type">Type: string</span><span class="badge badge-info value-type">Format: uuid</span><br/>
-<span class="description"><p>Permanent unique identifier string of referenced object</p>
-</span>
+    <a href="#startedFromRef_ref" onclick="anchorLink('startedFromRef_ref')">ref</a></div><h4>JSONreference</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>JSON reference to object in std. message, using uuid-based links.</p>
+</span><span class="pattern-value" id="startedFromRef_ref_pattern">Must match regular expression: <code>^/MxExperiment/[a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[1-5][a-fA-F0-9]{3}-?[89abAB][a-fA-F0-9]{3}-?[a-fA-F0-9]{12}$</code></span>
         
 
         
@@ -2318,7 +2686,7 @@
         <div class="card-header" id="headinglogisticalSampleRef_oneOf_i0_mxlimsType">
             <h2 class="mb-0">
                 <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#logisticalSampleRef_oneOf_i0_mxlimsType"
-                        aria-expanded="" aria-controls="logisticalSampleRef_oneOf_i0_mxlimsType" onclick="setAnchor('#logisticalSampleRef_oneOf_i0_mxlimsType')"><span class="property-name">mxlimsType</span> <span class="badge badge-warning required-property">Required</span></button>
+                        aria-expanded="" aria-controls="logisticalSampleRef_oneOf_i0_mxlimsType" onclick="setAnchor('#logisticalSampleRef_oneOf_i0_mxlimsType')"><span class="property-name">mxlimsType</span></button>
             </h2>
         </div>
 
@@ -2368,18 +2736,18 @@
         </div>
     </div>
 </div>
-<div class="accordion" id="accordionlogisticalSampleRef_oneOf_i0_uuid">
+<div class="accordion" id="accordionlogisticalSampleRef_oneOf_i0_ref">
     <div class="card">
-        <div class="card-header" id="headinglogisticalSampleRef_oneOf_i0_uuid">
+        <div class="card-header" id="headinglogisticalSampleRef_oneOf_i0_ref">
             <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#logisticalSampleRef_oneOf_i0_uuid"
-                        aria-expanded="" aria-controls="logisticalSampleRef_oneOf_i0_uuid" onclick="setAnchor('#logisticalSampleRef_oneOf_i0_uuid')"><span class="property-name">uuid</span> <span class="badge badge-warning required-property">Required</span></button>
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#logisticalSampleRef_oneOf_i0_ref"
+                        aria-expanded="" aria-controls="logisticalSampleRef_oneOf_i0_ref" onclick="setAnchor('#logisticalSampleRef_oneOf_i0_ref')"><span class="property-name">ref</span> <span class="badge badge-warning required-property">Required</span></button>
             </h2>
         </div>
 
-        <div id="logisticalSampleRef_oneOf_i0_uuid"
-             class="collapse property-definition-div" aria-labelledby="headinglogisticalSampleRef_oneOf_i0_uuid"
-             data-parent="#accordionlogisticalSampleRef_oneOf_i0_uuid">
+        <div id="logisticalSampleRef_oneOf_i0_ref"
+             class="collapse property-definition-div" aria-labelledby="headinglogisticalSampleRef_oneOf_i0_ref"
+             data-parent="#accordionlogisticalSampleRef_oneOf_i0_ref">
             <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
@@ -2410,9 +2778,9 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#logisticalSampleRef_oneOf_i0_uuid" onclick="anchorLink('logisticalSampleRef_oneOf_i0_uuid')">uuid</a></div><h4>Uuid</h4><span class="badge badge-dark value-type">Type: string</span><span class="badge badge-info value-type">Format: uuid</span><br/>
-<span class="description"><p>Permanent unique identifier string of referenced object</p>
-</span>
+    <a href="#logisticalSampleRef_oneOf_i0_ref" onclick="anchorLink('logisticalSampleRef_oneOf_i0_ref')">ref</a></div><h4>JSONreference</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>JSON reference to object in std. message, using uuid-based links.</p>
+</span><span class="pattern-value" id="logisticalSampleRef_oneOf_i0_ref_pattern">Must match regular expression: <code>^/Crystal/[a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[1-5][a-fA-F0-9]{3}-?[89abAB][a-fA-F0-9]{3}-?[a-fA-F0-9]{12}$</code></span>
         
 
         
@@ -2464,7 +2832,7 @@
         <div class="card-header" id="headinglogisticalSampleRef_oneOf_i1_mxlimsType">
             <h2 class="mb-0">
                 <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#logisticalSampleRef_oneOf_i1_mxlimsType"
-                        aria-expanded="" aria-controls="logisticalSampleRef_oneOf_i1_mxlimsType" onclick="setAnchor('#logisticalSampleRef_oneOf_i1_mxlimsType')"><span class="property-name">mxlimsType</span> <span class="badge badge-warning required-property">Required</span></button>
+                        aria-expanded="" aria-controls="logisticalSampleRef_oneOf_i1_mxlimsType" onclick="setAnchor('#logisticalSampleRef_oneOf_i1_mxlimsType')"><span class="property-name">mxlimsType</span></button>
             </h2>
         </div>
 
@@ -2514,18 +2882,18 @@
         </div>
     </div>
 </div>
-<div class="accordion" id="accordionlogisticalSampleRef_oneOf_i1_uuid">
+<div class="accordion" id="accordionlogisticalSampleRef_oneOf_i1_ref">
     <div class="card">
-        <div class="card-header" id="headinglogisticalSampleRef_oneOf_i1_uuid">
+        <div class="card-header" id="headinglogisticalSampleRef_oneOf_i1_ref">
             <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#logisticalSampleRef_oneOf_i1_uuid"
-                        aria-expanded="" aria-controls="logisticalSampleRef_oneOf_i1_uuid" onclick="setAnchor('#logisticalSampleRef_oneOf_i1_uuid')"><span class="property-name">uuid</span> <span class="badge badge-warning required-property">Required</span></button>
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#logisticalSampleRef_oneOf_i1_ref"
+                        aria-expanded="" aria-controls="logisticalSampleRef_oneOf_i1_ref" onclick="setAnchor('#logisticalSampleRef_oneOf_i1_ref')"><span class="property-name">ref</span> <span class="badge badge-warning required-property">Required</span></button>
             </h2>
         </div>
 
-        <div id="logisticalSampleRef_oneOf_i1_uuid"
-             class="collapse property-definition-div" aria-labelledby="headinglogisticalSampleRef_oneOf_i1_uuid"
-             data-parent="#accordionlogisticalSampleRef_oneOf_i1_uuid">
+        <div id="logisticalSampleRef_oneOf_i1_ref"
+             class="collapse property-definition-div" aria-labelledby="headinglogisticalSampleRef_oneOf_i1_ref"
+             data-parent="#accordionlogisticalSampleRef_oneOf_i1_ref">
             <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
@@ -2556,9 +2924,9 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#logisticalSampleRef_oneOf_i1_uuid" onclick="anchorLink('logisticalSampleRef_oneOf_i1_uuid')">uuid</a></div><h4>Uuid</h4><span class="badge badge-dark value-type">Type: string</span><span class="badge badge-info value-type">Format: uuid</span><br/>
-<span class="description"><p>Permanent unique identifier string of referenced object</p>
-</span>
+    <a href="#logisticalSampleRef_oneOf_i1_ref" onclick="anchorLink('logisticalSampleRef_oneOf_i1_ref')">ref</a></div><h4>JSONreference</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>JSON reference to object in std. message, using uuid-based links.</p>
+</span><span class="pattern-value" id="logisticalSampleRef_oneOf_i1_ref_pattern">Must match regular expression: <code>^/Pin/[a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[1-5][a-fA-F0-9]{3}-?[89abAB][a-fA-F0-9]{3}-?[a-fA-F0-9]{12}$</code></span>
         
 
         
@@ -2610,7 +2978,7 @@
         <div class="card-header" id="headinglogisticalSampleRef_oneOf_i2_mxlimsType">
             <h2 class="mb-0">
                 <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#logisticalSampleRef_oneOf_i2_mxlimsType"
-                        aria-expanded="" aria-controls="logisticalSampleRef_oneOf_i2_mxlimsType" onclick="setAnchor('#logisticalSampleRef_oneOf_i2_mxlimsType')"><span class="property-name">mxlimsType</span> <span class="badge badge-warning required-property">Required</span></button>
+                        aria-expanded="" aria-controls="logisticalSampleRef_oneOf_i2_mxlimsType" onclick="setAnchor('#logisticalSampleRef_oneOf_i2_mxlimsType')"><span class="property-name">mxlimsType</span></button>
             </h2>
         </div>
 
@@ -2660,18 +3028,18 @@
         </div>
     </div>
 </div>
-<div class="accordion" id="accordionlogisticalSampleRef_oneOf_i2_uuid">
+<div class="accordion" id="accordionlogisticalSampleRef_oneOf_i2_ref">
     <div class="card">
-        <div class="card-header" id="headinglogisticalSampleRef_oneOf_i2_uuid">
+        <div class="card-header" id="headinglogisticalSampleRef_oneOf_i2_ref">
             <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#logisticalSampleRef_oneOf_i2_uuid"
-                        aria-expanded="" aria-controls="logisticalSampleRef_oneOf_i2_uuid" onclick="setAnchor('#logisticalSampleRef_oneOf_i2_uuid')"><span class="property-name">uuid</span> <span class="badge badge-warning required-property">Required</span></button>
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#logisticalSampleRef_oneOf_i2_ref"
+                        aria-expanded="" aria-controls="logisticalSampleRef_oneOf_i2_ref" onclick="setAnchor('#logisticalSampleRef_oneOf_i2_ref')"><span class="property-name">ref</span> <span class="badge badge-warning required-property">Required</span></button>
             </h2>
         </div>
 
-        <div id="logisticalSampleRef_oneOf_i2_uuid"
-             class="collapse property-definition-div" aria-labelledby="headinglogisticalSampleRef_oneOf_i2_uuid"
-             data-parent="#accordionlogisticalSampleRef_oneOf_i2_uuid">
+        <div id="logisticalSampleRef_oneOf_i2_ref"
+             class="collapse property-definition-div" aria-labelledby="headinglogisticalSampleRef_oneOf_i2_ref"
+             data-parent="#accordionlogisticalSampleRef_oneOf_i2_ref">
             <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
@@ -2702,9 +3070,9 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#logisticalSampleRef_oneOf_i2_uuid" onclick="anchorLink('logisticalSampleRef_oneOf_i2_uuid')">uuid</a></div><h4>Uuid</h4><span class="badge badge-dark value-type">Type: string</span><span class="badge badge-info value-type">Format: uuid</span><br/>
-<span class="description"><p>Permanent unique identifier string of referenced object</p>
-</span>
+    <a href="#logisticalSampleRef_oneOf_i2_ref" onclick="anchorLink('logisticalSampleRef_oneOf_i2_ref')">ref</a></div><h4>JSONreference</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>JSON reference to object in std. message, using uuid-based links.</p>
+</span><span class="pattern-value" id="logisticalSampleRef_oneOf_i2_ref_pattern">Must match regular expression: <code>^/PinPosition/[a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[1-5][a-fA-F0-9]{3}-?[89abAB][a-fA-F0-9]{3}-?[a-fA-F0-9]{12}$</code></span>
         
 
         
@@ -2756,7 +3124,7 @@
         <div class="card-header" id="headinglogisticalSampleRef_oneOf_i3_mxlimsType">
             <h2 class="mb-0">
                 <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#logisticalSampleRef_oneOf_i3_mxlimsType"
-                        aria-expanded="" aria-controls="logisticalSampleRef_oneOf_i3_mxlimsType" onclick="setAnchor('#logisticalSampleRef_oneOf_i3_mxlimsType')"><span class="property-name">mxlimsType</span> <span class="badge badge-warning required-property">Required</span></button>
+                        aria-expanded="" aria-controls="logisticalSampleRef_oneOf_i3_mxlimsType" onclick="setAnchor('#logisticalSampleRef_oneOf_i3_mxlimsType')"><span class="property-name">mxlimsType</span></button>
             </h2>
         </div>
 
@@ -2806,18 +3174,18 @@
         </div>
     </div>
 </div>
-<div class="accordion" id="accordionlogisticalSampleRef_oneOf_i3_uuid">
+<div class="accordion" id="accordionlogisticalSampleRef_oneOf_i3_ref">
     <div class="card">
-        <div class="card-header" id="headinglogisticalSampleRef_oneOf_i3_uuid">
+        <div class="card-header" id="headinglogisticalSampleRef_oneOf_i3_ref">
             <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#logisticalSampleRef_oneOf_i3_uuid"
-                        aria-expanded="" aria-controls="logisticalSampleRef_oneOf_i3_uuid" onclick="setAnchor('#logisticalSampleRef_oneOf_i3_uuid')"><span class="property-name">uuid</span> <span class="badge badge-warning required-property">Required</span></button>
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#logisticalSampleRef_oneOf_i3_ref"
+                        aria-expanded="" aria-controls="logisticalSampleRef_oneOf_i3_ref" onclick="setAnchor('#logisticalSampleRef_oneOf_i3_ref')"><span class="property-name">ref</span> <span class="badge badge-warning required-property">Required</span></button>
             </h2>
         </div>
 
-        <div id="logisticalSampleRef_oneOf_i3_uuid"
-             class="collapse property-definition-div" aria-labelledby="headinglogisticalSampleRef_oneOf_i3_uuid"
-             data-parent="#accordionlogisticalSampleRef_oneOf_i3_uuid">
+        <div id="logisticalSampleRef_oneOf_i3_ref"
+             class="collapse property-definition-div" aria-labelledby="headinglogisticalSampleRef_oneOf_i3_ref"
+             data-parent="#accordionlogisticalSampleRef_oneOf_i3_ref">
             <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
@@ -2848,9 +3216,9 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#logisticalSampleRef_oneOf_i3_uuid" onclick="anchorLink('logisticalSampleRef_oneOf_i3_uuid')">uuid</a></div><h4>Uuid</h4><span class="badge badge-dark value-type">Type: string</span><span class="badge badge-info value-type">Format: uuid</span><br/>
-<span class="description"><p>Permanent unique identifier string of referenced object</p>
-</span>
+    <a href="#logisticalSampleRef_oneOf_i3_ref" onclick="anchorLink('logisticalSampleRef_oneOf_i3_ref')">ref</a></div><h4>JSONreference</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>JSON reference to object in std. message, using uuid-based links.</p>
+</span><span class="pattern-value" id="logisticalSampleRef_oneOf_i3_ref_pattern">Must match regular expression: <code>^/PlateWell/[a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[1-5][a-fA-F0-9]{3}-?[89abAB][a-fA-F0-9]{3}-?[a-fA-F0-9]{12}$</code></span>
         
 
         
@@ -2902,7 +3270,7 @@
         <div class="card-header" id="headinglogisticalSampleRef_oneOf_i4_mxlimsType">
             <h2 class="mb-0">
                 <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#logisticalSampleRef_oneOf_i4_mxlimsType"
-                        aria-expanded="" aria-controls="logisticalSampleRef_oneOf_i4_mxlimsType" onclick="setAnchor('#logisticalSampleRef_oneOf_i4_mxlimsType')"><span class="property-name">mxlimsType</span> <span class="badge badge-warning required-property">Required</span></button>
+                        aria-expanded="" aria-controls="logisticalSampleRef_oneOf_i4_mxlimsType" onclick="setAnchor('#logisticalSampleRef_oneOf_i4_mxlimsType')"><span class="property-name">mxlimsType</span></button>
             </h2>
         </div>
 
@@ -2952,18 +3320,18 @@
         </div>
     </div>
 </div>
-<div class="accordion" id="accordionlogisticalSampleRef_oneOf_i4_uuid">
+<div class="accordion" id="accordionlogisticalSampleRef_oneOf_i4_ref">
     <div class="card">
-        <div class="card-header" id="headinglogisticalSampleRef_oneOf_i4_uuid">
+        <div class="card-header" id="headinglogisticalSampleRef_oneOf_i4_ref">
             <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#logisticalSampleRef_oneOf_i4_uuid"
-                        aria-expanded="" aria-controls="logisticalSampleRef_oneOf_i4_uuid" onclick="setAnchor('#logisticalSampleRef_oneOf_i4_uuid')"><span class="property-name">uuid</span> <span class="badge badge-warning required-property">Required</span></button>
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#logisticalSampleRef_oneOf_i4_ref"
+                        aria-expanded="" aria-controls="logisticalSampleRef_oneOf_i4_ref" onclick="setAnchor('#logisticalSampleRef_oneOf_i4_ref')"><span class="property-name">ref</span> <span class="badge badge-warning required-property">Required</span></button>
             </h2>
         </div>
 
-        <div id="logisticalSampleRef_oneOf_i4_uuid"
-             class="collapse property-definition-div" aria-labelledby="headinglogisticalSampleRef_oneOf_i4_uuid"
-             data-parent="#accordionlogisticalSampleRef_oneOf_i4_uuid">
+        <div id="logisticalSampleRef_oneOf_i4_ref"
+             class="collapse property-definition-div" aria-labelledby="headinglogisticalSampleRef_oneOf_i4_ref"
+             data-parent="#accordionlogisticalSampleRef_oneOf_i4_ref">
             <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
@@ -2994,9 +3362,9 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#logisticalSampleRef_oneOf_i4_uuid" onclick="anchorLink('logisticalSampleRef_oneOf_i4_uuid')">uuid</a></div><h4>Uuid</h4><span class="badge badge-dark value-type">Type: string</span><span class="badge badge-info value-type">Format: uuid</span><br/>
-<span class="description"><p>Permanent unique identifier string of referenced object</p>
-</span>
+    <a href="#logisticalSampleRef_oneOf_i4_ref" onclick="anchorLink('logisticalSampleRef_oneOf_i4_ref')">ref</a></div><h4>JSONreference</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>JSON reference to object in std. message, using uuid-based links.</p>
+</span><span class="pattern-value" id="logisticalSampleRef_oneOf_i4_ref_pattern">Must match regular expression: <code>^/WellDrop/[a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[1-5][a-fA-F0-9]{3}-?[89abAB][a-fA-F0-9]{3}-?[a-fA-F0-9]{12}$</code></span>
         
 
         
@@ -3048,7 +3416,7 @@
         <div class="card-header" id="headinglogisticalSampleRef_oneOf_i5_mxlimsType">
             <h2 class="mb-0">
                 <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#logisticalSampleRef_oneOf_i5_mxlimsType"
-                        aria-expanded="" aria-controls="logisticalSampleRef_oneOf_i5_mxlimsType" onclick="setAnchor('#logisticalSampleRef_oneOf_i5_mxlimsType')"><span class="property-name">mxlimsType</span> <span class="badge badge-warning required-property">Required</span></button>
+                        aria-expanded="" aria-controls="logisticalSampleRef_oneOf_i5_mxlimsType" onclick="setAnchor('#logisticalSampleRef_oneOf_i5_mxlimsType')"><span class="property-name">mxlimsType</span></button>
             </h2>
         </div>
 
@@ -3098,18 +3466,18 @@
         </div>
     </div>
 </div>
-<div class="accordion" id="accordionlogisticalSampleRef_oneOf_i5_uuid">
+<div class="accordion" id="accordionlogisticalSampleRef_oneOf_i5_ref">
     <div class="card">
-        <div class="card-header" id="headinglogisticalSampleRef_oneOf_i5_uuid">
+        <div class="card-header" id="headinglogisticalSampleRef_oneOf_i5_ref">
             <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#logisticalSampleRef_oneOf_i5_uuid"
-                        aria-expanded="" aria-controls="logisticalSampleRef_oneOf_i5_uuid" onclick="setAnchor('#logisticalSampleRef_oneOf_i5_uuid')"><span class="property-name">uuid</span> <span class="badge badge-warning required-property">Required</span></button>
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#logisticalSampleRef_oneOf_i5_ref"
+                        aria-expanded="" aria-controls="logisticalSampleRef_oneOf_i5_ref" onclick="setAnchor('#logisticalSampleRef_oneOf_i5_ref')"><span class="property-name">ref</span> <span class="badge badge-warning required-property">Required</span></button>
             </h2>
         </div>
 
-        <div id="logisticalSampleRef_oneOf_i5_uuid"
-             class="collapse property-definition-div" aria-labelledby="headinglogisticalSampleRef_oneOf_i5_uuid"
-             data-parent="#accordionlogisticalSampleRef_oneOf_i5_uuid">
+        <div id="logisticalSampleRef_oneOf_i5_ref"
+             class="collapse property-definition-div" aria-labelledby="headinglogisticalSampleRef_oneOf_i5_ref"
+             data-parent="#accordionlogisticalSampleRef_oneOf_i5_ref">
             <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
@@ -3140,9 +3508,9 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#logisticalSampleRef_oneOf_i5_uuid" onclick="anchorLink('logisticalSampleRef_oneOf_i5_uuid')">uuid</a></div><h4>Uuid</h4><span class="badge badge-dark value-type">Type: string</span><span class="badge badge-info value-type">Format: uuid</span><br/>
-<span class="description"><p>Permanent unique identifier string of referenced object</p>
-</span>
+    <a href="#logisticalSampleRef_oneOf_i5_ref" onclick="anchorLink('logisticalSampleRef_oneOf_i5_ref')">ref</a></div><h4>JSONreference</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>JSON reference to object in std. message, using uuid-based links.</p>
+</span><span class="pattern-value" id="logisticalSampleRef_oneOf_i5_ref_pattern">Must match regular expression: <code>^/DropRegion/[a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[1-5][a-fA-F0-9]{3}-?[89abAB][a-fA-F0-9]{3}-?[a-fA-F0-9]{12}$</code></span>
         
 
         
@@ -3227,7 +3595,7 @@
         <div class="card-header" id="headingreferenceDataRefs_items_mxlimsType">
             <h2 class="mb-0">
                 <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#referenceDataRefs_items_mxlimsType"
-                        aria-expanded="" aria-controls="referenceDataRefs_items_mxlimsType" onclick="setAnchor('#referenceDataRefs_items_mxlimsType')"><span class="property-name">mxlimsType</span> <span class="badge badge-warning required-property">Required</span></button>
+                        aria-expanded="" aria-controls="referenceDataRefs_items_mxlimsType" onclick="setAnchor('#referenceDataRefs_items_mxlimsType')"><span class="property-name">mxlimsType</span></button>
             </h2>
         </div>
 
@@ -3270,18 +3638,18 @@
         </div>
     </div>
 </div>
-<div class="accordion" id="accordionreferenceDataRefs_items_uuid">
+<div class="accordion" id="accordionreferenceDataRefs_items_ref">
     <div class="card">
-        <div class="card-header" id="headingreferenceDataRefs_items_uuid">
+        <div class="card-header" id="headingreferenceDataRefs_items_ref">
             <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#referenceDataRefs_items_uuid"
-                        aria-expanded="" aria-controls="referenceDataRefs_items_uuid" onclick="setAnchor('#referenceDataRefs_items_uuid')"><span class="property-name">uuid</span> <span class="badge badge-warning required-property">Required</span></button>
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#referenceDataRefs_items_ref"
+                        aria-expanded="" aria-controls="referenceDataRefs_items_ref" onclick="setAnchor('#referenceDataRefs_items_ref')"><span class="property-name">ref</span> <span class="badge badge-warning required-property">Required</span></button>
             </h2>
         </div>
 
-        <div id="referenceDataRefs_items_uuid"
-             class="collapse property-definition-div" aria-labelledby="headingreferenceDataRefs_items_uuid"
-             data-parent="#accordionreferenceDataRefs_items_uuid">
+        <div id="referenceDataRefs_items_ref"
+             class="collapse property-definition-div" aria-labelledby="headingreferenceDataRefs_items_ref"
+             data-parent="#accordionreferenceDataRefs_items_ref">
             <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
@@ -3305,9 +3673,9 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#referenceDataRefs_items_uuid" onclick="anchorLink('referenceDataRefs_items_uuid')">uuid</a></div><h4>Uuid</h4><span class="badge badge-dark value-type">Type: string</span><span class="badge badge-info value-type">Format: uuid</span><br/>
-<span class="description"><p>Permanent unique identifier string of referenced object</p>
-</span>
+    <a href="#referenceDataRefs_items_ref" onclick="anchorLink('referenceDataRefs_items_ref')">ref</a></div><h4>JSONreference</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>JSON reference to object in std. message, using uuid-based links.</p>
+</span><span class="pattern-value" id="referenceDataRefs_items_ref_pattern">Must match regular expression: <code>^/ReflectionSet/[a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[1-5][a-fA-F0-9]{3}-?[89abAB][a-fA-F0-9]{3}-?[a-fA-F0-9]{12}$</code></span>
         
 
         
@@ -3387,7 +3755,7 @@
         <div class="card-header" id="headingtemplateDataRefs_items_mxlimsType">
             <h2 class="mb-0">
                 <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#templateDataRefs_items_mxlimsType"
-                        aria-expanded="" aria-controls="templateDataRefs_items_mxlimsType" onclick="setAnchor('#templateDataRefs_items_mxlimsType')"><span class="property-name">mxlimsType</span> <span class="badge badge-warning required-property">Required</span></button>
+                        aria-expanded="" aria-controls="templateDataRefs_items_mxlimsType" onclick="setAnchor('#templateDataRefs_items_mxlimsType')"><span class="property-name">mxlimsType</span></button>
             </h2>
         </div>
 
@@ -3430,18 +3798,18 @@
         </div>
     </div>
 </div>
-<div class="accordion" id="accordiontemplateDataRefs_items_uuid">
+<div class="accordion" id="accordiontemplateDataRefs_items_ref">
     <div class="card">
-        <div class="card-header" id="headingtemplateDataRefs_items_uuid">
+        <div class="card-header" id="headingtemplateDataRefs_items_ref">
             <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#templateDataRefs_items_uuid"
-                        aria-expanded="" aria-controls="templateDataRefs_items_uuid" onclick="setAnchor('#templateDataRefs_items_uuid')"><span class="property-name">uuid</span> <span class="badge badge-warning required-property">Required</span></button>
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#templateDataRefs_items_ref"
+                        aria-expanded="" aria-controls="templateDataRefs_items_ref" onclick="setAnchor('#templateDataRefs_items_ref')"><span class="property-name">ref</span> <span class="badge badge-warning required-property">Required</span></button>
             </h2>
         </div>
 
-        <div id="templateDataRefs_items_uuid"
-             class="collapse property-definition-div" aria-labelledby="headingtemplateDataRefs_items_uuid"
-             data-parent="#accordiontemplateDataRefs_items_uuid">
+        <div id="templateDataRefs_items_ref"
+             class="collapse property-definition-div" aria-labelledby="headingtemplateDataRefs_items_ref"
+             data-parent="#accordiontemplateDataRefs_items_ref">
             <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
@@ -3465,9 +3833,9 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#templateDataRefs_items_uuid" onclick="anchorLink('templateDataRefs_items_uuid')">uuid</a></div><h4>Uuid</h4><span class="badge badge-dark value-type">Type: string</span><span class="badge badge-info value-type">Format: uuid</span><br/>
-<span class="description"><p>Permanent unique identifier string of referenced object</p>
-</span>
+    <a href="#templateDataRefs_items_ref" onclick="anchorLink('templateDataRefs_items_ref')">ref</a></div><h4>JSONreference</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>JSON reference to object in std. message, using uuid-based links.</p>
+</span><span class="pattern-value" id="templateDataRefs_items_ref_pattern">Must match regular expression: <code>^/CollectionSweep/[a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[1-5][a-fA-F0-9]{3}-?[89abAB][a-fA-F0-9]{3}-?[a-fA-F0-9]{12}$</code></span>
         
 
         
@@ -3531,9 +3899,9 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#inputDataRefs_items" onclick="anchorLink('inputDataRefs_items')">MxlimsRef</a></div><h4>MxlimsRef</h4><span class="badge badge-dark value-type">Type: object</span><br/>
-<span class="description"><p>Base object for references to MXLIMS objects</p>
-</span><a href="#allOf_i1_sampleRef" onclick="anchorLink('allOf_i1_sampleRef')" class="ref-link">Same definition as sampleRef</a>
+    <a href="#inputDataRefs_items" onclick="anchorLink('inputDataRefs_items')">DatasetRef</a></div><h4>DatasetRef</h4><span class="badge badge-dark value-type">Type: object</span><br/>
+<span class="description"><p>Reference to Dataset</p>
+</span><a href="#allOf_i1_referenceDataRefs_items" onclick="anchorLink('allOf_i1_referenceDataRefs_items')" class="ref-link">Same definition as DatasetRef</a>
         </div>
     </div>
             </div>

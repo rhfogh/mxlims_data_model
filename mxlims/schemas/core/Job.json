@@ -5,30 +5,30 @@
     "type": "object",
     "properties": {
         "sampleRef": {
-            "$ref": "../references/MxlimsRef.json"
+            "$ref": "../core/PreparedSampleRef.json"
         },
         "startedFromRef": {
-            "$ref": "../references/MxlimsRef.json"
+            "$ref": "../core/JobRef.json"
         },
         "logisticalSampleRef": {
-            "$ref": "../references/MxlimsRef.json"
+            "$ref": "../core/LogisticalSampleRef.json"
         },
         "referenceDataRefs": {
             "type": "array",
             "items": {
-                "$ref": "../references/MxlimsRef.json"
+                "$ref": "../core/DatasetRef.json"
             }
         },
         "templateDataRefs": {
             "type": "array",
             "items": {
-                "$ref": "../references/MxlimsRef.json"
+                "$ref": "../core/DatasetRef.json"
             }
         },
         "inputDataRefs": {
             "type": "array",
             "items": {
-                "$ref": "../references/MxlimsRef.json"
+                "$ref": "../core/DatasetRef.json"
             }
         }
     }

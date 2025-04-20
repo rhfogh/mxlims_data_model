@@ -55,7 +55,7 @@
         "inputDataRefs": {
             "type": "array",
             "items": {
-                "$ref": "../references/MxlimsRef.json"
+                "$ref": "../core/DatasetRef.json"
             },
             "maxItems": 0
         }

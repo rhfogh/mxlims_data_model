@@ -5,13 +5,13 @@
     "type": "object",
     "properties": {
         "sourceRef": {
-            "$ref": "../references/MxlimsRef.json"
+            "$ref": "../core/JobRef.json"
         },
         "derivedFromRef": {
-            "$ref": "../references/MxlimsRef.json"
+            "$ref": "../core/DatasetRef.json"
         },
         "logisticalSampleRef": {
-            "$ref": "../references/MxlimsRef.json"
+            "$ref": "../core/LogisticalSampleRef.json"
         }
     },
     "not": {

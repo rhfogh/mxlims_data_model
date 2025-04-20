@@ -1,13 +1,14 @@
 {
     "$schema": "https://json-schema.org/draft-07/schema",
-    "description": "Base object for references to MXLIMS objects",
-    "title": "MxlimsRef",
+    "description": "Uuid container, used for Uuid- only links in messages",
+    "title": "UuidStub",
     "type": "object",
     "properties": {
         "mxlimsType": {
             "description": "The type of the MXLIMS object referred to. restricted in specific cases",
-            "title": "MxlimsType",
-            "type": "string"
+            "title": "UuidStub",
+            "type": "string",
+            "const": "UuidStub"
         },
         "uuid": {
             "description": "Permanent unique identifier string of object referred to",

@@ -14,7 +14,7 @@
                         "$ref": "../objects/CollectionSweep.json"
                     },
                     {
-                        "$ref": "../references/MxlimsRef.json"
+                        "$ref": "../core/UuidStub.json"
                     }
                 ]
             }
@@ -29,7 +29,7 @@
                         "$ref": "../objects/Crystal.json"
                     },
                     {
-                        "$ref": "../references/MxlimsRef.json"
+                        "$ref": "../core/UuidStub.json"
                     }
                 ]
             }
@@ -44,7 +44,7 @@
                         "$ref": "../objects/CrystallographicSample.json"
                     },
                     {
-                        "$ref": "../references/MxlimsRef.json"
+                        "$ref": "../core/UuidStub.json"
                     }
                 ]
             }
@@ -59,7 +59,7 @@
                         "$ref": "../objects/Dewar.json"
                     },
                     {
-                        "$ref": "../references/MxlimsRef.json"
+                        "$ref": "../core/UuidStub.json"
                     }
                 ]
             }
@@ -74,7 +74,7 @@
                         "$ref": "../objects/DropRegion.json"
                     },
                     {
-                        "$ref": "../references/MxlimsRef.json"
+                        "$ref": "../core/UuidStub.json"
                     }
                 ]
             }
@@ -89,7 +89,7 @@
                         "$ref": "../objects/MxExperiment.json"
                     },
                     {
-                        "$ref": "../references/MxlimsRef.json"
+                        "$ref": "../core/UuidStub.json"
                     }
                 ]
             }
@@ -104,7 +104,7 @@
                         "$ref": "../objects/MxProcessing.json"
                     },
                     {
-                        "$ref": "../references/MxlimsRef.json"
+                        "$ref": "../core/UuidStub.json"
                     }
                 ]
             }
@@ -119,7 +119,7 @@
                         "$ref": "../objects/Pin.json"
                     },
                     {
-                        "$ref": "../references/MxlimsRef.json"
+                        "$ref": "../core/UuidStub.json"
                     }
                 ]
             }
@@ -134,7 +134,7 @@
                         "$ref": "../objects/PinPosition.json"
                     },
                     {
-                        "$ref": "../references/MxlimsRef.json"
+                        "$ref": "../core/UuidStub.json"
                     }
                 ]
             }
@@ -149,7 +149,7 @@
                         "$ref": "../objects/Plate.json"
                     },
                     {
-                        "$ref": "../references/MxlimsRef.json"
+                        "$ref": "../core/UuidStub.json"
                     }
                 ]
             }
@@ -164,7 +164,7 @@
                         "$ref": "../objects/PlateWell.json"
                     },
                     {
-                        "$ref": "../references/MxlimsRef.json"
+                        "$ref": "../core/UuidStub.json"
                     }
                 ]
             }
@@ -179,7 +179,7 @@
                         "$ref": "../objects/Puck.json"
                     },
                     {
-                        "$ref": "../references/MxlimsRef.json"
+                        "$ref": "../core/UuidStub.json"
                     }
                 ]
             }
@@ -194,7 +194,7 @@
                         "$ref": "../objects/ReflectionSet.json"
                     },
                     {
-                        "$ref": "../references/MxlimsRef.json"
+                        "$ref": "../core/UuidStub.json"
                     }
                 ]
             }
@@ -209,7 +209,7 @@
                         "$ref": "../objects/Shipment.json"
                     },
                     {
-                        "$ref": "../references/MxlimsRef.json"
+                        "$ref": "../core/UuidStub.json"
                     }
                 ]
             }
@@ -224,7 +224,7 @@
                         "$ref": "../objects/WellDrop.json"
                     },
                     {
-                        "$ref": "../references/MxlimsRef.json"
+                        "$ref": "../core/UuidStub.json"
                     }
                 ]
             }

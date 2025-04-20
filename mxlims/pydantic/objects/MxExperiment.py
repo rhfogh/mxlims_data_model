@@ -7,6 +7,7 @@ from typing import List, Optional, Union
 
 from pydantic import Field
 
+from ..core.DatasetRef import DatasetRef
 from ..core.Job import Job
 from ..data.MxExperimentData import MxExperimentData
 from ..references.CollectionSweepRef import CollectionSweepRef
@@ -14,7 +15,6 @@ from ..references.CrystallographicSampleRef import CrystallographicSampleRef
 from ..references.CrystalRef import CrystalRef
 from ..references.DropRegionRef import DropRegionRef
 from ..references.MxExperimentRef import MxExperimentRef
-from ..references.MxlimsRef import MxlimsRef
 from ..references.PinPositionRef import PinPositionRef
 from ..references.PinRef import PinRef
 from ..references.PlateWellRef import PlateWellRef
@@ -40,6 +40,6 @@ class MxExperiment(MxExperimentData, Job):
     template_data_refs: Optional[List[CollectionSweepRef]] = Field(
         None, alias="templateDataRefs"
     )
-    input_data_refs: Optional[List[MxlimsRef]] = Field(
+    input_data_refs: Optional[List[DatasetRef]] = Field(
         None, alias="inputDataRefs", max_length=0
     )
