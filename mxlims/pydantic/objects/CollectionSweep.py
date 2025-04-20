@@ -7,6 +7,7 @@ from typing import Optional, Union
 
 from pydantic import Field
 
+from ..core.Dataset import Dataset
 from ..data.CollectionSweepData import CollectionSweepData
 from ..references.CollectionSweepRef import CollectionSweepRef
 from ..references.CrystalRef import CrystalRef
@@ -16,7 +17,6 @@ from ..references.PinPositionRef import PinPositionRef
 from ..references.PinRef import PinRef
 from ..references.PlateWellRef import PlateWellRef
 from ..references.WellDropRef import WellDropRef
-from .Dataset import Dataset
 
 
 class CollectionSweep(CollectionSweepData, Dataset):

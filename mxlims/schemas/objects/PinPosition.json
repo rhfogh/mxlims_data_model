@@ -8,7 +8,7 @@
             "$ref": "../data/PinPositionData.json"
         },
         {
-            "$ref": "../objects/LogisticalSample.json"
+            "$ref": "../core/LogisticalSample.json"
         }
     ],
     "properties": {

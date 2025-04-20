@@ -7,11 +7,11 @@ from typing import Optional, Union
 
 from pydantic import Field
 
+from ..core.LogisticalSample import LogisticalSample
 from ..data.CrystalData import CrystalData
 from ..references.CrystallographicSampleRef import CrystallographicSampleRef
 from ..references.DropRegionRef import DropRegionRef
 from ..references.PinPositionRef import PinPositionRef
-from .LogisticalSample import LogisticalSample
 
 
 class Crystal(CrystalData, LogisticalSample):

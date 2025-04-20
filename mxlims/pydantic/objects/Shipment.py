@@ -7,8 +7,8 @@ from typing import Optional
 
 from pydantic import Field
 
+from ..core.LogisticalSample import LogisticalSample
 from ..data.ShipmentData import ShipmentData
-from .LogisticalSample import LogisticalSample
 
 
 class Shipment(ShipmentData, LogisticalSample):

@@ -7,6 +7,7 @@ from typing import List, Optional, Union
 
 from pydantic import Field
 
+from ..core.Job import Job
 from ..data.MxProcessingData import MxProcessingData
 from ..references.CollectionSweepRef import CollectionSweepRef
 from ..references.CrystallographicSampleRef import CrystallographicSampleRef
@@ -18,7 +19,6 @@ from ..references.PinRef import PinRef
 from ..references.PlateWellRef import PlateWellRef
 from ..references.ReflectionSetRef import ReflectionSetRef
 from ..references.WellDropRef import WellDropRef
-from .Job import Job
 
 
 class MxProcessing(MxProcessingData, Job):

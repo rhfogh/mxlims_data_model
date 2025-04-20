@@ -7,10 +7,10 @@ from typing import Optional
 
 from pydantic import Field
 
+from ..core.LogisticalSample import LogisticalSample
 from ..data.PinPositionData import PinPositionData
 from ..references.CrystallographicSampleRef import CrystallographicSampleRef
 from ..references.PinRef import PinRef
-from .LogisticalSample import LogisticalSample
 
 
 class PinPosition(PinPositionData, LogisticalSample):

@@ -7,10 +7,10 @@ from typing import Optional
 
 from pydantic import Field
 
+from ..core.LogisticalSample import LogisticalSample
 from ..data.PlateWellData import PlateWellData
 from ..references.CrystallographicSampleRef import CrystallographicSampleRef
 from ..references.PlateRef import PlateRef
-from .LogisticalSample import LogisticalSample
 
 
 class PlateWell(PlateWellData, LogisticalSample):

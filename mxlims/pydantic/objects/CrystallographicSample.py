@@ -3,8 +3,8 @@
 
 from __future__ import annotations
 
+from ..core.PreparedSample import PreparedSample
 from ..data.CrystallographicSampleData import CrystallographicSampleData
-from .PreparedSample import PreparedSample
 
 
 class CrystallographicSample(CrystallographicSampleData, PreparedSample):

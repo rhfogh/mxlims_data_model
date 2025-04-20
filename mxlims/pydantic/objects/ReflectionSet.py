@@ -7,6 +7,7 @@ from typing import Optional, Union
 
 from pydantic import Field
 
+from ..core.Dataset import Dataset
 from ..data.ReflectionSetData import ReflectionSetData
 from ..references.CrystalRef import CrystalRef
 from ..references.DropRegionRef import DropRegionRef
@@ -16,7 +17,6 @@ from ..references.PinRef import PinRef
 from ..references.PlateWellRef import PlateWellRef
 from ..references.ReflectionSetRef import ReflectionSetRef
 from ..references.WellDropRef import WellDropRef
-from .Dataset import Dataset
 
 
 class ReflectionSet(ReflectionSetData, Dataset):

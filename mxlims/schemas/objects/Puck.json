@@ -8,7 +8,7 @@
             "$ref": "../data/PuckData.json"
         },
         {
-            "$ref": "../objects/LogisticalSample.json"
+            "$ref": "../core/LogisticalSample.json"
         }
     ],
     "properties": {

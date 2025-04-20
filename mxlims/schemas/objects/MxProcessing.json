@@ -8,7 +8,7 @@
             "$ref": "../data/MxProcessingData.json"
         },
         {
-            "$ref": "../objects/Job.json"
+            "$ref": "../core/Job.json"
         }
     ],
     "properties": {

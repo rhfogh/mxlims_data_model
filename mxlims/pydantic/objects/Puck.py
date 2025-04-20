@@ -7,9 +7,9 @@ from typing import Optional
 
 from pydantic import Field
 
+from ..core.LogisticalSample import LogisticalSample
 from ..data.PuckData import PuckData
 from ..references.DewarRef import DewarRef
-from .LogisticalSample import LogisticalSample
 
 
 class Puck(PuckData, LogisticalSample):

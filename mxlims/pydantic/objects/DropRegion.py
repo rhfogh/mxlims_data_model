@@ -7,10 +7,10 @@ from typing import Optional
 
 from pydantic import Field
 
+from ..core.LogisticalSample import LogisticalSample
 from ..data.DropRegionData import DropRegionData
 from ..references.CrystallographicSampleRef import CrystallographicSampleRef
 from ..references.WellDropRef import WellDropRef
-from .LogisticalSample import LogisticalSample
 
 
 class DropRegion(DropRegionData, LogisticalSample):

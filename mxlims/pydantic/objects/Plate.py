@@ -7,9 +7,9 @@ from typing import Optional
 
 from pydantic import Field
 
+from ..core.LogisticalSample import LogisticalSample
 from ..data.PlateData import PlateData
 from ..references.ShipmentRef import ShipmentRef
-from .LogisticalSample import LogisticalSample
 
 
 class Plate(PlateData, LogisticalSample):
