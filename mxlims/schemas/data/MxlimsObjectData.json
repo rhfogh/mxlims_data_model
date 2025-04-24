@@ -37,7 +37,8 @@
     },
     "required": [
         "version",
-        "mxlimsType"
+        "mxlimsType",
+        "uuid"
     ],
     "additionalProperties": false
 }

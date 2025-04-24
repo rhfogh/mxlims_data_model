@@ -30,8 +30,8 @@ class MxlimsObjectData(BaseModel):
         description="The type of the MXLIMS object. Fixed for each subtype schema",
         title="MxlimsType",
     )
-    uuid: Optional[UUID] = Field(
-        None, description="Permanent unique identifier string", title="Uuid"
+    uuid: UUID = Field(
+        ..., description="Permanent unique identifier string", title="Uuid"
     )
     namespaced_extensions: Optional[List[NamespacedExtensionData]] = Field(
         None,
