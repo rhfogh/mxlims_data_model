@@ -3,6 +3,11 @@
     "description": "Base class for MXLIMS Jobs - an experiment or calculation producing Datasets",
     "title": "Job",
     "type": "object",
+    "allOf": [
+        {
+            "$ref": "../data/JobData.json"
+        }
+    ],
     "properties": {
         "sampleRef": {
             "$ref": "../core/PreparedSampleRef.json"

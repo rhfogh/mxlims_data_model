@@ -3,11 +3,6 @@
     "description": "Crystallographic Sample",
     "title": "CrystallographicSampleData",
     "type": "object",
-    "allOf": [
-        {
-            "$ref": "../data/PreparedSampleData.json"
-        }
-    ],
     "properties": {
         "mxlimsType": {
             "const": "CrystallographicSample",

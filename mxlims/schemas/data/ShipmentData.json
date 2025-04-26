@@ -3,11 +3,6 @@
     "description": "Shipment",
     "title": "ShipmentData",
     "type": "object",
-    "allOf": [
-        {
-            "$ref": "../data/LogisticalSampleData.json"
-        }
-    ],
     "properties": {
         "mxlimsType": {
             "const": "Shipment",

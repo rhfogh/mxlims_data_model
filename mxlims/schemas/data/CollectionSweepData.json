@@ -3,11 +3,6 @@
     "description": "Crystallographic sweep data set, containing images",
     "title": "CollectionSweepData",
     "type": "object",
-    "allOf": [
-        {
-            "$ref": "../data/DatasetData.json"
-        }
-    ],
     "properties": {
         "mxlimsType": {
             "const": "CollectionSweep",

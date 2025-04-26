@@ -3,11 +3,6 @@
     "description": "A drop in a well in a crystallization plate",
     "title": "WellDropData",
     "type": "object",
-    "allOf": [
-        {
-            "$ref": "../data/LogisticalSampleData.json"
-        }
-    ],
     "properties": {
         "mxlimsType": {
             "const": "WellDrop",

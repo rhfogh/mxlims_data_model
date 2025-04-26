@@ -5,6 +5,8 @@ from __future__ import annotations
 
 from typing import List, Literal, Optional
 
+from mxlims.pydantic.MxBaseModel import BaseModel
+
 from pydantic import Field, PositiveInt, confloat, conint
 
 from ..datatypes.PdbxSignalType import PdbxSignalType
@@ -15,10 +17,9 @@ from ..datatypes.ReflectionStatistics import ReflectionStatistics
 from ..datatypes.SpaceGroupName import SpaceGroupName
 from ..datatypes.Tensor import Tensor
 from ..datatypes.UnitCell import UnitCell
-from .DatasetData import DatasetData
 
 
-class ReflectionSetData(DatasetData):
+class ReflectionSetData(BaseModel):
     """
     Set of processed reflections, possibly merged or scaled, as might be stored within a MTZ or mmCIF reflection file
     """

@@ -5,14 +5,15 @@ from __future__ import annotations
 
 from typing import Literal, Union
 
+from mxlims.pydantic.MxBaseModel import BaseModel
+
 from pydantic import Field
 
 from ..datatypes.ImageRegion import ImageRegion
 from ..datatypes.PlateRegion import PlateRegion
-from .LogisticalSampleData import LogisticalSampleData
 
 
-class DropRegionData(LogisticalSampleData):
+class DropRegionData(BaseModel):
     """
     A region in a well drop where crystals may be found
     """

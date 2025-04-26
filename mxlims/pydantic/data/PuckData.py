@@ -5,12 +5,12 @@ from __future__ import annotations
 
 from typing import Literal, Optional
 
+from mxlims.pydantic.MxBaseModel import BaseModel
+
 from pydantic import Field, conint
 
-from .LogisticalSampleData import LogisticalSampleData
 
-
-class PuckData(LogisticalSampleData):
+class PuckData(BaseModel):
     """
     A puck containing mounted crystals on pins.
     """

@@ -3,11 +3,6 @@
     "description": "A Pin mounted on a puck with one or more slots for crystals.",
     "title": "PinData",
     "type": "object",
-    "allOf": [
-        {
-            "$ref": "../data/LogisticalSampleData.json"
-        }
-    ],
     "properties": {
         "mxlimsType": {
             "const": "Pin",

@@ -5,13 +5,14 @@ from __future__ import annotations
 
 from typing import Literal, Optional
 
+from mxlims.pydantic.MxBaseModel import BaseModel
+
 from pydantic import Field
 
 from ..datatypes.TrackingDevice import TrackingDevice
-from .LogisticalSampleData import LogisticalSampleData
 
 
-class DewarData(LogisticalSampleData):
+class DewarData(BaseModel):
     """
     A dewar containing pucks with mounted crystals on pins.
     """

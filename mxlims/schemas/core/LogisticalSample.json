@@ -3,6 +3,11 @@
     "description": "Base class for MXLIMS Logistical Samples\n\ndescribing Sample containers and locations\n(from Dewars and Plates to drops, pins and crystals)",
     "title": "LogisticalSample",
     "type": "object",
+    "allOf": [
+        {
+            "$ref": "../data/LogisticalSampleData.json"
+        }
+    ],
     "properties": {
         "sampleRef": {
             "$ref": "../core/PreparedSampleRef.json"

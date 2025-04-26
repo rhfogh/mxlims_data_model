@@ -5,12 +5,12 @@ from __future__ import annotations
 
 from typing import Literal, Optional
 
+from mxlims.pydantic.MxBaseModel import BaseModel
+
 from pydantic import Field
 
-from .LogisticalSampleData import LogisticalSampleData
 
-
-class CrystalData(LogisticalSampleData):
+class CrystalData(BaseModel):
     """
     Crystal or location for measuring diffraction. Note that crystals are optional and are generally used ONLY where a region, loop, or other LogisticalSample is found to have several crystals during the actual experiment.
     """

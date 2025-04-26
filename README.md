@@ -58,8 +58,12 @@ They are organised as follows:
 
   - schemas/references contain schemas that define references to particular object types.
   These are used both as part of the specification and for JSON messages; their contents
-  can be entirely derived from the definitions in schemas/data
-
+  is derived from the definitions in schemas/data, using the scripts/generate_code.py script.
+  Note that while the reference are used as-is in specifying JSON documents, they are *not*
+  translated directly to the AP implementations. These use instead the direct storage of target
+  uuids, with field names like 'sourceId' or 'inputDataIds', and with derived field names
+  like 'source', 'logisticalSamples', or 'inputData' to access the linked-to objects.
+  More detail can be found in the Overview.pdf document
 
 ## JSON html documentation
 
@@ -82,4 +86,6 @@ with the command (starting in the mxlims_data_model directory)
 datamodel-codegen --input-file-type jsonschema --output-model-type pydantic_v2.BaseModel  --base-class mxlims.pydantic.MxBaseModel.BaseModel --use-schema-description --use-double-quotes --disable-timestamp --use-default --target-python-version 3.10 --snake-case-field --use-exact-imports --capitalise-enum-members --use-title-as-name --use-one-literal-as-default --input mxlims/schemas --output mxlims/pydantic
 
 The generated Pydantic for data and datatypes is correct, but the complete API requires also
-manually coded classes for the core classes in the model, and alternative generation procedures for the final objects.
+manually coded classes for the core classes in the model, and code generation procedures for pydantic/objects.
+The implementation is WOrk-In-Progress as of 20250426. The temporary implementation classes can eb found in 
+pydantic/core_new/. 

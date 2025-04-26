@@ -5,14 +5,15 @@ from __future__ import annotations
 
 from typing import Dict, Literal, Optional
 
+from mxlims.pydantic.MxBaseModel import BaseModel
+
 from pydantic import Field
 
 from ..datatypes.PlateType import PlateType
 from ..datatypes.TrackingDevice import TrackingDevice
-from .LogisticalSampleData import LogisticalSampleData
 
 
-class PlateData(LogisticalSampleData):
+class PlateData(BaseModel):
     """
     A crystallization plate
     """

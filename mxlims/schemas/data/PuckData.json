@@ -3,11 +3,6 @@
     "description": "A puck containing mounted crystals on pins.",
     "title": "PuckData",
     "type": "object",
-    "allOf": [
-        {
-            "$ref": "../data/LogisticalSampleData.json"
-        }
-    ],
     "properties": {
         "mxlimsType": {
             "const": "Puck",

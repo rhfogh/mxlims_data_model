@@ -3,11 +3,6 @@
     "description": "Crystallography experiment, producing data",
     "title": "MxExperimentData",
     "type": "object",
-    "allOf": [
-        {
-            "$ref": "../data/JobData.json"
-        }
-    ],
     "properties": {
         "mxlimsType": {
             "const": "MxExperiment",

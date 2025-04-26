@@ -3,11 +3,6 @@
     "description": "A region in a well drop where crystals may be found",
     "title": "DropRegionData",
     "type": "object",
-    "allOf": [
-        {
-            "$ref": "../data/LogisticalSampleData.json"
-        }
-    ],
     "properties": {
         "mxlimsType": {
             "const": "DropRegion",

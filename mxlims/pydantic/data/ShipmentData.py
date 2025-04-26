@@ -5,14 +5,15 @@ from __future__ import annotations
 
 from typing import Dict, Literal, Optional
 
+from mxlims.pydantic.MxBaseModel import BaseModel
+
 from pydantic import Field, conint, constr
 
 from ..datatypes.Person import Person
 from ..datatypes.TrackingDevice import TrackingDevice
-from .LogisticalSampleData import LogisticalSampleData
 
 
-class ShipmentData(LogisticalSampleData):
+class ShipmentData(BaseModel):
     """
     Shipment
     """

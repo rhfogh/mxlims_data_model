@@ -3,11 +3,6 @@
     "description": "An independent Position within a Pin where crystals can be located.",
     "title": "PinPositionData",
     "type": "object",
-    "allOf": [
-        {
-            "$ref": "../data/LogisticalSampleData.json"
-        }
-    ],
     "properties": {
         "mxlimsType": {
             "const": "PinPosition",

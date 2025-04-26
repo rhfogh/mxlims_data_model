@@ -3,11 +3,6 @@
     "description": "A crystallization plate",
     "title": "PlateData",
     "type": "object",
-    "allOf": [
-        {
-            "$ref": "../data/LogisticalSampleData.json"
-        }
-    ],
     "properties": {
         "mxlimsType": {
             "const": "Plate",

@@ -5,13 +5,14 @@ from __future__ import annotations
 
 from typing import Any, Dict, List, Literal, Optional
 
+from mxlims.pydantic.MxBaseModel import BaseModel
+
 from pydantic import Field, confloat, conint
 
 from ..datatypes.Scan import Scan
-from .DatasetData import DatasetData
 
 
-class CollectionSweepData(DatasetData):
+class CollectionSweepData(BaseModel):
     """
     Crystallographic sweep data set, containing images
     """

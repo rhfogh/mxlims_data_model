@@ -5,15 +5,16 @@ from __future__ import annotations
 
 from typing import Dict, List, Literal, Optional
 
+from mxlims.pydantic.MxBaseModel import BaseModel
+
 from pydantic import Field, confloat
 
 from ..datatypes.SampleComponent import SampleComponent
 from ..datatypes.SpaceGroupName import SpaceGroupName
 from ..datatypes.UnitCell import UnitCell
-from .PreparedSampleData import PreparedSampleData
 
 
-class CrystallographicSampleData(PreparedSampleData):
+class CrystallographicSampleData(BaseModel):
     """
     Crystallographic Sample
     """

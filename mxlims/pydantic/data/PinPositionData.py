@@ -5,12 +5,12 @@ from __future__ import annotations
 
 from typing import Literal
 
+from mxlims.pydantic.MxBaseModel import BaseModel
+
 from pydantic import Field, conint
 
-from .LogisticalSampleData import LogisticalSampleData
 
-
-class PinPositionData(LogisticalSampleData):
+class PinPositionData(BaseModel):
     """
     An independent Position within a Pin where crystals can be located.
     """

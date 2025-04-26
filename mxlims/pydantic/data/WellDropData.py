@@ -5,12 +5,12 @@ from __future__ import annotations
 
 from typing import Literal
 
+from mxlims.pydantic.MxBaseModel import BaseModel
+
 from pydantic import Field, conint
 
-from .LogisticalSampleData import LogisticalSampleData
 
-
-class WellDropData(LogisticalSampleData):
+class WellDropData(BaseModel):
     """
     A drop in a well in a crystallization plate
     """

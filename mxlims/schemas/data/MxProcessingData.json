@@ -3,11 +3,6 @@
     "description": "Crystallography Processing calculation,",
     "title": "MxProcessingData",
     "type": "object",
-    "allOf": [
-        {
-            "$ref": "../data/JobData.json"
-        }
-    ],
     "properties": {
         "mxlimsType": {
             "const": "MXProcessing",

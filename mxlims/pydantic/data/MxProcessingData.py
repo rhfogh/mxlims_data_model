@@ -5,14 +5,15 @@ from __future__ import annotations
 
 from typing import Literal, Optional
 
+from mxlims.pydantic.MxBaseModel import BaseModel
+
 from pydantic import Field
 
 from ..datatypes.SpaceGroupName import SpaceGroupName
 from ..datatypes.UnitCell import UnitCell
-from .JobData import JobData
 
 
-class MxProcessingData(JobData):
+class MxProcessingData(BaseModel):
     """
     Crystallography Processing calculation,
     """

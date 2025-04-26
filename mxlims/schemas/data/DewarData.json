@@ -3,11 +3,6 @@
     "description": "A dewar containing pucks with mounted crystals on pins.",
     "title": "DewarData",
     "type": "object",
-    "allOf": [
-        {
-            "$ref": "../data/LogisticalSampleData.json"
-        }
-    ],
     "properties": {
         "mxlimsType": {
             "const": "Dewar",
