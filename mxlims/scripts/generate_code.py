@@ -41,7 +41,7 @@ json_reference_template = """{{
             "type": "string",
             "const": "{name}"
         }},
-        "ref": {{
+        "#ref": {{
             "description": "JSON reference to object in std. message, using uuid-based links.",
             "title": "JSONreference",
             "type": "string",

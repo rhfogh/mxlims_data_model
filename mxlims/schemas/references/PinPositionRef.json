@@ -10,7 +10,7 @@
             "type": "string",
             "const": "PinPosition"
         },
-        "ref": {
+        "#ref": {
             "description": "JSON reference to object in std. message, using uuid-based links.",
             "title": "JSONreference",
             "type": "string",
