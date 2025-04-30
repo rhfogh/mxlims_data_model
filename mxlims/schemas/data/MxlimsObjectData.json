@@ -15,6 +15,11 @@
             "title": "MxlimsType",
             "type": "string"
         },
+        "mxlimsBaseType": {
+            "description": "The abstract (super)type of the MXLIMS object. Fixed for each subtype schema",
+            "title": "MxlimsBaseType",
+            "type": "string"
+        },
         "uuid": {
             "description": "Permanent unique identifier string",
             "title": "Uuid",

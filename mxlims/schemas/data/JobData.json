@@ -9,6 +9,12 @@
         }
     ],
     "properties": {
+        "mxlimsBaseType": {
+            "const": "Job",
+            "description": "The abstract (super)type of MXLIMS object.",
+            "title": "MxlimsBaseType",
+            "type": "string"
+        },
         "startTime": {
             "format": "date-time",
             "type": "string",

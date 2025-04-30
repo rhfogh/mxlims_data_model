@@ -8,7 +8,7 @@
             "$ref": "../data/CrystallographicSampleData.json"
         },
         {
-            "$ref": "../core/PreparedSample.json"
+            "$ref": "../data/PreparedSampleData.json"
         }
     ]
 }

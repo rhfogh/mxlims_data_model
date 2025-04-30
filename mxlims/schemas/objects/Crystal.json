@@ -8,20 +8,34 @@
             "$ref": "../data/CrystalData.json"
         },
         {
-            "$ref": "../core/LogisticalSample.json"
+            "$ref": "../data/LogisticalSampleData.json"
         }
     ],
     "properties": {
         "sampleRef": {
-            "$ref": "../references/CrystallographicSampleRef.json"
-        },
-        "containerRef": {
-            "oneOf": [
+            "allOf": [
                 {
-                    "$ref": "../references/PinPositionRef.json"
+                    "reverseLinkName": "logisticalSamples"
                 },
                 {
-                    "$ref": "../references/DropRegionRef.json"
+                    "$ref": "../references/CrystallographicSampleRef.json"
+                }
+            ]
+        },
+        "containerRef": {
+            "allOf": [
+                {
+                    "reverseLinkName": "logisticalSamples"
+                },
+                {
+                    "oneOf": [
+                        {
+                            "$ref": "../references/PinPositionRef.json"
+                        },
+                        {
+                            "$ref": "../references/DropRegionRef.json"
+                        }
+                    ]
                 }
             ]
         }

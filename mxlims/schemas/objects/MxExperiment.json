@@ -8,56 +8,73 @@
             "$ref": "../data/MxExperimentData.json"
         },
         {
-            "$ref": "../core/Job.json"
+            "$ref": "../data/JobData.json"
         }
     ],
     "properties": {
         "sampleRef": {
-            "$ref": "../references/CrystallographicSampleRef.json"
+            "allOf": [
+                {
+                    "reverseLinkName": "logisticalSamples"
+                },
+                {
+                    "$ref": "../references/CrystallographicSampleRef.json"
+                }
+            ]
         },
         "startedFromRef": {
-            "$ref": "../references/MxExperimentRef.json"
+            "allOf": [
+                {
+                    "reverseLinkName": "subjobs",
+                    "readOnly": true
+                },
+                {
+                    "$ref": "../references/MxExperimentRef.json"
+                }
+            ]
         },
         "logisticalSampleRef": {
-            "oneOf": [
+            "allOf": [
                 {
-                    "$ref": "../references/CrystalRef.json"
+                    "reverseLinkName": "logisticalSamples"
                 },
                 {
-                    "$ref": "../references/PinRef.json"
-                },
-                {
-                    "$ref": "../references/PinPositionRef.json"
-                },
-                {
-                    "$ref": "../references/PlateWellRef.json"
-                },
-                {
-                    "$ref": "../references/WellDropRef.json"
-                },
-                {
-                    "$ref": "../references/DropRegionRef.json"
+                    "oneOf": [
+                        {
+                            "$ref": "../references/CrystalRef.json"
+                        },
+                        {
+                            "$ref": "../references/PinRef.json"
+                        },
+                        {
+                            "$ref": "../references/PinPositionRef.json"
+                        },
+                        {
+                            "$ref": "../references/PlateWellRef.json"
+                        },
+                        {
+                            "$ref": "../references/WellDropRef.json"
+                        },
+                        {
+                            "$ref": "../references/DropRegionRef.json"
+                        }
+                    ]
                 }
             ]
         },
         "referenceDataRefs": {
             "type": "array",
+            "reverseLinkName": "referenceFor",
             "items": {
                 "$ref": "../references/ReflectionSetRef.json"
             }
         },
         "templateDataRefs": {
             "type": "array",
+            "reverseLinkName": "templateFor",
             "items": {
                 "$ref": "../references/CollectionSweepRef.json"
             }
-        },
-        "inputDataRefs": {
-            "type": "array",
-            "items": {
-                "$ref": "../core/DatasetRef.json"
-            },
-            "maxItems": 0
         }
     }
 }

@@ -8,16 +8,19 @@
             "$ref": "../data/PuckData.json"
         },
         {
-            "$ref": "../core/LogisticalSample.json"
+            "$ref": "../data/LogisticalSampleData.json"
         }
     ],
     "properties": {
-        "sampleRef": {
-            "type": "null",
-            "default": null
-        },
         "containerRef": {
-            "$ref": "../references/DewarRef.json"
+            "allOf": [
+                {
+                    "reverseLinkName": "logisticalSamples"
+                },
+                {
+                    "$ref": "../references/DewarRef.json"
+                }
+            ]
         }
     }
 }

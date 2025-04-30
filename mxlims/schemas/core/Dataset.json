@@ -9,26 +9,35 @@
         }
     ],
     "properties": {
-        "sourceRef": {
-            "$ref": "../core/JobRef.json"
+        "sourceId": {
+            "description": "uuid for Dataset source",
+            "title": "SourceId",
+            "type": "string",
+            "format": "uuid"
         },
-        "derivedFromRef": {
-            "$ref": "../core/DatasetRef.json"
+        "derivedFromId": {
+            "description": "uuid for Dataset from which Dataset is derived",
+            "title": "DerivedFromId",
+            "type": "string",
+            "format": "uuid"
         },
-        "logisticalSampleRef": {
-            "$ref": "../core/LogisticalSampleRef.json"
+        "logisticalSampleId": {
+            "description": "uuid for LogisticalSample related to Dataset",
+            "title": "LogisticalSampleId",
+            "type": "string",
+            "format": "uuid"
         }
     },
     "not": {
         "oneOf": [
             {
                 "required": [
-                    "sourceRef"
+                    "sourceId"
                 ]
             },
             {
                 "required": [
-                    "derivedFromRef"
+                    "derivedFromId"
                 ]
             }
         ]

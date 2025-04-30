@@ -14,7 +14,7 @@
                         "$ref": "../objects/CollectionSweep.json"
                     },
                     {
-                        "$ref": "../core/UuidStub.json"
+                        "$ref": "../messages/UuidStub.json"
                     }
                 ]
             }
@@ -29,7 +29,7 @@
                         "$ref": "../objects/Crystal.json"
                     },
                     {
-                        "$ref": "../core/UuidStub.json"
+                        "$ref": "../messages/UuidStub.json"
                     }
                 ]
             }
@@ -44,7 +44,7 @@
                         "$ref": "../objects/CrystallographicSample.json"
                     },
                     {
-                        "$ref": "../core/UuidStub.json"
+                        "$ref": "../messages/UuidStub.json"
                     }
                 ]
             }
@@ -59,7 +59,7 @@
                         "$ref": "../objects/Dewar.json"
                     },
                     {
-                        "$ref": "../core/UuidStub.json"
+                        "$ref": "../messages/UuidStub.json"
                     }
                 ]
             }
@@ -74,7 +74,7 @@
                         "$ref": "../objects/DropRegion.json"
                     },
                     {
-                        "$ref": "../core/UuidStub.json"
+                        "$ref": "../messages/UuidStub.json"
                     }
                 ]
             }
@@ -89,7 +89,7 @@
                         "$ref": "../objects/MxExperiment.json"
                     },
                     {
-                        "$ref": "../core/UuidStub.json"
+                        "$ref": "../messages/UuidStub.json"
                     }
                 ]
             }
@@ -104,7 +104,7 @@
                         "$ref": "../objects/MxProcessing.json"
                     },
                     {
-                        "$ref": "../core/UuidStub.json"
+                        "$ref": "../messages/UuidStub.json"
                     }
                 ]
             }
@@ -119,7 +119,7 @@
                         "$ref": "../objects/Pin.json"
                     },
                     {
-                        "$ref": "../core/UuidStub.json"
+                        "$ref": "../messages/UuidStub.json"
                     }
                 ]
             }
@@ -134,7 +134,7 @@
                         "$ref": "../objects/PinPosition.json"
                     },
                     {
-                        "$ref": "../core/UuidStub.json"
+                        "$ref": "../messages/UuidStub.json"
                     }
                 ]
             }
@@ -149,7 +149,7 @@
                         "$ref": "../objects/Plate.json"
                     },
                     {
-                        "$ref": "../core/UuidStub.json"
+                        "$ref": "../messages/UuidStub.json"
                     }
                 ]
             }
@@ -164,7 +164,7 @@
                         "$ref": "../objects/PlateWell.json"
                     },
                     {
-                        "$ref": "../core/UuidStub.json"
+                        "$ref": "../messages/UuidStub.json"
                     }
                 ]
             }
@@ -179,7 +179,7 @@
                         "$ref": "../objects/Puck.json"
                     },
                     {
-                        "$ref": "../core/UuidStub.json"
+                        "$ref": "../messages/UuidStub.json"
                     }
                 ]
             }
@@ -194,7 +194,7 @@
                         "$ref": "../objects/ReflectionSet.json"
                     },
                     {
-                        "$ref": "../core/UuidStub.json"
+                        "$ref": "../messages/UuidStub.json"
                     }
                 ]
             }
@@ -209,7 +209,7 @@
                         "$ref": "../objects/Shipment.json"
                     },
                     {
-                        "$ref": "../core/UuidStub.json"
+                        "$ref": "../messages/UuidStub.json"
                     }
                 ]
             }
@@ -224,7 +224,7 @@
                         "$ref": "../objects/WellDrop.json"
                     },
                     {
-                        "$ref": "../core/UuidStub.json"
+                        "$ref": "../messages/UuidStub.json"
                     }
                 ]
             }

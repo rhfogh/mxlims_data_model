@@ -9,31 +9,49 @@
         }
     ],
     "properties": {
-        "sampleRef": {
-            "$ref": "../core/PreparedSampleRef.json"
+        "sampleId": {
+            "description": "uuid for related sample",
+            "title": "SampleId",
+            "type": "string",
+            "format": "uuid"
         },
-        "startedFromRef": {
-            "$ref": "../core/JobRef.json"
+        "startedFromId": {
+            "description": "uuid for JOPb from which this Job was started",
+            "title": "StartedFromId",
+            "type": "string",
+            "format": "uuid"
         },
-        "logisticalSampleRef": {
-            "$ref": "../core/LogisticalSampleRef.json"
+        "logisticalSampleId": {
+            "description": "uuid for LogisticalSample related to Job",
+            "title": "LogisticalSampleId",
+            "type": "string",
+            "format": "uuid"
         },
-        "referenceDataRefs": {
+        "referenceDataIds": {
             "type": "array",
             "items": {
-                "$ref": "../core/DatasetRef.json"
+                "description": "uuid for reference Datasets",
+                "title": "ReferenceDataId",
+                "type": "string",
+                "format": "uuid"
             }
         },
-        "templateDataRefs": {
+        "templateDataIds": {
             "type": "array",
             "items": {
-                "$ref": "../core/DatasetRef.json"
+                "description": "uuid for template Datasets",
+                "title": "TemplateDataId",
+                "type": "string",
+                "format": "uuid"
             }
         },
-        "inputDataRefs": {
+        "inputDataIds": {
             "type": "array",
             "items": {
-                "$ref": "../core/DatasetRef.json"
+                "description": "uuid for input Datasets",
+                "title": "InputDataId",
+                "type": "string",
+                "format": "uuid"
             }
         }
     }

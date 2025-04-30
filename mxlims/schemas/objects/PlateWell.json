@@ -8,15 +8,29 @@
             "$ref": "../data/PlateWellData.json"
         },
         {
-            "$ref": "../core/LogisticalSample.json"
+            "$ref": "../data/LogisticalSampleData.json"
         }
     ],
     "properties": {
         "sampleRef": {
-            "$ref": "../references/CrystallographicSampleRef.json"
+            "allOf": [
+                {
+                    "reverseLinkName": "logisticalSamples"
+                },
+                {
+                    "$ref": "../references/CrystallographicSampleRef.json"
+                }
+            ]
         },
         "containerRef": {
-            "$ref": "../references/PlateRef.json"
+            "allOf": [
+                {
+                    "reverseLinkName": "logisticalSamples"
+                },
+                {
+                    "$ref": "../references/PlateRef.json"
+                }
+            ]
         }
     }
 }

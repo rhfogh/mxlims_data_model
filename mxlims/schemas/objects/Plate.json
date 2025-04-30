@@ -8,16 +8,19 @@
             "$ref": "../data/PlateData.json"
         },
         {
-            "$ref": "../core/LogisticalSample.json"
+            "$ref": "../data/LogisticalSampleData.json"
         }
     ],
     "properties": {
-        "sampleRef": {
-            "type": "null",
-            "default": null
-        },
         "containerRef": {
-            "$ref": "../references/ShipmentRef.json"
+            "allOf": [
+                {
+                    "reverseLinkName": "logisticalSamples"
+                },
+                {
+                    "$ref": "../references/ShipmentRef.json"
+                }
+            ]
         }
     }
 }

@@ -18,7 +18,7 @@
         }
     },
     "required": [
-        "$ref"
+        "#ref"
     ],
     "additionalProperties": false
 }

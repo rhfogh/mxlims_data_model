@@ -9,11 +9,17 @@
         }
     ],
     "properties": {
-        "sampleRef": {
-            "$ref": "../core/PreparedSampleRef.json"
+        "sampleId": {
+            "description": "uuid for constituent sample",
+            "title": "SampleId",
+            "type": "string",
+            "format": "uuid"
         },
-        "containerRef": {
-            "$ref": "../core/LogisticalSampleRef.json"
+        "containerId": {
+            "description": "uuid for LogisticalSample container",
+            "title": "SampleId",
+            "type": "string",
+            "format": "uuid"
         }
     }
 }

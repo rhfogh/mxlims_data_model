@@ -8,7 +8,7 @@
             "$ref": "../data/DropRegionData.json"
         },
         {
-            "$ref": "../core/LogisticalSample.json"
+            "$ref": "../data/LogisticalSampleData.json"
         }
     ],
     "properties": {
@@ -17,6 +17,28 @@
         },
         "containerRef": {
             "$ref": "../references/WellDropRef.json"
+        }
+    },
+    "properties": {
+        "sampleRef": {
+            "allOf": [
+                {
+                    "reverseLinkName": "logisticalSamples"
+                },
+                {
+                    "$ref": "../references/CrystallographicSampleRef.json"
+                }
+            ]
+        },
+        "containerRef": {
+            "allOf": [
+                {
+                    "reverseLinkName": "logisticalSamples"
+                },
+                {
+                    "$ref": "../references/WellDropRef.json"
+                }
+            ]
         }
     }
 }

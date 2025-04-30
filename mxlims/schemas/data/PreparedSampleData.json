@@ -7,5 +7,13 @@
         {
             "$ref": "../data/MxlimsObjectData.json"
         }
-    ]
+    ],
+    "properties": {
+        "mxlimsBaseType": {
+            "const": "PreparedSample",
+            "description": "The abstract (super)type of MXLIMS object.",
+            "title": "MxlimsBaseType",
+            "type": "string"
+        }
+    }
 }
