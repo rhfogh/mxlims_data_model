@@ -3,10 +3,10 @@
 
 from __future__ import annotations
 
-from typing import Any, Optional
+from typing import Optional
+from uuid import UUID
 
 from pydantic import Field
-from uuid import UUID
 
 from ..data.LogisticalSampleData import LogisticalSampleData
 
@@ -22,20 +22,12 @@ class LogisticalSample(LogisticalSampleData):
     sample_id: Optional[UUID] = Field(
         None,
         alias="sampleId",
-        description="Uuid of the PreparedSample associated with this LogisticalSample",
+        description="uuid for constituent sample",
         title="SampleId",
     )
     container_id: Optional[UUID] = Field(
         None,
         alias="containerId",
-        description="Uuid of the container holding this LogisticalSample",
-        title="ContainerId",
+        description="uuid for LogisticalSample container",
+        title="containerId",
     )
-
-    def __init__(self, /, **data: Any) -> None:
-        super().__init__(**data)
-        obj_by_id = self.logistical_samples_by_id
-        if self.uuid in obj_by_id:
-            raise ValueError(f"LogisticalSample with uuid '{self.uuid}' already exists")
-        else:
-            obj_by_id[self.uuid] = self

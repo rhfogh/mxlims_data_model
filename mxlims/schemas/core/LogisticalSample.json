@@ -17,7 +17,7 @@
         },
         "containerId": {
             "description": "uuid for LogisticalSample container",
-            "title": "SampleId",
+            "title": "containerId",
             "type": "string",
             "format": "uuid"
         }

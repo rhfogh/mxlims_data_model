@@ -21,14 +21,20 @@ class MxlimsObjectData(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    version: Literal["0.6.0"] = Field(
-        "0.6.0", description="MXLIMS version for current model", title="Version"
+    version: Literal["0.6.1"] = Field(
+        "0.6.1", description="MXLIMS version for current model", title="Version"
     )
     mxlims_type: str = Field(
         ...,
         alias="mxlimsType",
         description="The type of the MXLIMS object. Fixed for each subtype schema",
         title="MxlimsType",
+    )
+    mxlims_base_type: Optional[str] = Field(
+        None,
+        alias="mxlimsBaseType",
+        description="The abstract (super)type of the MXLIMS object. Fixed for each subtype schema",
+        title="MxlimsBaseType",
     )
     uuid: UUID = Field(
         ..., description="Permanent unique identifier string", title="Uuid"

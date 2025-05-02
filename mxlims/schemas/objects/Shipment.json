@@ -8,17 +8,7 @@
             "$ref": "../data/ShipmentData.json"
         },
         {
-            "$ref": "../core/LogisticalSample.json"
+            "$ref": "../data/LogisticalSampleData.json"
         }
-    ],
-    "properties": {
-        "sampleRef": {
-            "type": "null",
-            "default": null
-        },
-        "containerRef": {
-            "type": "null",
-            "default": null
-        }
-    }
+    ]
 }

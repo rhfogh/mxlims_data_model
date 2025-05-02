@@ -15,7 +15,7 @@
         "sampleRef": {
             "allOf": [
                 {
-                    "reverseLinkName": "logisticalSamples"
+                    "reverseLinkName": "jobs"
                 },
                 {
                     "$ref": "../references/CrystallographicSampleRef.json"
@@ -36,7 +36,7 @@
         "logisticalSampleRef": {
             "allOf": [
                 {
-                    "reverseLinkName": "logisticalSamples"
+                    "reverseLinkName": "jobs"
                 },
                 {
                     "oneOf": [

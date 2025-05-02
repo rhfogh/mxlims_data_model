@@ -30,7 +30,7 @@
             <a class="nav-link allOf-option"
                id="allOf_i1" data-toggle="tab" href="#tab-pane_allOf_i1" role="tab"
                onclick="setAnchor('#allOf_i1')"
-            >LogisticalSample</a>
+            >LogisticalSampleData</a>
         </li></ul>
 <div class="tab-content card"><div class="tab-pane fade card-body active show"
              id="tab-pane_allOf_i0" role="tabpanel">
@@ -223,14 +223,12 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#allOf_i1" onclick="anchorLink('allOf_i1')">LogisticalSample</a></div><h4>LogisticalSample</h4><span class="badge badge-dark value-type">Type: object</span><br/>
+    <a href="#allOf_i1" onclick="anchorLink('allOf_i1')">LogisticalSampleData</a></div><h4>LogisticalSampleData</h4><span class="badge badge-dark value-type">Type: object</span><br/>
 <span class="description"><p>Base class for MXLIMS Logistical Samples</p>
 
 <p>describing Sample containers and locations<br />
 (from Dewars and Plates to drops, pins and crystals)</p>
 </span>
-
-    
 
     
 
@@ -278,7 +276,7 @@
         </svg>
     <a href="#allOf_i1_version" onclick="anchorLink('allOf_i1_version')">version</a></div><h4>Version</h4><span class="badge badge-dark value-type">Type: const</span><br/>
 <span class="description"><p>MXLIMS version for current model</p>
-</span><span class="const-value" id="allOf_i1_version_const">Specific value: <code>"0.6.0"</code></span>
+</span><span class="const-value" id="allOf_i1_version_const">Specific value: <code>"0.6.1"</code></span>
         
 
         
@@ -326,6 +324,54 @@
         </svg>
     <a href="#allOf_i1_mxlimsType" onclick="anchorLink('allOf_i1_mxlimsType')">mxlimsType</a></div><h4>MxlimsType</h4><span class="badge badge-dark value-type">Type: string</span><br/>
 <span class="description"><p>The type of the MXLIMS object. Fixed for each subtype schema</p>
+</span>
+        
+
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionallOf_i1_mxlimsBaseType">
+    <div class="card">
+        <div class="card-header" id="headingallOf_i1_mxlimsBaseType">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i1_mxlimsBaseType"
+                        aria-expanded="" aria-controls="allOf_i1_mxlimsBaseType" onclick="setAnchor('#allOf_i1_mxlimsBaseType')"><span class="property-name">mxlimsBaseType</span></button>
+            </h2>
+        </div>
+
+        <div id="allOf_i1_mxlimsBaseType"
+             class="collapse property-definition-div" aria-labelledby="headingallOf_i1_mxlimsBaseType"
+             data-parent="#accordionallOf_i1_mxlimsBaseType">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i1" onclick="anchorLink('allOf_i1')">MxlimsObjectData</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i1_mxlimsBaseType" onclick="anchorLink('allOf_i1_mxlimsBaseType')">mxlimsBaseType</a></div><h4>MxlimsBaseType</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>The abstract (super)type of MXLIMS object.</p>
 </span>
         
 
@@ -588,326 +634,6 @@
         </div>
     </div>
 </div>
-<div class="accordion" id="accordionallOf_i1_sampleRef">
-    <div class="card">
-        <div class="card-header" id="headingallOf_i1_sampleRef">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i1_sampleRef"
-                        aria-expanded="" aria-controls="allOf_i1_sampleRef" onclick="setAnchor('#allOf_i1_sampleRef')"><span class="property-name">sampleRef</span></button>
-            </h2>
-        </div>
-
-        <div id="allOf_i1_sampleRef"
-             class="collapse property-definition-div" aria-labelledby="headingallOf_i1_sampleRef"
-             data-parent="#accordionallOf_i1_sampleRef">
-            <div class="card-body pl-5">
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i1" onclick="anchorLink('allOf_i1')">LogisticalSample</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i1_sampleRef" onclick="anchorLink('allOf_i1_sampleRef')">sampleRef</a></div><h4>PreparedSampleRef</h4><span class="badge badge-dark value-type">Type: object</span><br/>
-<span class="description"><p>Reference to PreparedSample</p>
-</span>
-
-     <span class="badge badge-info no-additional">No Additional Properties</span>
-        
-
-        
-        
-
-        
-<div class="accordion" id="accordionallOf_i1_sampleRef_mxlimsType">
-    <div class="card">
-        <div class="card-header" id="headingallOf_i1_sampleRef_mxlimsType">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i1_sampleRef_mxlimsType"
-                        aria-expanded="" aria-controls="allOf_i1_sampleRef_mxlimsType" onclick="setAnchor('#allOf_i1_sampleRef_mxlimsType')"><span class="property-name">mxlimsType</span></button>
-            </h2>
-        </div>
-
-        <div id="allOf_i1_sampleRef_mxlimsType"
-             class="collapse property-definition-div" aria-labelledby="headingallOf_i1_sampleRef_mxlimsType"
-             data-parent="#accordionallOf_i1_sampleRef_mxlimsType">
-            <div class="card-body pl-5">
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i1" onclick="anchorLink('allOf_i1')">LogisticalSample</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i1_sampleRef" onclick="anchorLink('allOf_i1_sampleRef')">sampleRef</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i1_sampleRef_mxlimsType" onclick="anchorLink('allOf_i1_sampleRef_mxlimsType')">mxlimsType</a></div><h4>MxlimsType</h4><span class="badge badge-dark value-type">Type: const</span><br/>
-<span class="description"><p>The type of the MXLIMS object referred to.</p>
-</span><span class="const-value" id="allOf_i1_sampleRef_mxlimsType_const">Specific value: <code>"PreparedSample"</code></span>
-        
-
-        
-        
-
-        
-            </div>
-        </div>
-    </div>
-</div>
-<div class="accordion" id="accordionallOf_i1_sampleRef_ref">
-    <div class="card">
-        <div class="card-header" id="headingallOf_i1_sampleRef_ref">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i1_sampleRef_ref"
-                        aria-expanded="" aria-controls="allOf_i1_sampleRef_ref" onclick="setAnchor('#allOf_i1_sampleRef_ref')"><span class="property-name">ref</span> <span class="badge badge-warning required-property">Required</span></button>
-            </h2>
-        </div>
-
-        <div id="allOf_i1_sampleRef_ref"
-             class="collapse property-definition-div" aria-labelledby="headingallOf_i1_sampleRef_ref"
-             data-parent="#accordionallOf_i1_sampleRef_ref">
-            <div class="card-body pl-5">
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i1" onclick="anchorLink('allOf_i1')">LogisticalSample</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i1_sampleRef" onclick="anchorLink('allOf_i1_sampleRef')">sampleRef</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i1_sampleRef_ref" onclick="anchorLink('allOf_i1_sampleRef_ref')">ref</a></div><h4>JSONreference</h4><span class="badge badge-dark value-type">Type: string</span><br/>
-<span class="description"><p>JSON reference to object in std. message, using uuid-based links.</p>
-</span><span class="pattern-value" id="allOf_i1_sampleRef_ref_pattern">Must match regular expression: <code>^/PreparedSample/[a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[1-5][a-fA-F0-9]{3}-?[89abAB][a-fA-F0-9]{3}-?[a-fA-F0-9]{12}$</code></span>
-        
-
-        
-        
-
-        
-            </div>
-        </div>
-    </div>
-</div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="accordion" id="accordionallOf_i1_containerRef">
-    <div class="card">
-        <div class="card-header" id="headingallOf_i1_containerRef">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i1_containerRef"
-                        aria-expanded="" aria-controls="allOf_i1_containerRef" onclick="setAnchor('#allOf_i1_containerRef')"><span class="property-name">containerRef</span></button>
-            </h2>
-        </div>
-
-        <div id="allOf_i1_containerRef"
-             class="collapse property-definition-div" aria-labelledby="headingallOf_i1_containerRef"
-             data-parent="#accordionallOf_i1_containerRef">
-            <div class="card-body pl-5">
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i1" onclick="anchorLink('allOf_i1')">LogisticalSample</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i1_containerRef" onclick="anchorLink('allOf_i1_containerRef')">containerRef</a></div><h4>LogisticalSampleRef</h4><span class="badge badge-dark value-type">Type: object</span><br/>
-<span class="description"><p>Reference to LogisticalSample</p>
-</span>
-
-     <span class="badge badge-info no-additional">No Additional Properties</span>
-        
-
-        
-        
-
-        
-<div class="accordion" id="accordionallOf_i1_containerRef_mxlimsType">
-    <div class="card">
-        <div class="card-header" id="headingallOf_i1_containerRef_mxlimsType">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i1_containerRef_mxlimsType"
-                        aria-expanded="" aria-controls="allOf_i1_containerRef_mxlimsType" onclick="setAnchor('#allOf_i1_containerRef_mxlimsType')"><span class="property-name">mxlimsType</span></button>
-            </h2>
-        </div>
-
-        <div id="allOf_i1_containerRef_mxlimsType"
-             class="collapse property-definition-div" aria-labelledby="headingallOf_i1_containerRef_mxlimsType"
-             data-parent="#accordionallOf_i1_containerRef_mxlimsType">
-            <div class="card-body pl-5">
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i1" onclick="anchorLink('allOf_i1')">LogisticalSample</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i1_containerRef" onclick="anchorLink('allOf_i1_containerRef')">containerRef</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i1_containerRef_mxlimsType" onclick="anchorLink('allOf_i1_containerRef_mxlimsType')">mxlimsType</a></div><h4>MxlimsType</h4><span class="badge badge-dark value-type">Type: const</span><br/>
-<span class="description"><p>The type of the MXLIMS object referred to.</p>
-</span><span class="const-value" id="allOf_i1_containerRef_mxlimsType_const">Specific value: <code>"LogisticalSample"</code></span>
-        
-
-        
-        
-
-        
-            </div>
-        </div>
-    </div>
-</div>
-<div class="accordion" id="accordionallOf_i1_containerRef_ref">
-    <div class="card">
-        <div class="card-header" id="headingallOf_i1_containerRef_ref">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i1_containerRef_ref"
-                        aria-expanded="" aria-controls="allOf_i1_containerRef_ref" onclick="setAnchor('#allOf_i1_containerRef_ref')"><span class="property-name">ref</span> <span class="badge badge-warning required-property">Required</span></button>
-            </h2>
-        </div>
-
-        <div id="allOf_i1_containerRef_ref"
-             class="collapse property-definition-div" aria-labelledby="headingallOf_i1_containerRef_ref"
-             data-parent="#accordionallOf_i1_containerRef_ref">
-            <div class="card-body pl-5">
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i1" onclick="anchorLink('allOf_i1')">LogisticalSample</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i1_containerRef" onclick="anchorLink('allOf_i1_containerRef')">containerRef</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i1_containerRef_ref" onclick="anchorLink('allOf_i1_containerRef_ref')">ref</a></div><h4>JSONreference</h4><span class="badge badge-dark value-type">Type: string</span><br/>
-<span class="description"><p>JSON reference to object in std. message, using uuid-based links.</p>
-</span><span class="pattern-value" id="allOf_i1_containerRef_ref_pattern">Must match regular expression: <code>^/LogisticalSample/[a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[1-5][a-fA-F0-9]{3}-?[89abAB][a-fA-F0-9]{3}-?[a-fA-F0-9]{12}$</code></span>
-        
-
-        
-        
-
-        
-            </div>
-        </div>
-    </div>
-</div>
-            </div>
-        </div>
-    </div>
-</div>
         </div></div></div>
         
 
@@ -915,39 +641,6 @@
         
 
         
-<div class="accordion" id="accordionsampleRef">
-    <div class="card">
-        <div class="card-header" id="headingsampleRef">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#sampleRef"
-                        aria-expanded="" aria-controls="sampleRef" onclick="setAnchor('#sampleRef')"><span class="property-name">sampleRef</span></button>
-            </h2>
-        </div>
-
-        <div id="sampleRef"
-             class="collapse property-definition-div" aria-labelledby="headingsampleRef"
-             data-parent="#accordionsampleRef">
-            <div class="card-body pl-5">
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#sampleRef" onclick="anchorLink('sampleRef')">sampleRef</a></div><span class="badge badge-dark value-type">Type: null</span> <span class="badge badge-success default-value">Default: null</span><br/>
-
-        
-
-        
-        
-
-        
-            </div>
-        </div>
-    </div>
-</div>
 <div class="accordion" id="accordioncontainerRef">
     <div class="card">
         <div class="card-header" id="headingcontainerRef">
@@ -969,7 +662,79 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#containerRef" onclick="anchorLink('containerRef')">containerRef</a></div><h4>DewarRef</h4><span class="badge badge-dark value-type">Type: object</span><br/>
+    <a href="#containerRef" onclick="anchorLink('containerRef')">containerRef</a></div><br/>
+<div class="all-of-value" id="containerRef_allOf"><h2 class="handle">
+  <label>All of</label>
+</h2><ul class="nav nav-tabs" id="tabscontainerRef_allOf_allOf" role="tablist"><li class="nav-item">
+            <a class="nav-link active allOf-option"
+               id="containerRef_allOf_i0" data-toggle="tab" href="#tab-pane_containerRef_allOf_i0" role="tab"
+               onclick="setAnchor('#containerRef_allOf_i0')"
+            >Requirement 1</a>
+        </li><li class="nav-item">
+            <a class="nav-link allOf-option"
+               id="containerRef_allOf_i1" data-toggle="tab" href="#tab-pane_containerRef_allOf_i1" role="tab"
+               onclick="setAnchor('#containerRef_allOf_i1')"
+            >DewarRef</a>
+        </li></ul>
+<div class="tab-content card"><div class="tab-pane fade card-body active show"
+             id="tab-pane_containerRef_allOf_i0" role="tabpanel">
+            
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#containerRef" onclick="anchorLink('containerRef')">containerRef</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#containerRef_allOf" onclick="anchorLink('containerRef_allOf')">allOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#containerRef_allOf_i0" onclick="anchorLink('containerRef_allOf_i0')">item 0</a></div><span class="badge badge-dark value-type">Type: object</span><br/>
+
+        
+
+        
+        
+
+        
+        </div><div class="tab-pane fade card-body "
+             id="tab-pane_containerRef_allOf_i1" role="tabpanel">
+            
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#containerRef" onclick="anchorLink('containerRef')">containerRef</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#containerRef_allOf" onclick="anchorLink('containerRef_allOf')">allOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#containerRef_allOf_i1" onclick="anchorLink('containerRef_allOf_i1')">DewarRef</a></div><h4>DewarRef</h4><span class="badge badge-dark value-type">Type: object</span><br/>
 <span class="description"><p>Reference to Dewar</p>
 </span>
 
@@ -980,18 +745,18 @@
         
 
         
-<div class="accordion" id="accordioncontainerRef_mxlimsType">
+<div class="accordion" id="accordioncontainerRef_allOf_i1_mxlimsType">
     <div class="card">
-        <div class="card-header" id="headingcontainerRef_mxlimsType">
+        <div class="card-header" id="headingcontainerRef_allOf_i1_mxlimsType">
             <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#containerRef_mxlimsType"
-                        aria-expanded="" aria-controls="containerRef_mxlimsType" onclick="setAnchor('#containerRef_mxlimsType')"><span class="property-name">mxlimsType</span></button>
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#containerRef_allOf_i1_mxlimsType"
+                        aria-expanded="" aria-controls="containerRef_allOf_i1_mxlimsType" onclick="setAnchor('#containerRef_allOf_i1_mxlimsType')"><span class="property-name">mxlimsType</span></button>
             </h2>
         </div>
 
-        <div id="containerRef_mxlimsType"
-             class="collapse property-definition-div" aria-labelledby="headingcontainerRef_mxlimsType"
-             data-parent="#accordioncontainerRef_mxlimsType">
+        <div id="containerRef_allOf_i1_mxlimsType"
+             class="collapse property-definition-div" aria-labelledby="headingcontainerRef_allOf_i1_mxlimsType"
+             data-parent="#accordioncontainerRef_allOf_i1_mxlimsType">
             <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
@@ -1008,9 +773,23 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#containerRef_mxlimsType" onclick="anchorLink('containerRef_mxlimsType')">mxlimsType</a></div><h4>MxlimsType</h4><span class="badge badge-dark value-type">Type: const</span><br/>
+    <a href="#containerRef_allOf" onclick="anchorLink('containerRef_allOf')">allOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#containerRef_allOf_i1" onclick="anchorLink('containerRef_allOf_i1')">DewarRef</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#containerRef_allOf_i1_mxlimsType" onclick="anchorLink('containerRef_allOf_i1_mxlimsType')">mxlimsType</a></div><h4>MxlimsType</h4><span class="badge badge-dark value-type">Type: const</span><br/>
 <span class="description"><p>The type of the MXLIMS object referred to.</p>
-</span><span class="const-value" id="containerRef_mxlimsType_const">Specific value: <code>"Dewar"</code></span>
+</span><span class="const-value" id="containerRef_allOf_i1_mxlimsType_const">Specific value: <code>"Dewar"</code></span>
         
 
         
@@ -1021,18 +800,18 @@
         </div>
     </div>
 </div>
-<div class="accordion" id="accordioncontainerRef_ref">
+<div class="accordion" id="accordioncontainerRef_allOf_i1_ref">
     <div class="card">
-        <div class="card-header" id="headingcontainerRef_ref">
+        <div class="card-header" id="headingcontainerRef_allOf_i1_ref">
             <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#containerRef_ref"
-                        aria-expanded="" aria-controls="containerRef_ref" onclick="setAnchor('#containerRef_ref')"><span class="property-name">ref</span> <span class="badge badge-warning required-property">Required</span></button>
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#containerRef_allOf_i1_ref"
+                        aria-expanded="" aria-controls="containerRef_allOf_i1_ref" onclick="setAnchor('#containerRef_allOf_i1_ref')"><span class="property-name">$ref</span> <span class="badge badge-warning required-property">Required</span></button>
             </h2>
         </div>
 
-        <div id="containerRef_ref"
-             class="collapse property-definition-div" aria-labelledby="headingcontainerRef_ref"
-             data-parent="#accordioncontainerRef_ref">
+        <div id="containerRef_allOf_i1_ref"
+             class="collapse property-definition-div" aria-labelledby="headingcontainerRef_allOf_i1_ref"
+             data-parent="#accordioncontainerRef_allOf_i1_ref">
             <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
@@ -1049,9 +828,23 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#containerRef_ref" onclick="anchorLink('containerRef_ref')">ref</a></div><h4>JSONreference</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+    <a href="#containerRef_allOf" onclick="anchorLink('containerRef_allOf')">allOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#containerRef_allOf_i1" onclick="anchorLink('containerRef_allOf_i1')">DewarRef</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#containerRef_allOf_i1_ref" onclick="anchorLink('containerRef_allOf_i1_ref')">$ref</a></div><h4>JSONreference</h4><span class="badge badge-dark value-type">Type: string</span><br/>
 <span class="description"><p>JSON reference to object in std. message, using uuid-based links.</p>
-</span><span class="pattern-value" id="containerRef_ref_pattern">Must match regular expression: <code>^/Dewar/[a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[1-5][a-fA-F0-9]{3}-?[89abAB][a-fA-F0-9]{3}-?[a-fA-F0-9]{12}$</code></span>
+</span><span class="pattern-value" id="containerRef_allOf_i1_ref_pattern">Must match regular expression: <code>^/Dewar/[a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[1-5][a-fA-F0-9]{3}-?[89abAB][a-fA-F0-9]{3}-?[a-fA-F0-9]{12}$</code></span>
         
 
         
@@ -1062,6 +855,13 @@
         </div>
     </div>
 </div>
+        </div></div></div>
+        
+
+        
+        
+
+        
             </div>
         </div>
     </div>

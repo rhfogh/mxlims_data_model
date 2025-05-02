@@ -29,27 +29,27 @@
         },
         "referenceDataIds": {
             "type": "array",
+            "description": "uuid for reference Datasets",
+            "title": "ReferenceDataId",
             "items": {
-                "description": "uuid for reference Datasets",
-                "title": "ReferenceDataId",
                 "type": "string",
                 "format": "uuid"
             }
         },
         "templateDataIds": {
             "type": "array",
+            "description": "uuid for template Datasets",
+            "title": "TemplateDataId",
             "items": {
-                "description": "uuid for template Datasets",
-                "title": "TemplateDataId",
                 "type": "string",
                 "format": "uuid"
             }
         },
         "inputDataIds": {
             "type": "array",
+            "description": "uuid for input Datasets",
+            "title": "InputDataId",
             "items": {
-                "description": "uuid for input Datasets",
-                "title": "InputDataId",
                 "type": "string",
                 "format": "uuid"
             }

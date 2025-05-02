@@ -30,7 +30,7 @@
                     "reverseLinkName": "derivedDatasets"
                 },
                 {
-                    "$ref": "../references/MxProcessingRef.json"
+                    "$ref": "../references/ReflectionSetRef.json"
                 }
             ]
         },

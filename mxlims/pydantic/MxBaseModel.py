@@ -29,6 +29,11 @@ class BaseModel(PydanticBaseModel):
     def mxlims_base_type(self):
         pass
 
+    @property
+    @abc.abstractmethod
+    def mxlims_type(self):
+        pass
+
     def __init__(self, /, **data: Any) -> None:
         super().__init__(**data)
         obj_by_id = self._objects_by_id[self.mxlims_base_type]

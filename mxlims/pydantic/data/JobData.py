@@ -4,7 +4,7 @@
 from __future__ import annotations
 
 from datetime import datetime
-from typing import Optional
+from typing import Literal, Optional
 
 from pydantic import Field
 
@@ -17,6 +17,12 @@ class JobData(MxlimsObjectData):
     Base class for MXLIMS Jobs - an experiment or calculation producing Datasets
     """
 
+    mxlims_base_type: Literal["Job"] = Field(
+        "Job",
+        alias="mxlimsBaseType",
+        description="The abstract (super)type of MXLIMS object.",
+        title="MxlimsBaseType",
+    )
     start_time: Optional[datetime] = Field(
         None,
         alias="startTime",

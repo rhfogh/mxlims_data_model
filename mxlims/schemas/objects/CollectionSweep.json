@@ -10,7 +10,7 @@
         {
             "$ref": "../data/DatasetData.json"
         }
-    ]s
+    ],
     "properties": {
         "sourceRef": {
             "allOf": [

@@ -1,24 +1,25 @@
 {
-    "$schema": "https://json-schema.org/draft-07/schema",
-    "description": "Reference to DropRegion",
-    "title": "DropRegionRef",
-    "type": "object",
-    "properties": {
-        "mxlimsType": {
-            "description": "The type of the MXLIMS object referred to.",
-            "title": "MxlimsType",
-            "type": "string",
-            "const": "DropRegion"
+        "$schema": "https://json-schema.org/draft-07/schema",
+        "description": "Reference to DropRegion",
+        "title": "DropRegionRef",
+        "type": "object",
+        "properties": {
+            "mxlimsType": {
+                "description": "The type of the MXLIMS object referred to.",
+                "title": "MxlimsType",
+                "type": "string",
+                "const": "DropRegion"
+            },
+            "$ref": {
+                "description": "JSON reference to object in std. message, using uuid-based links.",
+                "title": "JSONreference",
+                "type": "string",
+                "pattern": "^/DropRegion/[a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[1-5][a-fA-F0-9]{3}-?[89abAB][a-fA-F0-9]{3}-?[a-fA-F0-9]{12}$"
+            }
         },
-        "#ref": {
-            "description": "JSON reference to object in std. message, using uuid-based links.",
-            "title": "JSONreference",
-            "type": "string",
-            "pattern": "^/DropRegion/[a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[1-5][a-fA-F0-9]{3}-?[89abAB][a-fA-F0-9]{3}-?[a-fA-F0-9]{12}$"
-        }
-    },
-    "required": [
-        "$ref"
-    ],
-    "additionalProperties": false
-}
+        "required": [
+            "$ref"
+        ],
+        "additionalProperties": false
+    }
+    

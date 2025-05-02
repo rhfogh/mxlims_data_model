@@ -9,7 +9,6 @@ from mxlims.pydantic.MxBaseModel import BaseModel
 
 from pydantic import Field
 
-from ..core.UuidStub import UuidStub
 from ..objects.CollectionSweep import CollectionSweep
 from ..objects.Crystal import Crystal
 from ..objects.CrystallographicSample import CrystallographicSample
@@ -25,6 +24,7 @@ from ..objects.Puck import Puck
 from ..objects.ReflectionSet import ReflectionSet
 from ..objects.Shipment import Shipment
 from ..objects.WellDrop import WellDrop
+from .UuidStub import UuidStub
 
 
 class MxlimsMessage(BaseModel):

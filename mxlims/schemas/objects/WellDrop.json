@@ -5,7 +5,7 @@
     "type": "object",
     "allOf": [
         {
-            "$ref": "../data/PlateWellData.json"
+            "$ref": "../data/WellDropData.json"
         },
         {
             "$ref": "../data/LogisticalSampleData.json"
@@ -25,7 +25,7 @@
         "containerRef": {
             "allOf": [
                 {
-                    "reverseLinkName": "logisticalSamples"
+                    "reverseLinkName": "contents"
                 },
                 {
                     "$ref": "../references/PlateWellRef.json"

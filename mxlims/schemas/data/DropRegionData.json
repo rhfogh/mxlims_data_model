@@ -11,6 +11,8 @@
             "type": "string"
         },
         "region": {
+            "description": "The region data (either ImageRegion or PlateRegion).",
+            "title": "Region",
             "oneOf": [
                 {"$ref": "../datatypes/ImageRegion.json"},
                 {"$ref": "../datatypes/PlateRegion.json"}

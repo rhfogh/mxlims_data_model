@@ -13,14 +13,6 @@
     ],
     "properties": {
         "sampleRef": {
-            "$ref": "../references/CrystallographicSampleRef.json"
-        },
-        "containerRef": {
-            "$ref": "../references/WellDropRef.json"
-        }
-    },
-    "properties": {
-        "sampleRef": {
             "allOf": [
                 {
                     "reverseLinkName": "logisticalSamples"
@@ -33,7 +25,7 @@
         "containerRef": {
             "allOf": [
                 {
-                    "reverseLinkName": "logisticalSamples"
+                    "reverseLinkName": "contents"
                 },
                 {
                     "$ref": "../references/WellDropRef.json"

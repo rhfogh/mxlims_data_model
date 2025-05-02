@@ -18,8 +18,8 @@ class MxProcessingData(BaseModel):
     Crystallography Processing calculation,
     """
 
-    mxlims_type: Literal["MXProcessing"] = Field(
-        "MXProcessing",
+    mxlims_type: Literal["MxProcessing"] = Field(
+        "MxProcessing",
         alias="mxlimsType",
         description="Type of MXLIMS object.",
         title="MxlimsType",

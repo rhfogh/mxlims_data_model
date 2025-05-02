@@ -24,4 +24,8 @@ class DropRegionData(BaseModel):
         description="The type of MXLIMS object.",
         title="MxlimsType",
     )
-    region: Union[ImageRegion, PlateRegion]
+    region: Union[ImageRegion, PlateRegion] = Field(
+        ...,
+        description="The region data (either ImageRegion or PlateRegion).",
+        title="Region",
+    )

@@ -15,7 +15,7 @@
         "containerRef": {
             "allOf": [
                 {
-                    "reverseLinkName": "logisticalSamples"
+                    "reverseLinkName": "contents"
                 },
                 {
                     "$ref": "../references/DewarRef.json"

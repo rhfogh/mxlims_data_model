@@ -165,7 +165,7 @@ class CollectionSweepData(BaseModel):
     )
     scans: Optional[List[Scan]] = Field(
         None,
-        description="List of Scans i.e. subdivisions of CollectionSweepNB Scans need not be contiguous or in order or add up to entire sweep",
+        description="List of Scans i.e. subdivisions of CollectionSweep. NB Scans need not be contiguous or in order or add up to entire sweep",
         title="Scans",
     )
     file_type: Optional[str] = Field(
