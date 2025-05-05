@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 from typing import Optional, Union
+from mxlims.pydantic.MxBaseModel import MxlimsImplementation
 from ..core.LogisticalSample import LogisticalSample
 from ..data.LogisticalSampleData import LogisticalSampleData
 from ..data.PlateWellData import PlateWellData
@@ -14,70 +15,71 @@ from .Plate import Plate
 from .ReflectionSet import ReflectionSet
 from .WellDrop import WellDrop
 
-class PlateWell(PlateWellData, LogisticalSampleData, LogisticalSample):
+class PlateWell(PlateWellData, LogisticalSampleData, LogisticalSample, MxlimsImplementation):
     """MXLIMS pydantic model class for PlateWell
     """
     
     @property
     def container(self) -> Optional[Plate]:
         """getter for PlateWell.container"""
-        return self.objects_by_id["LogisticalSample"].get(self.container_id)
-    
+        return self._get_link_n1("LogisticalSample", "container_id")
+
     @container.setter
     def container(self, value: Optional[Plate]):
         """setter for PlateWell.container"""
-        if value:
-            if not isinstance(value, Plate):
-                raise ValueError(
-                    "container must be of type Plate"
-                )
-            self.container_id = value.uuid
+        if value is None or isinstance(value, Plate):
+            self._set_link_n1("LogisticalSample", "container_id", value)
         else:
-            self.container_id = None
+            raise ValueError("container must be of type Plate or None")
 
     @property
     def contents(self) -> list[WellDrop]:
         """getter for PlateWell.contents list"""
-        uid = self.uuid
-        result = []
-        for obj in self.objects_by_id["LogisticalSample"]:
-            if uid == obj.container_id:
-                result.append(obj)
-        return result
-    
+        return self._get_link_1n("LogisticalSample", "container_id")
+
+    @contents.setter
+    def contents(self, values: list[WellDrop]):
+        """setter for PlateWell.contents list"""
+        for obj in values:
+            if not isinstance(obj, WellDrop):
+                raise ValueError("%s is not of type WellDrop" % obj)
+        self._set_link_1n_rev("LogisticalSample", "container_id", values)
+
     @property
     def datasets(self) -> list[Union[CollectionSweep, ReflectionSet]]:
         """getter for PlateWell.datasets list"""
-        uid = self.uuid
-        result = []
-        for obj in self.objects_by_id["Dataset"]:
-            if uid == obj.logistical_sample_id:
-                result.append(obj)
-        return result
-    
+        return self._get_link_1n("Dataset", "logistical_sample_id")
+
+    @datasets.setter
+    def datasets(self, values: list[Union[CollectionSweep, ReflectionSet]]):
+        """setter for PlateWell.datasets list"""
+        for obj in values:
+            if not isinstance(obj, Union[CollectionSweep, ReflectionSet]):
+                raise ValueError("%s is not of type Union[CollectionSweep, ReflectionSet]" % obj)
+        self._set_link_1n_rev("Dataset", "logistical_sample_id", values)
+
     @property
     def jobs(self) -> list[Union[MxExperiment, MxProcessing]]:
         """getter for PlateWell.jobs list"""
-        uid = self.uuid
-        result = []
-        for obj in self.objects_by_id["Job"]:
-            if uid == obj.logistical_sample_id:
-                result.append(obj)
-        return result
-    
+        return self._get_link_1n("Job", "logistical_sample_id")
+
+    @jobs.setter
+    def jobs(self, values: list[Union[MxExperiment, MxProcessing]]):
+        """setter for PlateWell.jobs list"""
+        for obj in values:
+            if not isinstance(obj, Union[MxExperiment, MxProcessing]):
+                raise ValueError("%s is not of type Union[MxExperiment, MxProcessing]" % obj)
+        self._set_link_1n_rev("Job", "logistical_sample_id", values)
+
     @property
     def sample(self) -> Optional[CrystallographicSample]:
         """getter for PlateWell.sample"""
-        return self.objects_by_id["PreparedSample"].get(self.sample_id)
-    
+        return self._get_link_n1("PreparedSample", "sample_id")
+
     @sample.setter
     def sample(self, value: Optional[CrystallographicSample]):
         """setter for PlateWell.sample"""
-        if value:
-            if not isinstance(value, CrystallographicSample):
-                raise ValueError(
-                    "sample must be of type CrystallographicSample"
-                )
-            self.sample_id = value.uuid
+        if value is None or isinstance(value, CrystallographicSample):
+            self._set_link_n1("PreparedSample", "sample_id", value)
         else:
-            self.sample_id = None
+            raise ValueError("sample must be of type CrystallographicSample or None")

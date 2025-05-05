@@ -44,6 +44,8 @@ def generate_mxlims(dirname: Optional[str] = None) -> None :
         mxlims_dir = Path.cwd()
 
     object_dicts = extract_object_schemas(mxlims_dir / "mxlims" / "schemas")
+    import pprint
+    pprint.pprint(object_dicts)
     make_json_references(
         mxlims_dir / "mxlims" / "schemas" / "references", object_dicts
     )
@@ -113,26 +115,45 @@ def extract_object_schemas(schema_dir: Path) -> dict:
 
     The structure of the object-defining dict is, e.g. for MxProcessing
     (one link only given) :
-    {
-        "classname": "MxProcessing,
-        "corename": "Job",
-        "links": {
-            "logistical_sample": {
-                "linkname": "logistical_sample",
-                "reversename": "jobs"
-                "typenames": [
-                    "Crystal","Pin","PinPosition","PlateWell","WellDrop","DropRegion",
-                ],
-                "basetypename": "LogisticalSample",
-                "read_only": False,
-                "cardinality": "single",
-                "reverselink: dict() # The equivalent dictionary for the reverse link
+    'MxProcessing': {
+        'classname': 'MxProcessing',
+        'corename': 'Job',
+        'links': {
+            'input_data': {
+                'basetypename': 'Dataset',
+                'cardinality': 'multiple',
+                'linkname': 'input_data',
+                'read_only': False,
+                'reverselink': {
+                    'basetypename': 'Job',
+                    'cardinality': 'multiple',
+                    'linkname': 'input_for',
+                    'read_only': True,
+                    'reverselink': <Recursion on dict with id=140186879573504>,
+                    'typenames': ['MxProcessing']
+                },
+               'reversename': 'input_for',
+               'typenames': ['CollectionSweep']
             },
-            ...
-        }
-    }
+        'logistical_sample': {
+            'basetypename': 'LogisticalSample',
+            'cardinality': 'single',
+            'linkname': 'logistical_sample',
+            'read_only': False,
+            'reversename': 'jobs',
+            'typenames': [
+                'Crystal',
+                'Pin',
+                'PinPosition',
+                'PlateWell',
+                'WellDrop',
+                'DropRegion'
+            ]
+    },
+
     reverse links (those not depending on uuid stored in this object)
     have no `reversename` element
+    The `rolename` used in the implementation is the forward link name
     """
 
     data = {}
@@ -216,14 +237,15 @@ def extract_object_schemas(schema_dir: Path) -> dict:
                         # NB all reverse links are multiple; there are no one-to-one links
                         revlinkdict = {
                             "linkname": reversename,
-                            "read_only": True,
                             "typenames": [classname],
                             "basetypename": objdict["corename"],
                             "cardinality": "multiple"
                         }
+                        if linkdict.get("read_only"):
+                            revlinkdict["read_only"] = True
                         revobjdict["links"][reversename] = revlinkdict
-                        revlinkdict["reverselink"] = linkdict
-                        linkdict["reverselink"] = revlinkdict
+                    revlinkdict["reverselink"] = linkdict
+                    linkdict["reverselink"] = revlinkdict
                 # NB there will always have been one typename so revobjdict is non-empty
                 linkdict["basetypename"] = revobjdict["corename"]
     #
@@ -251,6 +273,7 @@ def make_pydantic_object(output_dir: Path, objdict: dict) -> None:
 
 from __future__ import annotations
 from typing import Optional, Union
+from mxlims.pydantic.MxBaseModel import MxlimsImplementation
 from ..core.{corename} import {corename}
 from ..data.{corename}Data import {corename}Data
 from ..data.{classname}Data import {classname}Data
@@ -269,7 +292,7 @@ from ..data.{classname}Data import {classname}Data
 
     # Add class definition
     txtlist.append(f'''
-class {classname}({classname}Data, {corename}Data, {corename}):
+class {classname}({classname}Data, {corename}Data, {corename}, MxlimsImplementation):
     """MXLIMS pydantic model class for {classname}
     """
     ''')
@@ -312,22 +335,18 @@ def pydantic_single_link(classname: str, linkdict:dict) -> List[str]:
     @property
     def {linkname}(self) -> Optional[{linktype}]:
         """getter for {classname}.{linkname}"""
-        return self.objects_by_id["{basetypename}"].get(self.{linkname}_id)
-    '''
+        return self._get_link_n1("{basetypename}", "{linkname}_id")
+'''
     ]
     if not linkdict.get("read_only"):
         result.append(f'''
     @{linkname}.setter
     def {linkname}(self, value: Optional[{linktype}]):
         """setter for {classname}.{linkname}"""
-        if value:
-            if not isinstance(value, {linktype}):
-                raise ValueError(
-                    "{linkname} must be of type {linktype}"
-                )
-            self.{linkname}_id = value.uuid
+        if value is None or isinstance(value, {linktype}):
+            self._set_link_n1("{basetypename}", "{linkname}_id", value)
         else:
-            self.{linkname}_id = None
+            raise ValueError("{linkname} must be of type {linktype} or None")
 '''
         )
     #
@@ -346,47 +365,31 @@ def pydantic_multiple_link(classname: str, linkdict:dict) -> List[str]:
     @property
     def {linkname}(self) -> list[{linktype}]:
         """getter for {classname}.{linkname} list"""
-        result = []
-        for uid in self.{linkname}_ids:
-            obj = self.objects_by_id["{basetypename}"].get(uid)
-            if obj:
-                result.append(obj)
-        return result
-    '''
+        return self._get_link_nn("{basetypename}", "{linkname}_ids")
+'''
     ]
 
     if not linkdict.get("read_only"):
         result.append(f'''
     @{linkname}.setter
-    def {linkname}(self, value: list[{linktype}]):
+    def {linkname}(self, values: list[{linktype}]):
         """setter for {classname}.{linkname} list"""
-        uids = []
-        for obj in value:
-            if isinstance(obj, {linktype}):
-                uids.append(obj.uuid)
-            else:
-                raise ValueError("%s is not of type {linktype}" % value)
-        self.{linkname}_ids = uids
+        for obj in values:
+            if not isinstance(obj, {linktype}):
+                raise ValueError("%s is not of type {linktype}" % obj)
+        self._set_link_nn("{basetypename}", "{linkname}_ids", values)
 
     def append_{linkname}(self, value: {linktype}):
         """append to {classname}.{linkname} list"""
         if isinstance(value, {linktype}):
-            uid = value.uuid
-            if uid in self.{linkname}_ids:
-                raise ValueError("%s is already in {classname}.{linkname}" % value)
-            else:
-                self.{linkname}_ids.append(uid)
+            self._append_link_nn("{linkname}_ids", value)
         else:
             raise ValueError("%s is not of type {linktype}" % value)
 
     def remove_{linkname}(self, value: {linktype}):
         """remove from {classname}.{linkname} list"""
         if isinstance(value, {linktype}):
-            uid = value.uuid
-            if uid in self.{linkname}_ids:
-                self.{linkname}_ids.remove(uid)
-            else:
-                raise ValueError("Input %s not found" % value)
+            self._remove_link_nn("{linkname}_ids", value)
         else:
             raise ValueError("%s is not of type {linktype}" % value)
 '''
@@ -400,6 +403,7 @@ def pydantic_multiple_reverse_link(classname: str, linkdict:dict) -> List[str]:
     basetypename = linkdict["basetypename"]
     typenames = linkdict["typenames"]
     reverselink = linkdict["reverselink"]
+    reversename = reverselink["linkname"]
     if len(typenames) == 1:
         linktype = typenames[0]
     else:
@@ -410,103 +414,55 @@ def pydantic_multiple_reverse_link(classname: str, linkdict:dict) -> List[str]:
     @property
     def {linkname}(self) -> list[{linktype}]:
         """getter for {classname}.{linkname} list"""
-        uid = self.uuid
-        result = []
-        for obj in self.objects_by_id["{basetypename}"]:
-            if uid == obj.{reverselink["linkname"]}_id:
-                result.append(obj)
-        return result
-    '''
+        return self._get_link_1n("{basetypename}", "{reversename}_id")
+'''
         ]
     else:
         result = [f'''
     @property
     def {linkname}(self) -> list[{linktype}]:
         """getter for {classname}.{linkname} list"""
-        uid = self.uuid
-        result = []
-        for obj in self.objects_by_id["{basetypename}"]:
-            if uid in obj.{reverselink["linkname"]}_ids:
-                result.append(obj)
-        return result
-    '''
+        return self.get_link_nn_rev("{basetypename}", "{reversename}_ids")
+'''
         ]
 
     if not linkdict.get("read_only"):
         if reverselink["cardinality"] == "single":
-            result.append(f'''
+            result.append(
+                f'''
     @{linkname}.setter
-    def {linkname}(self, value: list[{linktype}]):
+    def {linkname}(self, values: list[{linktype}]):
         """setter for {classname}.{linkname} list"""
-        myuid = self.uuid
-        for obj in value:
-            if isinstance(obj, {linktype}):
-                obj.{reverselink["linkname"]}_id = myuid
-            else:
-                raise ValueError("%s is not of type {linktype}" % value)
-
-    def append_{linkname}(self, value: {linktype}):
-        """append to {classname}.{linkname} list"""
-        myuid = self.uuid
-        if isinstance(value, {linktype}):
-            if value.{reverselink["linkname"]}_id == myuid:
-                raise ValueError("%s is already in {classname}.{linkname}" % value)
-            else:
-                value.{reverselink["linkname"]}_id = myuid
-        else:
-            raise ValueError("%s is not of type {linktype}" % value)
-
-    def remove_{linkname}(self, value: {linktype}):
-        """remove from {classname}.{linkname} list"""
-        if isinstance(value, {linktype}):
-            if value.{reverselink["linkname"]}_id != self.uuid:
-                raise ValueError("%s is not in {classname}.{linkname}" % value)
-            else:
-                value.{reverselink["linkname"]}_id = None
-        else:
-            raise ValueError("%s is not of type {linktype}" % value)
-    '''
+        for obj in values:
+            if not isinstance(obj, {linktype}):
+                raise ValueError("%s is not of type {linktype}" % obj)
+        self._set_link_1n_rev("{basetypename}", "{reversename}_id", values)
+'''
             )
         else:
             # reverse link is multiple
-            result.append(f'''
+            result.append(
+                f'''
     @{linkname}.setter
-    def {linkname}(self, value: list[{linktype}]):
+    def {linkname}(self, values: list[{linktype}]):
         """setter for {classname}.{linkname} list"""
-        myuid = self.uuid
-        for obj in self.objects_by_id["{basetypename}"]:
-            if obj in value:
-                if isinstance(obj, {linktype}):
-                    if myuid not in obj.{reverselink["linkname"]}_ids
-                        obj.{reverselink["linkname"]}_ids.append(myuid)
-                else:
-                    raise ValueError("%s is not of type {linktype}" % value)
-            elif isinstance(obj, {linktype}) and myuid in obj.{reverselink["linkname"]}_ids:
-                obj.{reverselink["linkname"]}_ids.remove(myuid)
-
+        for obj in values:
+            if not isinstance(obj, {linktype}):
+                raise ValueError("%s is not of type {linktype}" % obj)
+        self._set_link_nn_rev("{basetypename}", "{reversename}_ids", values)
+'''
+            )
+            result.append(
+                f'''
     def append_{linkname}(self, value: {linktype}):
         """append to {classname}.{linkname} list"""
-        myuid = self.uuid
-        if isinstance(value, {linktype}):
-            if myuid in value.{reverselink["linkname"]}_id:
-                raise ValueError("%s is already in {classname}.{linkname}" % value)
-            else:
-                value.{reverselink["linkname"]}_ids.append(myuid)
-        else:
-            raise ValueError("%s is not of type {linktype}" % value)
+        value.append_{reversename}(self)
 
     def remove_{linkname}(self, value: {linktype}):
         """remove from {classname}.{linkname} list"""
-        myuid = self.uuid
-        if isinstance(value, {linktype}):
-            if myuid in value.{reverselink["linkname"]}_ids:
-                value.{reverselink["linkname"]}_ids.remove(myuid)
-            else:
-                raise ValueError("%s is not in {classname}.{linkname}" % value)
-        else:
-            raise ValueError("%s is not of type {linktype}" % value)
+        value.remove_{reversename}(self)
     '''
-            )
+                          )
     #
     return result
 

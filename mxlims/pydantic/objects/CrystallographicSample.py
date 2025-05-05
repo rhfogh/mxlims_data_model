@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 from typing import Optional, Union
+from mxlims.pydantic.MxBaseModel import MxlimsImplementation
 from ..core.PreparedSample import PreparedSample
 from ..data.PreparedSampleData import PreparedSampleData
 from ..data.CrystallographicSampleData import CrystallographicSampleData
@@ -15,27 +16,32 @@ from .PinPosition import PinPosition
 from .PlateWell import PlateWell
 from .WellDrop import WellDrop
 
-class CrystallographicSample(CrystallographicSampleData, PreparedSampleData, PreparedSample):
+class CrystallographicSample(CrystallographicSampleData, PreparedSampleData, PreparedSample, MxlimsImplementation):
     """MXLIMS pydantic model class for CrystallographicSample
     """
     
     @property
     def jobs(self) -> list[Union[MxExperiment, MxProcessing]]:
         """getter for CrystallographicSample.jobs list"""
-        uid = self.uuid
-        result = []
-        for obj in self.objects_by_id["Job"]:
-            if uid == obj.sample_id:
-                result.append(obj)
-        return result
-    
+        return self._get_link_1n("Job", "sample_id")
+
+    @jobs.setter
+    def jobs(self, values: list[Union[MxExperiment, MxProcessing]]):
+        """setter for CrystallographicSample.jobs list"""
+        for obj in values:
+            if not isinstance(obj, Union[MxExperiment, MxProcessing]):
+                raise ValueError("%s is not of type Union[MxExperiment, MxProcessing]" % obj)
+        self._set_link_1n_rev("Job", "sample_id", values)
+
     @property
     def logistical_samples(self) -> list[Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]]:
         """getter for CrystallographicSample.logistical_samples list"""
-        uid = self.uuid
-        result = []
-        for obj in self.objects_by_id["LogisticalSample"]:
-            if uid == obj.sample_id:
-                result.append(obj)
-        return result
-    
+        return self._get_link_1n("LogisticalSample", "sample_id")
+
+    @logistical_samples.setter
+    def logistical_samples(self, values: list[Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]]):
+        """setter for CrystallographicSample.logistical_samples list"""
+        for obj in values:
+            if not isinstance(obj, Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]):
+                raise ValueError("%s is not of type Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]" % obj)
+        self._set_link_1n_rev("LogisticalSample", "sample_id", values)

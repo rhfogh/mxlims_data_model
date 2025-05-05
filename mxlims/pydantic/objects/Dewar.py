@@ -3,40 +3,39 @@
 
 from __future__ import annotations
 from typing import Optional, Union
+from mxlims.pydantic.MxBaseModel import MxlimsImplementation
 from ..core.LogisticalSample import LogisticalSample
 from ..data.LogisticalSampleData import LogisticalSampleData
 from ..data.DewarData import DewarData
 from .Puck import Puck
 from .Shipment import Shipment
 
-class Dewar(DewarData, LogisticalSampleData, LogisticalSample):
+class Dewar(DewarData, LogisticalSampleData, LogisticalSample, MxlimsImplementation):
     """MXLIMS pydantic model class for Dewar
     """
     
     @property
     def container(self) -> Optional[Shipment]:
         """getter for Dewar.container"""
-        return self.objects_by_id["LogisticalSample"].get(self.container_id)
-    
+        return self._get_link_n1("LogisticalSample", "container_id")
+
     @container.setter
     def container(self, value: Optional[Shipment]):
         """setter for Dewar.container"""
-        if value:
-            if not isinstance(value, Shipment):
-                raise ValueError(
-                    "container must be of type Shipment"
-                )
-            self.container_id = value.uuid
+        if value is None or isinstance(value, Shipment):
+            self._set_link_n1("LogisticalSample", "container_id", value)
         else:
-            self.container_id = None
+            raise ValueError("container must be of type Shipment or None")
 
     @property
     def contents(self) -> list[Puck]:
         """getter for Dewar.contents list"""
-        uid = self.uuid
-        result = []
-        for obj in self.objects_by_id["LogisticalSample"]:
-            if uid == obj.container_id:
-                result.append(obj)
-        return result
-    
+        return self._get_link_1n("LogisticalSample", "container_id")
+
+    @contents.setter
+    def contents(self, values: list[Puck]):
+        """setter for Dewar.contents list"""
+        for obj in values:
+            if not isinstance(obj, Puck):
+                raise ValueError("%s is not of type Puck" % obj)
+        self._set_link_1n_rev("LogisticalSample", "container_id", values)

@@ -3,23 +3,26 @@
 
 from __future__ import annotations
 from typing import Optional, Union
+from mxlims.pydantic.MxBaseModel import MxlimsImplementation
 from ..core.LogisticalSample import LogisticalSample
 from ..data.LogisticalSampleData import LogisticalSampleData
 from ..data.ShipmentData import ShipmentData
 from .Dewar import Dewar
 from .Plate import Plate
 
-class Shipment(ShipmentData, LogisticalSampleData, LogisticalSample):
+class Shipment(ShipmentData, LogisticalSampleData, LogisticalSample, MxlimsImplementation):
     """MXLIMS pydantic model class for Shipment
     """
     
     @property
     def contents(self) -> list[Union[Dewar, Plate]]:
         """getter for Shipment.contents list"""
-        uid = self.uuid
-        result = []
-        for obj in self.objects_by_id["LogisticalSample"]:
-            if uid == obj.container_id:
-                result.append(obj)
-        return result
-    
+        return self._get_link_1n("LogisticalSample", "container_id")
+
+    @contents.setter
+    def contents(self, values: list[Union[Dewar, Plate]]):
+        """setter for Shipment.contents list"""
+        for obj in values:
+            if not isinstance(obj, Union[Dewar, Plate]):
+                raise ValueError("%s is not of type Union[Dewar, Plate]" % obj)
+        self._set_link_1n_rev("LogisticalSample", "container_id", values)

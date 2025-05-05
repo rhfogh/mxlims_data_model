@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 from typing import Optional, Union
+from mxlims.pydantic.MxBaseModel import MxlimsImplementation
 from ..core.LogisticalSample import LogisticalSample
 from ..data.LogisticalSampleData import LogisticalSampleData
 from ..data.CrystalData import CrystalData
@@ -14,60 +15,58 @@ from .MxProcessing import MxProcessing
 from .PinPosition import PinPosition
 from .ReflectionSet import ReflectionSet
 
-class Crystal(CrystalData, LogisticalSampleData, LogisticalSample):
+class Crystal(CrystalData, LogisticalSampleData, LogisticalSample, MxlimsImplementation):
     """MXLIMS pydantic model class for Crystal
     """
     
     @property
     def container(self) -> Optional[Union[DropRegion, PinPosition]]:
         """getter for Crystal.container"""
-        return self.objects_by_id["LogisticalSample"].get(self.container_id)
-    
+        return self._get_link_n1("LogisticalSample", "container_id")
+
     @container.setter
     def container(self, value: Optional[Union[DropRegion, PinPosition]]):
         """setter for Crystal.container"""
-        if value:
-            if not isinstance(value, Union[DropRegion, PinPosition]):
-                raise ValueError(
-                    "container must be of type Union[DropRegion, PinPosition]"
-                )
-            self.container_id = value.uuid
+        if value is None or isinstance(value, Union[DropRegion, PinPosition]):
+            self._set_link_n1("LogisticalSample", "container_id", value)
         else:
-            self.container_id = None
+            raise ValueError("container must be of type Union[DropRegion, PinPosition] or None")
 
     @property
     def datasets(self) -> list[Union[CollectionSweep, ReflectionSet]]:
         """getter for Crystal.datasets list"""
-        uid = self.uuid
-        result = []
-        for obj in self.objects_by_id["Dataset"]:
-            if uid == obj.logistical_sample_id:
-                result.append(obj)
-        return result
-    
+        return self._get_link_1n("Dataset", "logistical_sample_id")
+
+    @datasets.setter
+    def datasets(self, values: list[Union[CollectionSweep, ReflectionSet]]):
+        """setter for Crystal.datasets list"""
+        for obj in values:
+            if not isinstance(obj, Union[CollectionSweep, ReflectionSet]):
+                raise ValueError("%s is not of type Union[CollectionSweep, ReflectionSet]" % obj)
+        self._set_link_1n_rev("Dataset", "logistical_sample_id", values)
+
     @property
     def jobs(self) -> list[Union[MxExperiment, MxProcessing]]:
         """getter for Crystal.jobs list"""
-        uid = self.uuid
-        result = []
-        for obj in self.objects_by_id["Job"]:
-            if uid == obj.logistical_sample_id:
-                result.append(obj)
-        return result
-    
+        return self._get_link_1n("Job", "logistical_sample_id")
+
+    @jobs.setter
+    def jobs(self, values: list[Union[MxExperiment, MxProcessing]]):
+        """setter for Crystal.jobs list"""
+        for obj in values:
+            if not isinstance(obj, Union[MxExperiment, MxProcessing]):
+                raise ValueError("%s is not of type Union[MxExperiment, MxProcessing]" % obj)
+        self._set_link_1n_rev("Job", "logistical_sample_id", values)
+
     @property
     def sample(self) -> Optional[CrystallographicSample]:
         """getter for Crystal.sample"""
-        return self.objects_by_id["PreparedSample"].get(self.sample_id)
-    
+        return self._get_link_n1("PreparedSample", "sample_id")
+
     @sample.setter
     def sample(self, value: Optional[CrystallographicSample]):
         """setter for Crystal.sample"""
-        if value:
-            if not isinstance(value, CrystallographicSample):
-                raise ValueError(
-                    "sample must be of type CrystallographicSample"
-                )
-            self.sample_id = value.uuid
+        if value is None or isinstance(value, CrystallographicSample):
+            self._set_link_n1("PreparedSample", "sample_id", value)
         else:
-            self.sample_id = None
+            raise ValueError("sample must be of type CrystallographicSample or None")

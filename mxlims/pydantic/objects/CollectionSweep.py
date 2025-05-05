@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 from typing import Optional, Union
+from mxlims.pydantic.MxBaseModel import MxlimsImplementation
 from ..core.Dataset import Dataset
 from ..data.DatasetData import DatasetData
 from ..data.CollectionSweepData import CollectionSweepData
@@ -15,64 +16,77 @@ from .PinPosition import PinPosition
 from .PlateWell import PlateWell
 from .WellDrop import WellDrop
 
-class CollectionSweep(CollectionSweepData, DatasetData, Dataset):
+class CollectionSweep(CollectionSweepData, DatasetData, Dataset, MxlimsImplementation):
     """MXLIMS pydantic model class for CollectionSweep
     """
     
     @property
     def derived_datasets(self) -> list[CollectionSweep]:
         """getter for CollectionSweep.derived_datasets list"""
-        uid = self.uuid
-        result = []
-        for obj in self.objects_by_id["Dataset"]:
-            if uid == obj.derived_from_id:
-                result.append(obj)
-        return result
-    
+        return self._get_link_1n("Dataset", "derived_from_id")
+
     @property
     def derived_from(self) -> Optional[CollectionSweep]:
         """getter for CollectionSweep.derived_from"""
-        return self.objects_by_id["Dataset"].get(self.derived_from_id)
-    
+        return self._get_link_n1("Dataset", "derived_from_id")
+
     @property
     def input_for(self) -> list[MxProcessing]:
         """getter for CollectionSweep.input_for list"""
-        uid = self.uuid
-        result = []
-        for obj in self.objects_by_id["Job"]:
-            if uid in obj.input_data_ids:
-                result.append(obj)
-        return result
+        return self.get_link_nn_rev("Job", "input_data_ids")
+
+    @input_for.setter
+    def input_for(self, values: list[MxProcessing]):
+        """setter for CollectionSweep.input_for list"""
+        for obj in values:
+            if not isinstance(obj, MxProcessing):
+                raise ValueError("%s is not of type MxProcessing" % obj)
+        self._set_link_nn_rev("Job", "input_data_ids", values)
+
+    def append_input_for(self, value: MxProcessing):
+        """append to CollectionSweep.input_for list"""
+        value.append_input_data(self)
+
+    def remove_input_for(self, value: MxProcessing):
+        """remove from CollectionSweep.input_for list"""
+        value.remove_input_data(self)
     
     @property
     def logistical_sample(self) -> Optional[Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]]:
         """getter for CollectionSweep.logistical_sample"""
-        return self.objects_by_id["LogisticalSample"].get(self.logistical_sample_id)
-    
+        return self._get_link_n1("LogisticalSample", "logistical_sample_id")
+
     @logistical_sample.setter
     def logistical_sample(self, value: Optional[Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]]):
         """setter for CollectionSweep.logistical_sample"""
-        if value:
-            if not isinstance(value, Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]):
-                raise ValueError(
-                    "logistical_sample must be of type Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]"
-                )
-            self.logistical_sample_id = value.uuid
+        if value is None or isinstance(value, Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]):
+            self._set_link_n1("LogisticalSample", "logistical_sample_id", value)
         else:
-            self.logistical_sample_id = None
+            raise ValueError("logistical_sample must be of type Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop] or None")
 
     @property
     def source(self) -> Optional[MxExperiment]:
         """getter for CollectionSweep.source"""
-        return self.objects_by_id["Job"].get(self.source_id)
-    
+        return self._get_link_n1("Job", "source_id")
+
     @property
     def template_for(self) -> list[MxExperiment]:
         """getter for CollectionSweep.template_for list"""
-        uid = self.uuid
-        result = []
-        for obj in self.objects_by_id["Job"]:
-            if uid in obj.template_data_ids:
-                result.append(obj)
-        return result
+        return self.get_link_nn_rev("Job", "template_data_ids")
+
+    @template_for.setter
+    def template_for(self, values: list[MxExperiment]):
+        """setter for CollectionSweep.template_for list"""
+        for obj in values:
+            if not isinstance(obj, MxExperiment):
+                raise ValueError("%s is not of type MxExperiment" % obj)
+        self._set_link_nn_rev("Job", "template_data_ids", values)
+
+    def append_template_for(self, value: MxExperiment):
+        """append to CollectionSweep.template_for list"""
+        value.append_template_data(self)
+
+    def remove_template_for(self, value: MxExperiment):
+        """remove from CollectionSweep.template_for list"""
+        value.remove_template_data(self)
     

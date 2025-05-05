@@ -3,40 +3,39 @@
 
 from __future__ import annotations
 from typing import Optional, Union
+from mxlims.pydantic.MxBaseModel import MxlimsImplementation
 from ..core.LogisticalSample import LogisticalSample
 from ..data.LogisticalSampleData import LogisticalSampleData
 from ..data.PuckData import PuckData
 from .Dewar import Dewar
 from .Pin import Pin
 
-class Puck(PuckData, LogisticalSampleData, LogisticalSample):
+class Puck(PuckData, LogisticalSampleData, LogisticalSample, MxlimsImplementation):
     """MXLIMS pydantic model class for Puck
     """
     
     @property
     def container(self) -> Optional[Dewar]:
         """getter for Puck.container"""
-        return self.objects_by_id["LogisticalSample"].get(self.container_id)
-    
+        return self._get_link_n1("LogisticalSample", "container_id")
+
     @container.setter
     def container(self, value: Optional[Dewar]):
         """setter for Puck.container"""
-        if value:
-            if not isinstance(value, Dewar):
-                raise ValueError(
-                    "container must be of type Dewar"
-                )
-            self.container_id = value.uuid
+        if value is None or isinstance(value, Dewar):
+            self._set_link_n1("LogisticalSample", "container_id", value)
         else:
-            self.container_id = None
+            raise ValueError("container must be of type Dewar or None")
 
     @property
     def contents(self) -> list[Pin]:
         """getter for Puck.contents list"""
-        uid = self.uuid
-        result = []
-        for obj in self.objects_by_id["LogisticalSample"]:
-            if uid == obj.container_id:
-                result.append(obj)
-        return result
-    
+        return self._get_link_1n("LogisticalSample", "container_id")
+
+    @contents.setter
+    def contents(self, values: list[Pin]):
+        """setter for Puck.contents list"""
+        for obj in values:
+            if not isinstance(obj, Pin):
+                raise ValueError("%s is not of type Pin" % obj)
+        self._set_link_1n_rev("LogisticalSample", "container_id", values)

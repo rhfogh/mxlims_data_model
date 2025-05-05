@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 from typing import Optional, Union
+from mxlims.pydantic.MxBaseModel import MxlimsImplementation
 from ..core.Dataset import Dataset
 from ..data.DatasetData import DatasetData
 from ..data.ReflectionSetData import ReflectionSetData
@@ -15,64 +16,77 @@ from .PinPosition import PinPosition
 from .PlateWell import PlateWell
 from .WellDrop import WellDrop
 
-class ReflectionSet(ReflectionSetData, DatasetData, Dataset):
+class ReflectionSet(ReflectionSetData, DatasetData, Dataset, MxlimsImplementation):
     """MXLIMS pydantic model class for ReflectionSet
     """
     
     @property
     def derived_datasets(self) -> list[ReflectionSet]:
         """getter for ReflectionSet.derived_datasets list"""
-        uid = self.uuid
-        result = []
-        for obj in self.objects_by_id["Dataset"]:
-            if uid == obj.derived_from_id:
-                result.append(obj)
-        return result
-    
+        return self._get_link_1n("Dataset", "derived_from_id")
+
     @property
     def derived_from(self) -> Optional[ReflectionSet]:
         """getter for ReflectionSet.derived_from"""
-        return self.objects_by_id["Dataset"].get(self.derived_from_id)
-    
+        return self._get_link_n1("Dataset", "derived_from_id")
+
     @property
     def logistical_sample(self) -> Optional[Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]]:
         """getter for ReflectionSet.logistical_sample"""
-        return self.objects_by_id["LogisticalSample"].get(self.logistical_sample_id)
-    
+        return self._get_link_n1("LogisticalSample", "logistical_sample_id")
+
     @logistical_sample.setter
     def logistical_sample(self, value: Optional[Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]]):
         """setter for ReflectionSet.logistical_sample"""
-        if value:
-            if not isinstance(value, Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]):
-                raise ValueError(
-                    "logistical_sample must be of type Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]"
-                )
-            self.logistical_sample_id = value.uuid
+        if value is None or isinstance(value, Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]):
+            self._set_link_n1("LogisticalSample", "logistical_sample_id", value)
         else:
-            self.logistical_sample_id = None
+            raise ValueError("logistical_sample must be of type Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop] or None")
 
     @property
     def reference_for(self) -> list[Union[MxExperiment, MxProcessing]]:
         """getter for ReflectionSet.reference_for list"""
-        uid = self.uuid
-        result = []
-        for obj in self.objects_by_id["Job"]:
-            if uid in obj.reference_data_ids:
-                result.append(obj)
-        return result
+        return self.get_link_nn_rev("Job", "reference_data_ids")
+
+    @reference_for.setter
+    def reference_for(self, values: list[Union[MxExperiment, MxProcessing]]):
+        """setter for ReflectionSet.reference_for list"""
+        for obj in values:
+            if not isinstance(obj, Union[MxExperiment, MxProcessing]):
+                raise ValueError("%s is not of type Union[MxExperiment, MxProcessing]" % obj)
+        self._set_link_nn_rev("Job", "reference_data_ids", values)
+
+    def append_reference_for(self, value: Union[MxExperiment, MxProcessing]):
+        """append to ReflectionSet.reference_for list"""
+        value.append_reference_data(self)
+
+    def remove_reference_for(self, value: Union[MxExperiment, MxProcessing]):
+        """remove from ReflectionSet.reference_for list"""
+        value.remove_reference_data(self)
     
     @property
     def source(self) -> Optional[MxProcessing]:
         """getter for ReflectionSet.source"""
-        return self.objects_by_id["Job"].get(self.source_id)
-    
+        return self._get_link_n1("Job", "source_id")
+
     @property
     def template_for(self) -> list[MxProcessing]:
         """getter for ReflectionSet.template_for list"""
-        uid = self.uuid
-        result = []
-        for obj in self.objects_by_id["Job"]:
-            if uid in obj.template_data_ids:
-                result.append(obj)
-        return result
+        return self.get_link_nn_rev("Job", "template_data_ids")
+
+    @template_for.setter
+    def template_for(self, values: list[MxProcessing]):
+        """setter for ReflectionSet.template_for list"""
+        for obj in values:
+            if not isinstance(obj, MxProcessing):
+                raise ValueError("%s is not of type MxProcessing" % obj)
+        self._set_link_nn_rev("Job", "template_data_ids", values)
+
+    def append_template_for(self, value: MxProcessing):
+        """append to ReflectionSet.template_for list"""
+        value.append_template_data(self)
+
+    def remove_template_for(self, value: MxProcessing):
+        """remove from ReflectionSet.template_for list"""
+        value.remove_template_data(self)
     

@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 from typing import Optional, Union
+from mxlims.pydantic.MxBaseModel import MxlimsImplementation
 from ..core.Job import Job
 from ..data.JobData import JobData
 from ..data.MxExperimentData import MxExperimentData
@@ -16,151 +17,101 @@ from .PlateWell import PlateWell
 from .ReflectionSet import ReflectionSet
 from .WellDrop import WellDrop
 
-class MxExperiment(MxExperimentData, JobData, Job):
+class MxExperiment(MxExperimentData, JobData, Job, MxlimsImplementation):
     """MXLIMS pydantic model class for MxExperiment
     """
     
     @property
     def logistical_sample(self) -> Optional[Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]]:
         """getter for MxExperiment.logistical_sample"""
-        return self.objects_by_id["LogisticalSample"].get(self.logistical_sample_id)
-    
+        return self._get_link_n1("LogisticalSample", "logistical_sample_id")
+
     @logistical_sample.setter
     def logistical_sample(self, value: Optional[Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]]):
         """setter for MxExperiment.logistical_sample"""
-        if value:
-            if not isinstance(value, Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]):
-                raise ValueError(
-                    "logistical_sample must be of type Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]"
-                )
-            self.logistical_sample_id = value.uuid
+        if value is None or isinstance(value, Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]):
+            self._set_link_n1("LogisticalSample", "logistical_sample_id", value)
         else:
-            self.logistical_sample_id = None
+            raise ValueError("logistical_sample must be of type Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop] or None")
 
     @property
     def reference_data(self) -> list[ReflectionSet]:
         """getter for MxExperiment.reference_data list"""
-        result = []
-        for uid in self.reference_data_ids:
-            obj = self.objects_by_id["Dataset"].get(uid)
-            if obj:
-                result.append(obj)
-        return result
-    
+        return self._get_link_nn("Dataset", "reference_data_ids")
+
     @reference_data.setter
-    def reference_data(self, value: list[ReflectionSet]):
+    def reference_data(self, values: list[ReflectionSet]):
         """setter for MxExperiment.reference_data list"""
-        uids = []
-        for obj in value:
-            if isinstance(obj, ReflectionSet):
-                uids.append(obj.uuid)
-            else:
-                raise ValueError("%s is not of type ReflectionSet" % value)
-        self.reference_data_ids = uids
+        for obj in values:
+            if not isinstance(obj, ReflectionSet):
+                raise ValueError("%s is not of type ReflectionSet" % obj)
+        self._set_link_nn("Dataset", "reference_data_ids", values)
 
     def append_reference_data(self, value: ReflectionSet):
         """append to MxExperiment.reference_data list"""
         if isinstance(value, ReflectionSet):
-            uid = value.uuid
-            if uid in self.reference_data_ids:
-                raise ValueError("%s is already in MxExperiment.reference_data" % value)
-            else:
-                self.reference_data_ids.append(uid)
+            self._append_link_nn("reference_data_ids", value)
         else:
             raise ValueError("%s is not of type ReflectionSet" % value)
 
     def remove_reference_data(self, value: ReflectionSet):
         """remove from MxExperiment.reference_data list"""
         if isinstance(value, ReflectionSet):
-            uid = value.uuid
-            if uid in self.reference_data_ids:
-                self.reference_data_ids.remove(uid)
-            else:
-                raise ValueError("Input %s not found" % value)
+            self._remove_link_nn("reference_data_ids", value)
         else:
             raise ValueError("%s is not of type ReflectionSet" % value)
 
     @property
     def results(self) -> list[CollectionSweep]:
         """getter for MxExperiment.results list"""
-        uid = self.uuid
-        result = []
-        for obj in self.objects_by_id["Dataset"]:
-            if uid == obj.source_id:
-                result.append(obj)
-        return result
-    
+        return self._get_link_1n("Dataset", "source_id")
+
     @property
     def sample(self) -> Optional[CrystallographicSample]:
         """getter for MxExperiment.sample"""
-        return self.objects_by_id["PreparedSample"].get(self.sample_id)
-    
+        return self._get_link_n1("PreparedSample", "sample_id")
+
     @sample.setter
     def sample(self, value: Optional[CrystallographicSample]):
         """setter for MxExperiment.sample"""
-        if value:
-            if not isinstance(value, CrystallographicSample):
-                raise ValueError(
-                    "sample must be of type CrystallographicSample"
-                )
-            self.sample_id = value.uuid
+        if value is None or isinstance(value, CrystallographicSample):
+            self._set_link_n1("PreparedSample", "sample_id", value)
         else:
-            self.sample_id = None
+            raise ValueError("sample must be of type CrystallographicSample or None")
 
     @property
     def started_from(self) -> Optional[MxExperiment]:
         """getter for MxExperiment.started_from"""
-        return self.objects_by_id["Job"].get(self.started_from_id)
-    
+        return self._get_link_n1("Job", "started_from_id")
+
     @property
     def subjobs(self) -> list[MxExperiment]:
         """getter for MxExperiment.subjobs list"""
-        uid = self.uuid
-        result = []
-        for obj in self.objects_by_id["Job"]:
-            if uid == obj.started_from_id:
-                result.append(obj)
-        return result
-    
+        return self._get_link_1n("Job", "started_from_id")
+
     @property
     def template_data(self) -> list[CollectionSweep]:
         """getter for MxExperiment.template_data list"""
-        result = []
-        for uid in self.template_data_ids:
-            obj = self.objects_by_id["Dataset"].get(uid)
-            if obj:
-                result.append(obj)
-        return result
-    
+        return self._get_link_nn("Dataset", "template_data_ids")
+
     @template_data.setter
-    def template_data(self, value: list[CollectionSweep]):
+    def template_data(self, values: list[CollectionSweep]):
         """setter for MxExperiment.template_data list"""
-        uids = []
-        for obj in value:
-            if isinstance(obj, CollectionSweep):
-                uids.append(obj.uuid)
-            else:
-                raise ValueError("%s is not of type CollectionSweep" % value)
-        self.template_data_ids = uids
+        for obj in values:
+            if not isinstance(obj, CollectionSweep):
+                raise ValueError("%s is not of type CollectionSweep" % obj)
+        self._set_link_nn("Dataset", "template_data_ids", values)
 
     def append_template_data(self, value: CollectionSweep):
         """append to MxExperiment.template_data list"""
         if isinstance(value, CollectionSweep):
-            uid = value.uuid
-            if uid in self.template_data_ids:
-                raise ValueError("%s is already in MxExperiment.template_data" % value)
-            else:
-                self.template_data_ids.append(uid)
+            self._append_link_nn("template_data_ids", value)
         else:
             raise ValueError("%s is not of type CollectionSweep" % value)
 
     def remove_template_data(self, value: CollectionSweep):
         """remove from MxExperiment.template_data list"""
         if isinstance(value, CollectionSweep):
-            uid = value.uuid
-            if uid in self.template_data_ids:
-                self.template_data_ids.remove(uid)
-            else:
-                raise ValueError("Input %s not found" % value)
+            self._remove_link_nn("template_data_ids", value)
         else:
             raise ValueError("%s is not of type CollectionSweep" % value)
