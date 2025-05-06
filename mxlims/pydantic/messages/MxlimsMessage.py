@@ -10,11 +10,11 @@ from pydantic import Field
 from .DatasetStub import DatasetStub
 from .JobStub import JobStub
 from .LogisticalSampleStub import LogisticalSampleStub
-from .MxlimsMessageStrict import MxlimsMessage as MxlimsMessage_1
+from .MxlimsMessageStrict import MxlimsMessageStrict
 from .PreparedSampleStub import PreparedSampleStub
 
 
-class MxlimsMessage(MxlimsMessage_1):
+class MxlimsMessage(MxlimsMessageStrict):
     """
     Message containing all possible objects, by type
     """

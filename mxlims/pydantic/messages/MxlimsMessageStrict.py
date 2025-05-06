@@ -26,7 +26,7 @@ from ..objects.Shipment import Shipment
 from ..objects.WellDrop import WellDrop
 
 
-class MxlimsMessage(BaseModel):
+class MxlimsMessageStrict(BaseModel):
     """
     Message containing all possible objects, by type
     """
