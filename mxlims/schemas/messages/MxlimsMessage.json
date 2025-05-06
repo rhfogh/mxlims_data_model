@@ -3,230 +3,42 @@
     "description": "Message containing all possible objects, by type",
     "title": "MxlimsMessage",
     "type": "object",
+    "allOf": [
+        {
+            "$ref": "../messages/MxlimsMessageStrict.json"
+        }
+    ],
     "properties": {
-        "CollectionSweep": {
-            "description": "Uuid:object dictionary of CollectionSweeps.",
-            "title": "CollectionSweeps",
+        "Dataset": {
+            "description": "Uuid:object dictionary of Dataset stubs.",
+            "title": "Datasets",
             "type": "object",
             "additionalProperties": {
-                "anyOf": [
-                    {
-                        "$ref": "../objects/CollectionSweep.json"
-                    },
-                    {
-                        "$ref": "../messages/UuidStub.json"
-                    }
-                ]
+                "$ref": "../messages/DatasetStub.json"
             }
         },
-        "Crystal": {
-            "description": "Uuid:object dictionary of Crystals.",
-            "title": "Crystals",
+        "Job": {
+            "description": "Uuid:object dictionary of Job stubs.",
+            "title": "Jobs",
             "type": "object",
             "additionalProperties": {
-                "anyOf": [
-                    {
-                        "$ref": "../objects/Crystal.json"
-                    },
-                    {
-                        "$ref": "../messages/UuidStub.json"
-                    }
-                ]
+                "$ref": "../messages/JobStub.json"
             }
         },
-        "CrystallographicSample": {
-            "description": "Uuid:object dictionary of CrystallographicSamples.",
-            "title": "CrystallographicSamples",
+        "LogisticalSample": {
+            "description": "Uuid:object dictionary of LogisticalSample stubs.",
+            "title": "LogisticalSamples",
             "type": "object",
             "additionalProperties": {
-                "anyOf": [
-                    {
-                        "$ref": "../objects/CrystallographicSample.json"
-                    },
-                    {
-                        "$ref": "../messages/UuidStub.json"
-                    }
-                ]
+                "$ref": "../messages/LogisticalSampleStub.json"
             }
         },
-        "Dewar": {
-            "description": "Uuid:object dictionary of Dewars.",
-            "title": "Dewars",
+        "PreparedSample": {
+            "description": "Uuid:object dictionary of PreparedSample stubs.",
+            "title": "PreparedSamples",
             "type": "object",
             "additionalProperties": {
-                "anyOf": [
-                    {
-                        "$ref": "../objects/Dewar.json"
-                    },
-                    {
-                        "$ref": "../messages/UuidStub.json"
-                    }
-                ]
-            }
-        },
-        "DropRegion": {
-            "description": "Uuid:object dictionary of DropRegions.",
-            "title": "DropRegions",
-            "type": "object",
-            "additionalProperties": {
-                "anyOf": [
-                    {
-                        "$ref": "../objects/DropRegion.json"
-                    },
-                    {
-                        "$ref": "../messages/UuidStub.json"
-                    }
-                ]
-            }
-        },
-        "MxExperiment": {
-            "description": "Uuid:object dictionary of MxExperiments.",
-            "title": "MxExperiments",
-            "type": "object",
-            "additionalProperties": {
-                "anyOf": [
-                    {
-                        "$ref": "../objects/MxExperiment.json"
-                    },
-                    {
-                        "$ref": "../messages/UuidStub.json"
-                    }
-                ]
-            }
-        },
-        "MxProcessing": {
-            "description": "Uuid:object dictionary of MxProcessings.",
-            "title": "MxProcessings",
-            "type": "object",
-            "additionalProperties": {
-                "anyOf": [
-                    {
-                        "$ref": "../objects/MxProcessing.json"
-                    },
-                    {
-                        "$ref": "../messages/UuidStub.json"
-                    }
-                ]
-            }
-        },
-        "Pin": {
-            "description": "Uuid:object dictionary of Pins.",
-            "title": "Pins",
-            "type": "object",
-            "additionalProperties": {
-                "anyOf": [
-                    {
-                        "$ref": "../objects/Pin.json"
-                    },
-                    {
-                        "$ref": "../messages/UuidStub.json"
-                    }
-                ]
-            }
-        },
-        "PinPosition": {
-            "description": "Uuid:object dictionary of PinPositions.",
-            "title": "PinPositions",
-            "type": "object",
-            "additionalProperties": {
-                "anyOf": [
-                    {
-                        "$ref": "../objects/PinPosition.json"
-                    },
-                    {
-                        "$ref": "../messages/UuidStub.json"
-                    }
-                ]
-            }
-        },
-        "Plate": {
-            "description": "Uuid:object dictionary of Plates.",
-            "title": "Plates",
-            "type": "object",
-            "additionalProperties": {
-                "anyOf": [
-                    {
-                        "$ref": "../objects/Plate.json"
-                    },
-                    {
-                        "$ref": "../messages/UuidStub.json"
-                    }
-                ]
-            }
-        },
-        "PlateWell": {
-            "description": "Uuid:object dictionary of PlateWells.",
-            "title": "PlateWells",
-            "type": "object",
-            "additionalProperties": {
-                "anyOf": [
-                    {
-                        "$ref": "../objects/PlateWell.json"
-                    },
-                    {
-                        "$ref": "../messages/UuidStub.json"
-                    }
-                ]
-            }
-        },
-        "Puck": {
-            "description": "Uuid:object dictionary of Pucks.",
-            "title": "Pucks",
-            "type": "object",
-            "additionalProperties": {
-                "anyOf": [
-                    {
-                        "$ref": "../objects/Puck.json"
-                    },
-                    {
-                        "$ref": "../messages/UuidStub.json"
-                    }
-                ]
-            }
-        },
-        "ReflectionSet": {
-            "description": "Uuid:object dictionary of ReflectionSets.",
-            "title": "ReflectionSets",
-            "type": "object",
-            "additionalProperties": {
-                "anyOf": [
-                    {
-                        "$ref": "../objects/ReflectionSet.json"
-                    },
-                    {
-                        "$ref": "../messages/UuidStub.json"
-                    }
-                ]
-            }
-        },
-        "Shipment": {
-            "description": "Uuid:object dictionary of Shipments.",
-            "title": "Shipments",
-            "type": "object",
-            "additionalProperties": {
-                "anyOf": [
-                    {
-                        "$ref": "../objects/Shipment.json"
-                    },
-                    {
-                        "$ref": "../messages/UuidStub.json"
-                    }
-                ]
-            }
-        },
-        "WellDrop": {
-            "description": "Uuid:object dictionary of WellDrops.",
-            "title": "WellDrops",
-            "type": "object",
-            "additionalProperties": {
-                "anyOf": [
-                    {
-                        "$ref": "../objects/WellDrop.json"
-                    },
-                    {
-                        "$ref": "../messages/UuidStub.json"
-                    }
-                ]
+                "$ref": "../messages/PreparedSampleStub.json"
             }
         }
     }

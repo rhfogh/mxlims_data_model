@@ -18,7 +18,14 @@
                     "reverseLinkName": "contents"
                 },
                 {
-                    "$ref": "../references/ShipmentRef.json"
+                    "oneOf": [
+                        {
+                            "$ref": "../references/ShipmentRef.json"
+                        },
+                        {
+                            "$ref": "../references/LogisticalSampleRef.json"
+                        }
+                    ]
                 }
             ]
         }

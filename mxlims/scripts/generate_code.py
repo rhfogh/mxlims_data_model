@@ -26,10 +26,19 @@ import json
 import os
 import re
 from pathlib import Path
+from ruamel.yaml import YAML
 import subprocess
 from subprocess import CalledProcessError
 from typing import Optional, List
 
+# pure=True uses yaml version 1.2, with fewer gotchas for strange type conversions
+yaml = YAML(typ="safe", pure=True)
+# The following are not needed for load, but define the default style.
+yaml.default_flow_style = False
+yaml.indent(mapping=2, sequence=4, offset=2)
+
+# Names of core *(basic abstract) classes
+CORETYPES = ("Job", "Dataset", "LogisticalSample", "PreparedSample")
 
 def generate_mxlims(dirname: Optional[str] = None) -> None :
     """
@@ -44,6 +53,11 @@ def generate_mxlims(dirname: Optional[str] = None) -> None :
         mxlims_dir = Path.cwd()
 
     object_dicts = extract_object_schemas(mxlims_dir / "mxlims" / "schemas")
+    fpath = mxlims_dir / "mxlims" / "pydantic" / "link_specification.yaml"
+    with fpath.open("w", encoding="utf-8") as fp0:
+        # We need yaml because of circular references
+        yaml.dump(object_dicts, fp0)
+
     import pprint
     pprint.pprint(object_dicts)
     make_json_references(
@@ -95,11 +109,15 @@ def generate_mxlims(dirname: Optional[str] = None) -> None :
         "mxlims/pydantic",
     ]
     try:
-        proc = subprocess.run(
-            commands, check=True, cwd=mxlims_dir, stderr=subprocess.STDOUT
+        subprocess.run(
+            commands,
+            check=True,
+            cwd=mxlims_dir,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT
         )
-    except CalledProcessError:
-        print(proc.stdout)
+    except CalledProcessError as exc:
+        print(exc.stdout.decode())
         raise
 
     # Generate final Pydantic objects
@@ -113,43 +131,8 @@ def generate_mxlims(dirname: Optional[str] = None) -> None :
 def extract_object_schemas(schema_dir: Path) -> dict:
     """Extract model specification schemas and convert to data for code generation
 
-    The structure of the object-defining dict is, e.g. for MxProcessing
-    (one link only given) :
-    'MxProcessing': {
-        'classname': 'MxProcessing',
-        'corename': 'Job',
-        'links': {
-            'input_data': {
-                'basetypename': 'Dataset',
-                'cardinality': 'multiple',
-                'linkname': 'input_data',
-                'read_only': False,
-                'reverselink': {
-                    'basetypename': 'Job',
-                    'cardinality': 'multiple',
-                    'linkname': 'input_for',
-                    'read_only': True,
-                    'reverselink': <Recursion on dict with id=140186879573504>,
-                    'typenames': ['MxProcessing']
-                },
-               'reversename': 'input_for',
-               'typenames': ['CollectionSweep']
-            },
-        'logistical_sample': {
-            'basetypename': 'LogisticalSample',
-            'cardinality': 'single',
-            'linkname': 'logistical_sample',
-            'read_only': False,
-            'reversename': 'jobs',
-            'typenames': [
-                'Crystal',
-                'Pin',
-                'PinPosition',
-                'PlateWell',
-                'WellDrop',
-                'DropRegion'
-            ]
-    },
+    See .../mxlims_data_model/mlxlims/pydantic/linl_specification.yaml
+    for the structure of the data produced here.
 
     reverse links (those not depending on uuid stored in this object)
     have no `reversename` element
@@ -167,20 +150,26 @@ def extract_object_schemas(schema_dir: Path) -> dict:
         classname = fpath.stem
         with fpath.open(encoding="utf-8") as fp0:
             obj = json.load(fp0)
+
         result[classname] = objdict = {}
         objdict["links"] = {}
 
         # Read class-level info
         for dd1 in obj["allOf"]:
             # These are inherited data, specific and abstract superclass
-            dataname = Path(dd1["$ref"]).stem
-            dd2 = data[dataname]["properties"]
-            type_record = dd2.get("mxlimsType")
-            if type_record:
-                objdict["classname"] = type_record["const"]
-            else:
-                # This must be the abstract base class
-                objdict["corename"] = dd2["mxlimsBaseType"]["const"]
+            reference = dd1["$ref"]
+            if "/data/" in reference:
+                dataname = Path(reference).stem
+                dd2 = data[dataname]["properties"]
+                type_record = dd2.get("mxlimsType")
+                if type_record:
+                    objdict["classname"] = type_record["const"]
+                else:
+                    # This must be the abstract base class
+                    objdict["corename"] = dd2["mxlimsBaseType"]["const"]
+        if not objdict.get("classname"):
+            # This is one of the core objects
+            objdict["classname"] = objdict["corename"]
 
         # Read info for each link
         for linkref, linkjson in obj.get("properties", {}).items():
@@ -196,11 +185,14 @@ def extract_object_schemas(schema_dir: Path) -> dict:
                 dd1 = linkjson["items"]
                 if "$ref" in dd1:
                     # Single linked-to type
-                    linkdict["typenames"].append(Path(dd1["$ref"]).stem.rsplit("Ref", 1)[0])
+                    typename = Path(dd1["$ref"]).stem.rsplit("Ref", 1)[0]
+                    linkdict["typenames"].append(typename)
                 elif "oneOf" in dd1:
                     # Multiple linked-to types
                     for dd2 in dd1["oneOf"]:
-                        linkdict["typenames"].append(Path(dd2["$ref"]).stem.rsplit("Ref", 1)[0])
+                        typename = Path(dd2["$ref"]).stem.rsplit("Ref", 1)[0]
+                        if typename not in CORETYPES:
+                            linkdict["typenames"].append(typename)
                 else:
                     raise ValueError(
                         f"no 'oneOf' or '$ref' found in link {classname}.{linkname}"
@@ -214,7 +206,9 @@ def extract_object_schemas(schema_dir: Path) -> dict:
                     elif "oneOf" in dd1:
                         # Multiple linked-to types
                         for dd2 in dd1["oneOf"]:
-                            linkdict["typenames"].append(Path(dd2["$ref"]).stem.rsplit("Ref", 1)[0])
+                            typename = Path(dd2["$ref"]).stem.rsplit("Ref", 1)[0]
+                            if typename not in CORETYPES:
+                                linkdict["typenames"].append(typename)
                     else:
                         # This is the general properties of the link
                         linkdict["reversename"] = camel_to_snake(dd1["reverseLinkName"])
@@ -265,6 +259,10 @@ def make_pydantic_object(output_dir: Path, objdict: dict) -> None:
     all_type_names = sorted(all_types_set)
     classname = objdict["classname"]
     corename = objdict["corename"]
+
+    if classname == corename:
+        # We do not want ot make Pydantic objects from core classes
+        return
 
     # Add top imports
     txtlist = [

@@ -1,0 +1,65 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "Job core class",
+    "title": "Job",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../data/JobData.json"
+        }
+    ],
+    "properties": {
+        "sampleRef": {
+            "allOf": [
+                {
+                    "reverseLinkName": "jobs"
+                },
+                {
+                    "$ref": "../references/PreparedSampleRef.json"
+                }
+            ]
+        },
+        "startedFromRef": {
+            "allOf": [
+                {
+                    "reverseLinkName": "subjobs",
+                    "readOnly": true
+                },
+                {
+                    "$ref": "../references/JobRef.json"
+                }
+            ]
+        },
+        "logisticalSampleRef": {
+            "allOf": [
+                {
+                    "reverseLinkName": "jobs"
+                },
+                {
+                    "$ref": "../references/LogisticalSampleRef.json"
+                }
+            ]
+        },
+        "referenceDataRefs": {
+            "type": "array",
+            "reverseLinkName": "referenceFor",
+            "items": {
+                "$ref": "../references/DatasetRef.json"
+            }
+        },
+        "templateDataRefs": {
+            "type": "array",
+            "reverseLinkName": "templateFor",
+            "items": {
+                "$ref": "../references/DatasetRef.json"
+            }
+        },
+        "inputDataRefs": {
+            "type": "array",
+            "reverseLinkName": "inputFor",
+            "items": {
+                "$ref": "../references/DatasetRef.json"
+            }
+        }
+    }
+}

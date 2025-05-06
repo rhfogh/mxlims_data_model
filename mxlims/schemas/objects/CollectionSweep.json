@@ -9,6 +9,9 @@
         },
         {
             "$ref": "../data/DatasetData.json"
+        },
+        {
+            "$ref": "../objects/Dataset.json"
         }
     ],
     "properties": {

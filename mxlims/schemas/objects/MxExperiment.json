@@ -18,7 +18,14 @@
                     "reverseLinkName": "jobs"
                 },
                 {
-                    "$ref": "../references/CrystallographicSampleRef.json"
+                    "oneOf": [
+                        {
+                            "$ref": "../references/CrystallographicSampleRef.json"
+                        },
+                        {
+                            "$ref": "../references/PreparedSampleRef.json"
+                        }
+                    ]
                 }
             ]
         },
@@ -29,7 +36,14 @@
                     "readOnly": true
                 },
                 {
-                    "$ref": "../references/MxExperimentRef.json"
+                    "oneOf": [
+                        {
+                            "$ref": "../references/MxExperimentRef.json"
+                        },
+                        {
+                            "$ref": "../references/JobRef.json"
+                        }
+                    ]
                 }
             ]
         },
@@ -57,6 +71,9 @@
                         },
                         {
                             "$ref": "../references/DropRegionRef.json"
+                        },
+                        {
+                            "$ref": "../references/LogisticalSampleRef.json"
                         }
                     ]
                 }
@@ -66,14 +83,28 @@
             "type": "array",
             "reverseLinkName": "referenceFor",
             "items": {
-                "$ref": "../references/ReflectionSetRef.json"
+                "oneOf": [
+                    {
+                        "$ref": "../references/ReflectionSetRef.json"
+                    },
+                    {
+                        "$ref": "../references/DatasetRef.json"
+                    }
+                ]
             }
         },
         "templateDataRefs": {
             "type": "array",
             "reverseLinkName": "templateFor",
             "items": {
-                "$ref": "../references/CollectionSweepRef.json"
+                "oneOf": [
+                    {
+                        "$ref": "../references/CollectionSweepRef.json"
+                    },
+                    {
+                        "$ref": "../references/DatasetRef.json"
+                    }
+                ]
             }
         }
     }

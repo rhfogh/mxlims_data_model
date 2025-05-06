@@ -9,6 +9,9 @@
         },
         {
             "$ref": "../data/JobData.json"
+        },
+        {
+            "$ref": "../objects/Job.json"
         }
     ],
     "properties": {

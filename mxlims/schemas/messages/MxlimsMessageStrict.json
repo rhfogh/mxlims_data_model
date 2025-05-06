@@ -1,0 +1,128 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "Message containing all possible objects, by type",
+    "title": "MxlimsMessage",
+    "type": "object",
+    "properties": {
+        "CollectionSweep": {
+            "description": "Uuid:object dictionary of CollectionSweeps.",
+            "title": "CollectionSweeps",
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "../objects/CollectionSweep.json"
+            }
+        },
+        "Crystal": {
+            "description": "Uuid:object dictionary of Crystals.",
+            "title": "Crystals",
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "../objects/Crystal.json"
+            }
+        },
+        "CrystallographicSample": {
+            "description": "Uuid:object dictionary of CrystallographicSamples.",
+            "title": "CrystallographicSamples",
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "../objects/CrystallographicSample.json"
+            }
+        },
+        "Dewar": {
+            "description": "Uuid:object dictionary of Dewars.",
+            "title": "Dewars",
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "../objects/Dewar.json"
+            }
+        },
+        "DropRegion": {
+            "description": "Uuid:object dictionary of DropRegions.",
+            "title": "DropRegions",
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "../objects/DropRegion.json"
+            }
+        },
+        "MxExperiment": {
+            "description": "Uuid:object dictionary of MxExperiments.",
+            "title": "MxExperiments",
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "../objects/MxExperiment.json"
+            }
+        },
+        "MxProcessing": {
+            "description": "Uuid:object dictionary of MxProcessings.",
+            "title": "MxProcessings",
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "../objects/MxProcessing.json"
+            }
+        },
+        "Pin": {
+            "description": "Uuid:object dictionary of Pins.",
+            "title": "Pins",
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "../objects/Pin.json"
+            }
+        },
+        "PinPosition": {
+            "description": "Uuid:object dictionary of PinPositions.",
+            "title": "PinPositions",
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "../objects/PinPosition.json"
+            }
+        },
+        "Plate": {
+            "description": "Uuid:object dictionary of Plates.",
+            "title": "Plates",
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "../objects/Plate.json"
+            }
+        },
+        "PlateWell": {
+            "description": "Uuid:object dictionary of PlateWells.",
+            "title": "PlateWells",
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "../objects/PlateWell.json"
+            }
+        },
+        "Puck": {
+            "description": "Uuid:object dictionary of Pucks.",
+            "title": "Pucks",
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "../objects/Puck.json"
+            }
+        },
+        "ReflectionSet": {
+            "description": "Uuid:object dictionary of ReflectionSets.",
+            "title": "ReflectionSets",
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "../objects/ReflectionSet.json"
+            }
+        },
+        "Shipment": {
+            "description": "Uuid:object dictionary of Shipments.",
+            "title": "Shipments",
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "../objects/Shipment.json"
+            }
+        },
+        "WellDrop": {
+            "description": "Uuid:object dictionary of WellDrops.",
+            "title": "WellDrops",
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "../objects/WellDrop.json"
+            }
+        }
+    }
+}
