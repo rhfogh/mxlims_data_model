@@ -6,12 +6,12 @@ from __future__ import annotations
 from typing import Optional
 from uuid import UUID
 
+from mxlims.pydantic.MxBaseModel import BaseModel
+
 from pydantic import Field
 
-from ..data.DatasetData import DatasetData
 
-
-class Dataset(DatasetData):
+class Dataset(BaseModel):
     """
     Base class for MXLIMS Datasets
     """

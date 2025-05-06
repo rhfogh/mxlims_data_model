@@ -3,10 +3,10 @@
 
 from __future__ import annotations
 
-from ..data.PreparedSampleData import PreparedSampleData
+from mxlims.pydantic.MxBaseModel import BaseModel
 
 
-class PreparedSample(PreparedSampleData):
+class PreparedSample(BaseModel):
     """
     Base class for MXLIMS Prepared Samples describing Sample content
     """

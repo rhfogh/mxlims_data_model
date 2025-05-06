@@ -58,7 +58,7 @@ They are organised as follows:
 
   - schemas/references contain schemas that define references to particular object types.
   These are used both as part of the specification and for JSON messages; their contents
-  is derived from the definitions in schemas/data, using the scripts/generate_code.py script.
+  is derived from the definitions in schemas/data, using the mxlims/impl/generate_code.py script.
   Note that while the reference are used as-is in specifying JSON documents, they are *not*
   translated directly to the AP implementations. These use instead the direct storage of target
   uuids, with field names like 'sourceId' or 'inputDataIds', and with derived field names

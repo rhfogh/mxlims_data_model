@@ -6,12 +6,12 @@ from __future__ import annotations
 from typing import List, Optional
 from uuid import UUID
 
+from mxlims.pydantic.MxBaseModel import BaseModel
+
 from pydantic import Field
 
-from ..data.JobData import JobData
 
-
-class Job(JobData):
+class Job(BaseModel):
     """
     Base class for MXLIMS Jobs - an experiment or calculation producing Datasets
     """

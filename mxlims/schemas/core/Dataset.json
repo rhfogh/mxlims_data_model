@@ -3,11 +3,6 @@
     "description": "Base class for MXLIMS Datasets",
     "title": "Dataset",
     "type": "object",
-    "allOf": [
-        {
-            "$ref": "../data/DatasetData.json"
-        }
-    ],
     "properties": {
         "sourceId": {
             "description": "uuid for Dataset source",
