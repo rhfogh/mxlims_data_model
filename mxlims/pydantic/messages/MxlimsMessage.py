@@ -7,11 +7,11 @@ from typing import Dict, Optional
 
 from pydantic import Field
 
-from .DatasetStub import DatasetStub
-from .JobStub import JobStub
-from .LogisticalSampleStub import LogisticalSampleStub
+from ..datatypes.DatasetStub import DatasetStub
+from ..datatypes.JobStub import JobStub
+from ..datatypes.LogisticalSampleStub import LogisticalSampleStub
+from ..datatypes.PreparedSampleStub import PreparedSampleStub
 from .MxlimsMessageStrict import MxlimsMessageStrict
-from .PreparedSampleStub import PreparedSampleStub
 
 
 class MxlimsMessage(MxlimsMessageStrict):

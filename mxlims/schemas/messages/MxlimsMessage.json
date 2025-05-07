@@ -14,7 +14,7 @@
             "title": "Datasets",
             "type": "object",
             "additionalProperties": {
-                "$ref": "../messages/DatasetStub.json"
+                "$ref": "../datatypes/DatasetStub.json"
             }
         },
         "Job": {
@@ -22,7 +22,7 @@
             "title": "Jobs",
             "type": "object",
             "additionalProperties": {
-                "$ref": "../messages/JobStub.json"
+                "$ref": "../datatypes/JobStub.json"
             }
         },
         "LogisticalSample": {
@@ -30,7 +30,7 @@
             "title": "LogisticalSamples",
             "type": "object",
             "additionalProperties": {
-                "$ref": "../messages/LogisticalSampleStub.json"
+                "$ref": "../datatypes/LogisticalSampleStub.json"
             }
         },
         "PreparedSample": {
@@ -38,7 +38,7 @@
             "title": "PreparedSamples",
             "type": "object",
             "additionalProperties": {
-                "$ref": "../messages/PreparedSampleStub.json"
+                "$ref": "../datatypes/PreparedSampleStub.json"
             }
         }
     }

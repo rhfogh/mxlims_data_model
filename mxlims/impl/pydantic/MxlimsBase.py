@@ -229,3 +229,6 @@ class MxlimsImplementation:
                 revuids.remove(myuid)
             elif obj.uuid in uids:
                 revuids.add(myuid)
+
+class BaseMessage:
+    """Class for basic MxlimsMessage holding message implementation"""
