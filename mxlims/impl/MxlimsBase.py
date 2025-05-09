@@ -1,7 +1,56 @@
+#! /usr/bin/env python
+# encoding: utf-8
+""" Python implementation base classes for MXLIMS model
+
+License:
+
+The code in this file is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This code is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with this file. If not, see <https://www.gnu.org/licenses/>.
+"""
+
+__copyright__ = """ Copyright © 2024 -  2025 MXLIMS collaboration."""
+__license__ = "LGPLv3+"
+__author__ = "Rasmus H Fogh"
+
 import abc
+import enum
+import json
+from pathlib import Path
 from typing import Any, ClassVar, List, Optional
 from weakref import WeakValueDictionary
+from mxlims.impl.utils import camel_to_snake, to_export_json, to_import_json
 from pydantic import BaseModel as PydanticBaseModel
+from ruamel.yaml import YAML, serialize
+
+yaml = YAML(typ="safe", pure=True)
+# The following are not needed for load, but define the default style.
+yaml.default_flow_style = False
+yaml.indent(mapping=4, sequence=4, offset=2)
+
+with (Path(__file__).parent / "link_specification.yaml").open(encoding="utf-8") as fp0:
+    LINK_SPECIFICATION = yaml.load(fp0)
+
+class MergeMode(enum.Enum):
+    """Enumeration for input merging mode to use when uuids clash
+
+    Determines whetehr the input objetc will replace or be replaced by the existing,
+    or hetehr there will be an error.
+
+    Merging of -to-many links (of Jobs) is cont5rolled by the merge_links parameter"""
+
+    replace = "replace"
+    defer = "defer"
+    error = "error"
 
 class BaseModel(PydanticBaseModel):
 
@@ -230,5 +279,76 @@ class MxlimsImplementation:
             elif obj.uuid in uids:
                 revuids.add(myuid)
 
-class BaseMessage:
+class MessageBase:
     """Class for basic MxlimsMessage holding message implementation"""
+
+    def __init__(self, mxlims_objects: List[MxlimsImplementation]):
+        for obj in mxlims_objects:
+            mxtype = camel_to_snake(obj.mxlims_type)
+            objdict = getattr(self, mxtype, None)
+            if objdict is None:
+                raise ValueError(
+                    f"Message {self.__class__.__name__} cannot contain {mxtype}"
+                )
+            else:
+                objdict[obj.uuid] = obj
+
+    @classmethod
+    def load_message_file(
+            cls, message_path: Path, merge_mode: MergeMode, merge_links: bool
+    ) -> None:
+        """
+
+        Args:
+            message_path: Path to message JSON file
+            merge_mode: In case of uuid clash should incoming obvjects replace or defer to existing
+            merge_links: Should -to-many lionks be mwerged between incoming and existing objects
+                         Relevant only for Job,inputData, job,refefrenceData, and Job,templateData
+
+        Returns:
+
+        """
+        """Load schema-compliant JSON message into main implementation
+
+        Args:
+            message_dict:
+
+        Returns:
+        """
+        message_dict= json.loads(message_path.open(encoding="utf-8").read_text())
+        to_import_json(message_dict)
+        for tag in message_dict:
+            if not hasattr(cls, tag):
+                raise ValueError(
+                    "class {cls.__name__} does not have attribute {tag}"
+                )
+        for tag, objdict in message_dict:
+            for tag2, newobj in list(objdict.items()):
+                uid = newobj.uuid
+                basetype = newobj.mxlims_base_type
+                oldobj = cls._objects_by_id[basetype].get(uid)
+                if oldobj is not None:
+                    # Handle uuid clashes
+                    if merge_mode == MergeMode.error:
+                        raise ValueError(f"{tag} with uuid {uid} already exists")
+                    elif merge_mode == MergeMode.replace:
+                        del cls._objects_by_id[basetype][uid]
+                        toobj = newobj
+                        fromobj = oldobj
+                    else:
+                        del objdict[uid]
+                        toobj = oldobj
+                        fromobj = newobj
+                    if merge_links:
+                        for linkdict in (
+                            LINK_SPECIFICATION[toobj.mxlims_type]["links"].values()
+                        ):
+                            link_id_name = linkdict.get("link_id_name")
+                            if link_id_name and linkdict["cardinality"] == "multiple":
+                                # merge input and exiting links
+                                uids = getattr(toobj, link_id_name)
+                                for uid in getattr(fromobj, link_id_name):
+                                    if uid not in uids:
+                                        toobj._append_link_nn(link_id_name, uid)
+        cls.model_validate(message_dict, by_name=True)
+
