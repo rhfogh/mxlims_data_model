@@ -415,7 +415,7 @@ def pydantic_multiple_link(classname: str, linkdict:dict) -> List[str]:
     @property
     def {linkname}(self) -> list[{linktype}]:
         """getter for {classname}.{linkname} list"""
-        return self._get_link_nn("{basetypename}", {link_id_name})
+        return self._get_link_nn("{basetypename}", "{link_id_name}")
 '''
     ]
 
@@ -433,7 +433,7 @@ def pydantic_multiple_link(classname: str, linkdict:dict) -> List[str]:
         for obj in values:
             if not isinstance(obj, {linktype}):
                 raise ValueError("%s is not of type {linktype}" % obj)
-        self._set_link_nn("{basetypename}", {link_id_name}, values)
+        self._set_link_nn("{basetypename}", "{link_id_name}", values)
 
     def append_{linkname}(self, value: {linktype}):
         """append to {classname}.{linkname} list"""

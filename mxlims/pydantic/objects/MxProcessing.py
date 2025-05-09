@@ -27,7 +27,7 @@ class MxProcessing(MxProcessingData, JobData, Job, MxlimsImplementation):
     @property
     def input_data(self) -> list[CollectionSweep]:
         """getter for MxProcessing.input_data list"""
-        return self._get_link_nn("Dataset", input_data_ids)
+        return self._get_link_nn("Dataset", "input_data_ids")
 
     @input_data.setter
     def input_data(self, values: list[CollectionSweep]):
@@ -37,7 +37,7 @@ class MxProcessing(MxProcessingData, JobData, Job, MxlimsImplementation):
         for obj in values:
             if not isinstance(obj, CollectionSweep):
                 raise ValueError("%s is not of type CollectionSweep" % obj)
-        self._set_link_nn("Dataset", input_data_ids, values)
+        self._set_link_nn("Dataset", "input_data_ids", values)
 
     def append_input_data(self, value: CollectionSweep):
         """append to MxProcessing.input_data list"""
@@ -80,7 +80,7 @@ class MxProcessing(MxProcessingData, JobData, Job, MxlimsImplementation):
     @property
     def reference_data(self) -> list[ReflectionSet]:
         """getter for MxProcessing.reference_data list"""
-        return self._get_link_nn("Dataset", reference_data_ids)
+        return self._get_link_nn("Dataset", "reference_data_ids")
 
     @reference_data.setter
     def reference_data(self, values: list[ReflectionSet]):
@@ -90,7 +90,7 @@ class MxProcessing(MxProcessingData, JobData, Job, MxlimsImplementation):
         for obj in values:
             if not isinstance(obj, ReflectionSet):
                 raise ValueError("%s is not of type ReflectionSet" % obj)
-        self._set_link_nn("Dataset", reference_data_ids, values)
+        self._set_link_nn("Dataset", "reference_data_ids", values)
 
     def append_reference_data(self, value: ReflectionSet):
         """append to MxProcessing.reference_data list"""
@@ -143,7 +143,7 @@ class MxProcessing(MxProcessingData, JobData, Job, MxlimsImplementation):
     @property
     def template_data(self) -> list[ReflectionSet]:
         """getter for MxProcessing.template_data list"""
-        return self._get_link_nn("Dataset", template_data_ids)
+        return self._get_link_nn("Dataset", "template_data_ids")
 
     @template_data.setter
     def template_data(self, values: list[ReflectionSet]):
@@ -153,7 +153,7 @@ class MxProcessing(MxProcessingData, JobData, Job, MxlimsImplementation):
         for obj in values:
             if not isinstance(obj, ReflectionSet):
                 raise ValueError("%s is not of type ReflectionSet" % obj)
-        self._set_link_nn("Dataset", template_data_ids, values)
+        self._set_link_nn("Dataset", "template_data_ids", values)
 
     def append_template_data(self, value: ReflectionSet):
         """append to MxProcessing.template_data list"""
