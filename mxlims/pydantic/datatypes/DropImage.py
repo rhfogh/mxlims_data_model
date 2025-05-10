@@ -6,7 +6,7 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Optional
 
-from mxlims.pydantic.MxBaseModel import BaseModel
+from mxlims.impl.MxlimsBase import BaseModel
 
 from pydantic import AnyUrl, ConfigDict, Field
 

@@ -3,9 +3,9 @@
 
 # NB Literal and UUID have to be imported to avoid pydantic errors
 from __future__ import annotations
-from typing import Optional, Union, Literal, TYPE_CHECKING
+from typing import Any, Literal, Optional, Union, TYPE_CHECKING
 from uuid import UUID
-from mxlims.pydantic.MxBaseModel import MxlimsImplementation
+from mxlims.impl.MxlimsBase import MxlimsImplementation
 from ..core.Job import Job
 from ..data.JobData import JobData
 from ..data.MxProcessingData import MxProcessingData
@@ -23,6 +23,9 @@ if TYPE_CHECKING:
 class MxProcessing(MxProcessingData, JobData, Job, MxlimsImplementation):
     """MXLIMS pydantic model class for MxProcessing
     """
+    def __init__(self, **data: Any) -> None:
+        super().__init__(**data)
+        MxlimsImplementation.__init__(self)
     
     @property
     def input_data(self) -> list[CollectionSweep]:

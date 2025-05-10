@@ -5,7 +5,7 @@ from __future__ import annotations
 
 from typing import Optional
 
-from mxlims.pydantic.MxBaseModel import BaseModel
+from mxlims.impl.MxlimsBase import BaseModel
 
 from pydantic import ConfigDict, Field, conint
 

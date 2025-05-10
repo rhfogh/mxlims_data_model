@@ -3,9 +3,9 @@
 
 # NB Literal and UUID have to be imported to avoid pydantic errors
 from __future__ import annotations
-from typing import Optional, Union, Literal, TYPE_CHECKING
+from typing import Any, Literal, Optional, Union, TYPE_CHECKING
 from uuid import UUID
-from mxlims.pydantic.MxBaseModel import MxlimsImplementation
+from mxlims.impl.MxlimsBase import MxlimsImplementation
 from ..core.PreparedSample import PreparedSample
 from ..data.PreparedSampleData import PreparedSampleData
 from ..data.CrystallographicSampleData import CrystallographicSampleData
@@ -22,6 +22,9 @@ if TYPE_CHECKING:
 class CrystallographicSample(CrystallographicSampleData, PreparedSampleData, PreparedSample, MxlimsImplementation):
     """MXLIMS pydantic model class for CrystallographicSample
     """
+    def __init__(self, **data: Any) -> None:
+        super().__init__(**data)
+        MxlimsImplementation.__init__(self)
     
     @property
     def jobs(self) -> list[Union[MxExperiment, MxProcessing]]:

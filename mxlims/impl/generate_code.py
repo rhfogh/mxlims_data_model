@@ -91,7 +91,7 @@ def generate_mxlims(dirname: Optional[str] = None) -> None :
         "--output-model-type",
         "pydantic_v2.BaseModel",
         "--base-class",
-        "mxlims.pydantic.MxBaseModel.BaseModel",
+        "mxlims.impl.MxlimsBase.BaseModel",
         "--use-schema-description",
         "--use-double-quotes",
         "--disable-timestamp",
@@ -312,9 +312,9 @@ def make_pydantic_object(output_dir: Path, objdict: dict) -> None:
 
 # NB Literal and UUID have to be imported to avoid pydantic errors
 from __future__ import annotations
-from typing import Optional, Union, Literal, TYPE_CHECKING
+from typing import Any, Literal, Optional, Union, TYPE_CHECKING
 from uuid import UUID
-from mxlims.pydantic.MxBaseModel import MxlimsImplementation
+from mxlims.impl.MxlimsBase import MxlimsImplementation
 from ..core.{corename} import {corename}
 from ..data.{corename}Data import {corename}Data
 from ..data.{classname}Data import {classname}Data
@@ -336,6 +336,9 @@ from ..data.{classname}Data import {classname}Data
 class {classname}({classname}Data, {corename}Data, {corename}, MxlimsImplementation):
     """MXLIMS pydantic model class for {classname}
     """
+    def __init__(self, **data: Any) -> None:
+        super().__init__(**data)
+        MxlimsImplementation.__init__(self)
     ''')
 
     # Add API properties for links

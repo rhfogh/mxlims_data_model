@@ -6,7 +6,7 @@ from __future__ import annotations
 from typing import Literal
 from uuid import UUID
 
-from mxlims.pydantic.MxBaseModel import BaseModel
+from mxlims.impl.MxlimsBase import BaseModel
 
 from pydantic import ConfigDict, Field
 

@@ -30,7 +30,7 @@ from typing import Any, ClassVar, List, Optional
 from weakref import WeakValueDictionary
 from mxlims.impl.utils import camel_to_snake, to_export_json, to_import_json
 from pydantic import BaseModel as PydanticBaseModel
-from ruamel.yaml import YAML, serialize
+from ruamel.yaml import YAML
 
 yaml = YAML(typ="safe", pure=True)
 # The following are not needed for load, but define the default style.
@@ -93,8 +93,10 @@ class MxlimsImplementation:
     def mxlims_type(self):
         pass
 
-    def __init__(self, /, **data: Any) -> None:
-        super().__init__(**data)
+    def __init__(self, ) -> None:
+        print ('@~@~ __init__', self, self.uuid)
+        # super().__init__(**data)
+        print ('@~@~ __init__ 2')
         obj_by_id = self._objects_by_id[self.mxlims_base_type]
         myuid = self.uuid
         if myuid in obj_by_id:
@@ -103,6 +105,7 @@ class MxlimsImplementation:
             )
         else:
             obj_by_id[myuid] = self
+            print ('@~@~', obj_by_id)
 
     def _get_link_n1(
             self,

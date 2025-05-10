@@ -3,9 +3,9 @@
 
 # NB Literal and UUID have to be imported to avoid pydantic errors
 from __future__ import annotations
-from typing import Optional, Union, Literal, TYPE_CHECKING
+from typing import Any, Literal, Optional, Union, TYPE_CHECKING
 from uuid import UUID
-from mxlims.pydantic.MxBaseModel import MxlimsImplementation
+from mxlims.impl.MxlimsBase import MxlimsImplementation
 from ..core.LogisticalSample import LogisticalSample
 from ..data.LogisticalSampleData import LogisticalSampleData
 from ..data.PinData import PinData
@@ -21,6 +21,9 @@ if TYPE_CHECKING:
 class Pin(PinData, LogisticalSampleData, LogisticalSample, MxlimsImplementation):
     """MXLIMS pydantic model class for Pin
     """
+    def __init__(self, **data: Any) -> None:
+        super().__init__(**data)
+        MxlimsImplementation.__init__(self)
     
     @property
     def container(self) -> Optional[Puck]:

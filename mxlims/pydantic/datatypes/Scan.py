@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from mxlims.pydantic.MxBaseModel import BaseModel
+from mxlims.impl.MxlimsBase import BaseModel
 
 from pydantic import Field, conint
 
