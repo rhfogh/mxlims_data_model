@@ -4,15 +4,157 @@
 """ MXLIMS message classes to use: Containing implementation + generated pydantic
 """
     
+from __future__ import annotations
+
+from typing import Dict, Optional
+
+from mxlims.impl.MxlimsBase import BaseModel
+
+from pydantic import Field
+
+
+from .datatypes.DatasetStub import DatasetStub
+from .datatypes.JobStub import JobStub
+from .datatypes.LogisticalSampleStub import LogisticalSampleStub
+from .datatypes.PreparedSampleStub import PreparedSampleStub
+from .objects.CollectionSweep import CollectionSweep
+from .objects.Crystal import Crystal
+from .objects.CrystallographicSample import CrystallographicSample
+from .objects.Dewar import Dewar
+from .objects.DropRegion import DropRegion
+from .objects.MxExperiment import MxExperiment
+from .objects.MxProcessing import MxProcessing
+from .objects.Pin import Pin
+from .objects.PinPosition import PinPosition
+from .objects.Plate import Plate
+from .objects.PlateWell import PlateWell
+from .objects.Puck import Puck
+from .objects.ReflectionSet import ReflectionSet
+from .objects.Shipment import Shipment
+from .objects.WellDrop import WellDrop
 from mxlims.impl.MxlimsBase import BaseMessage
 
-from mxlims.pydantic.messages.MxlimsMessage import MxlimsMessage as MxlimsMessage_orig
-from mxlims.pydantic.messages.MxlimsMessageStrict import MxlimsMessageStrict as MxlimsMessageStrict_orig
+
+class MxlimsMessageStrict(BaseModel, BaseMessage):
+    """
+    Message containing all possible objects, by type
+    """
+
+    collection_sweep: Optional[Dict[str, CollectionSweep]] = Field(
+        default_factory=dict,
+        alias="CollectionSweep",
+        description="Uuid:object dictionary of CollectionSweeps.",
+        title="CollectionSweeps",
+    )
+    crystal: Optional[Dict[str, Crystal]] = Field(
+        default_factory=dict,
+        alias="Crystal",
+        description="Uuid:object dictionary of Crystals.",
+        title="Crystals",
+    )
+    crystallographic_sample: Optional[Dict[str, CrystallographicSample]] = Field(
+        default_factory=dict,
+        alias="CrystallographicSample",
+        description="Uuid:object dictionary of CrystallographicSamples.",
+        title="CrystallographicSamples",
+    )
+    dewar: Optional[Dict[str, Dewar]] = Field(
+        default_factory=dict,
+        alias="Dewar",
+        description="Uuid:object dictionary of Dewars.",
+        title="Dewars",
+    )
+    drop_region: Optional[Dict[str, DropRegion]] = Field(
+        default_factory=dict,
+        alias="DropRegion",
+        description="Uuid:object dictionary of DropRegions.",
+        title="DropRegions",
+    )
+    mx_experiment: Optional[Dict[str, MxExperiment]] = Field(
+        default_factory=dict,
+        alias="MxExperiment",
+        description="Uuid:object dictionary of MxExperiments.",
+        title="MxExperiments",
+    )
+    mx_processing: Optional[Dict[str, MxProcessing]] = Field(
+        default_factory=dict,
+        alias="MxProcessing",
+        description="Uuid:object dictionary of MxProcessings.",
+        title="MxProcessings",
+    )
+    pin: Optional[Dict[str, Pin]] = Field(
+        default_factory=dict, alias="Pin", description="Uuid:object dictionary of Pins.", title="Pins"
+    )
+    pin_position: Optional[Dict[str, PinPosition]] = Field(
+        default_factory=dict,
+        alias="PinPosition",
+        description="Uuid:object dictionary of PinPositions.",
+        title="PinPositions",
+    )
+    plate: Optional[Dict[str, Plate]] = Field(
+        default_factory=dict,
+        alias="Plate",
+        description="Uuid:object dictionary of Plates.",
+        title="Plates",
+    )
+    plate_well: Optional[Dict[str, PlateWell]] = Field(
+        default_factory=dict,
+        alias="PlateWell",
+        description="Uuid:object dictionary of PlateWells.",
+        title="PlateWells",
+    )
+    puck: Optional[Dict[str, Puck]] = Field(
+        default_factory=dict,
+        alias="Puck",
+        description="Uuid:object dictionary of Pucks.",
+        title="Pucks",
+    )
+    reflection_set: Optional[Dict[str, ReflectionSet]] = Field(
+        default_factory=dict,
+        alias="ReflectionSet",
+        description="Uuid:object dictionary of ReflectionSets.",
+        title="ReflectionSets",
+    )
+    shipment: Optional[Dict[str, Shipment]] = Field(
+        default_factory=dict,
+        alias="Shipment",
+        description="Uuid:object dictionary of Shipments.",
+        title="Shipments",
+    )
+    well_drop: Optional[Dict[str, WellDrop]] = Field(
+        default_factory=dict,
+        alias="WellDrop",
+        description="Uuid:object dictionary of WellDrops.",
+        title="WellDrops",
+    )
 
 
-class MxlimsMessage(MxlimsMessage_orig, BaseMessage):
-    """MxlimsMessage class, combining pydantic class with Implementation class"""
+class MxlimsMessage(MxlimsMessageStrict, BaseMessage):
+    """
+    Message containing all possible objects, by type
+    """
 
-
-class MxlimsMessageStrict(MxlimsMessageStrict_orig, BaseMessage):
-    """MxlimsMessage class, combining pydantic class with Implementation class"""
+    dataset: Optional[Dict[str, DatasetStub]] = Field(
+        default_factory=dict,
+        alias="Dataset",
+        description="Uuid:object dictionary of Dataset stubs.",
+        title="Datasets",
+    )
+    job: Optional[Dict[str, JobStub]] = Field(
+        default_factory=dict,
+        alias="Job",
+        description="Uuid:object dictionary of Job stubs.",
+        title="Jobs",
+    )
+    logistical_sample: Optional[Dict[str, LogisticalSampleStub]] = Field(
+        default_factory=dict,
+        alias="LogisticalSample",
+        description="Uuid:object dictionary of LogisticalSample stubs.",
+        title="LogisticalSamples",
+    )
+    prepared_sample: Optional[Dict[str, PreparedSampleStub]] = Field(
+        default_factory=dict,
+        alias="PreparedSample",
+        description="Uuid:object dictionary of PreparedSample stubs.",
+        title="PreparedSamples",
+    )

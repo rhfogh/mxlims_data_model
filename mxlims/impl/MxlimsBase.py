@@ -22,13 +22,12 @@ __copyright__ = """ Copyright © 2024 -  2025 MXLIMS collaboration."""
 __license__ = "LGPLv3+"
 __author__ = "Rasmus H Fogh"
 
-import abc
 import enum
 import json
 from pathlib import Path
-from typing import Any, ClassVar, List, Optional
-from weakref import WeakValueDictionary
-from mxlims.impl.utils import camel_to_snake, to_export_json, to_import_json
+from typing import ClassVar, List, Optional, Sequence
+# from weakref import WeakValueDictionary
+from mxlims.impl.utils import camel_to_snake, to_import_json
 from pydantic import BaseModel as PydanticBaseModel
 from ruamel.yaml import YAML
 
@@ -60,43 +59,17 @@ class BaseModel(PydanticBaseModel):
         use_enum_values = True
         validation_error_cause = True
 
-    # Class-level container for implementation of access-object-by-id
-    _objects_by_id: ClassVar[dict] = {
-        "Dataset": WeakValueDictionary(),
-        "Job": WeakValueDictionary(),
-        "PreparedSample": WeakValueDictionary(),
-        "LogisticalSample": WeakValueDictionary(),
-    }
-
 class MxlimsImplementation:
 
     # Class-level container for implementation of access-object-by-id
     _objects_by_id: ClassVar[dict] = {
-        "Dataset": WeakValueDictionary(),
-        "Job": WeakValueDictionary(),
-        "PreparedSample": WeakValueDictionary(),
-        "LogisticalSample": WeakValueDictionary(),
+        "Dataset": dict(),
+        "Job": dict(),
+        "PreparedSample": dict(),
+        "LogisticalSample": dict(),
     }
 
-    @property
-    @abc.abstractmethod
-    def uuid(self):
-        pass
-
-    @property
-    @abc.abstractmethod
-    def mxlims_base_type(self):
-        pass
-
-    @property
-    @abc.abstractmethod
-    def mxlims_type(self):
-        pass
-
     def __init__(self, ) -> None:
-        print ('@~@~ __init__', self, self.uuid)
-        # super().__init__(**data)
-        print ('@~@~ __init__ 2')
         obj_by_id = self._objects_by_id[self.mxlims_base_type]
         myuid = self.uuid
         if myuid in obj_by_id:
@@ -105,7 +78,6 @@ class MxlimsImplementation:
             )
         else:
             obj_by_id[myuid] = self
-            print ('@~@~', obj_by_id)
 
     def _get_link_n1(
             self,
@@ -163,7 +135,7 @@ class MxlimsImplementation:
         self,
         basetypename: str,
         id_field_name: str,
-        values: List["MxlimsImplementation"]
+        values: Sequence["MxlimsImplementation"]
     ):
         """Setter for n..n forward link
 
@@ -215,7 +187,7 @@ class MxlimsImplementation:
         myuid = self.uuid
         result = list(
             obj
-            for obj in self._objects_by_id[basetypename]
+            for obj in self._objects_by_id[basetypename].values()
             if myuid == getattr(obj, id_field_name)
         )
         return result
@@ -232,7 +204,7 @@ class MxlimsImplementation:
         myuid = self.uuid
         result = list(
             obj
-            for obj in self._objects_by_id[basetypename]
+            for obj in self._objects_by_id[basetypename].values()
             if myuid in getattr(obj, id_field_name)
         )
         return result
@@ -241,7 +213,7 @@ class MxlimsImplementation:
         self,
         basetypename: str,
         id_field_name: str,
-        values: List["MxlimsImplementation"]
+        values: Sequence["MxlimsImplementation"]
     ):
         """Setter for 1..n reverse link
 
@@ -253,7 +225,7 @@ class MxlimsImplementation:
         """
         myuid = self.uuid
         uids = list(obj.uuid for obj in values)
-        for obj in self._objects_by_id[basetypename]:
+        for obj in self._objects_by_id[basetypename].values():
             if getattr(obj, id_field_name) == myuid and obj.uuid not in uids:
                 setattr(obj, id_field_name, None)
             elif obj.uuid in uids:
@@ -263,7 +235,7 @@ class MxlimsImplementation:
         self,
         basetypename: str,
         id_field_name: str,
-        values: List["MxlimsImplementation"]
+        values: Sequence["MxlimsImplementation"]
     ):
         """Setter for n..n reverse link
 
@@ -275,29 +247,34 @@ class MxlimsImplementation:
         """
         myuid = self.uuid
         uids = list(obj.uuid for obj in values)
-        for obj in self._objects_by_id[basetypename]:
+        for obj in self._objects_by_id[basetypename].values():
             revuids = getattr(obj, id_field_name)
             if myuid in revuids and obj.uuid not in uids:
                 revuids.remove(myuid)
             elif obj.uuid in uids:
                 revuids.add(myuid)
 
-class MessageBase:
+class BaseMessage:
     """Class for basic MxlimsMessage holding message implementation"""
 
-    def __init__(self, mxlims_objects: List[MxlimsImplementation]):
-        for obj in mxlims_objects:
+    @classmethod
+    def from_pydantic_objects(cls, contents: Sequence[MxlimsImplementation]):
+        result  = cls()
+        for tag in ("mx_experiment", "mxExperiment", "MxExperiment"):
+            print ('=--->', tag, getattr(result, tag, "not found"))
+        for obj in contents:
             mxtype = camel_to_snake(obj.mxlims_type)
-            objdict = getattr(self, mxtype, None)
+            objdict = getattr(result, mxtype, None)
             if objdict is None:
                 raise ValueError(
-                    f"Message {self.__class__.__name__} cannot contain {mxtype}"
+                    f"Message {cls.__name__} cannot contain {mxtype} "
                 )
             else:
                 objdict[obj.uuid] = obj
+        return result
 
     @classmethod
-    def load_message_file(
+    def from_message_file(
             cls, message_path: Path, merge_mode: MergeMode, merge_links: bool
     ) -> None:
         """
@@ -305,8 +282,8 @@ class MessageBase:
         Args:
             message_path: Path to message JSON file
             merge_mode: In case of uuid clash should incoming obvjects replace or defer to existing
-            merge_links: Should -to-many lionks be mwerged between incoming and existing objects
-                         Relevant only for Job,inputData, job,refefrenceData, and Job,templateData
+            merge_links: Should -to-many links be merged between incoming and existing objects
+                         Relevant only for Job,inputData, job,referenceData, and Job,templateData
 
         Returns:
 
@@ -318,7 +295,7 @@ class MessageBase:
 
         Returns:
         """
-        message_dict= json.loads(message_path.open(encoding="utf-8").read_text())
+        message_dict= json.loads(message_path.read_text())
         to_import_json(message_dict)
         for tag in message_dict:
             if not hasattr(cls, tag):
@@ -353,5 +330,5 @@ class MessageBase:
                                 for uid in getattr(fromobj, link_id_name):
                                     if uid not in uids:
                                         toobj._append_link_nn(link_id_name, uid)
-        cls.model_validate(message_dict, by_name=True)
+        cls.model_validate(message_dict)
 

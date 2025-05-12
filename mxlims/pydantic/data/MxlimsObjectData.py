@@ -30,8 +30,8 @@ class MxlimsObjectData(BaseModel):
         description="The type of the MXLIMS object. Fixed for each subtype schema",
         title="MxlimsType",
     )
-    mxlims_base_type: Optional[str] = Field(
-        None,
+    mxlims_base_type: str = Field(
+        ...,
         alias="mxlimsBaseType",
         description="The abstract (super)type of the MXLIMS object. Fixed for each subtype schema",
         title="MxlimsBaseType",

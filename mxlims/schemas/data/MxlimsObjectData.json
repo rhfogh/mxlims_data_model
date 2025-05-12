@@ -43,6 +43,7 @@
     "required": [
         "version",
         "mxlimsType",
+        "mxlimsBaseType",
         "uuid"
     ],
     "additionalProperties": false

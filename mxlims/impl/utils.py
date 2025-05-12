@@ -44,19 +44,23 @@ def snake_to_camel(name:str) -> str:
     return "".join(txt.capitalize() for txt in name.split("_"))
 
 
-def to_export_json(message_dict: dict) -> dict:
+def to_export_json(message_dict: dict) -> None:
     """Convert to schema-compliant JSON with Ref-type links instead of foreign keys
 
     Conversion is done in-place"""
-    obj_by_uuid = dict(
-        (obj.uuid, obj)
-        for dd1 in message_dict.values()
-        for obj in dd1.values()
-    )
-    for tag, objlist in list(message_dict.items()):
+    import json
+    Path("/home/rhfogh/tmp/messags.json").write_text(json.dumps(message_dict))
+    obj_by_uuid = {}
+    for dd1 in message_dict.values():
+        if dd1:
+            for obj in dd1.values():
+                obj_by_uuid[str(obj["uuid"])]= obj
+    for tag, objdict in list(message_dict.items()):
+        if not objdict:
+            message_dict.pop(tag)
         refdict = LINK_SPECIFICATION.get(tag)
-        for obj in objlist:
-            for linkdict in refdict["links"]:
+        for uid,obj in objdict.items():
+            for linkdict in refdict["links"].values():
                 link_id_name = linkdict.get("link_id_name")
                 if link_id_name:
                     # This is a link with a foreign key
@@ -88,8 +92,7 @@ def to_export_json(message_dict: dict) -> dict:
                                     }
                     else:
                         # Multiple link
-                        link_uids = getattr(obj, link_id_name, ())
-                        del obj[link_id_name]
+                        link_uids = obj.pop(link_id_name, ())
                         if link_uids:
                             obj[linkdict["link_ref_name"]] = reflist = []
                             for link_uid in link_uids:

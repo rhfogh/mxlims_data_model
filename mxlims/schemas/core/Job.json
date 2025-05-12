@@ -49,5 +49,8 @@
                 "format": "uuid"
             }
         }
-    }
+    },
+    "required": [
+        "referenceDataIds", "templateDataIds", "inputDataIds"
+    ]
 }

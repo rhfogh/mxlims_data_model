@@ -31,20 +31,20 @@ class Job(BaseModel):
         description="uuid for LogisticalSample related to Job",
         title="LogisticalSampleId",
     )
-    reference_data_ids: Optional[List[UUID]] = Field(
-        None,
+    reference_data_ids: List[UUID] = Field(
+        default_factory=list,
         alias="referenceDataIds",
         description="uuid for reference Datasets",
         title="ReferenceDataId",
     )
-    template_data_ids: Optional[List[UUID]] = Field(
-        None,
+    template_data_ids: List[UUID] = Field(
+        default_factory=list,
         alias="templateDataIds",
         description="uuid for template Datasets",
         title="TemplateDataId",
     )
-    input_data_ids: Optional[List[UUID]] = Field(
-        None,
+    input_data_ids: List[UUID] = Field(
+        default_factory=list,
         alias="inputDataIds",
         description="uuid for input Datasets",
         title="InputDataId",
