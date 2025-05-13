@@ -158,36 +158,3 @@ class MxlimsMessage(MxlimsMessageStrict, BaseMessage):
         description="Uuid:object dictionary of PreparedSample stubs.",
         title="PreparedSamples",
     )
-
-if __name__ == "__main__":
-    # Test file loading
-    from pathlib import Path
-
-    from argparse import ArgumentParser, RawTextHelpFormatter
-
-    parser = ArgumentParser(
-        prog="generate_mxlims.py",
-        formatter_class=RawTextHelpFormatter,
-        prefix_chars="--",
-        description="""
-MXLIMS code generation. Assumes standard directory structure""",
-    )
-
-    parser.add_argument(
-        "--filename",
-        metavar="filename",
-        default=None,
-        help="Path to directory containing mxlims/ and docs/ subdirectory\n",
-    )
-
-    argsobj = parser.parse_args()
-    options_dict = vars(argsobj)
-
-    message = MxlimsMessage.from_message_file(Path(options_dict["filename"]))
-    text = message.model_dump_json(
-            indent=4,
-            by_alias=True,
-            exclude_none=True,
-            serialize_as_any=True,
-    )
-    Path(options_dict["filename"]+ "_out").write_text(text)

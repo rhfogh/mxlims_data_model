@@ -50,12 +50,12 @@ class CrystallographicSample(CrystallographicSampleData, PreparedSampleData, Pre
     @logistical_samples.setter
     def logistical_samples(self, values: list[Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]]):
         """setter for CrystallographicSample.logistical_samples list"""
-        from .Crystal import Crystal
         from .DropRegion import DropRegion
-        from .Pin import Pin
         from .PinPosition import PinPosition
         from .PlateWell import PlateWell
         from .WellDrop import WellDrop
+        from .Crystal import Crystal
+        from .Pin import Pin
 
         for obj in values:
             if not isinstance(obj, Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]):

@@ -296,24 +296,26 @@ class BaseMessage:
 
         Returns:
         """
+        temp_message = cls()
         message_dict= json.loads(message_path.read_text())
         to_import_json(message_dict)
         for tag in message_dict:
-            if not hasattr(cls, tag):
+            snaketag = camel_to_snake(tag)
+            if not hasattr(temp_message, snaketag):
                 raise ValueError(
-                    "class {cls.__name__} does not have attribute {tag}"
+                    f"class {cls.__name__} does not have attribute {snaketag}"
                 )
-        for tag, objdict in message_dict:
+        for tag, objdict in message_dict.items():
             for tag2, newobj in list(objdict.items()):
-                uid = newobj.uuid
-                basetype = newobj.mxlims_base_type
-                oldobj = cls._objects_by_id[basetype].get(uid)
+                uid = newobj["uuid"]
+                basetype = newobj["mxlimsBaseType"]
+                oldobj = MxlimsImplementation._objects_by_id[basetype].get(uid)
                 if oldobj is not None:
                     # Handle uuid clashes
                     if merge_mode == MergeMode.error:
                         raise ValueError(f"{tag} with uuid {uid} already exists")
                     elif merge_mode == MergeMode.replace:
-                        del cls._objects_by_id[basetype][uid]
+                        del MxlimsImplementation._objects_by_id[basetype][uid]
                         toobj = newobj
                         fromobj = oldobj
                     else:

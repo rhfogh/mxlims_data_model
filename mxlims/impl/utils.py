@@ -24,7 +24,7 @@ __author__ = "Rasmus H Fogh"
 
 from pathlib import Path
 import re
-from ruamel.yaml import YAML, serialize
+from ruamel.yaml import YAML
 
 yaml = YAML(typ="safe", pure=True)
 # The following are not needed for load, but define the default style.
@@ -74,7 +74,7 @@ def to_export_json(message_dict: dict) -> None:
                             link_target = obj_by_uuid.get(link_uid)
                             if link_target:
                                 # The linked-to object is in the message
-                                mxlims_type = obj["mxlimsType"]
+                                mxlims_type = link_target["mxlimsType"]
                                 obj[linkdict["link_ref_name"]] = {
                                     "mxlimsType": mxlims_type,
                                     "$ref": f"/{mxlims_type}/{link_uid}"
@@ -101,7 +101,7 @@ def to_export_json(message_dict: dict) -> None:
                                 link_target = obj_by_uuid.get(luid)
                                 if link_target:
                                     # The linked-to object is in the message
-                                    mxlims_type = obj["mxlimsType"]
+                                    mxlims_type = link_target["mxlimsType"]
                                     newref = {
                                         "mxlimsType": mxlims_type,
                                         "$ref": f"/{mxlims_type}/{luid}"
