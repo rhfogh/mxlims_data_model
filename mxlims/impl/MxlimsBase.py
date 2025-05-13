@@ -273,13 +273,16 @@ class BaseMessage:
 
     @classmethod
     def from_message_file(
-            cls, message_path: Path, merge_mode: MergeMode, merge_links: bool
-    ) -> None:
+            cls,
+            message_path: Path,
+            merge_mode: MergeMode = MergeMode.error,
+            merge_links: bool = True
+    ) -> "BaseMessage":
         """
 
         Args:
             message_path: Path to message JSON file
-            merge_mode: In case of uuid clash should incoming obvjects replace or defer to existing
+            merge_mode: In case of uuid clash should incoming objects replace or defer to existing
             merge_links: Should -to-many links be merged between incoming and existing objects
                          Relevant only for Job,inputData, job,referenceData, and Job,templateData
 
@@ -328,5 +331,5 @@ class BaseMessage:
                                 for uid in getattr(fromobj, link_id_name):
                                     if uid not in uids:
                                         toobj._append_link_nn(link_id_name, uid)
-        cls.model_validate(message_dict)
+        return cls.model_validate(message_dict)
 

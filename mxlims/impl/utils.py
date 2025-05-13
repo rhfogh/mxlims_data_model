@@ -130,10 +130,10 @@ def to_import_json(message_dict: dict) -> None:
     :param message_dict: schema-compliant JSON message
     :return:
     """
-    for tag, objlist in list(message_dict.items()):
+    for tag, objdict in list(message_dict.items()):
         refdict = LINK_SPECIFICATION.get(tag)
-        for obj in objlist:
-            for linkdict in refdict["links"]:
+        for obj in objdict.values():
+            for linkdict in refdict["links"].values():
                 link_id_name_orig = linkdict.get("link_id_name")
                 link_ref_name = linkdict.get("link_ref_name")
                 if link_id_name_orig:
@@ -142,7 +142,7 @@ def to_import_json(message_dict: dict) -> None:
                     data = obj.pop(link_ref_name, None)
                     if data:
                         if linkdict["cardinality"] == "single":
-                            mxlims_type = data["mxlims_type"]
+                            mxlims_type = data["mxlimsType"]
                             uidstr = data["$ref"].split("/")[-1]
                             obj[link_id_name] = (
                                 message_dict[mxlims_type][uidstr]["uuid"]
@@ -150,7 +150,7 @@ def to_import_json(message_dict: dict) -> None:
                         else:
                             uids = obj[link_id_name] = []
                             for ddref in data:
-                                mxlims_type = ddref["mxlims_type"]
+                                mxlims_type = ddref["mxlimsType"]
                                 uidstr = ddref["$ref"].split("/")[-1]
                                 uids.append(
                                     message_dict[mxlims_type][uidstr]["uuid"]
