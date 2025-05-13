@@ -6,37 +6,28 @@ from __future__ import annotations
 from typing import Optional
 from uuid import UUID
 
+from mxlims.impl.MxlimsBase import BaseModel
+
 from pydantic import Field
 
-from .MxlimsObject import MxlimsObject
 
-
-class Dataset(MxlimsObject):
+class Dataset(BaseModel):
     """
     Base class for MXLIMS Datasets
     """
 
     source_id: Optional[UUID] = Field(
-        None,
-        alias="sourceId",
-        description="String UUID of Job that created this Dataset.",
-        title="SourceId",
+        None, alias="sourceId", description="uuid for Dataset source", title="SourceId"
     )
     derived_from_id: Optional[UUID] = Field(
         None,
         alias="derivedFromId",
-        description="String UUID of Dataset from which this Dataset was derived. Used for modified Datasets without a 'source' link, e.g. when removing images from a sweep before processing.",
-        title="Derived From Id",
-    )
-    role: Optional[str] = Field(
-        None,
-        description="Role of Dataset relative to the source Job. Intended for filtering of Datasets",
-        examples=["Result", "Intermediate", "Characterisation", "Centring"],
-        title="Role",
+        description="uuid for Dataset from which Dataset is derived",
+        title="DerivedFromId",
     )
     logistical_sample_id: Optional[UUID] = Field(
         None,
         alias="logisticalSampleId",
-        description="String UUID of LogisticalSample relevant to Dataset.",
-        title="Logistical Sample Id",
+        description="uuid for LogisticalSample related to Dataset",
+        title="LogisticalSampleId",
     )

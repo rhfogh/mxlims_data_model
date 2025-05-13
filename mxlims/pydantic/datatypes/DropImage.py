@@ -6,19 +6,22 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Optional
 
-from mxlims.pydantic.MxBaseModel import BaseModel
+from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import AnyUrl, Field
+from pydantic import AnyUrl, ConfigDict, Field
 
 from .ImageLightType import ImageLightType
 from .ImageMimeType import ImageMimetype
 
 
-class Dropimage(BaseModel):
+class DropImage(BaseModel):
     """
     An image of a crystallization drop.
     """
 
+    model_config = ConfigDict(
+        extra="forbid",
+    )
     mime_type: ImageMimetype = Field(
         ..., alias="mimeType", description="The MIME type of the image."
     )

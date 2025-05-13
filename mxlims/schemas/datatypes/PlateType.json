@@ -32,5 +32,11 @@
             "examples": [ "123,RRR", "23,1R" ]
         }
     },
-    "required": ["numberRows","numberColumns","numberSubPositions","dropMapping"]
+    "required": [
+        "numberRows",
+        "numberColumns",
+        "numberSubPositions",
+        "dropMapping"
+    ],
+    "additionalProperties": false
 }

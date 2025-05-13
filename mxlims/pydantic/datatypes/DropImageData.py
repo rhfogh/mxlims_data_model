@@ -3,14 +3,17 @@
 
 from __future__ import annotations
 
-from pydantic import Field
+from pydantic import ConfigDict, Field
 
-from .DropImage import Dropimage
+from .DropImage import DropImage
 
 
-class DropImageData(Dropimage):
+class DropImageData(DropImage):
     """
     DropImage,m containing image as attached data.
     """
 
+    model_config = ConfigDict(
+        extra="forbid",
+    )
     data: str = Field(..., description="The image, UUencoded.")

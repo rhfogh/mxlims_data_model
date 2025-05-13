@@ -5,9 +5,9 @@ from __future__ import annotations
 
 from typing import List, Literal
 
-from mxlims.pydantic.MxBaseModel import BaseModel
+from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import Field
+from pydantic import ConfigDict, Field
 
 from .Point import Point
 
@@ -17,6 +17,9 @@ class Polygon(BaseModel):
     <A polygonal region marked on an image or in absolute plate space.The polygon is defined by at least three points, and is assumed to be closed by a line from the last point to the first. The path should not cross itself, including on the closing segment.
     """
 
+    model_config = ConfigDict(
+        extra="forbid",
+    )
     region_type: Literal["polygon"] = Field(
         "polygon", alias="regionType", description="Type of region", title="Region type"
     )

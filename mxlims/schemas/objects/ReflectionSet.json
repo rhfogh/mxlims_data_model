@@ -5,15 +5,80 @@
     "type": "object",
     "allOf": [
         {
-            "$ref": "../rawobjects/RawReflectionSet.json"
+            "$ref": "../data/ReflectionSetData.json"
+        },
+        {
+            "$ref": "../data/DatasetData.json"
+        },
+        {
+            "$ref": "../objects/Dataset.json"
         }
     ],
     "properties": {
-        "derivedDataSets": {
-            "type": "array",
-            "items": {
-                "$ref": "../objects/ReflectionSet.json"
-            }
+        "sourceRef": {
+            "allOf": [
+                {
+                    "readOnly": true,
+                    "reverseLinkName": "results"
+                },
+                {
+                    "$ref": "../references/MxProcessingRef.json"
+                }
+            ]
+        },
+        "derivedFromRef": {
+            "allOf": [
+                {
+                    "readOnly": true,
+                    "reverseLinkName": "derivedDatasets"
+                },
+                {
+                    "$ref": "../references/ReflectionSetRef.json"
+                }
+            ]
+        },
+        "logisticalSampleRef": {
+            "allOf": [
+                {
+                    "reverseLinkName": "datasets"
+                },
+                {
+                    "oneOf": [
+                        {
+                            "$ref": "../references/CrystalRef.json"
+                        },
+                        {
+                            "$ref": "../references/PinRef.json"
+                        },
+                        {
+                            "$ref": "../references/PinPositionRef.json"
+                        },
+                        {
+                            "$ref": "../references/PlateWellRef.json"
+                        },
+                        {
+                            "$ref": "../references/WellDropRef.json"
+                        },
+                        {
+                            "$ref": "../references/DropRegionRef.json"
+                        }
+                    ]
+                }
+            ]
         }
+    },
+    "not": {
+        "oneOf": [
+            {
+                "required": [
+                    "sourceRef"
+                ]
+            },
+            {
+                "required": [
+                    "derivedFromRef"
+                ]
+            }
+        ]
     }
 }

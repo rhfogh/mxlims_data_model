@@ -41,5 +41,6 @@
     "required": [
         "region",
         "units"
-    ]
+    ],
+    "additionalProperties": false
 }

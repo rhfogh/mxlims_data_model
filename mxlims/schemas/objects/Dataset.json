@@ -1,0 +1,59 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "Dataset core class",
+    "title": "Dataset",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../data/DatasetData.json"
+        }
+    ],
+    "properties": {
+        "sourceRef": {
+            "allOf": [
+                {
+                    "readOnly": true,
+                    "reverseLinkName": "results"
+                },
+                {
+                    "$ref": "../references/JobRef.json"
+                }
+            ]
+        },
+        "derivedFromRef": {
+            "allOf": [
+                {
+                    "readOnly": true,
+                    "reverseLinkName": "derivedDatasets"
+                },
+                {
+                    "$ref": "../references/DatasetRef.json"
+                }
+            ]
+        },
+        "logisticalSampleRef": {
+            "allOf": [
+                {
+                    "reverseLinkName": "datasets"
+                },
+                {
+                    "$ref": "../references/LogisticalSampleRef.json"
+                }
+            ]
+        }
+    },
+    "not": {
+        "oneOf": [
+            {
+                "required": [
+                    "sourceRef"
+                ]
+            },
+            {
+                "required": [
+                    "derivedFromRef"
+                ]
+            }
+        ]
+    }
+}

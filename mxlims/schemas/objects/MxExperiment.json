@@ -5,32 +5,106 @@
     "type": "object",
     "allOf": [
         {
-            "$ref": "../rawobjects/RawMxExperiment.json"
+            "$ref": "../data/MxExperimentData.json"
+        },
+        {
+            "$ref": "../data/JobData.json"
         }
     ],
     "properties": {
-        "results": {
+        "sampleRef": {
+            "allOf": [
+                {
+                    "reverseLinkName": "jobs"
+                },
+                {
+                    "oneOf": [
+                        {
+                            "$ref": "../references/CrystallographicSampleRef.json"
+                        },
+                        {
+                            "$ref": "../references/PreparedSampleRef.json"
+                        }
+                    ]
+                }
+            ]
+        },
+        "startedFromRef": {
+            "allOf": [
+                {
+                    "reverseLinkName": "subjobs",
+                    "readOnly": true
+                },
+                {
+                    "oneOf": [
+                        {
+                            "$ref": "../references/MxExperimentRef.json"
+                        },
+                        {
+                            "$ref": "../references/JobRef.json"
+                        }
+                    ]
+                }
+            ]
+        },
+        "logisticalSampleRef": {
+            "allOf": [
+                {
+                    "reverseLinkName": "jobs"
+                },
+                {
+                    "oneOf": [
+                        {
+                            "$ref": "../references/CrystalRef.json"
+                        },
+                        {
+                            "$ref": "../references/PinRef.json"
+                        },
+                        {
+                            "$ref": "../references/PinPositionRef.json"
+                        },
+                        {
+                            "$ref": "../references/PlateWellRef.json"
+                        },
+                        {
+                            "$ref": "../references/WellDropRef.json"
+                        },
+                        {
+                            "$ref": "../references/DropRegionRef.json"
+                        },
+                        {
+                            "$ref": "../references/LogisticalSampleRef.json"
+                        }
+                    ]
+                }
+            ]
+        },
+        "referenceDataRefs": {
             "type": "array",
+            "reverseLinkName": "referenceFor",
             "items": {
-                "$ref": "../objects/CollectionSweep.json"
+                "oneOf": [
+                    {
+                        "$ref": "../references/ReflectionSetRef.json"
+                    },
+                    {
+                        "$ref": "../references/DatasetRef.json"
+                    }
+                ]
             }
         },
-        "templateData": {
+        "templateDataRefs": {
             "type": "array",
+            "reverseLinkName": "templateFor",
             "items": {
-                "$ref": "../objects/CollectionSweep.json"
-            }
-        },
-        "referenceData": {
-            "type": "array",
-            "items": {
-                "$ref": "../objects/ReflectionSet.json"
-            }
-        },
-        "subjobs": {
-            "type": "array",
-            "items": {
-                "$ref": "../objects/MxExperiment.json"
+                "oneOf": [
+                    {
+                        "$ref": "../references/CollectionSweepRef.json"
+                    },
+                    {
+                        "$ref": "../references/DatasetRef.json"
+                    }
+                ]
             }
         }
     }

@@ -23,5 +23,6 @@
         "regionType",
         "center",
         "radius"
-    ]
+    ],
+    "additionalProperties": false
 }

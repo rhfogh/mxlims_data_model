@@ -5,16 +5,29 @@
     "type": "object",
     "allOf": [
         {
-            "$ref": "../core/LogisticalSample.json"
+            "$ref": "../data/PlateData.json"
+        },
+        {
+            "$ref": "../data/LogisticalSampleData.json"
         }
     ],
     "properties": {
-        "contents": {
-            "type": "array",
-            "items": {
-                "$ref": "../objects/PlateWell.json"
-            },
-            "minItems": 1
+        "containerRef": {
+            "allOf": [
+                {
+                    "reverseLinkName": "contents"
+                },
+                {
+                    "oneOf": [
+                        {
+                            "$ref": "../references/ShipmentRef.json"
+                        },
+                        {
+                            "$ref": "../references/LogisticalSampleRef.json"
+                        }
+                    ]
+                }
+            ]
         }
     }
 }

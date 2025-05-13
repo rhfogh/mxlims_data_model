@@ -1,0 +1,33 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "Logistical Sample core vlass.",
+    "title": "LogisticalSample",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../data/LogisticalSampleData.json"
+        }
+    ],
+    "properties": {
+        "sampleRef": {
+            "allOf": [
+                {
+                    "reverseLinkName": "logisticalSamples"
+                },
+                {
+                    "$ref": "../references/PreparedSampleRef.json"
+                }
+            ]
+        },
+        "containerRef": {
+            "allOf": [
+                {
+                    "reverseLinkName": "contents"
+                },
+                {
+                    "$ref": "../references/LogisticalSampleRef.json"
+                }
+            ]
+        }
+    }
+}

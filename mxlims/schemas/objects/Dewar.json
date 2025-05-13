@@ -5,16 +5,29 @@
     "type": "object",
     "allOf": [
         {
-            "$ref": "../rawobjects/RawDewar.json"
+            "$ref": "../data/DewarData.json"
+        },
+        {
+            "$ref": "../data/LogisticalSampleData.json"
         }
     ],
     "properties": {
-        "contents": {
-            "type": "array",
-            "items": {
-                "$ref": "../objects/Puck.json"
-            },
-            "minItems": 1
+        "containerRef": {
+            "allOf": [
+                {
+                    "reverseLinkName": "contents"
+                },
+                {
+                    "oneOf": [
+                        {
+                            "$ref": "../references/ShipmentRef.json"
+                        },
+                        {
+                            "$ref": "../references/LogisticalSampleRef.json"
+                        }
+                    ]
+                }
+            ]
         }
     }
 }

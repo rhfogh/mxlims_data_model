@@ -3,9 +3,9 @@
 
 from __future__ import annotations
 
-from mxlims.pydantic.MxBaseModel import BaseModel
+from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import Field
+from pydantic import ConfigDict, Field
 
 from .QualityFactorType import QualityFactorType
 
@@ -54,6 +54,9 @@ class QualityFactor(BaseModel):
     Completeness values are given in %, 0 <= Completeness <= 100
     """
 
+    model_config = ConfigDict(
+        extra="forbid",
+    )
     factor_type: QualityFactorType = Field(
         ..., alias="factorType", description="Quality factor type"
     )

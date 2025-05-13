@@ -1,26 +1,46 @@
 {
     "$schema": "https://json-schema.org/draft-07/schema",
-    "description": "Crystal or location for measuring diffraction, with typed JSON containment lists. Note that crystals are optional and are generally used ONLY where a region, loop, or other LogisticalSample is found to have several crystals during the actual experiment.",
+    "description": "Crystal or location for measuring diffraction. Note that crystals are optional and are generally used ONLY where a region, loop, or other LogisticalSample is found to have several crystals during the actual experiment.",
     "title": "Crystal",
     "type": "object",
     "allOf": [
         {
-            "$ref": "../rawobjects/RawCrystal.json"
+            "$ref": "../data/CrystalData.json"
+        },
+        {
+            "$ref": "../data/LogisticalSampleData.json"
+        },
+        {
+            "$ref": "../objects/LogisticalSample.json"
         }
     ],
     "properties": {
-        "jobs": {
-            "type": "array",
-            "items": {
-                "anyOf": [
-                    {
-                        "$ref": "../objects/MxExperiment.json"
-                    },
-                    {
-                        "$ref": "../objects/MxProcessing.json"
-                    }
-                ]
-            }
+        "sampleRef": {
+            "allOf": [
+                {
+                    "reverseLinkName": "logisticalSamples"
+                },
+                {
+                    "$ref": "../references/CrystallographicSampleRef.json"
+                }
+            ]
+        },
+        "containerRef": {
+            "allOf": [
+                {
+                    "reverseLinkName": "contents"
+                },
+                {
+                    "oneOf": [
+                        {
+                            "$ref": "../references/PinPositionRef.json"
+                        },
+                        {
+                            "$ref": "../references/DropRegionRef.json"
+                        }
+                    ]
+                }
+            ]
         }
     }
 }

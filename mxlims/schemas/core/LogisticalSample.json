@@ -3,23 +3,18 @@
     "description": "Base class for MXLIMS Logistical Samples\n\ndescribing Sample containers and locations\n(from Dewars and Plates to drops, pins and crystals)",
     "title": "LogisticalSample",
     "type": "object",
-    "allOf": [
-        {
-            "$ref": "../core/MxlimsObject.json"
-        }
-    ],
     "properties": {
         "sampleId": {
+            "description": "uuid for constituent sample",
+            "title": "SampleId",
             "type": "string",
-            "format": "uuid",
-            "description": "String UUID of the PreparedSample that applies to this LogisticalSample and all its contents",
-            "title": "Sample Id"
+            "format": "uuid"
         },
         "containerId": {
+            "description": "uuid for LogisticalSample container",
+            "title": "containerId",
             "type": "string",
-            "format": "uuid",
-            "description": "String UUID of the LogisticalSample containing this one",
-            "title": "Container Id"
+            "format": "uuid"
         }
     }
 }

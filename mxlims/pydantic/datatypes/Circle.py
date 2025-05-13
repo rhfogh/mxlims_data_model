@@ -5,9 +5,9 @@ from __future__ import annotations
 
 from typing import Literal
 
-from mxlims.pydantic.MxBaseModel import BaseModel
+from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import Field, PositiveFloat
+from pydantic import ConfigDict, Field, PositiveFloat
 
 from .Point import Point
 
@@ -17,6 +17,9 @@ class Circle(BaseModel):
     A circle marked on an image or in absolute plate space.
     """
 
+    model_config = ConfigDict(
+        extra="forbid",
+    )
     region_type: Literal["circle"] = Field(
         "circle", alias="regionType", description="Type of region", title="Region type"
     )

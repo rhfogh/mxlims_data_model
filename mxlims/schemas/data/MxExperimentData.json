@@ -1,0 +1,94 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "Crystallography experiment, producing data",
+    "title": "MxExperimentData",
+    "type": "object",
+    "properties": {
+        "mxlimsType": {
+            "const": "MxExperiment",
+            "description": "The type of MXLIMS object.",
+            "title": "MxlimsType",
+            "type": "string"
+        },
+        "experimentStrategy": {
+            "type": "string",
+            "description": "Experiment strategy indicator",
+            "examples": [
+                "OSC",
+                "Helical",
+                "MXPressE",
+                "GPhL.native.basic",
+                "GPhL.SAD.advanced",
+                "GPhL.2wvlMAD.basic"
+            ],
+            "title": "Experiment Strategy"
+        },
+        "expectedResolution": {
+            "minimum": 0.0,
+            "type": "number",
+            "description": "The resolution expected in the experiment - for positioning the detector and setting up the experiment",
+            "title": "Expected Resolution"
+        },
+        "targetCompleteness": {
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "type": "number",
+            "description": "Minimal completeness expected from experiment",
+            "title": "Target Completeness"
+        },
+        "targetMultiplicity": {
+            "minimum": 0.0,
+            "type": "number",
+            "description": "Minimal multiplicity expected from experiment",
+            "title": "Target Multiplicity"
+        },
+        "doseBudget": {
+            "minimum": 0.0,
+            "type": "number",
+            "description": "Dose (MGy) to be used in experiment",
+            "title": "Dose Budget"
+        },
+        "snapshotCount": {
+            "minimum": 0,
+            "type": "integer",
+            "default": 0,
+            "description": "Number of snapshots to acquire after each (re)centring",
+            "title": "Snapshot Count"
+        },
+        "wedgeWidth": {
+            "minimum": 0.0,
+            "type": "number",
+            "description": "Wedge width (in degrees) to use for interleaving",
+            "title": "Wedge Width"
+        },
+        "measuredFlux": {
+            "minimum": 0.0,
+            "type": "number",
+            "description": "Measured value of beam flux in photons/s",
+            "title": "Measured Flux"
+        },
+        "radiationDose": {
+            "minimum": 0.0,
+            "type": "number",
+            "description": "Total radiation dose absorbed during experiment",
+            "title": "Radiation Dose"
+        },
+        "spaceGroupName": {
+            "allOf": [
+                {
+                    "$ref": "../datatypes/SpaceGroupName.json"
+                }
+            ],
+            "description": "Name of space group, as determined during characterisation. Names may include alternative settings. Matches mmCIF item symmetry.space_group_name_H-M (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_symmetry.space_group_name_H-M.html).",
+            "title": "Space Group Name"
+        },
+        "unitCell": {
+            "allOf": [
+                {
+                    "$ref": "../datatypes/UnitCell.json"
+                }
+            ],
+            "description": "Unit cell of crystal, as determined during characterisation."
+        }
+    }
+}

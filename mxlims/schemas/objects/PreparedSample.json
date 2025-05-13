@@ -1,0 +1,11 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "Prepared Sample core class",
+    "title": "PreparedSample",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../data/PreparedSampleData.json"
+        }
+    ]
+}

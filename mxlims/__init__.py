@@ -25,7 +25,7 @@ __copyright__ = """ Copyright © 2024 -  2025 MXLIMS collaboration."""
 __author__ = "rhfogh"
 __date__ = "01/11/2024"
 
-__version__ = "0.5.0"
+__version__ = "0.6.1"
 
 
 def version():

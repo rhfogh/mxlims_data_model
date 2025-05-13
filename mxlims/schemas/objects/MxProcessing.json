@@ -5,38 +5,85 @@
     "type": "object",
     "allOf": [
         {
-            "$ref": "../rawobjects/RawMxProcessing.json"
+            "$ref": "../data/MxProcessingData.json"
+        },
+        {
+            "$ref": "../data/JobData.json"
+        },
+        {
+            "$ref": "../objects/Job.json"
         }
     ],
     "properties": {
-        "results": {
+        "sampleRef": {
+            "allOf": [
+                {
+                    "reverseLinkName": "jobs"
+                },
+                {
+                    "$ref": "../references/CrystallographicSampleRef.json"
+                }
+            ]
+        },
+        "startedFromRef": {
+            "allOf": [
+                {
+                    "reverseLinkName": "subjobs",
+                    "readOnly": true
+                },
+                {
+                    "$ref": "../references/MxProcessingRef.json"
+                }
+            ]
+        },
+        "logisticalSampleRef": {
+            "allOf": [
+                {
+                    "reverseLinkName": "jobs"
+                },
+                {
+                    "oneOf": [
+                        {
+                            "$ref": "../references/CrystalRef.json"
+                        },
+                        {
+                            "$ref": "../references/PinRef.json"
+                        },
+                        {
+                            "$ref": "../references/PinPositionRef.json"
+                        },
+                        {
+                            "$ref": "../references/PlateWellRef.json"
+                        },
+                        {
+                            "$ref": "../references/WellDropRef.json"
+                        },
+                        {
+                            "$ref": "../references/DropRegionRef.json"
+                        }
+                    ]
+                }
+            ]
+        },
+        "referenceDataRefs": {
             "type": "array",
+            "reverseLinkName": "referenceFor",
             "items": {
-                "$ref": "../objects/ReflectionSet.json"
+                "$ref": "../references/ReflectionSetRef.json"
             }
         },
-        "templateData": {
+        "templateDataRefs": {
             "type": "array",
+            "reverseLinkName": "templateFor",
             "items": {
-                "$ref": "../objects/ReflectionSet.json"
+                "$ref": "../references/ReflectionSetRef.json"
             }
         },
-        "referenceData": {
+        "inputDataRefs": {
             "type": "array",
+            "reverseLinkName": "inputFor",
             "items": {
-                "$ref": "../objects/ReflectionSet.json"
-            }
-        },
-        "inputData": {
-            "type": "array",
-            "items": {
-                "$ref": "../objects/CollectionSweep.json"
-            }
-        },
-        "subjobs": {
-            "type": "array",
-            "items": {
-                "$ref": "../objects/MxProcessing.json"
+                "$ref": "../references/CollectionSweepRef.json"
             }
         }
     }

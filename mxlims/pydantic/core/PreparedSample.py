@@ -3,10 +3,10 @@
 
 from __future__ import annotations
 
-from .MxlimsObject import MxlimsObject
+from mxlims.impl.MxlimsBase import BaseModel
 
 
-class PreparedSample(MxlimsObject):
+class PreparedSample(BaseModel):
     """
     Base class for MXLIMS Prepared Samples describing Sample content
     """

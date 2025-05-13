@@ -1,0 +1,907 @@
+CollectionSweep:
+  classname: CollectionSweep
+  corename: Dataset
+  links:
+    derived_datasets: &id001
+      basetypename: Dataset
+      cardinality: multiple
+      linkname: derived_datasets
+      read_only: true
+      reverselink: &id002
+        basetypename: Dataset
+        cardinality: single
+        link_id_name: derived_from_id
+        link_ref_name: derivedFromRef
+        linkname: derived_from
+        read_only: true
+        reverselink: *id001
+        reversename: derived_datasets
+        typenames:
+          - CollectionSweep
+      typenames:
+        - CollectionSweep
+    derived_from: *id002
+    input_for: &id003
+      basetypename: Job
+      cardinality: multiple
+      linkname: input_for
+      reverselink: &id042
+        basetypename: Dataset
+        cardinality: multiple
+        link_id_name: input_data_ids
+        link_ref_name: inputDataRefs
+        linkname: input_data
+        read_only: false
+        reverselink: *id003
+        reversename: input_for
+        typenames:
+          - CollectionSweep
+      typenames:
+        - MxProcessing
+    logistical_sample: &id004
+      basetypename: LogisticalSample
+      cardinality: single
+      link_id_name: logistical_sample_id
+      link_ref_name: logisticalSampleRef
+      linkname: logistical_sample
+      read_only: false
+      reverselink: &id022
+        basetypename: Dataset
+        cardinality: multiple
+        linkname: datasets
+        reverselink: *id004
+        typenames:
+          - ReflectionSet
+          - CollectionSweep
+      reversename: datasets
+      typenames:
+        - Crystal
+        - Pin
+        - PinPosition
+        - PlateWell
+        - WellDrop
+        - DropRegion
+    source: &id005
+      basetypename: Job
+      cardinality: single
+      link_id_name: source_id
+      link_ref_name: sourceRef
+      linkname: source
+      read_only: true
+      reverselink: &id038
+        basetypename: Dataset
+        cardinality: multiple
+        linkname: results
+        read_only: true
+        reverselink: *id005
+        typenames:
+          - CollectionSweep
+      reversename: results
+      typenames:
+        - MxExperiment
+    template_for: &id006
+      basetypename: Job
+      cardinality: multiple
+      linkname: template_for
+      reverselink: &id041
+        basetypename: Dataset
+        cardinality: multiple
+        link_id_name: template_data_ids
+        link_ref_name: templateDataRefs
+        linkname: template_data
+        read_only: false
+        reverselink: *id006
+        reversename: template_for
+        typenames:
+          - CollectionSweep
+      typenames:
+        - MxExperiment
+Crystal:
+  classname: Crystal
+  corename: LogisticalSample
+  links:
+    container: &id007
+      basetypename: LogisticalSample
+      cardinality: single
+      link_id_name: container_id
+      link_ref_name: containerRef
+      linkname: container
+      read_only: false
+      reverselink: &id021
+        basetypename: LogisticalSample
+        cardinality: multiple
+        linkname: contents
+        reverselink: *id007
+        typenames:
+          - Crystal
+      reversename: contents
+      typenames:
+        - PinPosition
+        - DropRegion
+    datasets:
+      basetypename: Dataset
+      cardinality: multiple
+      linkname: datasets
+      reverselink: *id004
+      typenames:
+        - ReflectionSet
+        - CollectionSweep
+    jobs:
+      basetypename: Job
+      cardinality: multiple
+      linkname: jobs
+      reverselink: &id008
+        basetypename: LogisticalSample
+        cardinality: single
+        link_id_name: logistical_sample_id
+        link_ref_name: logisticalSampleRef
+        linkname: logistical_sample
+        read_only: false
+        reverselink: &id023
+          basetypename: Job
+          cardinality: multiple
+          linkname: jobs
+          reverselink: *id008
+          typenames:
+            - MxExperiment
+            - MxProcessing
+        reversename: jobs
+        typenames:
+          - Crystal
+          - Pin
+          - PinPosition
+          - PlateWell
+          - WellDrop
+          - DropRegion
+      typenames:
+        - MxExperiment
+        - MxProcessing
+    sample:
+      basetypename: PreparedSample
+      cardinality: single
+      link_id_name: sample_id
+      link_ref_name: sampleRef
+      linkname: sample
+      read_only: false
+      reverselink: &id009
+        basetypename: LogisticalSample
+        cardinality: multiple
+        linkname: logistical_samples
+        reverselink: &id066
+          basetypename: PreparedSample
+          cardinality: single
+          link_id_name: sample_id
+          link_ref_name: sampleRef
+          linkname: sample
+          read_only: false
+          reverselink: *id009
+          reversename: logistical_samples
+          typenames:
+            - CrystallographicSample
+        typenames:
+          - Crystal
+          - DropRegion
+          - Pin
+          - PinPosition
+          - PlateWell
+          - WellDrop
+      reversename: logistical_samples
+      typenames:
+        - CrystallographicSample
+CrystallographicSample:
+  classname: CrystallographicSample
+  corename: PreparedSample
+  links:
+    jobs: &id010
+      basetypename: Job
+      cardinality: multiple
+      linkname: jobs
+      reverselink: &id045
+        basetypename: PreparedSample
+        cardinality: single
+        link_id_name: sample_id
+        link_ref_name: sampleRef
+        linkname: sample
+        read_only: false
+        reverselink: *id010
+        reversename: jobs
+        typenames:
+          - CrystallographicSample
+      typenames:
+        - MxExperiment
+        - MxProcessing
+    logistical_samples: *id009
+Dataset:
+  classname: Dataset
+  corename: Dataset
+  links:
+    derived_datasets: &id011
+      basetypename: Dataset
+      cardinality: multiple
+      linkname: derived_datasets
+      read_only: true
+      reverselink: &id012
+        basetypename: Dataset
+        cardinality: single
+        link_id_name: derived_from_id
+        link_ref_name: derivedFromRef
+        linkname: derived_from
+        read_only: true
+        reverselink: *id011
+        reversename: derived_datasets
+        typenames:
+          - Dataset
+      typenames:
+        - Dataset
+    derived_from: *id012
+    input_for: &id013
+      basetypename: Job
+      cardinality: multiple
+      linkname: input_for
+      reverselink: &id024
+        basetypename: Dataset
+        cardinality: multiple
+        link_id_name: input_data_ids
+        link_ref_name: inputDataRefs
+        linkname: input_data
+        read_only: false
+        reverselink: *id013
+        reversename: input_for
+        typenames:
+          - Dataset
+      typenames:
+        - Job
+    logistical_sample: &id014
+      basetypename: LogisticalSample
+      cardinality: single
+      link_id_name: logistical_sample_id
+      link_ref_name: logisticalSampleRef
+      linkname: logistical_sample
+      read_only: false
+      reverselink: &id034
+        basetypename: Dataset
+        cardinality: multiple
+        linkname: datasets
+        reverselink: *id014
+        typenames:
+          - Dataset
+      reversename: datasets
+      typenames:
+        - LogisticalSample
+    reference_for: &id015
+      basetypename: Job
+      cardinality: multiple
+      linkname: reference_for
+      reverselink: &id026
+        basetypename: Dataset
+        cardinality: multiple
+        link_id_name: reference_data_ids
+        link_ref_name: referenceDataRefs
+        linkname: reference_data
+        read_only: false
+        reverselink: *id015
+        reversename: reference_for
+        typenames:
+          - Dataset
+      typenames:
+        - Job
+    source: &id016
+      basetypename: Job
+      cardinality: single
+      link_id_name: source_id
+      link_ref_name: sourceRef
+      linkname: source
+      read_only: true
+      reverselink: &id027
+        basetypename: Dataset
+        cardinality: multiple
+        linkname: results
+        read_only: true
+        reverselink: *id016
+        typenames:
+          - Dataset
+      reversename: results
+      typenames:
+        - Job
+    template_for: &id017
+      basetypename: Job
+      cardinality: multiple
+      linkname: template_for
+      reverselink: &id031
+        basetypename: Dataset
+        cardinality: multiple
+        link_id_name: template_data_ids
+        link_ref_name: templateDataRefs
+        linkname: template_data
+        read_only: false
+        reverselink: *id017
+        reversename: template_for
+        typenames:
+          - Dataset
+      typenames:
+        - Job
+Dewar:
+  classname: Dewar
+  corename: LogisticalSample
+  links:
+    container:
+      basetypename: LogisticalSample
+      cardinality: single
+      link_id_name: container_id
+      link_ref_name: containerRef
+      linkname: container
+      read_only: false
+      reverselink: &id018
+        basetypename: LogisticalSample
+        cardinality: multiple
+        linkname: contents
+        reverselink: &id052
+          basetypename: LogisticalSample
+          cardinality: single
+          link_id_name: container_id
+          link_ref_name: containerRef
+          linkname: container
+          read_only: false
+          reverselink: *id018
+          reversename: contents
+          typenames:
+            - Shipment
+        typenames:
+          - Dewar
+          - Plate
+      reversename: contents
+      typenames:
+        - Shipment
+    contents: &id019
+      basetypename: LogisticalSample
+      cardinality: multiple
+      linkname: contents
+      reverselink: &id058
+        basetypename: LogisticalSample
+        cardinality: single
+        link_id_name: container_id
+        link_ref_name: containerRef
+        linkname: container
+        read_only: false
+        reverselink: *id019
+        reversename: contents
+        typenames:
+          - Dewar
+      typenames:
+        - Puck
+DropRegion:
+  classname: DropRegion
+  corename: LogisticalSample
+  links:
+    container: &id020
+      basetypename: LogisticalSample
+      cardinality: single
+      link_id_name: container_id
+      link_ref_name: containerRef
+      linkname: container
+      read_only: false
+      reverselink: &id065
+        basetypename: LogisticalSample
+        cardinality: multiple
+        linkname: contents
+        reverselink: *id020
+        typenames:
+          - DropRegion
+      reversename: contents
+      typenames:
+        - WellDrop
+    contents: *id021
+    datasets: *id022
+    jobs: *id023
+    sample:
+      basetypename: PreparedSample
+      cardinality: single
+      link_id_name: sample_id
+      link_ref_name: sampleRef
+      linkname: sample
+      read_only: false
+      reverselink: *id009
+      reversename: logistical_samples
+      typenames:
+        - CrystallographicSample
+Job:
+  classname: Job
+  corename: Job
+  links:
+    input_data: *id024
+    logistical_sample: &id025
+      basetypename: LogisticalSample
+      cardinality: single
+      link_id_name: logistical_sample_id
+      link_ref_name: logisticalSampleRef
+      linkname: logistical_sample
+      read_only: false
+      reverselink: &id035
+        basetypename: Job
+        cardinality: multiple
+        linkname: jobs
+        reverselink: *id025
+        typenames:
+          - Job
+      reversename: jobs
+      typenames:
+        - LogisticalSample
+    reference_data: *id026
+    results: *id027
+    sample: &id028
+      basetypename: PreparedSample
+      cardinality: single
+      link_id_name: sample_id
+      link_ref_name: sampleRef
+      linkname: sample
+      read_only: false
+      reverselink: &id056
+        basetypename: Job
+        cardinality: multiple
+        linkname: jobs
+        reverselink: *id028
+        typenames:
+          - Job
+      reversename: jobs
+      typenames:
+        - PreparedSample
+    started_from: &id029
+      basetypename: Job
+      cardinality: single
+      link_id_name: started_from_id
+      link_ref_name: startedFromRef
+      linkname: started_from
+      read_only: true
+      reverselink: &id030
+        basetypename: Job
+        cardinality: multiple
+        linkname: subjobs
+        read_only: true
+        reverselink: *id029
+        typenames:
+          - Job
+      reversename: subjobs
+      typenames:
+        - Job
+    subjobs: *id030
+    template_data: *id031
+LogisticalSample:
+  classname: LogisticalSample
+  corename: LogisticalSample
+  links:
+    container: &id032
+      basetypename: LogisticalSample
+      cardinality: single
+      link_id_name: container_id
+      link_ref_name: containerRef
+      linkname: container
+      read_only: false
+      reverselink: &id033
+        basetypename: LogisticalSample
+        cardinality: multiple
+        linkname: contents
+        reverselink: *id032
+        typenames:
+          - LogisticalSample
+      reversename: contents
+      typenames:
+        - LogisticalSample
+    contents: *id033
+    datasets: *id034
+    jobs: *id035
+    sample: &id036
+      basetypename: PreparedSample
+      cardinality: single
+      link_id_name: sample_id
+      link_ref_name: sampleRef
+      linkname: sample
+      read_only: false
+      reverselink: &id057
+        basetypename: LogisticalSample
+        cardinality: multiple
+        linkname: logistical_samples
+        reverselink: *id036
+        typenames:
+          - LogisticalSample
+      reversename: logistical_samples
+      typenames:
+        - PreparedSample
+MxExperiment:
+  classname: MxExperiment
+  corename: Job
+  links:
+    logistical_sample:
+      basetypename: LogisticalSample
+      cardinality: single
+      link_id_name: logistical_sample_id
+      link_ref_name: logisticalSampleRef
+      linkname: logistical_sample
+      read_only: false
+      reverselink: *id023
+      reversename: jobs
+      typenames:
+        - Crystal
+        - Pin
+        - PinPosition
+        - PlateWell
+        - WellDrop
+        - DropRegion
+    reference_data:
+      basetypename: Dataset
+      cardinality: multiple
+      link_id_name: reference_data_ids
+      link_ref_name: referenceDataRefs
+      linkname: reference_data
+      read_only: false
+      reverselink: &id037
+        basetypename: Job
+        cardinality: multiple
+        linkname: reference_for
+        reverselink: &id043
+          basetypename: Dataset
+          cardinality: multiple
+          link_id_name: reference_data_ids
+          link_ref_name: referenceDataRefs
+          linkname: reference_data
+          read_only: false
+          reverselink: *id037
+          reversename: reference_for
+          typenames:
+            - ReflectionSet
+        typenames:
+          - MxExperiment
+          - MxProcessing
+      reversename: reference_for
+      typenames:
+        - ReflectionSet
+    results: *id038
+    sample:
+      basetypename: PreparedSample
+      cardinality: single
+      link_id_name: sample_id
+      link_ref_name: sampleRef
+      linkname: sample
+      read_only: false
+      reverselink: *id010
+      reversename: jobs
+      typenames:
+        - CrystallographicSample
+    started_from: &id039
+      basetypename: Job
+      cardinality: single
+      link_id_name: started_from_id
+      link_ref_name: startedFromRef
+      linkname: started_from
+      read_only: true
+      reverselink: &id040
+        basetypename: Job
+        cardinality: multiple
+        linkname: subjobs
+        read_only: true
+        reverselink: *id039
+        typenames:
+          - MxExperiment
+      reversename: subjobs
+      typenames:
+        - MxExperiment
+    subjobs: *id040
+    template_data: *id041
+MxProcessing:
+  classname: MxProcessing
+  corename: Job
+  links:
+    input_data: *id042
+    logistical_sample: *id008
+    reference_data: *id043
+    results: &id044
+      basetypename: Dataset
+      cardinality: multiple
+      linkname: results
+      read_only: true
+      reverselink: &id062
+        basetypename: Job
+        cardinality: single
+        link_id_name: source_id
+        link_ref_name: sourceRef
+        linkname: source
+        read_only: true
+        reverselink: *id044
+        reversename: results
+        typenames:
+          - MxProcessing
+      typenames:
+        - ReflectionSet
+    sample: *id045
+    started_from: &id046
+      basetypename: Job
+      cardinality: single
+      link_id_name: started_from_id
+      link_ref_name: startedFromRef
+      linkname: started_from
+      read_only: true
+      reverselink: &id047
+        basetypename: Job
+        cardinality: multiple
+        linkname: subjobs
+        read_only: true
+        reverselink: *id046
+        typenames:
+          - MxProcessing
+      reversename: subjobs
+      typenames:
+        - MxProcessing
+    subjobs: *id047
+    template_data: &id048
+      basetypename: Dataset
+      cardinality: multiple
+      link_id_name: template_data_ids
+      link_ref_name: templateDataRefs
+      linkname: template_data
+      read_only: false
+      reverselink: &id063
+        basetypename: Job
+        cardinality: multiple
+        linkname: template_for
+        reverselink: *id048
+        typenames:
+          - MxProcessing
+      reversename: template_for
+      typenames:
+        - ReflectionSet
+Pin:
+  classname: Pin
+  corename: LogisticalSample
+  links:
+    container: &id049
+      basetypename: LogisticalSample
+      cardinality: single
+      link_id_name: container_id
+      link_ref_name: containerRef
+      linkname: container
+      read_only: false
+      reverselink: &id059
+        basetypename: LogisticalSample
+        cardinality: multiple
+        linkname: contents
+        reverselink: *id049
+        typenames:
+          - Pin
+      reversename: contents
+      typenames:
+        - Puck
+    contents: &id050
+      basetypename: LogisticalSample
+      cardinality: multiple
+      linkname: contents
+      reverselink: &id051
+        basetypename: LogisticalSample
+        cardinality: single
+        link_id_name: container_id
+        link_ref_name: containerRef
+        linkname: container
+        read_only: false
+        reverselink: *id050
+        reversename: contents
+        typenames:
+          - Pin
+      typenames:
+        - PinPosition
+    datasets:
+      basetypename: Dataset
+      cardinality: multiple
+      linkname: datasets
+      reverselink: *id004
+      typenames:
+        - ReflectionSet
+        - CollectionSweep
+    jobs:
+      basetypename: Job
+      cardinality: multiple
+      linkname: jobs
+      reverselink: *id008
+      typenames:
+        - MxExperiment
+        - MxProcessing
+    sample:
+      basetypename: PreparedSample
+      cardinality: single
+      link_id_name: sample_id
+      link_ref_name: sampleRef
+      linkname: sample
+      read_only: false
+      reverselink: *id009
+      reversename: logistical_samples
+      typenames:
+        - CrystallographicSample
+PinPosition:
+  classname: PinPosition
+  corename: LogisticalSample
+  links:
+    container: *id051
+    contents:
+      basetypename: LogisticalSample
+      cardinality: multiple
+      linkname: contents
+      reverselink: *id007
+      typenames:
+        - Crystal
+    datasets:
+      basetypename: Dataset
+      cardinality: multiple
+      linkname: datasets
+      reverselink: *id004
+      typenames:
+        - ReflectionSet
+        - CollectionSweep
+    jobs:
+      basetypename: Job
+      cardinality: multiple
+      linkname: jobs
+      reverselink: *id008
+      typenames:
+        - MxExperiment
+        - MxProcessing
+    sample:
+      basetypename: PreparedSample
+      cardinality: single
+      link_id_name: sample_id
+      link_ref_name: sampleRef
+      linkname: sample
+      read_only: false
+      reverselink: *id009
+      reversename: logistical_samples
+      typenames:
+        - CrystallographicSample
+Plate:
+  classname: Plate
+  corename: LogisticalSample
+  links:
+    container: *id052
+    contents: &id053
+      basetypename: LogisticalSample
+      cardinality: multiple
+      linkname: contents
+      reverselink: &id054
+        basetypename: LogisticalSample
+        cardinality: single
+        link_id_name: container_id
+        link_ref_name: containerRef
+        linkname: container
+        read_only: false
+        reverselink: *id053
+        reversename: contents
+        typenames:
+          - Plate
+      typenames:
+        - PlateWell
+PlateWell:
+  classname: PlateWell
+  corename: LogisticalSample
+  links:
+    container: *id054
+    contents: &id055
+      basetypename: LogisticalSample
+      cardinality: multiple
+      linkname: contents
+      reverselink: &id064
+        basetypename: LogisticalSample
+        cardinality: single
+        link_id_name: container_id
+        link_ref_name: containerRef
+        linkname: container
+        read_only: false
+        reverselink: *id055
+        reversename: contents
+        typenames:
+          - PlateWell
+      typenames:
+        - WellDrop
+    datasets:
+      basetypename: Dataset
+      cardinality: multiple
+      linkname: datasets
+      reverselink: *id004
+      typenames:
+        - ReflectionSet
+        - CollectionSweep
+    jobs:
+      basetypename: Job
+      cardinality: multiple
+      linkname: jobs
+      reverselink: *id008
+      typenames:
+        - MxExperiment
+        - MxProcessing
+    sample:
+      basetypename: PreparedSample
+      cardinality: single
+      link_id_name: sample_id
+      link_ref_name: sampleRef
+      linkname: sample
+      read_only: false
+      reverselink: *id009
+      reversename: logistical_samples
+      typenames:
+        - CrystallographicSample
+PreparedSample:
+  classname: PreparedSample
+  corename: PreparedSample
+  links:
+    jobs: *id056
+    logistical_samples: *id057
+Puck:
+  classname: Puck
+  corename: LogisticalSample
+  links:
+    container: *id058
+    contents: *id059
+ReflectionSet:
+  classname: ReflectionSet
+  corename: Dataset
+  links:
+    derived_datasets: &id060
+      basetypename: Dataset
+      cardinality: multiple
+      linkname: derived_datasets
+      read_only: true
+      reverselink: &id061
+        basetypename: Dataset
+        cardinality: single
+        link_id_name: derived_from_id
+        link_ref_name: derivedFromRef
+        linkname: derived_from
+        read_only: true
+        reverselink: *id060
+        reversename: derived_datasets
+        typenames:
+          - ReflectionSet
+      typenames:
+        - ReflectionSet
+    derived_from: *id061
+    logistical_sample:
+      basetypename: LogisticalSample
+      cardinality: single
+      link_id_name: logistical_sample_id
+      link_ref_name: logisticalSampleRef
+      linkname: logistical_sample
+      read_only: false
+      reverselink: *id022
+      reversename: datasets
+      typenames:
+        - Crystal
+        - Pin
+        - PinPosition
+        - PlateWell
+        - WellDrop
+        - DropRegion
+    reference_for: *id037
+    source: *id062
+    template_for: *id063
+Shipment:
+  classname: Shipment
+  corename: LogisticalSample
+  links:
+    contents: *id018
+WellDrop:
+  classname: WellDrop
+  corename: LogisticalSample
+  links:
+    container: *id064
+    contents: *id065
+    datasets:
+      basetypename: Dataset
+      cardinality: multiple
+      linkname: datasets
+      reverselink: *id004
+      typenames:
+        - ReflectionSet
+        - CollectionSweep
+    jobs:
+      basetypename: Job
+      cardinality: multiple
+      linkname: jobs
+      reverselink: *id008
+      typenames:
+        - MxExperiment
+        - MxProcessing
+    sample: *id066

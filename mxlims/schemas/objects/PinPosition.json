@@ -5,29 +5,35 @@
     "type": "object",
     "allOf": [
         {
-            "$ref": "../rawobjects/RawPinPosition.json"
+            "$ref": "../data/PinPositionData.json"
+        },
+        {
+            "$ref": "../data/LogisticalSampleData.json"
+        },
+        {
+            "$ref": "../objects/LogisticalSample.json"
         }
     ],
     "properties": {
-        "contents": {
-            "type": "array",
-            "items": {
-                "$ref": "../objects/Crystal.json"
-            },
-            "minItems": 1
+        "sampleRef": {
+            "allOf": [
+                {
+                    "reverseLinkName": "logisticalSamples"
+                },
+                {
+                    "$ref": "../references/CrystallographicSampleRef.json"
+                }
+            ]
         },
-        "jobs": {
-            "type": "array",
-            "items": {
-                "anyOf": [
-                    {
-                        "$ref": "../objects/MxExperiment.json"
-                    },
-                    {
-                        "$ref": "../objects/MxProcessing.json"
-                    }
-                ]
-            }
+        "containerRef": {
+            "allOf": [
+                {
+                    "reverseLinkName": "contents"
+                },
+                {
+                    "$ref": "../references/PinRef.json"
+                }
+            ]
         }
     }
 }

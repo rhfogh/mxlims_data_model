@@ -5,34 +5,13 @@
     "type": "object",
     "allOf": [
         {
-            "$ref": "../rawobjects/RawCrystallographicSample.json"
+            "$ref": "../data/CrystallographicSampleData.json"
+        },
+        {
+            "$ref": "../data/PreparedSampleData.json"
+        },
+        {
+            "$ref": "../objects/PreparedSample.json"
         }
-    ],
-    "properties": {
-        "logisticalSamples": {
-            "type": "array",
-            "items": {
-                "anyOf": [
-                    {
-                        "$ref": "../objects/Crystal.json"
-                    },
-                    {
-                        "$ref": "../objects/DropRegion.json"
-                    },
-                    {
-                        "$ref": "../objects/Pin.json"
-                    },
-                    {
-                        "$ref": "../objects/PinPosition.json"
-                    },
-                    {
-                        "$ref": "../objects/PlateWell.json"
-                    },
-                    {
-                        "$ref": "../objects/WellDrop.json"
-                    }
-                ]
-            }
-        }
-    }
+    ]
 }

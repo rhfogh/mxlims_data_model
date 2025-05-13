@@ -5,9 +5,9 @@ from __future__ import annotations
 
 from typing import Optional
 
-from mxlims.pydantic.MxBaseModel import BaseModel
+from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import Field, conint
+from pydantic import ConfigDict, Field, conint
 
 
 class PlateType(BaseModel):
@@ -15,6 +15,9 @@ class PlateType(BaseModel):
     A type of crystallization plate.
     """
 
+    model_config = ConfigDict(
+        extra="forbid",
+    )
     name: Optional[str] = Field(
         None,
         description="The name of the plate type.",

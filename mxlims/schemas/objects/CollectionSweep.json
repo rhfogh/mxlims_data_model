@@ -5,15 +5,80 @@
     "type": "object",
     "allOf": [
         {
-            "$ref": "../rawobjects/RawCollectionSweep.json"
+            "$ref": "../data/CollectionSweepData.json"
+        },
+        {
+            "$ref": "../data/DatasetData.json"
+        },
+        {
+            "$ref": "../objects/Dataset.json"
         }
     ],
     "properties": {
-        "derivedDataSets": {
-            "type": "array",
-            "items": {
-                "$ref": "../objects/CollectionSweep.json"
-            }
+        "sourceRef": {
+            "allOf": [
+                {
+                    "readOnly": true,
+                    "reverseLinkName": "results"
+                },
+                {
+                    "$ref": "../references/MxExperimentRef.json"
+                }
+            ]
+        },
+        "derivedFromRef": {
+            "allOf": [
+                {
+                    "readOnly": true,
+                    "reverseLinkName": "derivedDatasets"
+                },
+                {
+                    "$ref": "../references/CollectionSweepRef.json"
+                }
+            ]
+        },
+        "logisticalSampleRef": {
+            "allOf": [
+                {
+                    "reverseLinkName": "datasets"
+                },
+                {
+                    "oneOf": [
+                        {
+                            "$ref": "../references/CrystalRef.json"
+                        },
+                        {
+                            "$ref": "../references/PinRef.json"
+                        },
+                        {
+                            "$ref": "../references/PinPositionRef.json"
+                        },
+                        {
+                            "$ref": "../references/PlateWellRef.json"
+                        },
+                        {
+                            "$ref": "../references/WellDropRef.json"
+                        },
+                        {
+                            "$ref": "../references/DropRegionRef.json"
+                        }
+                    ]
+                }
+            ]
         }
+    },
+    "not": {
+        "oneOf": [
+            {
+                "required": [
+                    "sourceRef"
+                ]
+            },
+            {
+                "required": [
+                    "derivedFromRef"
+                ]
+            }
+        ]
     }
 }

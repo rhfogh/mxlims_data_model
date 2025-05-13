@@ -1,0 +1,19 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "Base class for MXLIMS Logistical Samples\n\ndescribing Sample containers and locations\n(from Dewars and Plates to drops, pins and crystals)",
+    "title": "LogisticalSampleData",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../data/MxlimsObjectData.json"
+        }
+    ],
+    "properties": {
+        "mxlimsBaseType": {
+            "const": "LogisticalSample",
+            "description": "The abstract (super)type of MXLIMS object.",
+            "title": "MxlimsBaseType",
+            "type": "string"
+        }
+    }
+}

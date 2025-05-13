@@ -1,0 +1,24 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "Uuid container, used for Uuid-only links to Datasets in messages",
+    "title": "DatasetStub",
+    "type": "object",
+    "properties": {
+        "mxlimsBaseType": {
+            "description": "The type of the MXLIMS core object referred to",
+            "title": "MxlimsBaseType",
+            "type": "string",
+            "const": "Dataset"
+        },
+        "uuid": {
+            "description": "Permanent unique identifier string of object referred to",
+            "title": "Uuid",
+            "type": "string",
+            "format": "uuid"
+        }
+    },
+    "required": [
+        "mxlimsType", "uuid"
+    ],
+    "additionalProperties": false
+}

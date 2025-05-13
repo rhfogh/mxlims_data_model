@@ -1,0 +1,45 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "Message containing all possible objects, by type",
+    "title": "MxlimsMessage",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../messages/MxlimsMessageStrict.json"
+        }
+    ],
+    "properties": {
+        "Dataset": {
+            "description": "Uuid:object dictionary of Dataset stubs.",
+            "title": "Datasets",
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "../datatypes/DatasetStub.json"
+            }
+        },
+        "Job": {
+            "description": "Uuid:object dictionary of Job stubs.",
+            "title": "Jobs",
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "../datatypes/JobStub.json"
+            }
+        },
+        "LogisticalSample": {
+            "description": "Uuid:object dictionary of LogisticalSample stubs.",
+            "title": "LogisticalSamples",
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "../datatypes/LogisticalSampleStub.json"
+            }
+        },
+        "PreparedSample": {
+            "description": "Uuid:object dictionary of PreparedSample stubs.",
+            "title": "PreparedSamples",
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "../datatypes/PreparedSampleStub.json"
+            }
+        }
+    }
+}

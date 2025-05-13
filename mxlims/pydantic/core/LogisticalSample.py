@@ -6,12 +6,12 @@ from __future__ import annotations
 from typing import Optional
 from uuid import UUID
 
+from mxlims.impl.MxlimsBase import BaseModel
+
 from pydantic import Field
 
-from .MxlimsObject import MxlimsObject
 
-
-class LogisticalSample(MxlimsObject):
+class LogisticalSample(BaseModel):
     """
     Base class for MXLIMS Logistical Samples
 
@@ -22,12 +22,12 @@ class LogisticalSample(MxlimsObject):
     sample_id: Optional[UUID] = Field(
         None,
         alias="sampleId",
-        description="String UUID of the PreparedSample that applies to this LogisticalSample and all its contents",
-        title="Sample Id",
+        description="uuid for constituent sample",
+        title="SampleId",
     )
     container_id: Optional[UUID] = Field(
         None,
         alias="containerId",
-        description="String UUID of the LogisticalSample containing this one",
-        title="Container Id",
+        description="uuid for LogisticalSample container",
+        title="containerId",
     )

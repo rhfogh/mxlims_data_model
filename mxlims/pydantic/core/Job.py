@@ -3,72 +3,49 @@
 
 from __future__ import annotations
 
-from datetime import datetime
 from typing import List, Optional
 from uuid import UUID
 
+from mxlims.impl.MxlimsBase import BaseModel
+
 from pydantic import Field
 
-from ..datatypes.JobStatus import JobStatus
-from .MxlimsObject import MxlimsObject
 
-
-class Job(MxlimsObject):
+class Job(BaseModel):
     """
     Base class for MXLIMS Jobs - an experiment or calculation producing Datasets
     """
 
-    start_time: Optional[datetime] = Field(
-        None,
-        alias="startTime",
-        description="Actual starting time for job or calculation, ",
-        title="Start Time",
-    )
-    end_time: Optional[datetime] = Field(
-        None,
-        alias="endTime",
-        description="Actual finishing time for job or calculation, ",
-        title="End Time",
-    )
-    job_status: Optional[JobStatus] = Field(
-        None,
-        alias="jobStatus",
-        description="Status of job - enumerated, ",
-        examples=["Template", "Ready", "Running", "Completed", "Failed", "Aborted"],
-    )
     sample_id: Optional[UUID] = Field(
-        None,
-        alias="sampleId",
-        description="String UUID of the PreparedSample that applies to this Job",
-        title="Sample Id",
-    )
-    logistical_sample_id: Optional[UUID] = Field(
-        None,
-        alias="logisticalSampleId",
-        description="String UUID of LogisticalSample relevant to this Job.",
-        title="Logistical Sample Id",
+        None, alias="sampleId", description="uuid for related sample", title="SampleId"
     )
     started_from_id: Optional[UUID] = Field(
         None,
         alias="startedFromId",
-        description="String UUID of the Job from which this Job was started.",
-        title="Started From Id",
+        description="uuid for JOPb from which this Job was started",
+        title="StartedFromId",
     )
-    input_data_ids: Optional[List[UUID]] = Field(
+    logistical_sample_id: Optional[UUID] = Field(
         None,
-        alias="inputDataIds",
-        description="String UUID of input Datasets for this Job. For pure Database implementations this field is replaced bu JobInputLinks.",
-        title="Input Data Ids",
+        alias="logisticalSampleId",
+        description="uuid for LogisticalSample related to Job",
+        title="LogisticalSampleId",
     )
-    reference_data_ids: Optional[List[UUID]] = Field(
-        None,
+    reference_data_ids: List[UUID] = Field(
+        default_factory=list,
         alias="referenceDataIds",
-        description="String UUID of reference Datasets for this Job. For pure Database implementations this field is replaced bu JobInputLinks.",
-        title="Reference Data Ids",
+        description="uuid for reference Datasets",
+        title="ReferenceDataId",
     )
-    template_data_ids: Optional[List[UUID]] = Field(
-        None,
+    template_data_ids: List[UUID] = Field(
+        default_factory=list,
         alias="templateDataIds",
-        description="String UUID of template Datasets for this Job. For pure Database implementations this field is replaced bu JobInputLinks.",
-        title="Template Data Ids",
+        description="uuid for template Datasets",
+        title="TemplateDataId",
+    )
+    input_data_ids: List[UUID] = Field(
+        default_factory=list,
+        alias="inputDataIds",
+        description="uuid for input Datasets",
+        title="InputDataId",
     )

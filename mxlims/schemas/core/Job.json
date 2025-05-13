@@ -3,84 +3,54 @@
     "description": "Base class for MXLIMS Jobs - an experiment or calculation producing Datasets",
     "title": "Job",
     "type": "object",
-    "allOf": [
-        {
-            "$ref": "../core/MxlimsObject.json"
-        }
-    ],
     "properties": {
-        "startTime": {
-            "format": "date-time",
-            "type": "string",
-            "description": "Actual starting time for job or calculation, ",
-            "title": "Start Time"
-        },
-        "endTime": {
-            "format": "date-time",
-            "type": "string",
-            "description": "Actual finishing time for job or calculation, ",
-            "title": "End Time"
-        },
-        "jobStatus": {
-            "allOf": [
-                {
-                    "$ref": "../datatypes/JobStatus.json"
-                }
-            ],
-            "description": "Status of job - enumerated, ",
-            "examples": [
-                "Template",
-                "Ready",
-                "Running",
-                "Completed",
-                "Failed",
-                "Aborted"
-            ]
-        },
         "sampleId": {
+            "description": "uuid for related sample",
+            "title": "SampleId",
             "type": "string",
-            "format": "uuid",
-            "description": "String UUID of the PreparedSample that applies to this Job",
-            "title": "Sample Id"
-        },
-        "logisticalSampleId": {
-            "type": "string",
-            "format": "uuid",
-            "description": "String UUID of LogisticalSample relevant to this Job.",
-            "title": "Logistical Sample Id"
+            "format": "uuid"
         },
         "startedFromId": {
+            "description": "uuid for JOPb from which this Job was started",
+            "title": "StartedFromId",
             "type": "string",
-            "format": "uuid",
-            "description": "String UUID of the Job from which this Job was started.",
-            "title": "Started From Id"
+            "format": "uuid"
         },
-        "inputDataIds": {
-            "description": "String UUID of input Datasets for this Job. For pure Database implementations this field is replaced bu JobInputLinks.",
-            "items": {
-                "type": "string",
-                "format": "uuid"
-            },
-            "title": "Input Data Ids",
-            "type": "array"
+        "logisticalSampleId": {
+            "description": "uuid for LogisticalSample related to Job",
+            "title": "LogisticalSampleId",
+            "type": "string",
+            "format": "uuid"
         },
         "referenceDataIds": {
-            "description": "String UUID of reference Datasets for this Job. For pure Database implementations this field is replaced bu JobInputLinks.",
+            "type": "array",
+            "description": "uuid for reference Datasets",
+            "title": "ReferenceDataId",
             "items": {
                 "type": "string",
                 "format": "uuid"
-            },
-            "title": "Reference Data Ids",
-            "type": "array"
+            }
         },
         "templateDataIds": {
-            "description": "String UUID of template Datasets for this Job. For pure Database implementations this field is replaced bu JobInputLinks.",
+            "type": "array",
+            "description": "uuid for template Datasets",
+            "title": "TemplateDataId",
             "items": {
                 "type": "string",
                 "format": "uuid"
-            },
-            "title": "Template Data Ids",
-            "type": "array"
+            }
+        },
+        "inputDataIds": {
+            "type": "array",
+            "description": "uuid for input Datasets",
+            "title": "InputDataId",
+            "items": {
+                "type": "string",
+                "format": "uuid"
+            }
         }
-    }
+    },
+    "required": [
+        "referenceDataIds", "templateDataIds", "inputDataIds"
+    ]
 }
