@@ -260,8 +260,6 @@ class BaseMessage:
     @classmethod
     def from_pydantic_objects(cls, contents: Sequence[MxlimsImplementation]):
         result  = cls()
-        for tag in ("mx_experiment", "mxExperiment", "MxExperiment"):
-            print ('=--->', tag, getattr(result, tag, "not found"))
         for obj in contents:
             mxtype = camel_to_snake(obj.mxlims_type)
             objdict = getattr(result, mxtype, None)

@@ -41,15 +41,18 @@ def camel_to_snake(name: str) -> str:
     return pattern.sub("_", name).lower()
 
 def snake_to_camel(name:str) -> str:
-    return "".join(txt.capitalize() for txt in name.split("_"))
+    ll0 =  name.split("_")
+    if len(ll0) < 2:
+        return name
+    return ll0[0] + "".join(txt.capitalize() for txt in ll0[1:])
 
 
 def to_export_json(message_dict: dict) -> None:
-    """Convert to schema-compliant JSON with Ref-type links instead of foreign keys
+    """Convert schema-compliant JSON from ID-type links to ref-type links
 
     Conversion is done in-place"""
     import json
-    Path("/home/rhfogh/tmp/messags.json").write_text(json.dumps(message_dict))
+    Path("/home/rhfogh/tmp/messags.json").write_text(json.dumps(message_dict, indent=4))
     obj_by_uuid = {}
     for dd1 in message_dict.values():
         if dd1:
@@ -61,17 +64,17 @@ def to_export_json(message_dict: dict) -> None:
         refdict = LINK_SPECIFICATION.get(tag)
         for uid,obj in objdict.items():
             for linkdict in refdict["links"].values():
-                link_id_name = linkdict.get("link_id_name")
-                if link_id_name:
+                link_id_name_orig = linkdict.get("link_id_name")
+                if link_id_name_orig:
+                    link_id_name = snake_to_camel(link_id_name_orig)
+                    link_uid = obj.pop(link_id_name, ())
                     # This is a link with a foreign key
                     if linkdict["cardinality"] == "single":
-                        link_uid = getattr(obj, link_id_name, None)
-                        if link_uid is not None:
-                            del obj[link_id_name]
+                        if link_uid:
                             link_target = obj_by_uuid.get(link_uid)
                             if link_target:
                                 # The linked-to object is in the message
-                                mxlims_type = obj["mxlims_type"]
+                                mxlims_type = obj["mxlimsType"]
                                 obj[linkdict["link_ref_name"]] = {
                                     "mxlimsType": mxlims_type,
                                     "$ref": f"/{mxlims_type}/{link_uid}"
@@ -91,18 +94,17 @@ def to_export_json(message_dict: dict) -> None:
                                         "uuid": str(link_uid)
                                     }
                     else:
-                        # Multiple link
-                        link_uids = obj.pop(link_id_name, ())
-                        if link_uids:
+                        # Multiple link - link_uid is a list
+                        if link_uid:
                             obj[linkdict["link_ref_name"]] = reflist = []
-                            for link_uid in link_uids:
-                                link_target = obj_by_uuid.get(link_uid)
+                            for luid in link_uid:
+                                link_target = obj_by_uuid.get(luid)
                                 if link_target:
                                     # The linked-to object is in the message
-                                    mxlims_type = obj["mxlims_type"]
+                                    mxlims_type = obj["mxlimsType"]
                                     newref = {
                                         "mxlimsType": mxlims_type,
-                                        "$ref": f"/{mxlims_type}/{link_uid}"
+                                        "$ref": f"/{mxlims_type}/{luid}"
                                     }
                                 else:
                                     base_type = linkdict["basetypename"]
@@ -111,12 +113,12 @@ def to_export_json(message_dict: dict) -> None:
                                         # Put Stub link, if allowed
                                         newref = {
                                             "mxlimsBaseType": base_type,
-                                            "$ref": f"/{base_type}/{link_uid}"
+                                            "$ref": f"/{base_type}/{luid}"
                                         }
                                         # And add stub to the message
-                                        message_dict[base_type][str(link_uid)] = {
+                                        message_dict[base_type][str(luid)] = {
                                             "mxlimsBaseType": base_type,
-                                            "uuid": str(link_uid)
+                                            "uuid": str(luid)
                                         }
                                 reflist.append(newref)
 
@@ -132,10 +134,11 @@ def to_import_json(message_dict: dict) -> None:
         refdict = LINK_SPECIFICATION.get(tag)
         for obj in objlist:
             for linkdict in refdict["links"]:
-                link_id_name = linkdict.get("link_id_name")
+                link_id_name_orig = linkdict.get("link_id_name")
                 link_ref_name = linkdict.get("link_ref_name")
-                if link_id_name:
+                if link_id_name_orig:
                     # This is a link with a foreign key
+                    link_id_name = snake_to_camel(link_id_name_orig)
                     data = obj.pop(link_ref_name, None)
                     if data:
                         if linkdict["cardinality"] == "single":
