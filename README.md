@@ -1,5 +1,7 @@
 # MXLIMS data model
 
+The current version is 0.6.1
+
 The MXLIMS data model is a collaborative data model to serve for both API specification and
 potentially as the basis for data storage solutions, for macromolecular crystallography and
 related scientific areas. The model is implemented as JSON schemas, with pydantic
@@ -77,15 +79,17 @@ generate-schema-doc --config-file docs/schemadoc_config.json schemas docs/html
 To cover the entire model starting from the top containers you should begin with the file 
 doc/html/MxlimsMessage.html as this message can incorporate any object in the model.
 
+There are examples of mxlims messages in docs/examples
+
 ## Pydantic
 
 The pydantic files live in mxlims/pydantic; they are generated from the JSON schemas in part using
 https://docs.pydantic.dev/latest/integrations/datamodel_code_generator/
-with the command (starting in the mxlims_data_model directory)
-
-datamodel-codegen --input-file-type jsonschema --output-model-type pydantic_v2.BaseModel  --base-class mxlims.pydantic.MxBaseModel.BaseModel --use-schema-description --use-double-quotes --disable-timestamp --use-default --target-python-version 3.10 --snake-case-field --use-exact-imports --capitalise-enum-members --use-title-as-name --use-one-literal-as-default --input mxlims/schemas --output mxlims/pydantic
 
 The generated Pydantic for data and datatypes is correct, but the complete API requires also
-manually coded classes for the core classes in the model, and code generation procedures for pydantic/objects.
-The implementation is WOrk-In-Progress as of 20250426. The temporary implementation classes can eb found in 
-pydantic/core_new/. 
+a manually coded im[plementation class, and code generation procedures for pydantic/objects.
+
+## Prototype implementation
+
+There is a prototype Python implementation, generated using the mxlims/impl/generate_code.py script, and a test MXCuBE 
+integration. See the relevant mxcubecore WIP pull requests for details.
