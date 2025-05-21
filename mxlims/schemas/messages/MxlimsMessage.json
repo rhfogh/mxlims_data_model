@@ -13,6 +13,7 @@
             "description": "Uuid:object dictionary of Dataset stubs.",
             "title": "Datasets",
             "type": "object",
+            "minProperties": 1,
             "additionalProperties": {
                 "$ref": "../datatypes/DatasetStub.json"
             }
@@ -21,6 +22,7 @@
             "description": "Uuid:object dictionary of Job stubs.",
             "title": "Jobs",
             "type": "object",
+            "minProperties": 1,
             "additionalProperties": {
                 "$ref": "../datatypes/JobStub.json"
             }
@@ -29,6 +31,7 @@
             "description": "Uuid:object dictionary of LogisticalSample stubs.",
             "title": "LogisticalSamples",
             "type": "object",
+            "minProperties": 1,
             "additionalProperties": {
                 "$ref": "../datatypes/LogisticalSampleStub.json"
             }
@@ -36,6 +39,7 @@
         "PreparedSample": {
             "description": "Uuid:object dictionary of PreparedSample stubs.",
             "title": "PreparedSamples",
+            "minProperties": 1,
             "type": "object",
             "additionalProperties": {
                 "$ref": "../datatypes/PreparedSampleStub.json"
