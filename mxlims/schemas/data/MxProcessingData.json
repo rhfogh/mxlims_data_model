@@ -10,6 +10,16 @@
             "title": "MxlimsType",
             "type": "string"
         },
+        "programName": {
+            "type": "string",
+            "description": "Name of processing program",
+            "title": "Program name"
+        },
+        "programVersion": {
+            "type": "string",
+            "description": "Version of processing program",
+            "title": "Program version"
+        },
         "spaceGroupName": {
             "allOf": [
                 {

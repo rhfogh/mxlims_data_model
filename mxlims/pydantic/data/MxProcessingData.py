@@ -24,6 +24,18 @@ class MxProcessingData(BaseModel):
         description="Type of MXLIMS object.",
         title="MxlimsType",
     )
+    program_name: Optional[str] = Field(
+        None,
+        alias="programName",
+        description="Name of processing program",
+        title="Program name",
+    )
+    program_version: Optional[str] = Field(
+        None,
+        alias="programVersion",
+        description="Version of processing program",
+        title="Program version",
+    )
     space_group_name: Optional[SpaceGroupName] = Field(
         None,
         alias="spaceGroupName",

@@ -45,6 +45,5 @@
         "mxlimsType",
         "mxlimsBaseType",
         "uuid"
-    ],
-    "additionalProperties": false
+    ]
 }
