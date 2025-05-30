@@ -1,0 +1,97 @@
+{ 
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "Message containing a shipment of either frozen crystals or crystallization plates",
+    "title": "ShipmentMessage",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../messages/MxlimsMessageStrict.json"
+        }
+    ],
+    "properties":{
+        "Shipment":{
+            "maxProperties":1,
+            "additionalProperties": { 
+                "required":["labContactOutbound","labContactReturn"]
+            }
+        },
+        "Plate":{
+            "additionalProperties": { "required":["containerRef","barcode","plateType"] }
+        },
+        "PlateWell":{
+            "additionalProperties": { "required":["containerRef"] }
+        },
+        "WellDrop":{
+            "additionalProperties": { "required":["containerRef"] }
+        },
+        "Dewar":{
+            "additionalProperties": { "required":["containerRef"] }
+        },
+        "Puck":{
+            "additionalProperties": { "required":["containerRef"] }
+        },
+        "Pin":{
+            "additionalProperties": { "required":["containerRef"] }
+        },
+        "PinPosition":{
+            "additionalProperties": { "required":["containerRef","sampleRef"] }
+        },
+	"CrystallographicSample":{
+            "$comment":"CrystallographicSamples must have a macromolecule, which must be identified by an acronym for synchrotron safety system purposes",
+            "additionalProperties": { 
+                "required":["name","macromolecule"],
+                "properties":{
+                   "macromolecule":{ "required":["acronym"] }
+                }
+            }
+	},
+	"Crystal":{
+            "additionalProperties": { "required":["containerRef","sampleRef"] }
+	}
+    },
+    "required":["Shipment","CrystallographicSample"],
+    "additionalProperties": false,
+    "oneOf":[
+	{ 
+           "$comment":"This is a frozen-crystal shipment of dewars, pucks and pins",
+           "required":["Dewar","Puck","Pin"],
+           "oneOf":[
+               {
+                   "$comment":"All pins are traditional one-position loops. PinPositions are not required and are therefore invalid, but Pins must have a sampleRef",
+                   "properties":{
+                       "PinPosition": false,
+                       "Pin":{
+                           "additionalProperties":{
+                               "required":["sampleRef"],
+                               "properties":{
+                                   "numberPositions":{
+                                       "type":"integer",
+                                       "minimum":1,
+                                       "maximum":1
+                                   }
+                               }
+                           }
+                       }
+                   }
+               },
+               {
+                   "$comment":"At least one pin is multi-position. PinPositions are required for ALL pins, and no Pin can have a sampleRef (must be in PinPosition, where it is required)",
+                   "required":["PinPosition"],
+                   "properties":{
+                       "Pin":{
+                           "additionalProperties":{
+                               "properties":{
+                                   "sampleRef":false
+                               }
+                           }
+                       }
+                   }
+               }
+           ]
+        },
+	{
+           "$comment":"This is a shipment of plates", 
+           "required":["Plate","PlateWell","WellDrop"] 
+        }
+    ]
+}
