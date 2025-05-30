@@ -52,10 +52,10 @@ class CrystallographicSample(CrystallographicSampleData, PreparedSampleData, Pre
         """setter for CrystallographicSample.logistical_samples list"""
         from .DropRegion import DropRegion
         from .PinPosition import PinPosition
-        from .PlateWell import PlateWell
         from .WellDrop import WellDrop
         from .Crystal import Crystal
         from .Pin import Pin
+        from .PlateWell import PlateWell
 
         for obj in values:
             if not isinstance(obj, Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]):

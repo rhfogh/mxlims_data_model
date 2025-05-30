@@ -6,11 +6,11 @@
     
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Any, Dict, Optional
 
 from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import Field
+from pydantic import ConfigDict, Field
 
 
 from .datatypes.DatasetStub import DatasetStub
@@ -134,6 +134,9 @@ class MxlimsMessage(MxlimsMessageStrict, BaseMessage):
     Message containing all possible objects, by type
     """
 
+    model_config = ConfigDict(
+        extra="forbid",
+    )
     dataset: Optional[Dict[str, DatasetStub]] = Field(
         default_factory=dict,
         alias="Dataset",
@@ -158,3 +161,23 @@ class MxlimsMessage(MxlimsMessageStrict, BaseMessage):
         description="Uuid:object dictionary of PreparedSample stubs.",
         title="PreparedSamples",
     )
+
+
+class ShipmentMessage(MxlimsMessageStrict, BaseMessage):
+    """
+    Message containing a shipment of either frozen crystals or crystallization plates
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    shipment: Any = Field(..., alias="Shipment")
+    plate: Optional[Any] = Field(default_factory=dict, alias="Plate")
+    plate_well: Optional[Any] = Field(default_factory=dict, alias="PlateWell")
+    well_drop: Optional[Any] = Field(default_factory=dict, alias="WellDrop")
+    dewar: Optional[Any] = Field(default_factory=dict, alias="Dewar")
+    puck: Optional[Any] = Field(default_factory=dict, alias="Puck")
+    pin: Optional[Any] = Field(default_factory=dict, alias="Pin")
+    pin_position: Optional[Any] = Field(default_factory=dict, alias="PinPosition")
+    crystallographic_sample: Any = Field(..., alias="CrystallographicSample")
+    crystal: Optional[Any] = Field(default_factory=dict, alias="Crystal")

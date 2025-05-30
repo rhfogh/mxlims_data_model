@@ -164,11 +164,11 @@ def generate_message_classes(mxlims_dir: Path) -> None:
     
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Any, Dict, Optional
 
 from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import Field
+from pydantic import ConfigDict, Field
 
 
 from .datatypes.DatasetStub import DatasetStub

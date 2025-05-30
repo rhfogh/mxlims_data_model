@@ -36,7 +36,7 @@
         "PinPosition":{
             "additionalProperties": { "required":["containerRef","sampleRef"] }
         },
-	"CrystallographicSample":{
+	    "CrystallographicSample":{
             "$comment":"CrystallographicSamples must have a macromolecule, which must be identified by an acronym for synchrotron safety system purposes",
             "additionalProperties": { 
                 "required":["name","macromolecule"],
@@ -44,15 +44,15 @@
                    "macromolecule":{ "required":["acronym"] }
                 }
             }
-	},
-	"Crystal":{
+        },
+        "Crystal":{
             "additionalProperties": { "required":["containerRef","sampleRef"] }
-	}
+        }
     },
     "required":["Shipment","CrystallographicSample"],
     "additionalProperties": false,
     "oneOf":[
-	{ 
+        {
            "$comment":"This is a frozen-crystal shipment of dewars, pucks and pins",
            "required":["Dewar","Puck","Pin"],
            "oneOf":[
@@ -89,7 +89,7 @@
                }
            ]
         },
-	{
+        {
            "$comment":"This is a shipment of plates", 
            "required":["Plate","PlateWell","WellDrop"] 
         }

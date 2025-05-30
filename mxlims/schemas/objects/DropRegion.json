@@ -9,9 +9,6 @@
         },
         {
             "$ref": "../data/LogisticalSampleData.json"
-        },
-        {
-            "$ref": "../objects/LogisticalSample.json"
         }
     ],
     "properties": {

@@ -17,6 +17,22 @@
             "description": "The person's phone number."
         }
     },
-    "required": ["name"],
+    "allOf": [
+        {"required": ["name"]},
+        {
+            "oneOf": [
+                {
+                    "required": [
+                        "emailAddress"
+                    ]
+                },
+                {
+                    "required": [
+                        "phoneNumber"
+                    ]
+                }
+            ]
+        }
+    ],
     "additionalProperties": false
 }

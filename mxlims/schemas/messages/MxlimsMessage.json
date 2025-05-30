@@ -8,6 +8,7 @@
             "$ref": "../messages/MxlimsMessageStrict.json"
         }
     ],
+    "additionalProperties": false,
     "properties": {
         "Dataset": {
             "description": "Uuid:object dictionary of Dataset stubs.",
