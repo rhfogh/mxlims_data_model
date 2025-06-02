@@ -30,6 +30,9 @@
                 {
                     "oneOf": [
                         {
+                            "$ref": "../references/PinRef.json"
+                        },
+                        {
                             "$ref": "../references/PinPositionRef.json"
                         },
                         {

@@ -11,6 +11,7 @@ from ..data.LogisticalSampleData import LogisticalSampleData
 from ..data.PuckData import PuckData
 if TYPE_CHECKING:
     from .Dewar import Dewar
+    from .MultiPin import MultiPin
     from .Pin import Pin
 
 class Puck(PuckData, LogisticalSampleData, LogisticalSample, MxlimsImplementation):
@@ -36,16 +37,17 @@ class Puck(PuckData, LogisticalSampleData, LogisticalSample, MxlimsImplementatio
             raise ValueError("container must be of type Dewar or None")
 
     @property
-    def contents(self) -> list[Pin]:
+    def contents(self) -> list[Union[MultiPin, Pin]]:
         """getter for Puck.contents list"""
         return self._get_link_1n("LogisticalSample", "container_id")
 
     @contents.setter
-    def contents(self, values: list[Pin]):
+    def contents(self, values: list[Union[MultiPin, Pin]]):
         """setter for Puck.contents list"""
         from .Pin import Pin
+        from .MultiPin import MultiPin
 
         for obj in values:
-            if not isinstance(obj, Pin):
-                raise ValueError("%s is not of type Pin" % obj)
+            if not isinstance(obj, Union[MultiPin, Pin]):
+                raise ValueError("%s is not of type Union[MultiPin, Pin]" % obj)
         self._set_link_1n_rev("LogisticalSample", "container_id", values)

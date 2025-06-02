@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from .DropRegion import DropRegion
     from .MxExperiment import MxExperiment
     from .MxProcessing import MxProcessing
+    from .Pin import Pin
     from .PinPosition import PinPosition
     from .ReflectionSet import ReflectionSet
 
@@ -26,20 +27,21 @@ class Crystal(CrystalData, LogisticalSampleData, LogisticalSample, MxlimsImpleme
         MxlimsImplementation.__init__(self)
     
     @property
-    def container(self) -> Optional[Union[DropRegion, PinPosition]]:
+    def container(self) -> Optional[Union[DropRegion, Pin, PinPosition]]:
         """getter for Crystal.container"""
         return self._get_link_n1("LogisticalSample", "container_id")
 
     @container.setter
-    def container(self, value: Optional[Union[DropRegion, PinPosition]]):
+    def container(self, value: Optional[Union[DropRegion, Pin, PinPosition]]):
         """setter for Crystal.container"""
+        from .Pin import Pin
         from .PinPosition import PinPosition
         from .DropRegion import DropRegion
 
-        if value is None or isinstance(value, Union[DropRegion, PinPosition]):
+        if value is None or isinstance(value, Union[DropRegion, Pin, PinPosition]):
             self._set_link_n1("LogisticalSample", "container_id", value)
         else:
-            raise ValueError("container must be of type Union[DropRegion, PinPosition] or None")
+            raise ValueError("container must be of type Union[DropRegion, Pin, PinPosition] or None")
 
     @property
     def datasets(self) -> list[Union[CollectionSweep, ReflectionSet]]:

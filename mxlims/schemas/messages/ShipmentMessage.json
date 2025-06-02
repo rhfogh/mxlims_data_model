@@ -30,6 +30,9 @@
         "Puck":{
             "additionalProperties": { "required":["containerRef"] }
         },
+        "MultiPin":{
+            "additionalProperties": { "required":["containerRef"] }
+        },
         "Pin":{
             "additionalProperties": { "required":["containerRef"] }
         },
@@ -62,27 +65,18 @@
                        "PinPosition": false,
                        "Pin":{
                            "additionalProperties":{
-                               "required":["sampleRef"],
-                               "properties":{
-                                   "numberPositions":{
-                                       "type":"integer",
-                                       "minimum":1,
-                                       "maximum":1
-                                   }
-                               }
+                               "required":["sampleRef"]
                            }
                        }
                    }
                },
                {
-                   "$comment":"At least one pin is multi-position. PinPositions are required for ALL pins, and no Pin can have a sampleRef (must be in PinPosition, where it is required)",
-                   "required":["PinPosition"],
+                   "$comment":"At least one pin is multi-position. PinPositions are required",
+                   "required":["MultiPin","PinPosition"],
                    "properties":{
-                       "Pin":{
+                       "PinPosition":{
                            "additionalProperties":{
-                               "properties":{
-                                   "sampleRef":false
-                               }
+                               "required":["sampleRef"]
                            }
                        }
                    }

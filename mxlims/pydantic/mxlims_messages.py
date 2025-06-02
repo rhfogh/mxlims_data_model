@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from typing import Any, Dict, Optional
 
-from mxlims.impl.MxlimsBase import BaseModel
+from mxlims.impl.MxlimsBase import BaseMessage, BaseModel
 
 from pydantic import ConfigDict, Field
 
@@ -22,6 +22,7 @@ from .objects.Crystal import Crystal
 from .objects.CrystallographicSample import CrystallographicSample
 from .objects.Dewar import Dewar
 from .objects.DropRegion import DropRegion
+from .objects.MultiPin import MultiPin
 from .objects.MxExperiment import MxExperiment
 from .objects.MxProcessing import MxProcessing
 from .objects.Pin import Pin
@@ -32,8 +33,6 @@ from .objects.Puck import Puck
 from .objects.ReflectionSet import ReflectionSet
 from .objects.Shipment import Shipment
 from .objects.WellDrop import WellDrop
-from mxlims.impl.MxlimsBase import BaseMessage
-
 
 class MxlimsMessageStrict(BaseModel, BaseMessage):
     """
@@ -81,6 +80,12 @@ class MxlimsMessageStrict(BaseModel, BaseMessage):
         alias="MxProcessing",
         description="Uuid:object dictionary of MxProcessings.",
         title="MxProcessings",
+    )
+    multi_pin: Optional[Dict[str, MultiPin]] = Field(
+        default_factory=dict,
+        alias="MultiPin",
+        description="Uuid:object dictionary of MultiPins.",
+        title="MultiPins",
     )
     pin: Optional[Dict[str, Pin]] = Field(
         default_factory=dict, alias="Pin", description="Uuid:object dictionary of Pins.", title="Pins"
@@ -177,6 +182,7 @@ class ShipmentMessage(MxlimsMessageStrict, BaseMessage):
     well_drop: Optional[Any] = Field(default_factory=dict, alias="WellDrop")
     dewar: Optional[Any] = Field(default_factory=dict, alias="Dewar")
     puck: Optional[Any] = Field(default_factory=dict, alias="Puck")
+    multi_pin: Optional[Any] = Field(default_factory=dict, alias="MultiPin")
     pin: Optional[Any] = Field(default_factory=dict, alias="Pin")
     pin_position: Optional[Any] = Field(default_factory=dict, alias="PinPosition")
     crystallographic_sample: Any = Field(..., alias="CrystallographicSample")

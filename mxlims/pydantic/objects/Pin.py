@@ -11,10 +11,10 @@ from ..data.LogisticalSampleData import LogisticalSampleData
 from ..data.PinData import PinData
 if TYPE_CHECKING:
     from .CollectionSweep import CollectionSweep
+    from .Crystal import Crystal
     from .CrystallographicSample import CrystallographicSample
     from .MxExperiment import MxExperiment
     from .MxProcessing import MxProcessing
-    from .PinPosition import PinPosition
     from .Puck import Puck
     from .ReflectionSet import ReflectionSet
 
@@ -41,18 +41,18 @@ class Pin(PinData, LogisticalSampleData, LogisticalSample, MxlimsImplementation)
             raise ValueError("container must be of type Puck or None")
 
     @property
-    def contents(self) -> list[PinPosition]:
+    def contents(self) -> list[Crystal]:
         """getter for Pin.contents list"""
         return self._get_link_1n("LogisticalSample", "container_id")
 
     @contents.setter
-    def contents(self, values: list[PinPosition]):
+    def contents(self, values: list[Crystal]):
         """setter for Pin.contents list"""
-        from .PinPosition import PinPosition
+        from .Crystal import Crystal
 
         for obj in values:
-            if not isinstance(obj, PinPosition):
-                raise ValueError("%s is not of type PinPosition" % obj)
+            if not isinstance(obj, Crystal):
+                raise ValueError("%s is not of type Crystal" % obj)
         self._set_link_1n_rev("LogisticalSample", "container_id", values)
 
     @property

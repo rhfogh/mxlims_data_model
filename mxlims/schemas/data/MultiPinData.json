@@ -1,11 +1,11 @@
 {
     "$schema": "https://json-schema.org/draft-07/schema",
-    "description": "A Pin mounted on a puck with a single slot for crystals.",
-    "title": "PinData",
+    "description": "A Pin mounted on a puck with several slots for crystals.",
+    "title": "MultiPinData",
     "type": "object",
     "properties": {
         "mxlimsType": {
-            "const": "Pin",
+            "const": "MultiPin",
             "description": "The type of MXLIMS object.",
             "title": "MxlimsType",
             "type": "string"
@@ -13,6 +13,11 @@
         "barcode": {
             "type": "string",
             "description": "The Pin barcode or RFID code"
+        },
+        "numberPositions": {
+            "type": "integer",
+            "description": "The number of positions available in the Pin.",
+            "minimum": 1
         },
         "positionInPuck": {
             "type":"integer",
@@ -22,6 +27,7 @@
         }
     },
     "required": [
+        "numberPositions",
         "positionInPuck"
     ]
 }
