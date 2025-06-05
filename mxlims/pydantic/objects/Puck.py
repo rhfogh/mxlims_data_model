@@ -44,8 +44,8 @@ class Puck(PuckData, LogisticalSampleData, LogisticalSample, MxlimsImplementatio
     @contents.setter
     def contents(self, values: list[Union[MultiPin, Pin]]):
         """setter for Puck.contents list"""
-        from .Pin import Pin
         from .MultiPin import MultiPin
+        from .Pin import Pin
 
         for obj in values:
             if not isinstance(obj, Union[MultiPin, Pin]):

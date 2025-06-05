@@ -1,0 +1,36 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "Sample consisting of a macromolecule in a medium, with additional components",
+    "title": "MacromoleculeSample",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../data/MacromoleculeSampleData.json"
+        },
+        {
+            "$ref": "../data/PreparedSampleData.json"
+        }
+    ],
+    "properties": {
+        "mediumRef": {
+            "allOf": [
+                {
+                    "reverseLinkName": "mediumSamples"
+                },
+                {
+                    "$ref": "../references/MediumRef.json"
+                }
+            ]
+        },
+        "mainComponentRef": {
+            "allOf": [
+                {
+                    "reverseLinkName": "mainSamples"
+                },
+                {
+                    "$ref": "../references/MacromoleculeRef.json"
+                }
+            ]
+        }
+    }
+}

@@ -18,7 +18,7 @@
                     "reverseLinkName": "logisticalSamples"
                 },
                 {
-                    "$ref": "../references/CrystallographicSampleRef.json"
+                    "$ref": "../references/MacromoleculeSampleRef.json"
                 }
             ]
         },

@@ -20,7 +20,7 @@
                 {
                     "oneOf": [
                         {
-                            "$ref": "../references/CrystallographicSampleRef.json"
+                            "$ref": "../references/MacromoleculeSampleRef.json"
                         },
                         {
                             "$ref": "../references/PreparedSampleRef.json"

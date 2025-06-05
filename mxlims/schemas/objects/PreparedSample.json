@@ -7,5 +7,27 @@
         {
             "$ref": "../data/PreparedSampleData.json"
         }
-    ]
+    ],
+    "properties": {
+        "mediumRef": {
+            "allOf": [
+                {
+                    "reverseLinkName": "mediumSamples"
+                },
+                {
+                    "$ref": "../references/PreparedSampleRef.json"
+                }
+            ]
+        },
+        "mainComponentRef": {
+            "allOf": [
+                {
+                    "reverseLinkName": "mainSamples"
+                },
+                {
+                    "$ref": "../references/PreparedSampleRef.json"
+                }
+            ]
+        }
+    }
 }

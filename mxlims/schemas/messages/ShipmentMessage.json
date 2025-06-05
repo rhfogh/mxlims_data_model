@@ -39,20 +39,24 @@
         "PinPosition":{
             "additionalProperties": { "required":["containerRef","sampleRef"] }
         },
-	    "CrystallographicSample":{
-            "$comment":"CrystallographicSamples must have a macromolecule, which must be identified by an acronym for synchrotron safety system purposes",
-            "additionalProperties": { 
-                "required":["name","macromolecule"],
+	    "MacromoleculeSample":{
+            "additionalProperties": {
+                "required":["name","macromoleculeRef"],
                 "properties":{
                    "macromolecule":{ "required":["acronym"] }
                 }
+            }
+        },
+	    "Macromolecule":{
+            "additionalProperties": {
+                "required":["acronym"]
             }
         },
         "Crystal":{
             "additionalProperties": { "required":["containerRef","sampleRef"] }
         }
     },
-    "required":["Shipment","CrystallographicSample"],
+    "required":["Shipment","MacromoleculeSample", "Macromolecule"],
     "additionalProperties": false,
     "oneOf":[
         {

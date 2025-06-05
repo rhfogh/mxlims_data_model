@@ -12,8 +12,8 @@ from ..data.MxExperimentData import MxExperimentData
 if TYPE_CHECKING:
     from .CollectionSweep import CollectionSweep
     from .Crystal import Crystal
-    from .CrystallographicSample import CrystallographicSample
     from .DropRegion import DropRegion
+    from .MacromoleculeSample import MacromoleculeSample
     from .Pin import Pin
     from .PinPosition import PinPosition
     from .PlateWell import PlateWell
@@ -86,19 +86,19 @@ class MxExperiment(MxExperimentData, JobData, Job, MxlimsImplementation):
         return self._get_link_1n("Dataset", "source_id")
 
     @property
-    def sample(self) -> Optional[CrystallographicSample]:
+    def sample(self) -> Optional[MacromoleculeSample]:
         """getter for MxExperiment.sample"""
         return self._get_link_n1("PreparedSample", "sample_id")
 
     @sample.setter
-    def sample(self, value: Optional[CrystallographicSample]):
+    def sample(self, value: Optional[MacromoleculeSample]):
         """setter for MxExperiment.sample"""
-        from .CrystallographicSample import CrystallographicSample
+        from .MacromoleculeSample import MacromoleculeSample
 
-        if value is None or isinstance(value, CrystallographicSample):
+        if value is None or isinstance(value, MacromoleculeSample):
             self._set_link_n1("PreparedSample", "sample_id", value)
         else:
-            raise ValueError("sample must be of type CrystallographicSample or None")
+            raise ValueError("sample must be of type MacromoleculeSample or None")
 
     @property
     def started_from(self) -> Optional[MxExperiment]:

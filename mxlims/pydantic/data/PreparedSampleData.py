@@ -3,10 +3,11 @@
 
 from __future__ import annotations
 
-from typing import Literal
+from typing import Dict, List, Literal, Optional
 
 from pydantic import Field
 
+from ..datatypes.SampleComponent import SampleComponent
 from .MxlimsObjectData import MxlimsObjectData
 
 
@@ -21,3 +22,15 @@ class PreparedSampleData(MxlimsObjectData):
         description="The abstract (super)type of MXLIMS object.",
         title="MxlimsBaseType",
     )
+    name: Optional[str] = Field(
+        None, description="Sample human-readable name or acronym."
+    )
+    components: Optional[List[SampleComponent]] = Field(
+        None, description="Other components of Sample", title="Sample components"
+    )
+    identifiers: Optional[Dict[str, str]] = Field(
+        None,
+        description="Dictionary str:str of contextName: identifier. ContextName will typically refer to a LIMS, database, or web site but could also be e.g. 'smiles' or 'sequence'",
+        title="Identifiers",
+    )
+    comment: Optional[str] = Field(None, description="Comment or annotation.")

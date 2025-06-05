@@ -18,7 +18,7 @@
                     "reverseLinkName": "jobs"
                 },
                 {
-                    "$ref": "../references/CrystallographicSampleRef.json"
+                    "$ref": "../references/MacromoleculeSampleRef.json"
                 }
             ]
         },

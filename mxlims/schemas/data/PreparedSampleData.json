@@ -14,6 +14,30 @@
             "description": "The abstract (super)type of MXLIMS object.",
             "title": "MxlimsBaseType",
             "type": "string"
+        },
+        "name": {
+            "type": "string",
+            "description": "Sample human-readable name or acronym."
+        },
+        "components": {
+            "description": "Other components of Sample",
+            "items": {
+                "$ref": "../datatypes/SampleComponent.json"
+            },
+            "title": "Sample components",
+            "type": "array"
+        },
+        "identifiers": {
+            "additionalProperties": {
+                "type": "string"
+            },
+            "description": "Dictionary str:str of contextName: identifier. ContextName will typically refer to a LIMS, database, or web site but could also be e.g. 'smiles' or 'sequence'",
+            "title": "Identifiers",
+            "type": "object"
+        },
+        "comment": {
+            "type": "string",
+            "description": "Comment or annotation."
         }
     }
 }

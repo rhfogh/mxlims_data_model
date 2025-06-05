@@ -22,15 +22,6 @@
                 "$ref": "../objects/Crystal.json"
             }
         },
-        "CrystallographicSample": {
-            "description": "Uuid:object dictionary of CrystallographicSamples.",
-            "title": "CrystallographicSamples",
-            "type": "object",
-            "minProperties": 1,
-            "additionalProperties": {
-                "$ref": "../objects/CrystallographicSample.json"
-            }
-        },
         "Dewar": {
             "description": "Uuid:object dictionary of Dewars.",
             "title": "Dewars",
@@ -47,6 +38,33 @@
             "minProperties": 1,
             "additionalProperties": {
                 "$ref": "../objects/DropRegion.json"
+            }
+        },
+        "Macromolecule": {
+            "description": "Uuid:object dictionary of Macromolecule (reference sample) objects.",
+            "title": "Macromolecule",
+            "type": "object",
+            "minProperties": 1,
+            "additionalProperties": {
+                "$ref": "../objects/Macromolecule.json"
+            }
+        },
+        "MacromoleculeSample": {
+            "description": "Uuid:object dictionary of Macromolecule-containing sample objects.",
+            "title": "MacromoleculeSample",
+            "type": "object",
+            "minProperties": 1,
+            "additionalProperties": {
+                "$ref": "../objects/MacromoleculeSample.json"
+            }
+        },
+        "Medium": {
+            "description": "Uuid:object dictionary of Medium (sample) objects.",
+            "title": "Media",
+            "type": "object",
+            "minProperties": 1,
+            "additionalProperties": {
+                "$ref": "../objects/Medium.json"
             }
         },
         "MxExperiment": {

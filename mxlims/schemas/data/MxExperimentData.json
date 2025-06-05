@@ -42,11 +42,24 @@
             "description": "Minimal multiplicity expected from experiment",
             "title": "Target Multiplicity"
         },
+        "energy": {
+            "minimum": 0.0,
+            "type": "number",
+            "description": "Desired energy of the beam in eV",
+            "title": "Energy"
+        },
         "doseBudget": {
             "minimum": 0.0,
             "type": "number",
             "description": "Dose (MGy) to be used in experiment",
             "title": "Dose Budget"
+        },
+        "radiationSensitivity": {
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "type": "number",
+            "description": "Predicted relative radiation sensitivity of sample at target wavelength.",
+            "title": "Radiation Sensitivity"
         },
         "snapshotCount": {
             "minimum": 0,
@@ -72,6 +85,23 @@
             "type": "number",
             "description": "Total radiation dose absorbed during experiment",
             "title": "Radiation Dose"
+        },
+        "expectedSpaceGroupName": {
+            "allOf": [
+                {
+                    "$ref": "../datatypes/SpaceGroupName.json"
+                }
+            ],
+            "description": "Name of space group expected to be present. Names may include alternative settings. Matches mmCIF item symmetry.space_group_name_H-M (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_symmetry.space_group_name_H-M.html).",
+            "title": "Space Group Name"
+        },
+        "expectedUnitCell": {
+            "allOf": [
+                {
+                    "$ref": "../datatypes/UnitCell.json"
+                }
+            ],
+            "description": "Unit cell of crystal expected to be present."
         },
         "spaceGroupName": {
             "allOf": [
