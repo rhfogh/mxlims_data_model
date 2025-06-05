@@ -3,10 +3,28 @@
 
 from __future__ import annotations
 
+from typing import Optional
+from uuid import UUID
+
 from mxlims.impl.MxlimsBase import BaseModel
+
+from pydantic import Field
 
 
 class PreparedSample(BaseModel):
     """
     Base class for MXLIMS Prepared Samples describing Sample content
     """
+
+    medium_id: Optional[UUID] = Field(
+        None,
+        alias="mediumId",
+        description="uuid for medium making up PreparedSample",
+        title="mediumId",
+    )
+    main_component_id: Optional[UUID] = Field(
+        None,
+        alias="mainComponentId",
+        description="uuid for main component (e.g. macromolecule) making up PreparedSample",
+        title="mainComponentId",
+    )

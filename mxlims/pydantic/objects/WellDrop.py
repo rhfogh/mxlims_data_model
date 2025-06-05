@@ -11,8 +11,8 @@ from ..data.LogisticalSampleData import LogisticalSampleData
 from ..data.WellDropData import WellDropData
 if TYPE_CHECKING:
     from .CollectionSweep import CollectionSweep
-    from .CrystallographicSample import CrystallographicSample
     from .DropRegion import DropRegion
+    from .MacromoleculeSample import MacromoleculeSample
     from .MxExperiment import MxExperiment
     from .MxProcessing import MxProcessing
     from .PlateWell import PlateWell
@@ -63,8 +63,8 @@ class WellDrop(WellDropData, LogisticalSampleData, LogisticalSample, MxlimsImple
     @datasets.setter
     def datasets(self, values: list[Union[CollectionSweep, ReflectionSet]]):
         """setter for WellDrop.datasets list"""
-        from .ReflectionSet import ReflectionSet
         from .CollectionSweep import CollectionSweep
+        from .ReflectionSet import ReflectionSet
 
         for obj in values:
             if not isinstance(obj, Union[CollectionSweep, ReflectionSet]):
@@ -88,16 +88,16 @@ class WellDrop(WellDropData, LogisticalSampleData, LogisticalSample, MxlimsImple
         self._set_link_1n_rev("Job", "logistical_sample_id", values)
 
     @property
-    def sample(self) -> Optional[CrystallographicSample]:
+    def sample(self) -> Optional[MacromoleculeSample]:
         """getter for WellDrop.sample"""
         return self._get_link_n1("PreparedSample", "sample_id")
 
     @sample.setter
-    def sample(self, value: Optional[CrystallographicSample]):
+    def sample(self, value: Optional[MacromoleculeSample]):
         """setter for WellDrop.sample"""
-        from .CrystallographicSample import CrystallographicSample
+        from .MacromoleculeSample import MacromoleculeSample
 
-        if value is None or isinstance(value, CrystallographicSample):
+        if value is None or isinstance(value, MacromoleculeSample):
             self._set_link_n1("PreparedSample", "sample_id", value)
         else:
-            raise ValueError("sample must be of type CrystallographicSample or None")
+            raise ValueError("sample must be of type MacromoleculeSample or None")

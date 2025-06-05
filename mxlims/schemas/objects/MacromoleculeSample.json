@@ -1,9 +1,12 @@
 {
     "$schema": "https://json-schema.org/draft-07/schema",
-    "description": "Prepared Sample core class",
-    "title": "PreparedSample",
+    "description": "Sample consisting of a macromolecule in a medium, with additional components",
+    "title": "MacromoleculeSample",
     "type": "object",
     "allOf": [
+        {
+            "$ref": "../data/MacromoleculeSampleData.json"
+        },
         {
             "$ref": "../data/PreparedSampleData.json"
         }

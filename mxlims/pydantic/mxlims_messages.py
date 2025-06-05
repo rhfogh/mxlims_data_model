@@ -19,9 +19,11 @@ from .datatypes.LogisticalSampleStub import LogisticalSampleStub
 from .datatypes.PreparedSampleStub import PreparedSampleStub
 from .objects.CollectionSweep import CollectionSweep
 from .objects.Crystal import Crystal
-from .objects.CrystallographicSample import CrystallographicSample
 from .objects.Dewar import Dewar
 from .objects.DropRegion import DropRegion
+from .objects.Macromolecule import Macromolecule
+from .objects.MacromoleculeSample import MacromoleculeSample
+from .objects.Medium import Medium
 from .objects.MultiPin import MultiPin
 from .objects.MxExperiment import MxExperiment
 from .objects.MxProcessing import MxProcessing
@@ -51,12 +53,6 @@ class MxlimsMessageStrict(BaseModel, BaseMessage):
         description="Uuid:object dictionary of Crystals.",
         title="Crystals",
     )
-    crystallographic_sample: Optional[Dict[str, CrystallographicSample]] = Field(
-        default_factory=dict,
-        alias="CrystallographicSample",
-        description="Uuid:object dictionary of CrystallographicSamples.",
-        title="CrystallographicSamples",
-    )
     dewar: Optional[Dict[str, Dewar]] = Field(
         default_factory=dict,
         alias="Dewar",
@@ -68,6 +64,24 @@ class MxlimsMessageStrict(BaseModel, BaseMessage):
         alias="DropRegion",
         description="Uuid:object dictionary of DropRegions.",
         title="DropRegions",
+    )
+    macromolecule: Optional[Dict[str, Macromolecule]] = Field(
+        default_factory=dict,
+        alias="Macromolecule",
+        description="Uuid:object dictionary of Macromolecule (reference sample) objects.",
+        title="Macromolecule",
+    )
+    macromolecule_sample: Optional[Dict[str, MacromoleculeSample]] = Field(
+        default_factory=dict,
+        alias="MacromoleculeSample",
+        description="Uuid:object dictionary of Macromolecule-containing sample objects.",
+        title="MacromoleculeSample",
+    )
+    medium: Optional[Dict[str, Medium]] = Field(
+        default_factory=dict,
+        alias="Medium",
+        description="Uuid:object dictionary of Medium (sample) objects.",
+        title="Media",
     )
     mx_experiment: Optional[Dict[str, MxExperiment]] = Field(
         default_factory=dict,
@@ -185,5 +199,6 @@ class ShipmentMessage(MxlimsMessageStrict, BaseMessage):
     multi_pin: Optional[Any] = Field(default_factory=dict, alias="MultiPin")
     pin: Optional[Any] = Field(default_factory=dict, alias="Pin")
     pin_position: Optional[Any] = Field(default_factory=dict, alias="PinPosition")
-    crystallographic_sample: Any = Field(..., alias="CrystallographicSample")
+    macromolecule_sample: Any = Field(..., alias="MacromoleculeSample")
+    macromolecule: Any = Field(..., alias="Macromolecule")
     crystal: Optional[Any] = Field(default_factory=dict, alias="Crystal")

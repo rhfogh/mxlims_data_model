@@ -12,7 +12,7 @@ from ..data.DropRegionData import DropRegionData
 if TYPE_CHECKING:
     from .CollectionSweep import CollectionSweep
     from .Crystal import Crystal
-    from .CrystallographicSample import CrystallographicSample
+    from .MacromoleculeSample import MacromoleculeSample
     from .MxExperiment import MxExperiment
     from .MxProcessing import MxProcessing
     from .ReflectionSet import ReflectionSet
@@ -63,8 +63,8 @@ class DropRegion(DropRegionData, LogisticalSampleData, LogisticalSample, MxlimsI
     @datasets.setter
     def datasets(self, values: list[Union[CollectionSweep, ReflectionSet]]):
         """setter for DropRegion.datasets list"""
-        from .ReflectionSet import ReflectionSet
         from .CollectionSweep import CollectionSweep
+        from .ReflectionSet import ReflectionSet
 
         for obj in values:
             if not isinstance(obj, Union[CollectionSweep, ReflectionSet]):
@@ -88,16 +88,16 @@ class DropRegion(DropRegionData, LogisticalSampleData, LogisticalSample, MxlimsI
         self._set_link_1n_rev("Job", "logistical_sample_id", values)
 
     @property
-    def sample(self) -> Optional[CrystallographicSample]:
+    def sample(self) -> Optional[MacromoleculeSample]:
         """getter for DropRegion.sample"""
         return self._get_link_n1("PreparedSample", "sample_id")
 
     @sample.setter
-    def sample(self, value: Optional[CrystallographicSample]):
+    def sample(self, value: Optional[MacromoleculeSample]):
         """setter for DropRegion.sample"""
-        from .CrystallographicSample import CrystallographicSample
+        from .MacromoleculeSample import MacromoleculeSample
 
-        if value is None or isinstance(value, CrystallographicSample):
+        if value is None or isinstance(value, MacromoleculeSample):
             self._set_link_n1("PreparedSample", "sample_id", value)
         else:
-            raise ValueError("sample must be of type CrystallographicSample or None")
+            raise ValueError("sample must be of type MacromoleculeSample or None")

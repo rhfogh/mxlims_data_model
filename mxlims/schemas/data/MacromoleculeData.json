@@ -9,6 +9,12 @@
             "description": "The type of MXLIMS object.",
             "title": "MxlimsType",
             "type": "string"
+        },
+        "acronym": {
+            "description": "Acronym - short synonym of macromolecule",
+            "title": "Acronym",
+            "type": "string"
         }
-    }
+    },
+    "required": ["acronym"]
 }

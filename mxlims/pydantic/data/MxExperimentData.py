@@ -56,11 +56,20 @@ class MxExperimentData(BaseModel):
         description="Minimal multiplicity expected from experiment",
         title="Target Multiplicity",
     )
+    energy: Optional[confloat(ge=0.0)] = Field(
+        None, description="Desired energy of the beam in eV", title="Energy"
+    )
     dose_budget: Optional[confloat(ge=0.0)] = Field(
         None,
         alias="doseBudget",
         description="Dose (MGy) to be used in experiment",
         title="Dose Budget",
+    )
+    radiation_sensitivity: Optional[confloat(ge=0.0, le=1.0)] = Field(
+        None,
+        alias="radiationSensitivity",
+        description="Predicted relative radiation sensitivity of sample at target wavelength.",
+        title="Radiation Sensitivity",
     )
     snapshot_count: Optional[conint(ge=0)] = Field(
         0,
@@ -85,6 +94,17 @@ class MxExperimentData(BaseModel):
         alias="radiationDose",
         description="Total radiation dose absorbed during experiment",
         title="Radiation Dose",
+    )
+    expected_space_group_name: Optional[SpaceGroupName] = Field(
+        None,
+        alias="expectedSpaceGroupName",
+        description="Name of space group expected to be present. Names may include alternative settings. Matches mmCIF item symmetry.space_group_name_H-M (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_symmetry.space_group_name_H-M.html).",
+        title="Space Group Name",
+    )
+    expected_unit_cell: Optional[UnitCell] = Field(
+        None,
+        alias="expectedUnitCell",
+        description="Unit cell of crystal expected to be present.",
     )
     space_group_name: Optional[SpaceGroupName] = Field(
         None,
