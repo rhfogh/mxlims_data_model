@@ -5,7 +5,7 @@
     "type": "object",
     "properties": {
         "version": {
-            "const": "0.6.1",
+            "const": "0.6.2",
             "description": "MXLIMS version for current model",
             "title": "Version",
             "type": "string"
@@ -45,6 +45,5 @@
         "mxlimsType",
         "mxlimsBaseType",
         "uuid"
-    ],
-    "additionalProperties": false
+    ]
 }

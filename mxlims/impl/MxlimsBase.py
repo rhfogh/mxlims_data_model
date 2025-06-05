@@ -1,4 +1,3 @@
-#! /usr/bin/env python
 # encoding: utf-8
 """ Python implementation base classes for MXLIMS model
 

@@ -9,9 +9,6 @@
         },
         {
             "$ref": "../data/PreparedSampleData.json"
-        },
-        {
-            "$ref": "../objects/PreparedSample.json"
         }
     ]
 }

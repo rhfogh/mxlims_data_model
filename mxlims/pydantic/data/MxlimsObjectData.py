@@ -8,7 +8,7 @@ from uuid import UUID
 
 from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import ConfigDict, Field
+from pydantic import Field
 
 from .NamespacedExtensionData import NamespacedExtensionData
 
@@ -18,11 +18,8 @@ class MxlimsObjectData(BaseModel):
     Base object for all MXLIMS objects: Job, Dataset, PreparedSample, and LogisticalSample
     """
 
-    model_config = ConfigDict(
-        extra="forbid",
-    )
-    version: Literal["0.6.1"] = Field(
-        "0.6.1", description="MXLIMS version for current model", title="Version"
+    version: Literal["0.6.2"] = Field(
+        "0.6.2", description="MXLIMS version for current model", title="Version"
     )
     mxlims_type: str = Field(
         ...,
