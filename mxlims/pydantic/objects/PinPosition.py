@@ -13,9 +13,9 @@ if TYPE_CHECKING:
     from .CollectionSweep import CollectionSweep
     from .Crystal import Crystal
     from .CrystallographicSample import CrystallographicSample
+    from .MultiPin import MultiPin
     from .MxExperiment import MxExperiment
     from .MxProcessing import MxProcessing
-    from .Pin import Pin
     from .ReflectionSet import ReflectionSet
 
 class PinPosition(PinPositionData, LogisticalSampleData, LogisticalSample, MxlimsImplementation):
@@ -26,19 +26,19 @@ class PinPosition(PinPositionData, LogisticalSampleData, LogisticalSample, Mxlim
         MxlimsImplementation.__init__(self)
     
     @property
-    def container(self) -> Optional[Pin]:
+    def container(self) -> Optional[MultiPin]:
         """getter for PinPosition.container"""
         return self._get_link_n1("LogisticalSample", "container_id")
 
     @container.setter
-    def container(self, value: Optional[Pin]):
+    def container(self, value: Optional[MultiPin]):
         """setter for PinPosition.container"""
-        from .Pin import Pin
+        from .MultiPin import MultiPin
 
-        if value is None or isinstance(value, Pin):
+        if value is None or isinstance(value, MultiPin):
             self._set_link_n1("LogisticalSample", "container_id", value)
         else:
-            raise ValueError("container must be of type Pin or None")
+            raise ValueError("container must be of type MultiPin or None")
 
     @property
     def contents(self) -> list[Crystal]:

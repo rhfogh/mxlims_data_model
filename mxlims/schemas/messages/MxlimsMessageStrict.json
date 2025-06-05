@@ -67,6 +67,15 @@
                 "$ref": "../objects/MxProcessing.json"
             }
         },
+        "MultiPin": {
+            "description": "Uuid:object dictionary of MultiPins.",
+            "title": "MultiPins",
+            "type": "object",
+            "minProperties": 1,
+            "additionalProperties": {
+                "$ref": "../objects/MultiPin.json"
+            }
+        },
         "Pin": {
             "description": "Uuid:object dictionary of Pins.",
             "title": "Pins",

@@ -28,7 +28,7 @@
                     "reverseLinkName": "contents"
                 },
                 {
-                    "$ref": "../references/PinRef.json"
+                    "$ref": "../references/MultiPinRef.json"
                 }
             ]
         }
