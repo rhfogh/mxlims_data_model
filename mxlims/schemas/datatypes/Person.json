@@ -20,7 +20,7 @@
     "allOf": [
         {"required": ["name"]},
         {
-            "oneOf": [
+            "anyOf": [
                 {
                     "required": [
                         "emailAddress"
