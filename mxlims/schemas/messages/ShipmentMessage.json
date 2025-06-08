@@ -39,7 +39,7 @@
         "PinPosition":{
             "additionalProperties": { "required":["containerRef","sampleRef"] }
         },
-	    "MacromoleculeSample":{
+	"MacromoleculeSample":{
             "additionalProperties": {
                 "required":["name","macromoleculeRef"],
                 "properties":{
@@ -47,7 +47,7 @@
                 }
             }
         },
-	    "Macromolecule":{
+        "Macromolecule":{
             "additionalProperties": {
                 "required":["acronym"]
             }
@@ -61,10 +61,11 @@
     "oneOf":[
         {
            "$comment":"This is a frozen-crystal shipment of dewars, pucks and pins",
-           "required":["Dewar","Puck","Pin"],
+           "required":["Dewar","Puck"],
            "oneOf":[
                {
                    "$comment":"All pins are traditional one-position loops. PinPositions are not required and are therefore invalid, but Pins must have a sampleRef",
+                   "required":["Pin"],
                    "properties":{
                        "PinPosition": false,
                        "Pin":{
@@ -75,21 +76,17 @@
                    }
                },
                {
-                   "$comment":"At least one pin is multi-position. PinPositions are required",
+                   "$comment":"At least one pin is multi-position. All pins (even single-position pins) must be declared as MultiPins, and PinPositions are required",
                    "required":["MultiPin","PinPosition"],
                    "properties":{
-                       "PinPosition":{
-                           "additionalProperties":{
-                               "required":["sampleRef"]
-                           }
-                       }
+                       "Pin":false
                    }
                }
            ]
         },
         {
            "$comment":"This is a shipment of plates", 
-           "required":["Plate","PlateWell","WellDrop"] 
+           "required":["Plate","PlateWell","WellDrop","DropRegion","Crystal"]
         }
     ]
 }

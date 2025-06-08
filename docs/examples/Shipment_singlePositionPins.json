@@ -3,12 +3,14 @@
     "0196f23d-0f3c-2c96-b3d1-b908984ec709": {
       "proposalCode": "mx4025",
       "labContactOutbound": {
-        "name": "Bob"
+        "name": "Bob",
+        "emailAddress": "bob@bob.bogus"
       },
       "labContactReturn": {
-        "name": "Bob"
+        "name": "Alice",
+        "phoneNumber":"123"
       },
-      "version": "0.6.1",
+      "version": "0.6.3",
       "mxlimsType": "Shipment",
       "mxlimsBaseType": "LogisticalSample",
       "uuid": "0196f23d-0f3c-2c96-b3d1-b908984ec709"
@@ -17,7 +19,7 @@
   "Dewar": {
     "0196f23a-dce0-2560-baac-f1b23ec9e0cb": {
       "containerRef": { "$ref": "#/Shipment/0196f23d-0f3c-2c96-b3d1-b908984ec709" },
-      "version": "0.6.1",
+      "version": "0.6.3",
       "mxlimsType": "Dewar",
       "mxlimsBaseType": "LogisticalSample",
       "uuid": "0196f23a-dce0-2560-baac-f1b23ec9e0cb"
@@ -27,7 +29,7 @@
     "0196f23a-dce0-2560-baac-f1b23ec9e0aa": {
       "numberPositions": 16,
       "containerRef": { "$ref": "#/Dewar/0196f23a-dce0-2560-baac-f1b23ec9e0cb" },
-      "version": "0.6.1",
+      "version": "0.6.3",
       "mxlimsType": "Puck",
       "mxlimsBaseType": "LogisticalSample",
       "uuid": "0196f23a-dce0-2560-baac-f1b23ec9e0aa"
@@ -38,22 +40,28 @@
       "numberPositions": 1,
       "positionInPuck": 1,
       "containerRef": { "$ref": "#/Puck/0196f23a-dce0-2560-baac-f1b23ec9e0aa" },
-      "sampleRef": { "$ref": "#/CrystallographicSample/0196f23a-dce0-2560-baac-f1b23ec9e022" },
-      "version": "0.6.1",
+      "sampleRef": { "$ref": "#/MacromoleculeSample/0196f23a-dce0-2560-baac-f1b23ec9e022" },
+      "version": "0.6.3",
       "mxlimsType": "Pin",
       "mxlimsBaseType": "LogisticalSample",
       "uuid": "0196f23a-dce0-2560-baac-f1b23ec9e0dd"
     }
   },
-  "CrystallographicSample": {
+  "Macromolecule":{
+    "0196f23a-dce0-2560-baac-f1b23ec9e055": {
+      "acronym": "LMTIM",
+      "version": "0.6.3",
+      "mxlimsType": "Macromolecule",
+      "mxlimsBaseType": "PreparedSample",
+      "uuid": "0196f23a-dce0-2560-baac-f1b23ec9e055"
+    }
+  },
+  "MacromoleculeSample": {
     "0196f23a-dce0-2560-baac-f1b23ec9e022": {
       "name": "LMTIM_9098A01d1c1",
-      "macromolecule": {
-        "acronym": "LMTIM",
-        "role": "target"
-      },
-      "version": "0.6.1",
-      "mxlimsType": "CrystallographicSample",
+      "macromoleculeRef": { "$ref":"#/Macromolecule/0196f23a-dce0-2560-baac-f1b23ec9e055" },
+      "version": "0.6.3",
+      "mxlimsType": "MacromoleculeSample",
       "mxlimsBaseType": "PreparedSample",
       "uuid": "0196f23a-dce0-2560-baac-f1b23ec9e022"
     }
