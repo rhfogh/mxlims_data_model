@@ -3,12 +3,14 @@
     "2296f23d-0f3c-2c96-b3d1-b908984ec709": {
       "proposalCode": "mx4025",
       "labContactOutbound": {
-        "name": "Bob"
+        "name": "Bob",
+        "emailAddress": "bob@bob.bogus"
       },
       "labContactReturn": {
-        "name": "Bob"
+        "name": "Alice",
+        "phoneNumber":"123"
       },
-      "version": "0.6.1",
+      "version": "0.6.3",
       "mxlimsType": "Shipment",
       "mxlimsBaseType": "LogisticalSample",
       "uuid": "2296f23d-0f3c-2c96-b3d1-b908984ec709"
@@ -17,7 +19,7 @@
   "Dewar": {
     "2296f23a-dce0-2560-baac-f1b23ec9e0cb": {
       "containerRef": { "$ref": "#/Shipment/2296f23d-0f3c-2c96-b3d1-b908984ec709" },
-      "version": "0.6.1",
+      "version": "0.6.3",
       "mxlimsType": "Dewar",
       "mxlimsBaseType": "LogisticalSample",
       "uuid": "2296f23a-dce0-2560-baac-f1b23ec9e0cb"
@@ -27,19 +29,19 @@
     "2296f23a-dce0-2560-baac-f1b23ec9e0aa": {
       "numberPositions": 16,
       "containerRef": { "$ref": "#/Dewar/2296f23a-dce0-2560-baac-f1b23ec9e0cb" },
-      "version": "0.6.1",
+      "version": "0.6.3",
       "mxlimsType": "Puck",
       "mxlimsBaseType": "LogisticalSample",
       "uuid": "2296f23a-dce0-2560-baac-f1b23ec9e0aa"
     }
   },
-  "Pin": {
+  "MultiPin": {
     "2296f23a-dce0-2560-baac-f1b23ec9e0dd": {
       "numberPositions": 8,
       "positionInPuck": 1,
       "containerRef": { "$ref": "#/Puck/2296f23a-dce0-2560-baac-f1b23ec9e0aa" },
-      "version": "0.6.1",
-      "mxlimsType": "Pin",
+      "version": "0.6.3",
+      "mxlimsType": "MultiPin",
       "mxlimsBaseType": "LogisticalSample",
       "uuid": "2296f23a-dce0-2560-baac-f1b23ec9e0dd"
     }
@@ -47,32 +49,38 @@
   "PinPosition": {
     "2296f23a-dce0-2560-baac-f1b23ec9e011": {
       "positionInPin": 1,
-      "containerRef": { "$ref": "#/Pin/2296f23a-dce0-2560-baac-f1b23ec9e0dd" },
-      "sampleRef": { "$ref": "#/CrystallographicSample/2296f23a-dce0-2560-baac-f1b23ec9e022" },
-      "version": "0.6.1",
+      "containerRef": { "$ref": "#/MultiPin/2296f23a-dce0-2560-baac-f1b23ec9e0dd" },
+      "sampleRef": { "$ref": "#/MacromoleculeSample/2296f23a-dce0-2560-baac-f1b23ec9e022" },
+      "version": "0.6.3",
       "mxlimsType": "PinPosition",
       "mxlimsBaseType": "LogisticalSample",
       "uuid": "2296f23a-dce0-2560-baac-f1b23ec9e011"
     },
     "2296f23a-dce0-2560-baac-f1b23ec9e044": {
-      "positionInPin": 1,
-      "containerRef": { "$ref": "#/Pin/2296f23a-dce0-2560-baac-f1b23ec9e0dd" },
-      "sampleRef": { "$ref": "#/CrystallographicSample/2296f23a-dce0-2560-baac-f1b23ec9e022" },
-      "version": "0.6.1",
+      "positionInPin": 2,
+      "containerRef": { "$ref": "#/MultiPin/2296f23a-dce0-2560-baac-f1b23ec9e0dd" },
+      "sampleRef": { "$ref": "#/MacromoleculeSample/2296f23a-dce0-2560-baac-f1b23ec9e022" },
+      "version": "0.6.3",
       "mxlimsType": "PinPosition",
       "mxlimsBaseType": "LogisticalSample",
       "uuid": "2296f23a-dce0-2560-baac-f1b23ec9e044"
     }
   },
-  "CrystallographicSample": {
+  "Macromolecule":{
+    "0196f23a-dce0-2560-baac-f1b23ec9e055": {
+      "acronym": "LMTIM",
+      "version": "0.6.3",
+      "mxlimsType": "Macromolecule",
+      "mxlimsBaseType": "PreparedSample",
+      "uuid": "0196f23a-dce0-2560-baac-f1b23ec9e055"
+    }
+  },
+  "MacromoleculeSample": {
     "2296f23a-dce0-2560-baac-f1b23ec9e022": {
       "name": "LMTIM_9098A01d2c3",
-      "macromolecule": {
-        "acronym": "LMTIM",
-        "role": "target"
-      },
-      "version": "0.6.1",
-      "mxlimsType": "CrystallographicSample",
+      "macromoleculeRef": { "$ref":"#/Macromolecule/0196f23a-dce0-2560-baac-f1b23ec9e055" },
+      "version": "0.6.3",
+      "mxlimsType": "MacromoleculeSample",
       "mxlimsBaseType": "PreparedSample",
       "uuid": "2296f23a-dce0-2560-baac-f1b23ec9e022",
       "identifiers": {
