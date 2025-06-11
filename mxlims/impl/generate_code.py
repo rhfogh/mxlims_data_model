@@ -24,7 +24,7 @@ __author__ = "Rasmus H Fogh"
 
 import json
 import os
-from mxlims.impl.utils import camel_to_snake
+from mxlims.impl.MxlimsBase import camel_to_snake, CORETYPES
 from pathlib import Path
 from ruamel.yaml import YAML
 import subprocess
@@ -36,9 +36,6 @@ yaml = YAML(typ="safe", pure=True)
 # The following are not needed for load, but define the default style.
 yaml.default_flow_style = False
 yaml.indent(mapping=2, sequence=4, offset=2)
-
-# Names of core *(basic abstract) classes
-CORETYPES = ("Job", "Dataset", "LogisticalSample", "PreparedSample")
 
 def generate_mxlims(dirname: Optional[str] = None) -> None :
     """
@@ -610,7 +607,7 @@ def make_json_references(output_dir: Path, object_dicts:dict[str:dict]):
                 "description": "JSON reference to object in std. message, using uuid-based links.",
                 "title": "JSONreference",
                 "type": "string",
-                "pattern": "^/{classname}/[a-fA-F0-9]{{8}}-?[a-fA-F0-9]{{4}}-?[1-5][a-fA-F0-9]{{3}}-?[89abAB][a-fA-F0-9]{{3}}-?[a-fA-F0-9]{{12}}$"
+                "pattern": "^#/{classname}/{classname}[1-9][0-9]*$"
             }}
         }},
         "required": [

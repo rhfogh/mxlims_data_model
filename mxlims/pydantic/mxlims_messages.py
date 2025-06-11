@@ -44,106 +44,109 @@ class MxlimsMessageStrict(BaseModel, BaseMessage):
     collection_sweep: Optional[Dict[str, CollectionSweep]] = Field(
         default_factory=dict,
         alias="CollectionSweep",
-        description="Uuid:object dictionary of CollectionSweeps.",
+        description="idString:object dictionary of CollectionSweeps.",
         title="CollectionSweeps",
     )
     crystal: Optional[Dict[str, Crystal]] = Field(
         default_factory=dict,
         alias="Crystal",
-        description="Uuid:object dictionary of Crystals.",
+        description="idString:object dictionary of Crystals.",
         title="Crystals",
     )
     dewar: Optional[Dict[str, Dewar]] = Field(
         default_factory=dict,
         alias="Dewar",
-        description="Uuid:object dictionary of Dewars.",
+        description="idString:object dictionary of Dewars.",
         title="Dewars",
     )
     drop_region: Optional[Dict[str, DropRegion]] = Field(
         default_factory=dict,
         alias="DropRegion",
-        description="Uuid:object dictionary of DropRegions.",
+        description="idString:object dictionary of DropRegions.",
         title="DropRegions",
     )
     macromolecule: Optional[Dict[str, Macromolecule]] = Field(
         default_factory=dict,
         alias="Macromolecule",
-        description="Uuid:object dictionary of Macromolecule (reference sample) objects.",
+        description="idString:object dictionary of Macromolecule (reference sample) objects.",
         title="Macromolecule",
     )
     macromolecule_sample: Optional[Dict[str, MacromoleculeSample]] = Field(
         default_factory=dict,
         alias="MacromoleculeSample",
-        description="Uuid:object dictionary of Macromolecule-containing sample objects.",
+        description="idString:object dictionary of Macromolecule-containing sample objects.",
         title="MacromoleculeSample",
     )
     medium: Optional[Dict[str, Medium]] = Field(
         default_factory=dict,
         alias="Medium",
-        description="Uuid:object dictionary of Medium (sample) objects.",
+        description="idString:object dictionary of Medium (sample) objects.",
         title="Media",
     )
     mx_experiment: Optional[Dict[str, MxExperiment]] = Field(
         default_factory=dict,
         alias="MxExperiment",
-        description="Uuid:object dictionary of MxExperiments.",
+        description="idString:object dictionary of MxExperiments.",
         title="MxExperiments",
     )
     mx_processing: Optional[Dict[str, MxProcessing]] = Field(
         default_factory=dict,
         alias="MxProcessing",
-        description="Uuid:object dictionary of MxProcessings.",
+        description="idString:object dictionary of MxProcessings.",
         title="MxProcessings",
     )
     multi_pin: Optional[Dict[str, MultiPin]] = Field(
         default_factory=dict,
         alias="MultiPin",
-        description="Uuid:object dictionary of MultiPins.",
+        description="idString:object dictionary of MultiPins.",
         title="MultiPins",
     )
     pin: Optional[Dict[str, Pin]] = Field(
-        default_factory=dict, alias="Pin", description="Uuid:object dictionary of Pins.", title="Pins"
+        default_factory=dict,
+        alias="Pin",
+        description="idString:object dictionary of Pins.",
+        title="Pins",
     )
     pin_position: Optional[Dict[str, PinPosition]] = Field(
         default_factory=dict,
         alias="PinPosition",
-        description="Uuid:object dictionary of PinPositions.",
+        description="idString:object dictionary of PinPositions.",
         title="PinPositions",
     )
     plate: Optional[Dict[str, Plate]] = Field(
         default_factory=dict,
         alias="Plate",
-        description="Uuid:object dictionary of Plates.",
+        description="idString:object dictionary of Plates.",
         title="Plates",
     )
     plate_well: Optional[Dict[str, PlateWell]] = Field(
         default_factory=dict,
         alias="PlateWell",
-        description="Uuid:object dictionary of PlateWells.",
+        description="idString:object dictionary of PlateWells.",
         title="PlateWells",
     )
     puck: Optional[Dict[str, Puck]] = Field(
         default_factory=dict,
         alias="Puck",
-        description="Uuid:object dictionary of Pucks.",
+        description="idString:object dictionary of Pucks.",
         title="Pucks",
     )
     reflection_set: Optional[Dict[str, ReflectionSet]] = Field(
         default_factory=dict,
         alias="ReflectionSet",
-        description="Uuid:object dictionary of ReflectionSets.",
+        description="idString:object dictionary of ReflectionSets.",
         title="ReflectionSets",
     )
     shipment: Optional[Dict[str, Shipment]] = Field(
         default_factory=dict,
         alias="Shipment",
-        description="Uuid:object dictionary of Shipments.",
+        description="idString:object dictionary of Shipments.",
         title="Shipments",
     )
     well_drop: Optional[Dict[str, WellDrop]] = Field(
         default_factory=dict,
         alias="WellDrop",
-        description="Uuid:object dictionary of WellDrops.",
+        description="idString:object dictionary of WellDrops.",
         title="WellDrops",
     )
 
@@ -159,25 +162,25 @@ class MxlimsMessage(MxlimsMessageStrict, BaseMessage):
     dataset: Optional[Dict[str, DatasetStub]] = Field(
         default_factory=dict,
         alias="Dataset",
-        description="Uuid:object dictionary of Dataset stubs.",
+        description="idString:object dictionary of Dataset stubs.",
         title="Datasets",
     )
     job: Optional[Dict[str, JobStub]] = Field(
         default_factory=dict,
         alias="Job",
-        description="Uuid:object dictionary of Job stubs.",
+        description="idString:object dictionary of Job stubs.",
         title="Jobs",
     )
     logistical_sample: Optional[Dict[str, LogisticalSampleStub]] = Field(
         default_factory=dict,
         alias="LogisticalSample",
-        description="Uuid:object dictionary of LogisticalSample stubs.",
+        description="idString:object dictionary of LogisticalSample stubs.",
         title="LogisticalSamples",
     )
     prepared_sample: Optional[Dict[str, PreparedSampleStub]] = Field(
         default_factory=dict,
         alias="PreparedSample",
-        description="Uuid:object dictionary of PreparedSample stubs.",
+        description="idString:object dictionary of PreparedSample stubs.",
         title="PreparedSamples",
     )
 

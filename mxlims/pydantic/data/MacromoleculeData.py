@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from typing import Literal, Optional
+from typing import Literal
 
 from mxlims.impl.MxlimsBase import BaseModel
 
@@ -21,6 +21,6 @@ class MacromoleculeData(BaseModel):
         description="The type of MXLIMS object.",
         title="MxlimsType",
     )
-    acronym: Optional[str] = Field(
-        None, description="Acronym - short synonym of macromolecule", title="Acronym"
+    acronym: str = Field(
+        ..., description="Acronym - short synonym of macromolecule", title="Acronym"
     )

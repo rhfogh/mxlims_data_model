@@ -65,7 +65,7 @@ They are organised as follows:
   translated directly to the AP implementations. These use instead the direct storage of target
   uuids, with field names like 'sourceId' or 'inputDataIds', and with derived field names
   like 'source', 'logisticalSamples', or 'inputData' to access the linked-to objects.
-  More detail can be found in the Overview.pdf document
+  More detail can be found in the Overview.pdf document.
 
 ## JSON html documentation
 
