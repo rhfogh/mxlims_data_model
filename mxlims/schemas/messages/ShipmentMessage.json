@@ -24,6 +24,9 @@
         "WellDrop":{
             "additionalProperties": { "required":["containerRef"] }
         },
+        "DropRegion":{
+            "additionalProperties": { "required":["containerRef"] }
+        },
         "Dewar":{
             "additionalProperties": { "required":["containerRef"] }
         },
@@ -53,11 +56,10 @@
             }
         },
         "Crystal":{
-            "additionalProperties": { "required":["containerRef","sampleRef"] }
+            "additionalProperties": { "required":["containerRef","sampleRef","name"] }
         }
     },
     "required":["Shipment","MacromoleculeSample", "Macromolecule"],
-    "additionalProperties": false,
     "oneOf":[
         {
            "$comment":"This is a frozen-crystal shipment of dewars, pucks and pins",

@@ -4,6 +4,10 @@
     "title": "CrystalData",
     "type": "object",
     "properties": {
+        "name": {
+            "type": "string",
+            "description": "Sample human-readable name."
+        },
         "comment": {
             "type": "string",
             "description": "Comment or annotation."
