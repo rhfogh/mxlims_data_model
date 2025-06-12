@@ -5,7 +5,7 @@
     "type": "object",
     "properties": {
         "version": {
-            "const": "0.6.3",
+            "const": "0.6.4",
             "description": "MXLIMS version for current model",
             "title": "Version",
             "type": "string"
@@ -13,11 +13,6 @@
         "mxlimsType": {
             "description": "The type of the MXLIMS object. Fixed for each subtype schema",
             "title": "MxlimsType",
-            "type": "string"
-        },
-        "mxlimsBaseType": {
-            "description": "The abstract (super)type of the MXLIMS object. Fixed for each subtype schema",
-            "title": "MxlimsBaseType",
             "type": "string"
         },
         "uuid": {

@@ -18,20 +18,14 @@ class MxlimsObjectData(BaseModel):
     Base object for all MXLIMS objects: Job, Dataset, PreparedSample, and LogisticalSample
     """
 
-    version: Literal["0.6.3"] = Field(
-        "0.6.3", description="MXLIMS version for current model", title="Version"
+    version: Literal["0.6.4"] = Field(
+        "0.6.4", description="MXLIMS version for current model", title="Version"
     )
     mxlims_type: str = Field(
         ...,
         alias="mxlimsType",
         description="The type of the MXLIMS object. Fixed for each subtype schema",
         title="MxlimsType",
-    )
-    mxlims_base_type: Optional[str] = Field(
-        None,
-        alias="mxlimsBaseType",
-        description="The abstract (super)type of the MXLIMS object. Fixed for each subtype schema",
-        title="MxlimsBaseType",
     )
     uuid: Optional[UUID] = Field(
         None, description="Permanent unique identifier string", title="Uuid"

@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Literal, Optional
+from typing import Dict, Optional
 
 from mxlims.impl.MxlimsBase import BaseModel
 
@@ -18,12 +18,6 @@ class PlateData(BaseModel):
     A crystallization plate
     """
 
-    mxlims_type: Literal["Plate"] = Field(
-        "Plate",
-        alias="mxlimsType",
-        description="The type of MXLIMS object.",
-        title="MxlimsType",
-    )
     barcode: Optional[str] = Field(
         None, description="The plate barcode or other identifier"
     )

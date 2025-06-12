@@ -86,8 +86,8 @@ class MxlimsImplementation:
     @classmethod
     def get_object_by_uuid(
         cls,
-        basetypename: str,
         uuid: str,
+        basetypename: Optional[str] = None,
     ) -> Optional["MxlimsImplementation"]:
         """
         Get MXLIMS object from basetypename and (foreign key) uuid
@@ -96,7 +96,14 @@ class MxlimsImplementation:
         :param uuid:
         :return:
         """
-        return cls._objects_by_id[basetypename].get(uuid)
+        if basetypename is None:
+            for dd1 in  cls._objects_by_id.values():
+                result = dd1.get(uuid)
+                if result  is not None:
+                    break
+        else:
+            result = cls._objects_by_id[basetypename].get(uuid)
+        return result
 
     def _get_link_n1(
             self,
@@ -355,7 +362,7 @@ def to_export_json(message_dict: dict) -> None:
     for tag, dd1 in message_dict.items():
         if dd1:
             for tag2, dd2 in dd1.items():
-                uuid_to_id[dd2["uuid"]]= (dd2["mxlimsType"], "#/{tag1}/{tag2}")
+                uuid_to_id[dd2["uuid"]]= (dd2["mxlimsType"], f"#/{tag}/{tag2}")
 
 
     for tag, objdict in list(message_dict.items()):
@@ -375,7 +382,6 @@ def to_export_json(message_dict: dict) -> None:
                             if tpl:
                                 # The linked-to object is in the message
                                 obj[linkdict["link_ref_name"]] = {
-                                    "mxlimsType": tpl[0],
                                     "$ref": tpl[1]
                                 }
                             else:
@@ -385,7 +391,6 @@ def to_export_json(message_dict: dict) -> None:
                                     # Put Stub link, if allowed
                                     target_dict = message_dict[base_type]
                                     obj[linkdict["link_ref_name"]] = {
-                                        "mxlimsBaseType": base_type,
                                         "$ref": f"/{base_type}/{base_type}{len(target_dict)}"
                                     }
                                     # And add stub to the message
@@ -402,7 +407,6 @@ def to_export_json(message_dict: dict) -> None:
                                 if tpl:
                                     # The linked-to object is in the message
                                     newref = {
-                                        "mxlimsType": tpl[0],
                                         "$ref": tpl[1]
                                     }
                                 else:
@@ -412,7 +416,6 @@ def to_export_json(message_dict: dict) -> None:
                                         # Put Stub link, if allowed
                                         target_dict = message_dict[base_type]
                                         newref = {
-                                            "mxlimsBaseType": base_type,
                                             "$ref": f"/{base_type}/{base_type}{len(target_dict)}",
                                         }
                                         # And add stub to the message

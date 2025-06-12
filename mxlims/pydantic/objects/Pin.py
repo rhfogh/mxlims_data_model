@@ -3,8 +3,9 @@
 
 # NB Literal and UUID have to be imported to avoid pydantic errors
 from __future__ import annotations
+from pydantic import Field
 from typing import Any, Literal, Optional, Union, TYPE_CHECKING
-from uuid import UUID
+from uuid import UUID, uuid1
 from mxlims.impl.MxlimsBase import MxlimsImplementation
 from ..core.LogisticalSample import LogisticalSample
 from ..data.LogisticalSampleData import LogisticalSampleData
@@ -24,6 +25,28 @@ class Pin(PinData, LogisticalSampleData, LogisticalSample, MxlimsImplementation)
     def __init__(self, **data: Any) -> None:
         super().__init__(**data)
         MxlimsImplementation.__init__(self)
+        
+    mxlims_base_type: Literal["LogisticalSample"] = Field(
+        "LogisticalSample",
+        alias="mxlimsBaseType",
+        description="The abstract (super)type of MXLIMS object.",
+        title="MxlimsBaseType",
+        exclude=True,
+        frozen=True
+    )
+    mxlims_type: Literal["Pin"] = Field(
+        "Pin",
+        alias="mxlimsType",
+        description="The type of MXLIMS object.",
+        title="MxlimsType",
+        frozen=True,
+    )
+    uuid: Optional[UUID] = Field(
+        default_factory=uuid1,
+        description="Permanent unique identifier string",
+        title="Uuid",
+        frozen=True
+    )
     
     @property
     def container(self) -> Optional[Puck]:

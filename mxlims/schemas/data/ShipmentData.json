@@ -4,12 +4,6 @@
     "title": "ShipmentData",
     "type": "object",
     "properties": {
-        "mxlimsType": {
-            "const": "Shipment",
-            "description": "The type of MXLIMS object.",
-            "title": "MxlimsType",
-            "type": "string"
-        },
         "proposalCode": {
             "type": "string",
             "description": "The proposal number at the receiving facility.",

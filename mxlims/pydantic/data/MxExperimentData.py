@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from typing import Literal, Optional
+from typing import Optional
 
 from mxlims.impl.MxlimsBase import BaseModel
 
@@ -18,12 +18,6 @@ class MxExperimentData(BaseModel):
     Crystallography experiment, producing data
     """
 
-    mxlims_type: Literal["MxExperiment"] = Field(
-        "MxExperiment",
-        alias="mxlimsType",
-        description="The type of MXLIMS object.",
-        title="MxlimsType",
-    )
     experiment_strategy: Optional[str] = Field(
         None,
         alias="experimentStrategy",

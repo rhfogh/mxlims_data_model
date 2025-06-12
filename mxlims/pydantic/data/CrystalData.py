@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from typing import Literal, Optional
+from typing import Optional
 
 from mxlims.impl.MxlimsBase import BaseModel
 
@@ -15,10 +15,4 @@ class CrystalData(BaseModel):
     Crystal or location for measuring diffraction. Note that crystals are optional and are generally used ONLY where a region, loop, or other LogisticalSample is found to have several crystals during the actual experiment.
     """
 
-    mxlims_type: Literal["Crystal"] = Field(
-        "Crystal",
-        alias="mxlimsType",
-        description="The type of MXLIMS object.",
-        title="MxlimsType",
-    )
     comment: Optional[str] = Field(None, description="Comment or annotation.")

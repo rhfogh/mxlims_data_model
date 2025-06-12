@@ -3,8 +3,9 @@
 
 # NB Literal and UUID have to be imported to avoid pydantic errors
 from __future__ import annotations
+from pydantic import Field
 from typing import Any, Literal, Optional, Union, TYPE_CHECKING
-from uuid import UUID
+from uuid import UUID, uuid1
 from mxlims.impl.MxlimsBase import MxlimsImplementation
 from ..core.Dataset import Dataset
 from ..data.DatasetData import DatasetData
@@ -25,6 +26,28 @@ class CollectionSweep(CollectionSweepData, DatasetData, Dataset, MxlimsImplement
     def __init__(self, **data: Any) -> None:
         super().__init__(**data)
         MxlimsImplementation.__init__(self)
+        
+    mxlims_base_type: Literal["Dataset"] = Field(
+        "Dataset",
+        alias="mxlimsBaseType",
+        description="The abstract (super)type of MXLIMS object.",
+        title="MxlimsBaseType",
+        exclude=True,
+        frozen=True
+    )
+    mxlims_type: Literal["CollectionSweep"] = Field(
+        "CollectionSweep",
+        alias="mxlimsType",
+        description="The type of MXLIMS object.",
+        title="MxlimsType",
+        frozen=True,
+    )
+    uuid: Optional[UUID] = Field(
+        default_factory=uuid1,
+        description="Permanent unique identifier string",
+        title="Uuid",
+        frozen=True
+    )
     
     @property
     def derived_datasets(self) -> list[CollectionSweep]:
@@ -39,7 +62,7 @@ class CollectionSweep(CollectionSweepData, DatasetData, Dataset, MxlimsImplement
     @property
     def input_for(self) -> list[MxProcessing]:
         """getter for CollectionSweep.input_for list"""
-        return self.get_link_nn_rev("Job", "input_data_ids")
+        return self._get_link_nn_rev("Job", "input_data_ids")
 
     @input_for.setter
     def input_for(self, values: list[MxProcessing]):
@@ -87,7 +110,7 @@ class CollectionSweep(CollectionSweepData, DatasetData, Dataset, MxlimsImplement
     @property
     def template_for(self) -> list[MxExperiment]:
         """getter for CollectionSweep.template_for list"""
-        return self.get_link_nn_rev("Job", "template_data_ids")
+        return self._get_link_nn_rev("Job", "template_data_ids")
 
     @template_for.setter
     def template_for(self, values: list[MxExperiment]):

@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from typing import Literal, Optional
+from typing import Optional
 
 from mxlims.impl.MxlimsBase import BaseModel
 
@@ -18,12 +18,6 @@ class MxProcessingData(BaseModel):
     Crystallography Processing calculation,
     """
 
-    mxlims_type: Literal["MxProcessing"] = Field(
-        "MxProcessing",
-        alias="mxlimsType",
-        description="Type of MXLIMS object.",
-        title="MxlimsType",
-    )
     program_name: Optional[str] = Field(
         None,
         alias="programName",

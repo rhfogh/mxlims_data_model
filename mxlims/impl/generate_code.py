@@ -231,14 +231,14 @@ def extract_object_schemas(schema_dir: Path) -> dict:
             # These are inherited data, specific and abstract superclass
             reference = dd1["$ref"]
             if "/data/" in reference:
+                if not reference.endswith("Data.json"):
+                    raise ValueError("/data/ json file names must end with 'Data.json'")
                 dataname = Path(reference).stem
-                dd2 = data[dataname]["properties"]
-                type_record = dd2.get("mxlimsType")
-                if type_record:
-                    objdict["classname"] = type_record["const"]
+                dd2 = data[dataname]
+                if dataname[:-4] in CORETYPES:
+                    objdict["corename"] = dataname[:-4]
                 else:
-                    # This must be the abstract base class
-                    objdict["corename"] = dd2["mxlimsBaseType"]["const"]
+                    objdict["classname"] = obj["properties"]["mxlimsType"]["const"]
         if not objdict.get("classname"):
             # This is one of the core objects
             objdict["classname"] = objdict["corename"]
@@ -246,7 +246,7 @@ def extract_object_schemas(schema_dir: Path) -> dict:
         # Read info for each link
         for linkref, linkjson in obj.get("properties", {}).items():
             linkname = camel_to_snake(linkref.rsplit("Ref", 1)[0])
-            linkdict = objdict["links"][linkname] = {
+            linkdict = {
                 "linkname": linkname, "typenames":[], "link_ref_name": linkref
             }
             if linkjson.get("type") == "array":
@@ -270,7 +270,8 @@ def extract_object_schemas(schema_dir: Path) -> dict:
                     raise ValueError(
                         f"no 'oneOf' or '$ref' found in link {classname}.{linkname}"
                     )
-            else:
+                objdict["links"][linkname] = linkdict
+            elif linkjson.get("type") is None:
                 linkdict["cardinality"] = "single"
                 linkdict["link_id_name"] = linkname + "_id"
                 for dd1 in linkjson["allOf"]:
@@ -287,6 +288,7 @@ def extract_object_schemas(schema_dir: Path) -> dict:
                         # This is the general properties of the link
                         linkdict["reversename"] = camel_to_snake(dd1["reverseLinkName"])
                         linkdict["read_only"] = dd1.get("readOnly", False)
+                objdict["links"][linkname] = linkdict
 
     # Fill in records for reverse links
     for name, objdict in result.items():
@@ -345,8 +347,9 @@ def make_pydantic_object(output_dir: Path, objdict: dict) -> None:
 
 # NB Literal and UUID have to be imported to avoid pydantic errors
 from __future__ import annotations
+from pydantic import Field
 from typing import Any, Literal, Optional, Union, TYPE_CHECKING
-from uuid import UUID
+from uuid import UUID, uuid1
 from mxlims.impl.MxlimsBase import MxlimsImplementation
 from ..core.{corename} import {corename}
 from ..data.{corename}Data import {corename}Data
@@ -372,6 +375,28 @@ class {classname}({classname}Data, {corename}Data, {corename}, MxlimsImplementat
     def __init__(self, **data: Any) -> None:
         super().__init__(**data)
         MxlimsImplementation.__init__(self)
+        
+    mxlims_base_type: Literal["{corename}"] = Field(
+        "{corename}",
+        alias="mxlimsBaseType",
+        description="The abstract (super)type of MXLIMS object.",
+        title="MxlimsBaseType",
+        exclude=True,
+        frozen=True
+    )
+    mxlims_type: Literal["{classname}"] = Field(
+        "{classname}",
+        alias="mxlimsType",
+        description="The type of MXLIMS object.",
+        title="MxlimsType",
+        frozen=True,
+    )
+    uuid: Optional[UUID] = Field(
+        default_factory=uuid1,
+        description="Permanent unique identifier string",
+        title="Uuid",
+        frozen=True
+    )
     ''')
 
     # Add API properties for links
@@ -527,7 +552,7 @@ def pydantic_multiple_reverse_link(classname: str, linkdict:dict) -> List[str]:
     @property
     def {linkname}(self) -> list[{linktype}]:
         """getter for {classname}.{linkname} list"""
-        return self.get_link_nn_rev("{basetypename}", "{reverse_id_name}")
+        return self._get_link_nn_rev("{basetypename}", "{reverse_id_name}")
 '''
         ]
 

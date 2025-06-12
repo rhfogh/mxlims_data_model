@@ -4,12 +4,6 @@
     "title": "CrystalData",
     "type": "object",
     "properties": {
-        "mxlimsType": {
-            "const": "Crystal",
-            "description": "The type of MXLIMS object.",
-            "title": "MxlimsType",
-            "type": "string"
-        },
         "comment": {
             "type": "string",
             "description": "Comment or annotation."

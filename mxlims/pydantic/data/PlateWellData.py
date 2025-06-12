@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from typing import Literal, Optional
+from typing import Optional
 
 from mxlims.impl.MxlimsBase import BaseModel
 
@@ -15,12 +15,6 @@ class PlateWellData(BaseModel):
     A well in a crystallization plate
     """
 
-    mxlims_type: Literal["PlateWell"] = Field(
-        "PlateWell",
-        alias="mxlimsType",
-        description="The type of MXLIMS object.",
-        title="MxlimsType",
-    )
     row_number: conint(ge=1) = Field(
         ...,
         alias="rowNumber",

@@ -10,5 +10,13 @@
         {
             "$ref": "../data/LogisticalSampleData.json"
         }
-    ]
+    ],
+    "properties": {
+        "mxlimsType": {
+            "const": "Shipment",
+            "description": "The type of MXLIMS object.",
+            "title": "MxlimsType",
+            "type": "string"
+        }
+    }
 }

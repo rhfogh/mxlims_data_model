@@ -3,8 +3,9 @@
 
 # NB Literal and UUID have to be imported to avoid pydantic errors
 from __future__ import annotations
+from pydantic import Field
 from typing import Any, Literal, Optional, Union, TYPE_CHECKING
-from uuid import UUID
+from uuid import UUID, uuid1
 from mxlims.impl.MxlimsBase import MxlimsImplementation
 from ..core.Dataset import Dataset
 from ..data.DatasetData import DatasetData
@@ -25,6 +26,28 @@ class ReflectionSet(ReflectionSetData, DatasetData, Dataset, MxlimsImplementatio
     def __init__(self, **data: Any) -> None:
         super().__init__(**data)
         MxlimsImplementation.__init__(self)
+        
+    mxlims_base_type: Literal["Dataset"] = Field(
+        "Dataset",
+        alias="mxlimsBaseType",
+        description="The abstract (super)type of MXLIMS object.",
+        title="MxlimsBaseType",
+        exclude=True,
+        frozen=True
+    )
+    mxlims_type: Literal["ReflectionSet"] = Field(
+        "ReflectionSet",
+        alias="mxlimsType",
+        description="The type of MXLIMS object.",
+        title="MxlimsType",
+        frozen=True,
+    )
+    uuid: Optional[UUID] = Field(
+        default_factory=uuid1,
+        description="Permanent unique identifier string",
+        title="Uuid",
+        frozen=True
+    )
     
     @property
     def derived_datasets(self) -> list[ReflectionSet]:
@@ -59,7 +82,7 @@ class ReflectionSet(ReflectionSetData, DatasetData, Dataset, MxlimsImplementatio
     @property
     def reference_for(self) -> list[Union[MxExperiment, MxProcessing]]:
         """getter for ReflectionSet.reference_for list"""
-        return self.get_link_nn_rev("Job", "reference_data_ids")
+        return self._get_link_nn_rev("Job", "reference_data_ids")
 
     @reference_for.setter
     def reference_for(self, values: list[Union[MxExperiment, MxProcessing]]):
@@ -88,7 +111,7 @@ class ReflectionSet(ReflectionSetData, DatasetData, Dataset, MxlimsImplementatio
     @property
     def template_for(self) -> list[MxProcessing]:
         """getter for ReflectionSet.template_for list"""
-        return self.get_link_nn_rev("Job", "template_data_ids")
+        return self._get_link_nn_rev("Job", "template_data_ids")
 
     @template_for.setter
     def template_for(self, values: list[MxProcessing]):

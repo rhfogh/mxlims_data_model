@@ -3,8 +3,6 @@
 
 from __future__ import annotations
 
-from typing import Literal
-
 from mxlims.impl.MxlimsBase import BaseModel
 
 from pydantic import Field
@@ -15,12 +13,6 @@ class MacromoleculeData(BaseModel):
     Sample defining the Macromolecule main component of another sample
     """
 
-    mxlims_type: Literal["Macromolecule"] = Field(
-        "Macromolecule",
-        alias="mxlimsType",
-        description="The type of MXLIMS object.",
-        title="MxlimsType",
-    )
     acronym: str = Field(
         ..., description="Acronym - short synonym of macromolecule", title="Acronym"
     )
