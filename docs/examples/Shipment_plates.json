@@ -77,27 +77,28 @@
   },
   "DropRegion":{
     "4a96f23a-beef-2560-baac-f1b23ec9e420":{
-        "containerRef":{ "$ref":"#/WellDrop/4a96f23a-dce0-2560-baac-f1b23ec9e0dd" },
-        "region":{
-          "image":{
-            "url":"https://demo.icebox.icebear.fi/device/ImageView/3644060/ee0bf1f8c089d71e4dbf3202d0e8c4405012834bafaa7243a876a040d636",
-            "mimeType":"image/jpeg"
-          },
-          "region":{
-            "regionType":"point",
-            "x":100,
-            "y":100
-          },
-          "units":"pixel"
+      "containerRef":{ "$ref":"#/WellDrop/4a96f23a-dce0-2560-baac-f1b23ec9e0dd" },
+      "region":{
+        "image":{
+          "url":"https://demo.icebox.icebear.fi/device/ImageView/3644060/12cb8660f8f904ee7f4c5160a3565bbaa222c761710fe83b1115e2c058b3",
+          "mimeType":"image/jpeg"
         },
-        "version": "0.6.3",
-        "mxlimsType": "DropRegion",
-        "mxlimsBaseType": "LogisticalSample",
-        "uuid": "4a96f23a-beef-2560-baac-f1b23ec9e420"
+        "region":{
+          "regionType":"point",
+          "x":785,
+          "y":400
+        },
+        "units":"pixel"
+      },
+      "version": "0.6.3",
+      "mxlimsType": "DropRegion",
+      "mxlimsBaseType": "LogisticalSample",
+      "uuid": "4a96f23a-beef-2560-baac-f1b23ec9e420"
     }
   },
   "Crystal":{
     "2396f23a-dce0-2560-baac-f1b23ec9e066":{
+      "name": "LMTIM_9098A01d1c1",
       "containerRef":{ "$ref":"#/DropRegion/4a96f23a-beef-2560-baac-f1b23ec9e420" },
       "sampleRef":{ "$ref":"#/MacromoleculeSample/4a96f23a-dce0-2560-baac-f1b23ec9e022" },
       "version": "0.6.3",
