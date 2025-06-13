@@ -1,6 +1,6 @@
 {
   "Shipment": {
-    "4a96f23d-0f3c-2c96-b3d1-b908984ec709": {
+    "Shipment1": {
       "proposalCode": "mx4025",
       "sessionNumber":3,
       "comment": "Example of an MXLIMS plate shipment",
@@ -12,14 +12,14 @@
         "name": "Alice",
         "phoneNumber": "123"
       },
-      "version": "0.6.3",
+      "version": "0.6.4",
       "mxlimsType": "Shipment",
       "mxlimsBaseType": "LogisticalSample",
       "uuid": "4a96f23d-0f3c-2c96-b3d1-b908984ec709"
     }
   },
   "Plate": {
-    "4a96f23a-dce0-2560-baac-f1b23ec9e0cb": {
+    "Plate1": {
       "barcode": "9098",
       "plateType": {
         "numberRows": 8,
@@ -27,57 +27,57 @@
         "numberSubPositions": 3,
         "dropMapping": "12,3R"
       },
-      "containerRef": { "$ref": "#/Shipment/4a96f23d-0f3c-2c96-b3d1-b908984ec709" },
-      "version": "0.6.3",
+      "containerRef": { "$ref": "#/Shipment/Shipment1" },
+      "version": "0.6.4",
       "mxlimsType": "Plate",
       "mxlimsBaseType": "LogisticalSample",
       "uuid": "4a96f23a-dce0-2560-baac-f1b23ec9e0cb"
     }
   },
   "PlateWell": {
-    "4a96f23a-dce0-2560-baac-f1b23ec9e0aa": {
+    "PlateWell1": {
       "rowNumber": 1,
       "columnNumber": 1,
-      "containerRef": { "$ref": "#/Plate/4a96f23a-dce0-2560-baac-f1b23ec9e0cb" },
-      "version": "0.6.3",
+      "containerRef": { "$ref": "#/Plate/Plate1" },
+      "version": "0.6.4",
       "mxlimsType": "PlateWell",
       "mxlimsBaseType": "LogisticalSample",
       "uuid": "4a96f23a-dce0-2560-baac-f1b23ec9e0aa"
     }
   },
   "WellDrop": {
-    "4a96f23a-dce0-2560-baac-f1b23ec9e0dd": {
+    "WellDrop1": {
       "dropNumber": 1,
-      "containerRef": { "$ref": "#/PlateWell/4a96f23a-dce0-2560-baac-f1b23ec9e0aa" },
-      "sampleRef": { "$ref": "#/MacromoleculeSample/4a96f23a-dce0-2560-baac-f1b23ec9e022" },
-      "version": "0.6.3",
+      "containerRef": { "$ref": "#/PlateWell/PlateWell1" },
+      "sampleRef": { "$ref": "#/MacromoleculeSample/MacromoleculeSample1" },
+      "version": "0.6.4",
       "mxlimsType": "WellDrop",
       "mxlimsBaseType": "LogisticalSample",
       "uuid": "4a96f23a-dce0-2560-baac-f1b23ec9e0dd"
     }
   },
   "Macromolecule":{
-    "0196f23a-dce0-2560-baac-f1b23ec9e055": {
+    "Macromolecule1": {
       "acronym": "LMTIM",
-      "version": "0.6.3",
+      "version": "0.6.4",
       "mxlimsType": "Macromolecule",
       "mxlimsBaseType": "PreparedSample",
       "uuid": "0196f23a-dce0-2560-baac-f1b23ec9e055"
     }
   },
   "MacromoleculeSample": {
-    "4a96f23a-dce0-2560-baac-f1b23ec9e022": {
+    "MacromoleculeSample1": {
       "name": "LMTIM_9098A01d1",
-      "macromoleculeRef": { "$ref":"#/Macromolecule/0196f23a-dce0-2560-baac-f1b23ec9e055" },
-      "version": "0.6.3",
+      "macromoleculeRef": { "$ref":"#/Macromolecule/Macromolecule1" },
+      "version": "0.6.4",
       "mxlimsType": "MacromoleculeSample",
       "mxlimsBaseType": "PreparedSample",
       "uuid": "4a96f23a-dce0-2560-baac-f1b23ec9e022"
     }
   },
   "DropRegion":{
-    "4a96f23a-beef-2560-baac-f1b23ec9e420":{
-      "containerRef":{ "$ref":"#/WellDrop/4a96f23a-dce0-2560-baac-f1b23ec9e0dd" },
+    "DropRegion1":{
+      "containerRef":{ "$ref":"#/WellDrop/WellDrop1" },
       "region":{
         "image":{
           "url":"https://demo.icebox.icebear.fi/device/ImageView/3644060/12cb8660f8f904ee7f4c5160a3565bbaa222c761710fe83b1115e2c058b3",
@@ -90,18 +90,18 @@
         },
         "units":"pixel"
       },
-      "version": "0.6.3",
+      "version": "0.6.4",
       "mxlimsType": "DropRegion",
       "mxlimsBaseType": "LogisticalSample",
       "uuid": "4a96f23a-beef-2560-baac-f1b23ec9e420"
     }
   },
   "Crystal":{
-    "2396f23a-dce0-2560-baac-f1b23ec9e066":{
+    "Crystal1":{
       "name": "LMTIM_9098A01d1c1",
-      "containerRef":{ "$ref":"#/DropRegion/4a96f23a-beef-2560-baac-f1b23ec9e420" },
-      "sampleRef":{ "$ref":"#/MacromoleculeSample/4a96f23a-dce0-2560-baac-f1b23ec9e022" },
-      "version": "0.6.3",
+      "containerRef":{ "$ref":"#/DropRegion/DropRegion1" },
+      "sampleRef":{ "$ref":"#/MacromoleculeSample/MacromoleculeSample1" },
+      "version": "0.6.4",
       "mxlimsType": "Crystal",
       "mxlimsBaseType": "LogisticalSample",
       "uuid": "4a96f23a-dce0-2560-baac-f1b23ec9e066"
