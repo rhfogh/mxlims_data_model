@@ -42,7 +42,7 @@
         "PinPosition":{
             "additionalProperties": { "required":["containerRef","sampleRef"] }
         },
-	"MacromoleculeSample":{
+        "MacromoleculeSample":{
             "additionalProperties": {
                 "required":["name","macromoleculeRef"],
                 "properties":{
