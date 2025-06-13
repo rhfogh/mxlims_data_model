@@ -23,10 +23,11 @@ __author__ = "Rasmus H Fogh"
 
 import enum
 import json
+import re
+import uuid
 from pathlib import Path
 from typing import ClassVar, List, Optional, Sequence
-# from weakref import WeakValueDictionary
-from mxlims.impl.utils import camel_to_snake, to_import_json
+
 from pydantic import BaseModel as PydanticBaseModel
 from ruamel.yaml import YAML
 
@@ -35,19 +36,23 @@ yaml = YAML(typ="safe", pure=True)
 yaml.default_flow_style = False
 yaml.indent(mapping=4, sequence=4, offset=2)
 
+# Names of core *(basic abstract) classes
+CORETYPES = ("Job", "Dataset", "LogisticalSample", "PreparedSample")
+
 with (Path(__file__).parent / "link_specification.yaml").open(encoding="utf-8") as fp0:
     LINK_SPECIFICATION = yaml.load(fp0)
 
-class MergeMode(enum.Enum):
-    """Enumeration for input merging mode to use when uuids clash
+class UuidClashMode(enum.Enum):
+    """Enumeration for how to handle uuid clashes between input and existing objects
 
-    Determines whetehr the input objetc will replace or be replaced by the existing,
-    or hetehr there will be an error.
+    Alternatives are:
 
-    Merging of -to-many links (of Jobs) is cont5rolled by the merge_links parameter"""
-
-    replace = "replace"
-    defer = "defer"
+    - update_old: all attributes present on the new object are set on the old
+    - reject_new: The new object is ignored; links to it are attached to the old object
+    - error: Raise ValueError on uuid clashes
+    """
+    update_old = "update_old"
+    reject_new = "reject_new"
     error = "error"
 
 class BaseModel(PydanticBaseModel):
@@ -77,6 +82,28 @@ class MxlimsImplementation:
             )
         else:
             obj_by_id[myuid] = self
+
+    @classmethod
+    def get_object_by_uuid(
+        cls,
+        uuid: str,
+        basetypename: Optional[str] = None,
+    ) -> Optional["MxlimsImplementation"]:
+        """
+        Get MXLIMS object from basetypename and (foreign key) uuid
+
+        :param basetypename:
+        :param uuid:
+        :return:
+        """
+        if basetypename is None:
+            for dd1 in  cls._objects_by_id.values():
+                result = dd1.get(uuid)
+                if result  is not None:
+                    break
+        else:
+            result = cls._objects_by_id[basetypename].get(uuid)
+        return result
 
     def _get_link_n1(
             self,
@@ -260,21 +287,23 @@ class BaseMessage:
     def from_pydantic_objects(cls, contents: Sequence[MxlimsImplementation]):
         result  = cls()
         for obj in contents:
-            mxtype = camel_to_snake(obj.mxlims_type)
-            objdict = getattr(result, mxtype, None)
+            camel_type = obj.mxlims_type
+            snake_type = camel_to_snake(camel_type)
+            objdict = getattr(result, snake_type, None)
             if objdict is None:
                 raise ValueError(
-                    f"Message {cls.__name__} cannot contain {mxtype} "
+                    f"Message {cls.__name__} cannot contain {camel_type} "
                 )
             else:
-                objdict[obj.uuid] = obj
+                ind = len(objdict) + 1
+                objdict[f"{camel_type}{ind}"] = obj
         return result
 
     @classmethod
     def from_message_file(
             cls,
             message_path: Path,
-            merge_mode: MergeMode = MergeMode.error,
+            uuid_clash_mode: UuidClashMode = UuidClashMode.reject_new,
             merge_links: bool = True
     ) -> "BaseMessage":
         """
@@ -297,40 +326,165 @@ class BaseMessage:
         """
         temp_message = cls()
         message_dict= json.loads(message_path.read_text())
-        to_import_json(message_dict)
+        to_import_json(message_dict, uuid_clash_mode=uuid_clash_mode)
         for tag in message_dict:
             snaketag = camel_to_snake(tag)
             if not hasattr(temp_message, snaketag):
                 raise ValueError(
                     f"class {cls.__name__} does not have attribute {snaketag}"
                 )
-        for tag, objdict in message_dict.items():
-            for tag2, newobj in list(objdict.items()):
-                uid = newobj["uuid"]
-                basetype = newobj["mxlimsBaseType"]
-                oldobj = MxlimsImplementation._objects_by_id[basetype].get(uid)
-                if oldobj is not None:
-                    # Handle uuid clashes
-                    if merge_mode == MergeMode.error:
-                        raise ValueError(f"{tag} with uuid {uid} already exists")
-                    elif merge_mode == MergeMode.replace:
-                        del MxlimsImplementation._objects_by_id[basetype][uid]
-                        toobj = newobj
-                        fromobj = oldobj
-                    else:
-                        del objdict[uid]
-                        toobj = oldobj
-                        fromobj = newobj
-                    if merge_links:
-                        for linkdict in (
-                            LINK_SPECIFICATION[toobj.mxlims_type]["links"].values()
-                        ):
-                            link_id_name = linkdict.get("link_id_name")
-                            if link_id_name and linkdict["cardinality"] == "multiple":
-                                # merge input and exiting links
-                                uids = getattr(toobj, link_id_name)
-                                for uid in getattr(fromobj, link_id_name):
-                                    if uid not in uids:
-                                        toobj._append_link_nn(link_id_name, uid)
         return cls.model_validate(message_dict)
+
+def camel_to_snake(name: str) -> str:
+    pattern = re.compile(r"(?<!^)(?=[A-Z])")
+    return pattern.sub("_", name).lower()
+
+
+def snake_to_camel(name:str) -> str:
+    ll0 =  name.split("_")
+    if len(ll0) < 2:
+        return name
+    return ll0[0] + "".join(txt.capitalize() for txt in ll0[1:])
+
+
+def to_export_json(message_dict: dict) -> None:
+    """Convert schema-compliant JSON from ID-type links to ref-type links
+
+    Conversion is done in-place"""
+    import json
+    Path("/home/rhfogh/tmp/messags.json").write_text(json.dumps(message_dict, indent=4))
+    # obj_by_id = {}
+    # for dd1 in message_dict.values():
+    #     if dd1:
+    #         for obj in dd1.values():
+    #             obj_by_id[str(obj["local_id"])]= obj
+    uuid_to_id = {}
+    for tag, dd1 in message_dict.items():
+        if dd1:
+            for tag2, dd2 in dd1.items():
+                uuid_to_id[dd2["uuid"]]= (dd2["mxlimsType"], f"#/{tag}/{tag2}")
+
+
+    for tag, objdict in list(message_dict.items()):
+        if not objdict:
+            message_dict.pop(tag)
+        refdict = LINK_SPECIFICATION.get(tag)
+        for uid,obj in objdict.items():
+            for linkdict in refdict["links"].values():
+                link_id_name_orig = linkdict.get("link_id_name")
+                if link_id_name_orig:
+                    link_id_name = snake_to_camel(link_id_name_orig)
+                    link_uid = obj.pop(link_id_name, ())
+                    # This is a link with a foreign key
+                    if linkdict["cardinality"] == "single":
+                        if link_uid:
+                            tpl = uuid_to_id.get(link_uid)
+                            if tpl:
+                                # The linked-to object is in the message
+                                obj[linkdict["link_ref_name"]] = {
+                                    "$ref": tpl[1]
+                                }
+                            else:
+                                base_type = linkdict["basetypename"]
+                                if base_type in message_dict:
+                                    # Object not in message.
+                                    # Put Stub link, if allowed
+                                    target_dict = message_dict[base_type]
+                                    obj[linkdict["link_ref_name"]] = {
+                                        "$ref": f"/{base_type}/{base_type}{len(target_dict)}"
+                                    }
+                                    # And add stub to the message
+                                    target_dict[str(link_uid)] = {
+                                        "mxlimsBaseType": base_type,
+                                        "uuid": str(link_uid)
+                                    }
+                    else:
+                        # Multiple link - link_uid is a list
+                        if link_uid:
+                            obj[linkdict["link_ref_name"]] = reflist = []
+                            for luid in link_uid:
+                                tpl = uuid_to_id.get(luid)
+                                if tpl:
+                                    # The linked-to object is in the message
+                                    newref = {
+                                        "$ref": tpl[1]
+                                    }
+                                else:
+                                    base_type = linkdict["basetypename"]
+                                    if base_type in message_dict:
+                                        # Object not in message.
+                                        # Put Stub link, if allowed
+                                        target_dict = message_dict[base_type]
+                                        newref = {
+                                            "$ref": f"/{base_type}/{base_type}{len(target_dict)}",
+                                        }
+                                        # And add stub to the message
+                                        target_dict[str(luid)] = {
+                                            "mxlimsBaseType": base_type,
+                                            "uuid": str(luid),
+                                        }
+                                reflist.append(newref)
+
+
+def to_import_json(
+        message_dict: dict,
+        uuid_clash_mode: UuidClashMode = UuidClashMode.reject_new
+) -> None:
+    """Convert JSON read from schema-compliant JSON files to pydantic-compliant
+
+    Conversion is done in-place
+
+    :param message_dict: schema-compliant JSON message
+    :return:
+    """
+    for tag, objdict in list(message_dict.items()):
+        # Add uuid for objects lacking them
+        for obj in objdict.values():
+            if not obj.get("uuid"):
+                if tag in CORETYPES:
+                    raise ValueError(f"{tag} stub lacks uuid")
+                obj["uuid"] = str(uuid.uuid1())
+    for tag, objdict in list(message_dict.items()):
+        refdict = LINK_SPECIFICATION.get(tag)
+        for obj in objdict.values():
+            # Convert link references to foreign-key uuid values
+            for linkdict in refdict["links"].values():
+                link_id_name_orig = linkdict.get("link_id_name")
+                link_ref_name = linkdict.get("link_ref_name")
+                if link_id_name_orig:
+                    # This is a link with a foreign key
+                    link_id_name = snake_to_camel(link_id_name_orig)
+                    data = obj.pop(link_ref_name, None)
+                    if data:
+                        if linkdict["cardinality"] == "single":
+                            tags = data["$ref"].split("/", 2)[-2:]
+                            obj[link_id_name] = (
+                                message_dict[tags[0]][tags[1]]["uuid"]
+                            )
+                        else:
+                            uids = obj[link_id_name] = []
+                            for ddref in data:
+                                tags = data["$ref"].split("/", 2)[-2:]
+                                uids.append(
+                                    message_dict[tags[0]][tags[1]]["uuid"]
+                                )
+    for tag in CORETYPES:
+        # Remove Stub objects - we no longer need them to disambiguate links
+        message_dict.pop(tag, None)
+
+    for tag, objdict in list(message_dict.items()):
+        # handle uuid clashes between new and existing objects
+        for tag2, new_obj in objdict.items():
+            old_obj = MxlimsImplementation.get_object_by_uuid(new_obj["uuid"])
+            if old_obj is not None:
+                if uuid_clash_mode == UuidClashMode.reject_new:
+                    print(f"Uuid clash for {new_obj['uuid']}, ignore new object")
+                    del objdict[tag2]
+                elif uuid_clash_mode == UuidClashMode.update_old:
+                    print(f"Uuid clash for {new_obj['uuid']}, update old object")
+                    for tag3, val in new_obj.items():
+                        setattr(old_obj, tag3, val)
+                else:
+                    # we must have an error
+                    raise ValueError(f"Uuid clash for {new_obj['uuid']}")
 

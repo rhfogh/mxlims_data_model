@@ -12,6 +12,12 @@
         }
     ],
     "properties": {
+        "mxlimsType": {
+            "const": "ReflectionSet",
+            "description": "Type of MXLIMS object linked to.",
+            "title": "MxlimsType",
+            "type": "string"
+        },
         "sourceRef": {
             "allOf": [
                 {

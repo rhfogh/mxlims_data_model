@@ -3,8 +3,9 @@
 
 # NB Literal and UUID have to be imported to avoid pydantic errors
 from __future__ import annotations
+from pydantic import Field
 from typing import Any, Literal, Optional, Union, TYPE_CHECKING
-from uuid import UUID
+from uuid import UUID, uuid1
 from mxlims.impl.MxlimsBase import MxlimsImplementation
 from ..core.PreparedSample import PreparedSample
 from ..data.PreparedSampleData import PreparedSampleData
@@ -27,6 +28,28 @@ class MacromoleculeSample(MacromoleculeSampleData, PreparedSampleData, PreparedS
     def __init__(self, **data: Any) -> None:
         super().__init__(**data)
         MxlimsImplementation.__init__(self)
+        
+    mxlims_base_type: Literal["PreparedSample"] = Field(
+        "PreparedSample",
+        alias="mxlimsBaseType",
+        description="The abstract (super)type of MXLIMS object.",
+        title="MxlimsBaseType",
+        exclude=True,
+        frozen=True
+    )
+    mxlims_type: Literal["MacromoleculeSample"] = Field(
+        "MacromoleculeSample",
+        alias="mxlimsType",
+        description="The type of MXLIMS object.",
+        title="MxlimsType",
+        frozen=True,
+    )
+    uuid: Optional[UUID] = Field(
+        default_factory=uuid1,
+        description="Permanent unique identifier string",
+        title="Uuid",
+        frozen=True
+    )
     
     @property
     def jobs(self) -> list[Union[MxExperiment, MxProcessing]]:
@@ -52,12 +75,12 @@ class MacromoleculeSample(MacromoleculeSampleData, PreparedSampleData, PreparedS
     @logistical_samples.setter
     def logistical_samples(self, values: list[Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]]):
         """setter for MacromoleculeSample.logistical_samples list"""
-        from .PinPosition import PinPosition
         from .WellDrop import WellDrop
         from .Crystal import Crystal
         from .DropRegion import DropRegion
         from .Pin import Pin
         from .PlateWell import PlateWell
+        from .PinPosition import PinPosition
 
         for obj in values:
             if not isinstance(obj, Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]):

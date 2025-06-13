@@ -4,12 +4,6 @@
     "title": "PlateData",
     "type": "object",
     "properties": {
-        "mxlimsType": {
-            "const": "Plate",
-            "description": "The type of MXLIMS object.",
-            "title": "MxlimsType",
-            "type": "string"
-        },
         "barcode": {
             "type": "string",
             "description": "The plate barcode or other identifier"

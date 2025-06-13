@@ -3,21 +3,10 @@
 
 from __future__ import annotations
 
-from typing import Literal
-
 from mxlims.impl.MxlimsBase import BaseModel
-
-from pydantic import Field
 
 
 class MacromoleculeSampleData(BaseModel):
     """
     Sample consisting of a macromolecule in a medium, with additional components
     """
-
-    mxlims_type: Literal["MacromoleculeSample"] = Field(
-        "MacromoleculeSample",
-        alias="mxlimsType",
-        description="The type of MXLIMS object.",
-        title="MxlimsType",
-    )

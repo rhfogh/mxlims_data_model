@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Dict, List, Literal, Optional
+from typing import Any, Dict, List, Optional
 
 from mxlims.impl.MxlimsBase import BaseModel
 
@@ -17,12 +17,6 @@ class CollectionSweepData(BaseModel):
     Crystallographic sweep data set, containing images
     """
 
-    mxlims_type: Literal["CollectionSweep"] = Field(
-        "CollectionSweep",
-        alias="mxlimsType",
-        description="The type of MXLIMS object.",
-        title="MxlimsType",
-    )
     annotation: Optional[str] = Field(
         None, description="Annotation string for sweep", title="Annotation"
     )

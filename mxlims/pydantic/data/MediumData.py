@@ -3,21 +3,10 @@
 
 from __future__ import annotations
 
-from typing import Literal
-
 from mxlims.impl.MxlimsBase import BaseModel
-
-from pydantic import Field
 
 
 class MediumData(BaseModel):
     """
     Sample defining the medium (buffer, solvent,...) of another sample
     """
-
-    mxlims_type: Literal["Medium"] = Field(
-        "Medium",
-        alias="mxlimsType",
-        description="The type of MXLIMS object.",
-        title="MxlimsType",
-    )

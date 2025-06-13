@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from typing import Literal, Optional
+from typing import Optional
 
 from pydantic import Field
 
@@ -15,12 +15,6 @@ class DatasetData(MxlimsObjectData):
     Base class for MXLIMS Datasets
     """
 
-    mxlims_base_type: Literal["Dataset"] = Field(
-        "Dataset",
-        alias="mxlimsBaseType",
-        description="The abstract (super)type of MXLIMS object.",
-        title="MxlimsBaseType",
-    )
     role: Optional[str] = Field(
         None,
         description="Role of Dataset relative to the source Job. Intended for filtering of Datasets",

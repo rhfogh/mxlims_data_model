@@ -4,12 +4,6 @@
     "title": "MxExperimentData",
     "type": "object",
     "properties": {
-        "mxlimsType": {
-            "const": "MxExperiment",
-            "description": "The type of MXLIMS object.",
-            "title": "MxlimsType",
-            "type": "string"
-        },
         "experimentStrategy": {
             "type": "string",
             "description": "Experiment strategy indicator",

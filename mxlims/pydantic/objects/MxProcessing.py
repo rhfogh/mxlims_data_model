@@ -3,8 +3,9 @@
 
 # NB Literal and UUID have to be imported to avoid pydantic errors
 from __future__ import annotations
+from pydantic import Field
 from typing import Any, Literal, Optional, Union, TYPE_CHECKING
-from uuid import UUID
+from uuid import UUID, uuid1
 from mxlims.impl.MxlimsBase import MxlimsImplementation
 from ..core.Job import Job
 from ..data.JobData import JobData
@@ -26,6 +27,28 @@ class MxProcessing(MxProcessingData, JobData, Job, MxlimsImplementation):
     def __init__(self, **data: Any) -> None:
         super().__init__(**data)
         MxlimsImplementation.__init__(self)
+        
+    mxlims_base_type: Literal["Job"] = Field(
+        "Job",
+        alias="mxlimsBaseType",
+        description="The abstract (super)type of MXLIMS object.",
+        title="MxlimsBaseType",
+        exclude=True,
+        frozen=True
+    )
+    mxlims_type: Literal["MxProcessing"] = Field(
+        "MxProcessing",
+        alias="mxlimsType",
+        description="The type of MXLIMS object.",
+        title="MxlimsType",
+        frozen=True,
+    )
+    uuid: Optional[UUID] = Field(
+        default_factory=uuid1,
+        description="Permanent unique identifier string",
+        title="Uuid",
+        frozen=True
+    )
     
     @property
     def input_data(self) -> list[CollectionSweep]:

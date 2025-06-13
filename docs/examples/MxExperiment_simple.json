@@ -1,10 +1,9 @@
 {
     "CollectionSweep": {
-        "dbec305d-2a36-48a7-a55f-a32a51d381d1": {
-            "version": "0.6.1",
+        "CollectionSweep1": {
+            "version": "0.6.4",
             "mxlimsType": "CollectionSweep",
-            "mxlimsBaseType": "Dataset",
-            "uuid": "dbec305d-2a36-48a7-a55f-a32a51d381d1",
+            "uuid": "49e51d21-c1ee-4176-ac85-83e4827fe26b",
             "role": "Characterisation",
             "sweepType": "simple",
             "exposureTime": 0.04,
@@ -13,7 +12,7 @@
             "numberTriggers": 0,
             "numberImagesPerTrigger": 0,
             "energy": 12.4,
-            "transmission": 99.958,
+            "transmission": 100.0,
             "resolution": 3.70003271512822,
             "detectorRoiMode": "0",
             "beamPosition": [
@@ -27,11 +26,11 @@
             "beamShape": "rectangular",
             "axisPositionsStart": {
                 "phi": 0.0,
+                "phiy": 1.0368615232523317,
+                "sampx": -0.037178537401667815,
+                "sampy": -1.0096546311386192,
                 "kappa": 11.0,
                 "kappa_phi": 22.0,
-                "phiy": 0.9736842430563671,
-                "sampx": 0.037761878508021984,
-                "sampy": -1.0172520629370825,
                 "omega": 0.0,
                 "detector_distance": 416.77
             },
@@ -73,27 +72,25 @@
             ],
             "fileType": "cbf",
             "prefix": "4k61",
-            "filenameTemplate": "4k61_1_%05d.cbf",
-            "path": "/home/rhfogh/calc/mxcube_data/visitor/idtest0/eh1/20250513/RAW_DATA/4k61_001/characterisation",
+            "filenameTemplate": "4k61_1_%04d.cbf",
+            "path": "/home/rhfogh/calc/mxcube_data/visitor/inhouse/idtest0/20250612/RAW_DATA/4k61_001/characterisation",
             "sourceRef": {
-                "mxlimsType": "MxExperiment",
-                "$ref": "/MxExperiment/86bf8e30-6c5b-4851-859c-7366ab575f49"
+                "$ref": "#/MxExperiment/MxExperiment1"
             }
         },
-        "c363457f-cefb-4f65-ae0b-b7f7752678e3": {
-            "version": "0.6.1",
+        "CollectionSweep2": {
+            "version": "0.6.4",
             "mxlimsType": "CollectionSweep",
-            "mxlimsBaseType": "Dataset",
-            "uuid": "c363457f-cefb-4f65-ae0b-b7f7752678e3",
+            "uuid": "b4934a8c-dd83-4277-8919-18ad46824878",
             "role": "Result",
             "sweepType": "simple",
-            "exposureTime": 0.268841,
+            "exposureTime": 0.04,
             "imageWidth": 0.2,
             "overlap": 0.0,
             "numberTriggers": 0,
             "numberImagesPerTrigger": 0,
             "energy": 12.4,
-            "transmission": 99.985,
+            "transmission": 64.37,
             "resolution": 3.70003271512822,
             "detectorRoiMode": "0",
             "beamPosition": [
@@ -106,22 +103,22 @@
             ],
             "beamShape": "rectangular",
             "axisPositionsStart": {
-                "phi": -142.290339901033,
+                "phi": -142.000000000043,
+                "phiy": 1.0140619641130446,
+                "sampx": -0.45178642892812204,
+                "sampy": -0.9346607408968977,
                 "kappa": 0.0,
                 "kappa_phi": 0.0,
-                "phiy": 0.9399392145561967,
-                "sampx": 0.02007656431640146,
-                "sampy": -1.0449657516596462,
-                "omega": -142.290339901033,
+                "omega": -142.000000000043,
                 "detector_distance": 416.77
             },
             "axisPositionsEnd": {
-                "omega": 49.70966009896699
+                "omega": 49.999999999957
             },
             "scanAxis": "omega",
             "scans": [
                 {
-                    "scanPositionStart": -142.290339901033,
+                    "scanPositionStart": -142.000000000043,
                     "firstImageNumber": 1,
                     "numberImages": 960,
                     "ordinal": 5
@@ -129,23 +126,35 @@
             ],
             "fileType": "cbf",
             "prefix": "4k61_G1B1",
-            "filenameTemplate": "4k61_G1B1_2_%05d.cbf",
-            "path": "/home/rhfogh/calc/mxcube_data/visitor/idtest0/eh1/20250513/RAW_DATA/4k61_001/main",
+            "filenameTemplate": "4k61_G1B1_2_%04d.cbf",
+            "path": "/home/rhfogh/calc/mxcube_data/visitor/inhouse/idtest0/20250612/RAW_DATA/4k61_001/main",
             "sourceRef": {
-                "mxlimsType": "MxExperiment",
-                "$ref": "/MxExperiment/86bf8e30-6c5b-4851-859c-7366ab575f49"
+                "$ref": "#/MxExperiment/MxExperiment1"
             }
         }
     },
-    "CrystallographicSample": {
-        "d974cb88-3027-11f0-871c-c4474e33fb12": {
-            "version": "0.6.1",
-            "mxlimsType": "CrystallographicSample",
-            "mxlimsBaseType": "PreparedSample",
-            "uuid": "d974cb88-3027-11f0-871c-c4474e33fb12",
-            "name": "4k61",
-            "spaceGroupName": "I4",
-            "unitCell": {
+    "MacromoleculeSample": {
+        "MacromoleculeSample1": {
+            "version": "0.6.4",
+            "mxlimsType": "MacromoleculeSample",
+            "uuid": "2ca5f610-479d-11f0-8f3a-c4474e33fb12",
+            "name": "4k61"
+        }
+    },
+    "MxExperiment": {
+        "MxExperiment1": {
+            "inputDataIds": [],
+            "version": "0.6.4",
+            "mxlimsType": "MxExperiment",
+            "uuid": "a4f2ba2c-b2bd-4bae-a18b-05e8d7139d39",
+            "startTime": "2025-06-12T15:54:43.299613",
+            "endTime": "2025-06-12T16:02:46.937301",
+            "expectedResolution": 1.7,
+            "radiationSensitivity": 1.0,
+            "snapshotCount": 0,
+            "measuredFlux": 230164493672.32803,
+            "expectedSpaceGroupName": "I4",
+            "expectedUnitCell": {
                 "a": 86.75,
                 "b": 86.75,
                 "c": 85.6276,
@@ -153,24 +162,8 @@
                 "beta": 90.0,
                 "gamma": 90.0
             },
-            "radiationSensitivity": 1.0
-        }
-    },
-    "MxExperiment": {
-        "86bf8e30-6c5b-4851-859c-7366ab575f49": {
-            "inputDataIds": [],
-            "version": "0.6.1",
-            "mxlimsType": "MxExperiment",
-            "mxlimsBaseType": "Job",
-            "uuid": "86bf8e30-6c5b-4851-859c-7366ab575f49",
-            "startTime": "2025-05-13T19:26:55.865236",
-            "endTime": "2025-05-13T19:30:19.327527",
-            "expectedResolution": 1.7,
-            "snapshotCount": 0,
-            "measuredFlux": 229909245104.51587,
             "sampleRef": {
-                "mxlimsType": "CrystallographicSample",
-                "$ref": "/CrystallographicSample/d974cb88-3027-11f0-871c-c4474e33fb12"
+                "$ref": "#/MacromoleculeSample/MacromoleculeSample1"
             }
         }
     }

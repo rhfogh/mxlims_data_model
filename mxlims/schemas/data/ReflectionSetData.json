@@ -4,12 +4,6 @@
     "title": "ReflectionSetData",
     "type": "object",
     "properties": {
-        "mxlimsType": {
-            "const": "ReflectionSet",
-            "description": "Type of MXLIMS object linked to.",
-            "title": "MxlimsType",
-            "type": "string"
-        },
         "anisotropicDiffraction": {
             "default": false,
             "description": "Is diffraction limit analysis based on anisotropic diffraction limits? True/False ",

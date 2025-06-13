@@ -11,7 +11,7 @@
     "additionalProperties": false,
     "properties": {
         "Dataset": {
-            "description": "Uuid:object dictionary of Dataset stubs.",
+            "description": "idString:object dictionary of Dataset stubs.",
             "title": "Datasets",
             "type": "object",
             "minProperties": 1,
@@ -20,7 +20,7 @@
             }
         },
         "Job": {
-            "description": "Uuid:object dictionary of Job stubs.",
+            "description": "idString:object dictionary of Job stubs.",
             "title": "Jobs",
             "type": "object",
             "minProperties": 1,
@@ -29,7 +29,7 @@
             }
         },
         "LogisticalSample": {
-            "description": "Uuid:object dictionary of LogisticalSample stubs.",
+            "description": "idString:object dictionary of LogisticalSample stubs.",
             "title": "LogisticalSamples",
             "type": "object",
             "minProperties": 1,
@@ -38,7 +38,7 @@
             }
         },
         "PreparedSample": {
-            "description": "Uuid:object dictionary of PreparedSample stubs.",
+            "description": "idString:object dictionary of PreparedSample stubs.",
             "title": "PreparedSamples",
             "minProperties": 1,
             "type": "object",

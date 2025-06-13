@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from typing import List, Literal, Optional
+from typing import List, Optional
 
 from mxlims.impl.MxlimsBase import BaseModel
 
@@ -24,12 +24,6 @@ class ReflectionSetData(BaseModel):
     Set of processed reflections, possibly merged or scaled, as might be stored within a MTZ or mmCIF reflection file
     """
 
-    mxlims_type: Literal["ReflectionSet"] = Field(
-        "ReflectionSet",
-        alias="mxlimsType",
-        description="Type of MXLIMS object linked to.",
-        title="MxlimsType",
-    )
     anisotropic_diffraction: Optional[bool] = Field(
         False,
         alias="anisotropicDiffraction",

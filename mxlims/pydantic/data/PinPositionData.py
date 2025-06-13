@@ -3,8 +3,6 @@
 
 from __future__ import annotations
 
-from typing import Literal
-
 from mxlims.impl.MxlimsBase import BaseModel
 
 from pydantic import Field, conint
@@ -15,12 +13,6 @@ class PinPositionData(BaseModel):
     An independent Position within a Pin where crystals can be located.
     """
 
-    mxlims_type: Literal["PinPosition"] = Field(
-        "PinPosition",
-        alias="mxlimsType",
-        description="The type of MXLIMS object.",
-        title="MxlimsType",
-    )
     position_in_pin: conint(ge=1) = Field(
         ...,
         alias="positionInPin",

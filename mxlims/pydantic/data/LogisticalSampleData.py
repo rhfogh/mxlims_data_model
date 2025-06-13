@@ -3,24 +3,6 @@
 
 from __future__ import annotations
 
-from typing import Literal
-
-from pydantic import Field
-
 from .MxlimsObjectData import MxlimsObjectData
 
-
-class LogisticalSampleData(MxlimsObjectData):
-    """
-    Base class for MXLIMS Logistical Samples
-
-    describing Sample containers and locations
-    (from Dewars and Plates to drops, pins and crystals)
-    """
-
-    mxlims_base_type: Literal["LogisticalSample"] = Field(
-        "LogisticalSample",
-        alias="mxlimsBaseType",
-        description="The abstract (super)type of MXLIMS object.",
-        title="MxlimsBaseType",
-    )
+LogisticalSampleData = MxlimsObjectData

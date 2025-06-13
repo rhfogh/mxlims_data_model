@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Literal, Optional
+from typing import Dict, List, Optional
 
 from pydantic import Field
 
@@ -16,12 +16,6 @@ class PreparedSampleData(MxlimsObjectData):
     Base class for MXLIMS Prepared Samples describing Sample content
     """
 
-    mxlims_base_type: Literal["PreparedSample"] = Field(
-        "PreparedSample",
-        alias="mxlimsBaseType",
-        description="The abstract (super)type of MXLIMS object.",
-        title="MxlimsBaseType",
-    )
     name: Optional[str] = Field(
         None, description="Sample human-readable name or acronym."
     )

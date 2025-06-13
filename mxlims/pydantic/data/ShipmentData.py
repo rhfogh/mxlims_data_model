@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Literal, Optional
+from typing import Dict, Optional
 
 from mxlims.impl.MxlimsBase import BaseModel
 
@@ -18,12 +18,6 @@ class ShipmentData(BaseModel):
     Shipment
     """
 
-    mxlims_type: Literal["Shipment"] = Field(
-        "Shipment",
-        alias="mxlimsType",
-        description="The type of MXLIMS object.",
-        title="MxlimsType",
-    )
     proposal_code: str = Field(
         ...,
         alias="proposalCode",

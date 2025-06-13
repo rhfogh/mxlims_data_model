@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from typing import Literal, Union
+from typing import Union
 
 from mxlims.impl.MxlimsBase import BaseModel
 
@@ -18,12 +18,6 @@ class DropRegionData(BaseModel):
     A region in a well drop where crystals may be found
     """
 
-    mxlims_type: Literal["DropRegion"] = Field(
-        "DropRegion",
-        alias="mxlimsType",
-        description="The type of MXLIMS object.",
-        title="MxlimsType",
-    )
     region: Union[ImageRegion, PlateRegion] = Field(
         ...,
         description="The region data (either ImageRegion or PlateRegion).",

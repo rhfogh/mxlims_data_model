@@ -9,12 +9,6 @@
         }
     ],
     "properties": {
-        "mxlimsBaseType": {
-            "const": "Dataset",
-            "description": "The abstract (super)type of MXLIMS object.",
-            "title": "MxlimsBaseType",
-            "type": "string"
-        },
         "role": {
             "type": "string",
             "description": "Role of Dataset relative to the source Job. Intended for filtering of Datasets",

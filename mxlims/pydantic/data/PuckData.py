@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from typing import Literal, Optional
+from typing import Optional
 
 from mxlims.impl.MxlimsBase import BaseModel
 
@@ -15,12 +15,6 @@ class PuckData(BaseModel):
     A puck containing mounted crystals on pins.
     """
 
-    mxlims_type: Literal["Puck"] = Field(
-        "Puck",
-        alias="mxlimsType",
-        description="The type of MXLIMS object.",
-        title="MxlimsType",
-    )
     barcode: Optional[str] = Field(None, description="The Puck barcode or RFID code")
     number_positions: conint(ge=1) = Field(
         ...,

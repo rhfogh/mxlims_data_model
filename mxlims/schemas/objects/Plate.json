@@ -12,6 +12,12 @@
         }
     ],
     "properties": {
+        "mxlimsType": {
+            "const": "Plate",
+            "description": "The type of MXLIMS object.",
+            "title": "MxlimsType",
+            "type": "string"
+        },
         "containerRef": {
             "allOf": [
                 {

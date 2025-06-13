@@ -4,12 +4,6 @@
     "title": "PinPositionData",
     "type": "object",
     "properties": {
-        "mxlimsType": {
-            "const": "PinPosition",
-            "description": "The type of MXLIMS object.",
-            "title": "MxlimsType",
-            "type": "string"
-        },
         "positionInPin": {
             "type":"integer",
             "description":"The pin position within  the pin. This should be validated against the pin's numberPositions property.",

@@ -3,8 +3,6 @@
 
 from __future__ import annotations
 
-from typing import Literal
-
 from mxlims.impl.MxlimsBase import BaseModel
 
 from pydantic import Field, conint
@@ -15,12 +13,6 @@ class WellDropData(BaseModel):
     A drop in a well in a crystallization plate
     """
 
-    mxlims_type: Literal["WellDrop"] = Field(
-        "WellDrop",
-        alias="mxlimsType",
-        description="The type of MXLIMS object.",
-        title="MxlimsType",
-    )
     drop_number: conint(ge=1) = Field(
         ...,
         alias="dropNumber",
