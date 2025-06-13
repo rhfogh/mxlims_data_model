@@ -86,8 +86,8 @@ class PinPosition(PinPositionData, LogisticalSampleData, LogisticalSample, Mxlim
     @datasets.setter
     def datasets(self, values: list[Union[CollectionSweep, ReflectionSet]]):
         """setter for PinPosition.datasets list"""
-        from .CollectionSweep import CollectionSweep
         from .ReflectionSet import ReflectionSet
+        from .CollectionSweep import CollectionSweep
 
         for obj in values:
             if not isinstance(obj, Union[CollectionSweep, ReflectionSet]):

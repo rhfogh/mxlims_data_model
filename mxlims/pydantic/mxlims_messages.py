@@ -190,13 +190,11 @@ class ShipmentMessage(MxlimsMessageStrict, BaseMessage):
     Message containing a shipment of either frozen crystals or crystallization plates
     """
 
-    model_config = ConfigDict(
-        extra="forbid",
-    )
     shipment: Any = Field(..., alias="Shipment")
     plate: Optional[Any] = Field(default_factory=dict, alias="Plate")
     plate_well: Optional[Any] = Field(default_factory=dict, alias="PlateWell")
     well_drop: Optional[Any] = Field(default_factory=dict, alias="WellDrop")
+    drop_region: Optional[Any] = Field(default_factory=dict, alias="DropRegion")
     dewar: Optional[Any] = Field(default_factory=dict, alias="Dewar")
     puck: Optional[Any] = Field(default_factory=dict, alias="Puck")
     multi_pin: Optional[Any] = Field(default_factory=dict, alias="MultiPin")
