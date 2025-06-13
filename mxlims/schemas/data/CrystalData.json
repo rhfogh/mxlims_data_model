@@ -8,10 +8,6 @@
             "type": "string",
             "description": "Sample human-readable name."
         },
-        "name": {
-            "type": "string",
-            "description": "Sample human-readable name."
-        },
         "comment": {
             "type": "string",
             "description": "Comment or annotation."
