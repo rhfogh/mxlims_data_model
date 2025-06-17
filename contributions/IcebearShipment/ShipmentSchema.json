@@ -382,6 +382,7 @@
         "proteinUuid": {
           "type": "string",
           "format": "uuid",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
           "description": "The UUID of the protein in this sample. It is an error if the JSON defines no protein identified by this UUID.",
           "comment": "<p>Assumes only one protein per sample. If multiple can be present, redefine as per ligands.</p><p>Can the UUID refer to a previously-sent protein?</p>"
         },
@@ -610,7 +611,8 @@
         "uuid": {
           "description": "The unique identifier for the parent object.",
           "type": "string",
-          "format": "uuid"
+          "format": "uuid",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
         },
         "sendersId": {
           "description": "The ID of the parent object in the sender's system",

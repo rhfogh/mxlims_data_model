@@ -14,7 +14,8 @@
             "description": "Permanent unique identifier string of object referred to",
             "title": "Uuid",
             "type": "string",
-            "format": "uuid"
+            "format": "uuid",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
         }
     },
     "required": [
