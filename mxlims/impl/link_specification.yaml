@@ -168,7 +168,7 @@ Crystal:
         basetypename: LogisticalSample
         cardinality: multiple
         linkname: logistical_samples
-        reverselink: &id057
+        reverselink: &id061
           basetypename: PreparedSample
           cardinality: single
           link_id_name: sample_id
@@ -180,12 +180,12 @@ Crystal:
           typenames:
             - MacromoleculeSample
         typenames:
-          - WellDrop
           - Crystal
           - DropRegion
           - Pin
-          - PlateWell
           - PinPosition
+          - WellDrop
+          - PlateWell
       reversename: logistical_samples
       typenames:
         - MacromoleculeSample
@@ -302,21 +302,31 @@ Dewar:
   classname: Dewar
   corename: LogisticalSample
   links:
-    container: &id017
+    container:
       basetypename: LogisticalSample
       cardinality: single
       link_id_name: container_id
       link_ref_name: containerRef
       linkname: container
       read_only: false
-      reverselink: &id058
+      reverselink: &id017
         basetypename: LogisticalSample
         cardinality: multiple
         linkname: contents
-        reverselink: *id017
+        reverselink: &id057
+          basetypename: LogisticalSample
+          cardinality: single
+          link_id_name: container_id
+          link_ref_name: containerRef
+          linkname: container
+          read_only: false
+          reverselink: *id017
+          reversename: contents
+          typenames:
+            - Shipment
         typenames:
-          - Plate
           - Dewar
+          - Plate
       reversename: contents
       typenames:
         - Shipment
@@ -545,21 +555,31 @@ MultiPin:
   classname: MultiPin
   corename: LogisticalSample
   links:
-    container: &id041
+    container:
       basetypename: LogisticalSample
       cardinality: single
       link_id_name: container_id
       link_ref_name: containerRef
       linkname: container
       read_only: false
-      reverselink: &id055
+      reverselink: &id041
         basetypename: LogisticalSample
         cardinality: multiple
         linkname: contents
-        reverselink: *id041
+        reverselink: &id055
+          basetypename: LogisticalSample
+          cardinality: single
+          link_id_name: container_id
+          link_ref_name: containerRef
+          linkname: container
+          read_only: false
+          reverselink: *id041
+          reversename: contents
+          typenames:
+            - Puck
         typenames:
-          - Pin
           - MultiPin
+          - Pin
       reversename: contents
       typenames:
         - Puck
@@ -726,17 +746,7 @@ Pin:
   classname: Pin
   corename: LogisticalSample
   links:
-    container:
-      basetypename: LogisticalSample
-      cardinality: single
-      link_id_name: container_id
-      link_ref_name: containerRef
-      linkname: container
-      read_only: false
-      reverselink: *id055
-      reversename: contents
-      typenames:
-        - Puck
+    container: *id055
     contents:
       basetypename: LogisticalSample
       cardinality: multiple
@@ -799,34 +809,34 @@ PinPosition:
       typenames:
         - MxExperiment
         - MxProcessing
-    sample: *id057
+    sample:
+      basetypename: PreparedSample
+      cardinality: single
+      link_id_name: sample_id
+      link_ref_name: sampleRef
+      linkname: sample
+      read_only: false
+      reverselink: *id009
+      reversename: logistical_samples
+      typenames:
+        - MacromoleculeSample
 Plate:
   classname: Plate
   corename: LogisticalSample
   links:
-    container:
-      basetypename: LogisticalSample
-      cardinality: single
-      link_id_name: container_id
-      link_ref_name: containerRef
-      linkname: container
-      read_only: false
-      reverselink: *id058
-      reversename: contents
-      typenames:
-        - Shipment
-    contents: &id059
+    container: *id057
+    contents: &id058
       basetypename: LogisticalSample
       cardinality: multiple
       linkname: contents
-      reverselink: &id060
+      reverselink: &id059
         basetypename: LogisticalSample
         cardinality: single
         link_id_name: container_id
         link_ref_name: containerRef
         linkname: container
         read_only: false
-        reverselink: *id059
+        reverselink: *id058
         reversename: contents
         typenames:
           - Plate
@@ -836,8 +846,8 @@ PlateWell:
   classname: PlateWell
   corename: LogisticalSample
   links:
-    container: *id060
-    contents: &id061
+    container: *id059
+    contents: &id060
       basetypename: LogisticalSample
       cardinality: multiple
       linkname: contents
@@ -848,7 +858,7 @@ PlateWell:
         link_ref_name: containerRef
         linkname: container
         read_only: false
-        reverselink: *id061
+        reverselink: *id060
         reversename: contents
         typenames:
           - PlateWell
@@ -870,17 +880,7 @@ PlateWell:
       typenames:
         - MxExperiment
         - MxProcessing
-    sample:
-      basetypename: PreparedSample
-      cardinality: single
-      link_id_name: sample_id
-      link_ref_name: sampleRef
-      linkname: sample
-      read_only: false
-      reverselink: *id009
-      reversename: logistical_samples
-      typenames:
-        - MacromoleculeSample
+    sample: *id061
 PreparedSample:
   classname: PreparedSample
   corename: PreparedSample
@@ -928,7 +928,7 @@ Puck:
   corename: LogisticalSample
   links:
     container: *id068
-    contents: *id055
+    contents: *id041
 ReflectionSet:
   classname: ReflectionSet
   corename: Dataset
@@ -975,7 +975,7 @@ Shipment:
   classname: Shipment
   corename: LogisticalSample
   links:
-    contents: *id058
+    contents: *id017
 WellDrop:
   classname: WellDrop
   corename: LogisticalSample
