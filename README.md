@@ -9,6 +9,8 @@ classes and html documentation generated therefrom.
 
 For general documentation see docs/Overview.pdf
 
+For a detailed snapshot of the MXLIMS model as of early 2025 see MXLIMS_presentation_2025.pdf
+
 For model documentation see docs/html, where docs/html/MxlimsMessage.html is the starting point,
 for covering the entire model.
 

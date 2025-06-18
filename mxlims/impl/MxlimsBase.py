@@ -284,7 +284,14 @@ class BaseMessage:
     """Class for basic MxlimsMessage holding message implementation"""
 
     @classmethod
-    def from_pydantic_objects(cls, contents: Sequence[MxlimsImplementation]):
+    def from_pydantic_objects(
+            cls, contents: Sequence[MxlimsImplementation]
+    ) -> "BaseMessage":
+        """Generate a filled-in Message from a list of MxlimsImplementation objects
+
+        :param contents:
+        :return:
+        """
         result  = cls()
         for obj in contents:
             camel_type = obj.mxlims_type
@@ -306,7 +313,7 @@ class BaseMessage:
             uuid_clash_mode: UuidClashMode = UuidClashMode.reject_new,
             merge_links: bool = True
     ) -> "BaseMessage":
-        """
+        """Load schema-compliant JSON message into main implementation
 
         Args:
             message_path: Path to message JSON file
@@ -316,13 +323,6 @@ class BaseMessage:
 
         Returns:
 
-        """
-        """Load schema-compliant JSON message into main implementation
-
-        Args:
-            message_dict:
-
-        Returns:
         """
         temp_message = cls()
         message_dict= json.loads(message_path.read_text())
@@ -334,6 +334,23 @@ class BaseMessage:
                     f"class {cls.__name__} does not have attribute {snaketag}"
                 )
         return cls.model_validate(message_dict)
+
+    def export_message(self, message_file: Path):
+        """ Export message to message_file
+
+        :param message_path:
+        :return:
+        """
+        # The stringification is needed because model_dump_json required for UUID
+        message_str = self.model_dump_json(
+            indent=4,
+            by_alias=True,
+            exclude_none=True,
+            serialize_as_any=True,
+        )
+        message_json = json.loads(message_str)
+        to_export_json(message_json)
+        message_file.write_text(json.dumps(message_json, indent=4))
 
 def camel_to_snake(name: str) -> str:
     pattern = re.compile(r"(?<!^)(?=[A-Z])")
@@ -351,19 +368,11 @@ def to_export_json(message_dict: dict) -> None:
     """Convert schema-compliant JSON from ID-type links to ref-type links
 
     Conversion is done in-place"""
-    import json
-    Path("/home/rhfogh/tmp/messags.json").write_text(json.dumps(message_dict, indent=4))
-    # obj_by_id = {}
-    # for dd1 in message_dict.values():
-    #     if dd1:
-    #         for obj in dd1.values():
-    #             obj_by_id[str(obj["local_id"])]= obj
     uuid_to_id = {}
     for tag, dd1 in message_dict.items():
         if dd1:
             for tag2, dd2 in dd1.items():
                 uuid_to_id[dd2["uuid"]]= (dd2["mxlimsType"], f"#/{tag}/{tag2}")
-
 
     for tag, objdict in list(message_dict.items()):
         if not objdict:
