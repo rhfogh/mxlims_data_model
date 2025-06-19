@@ -171,7 +171,7 @@ from pydantic import ConfigDict, Field
     imports = ["""from .datatypes.DatasetStub import DatasetStub
 from .datatypes.JobStub import JobStub
 from .datatypes.LogisticalSampleStub import LogisticalSampleStub
-from .datatypes.PreparedSampleStub import PreparedSampleStub"""]
+from .datatypes.SampleStub import SampleStub"""]
     texts = []
     classnames = []
     for fp0 in input_dir.iterdir():

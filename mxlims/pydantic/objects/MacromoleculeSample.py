@@ -7,8 +7,8 @@ from pydantic import Field
 from typing import Any, Literal, Optional, Union, TYPE_CHECKING
 from uuid import UUID, uuid1
 from mxlims.impl.MxlimsBase import MxlimsImplementation
-from ..core.PreparedSample import PreparedSample
-from ..data.PreparedSampleData import PreparedSampleData
+from ..core.Sample import Sample
+from ..data.SampleData import SampleData
 from ..data.MacromoleculeSampleData import MacromoleculeSampleData
 if TYPE_CHECKING:
     from .Crystal import Crystal
@@ -22,15 +22,15 @@ if TYPE_CHECKING:
     from .PlateWell import PlateWell
     from .WellDrop import WellDrop
 
-class MacromoleculeSample(MacromoleculeSampleData, PreparedSampleData, PreparedSample, MxlimsImplementation):
+class MacromoleculeSample(MacromoleculeSampleData, SampleData, Sample, MxlimsImplementation):
     """MXLIMS pydantic model class for MacromoleculeSample
     """
     def __init__(self, **data: Any) -> None:
         super().__init__(**data)
         MxlimsImplementation.__init__(self)
         
-    mxlims_base_type: Literal["PreparedSample"] = Field(
-        "PreparedSample",
+    mxlims_base_type: Literal["Sample"] = Field(
+        "Sample",
         alias="mxlimsBaseType",
         description="The abstract (super)type of MXLIMS object.",
         title="MxlimsBaseType",
@@ -90,7 +90,7 @@ class MacromoleculeSample(MacromoleculeSampleData, PreparedSampleData, PreparedS
     @property
     def main_component(self) -> Optional[Macromolecule]:
         """getter for MacromoleculeSample.main_component"""
-        return self._get_link_n1("PreparedSample", "main_component_id")
+        return self._get_link_n1("Sample", "main_component_id")
 
     @main_component.setter
     def main_component(self, value: Optional[Macromolecule]):
@@ -98,14 +98,14 @@ class MacromoleculeSample(MacromoleculeSampleData, PreparedSampleData, PreparedS
         from .Macromolecule import Macromolecule
 
         if value is None or isinstance(value, Macromolecule):
-            self._set_link_n1("PreparedSample", "main_component_id", value)
+            self._set_link_n1("Sample", "main_component_id", value)
         else:
             raise ValueError("main_component must be of type Macromolecule or None")
 
     @property
     def medium(self) -> Optional[Medium]:
         """getter for MacromoleculeSample.medium"""
-        return self._get_link_n1("PreparedSample", "medium_id")
+        return self._get_link_n1("Sample", "medium_id")
 
     @medium.setter
     def medium(self, value: Optional[Medium]):
@@ -113,6 +113,6 @@ class MacromoleculeSample(MacromoleculeSampleData, PreparedSampleData, PreparedS
         from .Medium import Medium
 
         if value is None or isinstance(value, Medium):
-            self._set_link_n1("PreparedSample", "medium_id", value)
+            self._set_link_n1("Sample", "medium_id", value)
         else:
             raise ValueError("medium must be of type Medium or None")

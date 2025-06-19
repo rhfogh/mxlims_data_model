@@ -19,7 +19,7 @@
             "description": "Name of space group, determined during processing. Names may include alternative settings. Matches mmCIF item symmetry.space_group_name_H-M (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_symmetry.space_group_name_H-M.html).",
             "title": "Space Group Name"
         },
-        "unitCell": {
+        "refinedUnitCell": {
             "allOf": [
                 {
                     "$ref": "../datatypes/UnitCell.json"
@@ -119,6 +119,19 @@
             "description": "low and high limit on Miller index l, matches mmCIF item reflns.limit_l_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_l_min.html) and reflns.limit_l_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_l_max.html)",
             "title": "L Index Range"
         },
+        "possibleTwinning": {
+            "type": "boolean",
+            "default": false,
+            "description": "ARe there data to indicate that the crystal might be twinned?",
+            "title": "Possible Twinning"
+        },
+        "twinFraction": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 1.0,
+            "description": "The calculated twin fraction of the crystal",
+            "title": "Twin fraction"
+        },
         "reflectionStatisticsOverall": {
             "allOf": [
                 {
@@ -150,11 +163,65 @@
         },
         "resolutionCutoffs": {
             "description": "Criteria used in determination of isotropic resolution cut-off (e.g. as implemented in MRFANA, https://github.com/githubgphl/MRFANA)",
-            "items": {
-                "$ref": "../datatypes/QualityFactor.json"
-            },
             "title": "Resolution Cutoffs",
-            "type": "array"
+            "anyOf": [
+                {
+                    "R_merge": {
+                        "type": "number",
+                        "minimum": 0.0,
+                        "title": "R(merge)",
+                        "description": "R merge"
+                    }
+                },
+                {
+                    "R_meas": {
+                        "type": "number",
+                        "minimum": 0.0,
+                        "title": "R_meas",
+                        "description": "R meas"
+                    }
+                },
+                {
+                    "R_pim": {
+                        "type": "number",
+                        "minimum": 0.0,
+                        "title": "R_pim",
+                        "description": "R pim"
+                    }
+                },
+                {
+                    "I_over_SigI": {
+                        "type": "number",
+                        "title": "I/SigI",
+                        "description": "Average I / sigma(I)"
+                    }
+                },
+                {
+                    "CC_one_half": {
+                        "type": "number",
+                        "minimum": -1.0,
+                        "maximum": -1.0,
+                        "title": "CC(1/2)",
+                        "description": "CC 1/2"
+                    }
+                },
+                {
+                    "CC_ano": {
+                        "type": "number",
+                        "minimum": -1.0,
+                        "maximum": -1.0,
+                        "title": "CC_ano",
+                        "description": "CC_ano"
+                    }
+                },
+                {
+                    "SigAno": {
+                        "type": "number",
+                        "title": "SigAno",
+                        "description": "SigAno"
+                    }
+                }
+            ]
         },
         "binningMode": {
             "allOf": [

@@ -48,5 +48,6 @@
         "alpha",
         "beta",
         "gamma"
-    ]
+    ],
+    "additionalProperties": false
 }

@@ -21,3 +21,6 @@ class PuckData(BaseModel):
         alias="numberPositions",
         description="The number of pin positions available.",
     )
+    puck_type: Optional[str] = Field(
+        None, alias="puckType", description="The Puck type (should be made an enum)"
+    )

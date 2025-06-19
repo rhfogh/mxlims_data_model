@@ -43,16 +43,105 @@
             "description": "Chi-squared statistic for reflection shell, matches mmCIF item reflns_shell.pdbx_chi_squared (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_chi_squared.html)",
             "title": "Chi Squared"
         },
-        "qualityFactors": {
-            "description": "Quality factors for reflection shell, ",
-            "items": {
-                "$ref": "../datatypes/QualityFactor.json"
-            },
-            "title": "Quality Factors",
-            "type": "array"
+        "R_merge": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "R(merge)",
+            "description": "R merge"
+        },
+        "R_meas": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "R_meas",
+            "description": "R meas"
+        },
+        "R_pim": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "R_pim",
+            "description": "R pim"
+        },
+        "I_over_SigI": {
+            "type": "number",
+            "title": "I/SigI",
+            "description": "Average I / sigma(I)"
+        },
+        "CC_one_half": {
+            "type": "number",
+            "minimum": -1.0,
+            "maximum": -1.0,
+            "title": "CC(1/2)",
+            "description": "CC 1/2"
+        },
+        "CC_ano": {
+            "type": "number",
+            "minimum": -1.0,
+            "maximum": -1.0,
+            "title": "CC_ano",
+            "description": "CC_ano"
+        },
+        "SigAno": {
+            "type": "number",
+            "title": "SigAno",
+            "description": "SigAno"
+        },
+        "Completeness": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 100.0,
+            "title": "Completeness",
+            "description": "Completeness"
+        },
+        "CompletenessSpherical": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 100.0,
+            "title": "CompletenessSpherical",
+            "description": "CompletenessSpherical"
+        },
+        "CompletenessEllipsoidal": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 100.0,
+            "title": "CompletenessEllipsoidal",
+            "description": "CompletenessEllipsoidal"
+        },
+        "Redundancy": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "Redundancy",
+            "description": "Redundancy"
+        },
+        "CompletenessAno": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 100.0,
+            "title": "CompletenessAno",
+            "description": "CompletenessAno"
+        },
+        "CompletenessAnoSpherical": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 100.0,
+            "title": "CompletenessAnoSpherical",
+            "description": "CompletenessAnoSpherical"
+        },
+        "CompletenessAnoEllipsoidal": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 100.0,
+            "title": "CompletenessAnoEllipsoidal",
+            "description": "CompletenessAnoEllipsoidal"
+        },
+        "RedundancyAno": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "RedundancyAno",
+            "description": "RedundancyAno"
         }
-    },
+},
     "required": [
         "resolutionLimits"
-    ]
+    ],
+    "additionalProperties": false
 }

@@ -39,6 +39,5 @@
             "description": "The image, UUencoded."
         }
     },
-    "required": ["mimeType"],
-    "additionalProperties": false
+    "required": ["mimeType"]
 }

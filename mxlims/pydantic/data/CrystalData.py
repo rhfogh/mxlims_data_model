@@ -3,17 +3,10 @@
 
 from __future__ import annotations
 
-from typing import Optional
-
 from mxlims.impl.MxlimsBase import BaseModel
-
-from pydantic import Field
 
 
 class CrystalData(BaseModel):
     """
     Crystal or location for measuring diffraction. Note that crystals are optional and are generally used ONLY where a region, loop, or other LogisticalSample is found to have several crystals during the actual experiment.
     """
-
-    name: Optional[str] = Field(None, description="Sample human-readable name.")
-    comment: Optional[str] = Field(None, description="Comment or annotation.")

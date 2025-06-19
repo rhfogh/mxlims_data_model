@@ -7,7 +7,9 @@ from typing import Dict, Optional
 
 from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import Field
+from pydantic import ConfigDict, Field
+
+from .SampleComponentRole import SampleComponentRole
 
 
 class SampleComponent(BaseModel):
@@ -15,6 +17,9 @@ class SampleComponent(BaseModel):
     Component of Sample.
     """
 
+    model_config = ConfigDict(
+        extra="forbid",
+    )
     acronym: Optional[str] = Field(
         None,
         description="Acronym - short synonym of component (e.g. 'lig1'",
@@ -23,12 +28,7 @@ class SampleComponent(BaseModel):
     name: Optional[str] = Field(
         None, description="Human readable name of component", title="Name"
     )
-    role: Optional[str] = Field(
-        None,
-        description="Role of component in PreparedSample",
-        examples=["solvent", "cryoprotectant", "ligand", "inhibitor", "target"],
-        title="Role",
-    )
+    role: Optional[SampleComponentRole] = None
     identifiers: Optional[Dict[str, str]] = Field(
         None,
         description="Dictionary str:str of contextName: identifier. ContextName will typically refer to a LIMS, database, or web site but could also be e.g. 'smiles' or 'sequence'",

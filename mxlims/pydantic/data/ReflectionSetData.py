@@ -3,14 +3,13 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Any, List, Optional
 
 from mxlims.impl.MxlimsBase import BaseModel
 
 from pydantic import Field, PositiveInt, confloat, conint
 
 from ..datatypes.PdbxSignalType import PdbxSignalType
-from ..datatypes.QualityFactor import QualityFactor
 from ..datatypes.ReflectionBinningMode import ReflectionBinningMode
 from ..datatypes.ReflectionFileType import ReflectionFileType
 from ..datatypes.ReflectionStatistics import ReflectionStatistics
@@ -36,9 +35,9 @@ class ReflectionSetData(BaseModel):
         description="Name of space group, determined during processing. Names may include alternative settings. Matches mmCIF item symmetry.space_group_name_H-M (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_symmetry.space_group_name_H-M.html).",
         title="Space Group Name",
     )
-    unit_cell: Optional[UnitCell] = Field(
+    refined_unit_cell: Optional[UnitCell] = Field(
         None,
-        alias="unitCell",
+        alias="refinedUnitCell",
         description="Unit cell of crystal, determined during processing.",
     )
     operational_resolution: Optional[float] = Field(
@@ -104,6 +103,18 @@ class ReflectionSetData(BaseModel):
         min_length=2,
         title="L Index Range",
     )
+    possible_twinning: Optional[bool] = Field(
+        False,
+        alias="possibleTwinning",
+        description="ARe there data to indicate that the crystal might be twinned?",
+        title="Possible Twinning",
+    )
+    twin_fraction: Optional[confloat(ge=0.0, le=1.0)] = Field(
+        None,
+        alias="twinFraction",
+        description="The calculated twin fraction of the crystal",
+        title="Twin fraction",
+    )
     reflection_statistics_overall: Optional[ReflectionStatistics] = Field(
         None,
         alias="reflectionStatisticsOverall",
@@ -126,7 +137,7 @@ class ReflectionSetData(BaseModel):
         description="Limiting value for signal calculation; matches reflns.pdbx_observed_signal_threshold (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_observed_signal_threshold.html). Cutoff for observability, as used in mmCIF refln.pdbx_signal_status (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_refln.pdbx_signal_status.html)",
         title="Signal Cutoff",
     )
-    resolution_cutoffs: Optional[List[QualityFactor]] = Field(
+    resolution_cutoffs: Optional[Any] = Field(
         None,
         alias="resolutionCutoffs",
         description="Criteria used in determination of isotropic resolution cut-off (e.g. as implemented in MRFANA, https://github.com/githubgphl/MRFANA)",

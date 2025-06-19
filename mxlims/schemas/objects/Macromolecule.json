@@ -8,7 +8,7 @@
             "$ref": "../data/MacromoleculeData.json"
         },
         {
-            "$ref": "../data/PreparedSampleData.json"
+            "$ref": "../data/SampleData.json"
         }
     ],
     "properties": {
@@ -18,5 +18,6 @@
             "title": "MxlimsType",
             "type": "string"
         }
-    }
+    },
+    "additionalProperties": false
 }
