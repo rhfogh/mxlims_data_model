@@ -7,7 +7,7 @@ from typing import List
 
 from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import Field
+from pydantic import ConfigDict, Field
 
 
 class Tensor(BaseModel):
@@ -15,6 +15,9 @@ class Tensor(BaseModel):
     Tensor
     """
 
+    model_config = ConfigDict(
+        extra="forbid",
+    )
     eigenvalues: List = Field(
         ...,
         description="Eigenvalues of tensor",

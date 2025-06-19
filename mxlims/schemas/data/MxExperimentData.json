@@ -17,11 +17,27 @@
             ],
             "title": "Experiment Strategy"
         },
+        "experimentLocation": {
+            "type": "string",
+            "description": "Experiment strategy indicator",
+            "examples": [
+                "SOLEIL PX2",
+                "ESRF MASSIF-1"
+            ],
+            "title": "Experiment Location"
+
+        },
         "expectedResolution": {
             "minimum": 0.0,
             "type": "number",
             "description": "The resolution expected in the experiment - for positioning the detector and setting up the experiment",
             "title": "Expected Resolution"
+        },
+        "requiredResolution": {
+            "minimum": 0.0,
+            "type": "number",
+            "description": "The minimum resolution required to carry on with the experiment",
+            "title": "Required Resolution"
         },
         "targetCompleteness": {
             "maximum": 100.0,
@@ -35,6 +51,12 @@
             "type": "number",
             "description": "Minimal multiplicity expected from experiment",
             "title": "Target Multiplicity"
+        },
+        "aimedTotalRange": {
+            "minimum": 0.0,
+            "type": "number",
+            "description": "The desired total experiment length (in degrees rotated) ",
+            "title": "Aimed Total Range"
         },
         "energy": {
             "minimum": 0.0,

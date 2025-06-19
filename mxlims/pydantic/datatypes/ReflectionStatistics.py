@@ -7,9 +7,7 @@ from typing import List, Optional
 
 from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import Field, confloat, conint
-
-from .QualityFactor import QualityFactor
+from pydantic import ConfigDict, Field, confloat, conint
 
 
 class ReflectionStatistics(BaseModel):
@@ -17,6 +15,9 @@ class ReflectionStatistics(BaseModel):
     Reflection statistics for a shell (or all) of reflections
     """
 
+    model_config = ConfigDict(
+        extra="forbid",
+    )
     resolution_limits: List = Field(
         ...,
         alias="resolutionLimits",
@@ -49,9 +50,63 @@ class ReflectionStatistics(BaseModel):
         description="Chi-squared statistic for reflection shell, matches mmCIF item reflns_shell.pdbx_chi_squared (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_chi_squared.html)",
         title="Chi Squared",
     )
-    quality_factors: Optional[List[QualityFactor]] = Field(
+    r_merge: Optional[confloat(ge=0.0)] = Field(
+        None, alias="R_merge", description="R merge", title="R(merge)"
+    )
+    r_meas: Optional[confloat(ge=0.0)] = Field(
+        None, alias="R_meas", description="R meas", title="R_meas"
+    )
+    r_pim: Optional[confloat(ge=0.0)] = Field(
+        None, alias="R_pim", description="R pim", title="R_pim"
+    )
+    i_over_sig_i: Optional[float] = Field(
+        None, alias="I_over_SigI", description="Average I / sigma(I)", title="I/SigI"
+    )
+    cc_one_half: Optional[confloat(ge=-1.0, le=-1.0)] = Field(
+        None, alias="CC_one_half", description="CC 1/2", title="CC(1/2)"
+    )
+    cc_ano: Optional[confloat(ge=-1.0, le=-1.0)] = Field(
+        None, alias="CC_ano", description="CC_ano", title="CC_ano"
+    )
+    sig_ano: Optional[float] = Field(
+        None, alias="SigAno", description="SigAno", title="SigAno"
+    )
+    completeness: Optional[confloat(ge=0.0, le=100.0)] = Field(
+        None, alias="Completeness", description="Completeness", title="Completeness"
+    )
+    completeness_spherical: Optional[confloat(ge=0.0, le=100.0)] = Field(
         None,
-        alias="qualityFactors",
-        description="Quality factors for reflection shell, ",
-        title="Quality Factors",
+        alias="CompletenessSpherical",
+        description="CompletenessSpherical",
+        title="CompletenessSpherical",
+    )
+    completeness_ellipsoidal: Optional[confloat(ge=0.0, le=100.0)] = Field(
+        None,
+        alias="CompletenessEllipsoidal",
+        description="CompletenessEllipsoidal",
+        title="CompletenessEllipsoidal",
+    )
+    redundancy: Optional[confloat(ge=0.0)] = Field(
+        None, alias="Redundancy", description="Redundancy", title="Redundancy"
+    )
+    completeness_ano: Optional[confloat(ge=0.0, le=100.0)] = Field(
+        None,
+        alias="CompletenessAno",
+        description="CompletenessAno",
+        title="CompletenessAno",
+    )
+    completeness_ano_spherical: Optional[confloat(ge=0.0, le=100.0)] = Field(
+        None,
+        alias="CompletenessAnoSpherical",
+        description="CompletenessAnoSpherical",
+        title="CompletenessAnoSpherical",
+    )
+    completeness_ano_ellipsoidal: Optional[confloat(ge=0.0, le=100.0)] = Field(
+        None,
+        alias="CompletenessAnoEllipsoidal",
+        description="CompletenessAnoEllipsoidal",
+        title="CompletenessAnoEllipsoidal",
+    )
+    redundancy_ano: Optional[confloat(ge=0.0)] = Field(
+        None, alias="RedundancyAno", description="RedundancyAno", title="RedundancyAno"
     )

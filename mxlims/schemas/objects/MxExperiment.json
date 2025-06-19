@@ -29,7 +29,7 @@
                             "$ref": "../references/MacromoleculeSampleRef.json"
                         },
                         {
-                            "$ref": "../references/PreparedSampleRef.json"
+                            "$ref": "../references/SampleRef.json"
                         }
                     ]
                 }
@@ -113,5 +113,6 @@
                 ]
             }
         }
-    }
+    },
+    "additionalProperties": false
 }

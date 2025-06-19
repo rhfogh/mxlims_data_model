@@ -47,5 +47,6 @@
     "required": [
         "eigenvalues",
         "eigenvectors"
-    ]
+    ],
+    "additionalProperties": false
 }

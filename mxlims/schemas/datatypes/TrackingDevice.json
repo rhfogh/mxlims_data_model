@@ -32,5 +32,6 @@
     "required": [
         "identifier",
         "deviceType"
-    ]
+    ],
+    "additionalProperties": false
 }

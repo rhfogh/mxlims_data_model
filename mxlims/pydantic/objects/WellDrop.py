@@ -113,7 +113,7 @@ class WellDrop(WellDropData, LogisticalSampleData, LogisticalSample, MxlimsImple
     @property
     def sample(self) -> Optional[MacromoleculeSample]:
         """getter for WellDrop.sample"""
-        return self._get_link_n1("PreparedSample", "sample_id")
+        return self._get_link_n1("Sample", "sample_id")
 
     @sample.setter
     def sample(self, value: Optional[MacromoleculeSample]):
@@ -121,6 +121,6 @@ class WellDrop(WellDropData, LogisticalSampleData, LogisticalSample, MxlimsImple
         from .MacromoleculeSample import MacromoleculeSample
 
         if value is None or isinstance(value, MacromoleculeSample):
-            self._set_link_n1("PreparedSample", "sample_id", value)
+            self._set_link_n1("Sample", "sample_id", value)
         else:
             raise ValueError("sample must be of type MacromoleculeSample or None")

@@ -7,21 +7,21 @@ from pydantic import Field
 from typing import Any, Literal, Optional, Union, TYPE_CHECKING
 from uuid import UUID, uuid1
 from mxlims.impl.MxlimsBase import MxlimsImplementation
-from ..core.PreparedSample import PreparedSample
-from ..data.PreparedSampleData import PreparedSampleData
+from ..core.Sample import Sample
+from ..data.SampleData import SampleData
 from ..data.MediumData import MediumData
 if TYPE_CHECKING:
     from .MacromoleculeSample import MacromoleculeSample
 
-class Medium(MediumData, PreparedSampleData, PreparedSample, MxlimsImplementation):
+class Medium(MediumData, SampleData, Sample, MxlimsImplementation):
     """MXLIMS pydantic model class for Medium
     """
     def __init__(self, **data: Any) -> None:
         super().__init__(**data)
         MxlimsImplementation.__init__(self)
         
-    mxlims_base_type: Literal["PreparedSample"] = Field(
-        "PreparedSample",
+    mxlims_base_type: Literal["Sample"] = Field(
+        "Sample",
         alias="mxlimsBaseType",
         description="The abstract (super)type of MXLIMS object.",
         title="MxlimsBaseType",
@@ -45,7 +45,7 @@ class Medium(MediumData, PreparedSampleData, PreparedSample, MxlimsImplementatio
     @property
     def medium_samples(self) -> list[MacromoleculeSample]:
         """getter for Medium.medium_samples list"""
-        return self._get_link_1n("PreparedSample", "medium_id")
+        return self._get_link_1n("Sample", "medium_id")
 
     @medium_samples.setter
     def medium_samples(self, values: list[MacromoleculeSample]):
@@ -55,4 +55,4 @@ class Medium(MediumData, PreparedSampleData, PreparedSample, MxlimsImplementatio
         for obj in values:
             if not isinstance(obj, MacromoleculeSample):
                 raise ValueError("%s is not of type MacromoleculeSample" % obj)
-        self._set_link_1n_rev("PreparedSample", "medium_id", values)
+        self._set_link_1n_rev("Sample", "medium_id", values)

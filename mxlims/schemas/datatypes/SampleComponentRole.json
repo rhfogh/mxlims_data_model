@@ -1,0 +1,15 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "Role for SampleComponent. For crystallographic screening, 'target' is the macromolecule and 'ligand' is screened compound",
+    "title": "SampleComponentRole",
+    "type": "string",
+    "enum": [
+        "target",
+        "ligand",
+        "cofactor",
+        "solvent",
+        "buffer",
+        "cryoprotectant",
+        "other"
+    ]
+}

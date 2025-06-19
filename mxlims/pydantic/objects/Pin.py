@@ -113,7 +113,7 @@ class Pin(PinData, LogisticalSampleData, LogisticalSample, MxlimsImplementation)
     @property
     def sample(self) -> Optional[MacromoleculeSample]:
         """getter for Pin.sample"""
-        return self._get_link_n1("PreparedSample", "sample_id")
+        return self._get_link_n1("Sample", "sample_id")
 
     @sample.setter
     def sample(self, value: Optional[MacromoleculeSample]):
@@ -121,6 +121,6 @@ class Pin(PinData, LogisticalSampleData, LogisticalSample, MxlimsImplementation)
         from .MacromoleculeSample import MacromoleculeSample
 
         if value is None or isinstance(value, MacromoleculeSample):
-            self._set_link_n1("PreparedSample", "sample_id", value)
+            self._set_link_n1("Sample", "sample_id", value)
         else:
             raise ValueError("sample must be of type MacromoleculeSample or None")

@@ -7,21 +7,21 @@ from pydantic import Field
 from typing import Any, Literal, Optional, Union, TYPE_CHECKING
 from uuid import UUID, uuid1
 from mxlims.impl.MxlimsBase import MxlimsImplementation
-from ..core.PreparedSample import PreparedSample
-from ..data.PreparedSampleData import PreparedSampleData
+from ..core.Sample import Sample
+from ..data.SampleData import SampleData
 from ..data.MacromoleculeData import MacromoleculeData
 if TYPE_CHECKING:
     from .MacromoleculeSample import MacromoleculeSample
 
-class Macromolecule(MacromoleculeData, PreparedSampleData, PreparedSample, MxlimsImplementation):
+class Macromolecule(MacromoleculeData, SampleData, Sample, MxlimsImplementation):
     """MXLIMS pydantic model class for Macromolecule
     """
     def __init__(self, **data: Any) -> None:
         super().__init__(**data)
         MxlimsImplementation.__init__(self)
         
-    mxlims_base_type: Literal["PreparedSample"] = Field(
-        "PreparedSample",
+    mxlims_base_type: Literal["Sample"] = Field(
+        "Sample",
         alias="mxlimsBaseType",
         description="The abstract (super)type of MXLIMS object.",
         title="MxlimsBaseType",
@@ -45,7 +45,7 @@ class Macromolecule(MacromoleculeData, PreparedSampleData, PreparedSample, Mxlim
     @property
     def main_samples(self) -> list[MacromoleculeSample]:
         """getter for Macromolecule.main_samples list"""
-        return self._get_link_1n("PreparedSample", "main_component_id")
+        return self._get_link_1n("Sample", "main_component_id")
 
     @main_samples.setter
     def main_samples(self, values: list[MacromoleculeSample]):
@@ -55,4 +55,4 @@ class Macromolecule(MacromoleculeData, PreparedSampleData, PreparedSample, Mxlim
         for obj in values:
             if not isinstance(obj, MacromoleculeSample):
                 raise ValueError("%s is not of type MacromoleculeSample" % obj)
-        self._set_link_1n_rev("PreparedSample", "main_component_id", values)
+        self._set_link_1n_rev("Sample", "main_component_id", values)

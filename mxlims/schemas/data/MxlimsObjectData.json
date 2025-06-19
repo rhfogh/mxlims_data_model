@@ -1,11 +1,11 @@
 {
     "$schema": "https://json-schema.org/draft-07/schema",
-    "description": "Base object for all MXLIMS objects: Job, Dataset, PreparedSample, and LogisticalSample",
+    "description": "Base object for all MXLIMS objects: Job, Dataset, Sample, and LogisticalSample",
     "title": "MxlimsObjectData",
     "type": "object",
     "properties": {
         "version": {
-            "const": "0.6.4",
+            "const": "0.6.5",
             "description": "MXLIMS version for current model",
             "title": "Version",
             "type": "string"
@@ -19,7 +19,8 @@
             "description": "Permanent unique identifier string",
             "title": "Uuid",
             "type": "string",
-            "format": "uuid"
+            "format": "uuid",
+            "pattern":"^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
         },
         "namespacedExtensions": {
             "description": "List of extensions to metadata, each defined in a NamespacedExtension schema",
@@ -33,6 +34,10 @@
             "description": "Keyword-value dictionary string:Any of extensions. Use is accepted but discouraged",
             "title": "Extensions",
             "type": "object"
+        },
+        "annotation": {
+            "type": "string",
+            "description": "Comment or annotation."
         }
     },
     "required": [

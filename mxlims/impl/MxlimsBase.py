@@ -37,7 +37,7 @@ yaml.default_flow_style = False
 yaml.indent(mapping=4, sequence=4, offset=2)
 
 # Names of core *(basic abstract) classes
-CORETYPES = ("Job", "Dataset", "LogisticalSample", "PreparedSample")
+CORETYPES = ("Job", "Dataset", "LogisticalSample", "Sample")
 
 with (Path(__file__).parent / "link_specification.yaml").open(encoding="utf-8") as fp0:
     LINK_SPECIFICATION = yaml.load(fp0)
@@ -69,7 +69,7 @@ class MxlimsImplementation:
     _objects_by_id: ClassVar[dict] = {
         "Dataset": dict(),
         "Job": dict(),
-        "PreparedSample": dict(),
+        "Sample": dict(),
         "LogisticalSample": dict(),
     }
 
@@ -113,7 +113,7 @@ class MxlimsImplementation:
         """Getter for n..1 forward link
 
         :param basetypename: Name of target base abstract class
-            (Job, Dataset, PreparedSample, LlogisticalSample)
+            (Job, Dataset, Sample, LogisticalSample)
         :param id_field_name: Name of (forward-direction) link
         :return MxlimsImplementation: Linked-to object
         """
@@ -128,7 +128,7 @@ class MxlimsImplementation:
         """Setter for n..1 forward link
 
         :param basetypename: Name of target base abstract class
-            (Job, Dataset, PreparedSample, LogisticalSample)
+            (Job, Dataset, Sample, LogisticalSample)
         :param id_field_name:
         :param value:
         :return: None
@@ -146,7 +146,7 @@ class MxlimsImplementation:
         """Getter for n..n forward link
 
         :param basetypename: Name of target base abstract class
-            (Job, Dataset, PreparedSample, LogisticalSample)
+            (Job, Dataset, Sample, LogisticalSample)
         :param id_field_name:
         :return:
         """
@@ -166,7 +166,7 @@ class MxlimsImplementation:
         """Setter for n..n forward link
 
         :param basetypename: Name of target base abstract class
-            (Job, Dataset, PreparedSample, LogisticalSample)
+            (Job, Dataset, Sample, LogisticalSample)
         :param id_field_name:
         :param values:
         :return:
@@ -244,7 +244,7 @@ class MxlimsImplementation:
         """Setter for 1..n reverse link
 
         :param basetypename: Name of target base abstract class
-            (Job, Dataset, PreparedSample, LogisticalSample)
+            (Job, Dataset, Sample, LogisticalSample)
         :param id_field_name:
         :param values:
         :return:
@@ -266,7 +266,7 @@ class MxlimsImplementation:
         """Setter for n..n reverse link
 
         :param basetypename: Name of target base abstract class
-            (Job, Dataset, PreparedSample, LogisticalSample)
+            (Job, Dataset, Sample, LogisticalSample)
         :param id_field_name:
         :param values:
         :return:

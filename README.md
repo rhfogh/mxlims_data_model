@@ -1,6 +1,6 @@
 # MXLIMS data model
 
-The current version is 0.6.4
+The current version is 0.6.5
 
 The MXLIMS data model is a collaborative data model to serve for both API specification and
 potentially as the basis for data storage solutions, for macromolecular crystallography and

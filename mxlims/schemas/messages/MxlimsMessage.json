@@ -37,13 +37,13 @@
                 "$ref": "../datatypes/LogisticalSampleStub.json"
             }
         },
-        "PreparedSample": {
-            "description": "idString:object dictionary of PreparedSample stubs.",
-            "title": "PreparedSamples",
+        "Sample": {
+            "description": "idString:object dictionary of Sample stubs.",
+            "title": "Samples",
             "minProperties": 1,
             "type": "object",
             "additionalProperties": {
-                "$ref": "../datatypes/PreparedSampleStub.json"
+                "$ref": "../datatypes/SampleStub.json"
             }
         }
     }

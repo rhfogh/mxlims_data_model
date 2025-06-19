@@ -12,6 +12,10 @@
             "type": "integer",
             "description": "The number of pin positions available.",
             "minimum": 1
+        },
+        "puckType": {
+            "type": "string",
+            "description": "The Puck type (should be made an enum)"
         }
     },
     "required": [

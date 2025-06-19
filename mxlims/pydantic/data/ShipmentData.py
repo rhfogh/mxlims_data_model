@@ -29,8 +29,8 @@ class ShipmentData(BaseModel):
         alias="sessionNumber",
         description="The session number within the proposal. If this property is not set, the shipment is for unattended collection.",
     )
-    comments: Optional[constr(max_length=250)] = Field(
-        None, description="A comment about the shipment."
+    annotation: Optional[constr(max_length=250)] = Field(
+        None, description="Comments about the shipment."
     )
     lab_contact_outbound: Optional[Person] = Field(None, alias="labContactOutbound")
     lab_contact_return: Optional[Person] = Field(None, alias="labContactReturn")

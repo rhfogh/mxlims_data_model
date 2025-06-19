@@ -32,11 +32,24 @@ class MxExperimentData(BaseModel):
         ],
         title="Experiment Strategy",
     )
+    experiment_location: Optional[str] = Field(
+        None,
+        alias="experimentLocation",
+        description="Experiment strategy indicator",
+        examples=["SOLEIL PX2", "ESRF MASSIF-1"],
+        title="Experiment Location",
+    )
     expected_resolution: Optional[confloat(ge=0.0)] = Field(
         None,
         alias="expectedResolution",
         description="The resolution expected in the experiment - for positioning the detector and setting up the experiment",
         title="Expected Resolution",
+    )
+    required_resolution: Optional[confloat(ge=0.0)] = Field(
+        None,
+        alias="requiredResolution",
+        description="The minimum resolution required to carry on with the experiment",
+        title="Required Resolution",
     )
     target_completeness: Optional[confloat(ge=0.0, le=100.0)] = Field(
         None,
@@ -49,6 +62,12 @@ class MxExperimentData(BaseModel):
         alias="targetMultiplicity",
         description="Minimal multiplicity expected from experiment",
         title="Target Multiplicity",
+    )
+    aimed_total_range: Optional[confloat(ge=0.0)] = Field(
+        None,
+        alias="aimedTotalRange",
+        description="The desired total experiment length (in degrees rotated) ",
+        title="Aimed Total Range",
     )
     energy: Optional[confloat(ge=0.0)] = Field(
         None, description="Desired energy of the beam in eV", title="Energy"

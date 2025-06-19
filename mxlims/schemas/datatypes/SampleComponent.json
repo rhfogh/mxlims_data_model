@@ -15,15 +15,10 @@
             "title": "Name"
         },
         "role": {
-            "type": "string",
-            "title": "Role",
-            "description": "Role of component in PreparedSample",
-            "examples": [
-                "solvent",
-                "cryoprotectant",
-                "ligand",
-                "inhibitor",
-                "target"
+            "allOf": [
+                {
+                    "$ref": "../datatypes/SampleComponentRole.json"
+                }
             ]
         },
         "identifiers": {
@@ -34,5 +29,6 @@
             "title": "Identifiers",
             "type": "object"
         }
-    }
+    },
+    "additionalProperties": false
 }

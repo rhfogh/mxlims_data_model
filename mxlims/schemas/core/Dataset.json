@@ -8,19 +8,22 @@
             "description": "uuid for Dataset source",
             "title": "SourceId",
             "type": "string",
-            "format": "uuid"
+            "format": "uuid",
+            "pattern":"^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
         },
         "derivedFromId": {
             "description": "uuid for Dataset from which Dataset is derived",
             "title": "DerivedFromId",
             "type": "string",
-            "format": "uuid"
+            "format": "uuid",
+            "pattern":"^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
         },
         "logisticalSampleId": {
             "description": "uuid for LogisticalSample related to Dataset",
             "title": "LogisticalSampleId",
             "type": "string",
-            "format": "uuid"
+            "format": "uuid",
+            "pattern":"^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
         }
     },
     "not": {

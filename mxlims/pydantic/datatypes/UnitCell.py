@@ -5,7 +5,7 @@ from __future__ import annotations
 
 from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import Field, confloat
+from pydantic import ConfigDict, Field, confloat
 
 
 class UnitCell(BaseModel):
@@ -16,6 +16,9 @@ class UnitCell(BaseModel):
     cell (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Categories/cell.html)
     """
 
+    model_config = ConfigDict(
+        extra="forbid",
+    )
     a: confloat(ge=0.0) = Field(..., description="A axis length (A)", title="A")
     b: confloat(ge=0.0) = Field(..., description="B axis length (A)", title="B")
     c: confloat(ge=0.0) = Field(..., description="C axis length (A)", title="C")

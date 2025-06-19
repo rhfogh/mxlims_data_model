@@ -15,7 +15,7 @@
                     "reverseLinkName": "logisticalSamples"
                 },
                 {
-                    "$ref": "../references/PreparedSampleRef.json"
+                    "$ref": "../references/SampleRef.json"
                 }
             ]
         },
