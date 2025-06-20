@@ -32,4 +32,3 @@ class SampleData(MxlimsObjectData):
         description="Dictionary str:str of contextName: identifier. ContextName will typically refer to a LIMS, database, or web site but could also be e.g. 'smiles' or 'sequence'",
         title="Identifiers",
     )
-    comment: Optional[str] = Field(None, description="Comment or annotation.")

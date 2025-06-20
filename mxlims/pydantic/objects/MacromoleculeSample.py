@@ -79,8 +79,8 @@ class MacromoleculeSample(MacromoleculeSampleData, SampleData, Sample, MxlimsImp
         from .DropRegion import DropRegion
         from .Pin import Pin
         from .PinPosition import PinPosition
-        from .WellDrop import WellDrop
         from .PlateWell import PlateWell
+        from .WellDrop import WellDrop
 
         for obj in values:
             if not isinstance(obj, Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]):
