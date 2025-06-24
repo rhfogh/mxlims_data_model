@@ -45,6 +45,7 @@
   "WellDrop": {
     "WellDrop1": {
       "dropNumber": 1,
+      "name": "9098_A01_1",
       "containerRef": { "$ref": "#/PlateWell/PlateWell1" },
       "sampleRef": { "$ref": "#/MacromoleculeSample/MacromoleculeSample1" },
       "version": "0.6.4",
