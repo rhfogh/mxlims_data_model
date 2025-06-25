@@ -1,6 +1,11 @@
 Create a file in this directory called SchemaValidationCommand. This should
 contain only the command to validate a JSON file against a schema on your
-system. The following line is how I (Ed Daniel) do it in PowerShell.
+system; the PHPUnit tests will run this command to ensure that the JSON being
+output by the shipment encoder will validate against the schema.
+
+The following line is how I (Ed Daniel) do it in PowerShell. Note that the
+{{$schemaFile}} and {{$jsonFile}} parts must appear exactly as shown, as
+they will be replaced with the correct values by the PHPUnit tests.
 
 "C:\Program Files\PowerShell\7\pwsh.exe" -command  Test-Json -SchemaFile {{$schemaFile}} -Path {{$jsonFile}}
 
