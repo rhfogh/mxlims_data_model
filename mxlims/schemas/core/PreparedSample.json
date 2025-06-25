@@ -8,13 +8,15 @@
             "description": "uuid for medium making up PreparedSample",
             "title": "mediumId",
             "type": "string",
-            "format": "uuid"
+            "format": "uuid",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
         },
         "mainComponentId": {
             "description": "uuid for main component (e.g. macromolecule) making up PreparedSample",
             "title": "mainComponentId",
             "type": "string",
-            "format": "uuid"
+            "format": "uuid",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
         }
     }
 }

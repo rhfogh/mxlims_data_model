@@ -12,16 +12,15 @@
       },
       "version": "0.6.4",
       "mxlimsType": "Shipment",
-      "mxlimsBaseType": "LogisticalSample",
       "uuid": "0196f23d-0f3c-2c96-b3d1-b908984ec709"
     }
   },
   "Dewar": {
     "Dewar1": {
+      "barcode": "DLS-MX-1234",
       "containerRef": { "$ref": "#/Shipment/Shipment1" },
       "version": "0.6.4",
       "mxlimsType": "Dewar",
-      "mxlimsBaseType": "LogisticalSample",
       "uuid": "0196f23a-dce0-2560-baac-f1b23ec9e0cb"
     }
   },
@@ -31,7 +30,6 @@
       "containerRef": { "$ref": "#/Dewar/Dewar1" },
       "version": "0.6.4",
       "mxlimsType": "Puck",
-      "mxlimsBaseType": "LogisticalSample",
       "uuid": "0196f23a-dce0-2560-baac-f1b23ec9e0aa"
     }
   },
@@ -43,7 +41,6 @@
       "sampleRef": { "$ref": "#/MacromoleculeSample/MacromoleculeSample1" },
       "version": "0.6.4",
       "mxlimsType": "Pin",
-      "mxlimsBaseType": "LogisticalSample",
       "uuid": "0196f23a-dce0-2560-baac-f1b23ec9e0dd"
     }
   },
@@ -52,7 +49,6 @@
       "acronym": "LMTIM",
       "version": "0.6.4",
       "mxlimsType": "Macromolecule",
-      "mxlimsBaseType": "PreparedSample",
       "uuid": "0196f23a-dce0-2560-baac-f1b23ec9e055"
     }
   },
@@ -62,7 +58,6 @@
       "macromoleculeRef": { "$ref":"#/Macromolecule/Macromolecule1" },
       "version": "0.6.4",
       "mxlimsType": "MacromoleculeSample",
-      "mxlimsBaseType": "PreparedSample",
       "uuid": "0196f23a-dce0-2560-baac-f1b23ec9e022"
     }
   }

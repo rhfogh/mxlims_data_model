@@ -14,7 +14,6 @@
       },
       "version": "0.6.4",
       "mxlimsType": "Shipment",
-      "mxlimsBaseType": "LogisticalSample",
       "uuid": "4a96f23d-0f3c-2c96-b3d1-b908984ec709"
     }
   },
@@ -30,7 +29,6 @@
       "containerRef": { "$ref": "#/Shipment/Shipment1" },
       "version": "0.6.4",
       "mxlimsType": "Plate",
-      "mxlimsBaseType": "LogisticalSample",
       "uuid": "4a96f23a-dce0-2560-baac-f1b23ec9e0cb"
     }
   },
@@ -41,18 +39,17 @@
       "containerRef": { "$ref": "#/Plate/Plate1" },
       "version": "0.6.4",
       "mxlimsType": "PlateWell",
-      "mxlimsBaseType": "LogisticalSample",
       "uuid": "4a96f23a-dce0-2560-baac-f1b23ec9e0aa"
     }
   },
   "WellDrop": {
     "WellDrop1": {
       "dropNumber": 1,
+      "name": "9098_A01_1",
       "containerRef": { "$ref": "#/PlateWell/PlateWell1" },
       "sampleRef": { "$ref": "#/MacromoleculeSample/MacromoleculeSample1" },
       "version": "0.6.4",
       "mxlimsType": "WellDrop",
-      "mxlimsBaseType": "LogisticalSample",
       "uuid": "4a96f23a-dce0-2560-baac-f1b23ec9e0dd"
     }
   },
@@ -61,7 +58,6 @@
       "acronym": "LMTIM",
       "version": "0.6.4",
       "mxlimsType": "Macromolecule",
-      "mxlimsBaseType": "PreparedSample",
       "uuid": "0196f23a-dce0-2560-baac-f1b23ec9e055"
     }
   },
@@ -71,7 +67,6 @@
       "macromoleculeRef": { "$ref":"#/Macromolecule/Macromolecule1" },
       "version": "0.6.4",
       "mxlimsType": "MacromoleculeSample",
-      "mxlimsBaseType": "PreparedSample",
       "uuid": "4a96f23a-dce0-2560-baac-f1b23ec9e022"
     }
   },
@@ -92,7 +87,6 @@
       },
       "version": "0.6.4",
       "mxlimsType": "DropRegion",
-      "mxlimsBaseType": "LogisticalSample",
       "uuid": "4a96f23a-beef-2560-baac-f1b23ec9e420"
     }
   },
@@ -103,7 +97,6 @@
       "sampleRef":{ "$ref":"#/MacromoleculeSample/MacromoleculeSample1" },
       "version": "0.6.4",
       "mxlimsType": "Crystal",
-      "mxlimsBaseType": "LogisticalSample",
       "uuid": "4a96f23a-dce0-2560-baac-f1b23ec9e066"
     }
   }
