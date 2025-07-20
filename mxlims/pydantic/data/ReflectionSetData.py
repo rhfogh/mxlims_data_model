@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Optional
+from typing import List, Optional
 
 from mxlims.impl.MxlimsBase import BaseModel
 
@@ -13,6 +13,7 @@ from ..datatypes.PdbxSignalType import PdbxSignalType
 from ..datatypes.ReflectionBinningMode import ReflectionBinningMode
 from ..datatypes.ReflectionFileType import ReflectionFileType
 from ..datatypes.ReflectionStatistics import ReflectionStatistics
+from ..datatypes.ResolutionCutoffs import ResolutionCutoffs
 from ..datatypes.SpaceGroupName import SpaceGroupName
 from ..datatypes.Tensor import Tensor
 from ..datatypes.UnitCell import UnitCell
@@ -137,7 +138,7 @@ class ReflectionSetData(BaseModel):
         description="Limiting value for signal calculation; matches reflns.pdbx_observed_signal_threshold (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_observed_signal_threshold.html). Cutoff for observability, as used in mmCIF refln.pdbx_signal_status (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_refln.pdbx_signal_status.html)",
         title="Signal Cutoff",
     )
-    resolution_cutoffs: Optional[Any] = Field(
+    resolution_cutoffs: Optional[ResolutionCutoffs] = Field(
         None,
         alias="resolutionCutoffs",
         description="Criteria used in determination of isotropic resolution cut-off (e.g. as implemented in MRFANA, https://github.com/githubgphl/MRFANA)",

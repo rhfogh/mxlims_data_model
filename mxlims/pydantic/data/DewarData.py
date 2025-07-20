@@ -18,4 +18,6 @@ class DewarData(BaseModel):
     """
 
     barcode: Optional[str] = Field(None, description="The dewar barcode or RFID code")
-    tracking_device: Optional[TrackingDevice] = Field(None, alias="trackingDevice")
+    tracking_device: Optional[TrackingDevice] = Field(
+        None, alias="trackingDevice", description="Dewar tracking device"
+    )

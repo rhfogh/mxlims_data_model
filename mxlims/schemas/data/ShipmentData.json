@@ -22,10 +22,20 @@
             "maxLength": 250
         },
         "labContactOutbound": {
-            "$ref": "../datatypes/Person.json"
+            "allOf": [
+                {
+                    "$ref": "../datatypes/Person.json"
+                }
+            ],
+            "description": "Lab contact outbound"
         },
         "labContactReturn": {
-            "$ref": "../datatypes/Person.json"
+            "allOf": [
+                {
+                    "$ref": "../datatypes/Person.json"
+                }
+            ],
+            "description": "Lab contact for return"
         },
         "identifiers": {
             "additionalProperties": {
@@ -36,7 +46,12 @@
             "type": "object"
         },
         "trackingDevice": {
-            "$ref": "../datatypes/TrackingDevice.json"
+            "allOf": [
+                {
+                    "$ref": "../datatypes/TrackingDevice.json"
+                }
+            ],
+            "description": "Shipment tracking device"
         }
     },
     "required": [

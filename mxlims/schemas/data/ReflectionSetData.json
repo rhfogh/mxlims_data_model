@@ -164,62 +164,9 @@
         "resolutionCutoffs": {
             "description": "Criteria used in determination of isotropic resolution cut-off (e.g. as implemented in MRFANA, https://github.com/githubgphl/MRFANA)",
             "title": "Resolution Cutoffs",
-            "anyOf": [
+            "allOf": [
                 {
-                    "R_merge": {
-                        "type": "number",
-                        "minimum": 0.0,
-                        "title": "R(merge)",
-                        "description": "R merge"
-                    }
-                },
-                {
-                    "R_meas": {
-                        "type": "number",
-                        "minimum": 0.0,
-                        "title": "R_meas",
-                        "description": "R meas"
-                    }
-                },
-                {
-                    "R_pim": {
-                        "type": "number",
-                        "minimum": 0.0,
-                        "title": "R_pim",
-                        "description": "R pim"
-                    }
-                },
-                {
-                    "I_over_SigI": {
-                        "type": "number",
-                        "title": "I/SigI",
-                        "description": "Average I / sigma(I)"
-                    }
-                },
-                {
-                    "CC_one_half": {
-                        "type": "number",
-                        "minimum": -1.0,
-                        "maximum": -1.0,
-                        "title": "CC(1/2)",
-                        "description": "CC 1/2"
-                    }
-                },
-                {
-                    "CC_ano": {
-                        "type": "number",
-                        "minimum": -1.0,
-                        "maximum": -1.0,
-                        "title": "CC_ano",
-                        "description": "CC_ano"
-                    }
-                },
-                {
-                    "SigAno": {
-                        "type": "number",
-                        "title": "SigAno",
-                        "description": "SigAno"
-                    }
+                    "$ref": "../datatypes/ResolutionCutoffs.json"
                 }
             ]
         },

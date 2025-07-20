@@ -9,7 +9,12 @@
             "description": "The dewar barcode or RFID code"
         },
         "trackingDevice": {
-            "$ref": "../datatypes/TrackingDevice.json"
+            "allOf": [
+                {
+                    "$ref": "../datatypes/TrackingDevice.json"
+                }
+            ],
+            "description": "Dewar tracking device"
         }
     }
 }
