@@ -1,4 +1,11 @@
-## Changes in version 0.6.5
+## Changes in version 0.6.6
+
+- Added rough-and-ready field list generation script
+- Harmonised use of allOf in datatype attributes
+- Corrected error in ReflectionSet.resolutionCutoffs and added new Datatype
+- bug fix in missing 'array' type
+
+# Changes in version 0.6.5
 
 - Renamed PreparedSample to Sample
 - Added LogisticalSample.name

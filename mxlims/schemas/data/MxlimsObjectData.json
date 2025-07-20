@@ -5,7 +5,7 @@
     "type": "object",
     "properties": {
         "version": {
-            "const": "0.6.5",
+            "const": "0.6.6",
             "description": "MXLIMS version for current model",
             "title": "Version",
             "type": "string"
