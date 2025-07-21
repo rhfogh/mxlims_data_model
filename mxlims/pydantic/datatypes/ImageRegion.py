@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from typing import Optional, Union
+from typing import Union
 
 from mxlims.impl.MxlimsBase import BaseModel
 
@@ -28,7 +28,7 @@ class ImageRegion(BaseModel):
         extra="forbid",
     )
     region: Union[Point, Circle, Line, Rectangle, Polygon]
-    image: Optional[Union[DropImageData, DropImageUrl]] = None
+    image: Union[DropImageData, DropImageUrl]
     units: ImageRegionUnit = Field(
         ..., description="The units of the region's co-ordinates."
     )
