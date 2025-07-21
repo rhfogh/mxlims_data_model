@@ -1,20 +1,21 @@
 {
     "$schema": "https://json-schema.org/draft-07/schema",
-    "description": "Uuid container, used for Uuid-only links to PreparedSamples in messages",
-    "title": "PreparedSampleStub",
+    "description": "Uuid container, used for Uuid-only links to Samples in messages",
+    "title": "SampleStub",
     "type": "object",
     "properties": {
         "mxlimsBaseType": {
             "description": "The type of the MXLIMS core object referred to",
             "title": "MxlimsBaseType",
             "type": "string",
-            "const": "PreparedSample"
+            "const": "Sample"
         },
         "uuid": {
             "description": "Permanent unique identifier string of object referred to",
             "title": "Uuid",
             "type": "string",
-            "format": "uuid"
+            "format": "uuid",
+            "pattern":"^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
         }
     },
     "required": [

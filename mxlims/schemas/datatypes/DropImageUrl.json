@@ -8,5 +8,6 @@
             "$ref": "../datatypes/DropImage.json"
         }
     ],
-    "required": ["url"]
+    "required": ["url"],
+    "additionalProperties": false
 }

@@ -1,0 +1,26 @@
+To generate JSON for a simple one-pin shipment:
+
+//Get the encoder
+$encoder=new mxlims\tools\php\ShipmentEncoder\src\v0_6_4ShipmentEncoder();
+
+//Create the shipment with its proposal and session number
+$encoder->createShipment("mx1234", 1);
+
+//Set the lab contacts
+$encoder->setLabContactOutbound("Alice","alice@uni.edu");
+$encoder->setLabContactReturn("Bob","bob@uni.edu");
+
+//Add the macromolecule, with its protein acronym
+$macromolecule=$encoder->addMacromoleculeToShipment("PROTEIN1");
+
+//Add the dewar
+$dewar=$encoder->addDewarToShipment("DEWAR123");
+
+//Add a 16-position unipuck
+$puck=$encoder->addPuckToDewar($dewar['index'], "PUCK345", 16);
+
+//Add a pin and sample at puck position 1, with the macromolecule of interest
+$encoder->addSinglePinSampleToPuck($puck['index'], 1, $macromolecule['index'], 'PROTEIN1_sample1', 'HA00AA6789');
+
+//Get the MXLIMS shipment JSON
+$json=$encoder->encodeToJSON();

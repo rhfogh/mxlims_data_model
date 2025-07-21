@@ -13,11 +13,11 @@
     <meta charset="utf-8"/>
         
     
-    <title>PreparedSample Data</title>
+    <title>Sample Data</title>
 </head>
 <body onload="anchorOnLoad();" id="root">
 
-    <div class="breadcrumbs"></div> <h1>PreparedSample Data</h1><span class="badge badge-dark value-type">Type: object</span><br/>
+    <div class="breadcrumbs"></div> <h1>Sample Data</h1><span class="badge badge-dark value-type">Type: object</span><br/>
 <span class="description"><p>Base class for MXLIMS Prepared Samples describing Sample content</p>
 </span>
 
@@ -51,7 +51,7 @@
         </svg>
     <a href="#version" onclick="anchorLink('version')">version</a></div><h4>Version</h4><span class="badge badge-dark value-type">Type: const</span><br/>
 <span class="description"><p>MXLIMS version for current model</p>
-</span><span class="const-value" id="version_const">Specific value: <code>"0.6.4"</code></span>
+</span><span class="const-value" id="version_const">Specific value: <code>"0.6.6"</code></span>
         
 
         
@@ -119,7 +119,7 @@
         </svg>
     <a href="#uuid" onclick="anchorLink('uuid')">uuid</a></div><h4>Uuid</h4><span class="badge badge-dark value-type">Type: string</span><span class="badge badge-info value-type">Format: uuid</span><br/>
 <span class="description"><p>Permanent unique identifier string</p>
-</span>
+</span><span class="pattern-value" id="uuid_pattern">Must match regular expression: <code>^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$</code></span>
         
 
         
@@ -277,6 +277,40 @@
         </div>
     </div>
 </div>
+<div class="accordion" id="accordionannotation">
+    <div class="card">
+        <div class="card-header" id="headingannotation">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#annotation"
+                        aria-expanded="" aria-controls="annotation" onclick="setAnchor('#annotation')"><span class="property-name">annotation</span></button>
+            </h2>
+        </div>
+
+        <div id="annotation"
+             class="collapse property-definition-div" aria-labelledby="headingannotation"
+             data-parent="#accordionannotation">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#annotation" onclick="anchorLink('annotation')">annotation</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>Comment or annotation.</p>
+</span>
+        
+
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
 <div class="accordion" id="accordionname">
     <div class="card">
         <div class="card-header" id="headingname">
@@ -300,6 +334,40 @@
         </svg>
     <a href="#name" onclick="anchorLink('name')">name</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
 <span class="description"><p>Sample human-readable name or acronym.</p>
+</span>
+        
+
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordioncampaignName">
+    <div class="card">
+        <div class="card-header" id="headingcampaignName">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#campaignName"
+                        aria-expanded="" aria-controls="campaignName" onclick="setAnchor('#campaignName')"><span class="property-name">campaignName</span></button>
+            </h2>
+        </div>
+
+        <div id="campaignName"
+             class="collapse property-definition-div" aria-labelledby="headingcampaignName"
+             data-parent="#accordioncampaignName">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#campaignName" onclick="anchorLink('campaignName')">campaignName</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>String identifier / name for campaign of which Sample is part.</p>
 </span>
         
 
@@ -363,7 +431,7 @@
 <span class="description"><p>Component of Sample.</p>
 </span>
 
-    
+     <span class="badge badge-info no-additional">No Additional Properties</span>
         
 
         
@@ -501,27 +569,20 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#components_items_role" onclick="anchorLink('components_items_role')">role</a></div><h4>Role</h4><span class="badge badge-dark value-type">Type: string</span><br/>
-<span class="description"><p>Role of component in PreparedSample</p>
+    <a href="#components_items_role" onclick="anchorLink('components_items_role')">role</a></div><h4>SampleComponentRole</h4><span class="badge badge-dark value-type">Type: enum (of string)</span><br/>
+<span class="description"><p>Role for SampleComponent. For crystallographic screening, 'target' is the macromolecule and 'ligand' is screened compound</p>
 </span>
+
+    <div class="enum-value" id="components_items_role_enum">
+            <h4>Must be one of:</h4>
+            <ul class="list-group"><li class="list-group-item enum-item">"target"</li><li class="list-group-item enum-item">"ligand"</li><li class="list-group-item enum-item">"cofactor"</li><li class="list-group-item enum-item">"solvent"</li><li class="list-group-item enum-item">"buffer"</li><li class="list-group-item enum-item">"cryoprotectant"</li><li class="list-group-item enum-item">"other"</li></ul>
+            </div>
         
 
         
         
 
-        <br/>
-<div class="badge badge-secondary">Examples:</div>
-<br/><div id="components_items_role_ex1" class="jumbotron examples"><div class="highlight"><pre><span></span><span class="s2">&quot;solvent&quot;</span>
-</pre></div>
-</div><div id="components_items_role_ex2" class="jumbotron examples"><div class="highlight"><pre><span></span><span class="s2">&quot;cryoprotectant&quot;</span>
-</pre></div>
-</div><div id="components_items_role_ex3" class="jumbotron examples"><div class="highlight"><pre><span></span><span class="s2">&quot;ligand&quot;</span>
-</pre></div>
-</div><div id="components_items_role_ex4" class="jumbotron examples"><div class="highlight"><pre><span></span><span class="s2">&quot;inhibitor&quot;</span>
-</pre></div>
-</div><div id="components_items_role_ex5" class="jumbotron examples"><div class="highlight"><pre><span></span><span class="s2">&quot;target&quot;</span>
-</pre></div>
-</div>
+        
             </div>
         </div>
     </div>
@@ -704,40 +765,6 @@
         </div>
     </div>
 </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="accordion" id="accordioncomment">
-    <div class="card">
-        <div class="card-header" id="headingcomment">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#comment"
-                        aria-expanded="" aria-controls="comment" onclick="setAnchor('#comment')"><span class="property-name">comment</span></button>
-            </h2>
-        </div>
-
-        <div id="comment"
-             class="collapse property-definition-div" aria-labelledby="headingcomment"
-             data-parent="#accordioncomment">
-            <div class="card-body pl-5">
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#comment" onclick="anchorLink('comment')">comment</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
-<span class="description"><p>Comment or annotation.</p>
-</span>
-        
-
-        
-        
-
-        
             </div>
         </div>
     </div>

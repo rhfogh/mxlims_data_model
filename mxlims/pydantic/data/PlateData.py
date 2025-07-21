@@ -21,10 +21,14 @@ class PlateData(BaseModel):
     barcode: Optional[str] = Field(
         None, description="The plate barcode or other identifier"
     )
-    plate_type: Optional[PlateType] = Field(None, alias="plateType")
+    plate_type: Optional[PlateType] = Field(
+        None, alias="plateType", description="Plate type description object"
+    )
     identifiers: Optional[Dict[str, str]] = Field(
         None,
         description="Dictionary str:str of contextName: identifier. ContextName will typically refer to a LIMS, database, or web site but could also be e.g. 'smiles' or 'sequence'",
         title="Identifiers",
     )
-    tracking_device: Optional[TrackingDevice] = Field(None, alias="trackingDevice")
+    tracking_device: Optional[TrackingDevice] = Field(
+        None, alias="trackingDevice", description="Plate tracking device"
+    )

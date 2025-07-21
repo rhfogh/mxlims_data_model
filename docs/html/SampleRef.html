@@ -13,34 +13,31 @@
     <meta charset="utf-8"/>
         
     
-    <title>PreparedSampleStub</title>
+    <title>SampleRef</title>
 </head>
 <body onload="anchorOnLoad();" id="root">
 
-    <div class="breadcrumbs"></div> <h1>PreparedSampleStub</h1><span class="badge badge-dark value-type">Type: object</span><br/>
-<span class="description"><p>Uuid container, used for Uuid-only links to PreparedSamples in messages</p>
+    <div class="breadcrumbs"></div> <h1>SampleRef</h1><span class="badge badge-dark value-type">Type: object</span><br/>
+<span class="description"><p>Reference to Sample</p>
 </span> <span class="badge badge-info no-additional">No Additional Properties</span>
-        <div class="enum-value">
-    <h4>The following properties are required:</h4>
-    <ul class="list-group"><li class="list-group-item required-property">mxlimsType</li></ul>
-    </div>
+        
 
         
         
 
         
-<div class="accordion" id="accordionmxlimsBaseType">
+<div class="accordion" id="accordionmxlimsType">
     <div class="card">
-        <div class="card-header" id="headingmxlimsBaseType">
+        <div class="card-header" id="headingmxlimsType">
             <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#mxlimsBaseType"
-                        aria-expanded="" aria-controls="mxlimsBaseType" onclick="setAnchor('#mxlimsBaseType')"><span class="property-name">mxlimsBaseType</span></button>
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#mxlimsType"
+                        aria-expanded="" aria-controls="mxlimsType" onclick="setAnchor('#mxlimsType')"><span class="property-name">mxlimsType</span></button>
             </h2>
         </div>
 
-        <div id="mxlimsBaseType"
-             class="collapse property-definition-div" aria-labelledby="headingmxlimsBaseType"
-             data-parent="#accordionmxlimsBaseType">
+        <div id="mxlimsType"
+             class="collapse property-definition-div" aria-labelledby="headingmxlimsType"
+             data-parent="#accordionmxlimsType">
             <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
@@ -50,9 +47,9 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#mxlimsBaseType" onclick="anchorLink('mxlimsBaseType')">mxlimsBaseType</a></div><h4>MxlimsBaseType</h4><span class="badge badge-dark value-type">Type: const</span><br/>
-<span class="description"><p>The type of the MXLIMS core object referred to</p>
-</span><span class="const-value" id="mxlimsBaseType_const">Specific value: <code>"PreparedSample"</code></span>
+    <a href="#mxlimsType" onclick="anchorLink('mxlimsType')">mxlimsType</a></div><h4>MxlimsType</h4><span class="badge badge-dark value-type">Type: const</span><br/>
+<span class="description"><p>The type of the MXLIMS object referred to.</p>
+</span><span class="const-value" id="mxlimsType_const">Specific value: <code>"Sample"</code></span>
         
 
         
@@ -63,18 +60,18 @@
         </div>
     </div>
 </div>
-<div class="accordion" id="accordionuuid">
+<div class="accordion" id="accordionref">
     <div class="card">
-        <div class="card-header" id="headinguuid">
+        <div class="card-header" id="headingref">
             <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#uuid"
-                        aria-expanded="" aria-controls="uuid" onclick="setAnchor('#uuid')"><span class="property-name">uuid</span> <span class="badge badge-warning required-property">Required</span></button>
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#ref"
+                        aria-expanded="" aria-controls="ref" onclick="setAnchor('#ref')"><span class="property-name">$ref</span> <span class="badge badge-warning required-property">Required</span></button>
             </h2>
         </div>
 
-        <div id="uuid"
-             class="collapse property-definition-div" aria-labelledby="headinguuid"
-             data-parent="#accordionuuid">
+        <div id="ref"
+             class="collapse property-definition-div" aria-labelledby="headingref"
+             data-parent="#accordionref">
             <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
@@ -84,9 +81,9 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#uuid" onclick="anchorLink('uuid')">uuid</a></div><h4>Uuid</h4><span class="badge badge-dark value-type">Type: string</span><span class="badge badge-info value-type">Format: uuid</span><br/>
-<span class="description"><p>Permanent unique identifier string of object referred to</p>
-</span>
+    <a href="#ref" onclick="anchorLink('ref')">$ref</a></div><h4>JSONreference</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>JSON reference to object in std. message, using uuid-based links.</p>
+</span><span class="pattern-value" id="ref_pattern">Must match regular expression: <code>^#/Sample/Sample[1-9][0-9]*$</code></span>
         
 
         

@@ -8,7 +8,7 @@
             "$ref": "../data/MacromoleculeSampleData.json"
         },
         {
-            "$ref": "../data/PreparedSampleData.json"
+            "$ref": "../data/SampleData.json"
         }
     ],
     "properties": {
@@ -38,5 +38,6 @@
                 }
             ]
         }
-    }
+    },
+    "additionalProperties": false
 }

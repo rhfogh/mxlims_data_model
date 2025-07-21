@@ -31,5 +31,6 @@
         "firstImageNumber",
         "numberImages",
         "ordinal"
-    ]
+    ],
+    "additionalProperties": false
 }

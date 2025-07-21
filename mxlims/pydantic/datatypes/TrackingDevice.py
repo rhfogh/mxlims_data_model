@@ -7,7 +7,7 @@ from typing import Optional
 
 from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import AnyUrl, Field
+from pydantic import AnyUrl, ConfigDict, Field
 
 from .TrackingDeviceType import TrackingDeviceType
 
@@ -17,6 +17,9 @@ class TrackingDevice(BaseModel):
     <p>A tracking device such as a LightBug or AirTag, included with the parent object.</p><p>Note that the tracking URLs for a given device can change, therefore implementers should use any URLs supplied rather than those cached from a previous shipment with the same device.</p>
     """
 
+    model_config = ConfigDict(
+        extra="forbid",
+    )
     identifier: str = Field(
         ..., description="The device serial number or other globally unique identifier."
     )

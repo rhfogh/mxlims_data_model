@@ -1,0 +1,22 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "Base class for MXLIMS Prepared Samples describing Sample content",
+    "title": "Sample",
+    "type": "object",
+    "properties": {
+        "mediumId": {
+            "description": "uuid for medium making up Sample",
+            "title": "mediumId",
+            "type": "string",
+            "format": "uuid",
+            "pattern":"^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        },
+        "mainComponentId": {
+            "description": "uuid for main component (e.g. macromolecule) making up Sample",
+            "title": "mainComponentId",
+            "type": "string",
+            "format": "uuid",
+            "pattern":"^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        }
+    }
+}

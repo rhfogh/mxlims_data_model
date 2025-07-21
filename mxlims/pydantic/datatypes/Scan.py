@@ -5,7 +5,7 @@ from __future__ import annotations
 
 from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import Field, conint
+from pydantic import ConfigDict, Field, conint
 
 
 class Scan(BaseModel):
@@ -18,6 +18,9 @@ class Scan(BaseModel):
     out-of-order acquisition and interleaving.
     """
 
+    model_config = ConfigDict(
+        extra="forbid",
+    )
     scan_position_start: float = Field(
         ...,
         alias="scanPositionStart",

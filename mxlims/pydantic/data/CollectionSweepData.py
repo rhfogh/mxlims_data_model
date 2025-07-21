@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Dict, List, Optional
+from typing import Dict, List, Optional
 
 from mxlims.impl.MxlimsBase import BaseModel
 
@@ -92,10 +92,12 @@ class CollectionSweepData(BaseModel):
         description="Region-of-interest mode of detector. Should be made into an enumeration",
         title="Detector Roi Mode",
     )
-    beam_position: Optional[Any] = Field(
+    beam_position: Optional[List] = Field(
         None,
         alias="beamPosition",
         description="x,y position of the beam on the detector in pixels",
+        max_length=2,
+        min_length=2,
         title="Beam Position",
     )
     beam_size: Optional[List] = Field(

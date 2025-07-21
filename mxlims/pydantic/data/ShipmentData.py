@@ -29,14 +29,20 @@ class ShipmentData(BaseModel):
         alias="sessionNumber",
         description="The session number within the proposal. If this property is not set, the shipment is for unattended collection.",
     )
-    comments: Optional[constr(max_length=250)] = Field(
-        None, description="A comment about the shipment."
+    annotation: Optional[constr(max_length=250)] = Field(
+        None, description="Comments about the shipment."
     )
-    lab_contact_outbound: Optional[Person] = Field(None, alias="labContactOutbound")
-    lab_contact_return: Optional[Person] = Field(None, alias="labContactReturn")
+    lab_contact_outbound: Optional[Person] = Field(
+        None, alias="labContactOutbound", description="Lab contact outbound"
+    )
+    lab_contact_return: Optional[Person] = Field(
+        None, alias="labContactReturn", description="Lab contact for return"
+    )
     identifiers: Optional[Dict[str, str]] = Field(
         None,
         description="Dictionary str:str of contextName: identifier. ContextName will typically refer to a LIMS, database, or web site but could also be e.g. 'smiles' or 'sequence'",
         title="Identifiers",
     )
-    tracking_device: Optional[TrackingDevice] = Field(None, alias="trackingDevice")
+    tracking_device: Optional[TrackingDevice] = Field(
+        None, alias="trackingDevice", description="Shipment tracking device"
+    )

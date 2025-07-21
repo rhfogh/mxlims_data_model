@@ -15,11 +15,11 @@ from .NamespacedExtensionData import NamespacedExtensionData
 
 class MxlimsObjectData(BaseModel):
     """
-    Base object for all MXLIMS objects: Job, Dataset, PreparedSample, and LogisticalSample
+    Base object for all MXLIMS objects: Job, Dataset, Sample, and LogisticalSample
     """
 
-    version: Literal["0.6.4"] = Field(
-        "0.6.4", description="MXLIMS version for current model", title="Version"
+    version: Literal["0.6.6"] = Field(
+        "0.6.6", description="MXLIMS version for current model", title="Version"
     )
     mxlims_type: str = Field(
         ...,
@@ -41,3 +41,4 @@ class MxlimsObjectData(BaseModel):
         description="Keyword-value dictionary string:Any of extensions. Use is accepted but discouraged",
         title="Extensions",
     )
+    annotation: Optional[str] = Field(None, description="Comment or annotation.")

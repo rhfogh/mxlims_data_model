@@ -1,11 +1,11 @@
 {
     "$schema": "https://json-schema.org/draft-07/schema",
     "description": "Prepared Sample core class",
-    "title": "PreparedSample",
+    "title": "Sample",
     "type": "object",
     "allOf": [
         {
-            "$ref": "../data/PreparedSampleData.json"
+            "$ref": "../data/SampleData.json"
         }
     ],
     "properties": {
@@ -15,7 +15,7 @@
                     "reverseLinkName": "mediumSamples"
                 },
                 {
-                    "$ref": "../references/PreparedSampleRef.json"
+                    "$ref": "../references/SampleRef.json"
                 }
             ]
         },
@@ -25,7 +25,7 @@
                     "reverseLinkName": "mainSamples"
                 },
                 {
-                    "$ref": "../references/PreparedSampleRef.json"
+                    "$ref": "../references/SampleRef.json"
                 }
             ]
         }

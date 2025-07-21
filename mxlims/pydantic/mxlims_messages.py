@@ -16,7 +16,7 @@ from pydantic import ConfigDict, Field
 from .datatypes.DatasetStub import DatasetStub
 from .datatypes.JobStub import JobStub
 from .datatypes.LogisticalSampleStub import LogisticalSampleStub
-from .datatypes.PreparedSampleStub import PreparedSampleStub
+from .datatypes.SampleStub import SampleStub
 from .objects.CollectionSweep import CollectionSweep
 from .objects.Crystal import Crystal
 from .objects.Dewar import Dewar
@@ -177,11 +177,11 @@ class MxlimsMessage(MxlimsMessageStrict, BaseMessage):
         description="idString:object dictionary of LogisticalSample stubs.",
         title="LogisticalSamples",
     )
-    prepared_sample: Optional[Dict[str, PreparedSampleStub]] = Field(
+    sample: Optional[Dict[str, SampleStub]] = Field(
         default_factory=dict,
-        alias="PreparedSample",
-        description="idString:object dictionary of PreparedSample stubs.",
-        title="PreparedSamples",
+        alias="Sample",
+        description="idString:object dictionary of Sample stubs.",
+        title="Samples",
     )
 
 

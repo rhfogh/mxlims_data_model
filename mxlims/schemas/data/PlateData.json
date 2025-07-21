@@ -8,7 +8,14 @@
             "type": "string",
             "description": "The plate barcode or other identifier"
         },
-        "plateType": { "$ref": "../datatypes/PlateType.json"},
+        "plateType": {
+            "allOf": [
+                {
+                    "$ref": "../datatypes/PlateType.json"
+                }
+            ],
+            "description": "Plate type description object"
+        },
         "identifiers": {
             "additionalProperties": {
                 "type": "string"
@@ -18,7 +25,12 @@
             "type": "object"
         },
         "trackingDevice": {
-            "$ref": "../datatypes/TrackingDevice.json"
+            "allOf": [
+                {
+                    "$ref": "../datatypes/TrackingDevice.json"
+                }
+            ],
+            "description": "Plate tracking device"
         }
     }
 }

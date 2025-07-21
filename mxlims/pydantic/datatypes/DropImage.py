@@ -8,7 +8,7 @@ from typing import Optional
 
 from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import AnyUrl, ConfigDict, Field
+from pydantic import AnyUrl, Field
 
 from .ImageLightType import ImageLightType
 from .ImageMimeType import ImageMimetype
@@ -19,9 +19,6 @@ class DropImage(BaseModel):
     An image of a crystallization drop.
     """
 
-    model_config = ConfigDict(
-        extra="forbid",
-    )
     mime_type: ImageMimetype = Field(
         ..., alias="mimeType", description="The MIME type of the image."
     )
