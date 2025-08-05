@@ -12,11 +12,6 @@
         "name": {
             "type": "string",
             "description": "Human-readable name."
-        },
-        "acronym": {
-            "description": "Acronym - short synonym for Sample",
-            "title": "Acronym",
-            "type": "string"
         }
     }
 }

@@ -19,6 +19,9 @@ class SampleData(MxlimsObjectData):
     name: Optional[str] = Field(
         None, description="Sample human-readable name or acronym."
     )
+    acronym: Optional[str] = Field(
+        None, description="Acronym - short synonym for Sample", title="Acronym"
+    )
     campaign_name: Optional[str] = Field(
         None,
         alias="campaignName",
