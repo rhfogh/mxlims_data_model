@@ -13,6 +13,16 @@
             "description":"The puck position occupied by the pin. This should be validated against the puck's numberPositions property.",
             "minimum": 1,
             "examples":[16]
+        },
+        "loopType": {
+            "type": "string",
+            "description": "Type of loop. NB should be made into an enum",
+            "title": "Loop type"
+        },
+        "holderLength": {
+            "type": "number",
+            "description": "Holder length in mm",
+            "title": "Holder length"
         }
     },
     "required": [

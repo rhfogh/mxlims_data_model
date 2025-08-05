@@ -1,3 +1,15 @@
+## Changes in version 0.6.7
+
+- ExperimentData.priority added
+- PinData.loopType added (NB should be made enum)
+- PinData.holderLength added
+- Puck.positionInDewar added
+- Moved acronym from MacromoleculeSample to LogisticalSample
+- Renamed MxExperiment.spaceGroupName to selectedSpaceGroupName
+- Renamed MxExperiment.unitCell to selectedUnitCell
+- Fixed field generation script to deal with overridden fields and 'annotation'
+- Removed duplicate 'annotation' fields from subclasses
+
 ## Changes in version 0.6.6
 
 - Added rough-and-ready field list generation script

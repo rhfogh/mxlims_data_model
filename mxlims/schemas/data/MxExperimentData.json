@@ -58,6 +58,12 @@
             "description": "The desired total experiment length (in degrees rotated) ",
             "title": "Aimed Total Range"
         },
+        "priority": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "Priority of experiment - smaller number higher priority",
+            "title": "Priority"
+        },
         "energy": {
             "minimum": 0.0,
             "type": "number",
@@ -119,7 +125,7 @@
             ],
             "description": "Unit cell of crystal expected to be present."
         },
-        "spaceGroupName": {
+        "selectedSpaceGroupName": {
             "allOf": [
                 {
                     "$ref": "../datatypes/SpaceGroupName.json"
@@ -128,7 +134,7 @@
             "description": "Name of space group, as determined during characterisation. Names may include alternative settings. Matches mmCIF item symmetry.space_group_name_H-M (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_symmetry.space_group_name_H-M.html).",
             "title": "Space Group Name"
         },
-        "unitCell": {
+        "selectedUnitCell": {
             "allOf": [
                 {
                     "$ref": "../datatypes/UnitCell.json"

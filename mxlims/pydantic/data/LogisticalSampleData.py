@@ -19,3 +19,6 @@ class LogisticalSampleData(MxlimsObjectData):
     """
 
     name: Optional[str] = Field(None, description="Human-readable name.")
+    acronym: Optional[str] = Field(
+        None, description="Acronym - short synonym for Sample", title="Acronym"
+    )

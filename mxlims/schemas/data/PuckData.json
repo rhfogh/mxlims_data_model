@@ -8,6 +8,12 @@
             "type": "string",
             "description": "The Puck barcode or RFID code"
         },
+        "positionInDewar": {
+            "type":"integer",
+            "description":"The Dewar position occupied by the puck. This should be validated against the Dewar's numberPositions property.",
+            "minimum": 1,
+            "examples":[10]
+        },
         "numberPositions": {
             "type": "integer",
             "description": "The number of pin positions available.",

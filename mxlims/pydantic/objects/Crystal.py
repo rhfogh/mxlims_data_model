@@ -74,8 +74,8 @@ class Crystal(CrystalData, LogisticalSampleData, LogisticalSample, MxlimsImpleme
     @datasets.setter
     def datasets(self, values: list[Union[CollectionSweep, ReflectionSet]]):
         """setter for Crystal.datasets list"""
-        from .ReflectionSet import ReflectionSet
         from .CollectionSweep import CollectionSweep
+        from .ReflectionSet import ReflectionSet
 
         for obj in values:
             if not isinstance(obj, Union[CollectionSweep, ReflectionSet]):
@@ -90,8 +90,8 @@ class Crystal(CrystalData, LogisticalSampleData, LogisticalSample, MxlimsImpleme
     @jobs.setter
     def jobs(self, values: list[Union[MxExperiment, MxProcessing]]):
         """setter for Crystal.jobs list"""
-        from .MxExperiment import MxExperiment
         from .MxProcessing import MxProcessing
+        from .MxExperiment import MxExperiment
 
         for obj in values:
             if not isinstance(obj, Union[MxExperiment, MxProcessing]):

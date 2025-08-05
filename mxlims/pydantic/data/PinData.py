@@ -22,3 +22,15 @@ class PinData(BaseModel):
         description="The puck position occupied by the pin. This should be validated against the puck's numberPositions property.",
         examples=[16],
     )
+    loop_type: Optional[str] = Field(
+        None,
+        alias="loopType",
+        description="Type of loop. NB should be made into an enum",
+        title="Loop type",
+    )
+    holder_length: Optional[float] = Field(
+        None,
+        alias="holderLength",
+        description="Holder length in mm",
+        title="Holder length",
+    )

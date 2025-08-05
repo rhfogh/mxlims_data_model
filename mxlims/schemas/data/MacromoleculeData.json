@@ -3,12 +3,5 @@
     "description": "Sample defining the Macromolecule main component of another sample",
     "title": "MacromoleculeData",
     "type": "object",
-    "properties": {
-        "acronym": {
-            "description": "Acronym - short synonym of macromolecule",
-            "title": "Acronym",
-            "type": "string"
-        }
-    },
     "required": ["acronym"]
 }

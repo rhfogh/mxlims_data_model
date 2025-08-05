@@ -17,9 +17,6 @@ class CollectionSweepData(BaseModel):
     Crystallographic sweep data set, containing images
     """
 
-    annotation: Optional[str] = Field(
-        None, description="Annotation string for sweep", title="Annotation"
-    )
     sweep_type: Optional[str] = Field(
         "simple",
         alias="sweepType",
