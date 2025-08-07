@@ -87,8 +87,8 @@ class ReflectionSet(ReflectionSetData, DatasetData, Dataset, MxlimsImplementatio
     @reference_for.setter
     def reference_for(self, values: list[Union[MxExperiment, MxProcessing]]):
         """setter for ReflectionSet.reference_for list"""
-        from .MxExperiment import MxExperiment
         from .MxProcessing import MxProcessing
+        from .MxExperiment import MxExperiment
 
         for obj in values:
             if not isinstance(obj, Union[MxExperiment, MxProcessing]):

@@ -1,6 +1,6 @@
 # MXLIMS data model
 
-The current version is 0.6.6
+The current version is 0.6.7
 
 The MXLIMS data model is a collaborative data model to serve for both API specification and
 potentially as the basis for data storage solutions, for macromolecular crystallography and
@@ -8,6 +8,9 @@ related scientific areas. The model is implemented as JSON schemas, with pydanti
 classes and html documentation generated therefrom.
 
 For general documentation see docs/Overview.pdf
+
+docs/examples contain example JSON files (not necessarily from the very latest version)
+and mapping files, showing the mapping between MXLIMS and other formats.
 
 For a detailed snapshot of the MXLIMS model as of early 2025 see MXLIMS_presentation_2025.pdf
 

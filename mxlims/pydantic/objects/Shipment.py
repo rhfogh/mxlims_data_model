@@ -51,8 +51,8 @@ class Shipment(ShipmentData, LogisticalSampleData, LogisticalSample, MxlimsImple
     @contents.setter
     def contents(self, values: list[Union[Dewar, Plate]]):
         """setter for Shipment.contents list"""
-        from .Plate import Plate
         from .Dewar import Dewar
+        from .Plate import Plate
 
         for obj in values:
             if not isinstance(obj, Union[Dewar, Plate]):

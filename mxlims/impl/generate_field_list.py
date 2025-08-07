@@ -49,6 +49,8 @@ def generate_fields(dirname: Optional[str] = None) -> None :
     # Write out per-field lines
     for tag, dd1 in sorted(schemadata["objects"].items()):
         ll1 = dd1.get("allOf", ())
+        # annotation is special-cased as the only non-implementation field in MxlimsObject
+        output = {"annnotation": "string\tComment or annotation."}
         if len(ll1) > 1:
             for dd2 in reversed(ll1):
                 # Superclass first
@@ -65,9 +67,12 @@ def generate_fields(dirname: Optional[str] = None) -> None :
                         for tag3, prop in datatype.items():
                             typ3 = prop.get("type", "NOTYPE")
                             desc = prop.get("description", "-")
-                            print( "\t".join((".".join((fulltag, tag3)), typ3, desc)))
+                            output[".".join((fulltag, tag3))] = "\t".join((typ3, desc))
                     else:
-                        print( "\t".join((fulltag, typ2, desc)))
+                        output[fulltag] = "\t".join((typ2, desc))
+            for name, val in output.items():
+                print( "\t".join((name, val)))
+
 
 def get_type_desc(adict: dict):
     desc = adict.get("description", "NONE")

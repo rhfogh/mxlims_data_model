@@ -69,6 +69,11 @@ class MxExperimentData(BaseModel):
         description="The desired total experiment length (in degrees rotated) ",
         title="Aimed Total Range",
     )
+    priority: Optional[conint(ge=1)] = Field(
+        None,
+        description="Priority of experiment - smaller number higher priority",
+        title="Priority",
+    )
     energy: Optional[confloat(ge=0.0)] = Field(
         None, description="Desired energy of the beam in eV", title="Energy"
     )
@@ -119,14 +124,14 @@ class MxExperimentData(BaseModel):
         alias="expectedUnitCell",
         description="Unit cell of crystal expected to be present.",
     )
-    space_group_name: Optional[SpaceGroupName] = Field(
+    selected_space_group_name: Optional[SpaceGroupName] = Field(
         None,
-        alias="spaceGroupName",
+        alias="selectedSpaceGroupName",
         description="Name of space group, as determined during characterisation. Names may include alternative settings. Matches mmCIF item symmetry.space_group_name_H-M (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_symmetry.space_group_name_H-M.html).",
         title="Space Group Name",
     )
-    unit_cell: Optional[UnitCell] = Field(
+    selected_unit_cell: Optional[UnitCell] = Field(
         None,
-        alias="unitCell",
+        alias="selectedUnitCell",
         description="Unit cell of crystal, as determined during characterisation.",
     )

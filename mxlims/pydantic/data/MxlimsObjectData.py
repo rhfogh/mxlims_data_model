@@ -18,8 +18,8 @@ class MxlimsObjectData(BaseModel):
     Base object for all MXLIMS objects: Job, Dataset, Sample, and LogisticalSample
     """
 
-    version: Literal["0.6.6"] = Field(
-        "0.6.6", description="MXLIMS version for current model", title="Version"
+    version: Literal["0.6.7"] = Field(
+        "0.6.7", description="MXLIMS version for current model", title="Version"
     )
     mxlims_type: str = Field(
         ...,

@@ -13,6 +13,11 @@
             "type": "string",
             "description": "Sample human-readable name or acronym."
         },
+        "acronym": {
+            "description": "Acronym - short synonym for Sample",
+            "title": "Acronym",
+            "type": "string"
+        },
         "campaignName": {
             "type": "string",
             "description": "String identifier / name for campaign of which Sample is part."

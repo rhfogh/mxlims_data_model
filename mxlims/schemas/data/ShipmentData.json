@@ -16,11 +16,6 @@
             "description": "The session number within the proposal. If this property is not set, the shipment is for unattended collection.",
             "minimum": 1
         },
-        "annotation": {
-            "type": "string",
-            "description": "Comments about the shipment.",
-            "maxLength": 250
-        },
         "labContactOutbound": {
             "allOf": [
                 {

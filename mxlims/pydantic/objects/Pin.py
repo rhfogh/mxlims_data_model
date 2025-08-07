@@ -86,8 +86,8 @@ class Pin(PinData, LogisticalSampleData, LogisticalSample, MxlimsImplementation)
     @datasets.setter
     def datasets(self, values: list[Union[CollectionSweep, ReflectionSet]]):
         """setter for Pin.datasets list"""
-        from .ReflectionSet import ReflectionSet
         from .CollectionSweep import CollectionSweep
+        from .ReflectionSet import ReflectionSet
 
         for obj in values:
             if not isinstance(obj, Union[CollectionSweep, ReflectionSet]):
@@ -102,8 +102,8 @@ class Pin(PinData, LogisticalSampleData, LogisticalSample, MxlimsImplementation)
     @jobs.setter
     def jobs(self, values: list[Union[MxExperiment, MxProcessing]]):
         """setter for Pin.jobs list"""
-        from .MxExperiment import MxExperiment
         from .MxProcessing import MxProcessing
+        from .MxExperiment import MxExperiment
 
         for obj in values:
             if not isinstance(obj, Union[MxExperiment, MxProcessing]):

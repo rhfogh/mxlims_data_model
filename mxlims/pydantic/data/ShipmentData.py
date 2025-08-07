@@ -7,7 +7,7 @@ from typing import Dict, Optional
 
 from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import Field, conint, constr
+from pydantic import Field, conint
 
 from ..datatypes.Person import Person
 from ..datatypes.TrackingDevice import TrackingDevice
@@ -28,9 +28,6 @@ class ShipmentData(BaseModel):
         None,
         alias="sessionNumber",
         description="The session number within the proposal. If this property is not set, the shipment is for unattended collection.",
-    )
-    annotation: Optional[constr(max_length=250)] = Field(
-        None, description="Comments about the shipment."
     )
     lab_contact_outbound: Optional[Person] = Field(
         None, alias="labContactOutbound", description="Lab contact outbound"

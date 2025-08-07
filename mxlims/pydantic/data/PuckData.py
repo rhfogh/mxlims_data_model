@@ -16,6 +16,12 @@ class PuckData(BaseModel):
     """
 
     barcode: Optional[str] = Field(None, description="The Puck barcode or RFID code")
+    position_in_dewar: Optional[conint(ge=1)] = Field(
+        None,
+        alias="positionInDewar",
+        description="The Dewar position occupied by the puck. This should be validated against the Dewar's numberPositions property.",
+        examples=[10],
+    )
     number_positions: conint(ge=1) = Field(
         ...,
         alias="numberPositions",

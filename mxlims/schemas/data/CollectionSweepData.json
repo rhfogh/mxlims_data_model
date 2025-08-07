@@ -4,11 +4,6 @@
     "title": "CollectionSweepData",
     "type": "object",
     "properties": {
-        "annotation": {
-            "type": "string",
-            "description": "Annotation string for sweep",
-            "title": "Annotation"
-        },
         "sweepType": {
             "type": "string",
             "default": "simple",
