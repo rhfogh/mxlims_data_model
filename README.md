@@ -9,6 +9,9 @@ classes and html documentation generated therefrom.
 
 For general documentation see docs/Overview.pdf
 
+docs/examples contain example JSON files (not necessarily from the very latest version)
+and mapping files, showing the mapping between MXLIMS and other formats.
+
 For a detailed snapshot of the MXLIMS model as of early 2025 see MXLIMS_presentation_2025.pdf
 
 For model documentation see docs/html, where docs/html/MxlimsMessage.html is the starting point,

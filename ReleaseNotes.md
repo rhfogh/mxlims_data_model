@@ -9,6 +9,7 @@
 - Renamed MxExperiment.unitCell to selectedUnitCell
 - Fixed field generation script to deal with overridden fields and 'annotation'
 - Removed duplicate 'annotation' fields from subclasses
+- Added docs/examples/mapping<version>.xlsx file
 
 ## Changes in version 0.6.6
 
