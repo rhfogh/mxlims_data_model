@@ -3,11 +3,11 @@
 namespace mxlims\tools\php\ShipmentEncoder\test;
 
 use PHPUnit\Framework\TestCase;
+use Throwable;
 
 class v0_6_4ShipmentEncoderTest extends TestCase {
 
 	public function setUp(): void {
-		if(!$this->version ||!$this->encoder){
 			$parts = explode('\\', get_called_class());
 			$className = end($parts);
 			$className = str_replace('Test', '', $className);
@@ -19,11 +19,9 @@ class v0_6_4ShipmentEncoderTest extends TestCase {
 			include_once '../src/' . $className . '.php';
 			$fullClassName = 'mxlims\tools\php\ShipmentEncoder\src\\' . $className;
 			$this->encoder = new $fullClassName();
-		}
 	}
 
 	public function tearDown(): void {
-		unset($this->encoder);
 		@unlink(__DIR__.'/test.json');
 	}
 
@@ -35,30 +33,35 @@ class v0_6_4ShipmentEncoderTest extends TestCase {
 	public function testGet() {
 		$this->encoder->createShipment('mx4025', 1);
 		$shipment = $this->encoder->get('Shipment', 1);
-		self::assertNotEmpty($shipment);
-		self::assertEquals('Shipment', $shipment['mxlimsType']);
-		self::assertEquals(1, $shipment['index']);
+		$this->assertNotEmpty($shipment);
+		$this->assertEquals('Shipment', $shipment['mxlimsType']);
+		$this->assertEquals(1, $shipment['index']);
 	}
 
 	public function testGetByJsonPath() {
 		$this->encoder->createShipment('mx4025', 1);
 		$shipment=$this->encoder->getByJsonPath('#/Shipment/Shipment1');
-		self::assertNotEmpty($shipment);
-		self::assertEquals('Shipment', $shipment['mxlimsType']);
-		self::assertEquals(1, $shipment['index']);
+		$this->assertNotEmpty($shipment);
+		$this->assertEquals('Shipment', $shipment['mxlimsType']);
+		$this->assertEquals(1, $shipment['index']);
 	}
 
 	public function testGetByJsonPathWithRef() {
 		$this->encoder->createShipment('mx4025', 1);
 		$shipment=$this->encoder->getByJsonPath(['$ref'=>'#/Shipment/Shipment1']);
-		self::assertNotEmpty($shipment);
-		self::assertEquals('Shipment', $shipment['mxlimsType']);
-		self::assertEquals(1, $shipment['index']);
+		$this->assertNotEmpty($shipment);
+		$this->assertEquals('Shipment', $shipment['mxlimsType']);
+		$this->assertEquals(1, $shipment['index']);
 	}
 
 	public function testGetNonExistent() {
 		$shipment = $this->encoder->get('Shipment', 1);
-		self::assertNull($shipment);
+		$this->assertNull($shipment);
+	}
+
+	public function testGenerateUuid() {
+		$uuid=$this->encoder->generateUuid();
+		$this->assertMatchesRegularExpression('/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/', $uuid);
 	}
 
 	public function testCreateShipment() {
@@ -554,7 +557,7 @@ class v0_6_4ShipmentEncoderTest extends TestCase {
 		$this->encoder->addDropToPlateWell(1, 2, 1, 'sampleName');
 	}
 
-	private function createPlateAndDrop(): array {
+	public function createPlateAndDrop(): array {
 		$this->encoder->createShipment('mx4025', 1);
 		$plate = $this->encoder->addPlateToShipment('BARCODE1234', 8, 12, 3);
 		$well=$this->encoder->addWellToPlate($plate['index'], 4, 7);
@@ -744,7 +747,7 @@ class v0_6_4ShipmentEncoderTest extends TestCase {
 		$region=$this->encoder->addPointDropRegionByPlateDropIndex($drop['index'], 100, 200);
 		$this->encoder->addCrystalToDropRegion($region['index'], 'CRYSTAL_NAME');
 		$result=$this->encoder->validate();
-		self::assertTrue($result);
+		$this->assertTrue($result);
 	}
 
 	public function testValidateDewarButNoPucks() {
@@ -778,43 +781,6 @@ class v0_6_4ShipmentEncoderTest extends TestCase {
 		$this->encoder->validate();
 	}
 
-	/**
-	 * @param $json
-	 * @return void
-	 * @throws \Exception
-	 */
-	private function validateJsonAgainstSchema($json): void {
-		$command=@file_get_contents(__DIR__.'/SchemaValidationCommand');
-		if(!$command){ $this->markTestSkipped('No SchemaValidationCommand file found'); }
-
-		$encoderVersion=$this->encoder->getVersion();
-		$objectSchema=@file_get_contents(__DIR__.'/../../../../schemas/data/MxlimsObjectData.json');
-		if(!$objectSchema){
-			throw new \Exception('Could not open ShipmentMessage schema to determine version number');
-		}
-		$objectSchema=json_decode($objectSchema, true);
-		if(!$objectSchema){
-			throw new \Exception('Could not parse ShipmentMessage schema');
-		}
-		$schemaVersion=$objectSchema['properties']['version']['const'];
-		if($schemaVersion!==$encoderVersion){
-			$this->markTestSkipped("Version mismatch: Local MXLIMS schema copy $schemaVersion does not match generated shipment $encoderVersion. Cannot validate against schema.");
-		}
-
-		$jsonPath=str_replace('/', DIRECTORY_SEPARATOR,__DIR__.'/test.json');
-		$schemaPath=str_replace('/', DIRECTORY_SEPARATOR,__DIR__.'/../../../../schemas/messages/ShipmentMessage.json');
-		if(!@file_put_contents($jsonPath, $json)){
-			$this->fail('Could not write test JSON to disk for parsing');
-		}
-		$command=str_replace('{{$jsonFile}}', $jsonPath, $command);
-		$command=str_replace('{{$schemaFile}}', $schemaPath, $command);
-		$result=(exec($command));
-		$acceptableResults=['True'];
-		if(!in_array($result, $acceptableResults)){
-			echo $json;
-		}
-		$this->assertContains($result, $acceptableResults);
-	}
 
 	/**
 	 * @throws \Exception
@@ -828,7 +794,8 @@ class v0_6_4ShipmentEncoderTest extends TestCase {
 		$this->encoder->setLabContactOutbound('Bob', 'bob@bob.com');
 		$this->encoder->setLabContactReturn('Bob', 'bob@bob.com');
 		$json=$this->encoder->encodeToJSON();
-		$this->validateJsonAgainstSchema($json);
+		$this->validateIndividualJsonElementsAgainstSchema($json);
+		$this->validateShipmentMessageJsonAgainstSchema($json);
 	}
 
 	/**
@@ -844,7 +811,8 @@ class v0_6_4ShipmentEncoderTest extends TestCase {
 		$macromolecule = $this->encoder->addMacromoleculeToShipment('TEST');
 		$this->encoder->addSampleToMultiPositionPin($pin['index'], 1, $macromolecule['index'], 'TEST_9098A01d1c1');
 		$json=$this->encoder->encodeToJSON();
-		$this->validateJsonAgainstSchema($json);
+		$this->validateIndividualJsonElementsAgainstSchema($json);
+		$this->validateShipmentMessageJsonAgainstSchema($json);
 	}
 
 	/**
@@ -857,7 +825,82 @@ class v0_6_4ShipmentEncoderTest extends TestCase {
 		$region=$this->encoder->addPointDropRegionByPlateDropIndex($drop['index'], 100, 200);
 		$this->encoder->addCrystalToDropRegion($region['index'], 'CRYSTAL_NAME');
 		$json=$this->encoder->encodeToJSON(true);
-		$this->validateJsonAgainstSchema($json);
+		$this->validateIndividualJsonElementsAgainstSchema($json);
+		$this->validateShipmentMessageJsonAgainstSchema($json);
+	}
+
+	/**
+	 * @throws \Exception
+	 */
+	public function checkEncoderVersionMatchesLocalSchemaVersion(){
+		$encoderVersion = $this->encoder->getVersion();
+		$objectSchema = @file_get_contents(__DIR__ . '/../../../../schemas/data/MxlimsObjectData.json');
+		if (!$objectSchema) {
+			throw new \Exception('Could not open ShipmentMessage schema to determine version number');
+		}
+		$objectSchema = json_decode($objectSchema, true);
+		if (!$objectSchema) {
+			throw new \Exception('Could not parse ShipmentMessage schema');
+		}
+		$schemaVersion = $objectSchema['properties']['version']['const'];
+		if ($schemaVersion !== $encoderVersion) {
+			$this->markTestSkipped("Version mismatch: Local MXLIMS schema copy $schemaVersion does not match generated shipment $encoderVersion. Cannot validate against schema.");
+		}
+	}
+
+	/**
+	 * @param $json
+	 * @return void
+	 * @throws \Exception
+	 */
+	public function validateShipmentMessageJsonAgainstSchema($json): void {
+		$this->validateJsonAgainstSchema($json, 'messages/ShipmentMessage.json');
+	}
+
+	public function validateJsonAgainstSchema( $json, $schemaFile): void {
+
+		$this->checkEncoderVersionMatchesLocalSchemaVersion();
+		$jsonPath=str_replace('/', DIRECTORY_SEPARATOR,__DIR__.'/test.json');
+		$schemaPath=str_replace('/', DIRECTORY_SEPARATOR,__DIR__.'/../../../../schemas/'.$schemaFile);
+		if(!@file_put_contents($jsonPath, $json)){
+			$this->fail('Could not write test JSON to disk for parsing');
+		}
+		$command=@file_get_contents(__DIR__.'/SchemaValidationCommand');
+		if(!$command){ $this->markTestSkipped('No SchemaValidationCommand file found'); }
+		$command=str_replace('{{$jsonFile}}', $jsonPath, $command);
+		$command=str_replace('{{$schemaFile}}', $schemaPath, $command);
+		$result=(exec($command));
+		$acceptableResults=['True'];
+		if(!in_array($result, $acceptableResults)){
+			echo "========\nInvalid JSON\n$json\n========";
+		}
+		$this->assertContains($result, $acceptableResults);
+	}
+
+	/**
+	 * @throws \Exception
+	 */
+	public function validateIndividualJsonElementsAgainstSchema($json): void {
+		$this->checkEncoderVersionMatchesLocalSchemaVersion();
+		$schemaDir=str_replace('/',DIRECTORY_SEPARATOR,__DIR__.'/../../../../schemas/');
+		$array=json_decode($json, true);
+		foreach(array_keys($array) as $objectType){
+			if(!isset($array[$objectType])){
+				throw new \Exception("JSON does not contain $objectType, or it is empty");
+			}
+			if(file_exists($schemaDir.'data'.DIRECTORY_SEPARATOR.$objectType.'.json')){
+				$schemaFile='data'.DIRECTORY_SEPARATOR.$objectType.'.json';
+			} else if(file_exists($schemaDir.'objects'.DIRECTORY_SEPARATOR.$objectType.'.json')){
+				$schemaFile='objects'.DIRECTORY_SEPARATOR.$objectType.'.json';
+			} else {
+				throw new \Exception("Cannot find $objectType.json in schemas/data or schemas/objects");
+			}
+			$objects=$array[$objectType];
+			$keys=array_keys($objects);
+			$obj=$objects[end($keys)];
+			$json=json_encode($obj, JSON_PRETTY_PRINT);
+			$this->validateJsonAgainstSchema($json, $schemaFile);
+		}
 	}
 
 }
