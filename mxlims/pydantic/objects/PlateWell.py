@@ -7,8 +7,7 @@ from pydantic import Field
 from typing import Any, Literal, Optional, Union, TYPE_CHECKING
 from uuid import UUID, uuid1
 from mxlims.impl.MxlimsBase import MxlimsImplementation
-from ..core.LogisticalSample import LogisticalSample
-from ..data.LogisticalSampleData import LogisticalSampleData
+from ..objects.LogisticalSample import LogisticalSample
 from ..data.PlateWellData import PlateWellData
 if TYPE_CHECKING:
     from .CollectionSweep import CollectionSweep
@@ -19,33 +18,19 @@ if TYPE_CHECKING:
     from .ReflectionSet import ReflectionSet
     from .WellDrop import WellDrop
 
-class PlateWell(PlateWellData, LogisticalSampleData, LogisticalSample, MxlimsImplementation):
+class PlateWell(PlateWellData, LogisticalSample):
     """MXLIMS pydantic model class for PlateWell
     """
     def __init__(self, **data: Any) -> None:
         super().__init__(**data)
-        MxlimsImplementation.__init__(self)
+        LogisticalSample.__init__(self, **data)
         
-    mxlims_base_type: Literal["LogisticalSample"] = Field(
-        "LogisticalSample",
-        alias="mxlimsBaseType",
-        description="The abstract (super)type of MXLIMS object.",
-        title="MxlimsBaseType",
-        exclude=True,
-        frozen=True
-    )
     mxlims_type: Literal["PlateWell"] = Field(
         "PlateWell",
         alias="mxlimsType",
         description="The type of MXLIMS object.",
         title="MxlimsType",
         frozen=True,
-    )
-    uuid: Optional[UUID] = Field(
-        default_factory=uuid1,
-        description="Permanent unique identifier string",
-        title="Uuid",
-        frozen=True
     )
     
     @property

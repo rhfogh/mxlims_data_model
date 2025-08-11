@@ -7,8 +7,7 @@ from pydantic import Field
 from typing import Any, Literal, Optional, Union, TYPE_CHECKING
 from uuid import UUID, uuid1
 from mxlims.impl.MxlimsBase import MxlimsImplementation
-from ..core.Job import Job
-from ..data.JobData import JobData
+from ..objects.Job import Job
 from ..data.MxExperimentData import MxExperimentData
 if TYPE_CHECKING:
     from .CollectionSweep import CollectionSweep
@@ -21,33 +20,19 @@ if TYPE_CHECKING:
     from .ReflectionSet import ReflectionSet
     from .WellDrop import WellDrop
 
-class MxExperiment(MxExperimentData, JobData, Job, MxlimsImplementation):
+class MxExperiment(MxExperimentData, Job):
     """MXLIMS pydantic model class for MxExperiment
     """
     def __init__(self, **data: Any) -> None:
         super().__init__(**data)
-        MxlimsImplementation.__init__(self)
+        Job.__init__(self, **data)
         
-    mxlims_base_type: Literal["Job"] = Field(
-        "Job",
-        alias="mxlimsBaseType",
-        description="The abstract (super)type of MXLIMS object.",
-        title="MxlimsBaseType",
-        exclude=True,
-        frozen=True
-    )
     mxlims_type: Literal["MxExperiment"] = Field(
         "MxExperiment",
         alias="mxlimsType",
         description="The type of MXLIMS object.",
         title="MxlimsType",
         frozen=True,
-    )
-    uuid: Optional[UUID] = Field(
-        default_factory=uuid1,
-        description="Permanent unique identifier string",
-        title="Uuid",
-        frozen=True
     )
     
     @property

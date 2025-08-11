@@ -7,8 +7,7 @@ from pydantic import Field
 from typing import Any, Literal, Optional, Union, TYPE_CHECKING
 from uuid import UUID, uuid1
 from mxlims.impl.MxlimsBase import MxlimsImplementation
-from ..core.Dataset import Dataset
-from ..data.DatasetData import DatasetData
+from ..objects.Dataset import Dataset
 from ..data.ReflectionSetData import ReflectionSetData
 if TYPE_CHECKING:
     from .Crystal import Crystal
@@ -20,33 +19,19 @@ if TYPE_CHECKING:
     from .PlateWell import PlateWell
     from .WellDrop import WellDrop
 
-class ReflectionSet(ReflectionSetData, DatasetData, Dataset, MxlimsImplementation):
+class ReflectionSet(ReflectionSetData, Dataset):
     """MXLIMS pydantic model class for ReflectionSet
     """
     def __init__(self, **data: Any) -> None:
         super().__init__(**data)
-        MxlimsImplementation.__init__(self)
+        Dataset.__init__(self, **data)
         
-    mxlims_base_type: Literal["Dataset"] = Field(
-        "Dataset",
-        alias="mxlimsBaseType",
-        description="The abstract (super)type of MXLIMS object.",
-        title="MxlimsBaseType",
-        exclude=True,
-        frozen=True
-    )
     mxlims_type: Literal["ReflectionSet"] = Field(
         "ReflectionSet",
         alias="mxlimsType",
         description="The type of MXLIMS object.",
         title="MxlimsType",
         frozen=True,
-    )
-    uuid: Optional[UUID] = Field(
-        default_factory=uuid1,
-        description="Permanent unique identifier string",
-        title="Uuid",
-        frozen=True
     )
     
     @property

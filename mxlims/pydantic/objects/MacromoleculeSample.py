@@ -7,8 +7,7 @@ from pydantic import Field
 from typing import Any, Literal, Optional, Union, TYPE_CHECKING
 from uuid import UUID, uuid1
 from mxlims.impl.MxlimsBase import MxlimsImplementation
-from ..core.Sample import Sample
-from ..data.SampleData import SampleData
+from ..objects.Sample import Sample
 from ..data.MacromoleculeSampleData import MacromoleculeSampleData
 if TYPE_CHECKING:
     from .Crystal import Crystal
@@ -22,33 +21,19 @@ if TYPE_CHECKING:
     from .PlateWell import PlateWell
     from .WellDrop import WellDrop
 
-class MacromoleculeSample(MacromoleculeSampleData, SampleData, Sample, MxlimsImplementation):
+class MacromoleculeSample(MacromoleculeSampleData, Sample):
     """MXLIMS pydantic model class for MacromoleculeSample
     """
     def __init__(self, **data: Any) -> None:
         super().__init__(**data)
-        MxlimsImplementation.__init__(self)
+        Sample.__init__(self, **data)
         
-    mxlims_base_type: Literal["Sample"] = Field(
-        "Sample",
-        alias="mxlimsBaseType",
-        description="The abstract (super)type of MXLIMS object.",
-        title="MxlimsBaseType",
-        exclude=True,
-        frozen=True
-    )
     mxlims_type: Literal["MacromoleculeSample"] = Field(
         "MacromoleculeSample",
         alias="mxlimsType",
         description="The type of MXLIMS object.",
         title="MxlimsType",
         frozen=True,
-    )
-    uuid: Optional[UUID] = Field(
-        default_factory=uuid1,
-        description="Permanent unique identifier string",
-        title="Uuid",
-        frozen=True
     )
     
     @property

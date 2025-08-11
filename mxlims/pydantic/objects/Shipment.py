@@ -7,40 +7,25 @@ from pydantic import Field
 from typing import Any, Literal, Optional, Union, TYPE_CHECKING
 from uuid import UUID, uuid1
 from mxlims.impl.MxlimsBase import MxlimsImplementation
-from ..core.LogisticalSample import LogisticalSample
-from ..data.LogisticalSampleData import LogisticalSampleData
+from ..objects.LogisticalSample import LogisticalSample
 from ..data.ShipmentData import ShipmentData
 if TYPE_CHECKING:
     from .Dewar import Dewar
     from .Plate import Plate
 
-class Shipment(ShipmentData, LogisticalSampleData, LogisticalSample, MxlimsImplementation):
+class Shipment(ShipmentData, LogisticalSample):
     """MXLIMS pydantic model class for Shipment
     """
     def __init__(self, **data: Any) -> None:
         super().__init__(**data)
-        MxlimsImplementation.__init__(self)
+        LogisticalSample.__init__(self, **data)
         
-    mxlims_base_type: Literal["LogisticalSample"] = Field(
-        "LogisticalSample",
-        alias="mxlimsBaseType",
-        description="The abstract (super)type of MXLIMS object.",
-        title="MxlimsBaseType",
-        exclude=True,
-        frozen=True
-    )
     mxlims_type: Literal["Shipment"] = Field(
         "Shipment",
         alias="mxlimsType",
         description="The type of MXLIMS object.",
         title="MxlimsType",
         frozen=True,
-    )
-    uuid: Optional[UUID] = Field(
-        default_factory=uuid1,
-        description="Permanent unique identifier string",
-        title="Uuid",
-        frozen=True
     )
     
     @property
