@@ -6,6 +6,8 @@ include_once __DIR__.'/ShipmentEncoderInterface.php';
 
 class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 
+	public string $version;
+
 	/**
 	 * @var string $plateRowLabels Used to generate plate well/drop names, with A being the top row of a plate, B the next, etc.
 	 */
@@ -132,7 +134,7 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 		}
 		$shipment=$this->getBaseObject('Shipment', $uuid);
 		$shipment['proposalCode']=$proposalCode;
-		if($sessionNumber){
+		if(!empty($sessionNumber)){
 			if($sessionNumber<1){
 				throw new \Exception("Session number must be a positive number");
 			}
