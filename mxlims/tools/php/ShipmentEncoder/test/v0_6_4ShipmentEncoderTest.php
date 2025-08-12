@@ -83,6 +83,15 @@ class v0_6_4ShipmentEncoderTest extends TestCase {
 		$this->assertNotEmpty($shipment['uuid']);
 	}
 
+	public function testCreateShipmentNullSessionNumber() {
+		$shipment = $this->encoder->createShipment('mx4025', null);
+		$this->assertEquals('mx4025', $shipment['proposalCode']);
+		$this->assertArrayNotHasKey('sessionNumber', $shipment);
+		$this->assertEquals('Shipment', $shipment['mxlimsType']);
+		$this->assertEquals($this->version, $shipment['version']);
+		$this->assertNotEmpty($shipment['uuid']);
+	}
+
 	public function testCreateShipmentTwice() {
 		$this->expectExceptionMessageMatches('~Shipment already added to message~');
 		$this->encoder->createShipment('mx4025', 1);
