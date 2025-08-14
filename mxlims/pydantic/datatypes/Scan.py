@@ -5,7 +5,7 @@ from __future__ import annotations
 
 from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import ConfigDict, Field, conint
+from pydantic import ConfigDict, Field, PositiveInt
 
 
 class Scan(BaseModel):
@@ -33,7 +33,7 @@ class Scan(BaseModel):
         description="Image number to use for first image",
         title="First Image Number",
     )
-    number_images: conint(ge=0) = Field(
+    number_images: PositiveInt = Field(
         ...,
         alias="numberImages",
         description="Number of images to acquire as part of the Scan.",

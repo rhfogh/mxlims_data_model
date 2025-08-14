@@ -5,7 +5,7 @@ from __future__ import annotations
 
 from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import Field, conint
+from pydantic import Field, PositiveInt
 
 
 class PinPositionData(BaseModel):
@@ -13,7 +13,7 @@ class PinPositionData(BaseModel):
     An independent Position within a Pin where crystals can be located.
     """
 
-    position_in_pin: conint(ge=1) = Field(
+    position_in_pin: PositiveInt = Field(
         ...,
         alias="positionInPin",
         description="The pin position within  the pin. This should be validated against the pin's numberPositions property.",

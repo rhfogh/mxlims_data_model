@@ -13,17 +13,17 @@
         "numberRows": {
             "type": "integer",
             "description": "The number of rows in the plate. For a typical 96-well plate, this will be 8.",
-            "minimum": 1
+            "exclusiveMinimum": 0
         },
         "numberColumns": {
             "type": "integer",
             "description": "The number of columns in the plate. For a typical 96-well plate, this will be 12.",
-            "minimum": 1
+             "exclusiveMinimum": 0
         },
         "numberSubPositions":{
             "type": "integer",
             "description": "The number of sub-wells in the plate. For in-situ plates with no dividers, this should be the actual number of drops dispensed.",
-            "minimum": 1
+             "exclusiveMinimum": 0
         },
         "dropMapping": {
             "type": "string",

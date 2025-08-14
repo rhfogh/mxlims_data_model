@@ -150,7 +150,7 @@
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="allOf_i0_exposureTime_number">Value must be greater or equal to <code>0.0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="allOf_i0_exposureTime_number">Value must be strictly greater than <code>0.0</code></span></p>
 
         
             </div>
@@ -198,7 +198,7 @@
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="allOf_i0_imageWidth_number">Value must be greater or equal to <code>0.0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="allOf_i0_imageWidth_number">Value must be strictly greater than <code>0.0</code></span></p>
 
         
             </div>
@@ -246,7 +246,7 @@
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="allOf_i0_numberImages_number">Value must be greater or equal to <code>0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="allOf_i0_numberImages_number">Value must be strictly greater than <code>0</code></span></p>
 
         
             </div>
@@ -342,7 +342,7 @@
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="allOf_i0_numberTriggers_number">Value must be greater or equal to <code>0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="allOf_i0_numberTriggers_number">Value must be strictly greater than <code>0</code></span></p>
 
         
             </div>
@@ -390,7 +390,7 @@
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="allOf_i0_numberImagesPerTrigger_number">Value must be greater or equal to <code>0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="allOf_i0_numberImagesPerTrigger_number">Value must be strictly greater than <code>0</code></span></p>
 
         
             </div>
@@ -438,7 +438,7 @@
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="allOf_i0_numberLines_number">Value must be greater or equal to <code>0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="allOf_i0_numberLines_number">Value must be strictly greater than <code>0</code></span></p>
 
         
             </div>
@@ -480,7 +480,7 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#allOf_i0_meshRange" onclick="anchorLink('allOf_i0_meshRange')">meshRange</a></div><h4>Mesh Range</h4><span class="badge badge-dark value-type">Type: array</span><br/>
+    <a href="#allOf_i0_meshRange" onclick="anchorLink('allOf_i0_meshRange')">meshRange</a></div><h4>Mesh Range</h4><span class="badge badge-dark value-type">Type: array of number</span><br/>
 <span class="description"><p>Mesh scan range (horizontal, vertical) in mm</p>
 </span>
         
@@ -488,11 +488,9 @@
         
         
 
-        <p><span class="badge badge-light restriction min-items-restriction" id="allOf_i0_meshRange_minItems">Must contain a minimum of <code>2</code> items</span></p><p><span class="badge badge-light restriction max-items-restriction" id="allOf_i0_meshRange_maxItems">Must contain a maximum of <code>2</code> items</span></p> <span class="badge badge-info no-additional">No Additional Items</span><h4>Tuple Validation</h4>
-    
-    <h5>Item at 1 must be:</h5>
+        <p><span class="badge badge-light restriction min-items-restriction" id="allOf_i0_meshRange_minItems">Must contain a minimum of <code>2</code> items</span></p><p><span class="badge badge-light restriction max-items-restriction" id="allOf_i0_meshRange_maxItems">Must contain a maximum of <code>2</code> items</span></p> <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
     <div class="card">
-        <div class="card-body items-definition" id="allOf_i0_meshRange_items_i0">
+        <div class="card-body items-definition" id="allOf_i0_meshRange_items">
             
 
     <div class="breadcrumbs">root
@@ -523,61 +521,16 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#allOf_i0_meshRange_items_i0" onclick="anchorLink('allOf_i0_meshRange_items_i0')">meshRange item 0</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
+    <a href="#allOf_i0_meshRange_items" onclick="anchorLink('allOf_i0_meshRange_items')">meshRange items</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
 
         
 
         
-        
-
-        
-        </div>
-    </div>
-    
-    <h5>Item at 2 must be:</h5>
-    <div class="card">
-        <div class="card-body items-definition" id="allOf_i0_meshRange_items_i1">
-            
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0" onclick="anchorLink('allOf_i0')">CollectionSweepData</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0_meshRange" onclick="anchorLink('allOf_i0_meshRange')">meshRange</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0_meshRange_items_i1" onclick="anchorLink('allOf_i0_meshRange_items_i1')">meshRange item 1</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
-
-        
-
-        
-        
+        <p><span class="badge badge-light restriction numeric-restriction" id="allOf_i0_meshRange_items_number">Value must be strictly greater than <code>0</code></span></p>
 
         
         </div>
     </div>
-    
             </div>
         </div>
     </div>
@@ -623,7 +576,7 @@
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="allOf_i0_energy_number">Value must be greater or equal to <code>0.0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="allOf_i0_energy_number">Value must be strictly greater than <code>0.0</code></span></p>
 
         
             </div>
@@ -671,7 +624,7 @@
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="allOf_i0_transmission_number">Value must be greater or equal to <code>0.0</code> and lesser or equal to <code>100.0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="allOf_i0_transmission_number">Value must be strictly greater than <code>0.0</code> and lesser or equal to <code>100.0</code></span></p>
 
         
             </div>
@@ -809,7 +762,7 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#allOf_i0_beamPosition" onclick="anchorLink('allOf_i0_beamPosition')">beamPosition</a></div><h4>Beam Position</h4><span class="badge badge-dark value-type">Type: array</span><br/>
+    <a href="#allOf_i0_beamPosition" onclick="anchorLink('allOf_i0_beamPosition')">beamPosition</a></div><h4>Beam Position</h4><span class="badge badge-dark value-type">Type: array of number</span><br/>
 <span class="description"><p>x,y position of the beam on the detector in pixels</p>
 </span>
         
@@ -817,11 +770,9 @@
         
         
 
-        <p><span class="badge badge-light restriction min-items-restriction" id="allOf_i0_beamPosition_minItems">Must contain a minimum of <code>2</code> items</span></p><p><span class="badge badge-light restriction max-items-restriction" id="allOf_i0_beamPosition_maxItems">Must contain a maximum of <code>2</code> items</span></p> <span class="badge badge-info no-additional">No Additional Items</span><h4>Tuple Validation</h4>
-    
-    <h5>Item at 1 must be:</h5>
+        <p><span class="badge badge-light restriction min-items-restriction" id="allOf_i0_beamPosition_minItems">Must contain a minimum of <code>2</code> items</span></p><p><span class="badge badge-light restriction max-items-restriction" id="allOf_i0_beamPosition_maxItems">Must contain a maximum of <code>2</code> items</span></p> <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
     <div class="card">
-        <div class="card-body items-definition" id="allOf_i0_beamPosition_items_i0">
+        <div class="card-body items-definition" id="allOf_i0_beamPosition_items">
             
 
     <div class="breadcrumbs">root
@@ -852,7 +803,7 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#allOf_i0_beamPosition_items_i0" onclick="anchorLink('allOf_i0_beamPosition_items_i0')">beamPosition item 0</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
+    <a href="#allOf_i0_beamPosition_items" onclick="anchorLink('allOf_i0_beamPosition_items')">beamPosition items</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
 
         
 
@@ -862,51 +813,6 @@
         
         </div>
     </div>
-    
-    <h5>Item at 2 must be:</h5>
-    <div class="card">
-        <div class="card-body items-definition" id="allOf_i0_beamPosition_items_i1">
-            
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0" onclick="anchorLink('allOf_i0')">CollectionSweepData</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0_beamPosition" onclick="anchorLink('allOf_i0_beamPosition')">beamPosition</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0_beamPosition_items_i1" onclick="anchorLink('allOf_i0_beamPosition_items_i1')">beamPosition item 1</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
-
-        
-
-        
-        
-
-        
-        </div>
-    </div>
-    
             </div>
         </div>
     </div>
@@ -946,7 +852,7 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#allOf_i0_beamSize" onclick="anchorLink('allOf_i0_beamSize')">beamSize</a></div><h4>Beam Size</h4><span class="badge badge-dark value-type">Type: array</span><br/>
+    <a href="#allOf_i0_beamSize" onclick="anchorLink('allOf_i0_beamSize')">beamSize</a></div><h4>Beam Size</h4><span class="badge badge-dark value-type">Type: array of number</span><br/>
 <span class="description"><p>x,y size of the beam on the detector in mm</p>
 </span>
         
@@ -954,11 +860,9 @@
         
         
 
-        <p><span class="badge badge-light restriction min-items-restriction" id="allOf_i0_beamSize_minItems">Must contain a minimum of <code>2</code> items</span></p><p><span class="badge badge-light restriction max-items-restriction" id="allOf_i0_beamSize_maxItems">Must contain a maximum of <code>2</code> items</span></p> <span class="badge badge-info no-additional">No Additional Items</span><h4>Tuple Validation</h4>
-    
-    <h5>Item at 1 must be:</h5>
+        <p><span class="badge badge-light restriction min-items-restriction" id="allOf_i0_beamSize_minItems">Must contain a minimum of <code>2</code> items</span></p><p><span class="badge badge-light restriction max-items-restriction" id="allOf_i0_beamSize_maxItems">Must contain a maximum of <code>2</code> items</span></p> <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
     <div class="card">
-        <div class="card-body items-definition" id="allOf_i0_beamSize_items_i0">
+        <div class="card-body items-definition" id="allOf_i0_beamSize_items">
             
 
     <div class="breadcrumbs">root
@@ -989,61 +893,16 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#allOf_i0_beamSize_items_i0" onclick="anchorLink('allOf_i0_beamSize_items_i0')">beamSize item 0</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
+    <a href="#allOf_i0_beamSize_items" onclick="anchorLink('allOf_i0_beamSize_items')">beamSize items</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
 
         
 
         
-        
-
-        
-        </div>
-    </div>
-    
-    <h5>Item at 2 must be:</h5>
-    <div class="card">
-        <div class="card-body items-definition" id="allOf_i0_beamSize_items_i1">
-            
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0" onclick="anchorLink('allOf_i0')">CollectionSweepData</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0_beamSize" onclick="anchorLink('allOf_i0_beamSize')">beamSize</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0_beamSize_items_i1" onclick="anchorLink('allOf_i0_beamSize_items_i1')">beamSize item 1</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
-
-        
-
-        
-        
+        <p><span class="badge badge-light restriction numeric-restriction" id="allOf_i0_beamSize_items_number">Value must be strictly greater than <code>0</code></span></p>
 
         
         </div>
     </div>
-    
             </div>
         </div>
     </div>
@@ -1756,7 +1615,7 @@ out-of-order acquisition and interleaving.</p>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="allOf_i0_scans_items_numberImages_number">Value must be greater or equal to <code>0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="allOf_i0_scans_items_numberImages_number">Value must be strictly greater than <code>0</code></span></p>
 
         
             </div>

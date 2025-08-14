@@ -7,7 +7,7 @@ from typing import Optional
 
 from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import Field, conint
+from pydantic import Field, PositiveInt
 
 
 class PinData(BaseModel):
@@ -16,7 +16,7 @@ class PinData(BaseModel):
     """
 
     barcode: Optional[str] = Field(None, description="The Pin barcode or RFID code")
-    position_in_puck: conint(ge=1) = Field(
+    position_in_puck: PositiveInt = Field(
         ...,
         alias="positionInPuck",
         description="The puck position occupied by the pin. This should be validated against the puck's numberPositions property.",

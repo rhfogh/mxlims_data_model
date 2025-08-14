@@ -8,25 +8,20 @@
             "description": "lower, higher resolution limit of shell, matches mmCIF items reflns_shell.d_res_low (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.d_res_low.html) and reflns_shell.d_res_high (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.d_res_high.html)",
             "maxItems": 2,
             "minItems": 2,
-            "prefixItems": [
-                {
-                    "type": "number"
-                },
-                {
-                    "type": "number"
-                }
-            ],
+            "items": {
+                "type": "number"
+            },
             "title": "Resolution Limits",
             "type": "array"
         },
         "numberObservations": {
-            "minimum": 0,
+            "exclusiveMinimum": 0,
             "type": "integer",
             "description": "total number of observations, matches mmCIF item reflns_shell.number_measured_all (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.number_measured_all.html)",
             "title": "Number Observations"
         },
         "numberObservationsUnique": {
-            "minimum": 0,
+            "exclusiveMinimum": 0,
             "type": "integer",
             "description": "total number of unique observations, matches mmCIF item reflns_shell.number_unique_all (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.number_unique_all.html)",
             "title": "Number Observations Unique"

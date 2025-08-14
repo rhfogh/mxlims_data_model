@@ -8,36 +8,20 @@
             "description": "Eigenvalues of tensor",
             "maxItems": 3,
             "minItems": 3,
-            "prefixItems": [
-                {
-                    "type": "number"
-                },
-                {
-                    "type": "number"
-                },
-                {
-                    "type": "number"
-                }
-            ],
+            "items": {
+                "type": "number"
+            },
             "title": "Eigenvalues",
             "type": "array"
         },
         "eigenvectors": {
-            "description": "Eigenvectors (unit vectors) of tensor, in same order as eigenvalues",
+            "description": "Eigenvectors (3D unit vectors) of tensor, in same order as eigenvalues",
+            "maxItems": 3,
+            "minItems": 3,
             "items": {
-                "maxItems": 3,
-                "minItems": 3,
-                "prefixItems": [
-                    {
-                        "type": "number"
-                    },
-                    {
-                        "type": "number"
-                    },
-                    {
-                        "type": "number"
-                    }
-                ],
+                "items": {
+                    "type": "number"
+                },
                 "type": "array"
             },
             "title": "Eigenvectors",

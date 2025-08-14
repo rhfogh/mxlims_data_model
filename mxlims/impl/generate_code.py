@@ -100,6 +100,8 @@ def generate_mxlims(dirname: Optional[str] = None) -> None :
         "--capitalise-enum-members",
         "--use-title-as-name",
         "--use-one-literal-as-default",
+        "--use-non-positive-negative-number-constrained-types",
+        "--collapse-root-models",
         "--input",
         "mxlims/schemas",
         "--output",

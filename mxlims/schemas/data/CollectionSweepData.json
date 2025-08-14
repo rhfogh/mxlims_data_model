@@ -11,19 +11,19 @@
             "title": "Sweep Type"
         },
         "exposureTime": {
-            "minimum": 0.0,
+            "exclusiveMinimum": 0.0,
             "type": "number",
             "description": "Exposure time in seconds",
             "title": "Exposure Time"
         },
         "imageWidth": {
-            "minimum": 0.0,
+            "exclusiveMinimum": 0.0,
             "type": "number",
             "description": "Width of a single image, along scanAxis. For rotational axes in degrees, for translations in mm.",
             "title": "Image Width"
         },
         "numberImages": {
-            "minimum": 0,
+            "exclusiveMinimum": 0,
             "type": "integer",
             "description": "Number of images from start to end of sweep.Defines image numbering and final axis position. NB Only certain parts of the sweep may be acquired (see 'scans'),so the total number of images acquired may be less.",
             "title": "Number Images"
@@ -34,19 +34,19 @@
             "title": "Overlap"
         },
         "numberTriggers": {
-            "minimum": 0,
+            "exclusiveMinimum": 0,
             "type": "integer",
             "description": "Number of triggers. Instruction to detector - does not modify effect of other parameters.",
             "title": "Number Triggers"
         },
         "numberImagesPerTrigger": {
-            "minimum": 0,
+            "exclusiveMinimum": 0,
             "type": "integer",
             "description": "Number of images per trigger. Instruction to detector - does not modify effect of other parameters.",
             "title": "Number Images Per Trigger"
         },
         "numberLines": {
-            "minimum": 0,
+            "exclusiveMinimum": 0,
             "type": "integer",
             "description": "Number of scanned lines used for mesh scans. Must divide numberImages",
             "title": "Number Lines"
@@ -54,27 +54,23 @@
         "meshRange": {
             "maxItems": 2,
             "minItems": 2,
-            "prefixItems": [
-                {
-                    "type": "number"
-                },
-                {
-                    "type": "number"
-                }
-            ],
+            "items": {
+                "type": "number",
+                "exclusiveMinimum": 0
+            },
             "type": "array",
             "description": "Mesh scan range (horizontal, vertical) in mm",
             "title": "Mesh Range"
         },
         "energy": {
-            "minimum": 0.0,
+            "exclusiveMinimum": 0.0,
             "type": "number",
             "description": "Energy of the beam in eV",
             "title": "Energy"
         },
         "transmission": {
             "maximum": 100.0,
-            "minimum": 0.0,
+            "exclusiveMinimum": 0.0,
             "type": "number",
             "description": "Transmission setting in %",
             "title": "Transmission"
@@ -92,14 +88,9 @@
         "beamPosition": {
             "maxItems": 2,
             "minItems": 2,
-            "prefixItems": [
-                {
-                    "type": "number"
-                },
-                {
-                    "type": "number"
-                }
-            ],
+            "items": {
+                "type": "number"
+            },
             "type": "array",
             "description": "x,y position of the beam on the detector in pixels",
             "title": "Beam Position"
@@ -107,14 +98,10 @@
         "beamSize": {
             "maxItems": 2,
             "minItems": 2,
-            "prefixItems": [
-                {
-                    "type": "number"
-                },
-                {
-                    "type": "number"
-                }
-            ],
+            "items": {
+                "type": "number",
+                "exclusiveMinimum": 0
+            },
             "type": "array",
             "description": "x,y size of the beam on the detector in mm",
             "title": "Beam Size"

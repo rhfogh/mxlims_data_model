@@ -44,7 +44,7 @@
             "description": "Wavelengths (A) at which reflections were measured",
             "items": {
                 "type": "number",
-                "minimum": 0.0
+                "exclusiveMinimum": 0.0
             },
             "title": "Wavelengths",
             "type": "array"
@@ -77,14 +77,9 @@
         "hIndexRange": {
             "maxItems": 2,
             "minItems": 2,
-            "prefixItems": [
-                {
-                    "type": "integer"
-                },
-                {
-                    "type": "integer"
-                }
-            ],
+            "items": {
+                "type": "integer"
+            },
             "type": "array",
             "description": "low and high limit on Miller index h, matches mmCIF item reflns.limit_h_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_h_min.html) and reflns.limit_h_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_h_max.html)",
             "title": "H Index Range"
@@ -92,14 +87,9 @@
         "kIndexRange": {
             "maxItems": 2,
             "minItems": 2,
-            "prefixItems": [
-                {
-                    "type": "integer"
-                },
-                {
-                    "type": "integer"
-                }
-            ],
+            "items": {
+                "type": "integer"
+            },
             "type": "array",
             "description": "low and high limit on Miller index k, matches mmCIF item reflns.limit_k_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_k_min.html) and reflns.limit_k_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_k_max.html)",
             "title": "K Index Range"
@@ -107,14 +97,9 @@
         "lIndexRange": {
             "maxItems": 2,
             "minItems": 2,
-            "prefixItems": [
-                {
-                    "type": "integer"
-                },
-                {
-                    "type": "integer"
-                }
-            ],
+            "items": {
+                "type": "integer"
+            },
             "type": "array",
             "description": "low and high limit on Miller index l, matches mmCIF item reflns.limit_l_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_l_min.html) and reflns.limit_l_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_l_max.html)",
             "title": "L Index Range"
@@ -201,14 +186,10 @@
             "items": {
                 "maxItems": 2,
                 "minItems": 2,
-                "prefixItems": [
-                    {
-                        "type": "number"
-                    },
-                    {
-                        "type": "number"
-                    }
-                ],
+                "items": {
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                },
                 "type": "array"
             },
             "title": "Resolution Rings Detected",
@@ -219,14 +200,10 @@
             "items": {
                 "maxItems": 2,
                 "minItems": 2,
-                "prefixItems": [
-                    {
-                        "type": "number"
-                    },
-                    {
-                        "type": "number"
-                    }
-                ],
+                "items": {
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                },
                 "type": "array"
             },
             "title": "Resolution Rings Excluded",

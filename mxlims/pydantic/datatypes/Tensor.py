@@ -18,15 +18,17 @@ class Tensor(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    eigenvalues: List = Field(
+    eigenvalues: List[float] = Field(
         ...,
         description="Eigenvalues of tensor",
         max_length=3,
         min_length=3,
         title="Eigenvalues",
     )
-    eigenvectors: List[List] = Field(
+    eigenvectors: List[List[float]] = Field(
         ...,
-        description="Eigenvectors (unit vectors) of tensor, in same order as eigenvalues",
+        description="Eigenvectors (3D unit vectors) of tensor, in same order as eigenvalues",
+        max_length=3,
+        min_length=3,
         title="Eigenvectors",
     )

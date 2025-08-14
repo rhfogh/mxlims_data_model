@@ -7,7 +7,7 @@ from typing import Optional
 
 from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import Field, conint
+from pydantic import Field, PositiveInt
 
 
 class PuckData(BaseModel):
@@ -16,13 +16,13 @@ class PuckData(BaseModel):
     """
 
     barcode: Optional[str] = Field(None, description="The Puck barcode or RFID code")
-    position_in_dewar: Optional[conint(ge=1)] = Field(
+    position_in_dewar: Optional[PositiveInt] = Field(
         None,
         alias="positionInDewar",
         description="The Dewar position occupied by the puck. This should be validated against the Dewar's numberPositions property.",
         examples=[10],
     )
-    number_positions: conint(ge=1) = Field(
+    number_positions: PositiveInt = Field(
         ...,
         alias="numberPositions",
         description="The number of pin positions available.",

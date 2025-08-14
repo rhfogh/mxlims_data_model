@@ -7,7 +7,14 @@ from typing import List, Optional
 
 from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import Field, PositiveInt, confloat, conint
+from pydantic import (
+    Field,
+    NonNegativeInt,
+    PositiveFloat,
+    PositiveInt,
+    RootModel,
+    confloat,
+)
 
 from ..datatypes.PdbxSignalType import PdbxSignalType
 from ..datatypes.ReflectionBinningMode import ReflectionBinningMode
@@ -52,7 +59,7 @@ class ReflectionSetData(BaseModel):
         alias="diffractionLimitsEstimated",
         description="Principal axes lengths (A) of ellipsoid describing reciprocal space region containing observable reflections, regardless whether all have actually been observed. Matches mmCIF items reflns.pdbx_aniso_diffraction_limit_{1,2,3} (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_aniso_diffraction_limit_1.html)",
     )
-    wavelengths: Optional[List[confloat(ge=0.0)]] = Field(
+    wavelengths: Optional[List[PositiveFloat]] = Field(
         None,
         description="Wavelengths (A) at which reflections were measured",
         title="Wavelengths",
@@ -68,19 +75,19 @@ class ReflectionSetData(BaseModel):
         alias="anisoBtensor",
         description="Anisotropic B tensor, matching mmCIF items reflns.pdbx_aniso_B_tensor_eigenvalue_{1,2,3} and reflns.pdbx_aniso_B_tensor_eigenvector_{1,2,3}_ortho[{1,2,3}] (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_aniso_B_tensor_eigenvalue_1.html)",
     )
-    number_reflections: Optional[conint(ge=0)] = Field(
+    number_reflections: Optional[NonNegativeInt] = Field(
         None,
         alias="numberReflections",
         description="Total number of measured reflections, matches mmCIF item reflns.pdbx_number_measured_all (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_number_measured_all.html)",
         title="Number of Reflections",
     )
-    number_reflections_unique: Optional[conint(ge=0)] = Field(
+    number_reflections_unique: Optional[NonNegativeInt] = Field(
         None,
         alias="numberReflectionsUnique",
         description="Total number of unique reflections, matches mmCIF item reflns.number_obs (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.number_obs.html)",
         title="Number Reflections Unique",
     )
-    h_index_range: Optional[List] = Field(
+    h_index_range: Optional[List[int]] = Field(
         None,
         alias="hIndexRange",
         description="low and high limit on Miller index h, matches mmCIF item reflns.limit_h_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_h_min.html) and reflns.limit_h_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_h_max.html)",
@@ -88,7 +95,7 @@ class ReflectionSetData(BaseModel):
         min_length=2,
         title="H Index Range",
     )
-    k_index_range: Optional[List] = Field(
+    k_index_range: Optional[List[int]] = Field(
         None,
         alias="kIndexRange",
         description="low and high limit on Miller index k, matches mmCIF item reflns.limit_k_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_k_min.html) and reflns.limit_k_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_k_max.html)",
@@ -96,7 +103,7 @@ class ReflectionSetData(BaseModel):
         min_length=2,
         title="K Index Range",
     )
-    l_index_range: Optional[List] = Field(
+    l_index_range: Optional[List[int]] = Field(
         None,
         alias="lIndexRange",
         description="low and high limit on Miller index l, matches mmCIF item reflns.limit_l_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_l_min.html) and reflns.limit_l_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_l_max.html)",
@@ -164,13 +171,13 @@ class ReflectionSetData(BaseModel):
         description="Number of reflections per bin per sweep (in multi-sweep experiment)",
         title="Reflections Per Bin Per Sweep",
     )
-    resolution_rings_detected: Optional[List[List]] = Field(
+    resolution_rings_detected: Optional[List[List[PositiveFloat]]] = Field(
         None,
         alias="resolutionRingsDetected",
         description="Resolution rings detected as originating from ice, powder diffraction etc.; given as a pair of floats (A) with decreasing value, i.e. low- and high-resolution limits",
         title="Resolution Rings Detected",
     )
-    resolution_rings_excluded: Optional[List[List]] = Field(
+    resolution_rings_excluded: Optional[List[List[PositiveFloat]]] = Field(
         None,
         alias="resolutionRingsExcluded",
         description="Resolution rings excluded from calculation; given as a pair of floats (A) with decreasing value, i.e. low- and high-resolution limits)",

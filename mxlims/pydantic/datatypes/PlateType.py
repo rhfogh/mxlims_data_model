@@ -7,7 +7,7 @@ from typing import Optional
 
 from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import ConfigDict, Field, conint
+from pydantic import ConfigDict, Field, PositiveInt
 
 
 class PlateType(BaseModel):
@@ -23,17 +23,17 @@ class PlateType(BaseModel):
         description="The name of the plate type.",
         examples=["Greiner 1-drop square"],
     )
-    number_rows: conint(ge=1) = Field(
+    number_rows: PositiveInt = Field(
         ...,
         alias="numberRows",
         description="The number of rows in the plate. For a typical 96-well plate, this will be 8.",
     )
-    number_columns: conint(ge=1) = Field(
+    number_columns: PositiveInt = Field(
         ...,
         alias="numberColumns",
         description="The number of columns in the plate. For a typical 96-well plate, this will be 12.",
     )
-    number_sub_positions: conint(ge=1) = Field(
+    number_sub_positions: PositiveInt = Field(
         ...,
         alias="numberSubPositions",
         description="The number of sub-wells in the plate. For in-situ plates with no dividers, this should be the actual number of drops dispensed.",

@@ -6,37 +6,37 @@
     "properties": {
         "a": {
             "description": "A axis length (A)",
-            "minimum": 0.0,
+            "exclusiveMinimum": 0.0,
             "title": "A",
             "type": "number"
         },
         "b": {
             "description": "B axis length (A)",
-            "minimum": 0.0,
+            "exclusiveMinimum": 0.0,
             "title": "B",
             "type": "number"
         },
         "c": {
             "description": "C axis length (A)",
-            "minimum": 0.0,
+            "exclusiveMinimum": 0.0,
             "title": "C",
             "type": "number"
         },
         "alpha": {
             "description": "alpha angle (degree)",
-            "minimum": 0.0,
+            "exclusiveMinimum": 0.0,
             "title": "Alpha",
             "type": "number"
         },
         "beta": {
             "description": "beta angle (degree)",
-            "minimum": 0.0,
+            "exclusiveMinimum": 0.0,
             "title": "Beta",
             "type": "number"
         },
         "gamma": {
             "description": "gamma angle (degree)",
-            "minimum": 0.0,
+            "exclusiveMinimum": 0.0,
             "title": "Gamma",
             "type": "number"
         }

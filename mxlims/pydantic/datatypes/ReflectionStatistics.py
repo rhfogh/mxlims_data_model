@@ -7,7 +7,14 @@ from typing import List, Optional
 
 from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import ConfigDict, Field, confloat, conint
+from pydantic import (
+    ConfigDict,
+    Field,
+    NonNegativeFloat,
+    NonNegativeInt,
+    PositiveInt,
+    confloat,
+)
 
 
 class ReflectionStatistics(BaseModel):
@@ -18,7 +25,7 @@ class ReflectionStatistics(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    resolution_limits: List = Field(
+    resolution_limits: List[float] = Field(
         ...,
         alias="resolutionLimits",
         description="lower, higher resolution limit of shell, matches mmCIF items reflns_shell.d_res_low (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.d_res_low.html) and reflns_shell.d_res_high (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.d_res_high.html)",
@@ -26,37 +33,37 @@ class ReflectionStatistics(BaseModel):
         min_length=2,
         title="Resolution Limits",
     )
-    number_observations: Optional[conint(ge=0)] = Field(
+    number_observations: Optional[PositiveInt] = Field(
         None,
         alias="numberObservations",
         description="total number of observations, matches mmCIF item reflns_shell.number_measured_all (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.number_measured_all.html)",
         title="Number Observations",
     )
-    number_observations_unique: Optional[conint(ge=0)] = Field(
+    number_observations_unique: Optional[PositiveInt] = Field(
         None,
         alias="numberObservationsUnique",
         description="total number of unique observations, matches mmCIF item reflns_shell.number_unique_all (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.number_unique_all.html)",
         title="Number Observations Unique",
     )
-    number_reflections_rejected: Optional[conint(ge=0)] = Field(
+    number_reflections_rejected: Optional[NonNegativeInt] = Field(
         None,
         alias="numberReflectionsRejected",
         description="Number of rejected reflections within this resolution shell, matches mmCIF item reflns_shell.pdbx_rejects.html (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_rejects.html)",
         title="Number Reflections Rejected",
     )
-    chi_squared: Optional[confloat(ge=0.0)] = Field(
+    chi_squared: Optional[NonNegativeFloat] = Field(
         None,
         alias="chiSquared",
         description="Chi-squared statistic for reflection shell, matches mmCIF item reflns_shell.pdbx_chi_squared (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_chi_squared.html)",
         title="Chi Squared",
     )
-    r_merge: Optional[confloat(ge=0.0)] = Field(
+    r_merge: Optional[NonNegativeFloat] = Field(
         None, alias="R_merge", description="R merge", title="R(merge)"
     )
-    r_meas: Optional[confloat(ge=0.0)] = Field(
+    r_meas: Optional[NonNegativeFloat] = Field(
         None, alias="R_meas", description="R meas", title="R_meas"
     )
-    r_pim: Optional[confloat(ge=0.0)] = Field(
+    r_pim: Optional[NonNegativeFloat] = Field(
         None, alias="R_pim", description="R pim", title="R_pim"
     )
     i_over_sig_i: Optional[float] = Field(
@@ -86,7 +93,7 @@ class ReflectionStatistics(BaseModel):
         description="CompletenessEllipsoidal",
         title="CompletenessEllipsoidal",
     )
-    redundancy: Optional[confloat(ge=0.0)] = Field(
+    redundancy: Optional[NonNegativeFloat] = Field(
         None, alias="Redundancy", description="Redundancy", title="Redundancy"
     )
     completeness_ano: Optional[confloat(ge=0.0, le=100.0)] = Field(
@@ -107,6 +114,6 @@ class ReflectionStatistics(BaseModel):
         description="CompletenessAnoEllipsoidal",
         title="CompletenessAnoEllipsoidal",
     )
-    redundancy_ano: Optional[confloat(ge=0.0)] = Field(
+    redundancy_ano: Optional[NonNegativeFloat] = Field(
         None, alias="RedundancyAno", description="RedundancyAno", title="RedundancyAno"
     )
