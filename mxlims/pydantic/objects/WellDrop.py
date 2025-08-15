@@ -70,8 +70,8 @@ class WellDrop(WellDropData, LogisticalSample):
     @datasets.setter
     def datasets(self, values: list[Union[CollectionSweep, ReflectionSet]]):
         """setter for WellDrop.datasets list"""
-        from .CollectionSweep import CollectionSweep
         from .ReflectionSet import ReflectionSet
+        from .CollectionSweep import CollectionSweep
 
         for obj in values:
             if not isinstance(obj, Union[CollectionSweep, ReflectionSet]):
@@ -86,8 +86,8 @@ class WellDrop(WellDropData, LogisticalSample):
     @jobs.setter
     def jobs(self, values: list[Union[MxExperiment, MxProcessing]]):
         """setter for WellDrop.jobs list"""
-        from .MxProcessing import MxProcessing
         from .MxExperiment import MxExperiment
+        from .MxProcessing import MxProcessing
 
         for obj in values:
             if not isinstance(obj, Union[MxExperiment, MxProcessing]):
