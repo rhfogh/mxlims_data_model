@@ -10,6 +10,9 @@
 - Fixed field generation script to deal with overridden fields and 'annotation'
 - Removed duplicate 'annotation' fields from subclasses
 - Added docs/examples/mapping<version>.xlsx file
+- Removed 'no-added-properties' from objects to avoid document breakage
+- Refactored handling of numerical types (e.g. minimum 1->exclusiveMinimum 0)
+  and list types, and changed code generation to improve Pydantic type annotations
 
 ## Changes in version 0.6.6
 
