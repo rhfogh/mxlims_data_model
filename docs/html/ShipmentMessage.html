@@ -684,7 +684,7 @@
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="CollectionSweep_additionalProperties_allOf_i0_exposureTime_number">Value must be greater or equal to <code>0.0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="CollectionSweep_additionalProperties_allOf_i0_exposureTime_number">Value must be strictly greater than <code>0.0</code></span></p>
 
         
             </div>
@@ -746,7 +746,7 @@
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="CollectionSweep_additionalProperties_allOf_i0_imageWidth_number">Value must be greater or equal to <code>0.0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="CollectionSweep_additionalProperties_allOf_i0_imageWidth_number">Value must be strictly greater than <code>0.0</code></span></p>
 
         
             </div>
@@ -808,7 +808,7 @@
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="CollectionSweep_additionalProperties_allOf_i0_numberImages_number">Value must be greater or equal to <code>0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="CollectionSweep_additionalProperties_allOf_i0_numberImages_number">Value must be strictly greater than <code>0</code></span></p>
 
         
             </div>
@@ -932,7 +932,7 @@
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="CollectionSweep_additionalProperties_allOf_i0_numberTriggers_number">Value must be greater or equal to <code>0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="CollectionSweep_additionalProperties_allOf_i0_numberTriggers_number">Value must be strictly greater than <code>0</code></span></p>
 
         
             </div>
@@ -994,7 +994,7 @@
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="CollectionSweep_additionalProperties_allOf_i0_numberImagesPerTrigger_number">Value must be greater or equal to <code>0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="CollectionSweep_additionalProperties_allOf_i0_numberImagesPerTrigger_number">Value must be strictly greater than <code>0</code></span></p>
 
         
             </div>
@@ -1056,7 +1056,7 @@
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="CollectionSweep_additionalProperties_allOf_i0_numberLines_number">Value must be greater or equal to <code>0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="CollectionSweep_additionalProperties_allOf_i0_numberLines_number">Value must be strictly greater than <code>0</code></span></p>
 
         
             </div>
@@ -1112,7 +1112,7 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#CollectionSweep_additionalProperties_allOf_i0_meshRange" onclick="anchorLink('CollectionSweep_additionalProperties_allOf_i0_meshRange')">meshRange</a></div><h4>Mesh Range</h4><span class="badge badge-dark value-type">Type: array</span><br/>
+    <a href="#CollectionSweep_additionalProperties_allOf_i0_meshRange" onclick="anchorLink('CollectionSweep_additionalProperties_allOf_i0_meshRange')">meshRange</a></div><h4>Mesh Range</h4><span class="badge badge-dark value-type">Type: array of number</span><br/>
 <span class="description"><p>Mesh scan range (horizontal, vertical) in mm</p>
 </span>
         
@@ -1120,11 +1120,9 @@
         
         
 
-        <p><span class="badge badge-light restriction min-items-restriction" id="CollectionSweep_additionalProperties_allOf_i0_meshRange_minItems">Must contain a minimum of <code>2</code> items</span></p><p><span class="badge badge-light restriction max-items-restriction" id="CollectionSweep_additionalProperties_allOf_i0_meshRange_maxItems">Must contain a maximum of <code>2</code> items</span></p> <span class="badge badge-info no-additional">No Additional Items</span><h4>Tuple Validation</h4>
-    
-    <h5>Item at 1 must be:</h5>
+        <p><span class="badge badge-light restriction min-items-restriction" id="CollectionSweep_additionalProperties_allOf_i0_meshRange_minItems">Must contain a minimum of <code>2</code> items</span></p><p><span class="badge badge-light restriction max-items-restriction" id="CollectionSweep_additionalProperties_allOf_i0_meshRange_maxItems">Must contain a maximum of <code>2</code> items</span></p> <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
     <div class="card">
-        <div class="card-body items-definition" id="CollectionSweep_additionalProperties_allOf_i0_meshRange_items_i0">
+        <div class="card-body items-definition" id="CollectionSweep_additionalProperties_allOf_i0_meshRange_items">
             
 
     <div class="breadcrumbs">root
@@ -1169,75 +1167,16 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#CollectionSweep_additionalProperties_allOf_i0_meshRange_items_i0" onclick="anchorLink('CollectionSweep_additionalProperties_allOf_i0_meshRange_items_i0')">meshRange item 0</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
+    <a href="#CollectionSweep_additionalProperties_allOf_i0_meshRange_items" onclick="anchorLink('CollectionSweep_additionalProperties_allOf_i0_meshRange_items')">meshRange items</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
 
         
 
         
-        
-
-        
-        </div>
-    </div>
-    
-    <h5>Item at 2 must be:</h5>
-    <div class="card">
-        <div class="card-body items-definition" id="CollectionSweep_additionalProperties_allOf_i0_meshRange_items_i1">
-            
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#CollectionSweep" onclick="anchorLink('CollectionSweep')">CollectionSweep</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#CollectionSweep_additionalProperties" onclick="anchorLink('CollectionSweep_additionalProperties')">CollectionSweep</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#CollectionSweep_additionalProperties_allOf" onclick="anchorLink('CollectionSweep_additionalProperties_allOf')">allOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#CollectionSweep_additionalProperties_allOf_i0" onclick="anchorLink('CollectionSweep_additionalProperties_allOf_i0')">CollectionSweepData</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#CollectionSweep_additionalProperties_allOf_i0_meshRange" onclick="anchorLink('CollectionSweep_additionalProperties_allOf_i0_meshRange')">meshRange</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#CollectionSweep_additionalProperties_allOf_i0_meshRange_items_i1" onclick="anchorLink('CollectionSweep_additionalProperties_allOf_i0_meshRange_items_i1')">meshRange item 1</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
-
-        
-
-        
-        
+        <p><span class="badge badge-light restriction numeric-restriction" id="CollectionSweep_additionalProperties_allOf_i0_meshRange_items_number">Value must be strictly greater than <code>0</code></span></p>
 
         
         </div>
     </div>
-    
             </div>
         </div>
     </div>
@@ -1297,7 +1236,7 @@
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="CollectionSweep_additionalProperties_allOf_i0_energy_number">Value must be greater or equal to <code>0.0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="CollectionSweep_additionalProperties_allOf_i0_energy_number">Value must be strictly greater than <code>0.0</code></span></p>
 
         
             </div>
@@ -1359,7 +1298,7 @@
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="CollectionSweep_additionalProperties_allOf_i0_transmission_number">Value must be greater or equal to <code>0.0</code> and lesser or equal to <code>100.0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="CollectionSweep_additionalProperties_allOf_i0_transmission_number">Value must be strictly greater than <code>0.0</code> and lesser or equal to <code>100.0</code></span></p>
 
         
             </div>
@@ -1539,7 +1478,7 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#CollectionSweep_additionalProperties_allOf_i0_beamPosition" onclick="anchorLink('CollectionSweep_additionalProperties_allOf_i0_beamPosition')">beamPosition</a></div><h4>Beam Position</h4><span class="badge badge-dark value-type">Type: array</span><br/>
+    <a href="#CollectionSweep_additionalProperties_allOf_i0_beamPosition" onclick="anchorLink('CollectionSweep_additionalProperties_allOf_i0_beamPosition')">beamPosition</a></div><h4>Beam Position</h4><span class="badge badge-dark value-type">Type: array of number</span><br/>
 <span class="description"><p>x,y position of the beam on the detector in pixels</p>
 </span>
         
@@ -1547,11 +1486,9 @@
         
         
 
-        <p><span class="badge badge-light restriction min-items-restriction" id="CollectionSweep_additionalProperties_allOf_i0_beamPosition_minItems">Must contain a minimum of <code>2</code> items</span></p><p><span class="badge badge-light restriction max-items-restriction" id="CollectionSweep_additionalProperties_allOf_i0_beamPosition_maxItems">Must contain a maximum of <code>2</code> items</span></p> <span class="badge badge-info no-additional">No Additional Items</span><h4>Tuple Validation</h4>
-    
-    <h5>Item at 1 must be:</h5>
+        <p><span class="badge badge-light restriction min-items-restriction" id="CollectionSweep_additionalProperties_allOf_i0_beamPosition_minItems">Must contain a minimum of <code>2</code> items</span></p><p><span class="badge badge-light restriction max-items-restriction" id="CollectionSweep_additionalProperties_allOf_i0_beamPosition_maxItems">Must contain a maximum of <code>2</code> items</span></p> <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
     <div class="card">
-        <div class="card-body items-definition" id="CollectionSweep_additionalProperties_allOf_i0_beamPosition_items_i0">
+        <div class="card-body items-definition" id="CollectionSweep_additionalProperties_allOf_i0_beamPosition_items">
             
 
     <div class="breadcrumbs">root
@@ -1596,7 +1533,7 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#CollectionSweep_additionalProperties_allOf_i0_beamPosition_items_i0" onclick="anchorLink('CollectionSweep_additionalProperties_allOf_i0_beamPosition_items_i0')">beamPosition item 0</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
+    <a href="#CollectionSweep_additionalProperties_allOf_i0_beamPosition_items" onclick="anchorLink('CollectionSweep_additionalProperties_allOf_i0_beamPosition_items')">beamPosition items</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
 
         
 
@@ -1606,65 +1543,6 @@
         
         </div>
     </div>
-    
-    <h5>Item at 2 must be:</h5>
-    <div class="card">
-        <div class="card-body items-definition" id="CollectionSweep_additionalProperties_allOf_i0_beamPosition_items_i1">
-            
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#CollectionSweep" onclick="anchorLink('CollectionSweep')">CollectionSweep</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#CollectionSweep_additionalProperties" onclick="anchorLink('CollectionSweep_additionalProperties')">CollectionSweep</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#CollectionSweep_additionalProperties_allOf" onclick="anchorLink('CollectionSweep_additionalProperties_allOf')">allOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#CollectionSweep_additionalProperties_allOf_i0" onclick="anchorLink('CollectionSweep_additionalProperties_allOf_i0')">CollectionSweepData</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#CollectionSweep_additionalProperties_allOf_i0_beamPosition" onclick="anchorLink('CollectionSweep_additionalProperties_allOf_i0_beamPosition')">beamPosition</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#CollectionSweep_additionalProperties_allOf_i0_beamPosition_items_i1" onclick="anchorLink('CollectionSweep_additionalProperties_allOf_i0_beamPosition_items_i1')">beamPosition item 1</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
-
-        
-
-        
-        
-
-        
-        </div>
-    </div>
-    
             </div>
         </div>
     </div>
@@ -1718,7 +1596,7 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#CollectionSweep_additionalProperties_allOf_i0_beamSize" onclick="anchorLink('CollectionSweep_additionalProperties_allOf_i0_beamSize')">beamSize</a></div><h4>Beam Size</h4><span class="badge badge-dark value-type">Type: array</span><br/>
+    <a href="#CollectionSweep_additionalProperties_allOf_i0_beamSize" onclick="anchorLink('CollectionSweep_additionalProperties_allOf_i0_beamSize')">beamSize</a></div><h4>Beam Size</h4><span class="badge badge-dark value-type">Type: array of number</span><br/>
 <span class="description"><p>x,y size of the beam on the detector in mm</p>
 </span>
         
@@ -1726,11 +1604,9 @@
         
         
 
-        <p><span class="badge badge-light restriction min-items-restriction" id="CollectionSweep_additionalProperties_allOf_i0_beamSize_minItems">Must contain a minimum of <code>2</code> items</span></p><p><span class="badge badge-light restriction max-items-restriction" id="CollectionSweep_additionalProperties_allOf_i0_beamSize_maxItems">Must contain a maximum of <code>2</code> items</span></p> <span class="badge badge-info no-additional">No Additional Items</span><h4>Tuple Validation</h4>
-    
-    <h5>Item at 1 must be:</h5>
+        <p><span class="badge badge-light restriction min-items-restriction" id="CollectionSweep_additionalProperties_allOf_i0_beamSize_minItems">Must contain a minimum of <code>2</code> items</span></p><p><span class="badge badge-light restriction max-items-restriction" id="CollectionSweep_additionalProperties_allOf_i0_beamSize_maxItems">Must contain a maximum of <code>2</code> items</span></p> <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
     <div class="card">
-        <div class="card-body items-definition" id="CollectionSweep_additionalProperties_allOf_i0_beamSize_items_i0">
+        <div class="card-body items-definition" id="CollectionSweep_additionalProperties_allOf_i0_beamSize_items">
             
 
     <div class="breadcrumbs">root
@@ -1775,75 +1651,16 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#CollectionSweep_additionalProperties_allOf_i0_beamSize_items_i0" onclick="anchorLink('CollectionSweep_additionalProperties_allOf_i0_beamSize_items_i0')">beamSize item 0</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
+    <a href="#CollectionSweep_additionalProperties_allOf_i0_beamSize_items" onclick="anchorLink('CollectionSweep_additionalProperties_allOf_i0_beamSize_items')">beamSize items</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
 
         
 
         
-        
-
-        
-        </div>
-    </div>
-    
-    <h5>Item at 2 must be:</h5>
-    <div class="card">
-        <div class="card-body items-definition" id="CollectionSweep_additionalProperties_allOf_i0_beamSize_items_i1">
-            
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#CollectionSweep" onclick="anchorLink('CollectionSweep')">CollectionSweep</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#CollectionSweep_additionalProperties" onclick="anchorLink('CollectionSweep_additionalProperties')">CollectionSweep</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#CollectionSweep_additionalProperties_allOf" onclick="anchorLink('CollectionSweep_additionalProperties_allOf')">allOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#CollectionSweep_additionalProperties_allOf_i0" onclick="anchorLink('CollectionSweep_additionalProperties_allOf_i0')">CollectionSweepData</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#CollectionSweep_additionalProperties_allOf_i0_beamSize" onclick="anchorLink('CollectionSweep_additionalProperties_allOf_i0_beamSize')">beamSize</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#CollectionSweep_additionalProperties_allOf_i0_beamSize_items_i1" onclick="anchorLink('CollectionSweep_additionalProperties_allOf_i0_beamSize_items_i1')">beamSize item 1</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
-
-        
-
-        
-        
+        <p><span class="badge badge-light restriction numeric-restriction" id="CollectionSweep_additionalProperties_allOf_i0_beamSize_items_number">Value must be strictly greater than <code>0</code></span></p>
 
         
         </div>
     </div>
-    
             </div>
         </div>
     </div>
@@ -2738,7 +2555,7 @@ out-of-order acquisition and interleaving.</p>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="CollectionSweep_additionalProperties_allOf_i0_scans_items_numberImages_number">Value must be greater or equal to <code>0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="CollectionSweep_additionalProperties_allOf_i0_scans_items_numberImages_number">Value must be strictly greater than <code>0</code></span></p>
 
         
             </div>
@@ -6143,7 +5960,7 @@ out-of-order acquisition and interleaving.</p>
 <span class="description"><p>Crystal or location for measuring diffraction. Note that crystals are optional and are generally used ONLY where a region, loop, or other LogisticalSample is found to have several crystals during the actual experiment.</p>
 </span>
 
-     <span class="badge badge-info no-additional">No Additional Properties</span><div class="all-of-value" id="Crystal_additionalProperties_allOf"><h2 class="handle">
+    <div class="all-of-value" id="Crystal_additionalProperties_allOf"><h2 class="handle">
   <label>All of</label>
 </h2><ul class="nav nav-tabs" id="tabsCrystal_additionalProperties_allOf_allOf" role="tablist"><li class="nav-item">
             <a class="nav-link active allOf-option"
@@ -7576,7 +7393,7 @@ out-of-order acquisition and interleaving.</p>
 <span class="description"><p>A dewar containing pucks with mounted crystals on pins, with typed JSON containment lists.</p>
 </span>
 
-     <span class="badge badge-info no-additional">No Additional Properties</span><div class="all-of-value" id="Dewar_additionalProperties_allOf"><h2 class="handle">
+    <div class="all-of-value" id="Dewar_additionalProperties_allOf"><h2 class="handle">
   <label>All of</label>
 </h2><ul class="nav nav-tabs" id="tabsDewar_additionalProperties_allOf_allOf" role="tablist"><li class="nav-item">
             <a class="nav-link active allOf-option"
@@ -8829,7 +8646,7 @@ out-of-order acquisition and interleaving.</p>
 <span class="description"><p>A region in a well drop where crystals may be found, with typed JSON containment lists</p>
 </span>
 
-     <span class="badge badge-info no-additional">No Additional Properties</span><div class="all-of-value" id="DropRegion_additionalProperties_allOf"><h2 class="handle">
+    <div class="all-of-value" id="DropRegion_additionalProperties_allOf"><h2 class="handle">
   <label>All of</label>
 </h2><ul class="nav nav-tabs" id="tabsDropRegion_additionalProperties_allOf_allOf" role="tablist"><li class="nav-item">
             <a class="nav-link active allOf-option"
@@ -13614,7 +13431,7 @@ out-of-order acquisition and interleaving.</p>
 <span class="description"><p>Sample defining the Macromolecule main component of another sample</p>
 </span>
 
-     <span class="badge badge-info no-additional">No Additional Properties</span><div class="all-of-value" id="Macromolecule_additionalProperties_allOf"><h2 class="handle">
+    <div class="all-of-value" id="Macromolecule_additionalProperties_allOf"><h2 class="handle">
   <label>All of</label>
 </h2><ul class="nav nav-tabs" id="tabsMacromolecule_additionalProperties_allOf_allOf" role="tablist"><li class="nav-item">
             <a class="nav-link active allOf-option"
@@ -15178,7 +14995,7 @@ out-of-order acquisition and interleaving.</p>
 <span class="description"><p>Sample consisting of a macromolecule in a medium, with additional components</p>
 </span>
 
-     <span class="badge badge-info no-additional">No Additional Properties</span><div class="all-of-value" id="MacromoleculeSample_additionalProperties_allOf"><h2 class="handle">
+    <div class="all-of-value" id="MacromoleculeSample_additionalProperties_allOf"><h2 class="handle">
   <label>All of</label>
 </h2><ul class="nav nav-tabs" id="tabsMacromoleculeSample_additionalProperties_allOf_allOf" role="tablist"><li class="nav-item">
             <a class="nav-link active allOf-option"
@@ -16455,7 +16272,7 @@ out-of-order acquisition and interleaving.</p>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="MxExperiment_additionalProperties_allOf_i0_expectedResolution_number">Value must be greater or equal to <code>0.0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="MxExperiment_additionalProperties_allOf_i0_expectedResolution_number">Value must be strictly greater than <code>0.0</code></span></p>
 
         
             </div>
@@ -16517,7 +16334,7 @@ out-of-order acquisition and interleaving.</p>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="MxExperiment_additionalProperties_allOf_i0_requiredResolution_number">Value must be greater or equal to <code>0.0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="MxExperiment_additionalProperties_allOf_i0_requiredResolution_number">Value must be strictly greater than <code>0.0</code></span></p>
 
         
             </div>
@@ -16579,7 +16396,7 @@ out-of-order acquisition and interleaving.</p>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="MxExperiment_additionalProperties_allOf_i0_targetCompleteness_number">Value must be greater or equal to <code>0.0</code> and lesser or equal to <code>100.0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="MxExperiment_additionalProperties_allOf_i0_targetCompleteness_number">Value must be strictly greater than <code>0.0</code> and lesser or equal to <code>100.0</code></span></p>
 
         
             </div>
@@ -16641,7 +16458,7 @@ out-of-order acquisition and interleaving.</p>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="MxExperiment_additionalProperties_allOf_i0_targetMultiplicity_number">Value must be greater or equal to <code>0.0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="MxExperiment_additionalProperties_allOf_i0_targetMultiplicity_number">Value must be strictly greater than <code>0.0</code></span></p>
 
         
             </div>
@@ -16703,7 +16520,7 @@ out-of-order acquisition and interleaving.</p>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="MxExperiment_additionalProperties_allOf_i0_aimedTotalRange_number">Value must be greater or equal to <code>0.0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="MxExperiment_additionalProperties_allOf_i0_aimedTotalRange_number">Value must be strictly greater than <code>0.0</code></span></p>
 
         
             </div>
@@ -16765,7 +16582,7 @@ out-of-order acquisition and interleaving.</p>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="MxExperiment_additionalProperties_allOf_i0_priority_number">Value must be greater or equal to <code>1</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="MxExperiment_additionalProperties_allOf_i0_priority_number">Value must be strictly greater than <code>0</code></span></p>
 
         
             </div>
@@ -16827,7 +16644,7 @@ out-of-order acquisition and interleaving.</p>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="MxExperiment_additionalProperties_allOf_i0_energy_number">Value must be greater or equal to <code>0.0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="MxExperiment_additionalProperties_allOf_i0_energy_number">Value must be strictly greater than <code>0.0</code></span></p>
 
         
             </div>
@@ -16889,7 +16706,7 @@ out-of-order acquisition and interleaving.</p>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="MxExperiment_additionalProperties_allOf_i0_doseBudget_number">Value must be greater or equal to <code>0.0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="MxExperiment_additionalProperties_allOf_i0_doseBudget_number">Value must be strictly greater than <code>0.0</code></span></p>
 
         
             </div>
@@ -16951,7 +16768,7 @@ out-of-order acquisition and interleaving.</p>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="MxExperiment_additionalProperties_allOf_i0_radiationSensitivity_number">Value must be greater or equal to <code>0.0</code> and lesser or equal to <code>1.0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="MxExperiment_additionalProperties_allOf_i0_radiationSensitivity_number">Value must be strictly greater than <code>0.0</code> and lesser or equal to <code>1.0</code></span></p>
 
         
             </div>
@@ -17075,7 +16892,7 @@ out-of-order acquisition and interleaving.</p>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="MxExperiment_additionalProperties_allOf_i0_wedgeWidth_number">Value must be greater or equal to <code>0.0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="MxExperiment_additionalProperties_allOf_i0_wedgeWidth_number">Value must be strictly greater than <code>0.0</code></span></p>
 
         
             </div>
@@ -17137,7 +16954,7 @@ out-of-order acquisition and interleaving.</p>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="MxExperiment_additionalProperties_allOf_i0_measuredFlux_number">Value must be greater or equal to <code>0.0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="MxExperiment_additionalProperties_allOf_i0_measuredFlux_number">Value must be strictly greater than <code>0.0</code></span></p>
 
         
             </div>
@@ -17199,7 +17016,7 @@ out-of-order acquisition and interleaving.</p>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="MxExperiment_additionalProperties_allOf_i0_radiationDose_number">Value must be greater or equal to <code>0.0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="MxExperiment_additionalProperties_allOf_i0_radiationDose_number">Value must be strictly greater than <code>0.0</code></span></p>
 
         
             </div>
@@ -17395,7 +17212,7 @@ out-of-order acquisition and interleaving.</p>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="MxExperiment_additionalProperties_allOf_i0_expectedUnitCell_a_number">Value must be greater or equal to <code>0.0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="MxExperiment_additionalProperties_allOf_i0_expectedUnitCell_a_number">Value must be strictly greater than <code>0.0</code></span></p>
 
         
             </div>
@@ -17464,7 +17281,7 @@ out-of-order acquisition and interleaving.</p>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="MxExperiment_additionalProperties_allOf_i0_expectedUnitCell_b_number">Value must be greater or equal to <code>0.0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="MxExperiment_additionalProperties_allOf_i0_expectedUnitCell_b_number">Value must be strictly greater than <code>0.0</code></span></p>
 
         
             </div>
@@ -17533,7 +17350,7 @@ out-of-order acquisition and interleaving.</p>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="MxExperiment_additionalProperties_allOf_i0_expectedUnitCell_c_number">Value must be greater or equal to <code>0.0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="MxExperiment_additionalProperties_allOf_i0_expectedUnitCell_c_number">Value must be strictly greater than <code>0.0</code></span></p>
 
         
             </div>
@@ -17602,7 +17419,7 @@ out-of-order acquisition and interleaving.</p>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="MxExperiment_additionalProperties_allOf_i0_expectedUnitCell_alpha_number">Value must be greater or equal to <code>0.0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="MxExperiment_additionalProperties_allOf_i0_expectedUnitCell_alpha_number">Value must be strictly greater than <code>0.0</code></span></p>
 
         
             </div>
@@ -17671,7 +17488,7 @@ out-of-order acquisition and interleaving.</p>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="MxExperiment_additionalProperties_allOf_i0_expectedUnitCell_beta_number">Value must be greater or equal to <code>0.0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="MxExperiment_additionalProperties_allOf_i0_expectedUnitCell_beta_number">Value must be strictly greater than <code>0.0</code></span></p>
 
         
             </div>
@@ -17740,7 +17557,7 @@ out-of-order acquisition and interleaving.</p>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="MxExperiment_additionalProperties_allOf_i0_expectedUnitCell_gamma_number">Value must be greater or equal to <code>0.0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="MxExperiment_additionalProperties_allOf_i0_expectedUnitCell_gamma_number">Value must be strictly greater than <code>0.0</code></span></p>
 
         
             </div>
@@ -22648,7 +22465,7 @@ out-of-order acquisition and interleaving.</p>
 <span class="description"><p>A Pin mounted on a puck with several slots for crystals, with typed JSON containment lists.</p>
 </span>
 
-     <span class="badge badge-info no-additional">No Additional Properties</span><div class="all-of-value" id="MultiPin_additionalProperties_allOf"><h2 class="handle">
+    <div class="all-of-value" id="MultiPin_additionalProperties_allOf"><h2 class="handle">
   <label>All of</label>
 </h2><ul class="nav nav-tabs" id="tabsMultiPin_additionalProperties_allOf_allOf" role="tablist"><li class="nav-item">
             <a class="nav-link active allOf-option"
@@ -22821,7 +22638,7 @@ out-of-order acquisition and interleaving.</p>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="MultiPin_additionalProperties_allOf_i0_numberPositions_number">Value must be greater or equal to <code>1</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="MultiPin_additionalProperties_allOf_i0_numberPositions_number">Value must be strictly greater than <code>0</code></span></p>
 
         
             </div>
@@ -22883,7 +22700,7 @@ out-of-order acquisition and interleaving.</p>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="MultiPin_additionalProperties_allOf_i0_positionInPuck_number">Value must be greater or equal to <code>1</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="MultiPin_additionalProperties_allOf_i0_positionInPuck_number">Value must be strictly greater than <code>0</code></span></p>
 
         <br/>
 <div class="badge badge-secondary">Example:</div>
@@ -23352,7 +23169,7 @@ out-of-order acquisition and interleaving.</p>
 <span class="description"><p>A Pin mounted on a puck with a single slot for crystals, with typed JSON containment lists.</p>
 </span>
 
-     <span class="badge badge-info no-additional">No Additional Properties</span><div class="all-of-value" id="Pin_additionalProperties_allOf"><h2 class="handle">
+    <div class="all-of-value" id="Pin_additionalProperties_allOf"><h2 class="handle">
   <label>All of</label>
 </h2><ul class="nav nav-tabs" id="tabsPin_additionalProperties_allOf_allOf" role="tablist"><li class="nav-item">
             <a class="nav-link active allOf-option"
@@ -23525,7 +23342,7 @@ out-of-order acquisition and interleaving.</p>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="Pin_additionalProperties_allOf_i0_positionInPuck_number">Value must be greater or equal to <code>1</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="Pin_additionalProperties_allOf_i0_positionInPuck_number">Value must be strictly greater than <code>0</code></span></p>
 
         <br/>
 <div class="badge badge-secondary">Example:</div>
@@ -24121,7 +23938,7 @@ out-of-order acquisition and interleaving.</p>
 <span class="description"><p>An independent Position within a Pin where crystals can be located, with typed JSON containment lists.</p>
 </span>
 
-     <span class="badge badge-info no-additional">No Additional Properties</span><div class="all-of-value" id="PinPosition_additionalProperties_allOf"><h2 class="handle">
+    <div class="all-of-value" id="PinPosition_additionalProperties_allOf"><h2 class="handle">
   <label>All of</label>
 </h2><ul class="nav nav-tabs" id="tabsPinPosition_additionalProperties_allOf_allOf" role="tablist"><li class="nav-item">
             <a class="nav-link active allOf-option"
@@ -24232,7 +24049,7 @@ out-of-order acquisition and interleaving.</p>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="PinPosition_additionalProperties_allOf_i0_positionInPin_number">Value must be greater or equal to <code>1</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="PinPosition_additionalProperties_allOf_i0_positionInPin_number">Value must be strictly greater than <code>0</code></span></p>
 
         <br/>
 <div class="badge badge-secondary">Example:</div>
@@ -24850,7 +24667,7 @@ out-of-order acquisition and interleaving.</p>
 <span class="description"><p>A crystallization plate, with typed JSON containment lists</p>
 </span>
 
-     <span class="badge badge-info no-additional">No Additional Properties</span><div class="all-of-value" id="Plate_additionalProperties_allOf"><h2 class="handle">
+    <div class="all-of-value" id="Plate_additionalProperties_allOf"><h2 class="handle">
   <label>All of</label>
 </h2><ul class="nav nav-tabs" id="tabsPlate_additionalProperties_allOf_allOf" role="tablist"><li class="nav-item">
             <a class="nav-link active allOf-option"
@@ -25163,7 +24980,7 @@ out-of-order acquisition and interleaving.</p>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="Plate_additionalProperties_allOf_i0_plateType_numberRows_number">Value must be greater or equal to <code>1</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="Plate_additionalProperties_allOf_i0_plateType_numberRows_number">Value must be strictly greater than <code>0</code></span></p>
 
         
             </div>
@@ -25232,7 +25049,7 @@ out-of-order acquisition and interleaving.</p>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="Plate_additionalProperties_allOf_i0_plateType_numberColumns_number">Value must be greater or equal to <code>1</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="Plate_additionalProperties_allOf_i0_plateType_numberColumns_number">Value must be strictly greater than <code>0</code></span></p>
 
         
             </div>
@@ -25301,7 +25118,7 @@ out-of-order acquisition and interleaving.</p>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="Plate_additionalProperties_allOf_i0_plateType_numberSubPositions_number">Value must be greater or equal to <code>1</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="Plate_additionalProperties_allOf_i0_plateType_numberSubPositions_number">Value must be strictly greater than <code>0</code></span></p>
 
         
             </div>
@@ -26015,7 +25832,7 @@ out-of-order acquisition and interleaving.</p>
 <span class="description"><p>A well in a crystallization plate, with typed JSON containment lists</p>
 </span>
 
-     <span class="badge badge-info no-additional">No Additional Properties</span><div class="all-of-value" id="PlateWell_additionalProperties_allOf"><h2 class="handle">
+    <div class="all-of-value" id="PlateWell_additionalProperties_allOf"><h2 class="handle">
   <label>All of</label>
 </h2><ul class="nav nav-tabs" id="tabsPlateWell_additionalProperties_allOf_allOf" role="tablist"><li class="nav-item">
             <a class="nav-link active allOf-option"
@@ -26126,7 +25943,7 @@ out-of-order acquisition and interleaving.</p>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="PlateWell_additionalProperties_allOf_i0_rowNumber_number">Value must be greater or equal to <code>1</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="PlateWell_additionalProperties_allOf_i0_rowNumber_number">Value must be strictly greater than <code>0</code></span></p>
 
         
             </div>
@@ -26188,7 +26005,7 @@ out-of-order acquisition and interleaving.</p>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="PlateWell_additionalProperties_allOf_i0_columnNumber_number">Value must be greater or equal to <code>1</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="PlateWell_additionalProperties_allOf_i0_columnNumber_number">Value must be strictly greater than <code>0</code></span></p>
 
         
             </div>
@@ -26870,7 +26687,7 @@ out-of-order acquisition and interleaving.</p>
 <span class="description"><p>A puck containing mounted crystals on pins, with typed JSON containment lists.</p>
 </span>
 
-     <span class="badge badge-info no-additional">No Additional Properties</span><div class="all-of-value" id="Puck_additionalProperties_allOf"><h2 class="handle">
+    <div class="all-of-value" id="Puck_additionalProperties_allOf"><h2 class="handle">
   <label>All of</label>
 </h2><ul class="nav nav-tabs" id="tabsPuck_additionalProperties_allOf_allOf" role="tablist"><li class="nav-item">
             <a class="nav-link active allOf-option"
@@ -27043,7 +26860,7 @@ out-of-order acquisition and interleaving.</p>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="Puck_additionalProperties_allOf_i0_positionInDewar_number">Value must be greater or equal to <code>1</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="Puck_additionalProperties_allOf_i0_positionInDewar_number">Value must be strictly greater than <code>0</code></span></p>
 
         <br/>
 <div class="badge badge-secondary">Example:</div>
@@ -27109,7 +26926,7 @@ out-of-order acquisition and interleaving.</p>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="Puck_additionalProperties_allOf_i0_numberPositions_number">Value must be greater or equal to <code>1</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="Puck_additionalProperties_allOf_i0_numberPositions_number">Value must be strictly greater than <code>0</code></span></p>
 
         
             </div>
@@ -28213,7 +28030,7 @@ out-of-order acquisition and interleaving.</p>
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvalues" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvalues')">eigenvalues</a></div><h4>Eigenvalues</h4><span class="badge badge-dark value-type">Type: array</span><br/>
+    <a href="#ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvalues" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvalues')">eigenvalues</a></div><h4>Eigenvalues</h4><span class="badge badge-dark value-type">Type: array of number</span><br/>
 <span class="description"><p>Eigenvalues of tensor</p>
 </span>
         
@@ -28221,11 +28038,9 @@ out-of-order acquisition and interleaving.</p>
         
         
 
-        <p><span class="badge badge-light restriction min-items-restriction" id="ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvalues_minItems">Must contain a minimum of <code>3</code> items</span></p><p><span class="badge badge-light restriction max-items-restriction" id="ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvalues_maxItems">Must contain a maximum of <code>3</code> items</span></p> <span class="badge badge-info no-additional">No Additional Items</span><h4>Tuple Validation</h4>
-    
-    <h5>Item at 1 must be:</h5>
+        <p><span class="badge badge-light restriction min-items-restriction" id="ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvalues_minItems">Must contain a minimum of <code>3</code> items</span></p><p><span class="badge badge-light restriction max-items-restriction" id="ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvalues_maxItems">Must contain a maximum of <code>3</code> items</span></p> <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
     <div class="card">
-        <div class="card-body items-definition" id="ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvalues_items_i0">
+        <div class="card-body items-definition" id="ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvalues_items">
             
 
     <div class="breadcrumbs">root
@@ -28277,7 +28092,7 @@ out-of-order acquisition and interleaving.</p>
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvalues_items_i0" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvalues_items_i0')">eigenvalues item 0</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
+    <a href="#ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvalues_items" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvalues_items')">eigenvalues items</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
 
         
 
@@ -28287,137 +28102,6 @@ out-of-order acquisition and interleaving.</p>
         
         </div>
     </div>
-    
-    <h5>Item at 2 must be:</h5>
-    <div class="card">
-        <div class="card-body items-definition" id="ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvalues_items_i1">
-            
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet" onclick="anchorLink('ReflectionSet')">ReflectionSet</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties" onclick="anchorLink('ReflectionSet_additionalProperties')">ReflectionSet</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf" onclick="anchorLink('ReflectionSet_additionalProperties_allOf')">allOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0')">ReflectionSetData</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated')">diffractionLimitsEstimated</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvalues" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvalues')">eigenvalues</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvalues_items_i1" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvalues_items_i1')">eigenvalues item 1</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
-
-        
-
-        
-        
-
-        
-        </div>
-    </div>
-    
-    <h5>Item at 3 must be:</h5>
-    <div class="card">
-        <div class="card-body items-definition" id="ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvalues_items_i2">
-            
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet" onclick="anchorLink('ReflectionSet')">ReflectionSet</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties" onclick="anchorLink('ReflectionSet_additionalProperties')">ReflectionSet</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf" onclick="anchorLink('ReflectionSet_additionalProperties_allOf')">allOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0')">ReflectionSetData</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated')">diffractionLimitsEstimated</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvalues" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvalues')">eigenvalues</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvalues_items_i2" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvalues_items_i2')">eigenvalues item 2</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
-
-        
-
-        
-        
-
-        
-        </div>
-    </div>
-    
             </div>
         </div>
     </div>
@@ -28479,14 +28163,14 @@ out-of-order acquisition and interleaving.</p>
             />
         </svg>
     <a href="#ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvectors" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvectors')">eigenvectors</a></div><h4>Eigenvectors</h4><span class="badge badge-dark value-type">Type: array of array</span><br/>
-<span class="description"><p>Eigenvectors (unit vectors) of tensor, in same order as eigenvalues</p>
+<span class="description"><p>Eigenvectors (3D unit vectors) of tensor, in same order as eigenvalues</p>
 </span>
         
 
         
         
 
-         <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
+        <p><span class="badge badge-light restriction min-items-restriction" id="ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvectors_minItems">Must contain a minimum of <code>3</code> items</span></p><p><span class="badge badge-light restriction max-items-restriction" id="ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvectors_maxItems">Must contain a maximum of <code>3</code> items</span></p> <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
     <div class="card">
         <div class="card-body items-definition" id="ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvectors_items">
             
@@ -28540,18 +28224,16 @@ out-of-order acquisition and interleaving.</p>
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvectors_items" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvectors_items')">eigenvectors items</a></div><span class="badge badge-dark value-type">Type: array</span><br/>
+    <a href="#ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvectors_items" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvectors_items')">eigenvectors items</a></div><span class="badge badge-dark value-type">Type: array of number</span><br/>
 
         
 
         
         
 
-        <p><span class="badge badge-light restriction min-items-restriction" id="ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvectors_items_minItems">Must contain a minimum of <code>3</code> items</span></p><p><span class="badge badge-light restriction max-items-restriction" id="ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvectors_items_maxItems">Must contain a maximum of <code>3</code> items</span></p> <span class="badge badge-info no-additional">No Additional Items</span><h4>Tuple Validation</h4>
-    
-    <h5>Item at 1 must be:</h5>
+         <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
     <div class="card">
-        <div class="card-body items-definition" id="ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvectors_items_items_i0">
+        <div class="card-body items-definition" id="ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvectors_items_items">
             
 
     <div class="breadcrumbs">root
@@ -28610,7 +28292,7 @@ out-of-order acquisition and interleaving.</p>
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvectors_items_items_i0" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvectors_items_items_i0')">eigenvectors items item 0</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
+    <a href="#ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvectors_items_items" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvectors_items_items')">eigenvectors items items</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
 
         
 
@@ -28620,151 +28302,6 @@ out-of-order acquisition and interleaving.</p>
         
         </div>
     </div>
-    
-    <h5>Item at 2 must be:</h5>
-    <div class="card">
-        <div class="card-body items-definition" id="ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvectors_items_items_i1">
-            
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet" onclick="anchorLink('ReflectionSet')">ReflectionSet</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties" onclick="anchorLink('ReflectionSet_additionalProperties')">ReflectionSet</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf" onclick="anchorLink('ReflectionSet_additionalProperties_allOf')">allOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0')">ReflectionSetData</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated')">diffractionLimitsEstimated</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvectors" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvectors')">eigenvectors</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvectors_items" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvectors_items')">eigenvectors items</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvectors_items_items_i1" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvectors_items_items_i1')">eigenvectors items item 1</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
-
-        
-
-        
-        
-
-        
-        </div>
-    </div>
-    
-    <h5>Item at 3 must be:</h5>
-    <div class="card">
-        <div class="card-body items-definition" id="ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvectors_items_items_i2">
-            
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet" onclick="anchorLink('ReflectionSet')">ReflectionSet</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties" onclick="anchorLink('ReflectionSet_additionalProperties')">ReflectionSet</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf" onclick="anchorLink('ReflectionSet_additionalProperties_allOf')">allOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0')">ReflectionSetData</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated')">diffractionLimitsEstimated</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvectors" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvectors')">eigenvectors</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvectors_items" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvectors_items')">eigenvectors items</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvectors_items_items_i2" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_diffractionLimitsEstimated_eigenvectors_items_items_i2')">eigenvectors items item 2</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
-
-        
-
-        
-        
-
-        
-        </div>
-    </div>
-    
         </div>
     </div>
             </div>
@@ -28884,7 +28421,7 @@ out-of-order acquisition and interleaving.</p>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="ReflectionSet_additionalProperties_allOf_i0_wavelengths_items_number">Value must be greater or equal to <code>0.0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="ReflectionSet_additionalProperties_allOf_i0_wavelengths_items_number">Value must be strictly greater than <code>0.0</code></span></p>
 
         
         </div>
@@ -29184,7 +28721,7 @@ out-of-order acquisition and interleaving.</p>
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_hIndexRange" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_hIndexRange')">hIndexRange</a></div><h4>H Index Range</h4><span class="badge badge-dark value-type">Type: array</span><br/>
+    <a href="#ReflectionSet_additionalProperties_allOf_i0_hIndexRange" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_hIndexRange')">hIndexRange</a></div><h4>H Index Range</h4><span class="badge badge-dark value-type">Type: array of integer</span><br/>
 <span class="description"><p>low and high limit on Miller index h, matches mmCIF item reflns.limit<em>h</em>min (https://mmcif.wwpdb.org/dictionaries/mmcif<em>pdbx</em>v50.dic/Items/<em>reflns.limit</em>h<em>min.html) and reflns.limit</em>h<em>max (https://mmcif.wwpdb.org/dictionaries/mmcif</em>pdbx<em>v50.dic/Items/</em>reflns.limit<em>h</em>max.html)</p>
 </span>
         
@@ -29192,11 +28729,9 @@ out-of-order acquisition and interleaving.</p>
         
         
 
-        <p><span class="badge badge-light restriction min-items-restriction" id="ReflectionSet_additionalProperties_allOf_i0_hIndexRange_minItems">Must contain a minimum of <code>2</code> items</span></p><p><span class="badge badge-light restriction max-items-restriction" id="ReflectionSet_additionalProperties_allOf_i0_hIndexRange_maxItems">Must contain a maximum of <code>2</code> items</span></p> <span class="badge badge-info no-additional">No Additional Items</span><h4>Tuple Validation</h4>
-    
-    <h5>Item at 1 must be:</h5>
+        <p><span class="badge badge-light restriction min-items-restriction" id="ReflectionSet_additionalProperties_allOf_i0_hIndexRange_minItems">Must contain a minimum of <code>2</code> items</span></p><p><span class="badge badge-light restriction max-items-restriction" id="ReflectionSet_additionalProperties_allOf_i0_hIndexRange_maxItems">Must contain a maximum of <code>2</code> items</span></p> <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
     <div class="card">
-        <div class="card-body items-definition" id="ReflectionSet_additionalProperties_allOf_i0_hIndexRange_items_i0">
+        <div class="card-body items-definition" id="ReflectionSet_additionalProperties_allOf_i0_hIndexRange_items">
             
 
     <div class="breadcrumbs">root
@@ -29241,7 +28776,7 @@ out-of-order acquisition and interleaving.</p>
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_hIndexRange_items_i0" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_hIndexRange_items_i0')">hIndexRange item 0</a></div><span class="badge badge-dark value-type">Type: integer</span><br/>
+    <a href="#ReflectionSet_additionalProperties_allOf_i0_hIndexRange_items" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_hIndexRange_items')">hIndexRange items</a></div><span class="badge badge-dark value-type">Type: integer</span><br/>
 
         
 
@@ -29251,65 +28786,6 @@ out-of-order acquisition and interleaving.</p>
         
         </div>
     </div>
-    
-    <h5>Item at 2 must be:</h5>
-    <div class="card">
-        <div class="card-body items-definition" id="ReflectionSet_additionalProperties_allOf_i0_hIndexRange_items_i1">
-            
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet" onclick="anchorLink('ReflectionSet')">ReflectionSet</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties" onclick="anchorLink('ReflectionSet_additionalProperties')">ReflectionSet</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf" onclick="anchorLink('ReflectionSet_additionalProperties_allOf')">allOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0')">ReflectionSetData</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_hIndexRange" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_hIndexRange')">hIndexRange</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_hIndexRange_items_i1" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_hIndexRange_items_i1')">hIndexRange item 1</a></div><span class="badge badge-dark value-type">Type: integer</span><br/>
-
-        
-
-        
-        
-
-        
-        </div>
-    </div>
-    
             </div>
         </div>
     </div>
@@ -29363,7 +28839,7 @@ out-of-order acquisition and interleaving.</p>
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_kIndexRange" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_kIndexRange')">kIndexRange</a></div><h4>K Index Range</h4><span class="badge badge-dark value-type">Type: array</span><br/>
+    <a href="#ReflectionSet_additionalProperties_allOf_i0_kIndexRange" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_kIndexRange')">kIndexRange</a></div><h4>K Index Range</h4><span class="badge badge-dark value-type">Type: array of integer</span><br/>
 <span class="description"><p>low and high limit on Miller index k, matches mmCIF item reflns.limit<em>k</em>min (https://mmcif.wwpdb.org/dictionaries/mmcif<em>pdbx</em>v50.dic/Items/<em>reflns.limit</em>k<em>min.html) and reflns.limit</em>k<em>max (https://mmcif.wwpdb.org/dictionaries/mmcif</em>pdbx<em>v50.dic/Items/</em>reflns.limit<em>k</em>max.html)</p>
 </span>
         
@@ -29371,11 +28847,9 @@ out-of-order acquisition and interleaving.</p>
         
         
 
-        <p><span class="badge badge-light restriction min-items-restriction" id="ReflectionSet_additionalProperties_allOf_i0_kIndexRange_minItems">Must contain a minimum of <code>2</code> items</span></p><p><span class="badge badge-light restriction max-items-restriction" id="ReflectionSet_additionalProperties_allOf_i0_kIndexRange_maxItems">Must contain a maximum of <code>2</code> items</span></p> <span class="badge badge-info no-additional">No Additional Items</span><h4>Tuple Validation</h4>
-    
-    <h5>Item at 1 must be:</h5>
+        <p><span class="badge badge-light restriction min-items-restriction" id="ReflectionSet_additionalProperties_allOf_i0_kIndexRange_minItems">Must contain a minimum of <code>2</code> items</span></p><p><span class="badge badge-light restriction max-items-restriction" id="ReflectionSet_additionalProperties_allOf_i0_kIndexRange_maxItems">Must contain a maximum of <code>2</code> items</span></p> <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
     <div class="card">
-        <div class="card-body items-definition" id="ReflectionSet_additionalProperties_allOf_i0_kIndexRange_items_i0">
+        <div class="card-body items-definition" id="ReflectionSet_additionalProperties_allOf_i0_kIndexRange_items">
             
 
     <div class="breadcrumbs">root
@@ -29420,7 +28894,7 @@ out-of-order acquisition and interleaving.</p>
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_kIndexRange_items_i0" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_kIndexRange_items_i0')">kIndexRange item 0</a></div><span class="badge badge-dark value-type">Type: integer</span><br/>
+    <a href="#ReflectionSet_additionalProperties_allOf_i0_kIndexRange_items" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_kIndexRange_items')">kIndexRange items</a></div><span class="badge badge-dark value-type">Type: integer</span><br/>
 
         
 
@@ -29430,65 +28904,6 @@ out-of-order acquisition and interleaving.</p>
         
         </div>
     </div>
-    
-    <h5>Item at 2 must be:</h5>
-    <div class="card">
-        <div class="card-body items-definition" id="ReflectionSet_additionalProperties_allOf_i0_kIndexRange_items_i1">
-            
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet" onclick="anchorLink('ReflectionSet')">ReflectionSet</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties" onclick="anchorLink('ReflectionSet_additionalProperties')">ReflectionSet</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf" onclick="anchorLink('ReflectionSet_additionalProperties_allOf')">allOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0')">ReflectionSetData</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_kIndexRange" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_kIndexRange')">kIndexRange</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_kIndexRange_items_i1" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_kIndexRange_items_i1')">kIndexRange item 1</a></div><span class="badge badge-dark value-type">Type: integer</span><br/>
-
-        
-
-        
-        
-
-        
-        </div>
-    </div>
-    
             </div>
         </div>
     </div>
@@ -29542,7 +28957,7 @@ out-of-order acquisition and interleaving.</p>
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_lIndexRange" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_lIndexRange')">lIndexRange</a></div><h4>L Index Range</h4><span class="badge badge-dark value-type">Type: array</span><br/>
+    <a href="#ReflectionSet_additionalProperties_allOf_i0_lIndexRange" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_lIndexRange')">lIndexRange</a></div><h4>L Index Range</h4><span class="badge badge-dark value-type">Type: array of integer</span><br/>
 <span class="description"><p>low and high limit on Miller index l, matches mmCIF item reflns.limit<em>l</em>min (https://mmcif.wwpdb.org/dictionaries/mmcif<em>pdbx</em>v50.dic/Items/<em>reflns.limit</em>l<em>min.html) and reflns.limit</em>l<em>max (https://mmcif.wwpdb.org/dictionaries/mmcif</em>pdbx<em>v50.dic/Items/</em>reflns.limit<em>l</em>max.html)</p>
 </span>
         
@@ -29550,11 +28965,9 @@ out-of-order acquisition and interleaving.</p>
         
         
 
-        <p><span class="badge badge-light restriction min-items-restriction" id="ReflectionSet_additionalProperties_allOf_i0_lIndexRange_minItems">Must contain a minimum of <code>2</code> items</span></p><p><span class="badge badge-light restriction max-items-restriction" id="ReflectionSet_additionalProperties_allOf_i0_lIndexRange_maxItems">Must contain a maximum of <code>2</code> items</span></p> <span class="badge badge-info no-additional">No Additional Items</span><h4>Tuple Validation</h4>
-    
-    <h5>Item at 1 must be:</h5>
+        <p><span class="badge badge-light restriction min-items-restriction" id="ReflectionSet_additionalProperties_allOf_i0_lIndexRange_minItems">Must contain a minimum of <code>2</code> items</span></p><p><span class="badge badge-light restriction max-items-restriction" id="ReflectionSet_additionalProperties_allOf_i0_lIndexRange_maxItems">Must contain a maximum of <code>2</code> items</span></p> <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
     <div class="card">
-        <div class="card-body items-definition" id="ReflectionSet_additionalProperties_allOf_i0_lIndexRange_items_i0">
+        <div class="card-body items-definition" id="ReflectionSet_additionalProperties_allOf_i0_lIndexRange_items">
             
 
     <div class="breadcrumbs">root
@@ -29599,7 +29012,7 @@ out-of-order acquisition and interleaving.</p>
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_lIndexRange_items_i0" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_lIndexRange_items_i0')">lIndexRange item 0</a></div><span class="badge badge-dark value-type">Type: integer</span><br/>
+    <a href="#ReflectionSet_additionalProperties_allOf_i0_lIndexRange_items" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_lIndexRange_items')">lIndexRange items</a></div><span class="badge badge-dark value-type">Type: integer</span><br/>
 
         
 
@@ -29609,65 +29022,6 @@ out-of-order acquisition and interleaving.</p>
         
         </div>
     </div>
-    
-    <h5>Item at 2 must be:</h5>
-    <div class="card">
-        <div class="card-body items-definition" id="ReflectionSet_additionalProperties_allOf_i0_lIndexRange_items_i1">
-            
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet" onclick="anchorLink('ReflectionSet')">ReflectionSet</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties" onclick="anchorLink('ReflectionSet_additionalProperties')">ReflectionSet</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf" onclick="anchorLink('ReflectionSet_additionalProperties_allOf')">allOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0')">ReflectionSetData</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_lIndexRange" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_lIndexRange')">lIndexRange</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_lIndexRange_items_i1" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_lIndexRange_items_i1')">lIndexRange item 1</a></div><span class="badge badge-dark value-type">Type: integer</span><br/>
-
-        
-
-        
-        
-
-        
-        </div>
-    </div>
-    
             </div>
         </div>
     </div>
@@ -29912,7 +29266,7 @@ out-of-order acquisition and interleaving.</p>
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_reflectionStatisticsOverall_resolutionLimits" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_reflectionStatisticsOverall_resolutionLimits')">resolutionLimits</a></div><h4>Resolution Limits</h4><span class="badge badge-dark value-type">Type: array</span><br/>
+    <a href="#ReflectionSet_additionalProperties_allOf_i0_reflectionStatisticsOverall_resolutionLimits" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_reflectionStatisticsOverall_resolutionLimits')">resolutionLimits</a></div><h4>Resolution Limits</h4><span class="badge badge-dark value-type">Type: array of number</span><br/>
 <span class="description"><p>lower, higher resolution limit of shell, matches mmCIF items reflns<em>shell.d</em>res<em>low (https://mmcif.wwpdb.org/dictionaries/mmcif</em>pdbx<em>v50.dic/Items/</em>reflns<em>shell.d</em>res<em>low.html) and reflns</em>shell.d<em>res</em>high (https://mmcif.wwpdb.org/dictionaries/mmcif<em>pdbx</em>v50.dic/Items/<em>reflns</em>shell.d<em>res</em>high.html)</p>
 </span>
         
@@ -29920,11 +29274,9 @@ out-of-order acquisition and interleaving.</p>
         
         
 
-        <p><span class="badge badge-light restriction min-items-restriction" id="ReflectionSet_additionalProperties_allOf_i0_reflectionStatisticsOverall_resolutionLimits_minItems">Must contain a minimum of <code>2</code> items</span></p><p><span class="badge badge-light restriction max-items-restriction" id="ReflectionSet_additionalProperties_allOf_i0_reflectionStatisticsOverall_resolutionLimits_maxItems">Must contain a maximum of <code>2</code> items</span></p> <span class="badge badge-info no-additional">No Additional Items</span><h4>Tuple Validation</h4>
-    
-    <h5>Item at 1 must be:</h5>
+        <p><span class="badge badge-light restriction min-items-restriction" id="ReflectionSet_additionalProperties_allOf_i0_reflectionStatisticsOverall_resolutionLimits_minItems">Must contain a minimum of <code>2</code> items</span></p><p><span class="badge badge-light restriction max-items-restriction" id="ReflectionSet_additionalProperties_allOf_i0_reflectionStatisticsOverall_resolutionLimits_maxItems">Must contain a maximum of <code>2</code> items</span></p> <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
     <div class="card">
-        <div class="card-body items-definition" id="ReflectionSet_additionalProperties_allOf_i0_reflectionStatisticsOverall_resolutionLimits_items_i0">
+        <div class="card-body items-definition" id="ReflectionSet_additionalProperties_allOf_i0_reflectionStatisticsOverall_resolutionLimits_items">
             
 
     <div class="breadcrumbs">root
@@ -29976,7 +29328,7 @@ out-of-order acquisition and interleaving.</p>
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_reflectionStatisticsOverall_resolutionLimits_items_i0" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_reflectionStatisticsOverall_resolutionLimits_items_i0')">resolutionLimits item 0</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
+    <a href="#ReflectionSet_additionalProperties_allOf_i0_reflectionStatisticsOverall_resolutionLimits_items" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_reflectionStatisticsOverall_resolutionLimits_items')">resolutionLimits items</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
 
         
 
@@ -29986,72 +29338,6 @@ out-of-order acquisition and interleaving.</p>
         
         </div>
     </div>
-    
-    <h5>Item at 2 must be:</h5>
-    <div class="card">
-        <div class="card-body items-definition" id="ReflectionSet_additionalProperties_allOf_i0_reflectionStatisticsOverall_resolutionLimits_items_i1">
-            
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet" onclick="anchorLink('ReflectionSet')">ReflectionSet</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties" onclick="anchorLink('ReflectionSet_additionalProperties')">ReflectionSet</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf" onclick="anchorLink('ReflectionSet_additionalProperties_allOf')">allOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0')">ReflectionSetData</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_reflectionStatisticsOverall" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_reflectionStatisticsOverall')">reflectionStatisticsOverall</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_reflectionStatisticsOverall_resolutionLimits" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_reflectionStatisticsOverall_resolutionLimits')">resolutionLimits</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_reflectionStatisticsOverall_resolutionLimits_items_i1" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_reflectionStatisticsOverall_resolutionLimits_items_i1')">resolutionLimits item 1</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
-
-        
-
-        
-        
-
-        
-        </div>
-    </div>
-    
             </div>
         </div>
     </div>
@@ -30118,7 +29404,7 @@ out-of-order acquisition and interleaving.</p>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="ReflectionSet_additionalProperties_allOf_i0_reflectionStatisticsOverall_numberObservations_number">Value must be greater or equal to <code>0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="ReflectionSet_additionalProperties_allOf_i0_reflectionStatisticsOverall_numberObservations_number">Value must be strictly greater than <code>0</code></span></p>
 
         
             </div>
@@ -30187,7 +29473,7 @@ out-of-order acquisition and interleaving.</p>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="ReflectionSet_additionalProperties_allOf_i0_reflectionStatisticsOverall_numberObservationsUnique_number">Value must be greater or equal to <code>0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="ReflectionSet_additionalProperties_allOf_i0_reflectionStatisticsOverall_numberObservationsUnique_number">Value must be strictly greater than <code>0</code></span></p>
 
         
             </div>
@@ -32517,18 +31803,16 @@ out-of-order acquisition and interleaving.</p>
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_resolutionRingsDetected_items" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_resolutionRingsDetected_items')">resolutionRingsDetected items</a></div><span class="badge badge-dark value-type">Type: array</span><br/>
+    <a href="#ReflectionSet_additionalProperties_allOf_i0_resolutionRingsDetected_items" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_resolutionRingsDetected_items')">resolutionRingsDetected items</a></div><span class="badge badge-dark value-type">Type: array of number</span><br/>
 
         
 
         
         
 
-        <p><span class="badge badge-light restriction min-items-restriction" id="ReflectionSet_additionalProperties_allOf_i0_resolutionRingsDetected_items_minItems">Must contain a minimum of <code>2</code> items</span></p><p><span class="badge badge-light restriction max-items-restriction" id="ReflectionSet_additionalProperties_allOf_i0_resolutionRingsDetected_items_maxItems">Must contain a maximum of <code>2</code> items</span></p> <span class="badge badge-info no-additional">No Additional Items</span><h4>Tuple Validation</h4>
-    
-    <h5>Item at 1 must be:</h5>
+        <p><span class="badge badge-light restriction min-items-restriction" id="ReflectionSet_additionalProperties_allOf_i0_resolutionRingsDetected_items_minItems">Must contain a minimum of <code>2</code> items</span></p><p><span class="badge badge-light restriction max-items-restriction" id="ReflectionSet_additionalProperties_allOf_i0_resolutionRingsDetected_items_maxItems">Must contain a maximum of <code>2</code> items</span></p> <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
     <div class="card">
-        <div class="card-body items-definition" id="ReflectionSet_additionalProperties_allOf_i0_resolutionRingsDetected_items_items_i0">
+        <div class="card-body items-definition" id="ReflectionSet_additionalProperties_allOf_i0_resolutionRingsDetected_items_items">
             
 
     <div class="breadcrumbs">root
@@ -32580,82 +31864,16 @@ out-of-order acquisition and interleaving.</p>
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_resolutionRingsDetected_items_items_i0" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_resolutionRingsDetected_items_items_i0')">resolutionRingsDetected items item 0</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
+    <a href="#ReflectionSet_additionalProperties_allOf_i0_resolutionRingsDetected_items_items" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_resolutionRingsDetected_items_items')">resolutionRingsDetected items items</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
 
         
 
         
-        
-
-        
-        </div>
-    </div>
-    
-    <h5>Item at 2 must be:</h5>
-    <div class="card">
-        <div class="card-body items-definition" id="ReflectionSet_additionalProperties_allOf_i0_resolutionRingsDetected_items_items_i1">
-            
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet" onclick="anchorLink('ReflectionSet')">ReflectionSet</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties" onclick="anchorLink('ReflectionSet_additionalProperties')">ReflectionSet</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf" onclick="anchorLink('ReflectionSet_additionalProperties_allOf')">allOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0')">ReflectionSetData</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_resolutionRingsDetected" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_resolutionRingsDetected')">resolutionRingsDetected</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_resolutionRingsDetected_items" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_resolutionRingsDetected_items')">resolutionRingsDetected items</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_resolutionRingsDetected_items_items_i1" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_resolutionRingsDetected_items_items_i1')">resolutionRingsDetected items item 1</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
-
-        
-
-        
-        
+        <p><span class="badge badge-light restriction numeric-restriction" id="ReflectionSet_additionalProperties_allOf_i0_resolutionRingsDetected_items_items_number">Value must be strictly greater than <code>0</code></span></p>
 
         
         </div>
     </div>
-    
         </div>
     </div>
             </div>
@@ -32766,18 +31984,16 @@ out-of-order acquisition and interleaving.</p>
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_resolutionRingsExcluded_items" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_resolutionRingsExcluded_items')">resolutionRingsExcluded items</a></div><span class="badge badge-dark value-type">Type: array</span><br/>
+    <a href="#ReflectionSet_additionalProperties_allOf_i0_resolutionRingsExcluded_items" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_resolutionRingsExcluded_items')">resolutionRingsExcluded items</a></div><span class="badge badge-dark value-type">Type: array of number</span><br/>
 
         
 
         
         
 
-        <p><span class="badge badge-light restriction min-items-restriction" id="ReflectionSet_additionalProperties_allOf_i0_resolutionRingsExcluded_items_minItems">Must contain a minimum of <code>2</code> items</span></p><p><span class="badge badge-light restriction max-items-restriction" id="ReflectionSet_additionalProperties_allOf_i0_resolutionRingsExcluded_items_maxItems">Must contain a maximum of <code>2</code> items</span></p> <span class="badge badge-info no-additional">No Additional Items</span><h4>Tuple Validation</h4>
-    
-    <h5>Item at 1 must be:</h5>
+        <p><span class="badge badge-light restriction min-items-restriction" id="ReflectionSet_additionalProperties_allOf_i0_resolutionRingsExcluded_items_minItems">Must contain a minimum of <code>2</code> items</span></p><p><span class="badge badge-light restriction max-items-restriction" id="ReflectionSet_additionalProperties_allOf_i0_resolutionRingsExcluded_items_maxItems">Must contain a maximum of <code>2</code> items</span></p> <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
     <div class="card">
-        <div class="card-body items-definition" id="ReflectionSet_additionalProperties_allOf_i0_resolutionRingsExcluded_items_items_i0">
+        <div class="card-body items-definition" id="ReflectionSet_additionalProperties_allOf_i0_resolutionRingsExcluded_items_items">
             
 
     <div class="breadcrumbs">root
@@ -32829,82 +32045,16 @@ out-of-order acquisition and interleaving.</p>
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_resolutionRingsExcluded_items_items_i0" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_resolutionRingsExcluded_items_items_i0')">resolutionRingsExcluded items item 0</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
+    <a href="#ReflectionSet_additionalProperties_allOf_i0_resolutionRingsExcluded_items_items" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_resolutionRingsExcluded_items_items')">resolutionRingsExcluded items items</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
 
         
 
         
-        
-
-        
-        </div>
-    </div>
-    
-    <h5>Item at 2 must be:</h5>
-    <div class="card">
-        <div class="card-body items-definition" id="ReflectionSet_additionalProperties_allOf_i0_resolutionRingsExcluded_items_items_i1">
-            
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet" onclick="anchorLink('ReflectionSet')">ReflectionSet</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties" onclick="anchorLink('ReflectionSet_additionalProperties')">ReflectionSet</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf" onclick="anchorLink('ReflectionSet_additionalProperties_allOf')">allOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0')">ReflectionSetData</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_resolutionRingsExcluded" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_resolutionRingsExcluded')">resolutionRingsExcluded</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_resolutionRingsExcluded_items" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_resolutionRingsExcluded_items')">resolutionRingsExcluded items</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#ReflectionSet_additionalProperties_allOf_i0_resolutionRingsExcluded_items_items_i1" onclick="anchorLink('ReflectionSet_additionalProperties_allOf_i0_resolutionRingsExcluded_items_items_i1')">resolutionRingsExcluded items item 1</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
-
-        
-
-        
-        
+        <p><span class="badge badge-light restriction numeric-restriction" id="ReflectionSet_additionalProperties_allOf_i0_resolutionRingsExcluded_items_items_number">Value must be strictly greater than <code>0</code></span></p>
 
         
         </div>
     </div>
-    
         </div>
     </div>
             </div>
@@ -34233,7 +33383,7 @@ out-of-order acquisition and interleaving.</p>
 <span class="description"><p>Shipment of Plates or Dewars</p>
 </span>
 
-     <span class="badge badge-info no-additional">No Additional Properties</span><div class="all-of-value" id="Shipment_additionalProperties_allOf"><h2 class="handle">
+    <div class="all-of-value" id="Shipment_additionalProperties_allOf"><h2 class="handle">
   <label>All of</label>
 </h2><ul class="nav nav-tabs" id="tabsShipment_additionalProperties_allOf_allOf" role="tablist"><li class="nav-item">
             <a class="nav-link active allOf-option"
@@ -34410,7 +33560,7 @@ out-of-order acquisition and interleaving.</p>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="Shipment_additionalProperties_allOf_i0_sessionNumber_number">Value must be greater or equal to <code>1</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="Shipment_additionalProperties_allOf_i0_sessionNumber_number">Value must be strictly greater than <code>0</code></span></p>
 
         
             </div>
@@ -35400,7 +34550,7 @@ out-of-order acquisition and interleaving.</p>
 <span class="description"><p>A drop in a well in a crystallization plate with typed JSON containment lists</p>
 </span>
 
-     <span class="badge badge-info no-additional">No Additional Properties</span><div class="all-of-value" id="WellDrop_additionalProperties_allOf"><h2 class="handle">
+    <div class="all-of-value" id="WellDrop_additionalProperties_allOf"><h2 class="handle">
   <label>All of</label>
 </h2><ul class="nav nav-tabs" id="tabsWellDrop_additionalProperties_allOf_allOf" role="tablist"><li class="nav-item">
             <a class="nav-link active allOf-option"
@@ -35511,7 +34661,7 @@ out-of-order acquisition and interleaving.</p>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="WellDrop_additionalProperties_allOf_i0_dropNumber_number">Value must be greater or equal to <code>1</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="WellDrop_additionalProperties_allOf_i0_dropNumber_number">Value must be strictly greater than <code>0</code></span></p>
 
         
             </div>

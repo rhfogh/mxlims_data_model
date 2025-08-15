@@ -47,7 +47,7 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#resolutionLimits" onclick="anchorLink('resolutionLimits')">resolutionLimits</a></div><h4>Resolution Limits</h4><span class="badge badge-dark value-type">Type: array</span><br/>
+    <a href="#resolutionLimits" onclick="anchorLink('resolutionLimits')">resolutionLimits</a></div><h4>Resolution Limits</h4><span class="badge badge-dark value-type">Type: array of number</span><br/>
 <span class="description"><p>lower, higher resolution limit of shell, matches mmCIF items reflns<em>shell.d</em>res<em>low (https://mmcif.wwpdb.org/dictionaries/mmcif</em>pdbx<em>v50.dic/Items/</em>reflns<em>shell.d</em>res<em>low.html) and reflns</em>shell.d<em>res</em>high (https://mmcif.wwpdb.org/dictionaries/mmcif<em>pdbx</em>v50.dic/Items/<em>reflns</em>shell.d<em>res</em>high.html)</p>
 </span>
         
@@ -55,11 +55,9 @@
         
         
 
-        <p><span class="badge badge-light restriction min-items-restriction" id="resolutionLimits_minItems">Must contain a minimum of <code>2</code> items</span></p><p><span class="badge badge-light restriction max-items-restriction" id="resolutionLimits_maxItems">Must contain a maximum of <code>2</code> items</span></p> <span class="badge badge-info no-additional">No Additional Items</span><h4>Tuple Validation</h4>
-    
-    <h5>Item at 1 must be:</h5>
+        <p><span class="badge badge-light restriction min-items-restriction" id="resolutionLimits_minItems">Must contain a minimum of <code>2</code> items</span></p><p><span class="badge badge-light restriction max-items-restriction" id="resolutionLimits_maxItems">Must contain a maximum of <code>2</code> items</span></p> <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
     <div class="card">
-        <div class="card-body items-definition" id="resolutionLimits_items_i0">
+        <div class="card-body items-definition" id="resolutionLimits_items">
             
 
     <div class="breadcrumbs">root
@@ -76,7 +74,7 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#resolutionLimits_items_i0" onclick="anchorLink('resolutionLimits_items_i0')">resolutionLimits item 0</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
+    <a href="#resolutionLimits_items" onclick="anchorLink('resolutionLimits_items')">resolutionLimits items</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
 
         
 
@@ -86,37 +84,6 @@
         
         </div>
     </div>
-    
-    <h5>Item at 2 must be:</h5>
-    <div class="card">
-        <div class="card-body items-definition" id="resolutionLimits_items_i1">
-            
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#resolutionLimits" onclick="anchorLink('resolutionLimits')">resolutionLimits</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#resolutionLimits_items_i1" onclick="anchorLink('resolutionLimits_items_i1')">resolutionLimits item 1</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
-
-        
-
-        
-        
-
-        
-        </div>
-    </div>
-    
             </div>
         </div>
     </div>
@@ -148,7 +115,7 @@
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="numberObservations_number">Value must be greater or equal to <code>0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="numberObservations_number">Value must be strictly greater than <code>0</code></span></p>
 
         
             </div>
@@ -182,7 +149,7 @@
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="numberObservationsUnique_number">Value must be greater or equal to <code>0</code></span></p>
+        <p><span class="badge badge-light restriction numeric-restriction" id="numberObservationsUnique_number">Value must be strictly greater than <code>0</code></span></p>
 
         
             </div>

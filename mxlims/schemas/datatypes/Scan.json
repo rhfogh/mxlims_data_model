@@ -16,7 +16,7 @@
         },
         "numberImages": {
             "description": "Number of images to acquire as part of the Scan.",
-            "minimum": 0,
+            "exclusiveMinimum": 0,
             "title": "Number Images",
             "type": "integer"
         },

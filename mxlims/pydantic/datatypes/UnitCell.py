@@ -5,7 +5,7 @@ from __future__ import annotations
 
 from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import ConfigDict, Field, confloat
+from pydantic import ConfigDict, Field, PositiveFloat
 
 
 class UnitCell(BaseModel):
@@ -19,13 +19,9 @@ class UnitCell(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    a: confloat(ge=0.0) = Field(..., description="A axis length (A)", title="A")
-    b: confloat(ge=0.0) = Field(..., description="B axis length (A)", title="B")
-    c: confloat(ge=0.0) = Field(..., description="C axis length (A)", title="C")
-    alpha: confloat(ge=0.0) = Field(
-        ..., description="alpha angle (degree)", title="Alpha"
-    )
-    beta: confloat(ge=0.0) = Field(..., description="beta angle (degree)", title="Beta")
-    gamma: confloat(ge=0.0) = Field(
-        ..., description="gamma angle (degree)", title="Gamma"
-    )
+    a: PositiveFloat = Field(..., description="A axis length (A)", title="A")
+    b: PositiveFloat = Field(..., description="B axis length (A)", title="B")
+    c: PositiveFloat = Field(..., description="C axis length (A)", title="C")
+    alpha: PositiveFloat = Field(..., description="alpha angle (degree)", title="Alpha")
+    beta: PositiveFloat = Field(..., description="beta angle (degree)", title="Beta")
+    gamma: PositiveFloat = Field(..., description="gamma angle (degree)", title="Gamma")

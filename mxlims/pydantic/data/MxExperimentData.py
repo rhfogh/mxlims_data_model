@@ -7,7 +7,7 @@ from typing import Optional
 
 from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import Field, confloat, conint
+from pydantic import Field, NonNegativeInt, PositiveFloat, PositiveInt, confloat
 
 from ..datatypes.SpaceGroupName import SpaceGroupName
 from ..datatypes.UnitCell import UnitCell
@@ -39,75 +39,75 @@ class MxExperimentData(BaseModel):
         examples=["SOLEIL PX2", "ESRF MASSIF-1"],
         title="Experiment Location",
     )
-    expected_resolution: Optional[confloat(ge=0.0)] = Field(
+    expected_resolution: Optional[PositiveFloat] = Field(
         None,
         alias="expectedResolution",
         description="The resolution expected in the experiment - for positioning the detector and setting up the experiment",
         title="Expected Resolution",
     )
-    required_resolution: Optional[confloat(ge=0.0)] = Field(
+    required_resolution: Optional[PositiveFloat] = Field(
         None,
         alias="requiredResolution",
         description="The minimum resolution required to carry on with the experiment",
         title="Required Resolution",
     )
-    target_completeness: Optional[confloat(ge=0.0, le=100.0)] = Field(
+    target_completeness: Optional[confloat(le=100.0, gt=0.0)] = Field(
         None,
         alias="targetCompleteness",
         description="Minimal completeness expected from experiment",
         title="Target Completeness",
     )
-    target_multiplicity: Optional[confloat(ge=0.0)] = Field(
+    target_multiplicity: Optional[PositiveFloat] = Field(
         None,
         alias="targetMultiplicity",
         description="Minimal multiplicity expected from experiment",
         title="Target Multiplicity",
     )
-    aimed_total_range: Optional[confloat(ge=0.0)] = Field(
+    aimed_total_range: Optional[PositiveFloat] = Field(
         None,
         alias="aimedTotalRange",
         description="The desired total experiment length (in degrees rotated) ",
         title="Aimed Total Range",
     )
-    priority: Optional[conint(ge=1)] = Field(
+    priority: Optional[PositiveInt] = Field(
         None,
         description="Priority of experiment - smaller number higher priority",
         title="Priority",
     )
-    energy: Optional[confloat(ge=0.0)] = Field(
+    energy: Optional[PositiveFloat] = Field(
         None, description="Desired energy of the beam in eV", title="Energy"
     )
-    dose_budget: Optional[confloat(ge=0.0)] = Field(
+    dose_budget: Optional[PositiveFloat] = Field(
         None,
         alias="doseBudget",
         description="Dose (MGy) to be used in experiment",
         title="Dose Budget",
     )
-    radiation_sensitivity: Optional[confloat(ge=0.0, le=1.0)] = Field(
+    radiation_sensitivity: Optional[confloat(le=1.0, gt=0.0)] = Field(
         None,
         alias="radiationSensitivity",
         description="Predicted relative radiation sensitivity of sample at target wavelength.",
         title="Radiation Sensitivity",
     )
-    snapshot_count: Optional[conint(ge=0)] = Field(
+    snapshot_count: Optional[NonNegativeInt] = Field(
         0,
         alias="snapshotCount",
         description="Number of snapshots to acquire after each (re)centring",
         title="Snapshot Count",
     )
-    wedge_width: Optional[confloat(ge=0.0)] = Field(
+    wedge_width: Optional[PositiveFloat] = Field(
         None,
         alias="wedgeWidth",
         description="Wedge width (in degrees) to use for interleaving",
         title="Wedge Width",
     )
-    measured_flux: Optional[confloat(ge=0.0)] = Field(
+    measured_flux: Optional[PositiveFloat] = Field(
         None,
         alias="measuredFlux",
         description="Measured value of beam flux in photons/s",
         title="Measured Flux",
     )
-    radiation_dose: Optional[confloat(ge=0.0)] = Field(
+    radiation_dose: Optional[PositiveFloat] = Field(
         None,
         alias="radiationDose",
         description="Total radiation dose absorbed during experiment",

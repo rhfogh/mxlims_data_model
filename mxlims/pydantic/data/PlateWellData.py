@@ -7,7 +7,7 @@ from typing import Optional
 
 from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import Field, conint
+from pydantic import Field, PositiveInt
 
 
 class PlateWellData(BaseModel):
@@ -15,12 +15,12 @@ class PlateWellData(BaseModel):
     A well in a crystallization plate
     """
 
-    row_number: conint(ge=1) = Field(
+    row_number: PositiveInt = Field(
         ...,
         alias="rowNumber",
         description="<The row number of this well. This is 1-based, so row A is 1, row H is 8. This should be validated against the plateType's rows property.",
     )
-    column_number: conint(ge=1) = Field(
+    column_number: PositiveInt = Field(
         ...,
         alias="columnNumber",
         description="<The column number of this well. This is 1-based, so should match the column labels on the plate. This should be validated against the plateType's columns property.",

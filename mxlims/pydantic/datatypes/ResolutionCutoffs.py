@@ -7,7 +7,7 @@ from typing import Optional
 
 from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import ConfigDict, Field, confloat
+from pydantic import ConfigDict, Field, NonNegativeFloat, confloat
 
 
 class ResolutionCutoffs(BaseModel):
@@ -18,13 +18,13 @@ class ResolutionCutoffs(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    r_merge: Optional[confloat(ge=0.0)] = Field(
+    r_merge: Optional[NonNegativeFloat] = Field(
         None, alias="R_merge", description="R merge", title="R(merge)"
     )
-    r_meas: Optional[confloat(ge=0.0)] = Field(
+    r_meas: Optional[NonNegativeFloat] = Field(
         None, alias="R_meas", description="R meas", title="R_meas"
     )
-    r_pim: Optional[confloat(ge=0.0)] = Field(
+    r_pim: Optional[NonNegativeFloat] = Field(
         None, alias="R_pim", description="R pim", title="R_pim"
     )
     i_over_sig_i: Optional[float] = Field(

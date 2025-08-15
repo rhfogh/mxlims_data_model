@@ -11,12 +11,12 @@
         "numberPositions": {
             "type": "integer",
             "description": "The number of positions available in the Pin.",
-            "minimum": 1
+            "exclusiveMinimum": 0
         },
         "positionInPuck": {
             "type":"integer",
             "description":"The puck position occupied by the pin. This should be validated against the puck's numberPositions property.",
-            "minimum": 1,
+            "exclusiveMinimum": 0,
             "examples":[16]
         }
     },

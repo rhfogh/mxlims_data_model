@@ -7,7 +7,7 @@ from typing import Dict, Optional
 
 from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import Field, conint
+from pydantic import Field, PositiveInt
 
 from ..datatypes.Person import Person
 from ..datatypes.TrackingDevice import TrackingDevice
@@ -24,7 +24,7 @@ class ShipmentData(BaseModel):
         description="The proposal number at the receiving facility.",
         examples=["mx1234"],
     )
-    session_number: Optional[conint(ge=1)] = Field(
+    session_number: Optional[PositiveInt] = Field(
         None,
         alias="sessionNumber",
         description="The session number within the proposal. If this property is not set, the shipment is for unattended collection.",

@@ -6,15 +6,17 @@ include_once __DIR__.'/ShipmentEncoderInterface.php';
 
 class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 
+	public string $version;
+
 	/**
 	 * @var string $plateRowLabels Used to generate plate well/drop names, with A being the top row of a plate, B the next, etc.
 	 */
-	private string $plateRowLabels='-ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	public string $plateRowLabels='-ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 	/**
 	 * @var array $shipmentMessage The shipment message will be built up here
 	 */
-	private array $shipmentMessage;
+	public array $shipmentMessage;
 
 	/**
 	 * Returns an array with the basic "mxlimsType", "version", and "uuid" parameters, generating the UUID if not supplied.
@@ -23,12 +25,12 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 	 * @return array The base object.
 	 * @throws \Exception if $mxlimsType is not alphanumeric or does not start with a capital letter
 	 */
-	private function getBaseObject(string $mxlimsType, ?string $uuid=null): array {
+	public function getBaseObject(string $mxlimsType, ?string $uuid=null): array {
 		if(!preg_match('/^[A-Z][a-zA-Z0-9]+$/', $mxlimsType)){
 			throw new \Exception("Bad mxlimsType $mxlimsType");
 		}
 		if(!$uuid){
-			$uuid=self::generateUuid();
+			$uuid=$this->generateUuid();
 		}
 		return [
 			'mxlimsType' => $mxlimsType,
@@ -41,9 +43,9 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 	 * Generates a UUIDv7.
 	 * @return string the UUID.
 	 */
-	private function generateUuid(): string {
+	public function generateUuid(): string {
 		$timestamp = intval(microtime(true) * 1000);
-		return sprintf('%02x%02x%02x%02x-%02x%02x-%04x-%04x-%012x',
+		return strtolower(sprintf('%02x%02x%02x%02x-%02x%02x-%04x-%04x-%012x',
 			// first 48 bits are timestamp based
 			($timestamp >> 40) & 0xFF,
 			($timestamp >> 32) & 0xFF,
@@ -60,7 +62,7 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 			mt_rand(0, 0x3FFF) | 0x8000,
 			// random 48 bits
 			mt_rand(0, 0xFFFFFFFFFFFF),
-		);
+		));
 	}
 
 	/**
@@ -132,7 +134,7 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 		}
 		$shipment=$this->getBaseObject('Shipment', $uuid);
 		$shipment['proposalCode']=$proposalCode;
-		if($sessionNumber){
+		if(!empty($sessionNumber)){
 			if($sessionNumber<1){
 				throw new \Exception("Session number must be a positive number");
 			}
@@ -148,7 +150,7 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 	 * @throws \Exception
 	 */
 	public function setLabContactOutbound(string $name, ?string $emailAddress=null, ?string $phoneNumber=null): array {
-		return self::setLabContact('Outbound', $name, $emailAddress, $phoneNumber);
+		return $this->setLabContact('Outbound', $name, $emailAddress, $phoneNumber);
 	}
 
 	/**
@@ -156,7 +158,7 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 	 * @throws \Exception
 	 */
 	public function setLabContactReturn(string $name, ?string $emailAddress=null, ?string $phoneNumber=null): array {
-		return self::setLabContact('Return', $name, $emailAddress, $phoneNumber);
+		return $this->setLabContact('Return', $name, $emailAddress, $phoneNumber);
 	}
 
 	/**
@@ -184,7 +186,7 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 	 * @throws \Exception if name is empty, or if both email address and phone number are empty.
 	 * @throws \Exception if direction is not "Outbound" or "Return".
 	 * */
-	private function setLabContact(string $direction, string $name, ?string $emailAddress, ?string $phoneNumber): array {
+	public function setLabContact(string $direction, string $name, ?string $emailAddress, ?string $phoneNumber): array {
 		if('Outbound'!==$direction && 'Return'!==$direction){ throw new \Exception('Bad lab contact direction'); }
 		if(empty($name)){ throw new \Exception("Name cannot be empty"); }
 		if(empty($emailAddress) && empty($phoneNumber)){ throw new \Exception("Email or phone number must be provided"); }
@@ -201,7 +203,7 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 	 * @param $object array The object to add.
 	 * @return void
 	 */
-	private function setObjectToMessage(array &$object): void {
+	public function setObjectToMessage(array &$object): void {
 		$type=$object['mxlimsType'];
 		if(!isset($this->shipmentMessage[$type])){
 			$this->shipmentMessage[$type]=[];
@@ -512,11 +514,11 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 		if(!$name){
 			$name=$plate['barcode'].'_'.$this->plateRowLabels[$well['rowNumber']].str_pad("".$well['columnNumber'], 2, '0',STR_PAD_LEFT).'_'.$dropNumber;
 		}
-		$sample=self::getBaseObject('MacromoleculeSample', $uuid);
+		$sample=$this->getBaseObject('MacromoleculeSample', $uuid);
 		$sample['name']=$name;
 		$sample['macromoleculeRef']=['$ref'=>'#/Macromolecule/Macromolecule'.$macromoleculeIndex];
 		$this->setObjectToMessage($sample);
-		$drop=self::getBaseObject('WellDrop');
+		$drop=$this->getBaseObject('WellDrop');
 		$drop['name']=$name;
 		$drop['dropNumber']=$dropNumber;
 		$drop['containerRef']=['$ref'=>'#/PlateWell/PlateWell'.$wellIndex];
@@ -583,7 +585,7 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 	 * @return array
 	 * @throws \Exception
 	 */
-	private function addDropRegion(int $dropIndex, array $region, ?string $imageMimeType=null, ?string $imageUrl=null, ?string $imageData=null): array {
+	public function addDropRegion(int $dropIndex, array $region, ?string $imageMimeType=null, ?string $imageUrl=null, ?string $imageData=null): array {
 		if(!empty($imageUrl) && !empty($imageData)) {
 			throw new \Exception('Cannot specify both imageUrl and imageData; leave both empty for plate coordinates in microns');
 		} else if(!empty($imageUrl) || !empty($imageData)){
@@ -664,7 +666,7 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 	 * @throws \Exception if none of the child type are present.
 	 * @throws \Exception if any parent is not referred to by at least one child.
 	 */
-	private function validateAllParentsHaveChild(string $parentType, string $childType): void {
+	public function validateAllParentsHaveChild(string $parentType, string $childType): void {
 		if(!isset($this->shipmentMessage[$parentType])){ throw new \Exception("No {$parentType}s in the shipment"); }
 		if(!isset($this->shipmentMessage[$childType])){ throw new \Exception("No {$childType}s in the shipment"); }
 		if(!isset($this->shipmentMessage[$childType][$childType.'1'])){ throw new \Exception("No {$childType}1 in the shipment"); }

@@ -7,7 +7,7 @@ from typing import Dict, List, Optional
 
 from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import Field, confloat, conint
+from pydantic import Field, PositiveFloat, PositiveInt, RootModel, confloat
 
 from ..datatypes.Scan import Scan
 
@@ -23,19 +23,19 @@ class CollectionSweepData(BaseModel):
         description="Type of sweep: 'simple', 'mesh', 'line', 'helical, 'xray_centring'. Should be made into an enumeration",
         title="Sweep Type",
     )
-    exposure_time: Optional[confloat(ge=0.0)] = Field(
+    exposure_time: Optional[PositiveFloat] = Field(
         None,
         alias="exposureTime",
         description="Exposure time in seconds",
         title="Exposure Time",
     )
-    image_width: Optional[confloat(ge=0.0)] = Field(
+    image_width: Optional[PositiveFloat] = Field(
         None,
         alias="imageWidth",
         description="Width of a single image, along scanAxis. For rotational axes in degrees, for translations in mm.",
         title="Image Width",
     )
-    number_images: Optional[conint(ge=0)] = Field(
+    number_images: Optional[PositiveInt] = Field(
         None,
         alias="numberImages",
         description="Number of images from start to end of sweep.Defines image numbering and final axis position. NB Only certain parts of the sweep may be acquired (see 'scans'),so the total number of images acquired may be less.",
@@ -46,25 +46,25 @@ class CollectionSweepData(BaseModel):
         description="Overlap between successive images, in units of imageWidth. May be negative for non-contiguous images.",
         title="Overlap",
     )
-    number_triggers: Optional[conint(ge=0)] = Field(
+    number_triggers: Optional[PositiveInt] = Field(
         None,
         alias="numberTriggers",
         description="Number of triggers. Instruction to detector - does not modify effect of other parameters.",
         title="Number Triggers",
     )
-    number_images_per_trigger: Optional[conint(ge=0)] = Field(
+    number_images_per_trigger: Optional[PositiveInt] = Field(
         None,
         alias="numberImagesPerTrigger",
         description="Number of images per trigger. Instruction to detector - does not modify effect of other parameters.",
         title="Number Images Per Trigger",
     )
-    number_lines: Optional[conint(ge=0)] = Field(
+    number_lines: Optional[PositiveInt] = Field(
         None,
         alias="numberLines",
         description="Number of scanned lines used for mesh scans. Must divide numberImages",
         title="Number Lines",
     )
-    mesh_range: Optional[List] = Field(
+    mesh_range: Optional[List[PositiveFloat]] = Field(
         None,
         alias="meshRange",
         description="Mesh scan range (horizontal, vertical) in mm",
@@ -72,10 +72,10 @@ class CollectionSweepData(BaseModel):
         min_length=2,
         title="Mesh Range",
     )
-    energy: Optional[confloat(ge=0.0)] = Field(
+    energy: Optional[PositiveFloat] = Field(
         None, description="Energy of the beam in eV", title="Energy"
     )
-    transmission: Optional[confloat(ge=0.0, le=100.0)] = Field(
+    transmission: Optional[confloat(le=100.0, gt=0.0)] = Field(
         None, description="Transmission setting in %", title="Transmission"
     )
     resolution: Optional[float] = Field(
@@ -89,7 +89,7 @@ class CollectionSweepData(BaseModel):
         description="Region-of-interest mode of detector. Should be made into an enumeration",
         title="Detector Roi Mode",
     )
-    beam_position: Optional[List] = Field(
+    beam_position: Optional[List[float]] = Field(
         None,
         alias="beamPosition",
         description="x,y position of the beam on the detector in pixels",
@@ -97,7 +97,7 @@ class CollectionSweepData(BaseModel):
         min_length=2,
         title="Beam Position",
     )
-    beam_size: Optional[List] = Field(
+    beam_size: Optional[List[PositiveFloat]] = Field(
         None,
         alias="beamSize",
         description="x,y size of the beam on the detector in mm",

@@ -14,7 +14,7 @@
         "sessionNumber": {
             "type": "integer",
             "description": "The session number within the proposal. If this property is not set, the shipment is for unattended collection.",
-            "minimum": 1
+            "exclusiveMinimum": 0
         },
         "labContactOutbound": {
             "allOf": [
