@@ -24,12 +24,14 @@ __author__ = "Rasmus H Fogh"
 
 import json
 import os
-from mxlims.impl.MxlimsBase import camel_to_snake, CORETYPES
 from pathlib import Path
 from ruamel.yaml import YAML
 import subprocess
 from subprocess import CalledProcessError
 from typing import Optional, List
+
+from mxlims.impl.MxlimsBase import camel_to_snake, CORETYPES
+from mxlims.impl.generate_field_list import generate_fields
 
 # pure=True uses yaml version 1.2, with fewer gotchas for strange type conversions
 yaml = YAML(typ="safe", pure=True)
@@ -137,6 +139,8 @@ def generate_mxlims(dirname: Optional[str] = None) -> None :
     # Generate MXLIMS Message classes
     generate_message_classes(mxlims_dir)
 
+    # Regenerate field name mappings
+    generate_fields(mxlims_dir)
 
 def generate_message_classes(mxlims_dir: Path) -> None:
     """ Generate and write MxlimsMessage classes
