@@ -1,0 +1,33 @@
+Column	MXLIMS	Comment
+#parcel name	Dewar.name
+container name	Puck.name
+container type	Puck.puckType
+container position	Puck.positionInDewar
+protein acronym	Macromolecule.acronym
+sample acronym	MacromoleculeSample.name	
+pin barcode	Pin.barcode
+SPG	MxExperiment.expectedSpaceGroupName
+cellA	MxExperiment.expectedUnitCell.a
+cellB	MxExperiment.expectedUnitCell.b
+cellC	MxExperiment.expectedUnitCell.c
+cellAlpha	MxExperiment.expectedUnitCell.alpha
+cellBeta	MxExperiment.expectedUnitCell.beta
+cellGamma	MxExperiment.expectedUnitCell.gamma
+experimentType	MxExperiment.experimentStrategy
+aimed Resolution	MxExperiment.expectedResolution
+required Resolution	MxExperiment.requiredResolution
+beam diameter	CollectionSweep.beamSize	NB must be post-processed from two-element list to float
+number of positions		What is this?
+aimed multiplicity	MxExperiment.targetMultiplicity
+aimed completeness	MxExperiment.targetCompleteness
+forced SPG		Should be MxProcessing.spaceGroupName but skipped for now as the only processing parameter.
+radiation sensitivity	MxExperiment.radiationSensitivity
+smiles		Would have to map to MacromoleculeSample.components[?].identifiers[“smiles”]
+total rot. angle	MxExperiment.aimedTotalRange	
+min osc. angle		What is this?
+observed resolution		What is this - CollectionSweep.resolution???
+comments	MxExperiment.annotation	Could be put on Sample or LogisticalSamplw instead
+energy	CollectionSweep.energy
+transmission	CollectionSweep.transmission	
+exposure time	CollectionSweep.exposureTime
+oscillation range	CollectionSweep.imageWidth

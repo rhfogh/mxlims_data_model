@@ -23,7 +23,6 @@ class ReflectionSet(ReflectionSetData, Dataset):
     """
     def __init__(self, **data: Any) -> None:
         super().__init__(**data)
-        Dataset.__init__(self, **data)
         
     mxlims_type: Literal["ReflectionSet"] = Field(
         "ReflectionSet",

@@ -77,7 +77,7 @@ def generate_mxlims(dirname: Optional[str] = None) -> None :
     subprocess.run(commands, check=True, cwd=mxlims_dir)
 
     # Remove old pydantic files
-    for subdir in ("data", "datatypes", "messages", "references", "core"):
+    for subdir in ("data", "datatypes", "messages", "references"):
         for fp0 in (mxlims_dir / "mxlims" / "pydantic" / subdir).iterdir():
             if fp0.is_file():
                 os.remove(fp0)
@@ -353,7 +353,7 @@ from __future__ import annotations
 from pydantic import Field
 from typing import Any, Literal, Optional, Union, TYPE_CHECKING
 from uuid import UUID, uuid1
-from mxlims.impl.MxlimsBase import MxlimsImplementation
+from mxlims.pydantic.core.MxlimsObject import MxlimsObject
 from ..data.{classname}Data import {classname}Data
 """,
         ]
@@ -368,12 +368,11 @@ from ..data.{classname}Data import {classname}Data
                     )
 
         txtlist.append(f'''
-class {classname}({classname}Data, MxlimsImplementation):
+class {classname}({classname}Data, MxlimsObject):
     """MXLIMS pydantic model class for {classname}
     """
     def __init__(self, **data: Any) -> None:
         super().__init__(**data)
-        MxlimsImplementation.__init__(self)
         
     mxlims_base_type: Literal["{classname}"] = Field(
         "{classname}",
@@ -454,7 +453,6 @@ class {classname}({classname}Data, {corename}):
     """
     def __init__(self, **data: Any) -> None:
         super().__init__(**data)
-        {corename}.__init__(self, **data)
         
     mxlims_type: Literal["{classname}"] = Field(
         "{classname}",

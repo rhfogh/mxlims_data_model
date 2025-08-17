@@ -24,7 +24,6 @@ class MxProcessing(MxProcessingData, Job):
     """
     def __init__(self, **data: Any) -> None:
         super().__init__(**data)
-        Job.__init__(self, **data)
         
     mxlims_type: Literal["MxProcessing"] = Field(
         "MxProcessing",

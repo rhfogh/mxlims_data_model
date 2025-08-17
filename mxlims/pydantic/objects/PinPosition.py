@@ -22,7 +22,6 @@ class PinPosition(PinPositionData, LogisticalSample):
     """
     def __init__(self, **data: Any) -> None:
         super().__init__(**data)
-        LogisticalSample.__init__(self, **data)
         
     mxlims_type: Literal["PinPosition"] = Field(
         "PinPosition",

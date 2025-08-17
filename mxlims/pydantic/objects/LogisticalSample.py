@@ -5,19 +5,18 @@ from __future__ import annotations
 from pydantic import Field
 from typing import Any, Literal, Optional, Union, TYPE_CHECKING
 from uuid import UUID, uuid1
-from mxlims.impl.MxlimsBase import MxlimsImplementation
+from mxlims.pydantic.core.MxlimsObject import MxlimsObject
 from ..data.LogisticalSampleData import LogisticalSampleData
 if TYPE_CHECKING:
     from .Dataset import Dataset
     from .Job import Job
     from .Sample import Sample
 
-class LogisticalSample(LogisticalSampleData, MxlimsImplementation):
+class LogisticalSample(LogisticalSampleData, MxlimsObject):
     """MXLIMS pydantic model class for LogisticalSample
     """
     def __init__(self, **data: Any) -> None:
         super().__init__(**data)
-        MxlimsImplementation.__init__(self)
         
     mxlims_base_type: Literal["LogisticalSample"] = Field(
         "LogisticalSample",

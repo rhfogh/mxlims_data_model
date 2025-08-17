@@ -22,7 +22,6 @@ class DropRegion(DropRegionData, LogisticalSample):
     """
     def __init__(self, **data: Any) -> None:
         super().__init__(**data)
-        LogisticalSample.__init__(self, **data)
         
     mxlims_type: Literal["DropRegion"] = Field(
         "DropRegion",
