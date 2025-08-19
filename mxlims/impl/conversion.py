@@ -21,6 +21,7 @@ from importlib import import_module
 from packaging import version
 from pathlib import Path
 from pydantic import BaseModel
+from ruamel.yaml import YAML
 from typing import List
 
 from mxlims.impl.typemap import typemap
@@ -37,16 +38,29 @@ if TYPE_CHECKING:
     from mxlims.pydantic.objects.LogisticalSample import LogisticalSample
     from mxlims.pydantic.objects.Sample import Sample
 
-def import_spreadsheet(
-         scheme:str, filepath:Path, separator="\t"
-):
-    """Export spreadsheet-type file (e.g. comma- or tab-separated)
+# pure=True uses yaml version 1.2, with fewer gotchas for strange type conversions
+yaml = YAML(typ="safe", pure=True)
+# The following are not needed for load, but define the default style.
+yaml.default_flow_style = False
+yaml.indent(mapping=2, sequence=4, offset=2)
 
-    with a line for each MXLIMS object in object_list
+def import_spreadsheet(
+         scheme:str, filepath:Path, separator="\t", result_mode: bool=False
+):
+    """Import spreadsheet-type file (e.g. comma- or tab-separated)
+
+    with a line for each MXLIMS object in object_list.
+    Note that this function makes assumptions to fit standard simple situations;
+
+
+    For reading pre-experiment data (sample submission etc.) use result_mode False
+    For reading acquired or processed data use result_mode True
+    The difference is in how datasets are linked to jobs
 
     :param scheme: format and mapping to use, e.g. maxiv, soleil, ...
     :param filepath: Path of file to import, assumed to .csv or .tsv
     :param separator: Field separator in output file: "," or "\t"
+    :param result_mode: If true link datasets as results, if false as input templates
     :return:
     """
     with open(filepath, "r") as fp0:
@@ -59,14 +73,26 @@ def import_spreadsheet(
             raise ValueError(
                 "Line has different number of fields than header:\n", ll0
             )
-        ingest_row(dict(zip(header, ll0)), scheme)
+        ingest_row(dict(zip(header, ll0)), scheme, result_mode=result_mode)
 
 def export_spreadsheet(
         object_list:List[MxlimsObject], scheme:str, filepath:Path, separator="\t"
 ):
-    """Export spreadsheet-type file (e.g. comma- or tab-separated)
+    """Simplified export to spreadsheet-type file (e.g. comma- or tab-separated)
 
-    with a line for each MXLIMS object in object_list
+    with a line for each MXLIMS object in object_list.
+
+    Note that this function makes assumptions to fit standard simple situations.
+
+    The MxlimsObjects in the list are expanded to include linked-to objects.
+    There can only be one object of each type and datasets are taken as results
+    (if available) templates otherwise. This will only work for simple situations,
+    e.g. not for multi-sweep experiments.
+
+    For normal operation you should enter lists of Jobs or Result Datasets.
+    Note that Samples and LogisticalSamples are NOT expanded to include Jobs or Datasets.
+
+
 
     :param object_list: MXLIMS objects determining what to export
     :param scheme: format and mapping to use, e.g. maxiv, soleil, ...
@@ -82,12 +108,13 @@ def export_spreadsheet(
     with open(filepath, "w") as fp0:
         fp0.write("\n".join(lines))
 
-def ingest_row(data_dict: Dict[str, Any], scheme:str
+def ingest_row(data_dict: Dict[str, Any], scheme:str, result_mode: bool=False
 ) -> Dict[str, MxlimsObject]:
     """Convert list of tag, value data items to MxlimsObects according to scheme
 
     :param data_dict: Dictionary of tag: value data items
     :param scheme: format and mapping to use, e.g. maxiv, soleil, ...
+    :param result_mode: If true link datasets as results, if false as input templates
     :return:
     """
     result = {}
@@ -147,7 +174,72 @@ def ingest_row(data_dict: Dict[str, Any], scheme:str
         result[mxlims_type] = mxlimsobj(**dd0)
     #
     adjust_mxlims(result, mapping, data_dict)
+    link_mxlims_objects(result, result_mode)
     return result
+
+def link_mxlims_objects(result: Dict[str, MxlimsObject], result_mode:bool= False):
+    """Set links between MxlimsObjects in result according to standard assumed pattern
+
+    Specific to MX type data, not generic
+
+    :param result:
+    :param result_mode: Determines if Datasets are treated as results (if True) or input templates
+    :return:
+    """
+    mxlims_dir = Path(__file__).resolve().parent.parent
+    link_refs = yaml.load(mxlims_dir / "mxlims" / "impl" / "link_specification.yaml")
+
+    # Set up samples:
+    sample = result.get("MacromoleculeSample")
+    if sample:
+        sample.medium = result.get("Medium")
+        sample.mainComponent = result.get("Macromolecule")
+
+    # Set up LogisticalSamples
+    logistical_samples = list(
+        obj for obj in result.values() if obj.mxlims_base_type == "LogisticalSample"
+    )
+    for obj in logistical_samples:
+        for ctype in link_refs[obj.mxlims_type]["links"]["typenames"]:
+            container = result.get(ctype)
+            if container is not None:
+                obj.container = container
+                break
+    leaf_containers = [obj for obj in logistical_samples if not obj.contents]
+    if len(leaf_containers) == 1:
+        leaf_container = leaf_containers[0]
+    else:
+        leaf_container = None
+
+    # Set up Jobs
+    mx_experiment = result.get("MxExperiment")
+    mx_processing = result.get("MxProcessing")
+    for job in (mx_experiment, mx_processing):
+        if job is not None:
+            if sample is not None:
+                job.sample = sample
+            if leaf_container is not None:
+                job.logistical_sample = leaf_containers
+
+    # Set up datasets
+    dataset = result.get("CollectionSweep")
+    if dataset is not None:
+        if leaf_container is not None:
+            dataset.logistical_sample = leaf_container
+        if mx_experiment is not None:
+            if result_mode:
+                dataset.source = mx_experiment
+            else:
+                mx_experiment.template_data = [dataset]
+    dataset = result.get("ReflectionSet")
+    if dataset is not None:
+        if leaf_container is not None:
+            dataset.logistical_sample = leaf_container
+        if mx_processing is not None:
+            if result_mode:
+                dataset.source = mx_processing
+            else:
+                mx_processing.template_data = [dataset]
 
 
 def generate_spreadsheet_data(
@@ -288,10 +380,36 @@ def expand_job(source: Job)  -> dict[str, MxlimsObject]:
         new_data.update(result)
         result = new_data
 
-    # Read template dataset, if the Dataset slot is not already taken
-    template_data = source.template_data
-    if len(template_data) == 1:
-        result[template_data[0].mxlims_type] = template_data[0]
+    # Get Dataset, either result (if any) or template
+    dataset = None
+    for dataset in source.results:
+        if dataset.role == "Result":
+            break
+    else:
+        template_data = source.template_data
+        if len(template_data) == 1:
+            dataset = template_data[0]
+    if dataset:
+        result[dataset.mxlims_type] = dataset
+
+    # Read experiment from input-creating job, if any
+    # input_job taken from input links, or if only MxExperiment on same sample
+    # The latter is a heuristic only, but this is a simplified conversion scheme
+    input_job = None
+    input_jobs = set(dataset.source for dataset in source.input_data if dataset)
+    if len(input_jobs) == 1:
+        input_job = input_jobs.pop()
+    elif source.mxlims_type == "MxProcessing":
+        # NBNB This is NOT generic. Cannot be helped.
+        obj = source.logistical_sample or source.sample
+        exps = list(job for job in obj.jobs if job.mxlims_type == "MxExperiment")
+        if len(exps) == 1:
+            input_job = exps[0]
+    if input_job is not None:
+        inp_data = expand_job(input_job)
+        # Data from this job override the same objects from input Job
+        inp_data.update(result)
+        result = inp_data
     #
     return result
 
