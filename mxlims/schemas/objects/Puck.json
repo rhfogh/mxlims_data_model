@@ -24,14 +24,7 @@
                     "reverseLinkName": "contents"
                 },
                 {
-                    "oneOf": [
-                        {
-                            "$ref": "../references/DewarRef.json"
-                        },
-                        {
-                            "$ref": "../references/LogisticalSampleRef.json"
-                        }
-                    ]
+                    "$ref": "../references/DewarRef.json"
                 }
             ]
         }

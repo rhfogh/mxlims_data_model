@@ -27,6 +27,12 @@ class MxlimsObjectData(BaseModel):
         description="The type of the MXLIMS object. Fixed for each subtype schema",
         title="MxlimsType",
     )
+    mxlims_base_type: str = Field(
+        ...,
+        alias="mxlimsBaseType",
+        description="The core type of the MXLIMS object (Job, Dataset, Sample, or LogisticalSample). Fixed for each subtype schema",
+        title="MxlimsBaseType",
+    )
     uuid: Optional[UUID] = Field(
         None, description="Permanent unique identifier string", title="Uuid"
     )

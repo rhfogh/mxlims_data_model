@@ -15,6 +15,11 @@
             "title": "MxlimsType",
             "type": "string"
         },
+        "mxlimsBaseType": {
+            "description": "The core type of the MXLIMS object (Job, Dataset, Sample, or LogisticalSample). Fixed for each subtype schema",
+            "title": "MxlimsBaseType",
+            "type": "string"
+        },
         "uuid": {
             "description": "Permanent unique identifier string",
             "title": "Uuid",
@@ -42,6 +47,7 @@
     },
     "required": [
         "version",
-        "mxlimsType"
+        "mxlimsType",
+        "mxlimsBaseType"
     ]
 }

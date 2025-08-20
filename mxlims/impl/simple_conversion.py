@@ -167,7 +167,8 @@ def ingest_row(data_dict: Dict[str, Any], scheme:str, result_mode: bool=False
 
     # All data have now been passed to MxlimsObject inputs (length == 1)
     # Make them
-    for mxlims_type, dd0 in partials_dict[1].items():
+    for tpl, dd0 in partials_dict[1].items():
+        mxlims_type = tpl[0]
         mxlimsobj = getattr(
             import_module(f"mxlims.pydantic.objects.{mxlims_type}"), mxlims_type
         )
@@ -197,14 +198,18 @@ def link_mxlims_objects(result: Dict[str, MxlimsObject], result_mode:bool= False
 
     # Set up LogisticalSamples
     logistical_samples = list(
-        obj for obj in result.values() if obj.mxlims_base_type == "LogisticalSample"
+        obj for obj in result.values() if isinstance(obj, LogisticalSample)
     )
     for obj in logistical_samples:
-        for ctype in link_refs[obj.mxlims_type]["links"]["typenames"]:
-            container = result.get(ctype)
-            if container is not None:
-                obj.container = container
-                break
+        container_link = link_refs[obj.mxlims_type]["links"].get("container")
+        if container_link:
+            for ctype in container_link["typenames"]:
+                container = result.get(ctype)
+                if container is not None:
+                    # NB .container is settable in ALL cases that could reach this point
+                    # i.e. is for all LogisticalSamples except Shipment
+                    obj.container = container
+                    break
     leaf_containers = [obj for obj in logistical_samples if not obj.contents]
     if len(leaf_containers) == 1:
         leaf_container = leaf_containers[0]
@@ -251,12 +256,9 @@ def generate_spreadsheet_data(
 
     :param object_list: MXLIMS objects determining what to export
     :param scheme: format and mapping to use, e.g. maxiv, soleil, ...
-    :param filepath: Path of file to export to
-    :param separator: Field separator in output file
     :return:
     """
-    mxlims_version: str = version.parse(object_list[0].version)
-    version_dir = get_version_dir(scheme, mxlims_version)
+    version_dir = get_version_dir(scheme, version.parse(object_list[0].version))
     dirname = version_dir.stem
     mapping : Dict[str, list[str]] = read_mapping(version_dir)
     adjust_row = getattr(
@@ -344,12 +346,11 @@ def read_mapping(version_dir: Path) -> dict[str, list[str]]:
     """Read scheme-specific mapping file from version_dir and convert to dict[str, tuple]"""
 
     file = None
+    sep = "\t"
     for file in version_dir.iterdir():
         if file.name in ("mapping.tsv", "mapping.csv"):
             if file.suffix == "csv":
                 sep = ","
-            else:
-                sep = "\t"
             break
     if file is None:
         raise RuntimeError(f"Mapping file not found in {version_dir.as_posix()}")

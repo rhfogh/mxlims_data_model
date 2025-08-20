@@ -15,7 +15,7 @@
 # Concatenated field strings can be used to address dictionaries. E.g.
 # Macromolecule.identifiers.SwissProt maps to Macromolecule.identifiers["SwissProt"]
 
-from typing import Any, Dict, List
+from typing import Dict, List
 
 from mxlims.pydantic.datatypes.ImageRegion import ImageRegion
 from mxlims.pydantic.datatypes.Person import Person
