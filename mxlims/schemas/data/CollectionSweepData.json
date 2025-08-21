@@ -34,19 +34,19 @@
             "title": "Overlap"
         },
         "numberTriggers": {
-            "exclusiveMinimum": 0,
+            "minimum": 0,
             "type": "integer",
             "description": "Number of triggers. Instruction to detector - does not modify effect of other parameters.",
             "title": "Number Triggers"
         },
         "numberImagesPerTrigger": {
-            "exclusiveMinimum": 0,
+            "minimum": 0,
             "type": "integer",
             "description": "Number of images per trigger. Instruction to detector - does not modify effect of other parameters.",
             "title": "Number Images Per Trigger"
         },
         "numberLines": {
-            "exclusiveMinimum": 0,
+            "minimum": 0,
             "type": "integer",
             "description": "Number of scanned lines used for mesh scans. Must divide numberImages",
             "title": "Number Lines"

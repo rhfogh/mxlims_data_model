@@ -54,24 +54,23 @@ class Job(JobData, MxlimsObject):
         title="LogisticalSampleId",
     )
     reference_data_ids: Optional[List[UUID]] = Field(
-        None,
+        default_factory=list,
         alias="referenceDataIds",
         description="uuid for reference Datasets",
         title="ReferenceDataId",
     )
     template_data_ids: Optional[List[UUID]] = Field(
-        None,
+        default_factory=list,
         alias="templateDataIds",
         description="uuid for template Datasets",
         title="TemplateDataId",
     )
     input_data_ids: Optional[List[UUID]] = Field(
-        None,
+        default_factory=list,
         alias="inputDataIds",
         description="uuid for input Datasets",
         title="InputDataId",
     )
-
     @property
     def input_data(self) -> list[Dataset]:
         """Abstract superclass - dummy getter for Job.input_data list"""

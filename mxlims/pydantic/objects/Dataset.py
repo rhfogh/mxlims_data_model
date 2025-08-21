@@ -52,7 +52,6 @@ class Dataset(DatasetData, MxlimsObject):
         description="uuid for LogisticalSample related to Dataset",
         title="LogisticalSampleId",
     )
-
     @property
     def derived_datasets(self) -> list[Dataset]:
         """Abstract superclass - dummy getter for Dataset.derived_datasets list"""

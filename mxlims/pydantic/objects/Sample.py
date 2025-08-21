@@ -49,7 +49,6 @@ class Sample(SampleData, MxlimsObject):
         description="uuid for main component (e.g. macromolecule) making up Sample",
         title="mainComponentId",
     )
-
     @property
     def jobs(self) -> list[Job]:
         """Abstract superclass - dummy getter for Sample.jobs list"""

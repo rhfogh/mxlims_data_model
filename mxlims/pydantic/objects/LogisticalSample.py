@@ -50,7 +50,6 @@ class LogisticalSample(LogisticalSampleData, MxlimsObject):
         description="uuid for LogisticalSample container",
         title="containerId",
     )
-
     @property
     def container(self) -> Optional[LogisticalSample]:
         """Abstract superclass - dummy getter for LogisticalSample.container"""
