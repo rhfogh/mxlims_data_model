@@ -23,25 +23,25 @@ class MxlimsMessage(MxlimsMessageStrict):
         extra="forbid",
     )
     dataset: Optional[Dict[str, DatasetStub]] = Field(
-        None,
+        default_factory=dict,
         alias="Dataset",
         description="idString:object dictionary of Dataset stubs.",
         title="Datasets",
     )
     job: Optional[Dict[str, JobStub]] = Field(
-        None,
+        default_factory=dict,
         alias="Job",
         description="idString:object dictionary of Job stubs.",
         title="Jobs",
     )
     logistical_sample: Optional[Dict[str, LogisticalSampleStub]] = Field(
-        None,
+        default_factory=dict,
         alias="LogisticalSample",
         description="idString:object dictionary of LogisticalSample stubs.",
         title="LogisticalSamples",
     )
     sample: Optional[Dict[str, SampleStub]] = Field(
-        None,
+        default_factory=dict,
         alias="Sample",
         description="idString:object dictionary of Sample stubs.",
         title="Samples",

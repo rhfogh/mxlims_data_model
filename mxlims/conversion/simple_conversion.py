@@ -1,3 +1,4 @@
+#! /usr/bin/env python
 # encoding: utf-8
 """ Simple conversion to/from tab-separated column format
 
@@ -16,6 +17,7 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with this file. If not, see <https://www.gnu.org/licenses/>.
 """
+from __future__ import annotations
 
 from importlib import import_module
 from packaging import version
@@ -24,19 +26,20 @@ from pydantic import BaseModel
 from ruamel.yaml import YAML
 from typing import List
 
-from mxlims.impl.typemap import typemap
+from mxlims.core.typemap import typemap
+from mxlims.impl.MxlimsBase import camel_to_snake
+from mxlims.pydantic.messages.MxlimsMessageStrict import MxlimsMessageStrict
 
 __copyright__ = """ Copyright © 2024 -  2025 MXLIMS collaboration."""
 __license__ = "LGPLv3+"
 __author__ = "Rasmus H Fogh"
 
-from typing import TYPE_CHECKING, Any, Dict, Tuple
-if TYPE_CHECKING:
-    from mxlims.pydantic.core.MxlimsObject import MxlimsObject
-    from mxlims.pydantic.objects.Dataset import Dataset
-    from mxlims.pydantic.objects.Job import Job
-    from mxlims.pydantic.objects.LogisticalSample import LogisticalSample
-    from mxlims.pydantic.objects.Sample import Sample
+from mxlims.core.MxlimsObject import MxlimsObject
+from typing import Any, Dict, Optional, Tuple
+from mxlims.pydantic.objects.Dataset import Dataset
+from mxlims.pydantic.objects.Job import Job
+from mxlims.pydantic.objects.LogisticalSample import LogisticalSample
+from mxlims.pydantic.objects.Sample import Sample
 
 # pure=True uses yaml version 1.2, with fewer gotchas for strange type conversions
 yaml = YAML(typ="safe", pure=True)
@@ -68,6 +71,9 @@ def import_spreadsheet(
     if len(data) <= 2:
         raise ValueError("MXLIMS requires at least header and data row")
     header = data.pop(0)
+    if header[0][0] == "#":
+        header[0] = header[0][1:]
+    header = list(map(str.strip, header))
     for ll0 in data:
         if len(ll0) != len(header):
             raise ValueError(
@@ -103,8 +109,7 @@ def export_spreadsheet(
     header, rows = generate_spreadsheet_data(object_list, scheme)
     lines = [separator.join(header)]
     for row in rows:
-        lines.append(separator.join(row.get(tag, "") for tag in header))
-
+        lines.append(separator.join(str(row.get(tag, "")) for tag in header))
     with open(filepath, "w") as fp0:
         fp0.write("\n".join(lines))
 
@@ -123,11 +128,15 @@ def ingest_row(data_dict: Dict[str, Any], scheme:str, result_mode: bool=False
     dirname = version_dir.stem
     mapping : Dict[str, list[str]] = read_mapping(version_dir)
     adjust_mxlims = getattr(
-        import_module(f"mxlims.conversion.{scheme}.{dirname}.converter"), "adjust_mxlims"
+        import_module(
+            f"mxlims.conversion.{scheme}.{dirname}.simple_converter"
+        ), "adjust_mxlims"
     )
 
     partials_dict: dict[int, dict[tuple, dict[str, Any]]] = {}
     for tag, val in data_dict.items():
+        if val == "":
+            val = None
         steps = mapping.get(tag)
         if steps:
             # Note unmapped items remain in data_dict for use in later adjustment
@@ -144,26 +153,28 @@ def ingest_row(data_dict: Dict[str, Any], scheme:str, result_mode: bool=False
         # Start making objects and dicts, beginning at leaf end, and putting
         # them into dicts for containing objects
         for partial, dd1 in dd0.items():
-            typ = typemap.get(partial)
-            last = partial[-1]
-            tpl = partial[:-1]
-            if typ is None:
-                raise ValueError(
-                    f"Unknown type '{partial}' in mapping for version {version_dir}"
-                )
-            else:
-                dd0 = partials_dict.get(length-1, {})
-                partials_dict[length-1] = dd0
-                dd3 = dd0.get(tpl, {})
-                dd0[tpl] = dd3
-                if issubclass(typ, dict):
-                    # Type is a dictionary - put it in the containing object
-                    dd3[last] = dd1
-                elif issubclass(typ, BaseModel):
-                    # Presumably a Datatype
-                    dd3[last] = typ(**dd1)
+            if any(val for val in dd1.values() if val is not None):
+                # Skip data type or dictionaries without any actual values
+                typ = typemap.get(partial)
+                last = partial[-1]
+                tpl = partial[:-1]
+                if typ is None:
+                    raise ValueError(
+                        f"Unknown type '{partial}' in mapping for version {version_dir}"
+                    )
                 else:
-                    raise RuntimeError(f"Cannot handle type '{typ}'")
+                    dd0 = partials_dict.get(length-1, {})
+                    partials_dict[length-1] = dd0
+                    dd3 = dd0.get(tpl, {})
+                    dd0[tpl] = dd3
+                    if issubclass(typ, dict):
+                        # Type is a dictionary - put it in the containing object
+                        dd3[last] = dd1
+                    elif issubclass(typ, BaseModel):
+                        # Presumably a Datatype
+                        dd3[last] = typ(**dd1)
+                    else:
+                        raise RuntimeError(f"Cannot handle type '{typ}'")
 
     # All data have now been passed to MxlimsObject inputs (length == 1)
     # Make them
@@ -188,17 +199,17 @@ def link_mxlims_objects(result: Dict[str, MxlimsObject], result_mode:bool= False
     :return:
     """
     mxlims_dir = Path(__file__).resolve().parent.parent
-    link_refs = yaml.load(mxlims_dir / "mxlims" / "impl" / "link_specification.yaml")
+    link_refs = yaml.load(mxlims_dir / "impl" / "link_specification.yaml")
 
     # Set up samples:
     sample = result.get("MacromoleculeSample")
     if sample:
         sample.medium = result.get("Medium")
-        sample.mainComponent = result.get("Macromolecule")
+        sample.main_component = result.get("Macromolecule")
 
     # Set up LogisticalSamples
     logistical_samples = list(
-        obj for obj in result.values() if isinstance(obj, LogisticalSample)
+        obj for obj in result.values() if obj.mxlims_base_type == "LogisticalSample"
     )
     for obj in logistical_samples:
         container_link = link_refs[obj.mxlims_type]["links"].get("container")
@@ -224,7 +235,7 @@ def link_mxlims_objects(result: Dict[str, MxlimsObject], result_mode:bool= False
             if sample is not None:
                 job.sample = sample
             if leaf_container is not None:
-                job.logistical_sample = leaf_containers
+                job.logistical_sample = leaf_container
 
     # Set up datasets
     dataset = result.get("CollectionSweep")
@@ -260,9 +271,11 @@ def generate_spreadsheet_data(
     """
     version_dir = get_version_dir(scheme, version.parse(object_list[0].version))
     dirname = version_dir.stem
-    mapping : Dict[str, list[str]] = read_mapping(version_dir)
+    mapping : Dict[str, list[str]] = read_mapping(version_dir, to_snake_case=True)
     adjust_row = getattr(
-        import_module(f"mxlims.conversion.{scheme}.{dirname}.converter"), "adjust_row"
+        import_module(
+            f"mxlims.conversion.{scheme}.{dirname}.simple_converter"
+        ), "adjust_row"
     )
 
     header : list[str] = list(mapping)
@@ -296,27 +309,27 @@ def get_row(
     that must eb fixed at teh adjustment state (or avoided in the mapping)"""
     result = {}
     for tag, steps in mapping.items():
-        obj = objs.get(steps[0])
+        obj = None
+        if steps:
+            obj = objs.get(steps[0])
+            for step in steps[1:]:
+                if obj is None:
+                    # No object/value found
+                    break
+                elif isinstance(obj, dict):
+                    # obj is a dictionary - use next string as a key
+                    obj = obj.get(step)
+                elif hasattr(obj, step):
+                    # Obj is an MxlimsObjetc or datatype, or anyway has the right attribute
+                    obj=getattr(obj, step)
+                else:
+                    # obj is NOT mappable (e.g. a list of Datatypes) - potential error
+                    # This value must be adjusted later or avoided in the mapping
+                    break
         if obj is None:
-            continue
-        for step in steps[1:]:
-            if obj is None:
-                # No object/value found
-                break
-            elif isinstance(obj, dict):
-                # obj is a dictionary - use next string as a key
-                obj = obj.get(step)
-            elif hasattr(obj, step):
-                # Obj is an MxlimsObjetc or datatype, or anyway has the right attribute
-                obj=getattr(obj, step)
-            else:
-                # obj is NOT mappable (e.g. a list of Datatypes) - potential error
-                # This value must be adjusted later or avoided in the mapping
-                break
-        if obj is None:
-            continue
-        else:
-            result[tag] = obj
+            # We want empty strings in spreadsheet for missing fields
+            obj = ""
+        result[tag] = obj
     return result
 
 
@@ -328,8 +341,9 @@ def get_version_dir(scheme:str, mxlims_version: version.Version=None) -> Path:
     version_map = {}
     subdir = None
     for subdir in subdirs:
-        vrs = version.parse(subdir.name.replace("_", "."))
-        version_map[vrs] = subdirs
+        if not subdir.name.startswith("__"):
+            vrs = version.parse(subdir.name.replace("_", "."))
+            version_map[vrs] = subdir
     if mxlims_version:
         for vrs,subdir in sorted(version_map.items()):
             if vrs > mxlims_version:
@@ -342,7 +356,7 @@ def get_version_dir(scheme:str, mxlims_version: version.Version=None) -> Path:
         raise RuntimeError(f"No version directories found for scheme {scheme}")
     return scheme_dir / subdir
 
-def read_mapping(version_dir: Path) -> dict[str, list[str]]:
+def read_mapping(version_dir: Path, to_snake_case: bool=False) -> dict[str, list[str]]:
     """Read scheme-specific mapping file from version_dir and convert to dict[str, tuple]"""
 
     file = None
@@ -358,9 +372,17 @@ def read_mapping(version_dir: Path) -> dict[str, list[str]]:
     with open(version_dir / file, "r") as fp0:
         for line in fp0:
             column, addr, comment = line.split(sep)
-            if addr != "MXLIMS":
-                # Skipping first, header line
-                result[column] = addr.split(".")
+            if not addr:
+                result[column] = None
+            elif addr != "MXLIMS":
+                # Skipping first, header line and empty mappings
+                ll0 = addr.split(".")
+                if len(ll0) < 2:
+                    raise RuntimeError(f"Mapping not recognized for: {line}")
+                if to_snake_case:
+                    for ind in range(1, len(ll0)):
+                        ll0[ind] = camel_to_snake(ll0[ind])
+                result[column] = ll0
     #
     return result
 
@@ -465,3 +487,108 @@ def expand_sample(source: Sample) -> dict[str, MxlimsObject]:
     if medium and medium.mxlims_type not in result:
         result[medium.mxlims_type] = medium
     return result
+
+
+def do_conversion(
+        scheme: str,
+        input: str,
+        output: Optional[str] = None,
+        result_mode: Optional[bool] = False
+):
+    """ Convert MXLIMS message .json to spreadsheet .tsv or .csv file or vice versa
+
+    :param scheme:
+    :param input: Input file name. Extension determines type and direction of conversion
+    :params output: output file. Must have suffix either 'json', 'tsv', or 'csv'
+    :param result_mode:
+    :return:
+    """
+
+    # Sort out  input and output paths, and separator
+    inpath = Path(input)
+    suffix = inpath.suffix
+    separator = "\t"
+    if suffix == ".json":
+        # we are converting from MXLIMS to a spreadsheet
+        if output:
+            outpath = Path(output)
+            if outpath.suffix == ".csv":
+                separator = ","
+            elif outpath.suffix != ".tsv":
+                raise ValueError(
+                    "For JSON input, output file must have suffix .csv or .tsv"
+                )
+        else:
+            outpath = inpath.with_suffix(".tsv")
+        MxlimsMessageStrict.from_message_file(inpath)
+        export_spreadsheet(
+            MxlimsObject.get_all_jobs(),
+            scheme=scheme,
+            filepath=outpath,
+            separator=separator
+        )
+
+    elif suffix in (".tsv", ".csv"):
+        # we are converting from a spreadsheet to MXLIMS
+        if suffix == ".csv":
+            separator = ","
+        if output:
+            outpath = Path(output)
+            if outpath.suffix != ".json":
+                raise ValueError(
+                    f"For {suffix} input, output file must have suffix .json"
+                )
+        else:
+            outpath = inpath.with_suffix(".json")
+        #
+        import_spreadsheet(scheme, inpath, separator, result_mode)
+        # Ignore warning. parameter type is a subtype of the one declared in the function
+        message = MxlimsMessageStrict.from_pydantic_objects(
+            MxlimsObject.get_all_jobs() + MxlimsObject.get_all_logistical_samples()
+            + MxlimsObject.get_all_datasets() + MxlimsObject.get_all_samples()
+        )
+        message.export_message(outpath)
+
+
+
+
+
+if __name__ == "__main__":
+
+    from argparse import ArgumentParser, RawTextHelpFormatter
+
+    parser = ArgumentParser(
+        prog="simple_conversion.py",
+        formatter_class=RawTextHelpFormatter,
+        prefix_chars="--",
+        description="""
+Conversion between simple spreadsheet data and MXLIMS json data""",
+    )
+
+    parser.add_argument(
+        "input",
+        metavar="input",
+        help="Input file, in format MXLIMS json, or spreadsheet ,csv or .tsv",
+    )
+    parser.add_argument(
+        "scheme",
+        metavar="scheme",
+        help="Spreadsheet format or scheme, matching a directory name in mxlims/conversion"
+    )
+    parser.add_argument(
+        "--output",
+        metavar="input",
+        default=None,
+        help="Output file. Defaults to input file with modified extension",
+    )
+    parser.add_argument(
+        "--result_mode",
+        metavar="result_mode",
+        default=False,
+        help="Boolean; is spreadsheet input treated as a result or as pre-experiment parameters",
+    )
+
+    argsobj = parser.parse_args()
+    options_dict = vars(argsobj)
+
+    do_conversion(**options_dict)

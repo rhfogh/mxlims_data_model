@@ -3,9 +3,9 @@
 
 from __future__ import annotations
 from pydantic import Field
-from typing import Any, Literal, Optional, Union, TYPE_CHECKING
+from typing import List, Literal, Optional, TYPE_CHECKING
 from uuid import UUID, uuid1
-from mxlims.pydantic.core.MxlimsObject import MxlimsObject
+from mxlims.core.MxlimsObject import MxlimsObject
 from ..data.DatasetData import DatasetData
 if TYPE_CHECKING:
     from .Job import Job
@@ -14,8 +14,6 @@ if TYPE_CHECKING:
 class Dataset(DatasetData, MxlimsObject):
     """MXLIMS pydantic model class for Dataset
     """
-    def __init__(self, **data: Any) -> None:
-        super().__init__(**data)
         
     mxlims_base_type: Literal["Dataset"] = Field(
         "Dataset",
@@ -38,7 +36,23 @@ class Dataset(DatasetData, MxlimsObject):
         title="Uuid",
         frozen=True
     )
-    
+
+    source_id: Optional[UUID] = Field(
+        None, alias="sourceId", description="uuid for Dataset source", title="SourceId"
+    )
+    derived_from_id: Optional[UUID] = Field(
+        None,
+        alias="derivedFromId",
+        description="uuid for Dataset from which Dataset is derived",
+        title="DerivedFromId",
+    )
+    logistical_sample_id: Optional[UUID] = Field(
+        None,
+        alias="logisticalSampleId",
+        description="uuid for LogisticalSample related to Dataset",
+        title="LogisticalSampleId",
+    )
+
     @property
     def derived_datasets(self) -> list[Dataset]:
         """Abstract superclass - dummy getter for Dataset.derived_datasets list"""

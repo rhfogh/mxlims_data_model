@@ -5,7 +5,7 @@ from __future__ import annotations
 
 from typing import Dict, Optional
 
-from mxlims.impl.MxlimsBase import BaseModel
+from mxlims.impl.MxlimsBase import BaseMessage
 
 from pydantic import Field
 
@@ -29,115 +29,115 @@ from ..objects.Shipment import Shipment
 from ..objects.WellDrop import WellDrop
 
 
-class MxlimsMessageStrict(BaseModel):
+class MxlimsMessageStrict(BaseMessage):
     """
     Message containing all possible objects, by type
     """
 
     collection_sweep: Optional[Dict[str, CollectionSweep]] = Field(
-        None,
+        default_factory=dict,
         alias="CollectionSweep",
         description="idString:object dictionary of CollectionSweeps.",
         title="CollectionSweeps",
     )
     crystal: Optional[Dict[str, Crystal]] = Field(
-        None,
+        default_factory=dict,
         alias="Crystal",
         description="idString:object dictionary of Crystals.",
         title="Crystals",
     )
     dewar: Optional[Dict[str, Dewar]] = Field(
-        None,
+        default_factory=dict,
         alias="Dewar",
         description="idString:object dictionary of Dewars.",
         title="Dewars",
     )
     drop_region: Optional[Dict[str, DropRegion]] = Field(
-        None,
+        default_factory=dict,
         alias="DropRegion",
         description="idString:object dictionary of DropRegions.",
         title="DropRegions",
     )
     macromolecule: Optional[Dict[str, Macromolecule]] = Field(
-        None,
+        default_factory=dict,
         alias="Macromolecule",
         description="idString:object dictionary of Macromolecule (reference sample) objects.",
         title="Macromolecule",
     )
     macromolecule_sample: Optional[Dict[str, MacromoleculeSample]] = Field(
-        None,
+        default_factory=dict,
         alias="MacromoleculeSample",
         description="idString:object dictionary of Macromolecule-containing sample objects.",
         title="MacromoleculeSample",
     )
     medium: Optional[Dict[str, Medium]] = Field(
-        None,
+        default_factory=dict,
         alias="Medium",
         description="idString:object dictionary of Medium (sample) objects.",
         title="Media",
     )
     mx_experiment: Optional[Dict[str, MxExperiment]] = Field(
-        None,
+        default_factory=dict,
         alias="MxExperiment",
         description="idString:object dictionary of MxExperiments.",
         title="MxExperiments",
     )
     mx_processing: Optional[Dict[str, MxProcessing]] = Field(
-        None,
+        default_factory=dict,
         alias="MxProcessing",
         description="idString:object dictionary of MxProcessings.",
         title="MxProcessings",
     )
     multi_pin: Optional[Dict[str, MultiPin]] = Field(
-        None,
+        default_factory=dict,
         alias="MultiPin",
         description="idString:object dictionary of MultiPins.",
         title="MultiPins",
     )
     pin: Optional[Dict[str, Pin]] = Field(
-        None,
+        default_factory=dict,
         alias="Pin",
         description="idString:object dictionary of Pins.",
         title="Pins",
     )
     pin_position: Optional[Dict[str, PinPosition]] = Field(
-        None,
+        default_factory=dict,
         alias="PinPosition",
         description="idString:object dictionary of PinPositions.",
         title="PinPositions",
     )
     plate: Optional[Dict[str, Plate]] = Field(
-        None,
+        default_factory=dict,
         alias="Plate",
         description="idString:object dictionary of Plates.",
         title="Plates",
     )
     plate_well: Optional[Dict[str, PlateWell]] = Field(
-        None,
+        default_factory=dict,
         alias="PlateWell",
         description="idString:object dictionary of PlateWells.",
         title="PlateWells",
     )
     puck: Optional[Dict[str, Puck]] = Field(
-        None,
+        default_factory=dict,
         alias="Puck",
         description="idString:object dictionary of Pucks.",
         title="Pucks",
     )
     reflection_set: Optional[Dict[str, ReflectionSet]] = Field(
-        None,
+        default_factory=dict,
         alias="ReflectionSet",
         description="idString:object dictionary of ReflectionSets.",
         title="ReflectionSets",
     )
     shipment: Optional[Dict[str, Shipment]] = Field(
-        None,
+        default_factory=dict,
         alias="Shipment",
         description="idString:object dictionary of Shipments.",
         title="Shipments",
     )
     well_drop: Optional[Dict[str, WellDrop]] = Field(
-        None,
+        default_factory=dict,
         alias="WellDrop",
         description="idString:object dictionary of WellDrops.",
         title="WellDrops",

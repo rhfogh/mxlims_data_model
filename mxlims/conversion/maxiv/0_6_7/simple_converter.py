@@ -1,8 +1,11 @@
 """Adjusting functions, part of the map-driven conversion between MXLIMS and spreadsheet format"""
 
-from typing import TYPE_CHECKING, Any, Dict, Tuple
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, Any, Dict
+
 if TYPE_CHECKING:
-    from mxlims.pydantic.core.MxlimsObject import MxlimsObject
+    from mxlims.core.MxlimsObject import MxlimsObject
 
 def adjust_row(
     objs: Dict[str, MxlimsObject],
@@ -12,9 +15,11 @@ def adjust_row(
     """Adjust contents of pre-generated row in place
 
     Allows for changes not possible with simple mapping"""
-    beamsize = row.get("beam diameter")
-    if beamsize:
-        row["beam diameter"] = max(beamsize)
+    collection_sweep = objs.get("CollectionSweep")
+    if collection_sweep is not None:
+        beam_size = collection_sweep.beam_size
+        if beam_size:
+            row["beam diameter"] = max(beam_size)
 
 
 def adjust_mxlims(
@@ -25,4 +30,7 @@ def adjust_mxlims(
     """Adjust contents of MxlimsObjects in place
 
     Allows for changes not possible with simple mapping"""
-    pass
+    beam_diameter = float(row.get("beam diameter"))
+    if beam_diameter:
+        beamsize = [beam_diameter, beam_diameter]
+        objs["CollectionSweep"].beam_size = beamsize

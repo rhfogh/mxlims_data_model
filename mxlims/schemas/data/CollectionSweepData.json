@@ -159,7 +159,8 @@
                 "vertical"
             ],
             "title": "Scan Axis",
-            "type": "string"
+            "type": "string",
+            "default": "omega"
         },
         "scans": {
             "description": "List of Scans i.e. subdivisions of CollectionSweep. NB Scans need not be contiguous or in order or add up to entire sweep",

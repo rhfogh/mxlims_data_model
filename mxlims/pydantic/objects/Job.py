@@ -3,9 +3,9 @@
 
 from __future__ import annotations
 from pydantic import Field
-from typing import Any, Literal, Optional, Union, TYPE_CHECKING
+from typing import List, Literal, Optional, TYPE_CHECKING
 from uuid import UUID, uuid1
-from mxlims.pydantic.core.MxlimsObject import MxlimsObject
+from mxlims.core.MxlimsObject import MxlimsObject
 from ..data.JobData import JobData
 if TYPE_CHECKING:
     from .Dataset import Dataset
@@ -15,8 +15,6 @@ if TYPE_CHECKING:
 class Job(JobData, MxlimsObject):
     """MXLIMS pydantic model class for Job
     """
-    def __init__(self, **data: Any) -> None:
-        super().__init__(**data)
         
     mxlims_base_type: Literal["Job"] = Field(
         "Job",
@@ -39,7 +37,41 @@ class Job(JobData, MxlimsObject):
         title="Uuid",
         frozen=True
     )
-    
+
+    sample_id: Optional[UUID] = Field(
+        None, alias="sampleId", description="uuid for related sample", title="SampleId"
+    )
+    started_from_id: Optional[UUID] = Field(
+        None,
+        alias="startedFromId",
+        description="uuid for JOPb from which this Job was started",
+        title="StartedFromId",
+    )
+    logistical_sample_id: Optional[UUID] = Field(
+        None,
+        alias="logisticalSampleId",
+        description="uuid for LogisticalSample related to Job",
+        title="LogisticalSampleId",
+    )
+    reference_data_ids: Optional[List[UUID]] = Field(
+        None,
+        alias="referenceDataIds",
+        description="uuid for reference Datasets",
+        title="ReferenceDataId",
+    )
+    template_data_ids: Optional[List[UUID]] = Field(
+        None,
+        alias="templateDataIds",
+        description="uuid for template Datasets",
+        title="TemplateDataId",
+    )
+    input_data_ids: Optional[List[UUID]] = Field(
+        None,
+        alias="inputDataIds",
+        description="uuid for input Datasets",
+        title="InputDataId",
+    )
+
     @property
     def input_data(self) -> list[Dataset]:
         """Abstract superclass - dummy getter for Job.input_data list"""

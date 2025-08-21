@@ -3,9 +3,9 @@
 
 from __future__ import annotations
 from pydantic import Field
-from typing import Any, Literal, Optional, Union, TYPE_CHECKING
+from typing import List, Literal, Optional, TYPE_CHECKING
 from uuid import UUID, uuid1
-from mxlims.pydantic.core.MxlimsObject import MxlimsObject
+from mxlims.core.MxlimsObject import MxlimsObject
 from ..data.SampleData import SampleData
 if TYPE_CHECKING:
     from .Job import Job
@@ -14,8 +14,6 @@ if TYPE_CHECKING:
 class Sample(SampleData, MxlimsObject):
     """MXLIMS pydantic model class for Sample
     """
-    def __init__(self, **data: Any) -> None:
-        super().__init__(**data)
         
     mxlims_base_type: Literal["Sample"] = Field(
         "Sample",
@@ -38,7 +36,20 @@ class Sample(SampleData, MxlimsObject):
         title="Uuid",
         frozen=True
     )
-    
+
+    medium_id: Optional[UUID] = Field(
+        None,
+        alias="mediumId",
+        description="uuid for medium making up Sample",
+        title="mediumId",
+    )
+    main_component_id: Optional[UUID] = Field(
+        None,
+        alias="mainComponentId",
+        description="uuid for main component (e.g. macromolecule) making up Sample",
+        title="mainComponentId",
+    )
+
     @property
     def jobs(self) -> list[Job]:
         """Abstract superclass - dummy getter for Sample.jobs list"""
