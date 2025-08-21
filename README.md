@@ -96,5 +96,13 @@ a manually coded im[plementation class, and code generation procedures for pydan
 
 ## Prototype implementation
 
-There is a prototype Python implementation, generated using the mxlims/impl/generate_code.py script, and a test MXCuBE 
-integration. See the relevant mxcubecore WIP pull requests for details.
+There is a prototype Python implementation, generated using the mxlims/impl/generate_code.py script.
+There is also a test MXCuBE integration. See the relevant mxcubecore WIP pull requests for details.
+
+## Data conversion
+
+For getting the full benefit of the MXLIMS model and standardisation
+you should connect your applications and LIMS to MXLIMS using the API.
+As a preliminary measure there is an application for converting between
+simple spreadheet (one-line-per-experiment) formats amd MXLIMS, using
+a single mapping file. For a working implementation see mxlims/conversion/

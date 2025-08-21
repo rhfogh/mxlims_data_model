@@ -1,12 +1,12 @@
 {
     "CollectionSweep": {
         "CollectionSweep1": {
-            "version": "0.6.4",
+            "version": "0.6.7",
             "mxlimsType": "CollectionSweep",
-            "uuid": "49e51d21-c1ee-4176-ac85-83e4827fe26b",
+            "uuid": "3bd3af32-003d-4e61-b188-36ba06fc7c11",
             "role": "Characterisation",
             "sweepType": "simple",
-            "exposureTime": 0.04,
+            "exposureTime": 0.02,
             "imageWidth": 0.1,
             "overlap": 0.0,
             "numberTriggers": 0,
@@ -26,9 +26,9 @@
             "beamShape": "rectangular",
             "axisPositionsStart": {
                 "phi": 0.0,
-                "phiy": 1.0368615232523317,
-                "sampx": -0.037178537401667815,
-                "sampy": -1.0096546311386192,
+                "phiy": 1.0011946277462238,
+                "sampx": -0.01501194809578072,
+                "sampy": -0.987490170650341,
                 "kappa": 11.0,
                 "kappa_phi": 22.0,
                 "omega": 0.0,
@@ -73,24 +73,24 @@
             "fileType": "cbf",
             "prefix": "4k61",
             "filenameTemplate": "4k61_1_%04d.cbf",
-            "path": "/home/rhfogh/calc/mxcube_data/visitor/inhouse/idtest0/20250612/RAW_DATA/4k61_001/characterisation",
+            "path": "/home/rhfogh/calc/mxcube_data/mxcubetest/inhouse/idtest0/20250821/RAW_DATA/4k61_001/characterisation",
             "sourceRef": {
                 "$ref": "#/MxExperiment/MxExperiment1"
             }
         },
         "CollectionSweep2": {
-            "version": "0.6.4",
+            "version": "0.6.7",
             "mxlimsType": "CollectionSweep",
-            "uuid": "b4934a8c-dd83-4277-8919-18ad46824878",
+            "uuid": "d3409a09-e754-4493-aa00-5e167a8570b4",
             "role": "Result",
             "sweepType": "simple",
-            "exposureTime": 0.04,
+            "exposureTime": 0.026364,
             "imageWidth": 0.2,
             "overlap": 0.0,
             "numberTriggers": 0,
             "numberImagesPerTrigger": 0,
             "energy": 12.4,
-            "transmission": 64.37,
+            "transmission": 100.0,
             "resolution": 3.70003271512822,
             "detectorRoiMode": "0",
             "beamPosition": [
@@ -104,9 +104,9 @@
             "beamShape": "rectangular",
             "axisPositionsStart": {
                 "phi": -142.000000000043,
-                "phiy": 1.0140619641130446,
-                "sampx": -0.45178642892812204,
-                "sampy": -0.9346607408968977,
+                "phiy": 0.9413352861685826,
+                "sampx": -0.44574109773637066,
+                "sampy": -0.9002447411149161,
                 "kappa": 0.0,
                 "kappa_phi": 0.0,
                 "omega": -142.000000000043,
@@ -127,7 +127,7 @@
             "fileType": "cbf",
             "prefix": "4k61_G1B1",
             "filenameTemplate": "4k61_G1B1_2_%04d.cbf",
-            "path": "/home/rhfogh/calc/mxcube_data/visitor/inhouse/idtest0/20250612/RAW_DATA/4k61_001/main",
+            "path": "/home/rhfogh/calc/mxcube_data/mxcubetest/inhouse/idtest0/20250821/RAW_DATA/4k61_001/main",
             "sourceRef": {
                 "$ref": "#/MxExperiment/MxExperiment1"
             }
@@ -135,24 +135,24 @@
     },
     "MacromoleculeSample": {
         "MacromoleculeSample1": {
-            "version": "0.6.4",
+            "version": "0.6.7",
             "mxlimsType": "MacromoleculeSample",
-            "uuid": "2ca5f610-479d-11f0-8f3a-c4474e33fb12",
+            "uuid": "eb05d00a-7eaf-11f0-835a-c4474e33fb12",
             "name": "4k61"
         }
     },
     "MxExperiment": {
         "MxExperiment1": {
-            "inputDataIds": [],
-            "version": "0.6.4",
+            "version": "0.6.7",
             "mxlimsType": "MxExperiment",
-            "uuid": "a4f2ba2c-b2bd-4bae-a18b-05e8d7139d39",
-            "startTime": "2025-06-12T15:54:43.299613",
-            "endTime": "2025-06-12T16:02:46.937301",
+            "uuid": "a1a881e8-e15b-4d5f-a9ab-60e75e2ee54f",
+            "startTime": "2025-08-21T17:57:27.588783",
+            "endTime": "2025-08-21T18:05:27.530189",
+            "inputDataIds": [],
             "expectedResolution": 1.7,
             "radiationSensitivity": 1.0,
             "snapshotCount": 0,
-            "measuredFlux": 230164493672.32803,
+            "measuredFlux": 230196439948.31757,
             "expectedSpaceGroupName": "I4",
             "expectedUnitCell": {
                 "a": 86.75,

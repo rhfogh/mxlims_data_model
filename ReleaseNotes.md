@@ -13,6 +13,11 @@
 - Removed 'no-added-properties' from objects to avoid document breakage
 - Refactored handling of numerical types (e.g. minimum 1->exclusiveMinimum 0)
   and list types, and changed code generation to improve Pydantic type annotations
+- Refactored and simplified pydantic inheritance structure
+- Fixed problems with default values for id lists in multiple links
+- Added default scan axis "omega"
+- Moved some fields from required to optional
+- Finished and tested conversion to and from spreadsheet data
 
 ## Changes in version 0.6.6
 
