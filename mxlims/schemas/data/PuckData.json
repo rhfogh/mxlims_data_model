@@ -23,8 +23,5 @@
             "type": "string",
             "description": "The Puck type (should be made an enum)"
         }
-    },
-    "required": [
-        "numberPositions"
-    ]
+    }
 }

@@ -7,7 +7,14 @@ from typing import Dict, List, Optional
 
 from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import Field, PositiveFloat, PositiveInt, RootModel, confloat
+from pydantic import (
+    Field,
+    NonNegativeInt,
+    PositiveFloat,
+    PositiveInt,
+    RootModel,
+    confloat,
+)
 
 from ..datatypes.Scan import Scan
 
@@ -46,19 +53,19 @@ class CollectionSweepData(BaseModel):
         description="Overlap between successive images, in units of imageWidth. May be negative for non-contiguous images.",
         title="Overlap",
     )
-    number_triggers: Optional[PositiveInt] = Field(
+    number_triggers: Optional[NonNegativeInt] = Field(
         None,
         alias="numberTriggers",
         description="Number of triggers. Instruction to detector - does not modify effect of other parameters.",
         title="Number Triggers",
     )
-    number_images_per_trigger: Optional[PositiveInt] = Field(
+    number_images_per_trigger: Optional[NonNegativeInt] = Field(
         None,
         alias="numberImagesPerTrigger",
         description="Number of images per trigger. Instruction to detector - does not modify effect of other parameters.",
         title="Number Images Per Trigger",
     )
-    number_lines: Optional[PositiveInt] = Field(
+    number_lines: Optional[NonNegativeInt] = Field(
         None,
         alias="numberLines",
         description="Number of scanned lines used for mesh scans. Must divide numberImages",
@@ -136,8 +143,8 @@ class CollectionSweepData(BaseModel):
         description="Dictionary string:float with final position of scanned axes as for axisPositionsStart. scanAxis position is NOT given here, but is calculated from imageWidth, overlap, numberImages, and axisPositionsStartNB scans may be acquired out of order, so this determines the limits of the sweep, not the temporal start and end points",
         title="Axis Positions End",
     )
-    scan_axis: str = Field(
-        ...,
+    scan_axis: Optional[str] = Field(
+        "omega",
         alias="scanAxis",
         description="Name of main scanned axis. Other axes may be scanned in parallel.For mesh scans name of fastest scanned axis",
         examples=[

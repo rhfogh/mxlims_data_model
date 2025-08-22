@@ -3,21 +3,18 @@
 
 from __future__ import annotations
 from pydantic import Field
-from typing import Any, Literal, Optional, Union, TYPE_CHECKING
+from typing import List, Literal, Optional, TYPE_CHECKING
 from uuid import UUID, uuid1
-from mxlims.impl.MxlimsBase import MxlimsImplementation
+from mxlims.core.MxlimsObject import MxlimsObject
 from ..data.JobData import JobData
 if TYPE_CHECKING:
     from .Dataset import Dataset
     from .LogisticalSample import LogisticalSample
     from .Sample import Sample
 
-class Job(JobData, MxlimsImplementation):
+class Job(JobData, MxlimsObject):
     """MXLIMS pydantic model class for Job
     """
-    def __init__(self, **data: Any) -> None:
-        super().__init__(**data)
-        MxlimsImplementation.__init__(self)
         
     mxlims_base_type: Literal["Job"] = Field(
         "Job",
@@ -40,7 +37,40 @@ class Job(JobData, MxlimsImplementation):
         title="Uuid",
         frozen=True
     )
-    
+
+    sample_id: Optional[UUID] = Field(
+        None, alias="sampleId", description="uuid for related sample", title="SampleId"
+    )
+    started_from_id: Optional[UUID] = Field(
+        None,
+        alias="startedFromId",
+        description="uuid for JOPb from which this Job was started",
+        title="StartedFromId",
+    )
+    logistical_sample_id: Optional[UUID] = Field(
+        None,
+        alias="logisticalSampleId",
+        description="uuid for LogisticalSample related to Job",
+        title="LogisticalSampleId",
+    )
+    reference_data_ids: Optional[List[UUID]] = Field(
+        default_factory=list,
+        alias="referenceDataIds",
+        description="uuid for reference Datasets",
+        title="ReferenceDataId",
+    )
+    template_data_ids: Optional[List[UUID]] = Field(
+        default_factory=list,
+        alias="templateDataIds",
+        description="uuid for template Datasets",
+        title="TemplateDataId",
+    )
+    input_data_ids: Optional[List[UUID]] = Field(
+        default_factory=list,
+        alias="inputDataIds",
+        description="uuid for input Datasets",
+        title="InputDataId",
+    )
     @property
     def input_data(self) -> list[Dataset]:
         """Abstract superclass - dummy getter for Job.input_data list"""

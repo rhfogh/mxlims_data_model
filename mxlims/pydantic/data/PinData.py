@@ -16,8 +16,8 @@ class PinData(BaseModel):
     """
 
     barcode: Optional[str] = Field(None, description="The Pin barcode or RFID code")
-    position_in_puck: PositiveInt = Field(
-        ...,
+    position_in_puck: Optional[PositiveInt] = Field(
+        None,
         alias="positionInPuck",
         description="The puck position occupied by the pin. This should be validated against the puck's numberPositions property.",
         examples=[16],

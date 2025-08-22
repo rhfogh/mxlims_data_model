@@ -22,8 +22,8 @@ class PuckData(BaseModel):
         description="The Dewar position occupied by the puck. This should be validated against the Dewar's numberPositions property.",
         examples=[10],
     )
-    number_positions: PositiveInt = Field(
-        ...,
+    number_positions: Optional[PositiveInt] = Field(
+        None,
         alias="numberPositions",
         description="The number of pin positions available.",
     )

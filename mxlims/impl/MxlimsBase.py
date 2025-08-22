@@ -16,6 +16,7 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with this file. If not, see <https://www.gnu.org/licenses/>.
 """
+from __future__ import annotations
 
 __copyright__ = """ Copyright © 2024 -  2025 MXLIMS collaboration."""
 __license__ = "LGPLv3+"
@@ -26,10 +27,16 @@ import json
 import re
 import uuid
 from pathlib import Path
-from typing import ClassVar, List, Optional, Sequence
+from typing import ClassVar, List, Optional, Sequence, TYPE_CHECKING
 
 from pydantic import BaseModel as PydanticBaseModel
 from ruamel.yaml import YAML
+
+if TYPE_CHECKING:
+    from .Dataset import Dataset
+    from Job import Job
+    from .LogisticalSample import LogisticalSample
+    from .Sample import Sample
 
 yaml = YAML(typ="safe", pure=True)
 # The following are not needed for load, but define the default style.
@@ -73,7 +80,7 @@ class MxlimsImplementation:
         "LogisticalSample": dict(),
     }
 
-    def __init__(self, ) -> None:
+    def __init__(self) -> None:
         obj_by_id = self._objects_by_id[self.mxlims_base_type]
         myuid = self.uuid
         if myuid in obj_by_id:
@@ -82,6 +89,26 @@ class MxlimsImplementation:
             )
         else:
             obj_by_id[myuid] = self
+
+    @classmethod
+    def get_all_jobs(cls) -> list[Job]:
+        """Get list of all Jobs"""
+        return list(cls._objects_by_id["Job"].values())
+
+    @classmethod
+    def get_all_datasets(cls) -> list[Dataset]:
+        """Get list of all Datasets"""
+        return list(cls._objects_by_id["Dataset"].values())
+
+    @classmethod
+    def get_all_samples(cls) -> list[Sample]:
+        """Get list of all Samples"""
+        return list(cls._objects_by_id["Sample"].values())
+
+    @classmethod
+    def get_all_logistical_samples(cls) -> list[LogisticalSample]:
+        """Get list of all Jobs"""
+        return list(cls._objects_by_id["LogisticalSample"].values())
 
     @classmethod
     def get_object_by_uuid(
@@ -280,7 +307,7 @@ class MxlimsImplementation:
             elif obj.uuid in uids:
                 revuids.add(myuid)
 
-class BaseMessage:
+class BaseMessage(BaseModel):
     """Class for basic MxlimsMessage holding message implementation"""
 
     @classmethod
@@ -473,7 +500,7 @@ def to_import_json(
                         else:
                             uids = obj[link_id_name] = []
                             for ddref in data:
-                                tags = data["$ref"].split("/", 2)[-2:]
+                                tags = ddref["$ref"].split("/", 2)[-2:]
                                 uids.append(
                                     message_dict[tags[0]][tags[1]]["uuid"]
                                 )

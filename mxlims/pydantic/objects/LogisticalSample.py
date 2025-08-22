@@ -3,21 +3,18 @@
 
 from __future__ import annotations
 from pydantic import Field
-from typing import Any, Literal, Optional, Union, TYPE_CHECKING
+from typing import List, Literal, Optional, TYPE_CHECKING
 from uuid import UUID, uuid1
-from mxlims.impl.MxlimsBase import MxlimsImplementation
+from mxlims.core.MxlimsObject import MxlimsObject
 from ..data.LogisticalSampleData import LogisticalSampleData
 if TYPE_CHECKING:
     from .Dataset import Dataset
     from .Job import Job
     from .Sample import Sample
 
-class LogisticalSample(LogisticalSampleData, MxlimsImplementation):
+class LogisticalSample(LogisticalSampleData, MxlimsObject):
     """MXLIMS pydantic model class for LogisticalSample
     """
-    def __init__(self, **data: Any) -> None:
-        super().__init__(**data)
-        MxlimsImplementation.__init__(self)
         
     mxlims_base_type: Literal["LogisticalSample"] = Field(
         "LogisticalSample",
@@ -40,7 +37,19 @@ class LogisticalSample(LogisticalSampleData, MxlimsImplementation):
         title="Uuid",
         frozen=True
     )
-    
+
+    sample_id: Optional[UUID] = Field(
+        None,
+        alias="sampleId",
+        description="uuid for constituent sample",
+        title="SampleId",
+    )
+    container_id: Optional[UUID] = Field(
+        None,
+        alias="containerId",
+        description="uuid for LogisticalSample container",
+        title="containerId",
+    )
     @property
     def container(self) -> Optional[LogisticalSample]:
         """Abstract superclass - dummy getter for LogisticalSample.container"""

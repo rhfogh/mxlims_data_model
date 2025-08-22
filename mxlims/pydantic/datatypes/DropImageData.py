@@ -10,7 +10,7 @@ from .DropImage import DropImage
 
 class DropImageData(DropImage):
     """
-    DropImage,m containing image as attached data.
+    DropImage, containing image as attached data.
     """
 
     model_config = ConfigDict(

@@ -24,8 +24,5 @@
             "description": "Holder length in mm",
             "title": "Holder length"
         }
-    },
-    "required": [
-        "positionInPuck"
-    ]
+    }
 }
