@@ -27,8 +27,8 @@ class MxlimsObjectData(BaseModel):
         description="The type of the MXLIMS object. Fixed for each subtype schema",
         title="MxlimsType",
     )
-    mxlims_base_type: str = Field(
-        ...,
+    mxlims_base_type: Optional[str] = Field(
+        None,
         alias="mxlimsBaseType",
         description="The core type of the MXLIMS object (Job, Dataset, Sample, or LogisticalSample). Fixed for each subtype schema",
         title="MxlimsBaseType",
