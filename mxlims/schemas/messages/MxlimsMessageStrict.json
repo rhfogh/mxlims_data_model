@@ -157,6 +157,15 @@
                 "$ref": "../objects/Shipment.json"
             }
         },
+        "VolumeScan": {
+            "description": "idString:object dictionary of VolumeScans.",
+            "title": "VolumeScans",
+            "type": "object",
+            "minProperties": 1,
+            "additionalProperties": {
+                "$ref": "../objects/VolumeScan.json"
+            }
+        },
         "WellDrop": {
             "description": "idString:object dictionary of WellDrops.",
             "title": "WellDrops",

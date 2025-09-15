@@ -1,4 +1,4 @@
-## Changes in version 0.6.7
+## Changes in version 0.6.8
 
 - ExperimentData.priority added
 - PinData.loopType added (NB should be made enum)

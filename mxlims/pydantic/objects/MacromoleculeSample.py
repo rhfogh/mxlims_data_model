@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     from .Pin import Pin
     from .PinPosition import PinPosition
     from .PlateWell import PlateWell
+    from .VolumeScan import VolumeScan
     from .WellDrop import WellDrop
 
 class MacromoleculeSample(MacromoleculeSampleData, Sample):
@@ -31,19 +32,20 @@ class MacromoleculeSample(MacromoleculeSampleData, Sample):
     )
     
     @property
-    def jobs(self) -> list[Union[MxExperiment, MxProcessing]]:
+    def jobs(self) -> list[Union[MxExperiment, MxProcessing, VolumeScan]]:
         """getter for MacromoleculeSample.jobs list"""
         return self._get_link_1n("Job", "sample_id")
 
     @jobs.setter
-    def jobs(self, values: list[Union[MxExperiment, MxProcessing]]):
+    def jobs(self, values: list[Union[MxExperiment, MxProcessing, VolumeScan]]):
         """setter for MacromoleculeSample.jobs list"""
         from .MxExperiment import MxExperiment
+        from .VolumeScan import VolumeScan
         from .MxProcessing import MxProcessing
 
         for obj in values:
-            if not isinstance(obj, Union[MxExperiment, MxProcessing]):
-                raise ValueError("%s is not of type Union[MxExperiment, MxProcessing]" % obj)
+            if not isinstance(obj, Union[MxExperiment, MxProcessing, VolumeScan]):
+                raise ValueError("%s is not of type Union[MxExperiment, MxProcessing, VolumeScan]" % obj)
         self._set_link_1n_rev("Job", "sample_id", values)
 
     @property
@@ -54,10 +56,10 @@ class MacromoleculeSample(MacromoleculeSampleData, Sample):
     @logistical_samples.setter
     def logistical_samples(self, values: list[Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]]):
         """setter for MacromoleculeSample.logistical_samples list"""
-        from .PlateWell import PlateWell
-        from .Pin import Pin
         from .Crystal import Crystal
         from .DropRegion import DropRegion
+        from .Pin import Pin
+        from .PlateWell import PlateWell
         from .PinPosition import PinPosition
         from .WellDrop import WellDrop
 

@@ -19,6 +19,12 @@ along with this file. If not, see <https://www.gnu.org/licenses/>.
 """
 from __future__ import annotations
 
+import os
+import sys
+
+mxlimspath = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+sys.path.insert(0, mxlimspath)
+
 from importlib import import_module
 from packaging import version
 from pathlib import Path
@@ -30,16 +36,17 @@ from mxlims.core.typemap import typemap
 from mxlims.impl.MxlimsBase import camel_to_snake
 from mxlims.pydantic.messages.MxlimsMessageStrict import MxlimsMessageStrict
 
-__copyright__ = """ Copyright © 2024 -  2025 MXLIMS collaboration."""
-__license__ = "LGPLv3+"
-__author__ = "Rasmus H Fogh"
-
 from mxlims.core.MxlimsObject import MxlimsObject
 from typing import Any, Dict, Optional, Tuple
 from mxlims.pydantic.objects.Dataset import Dataset
 from mxlims.pydantic.objects.Job import Job
 from mxlims.pydantic.objects.LogisticalSample import LogisticalSample
 from mxlims.pydantic.objects.Sample import Sample
+
+
+__copyright__ = """ Copyright © 2024 -  2025 MXLIMS collaboration."""
+__license__ = "LGPLv3+"
+__author__ = "Rasmus H Fogh"
 
 # pure=True uses yaml version 1.2, with fewer gotchas for strange type conversions
 yaml = YAML(typ="safe", pure=True)

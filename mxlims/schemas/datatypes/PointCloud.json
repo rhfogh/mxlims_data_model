@@ -1,0 +1,30 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "type": "object",
+    "title": "Rectangle",
+    "description": "<A rectangular region marked on an image or in absolute plate space. The box is defined by two points on diagonally opposite corners, with its edges parallel to the X and Y axes. Ensure that the two X values are not equal, and that the two Y values are not equal.",
+    "properties": {
+        "volumeType": {
+            "const": "pointCloud",
+            "description": "Type of volume representation",
+            "title": "Volume Type",
+            "type": "string"
+        },
+        "points": {
+            "type": "array",
+            "title": "Points list",
+            "items": {
+                "items": {
+                    "type": "number"
+                },
+                "maxItems": 3,
+                "minItems": 3,
+                "type": "array"
+            }
+        }
+    },
+    "required": [
+        "volumeType",
+        "points"
+    ]
+}
