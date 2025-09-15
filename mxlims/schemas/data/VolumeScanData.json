@@ -1,0 +1,71 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "Sample volume scan for centring or crystal detection",
+    "title": "VolumeScanData",
+    "type": "object",
+    "properties": {
+        "experimentType": {
+            "type": "string",
+            "description": "Type of VolumeScan",
+            "examples": [
+                "Xray.centring",
+                "Xray.recentring",
+                "Xray.exploration"
+            ],
+            "title": "Volume scan experiment type"
+        },
+        "stepCount": {
+            "minimum": 2,
+            "type": "integer",
+            "default": 2,
+            "description": "Number of steps (typically mesh scans) to use ",
+            "title": "Scan step Count"
+        },
+        "searchVolume": {
+            "allOf": [
+                {
+                    "$ref": "../datatypes/PointCloud.json"
+                }
+            ],
+            "description": "Volume to search (input), defined in goniostat coordinate system (centringX, centringY, phiY)",
+            "title": "Search Volume"
+        },
+        "boundingBoxSize": {
+            "items": {
+                "type": "number"
+            },
+            "maxItems": 3,
+            "minItems": 3,
+            "type": "array",
+            "description": "The size of the bounding box to scan in microscope coordinate system (horizontal, vertical, beam0",
+            "title": "Bounding Box Size"
+        },
+        "boundingBoxShape": {
+            "default": "Box",
+            "type": "string",
+            "description": "The shape of the bounding box used.",
+            "Examples": [
+                "Box",
+                "Ellipsoid"
+            ],
+            "title": "Bounding Box Shape"
+        },
+        "resultVolume": {
+            "allOf": [
+                {
+                    "$ref": "../datatypes/PointCloud.json"
+                }
+            ],
+            "description": "Volume of all active points found",
+            "title": "Result Volume"
+        },
+        "subVolumes": {
+            "items": {
+                "$ref": "../datatypes/PointCloud.json"
+            },
+            "type": "array",
+            "description": "List of individual compact subvolumes selected from resultVolume",
+            "title": "Subvolumes"
+        }
+    }
+}

@@ -26,6 +26,7 @@ from ..objects.PlateWell import PlateWell
 from ..objects.Puck import Puck
 from ..objects.ReflectionSet import ReflectionSet
 from ..objects.Shipment import Shipment
+from ..objects.VolumeScan import VolumeScan
 from ..objects.WellDrop import WellDrop
 
 
@@ -135,6 +136,12 @@ class MxlimsMessageStrict(BaseMessage):
         alias="Shipment",
         description="idString:object dictionary of Shipments.",
         title="Shipments",
+    )
+    volume_scan: Optional[Dict[str, VolumeScan]] = Field(
+        default_factory=dict,
+        alias="VolumeScan",
+        description="idString:object dictionary of VolumeScans.",
+        title="VolumeScans",
     )
     well_drop: Optional[Dict[str, WellDrop]] = Field(
         default_factory=dict,

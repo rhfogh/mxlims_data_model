@@ -1,0 +1,104 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "description": "Crystallographic volume scan, typically X-ray mesh scan",
+    "title": "VolumeScan",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../data/VolumeScanData.json"
+        },
+        {
+            "$ref": "../data/JobData.json"
+        }
+    ],
+    "properties": {
+        "mxlimsType": {
+            "const": "VolumeScan",
+            "description": "The type of MXLIMS object.",
+            "title": "MxlimsType",
+            "type": "string"
+        },
+        "sampleRef": {
+            "allOf": [
+                {
+                    "reverseLinkName": "jobs"
+                },
+                {
+                    "oneOf": [
+                        {
+                            "$ref": "../references/MacromoleculeSampleRef.json"
+                        },
+                        {
+                            "$ref": "../references/SampleRef.json"
+                        }
+                    ]
+                }
+            ]
+        },
+        "startedFromRef": {
+            "allOf": [
+                {
+                    "reverseLinkName": "subjobs",
+                    "readOnly": true
+                },
+                {
+                    "oneOf": [
+                        {
+                            "$ref": "../references/MxExperimentRef.json"
+                        },
+                        {
+                            "$ref": "../references/JobRef.json"
+                        }
+                    ]
+                }
+            ]
+        },
+        "logisticalSampleRef": {
+            "allOf": [
+                {
+                    "reverseLinkName": "jobs"
+                },
+                {
+                    "oneOf": [
+                        {
+                            "$ref": "../references/CrystalRef.json"
+                        },
+                        {
+                            "$ref": "../references/PinRef.json"
+                        },
+                        {
+                            "$ref": "../references/PinPositionRef.json"
+                        },
+                        {
+                            "$ref": "../references/PlateWellRef.json"
+                        },
+                        {
+                            "$ref": "../references/WellDropRef.json"
+                        },
+                        {
+                            "$ref": "../references/DropRegionRef.json"
+                        },
+                        {
+                            "$ref": "../references/LogisticalSampleRef.json"
+                        }
+                    ]
+                }
+            ]
+        },
+        "templateDataRefs": {
+            "type": "array",
+            "reverseLinkName": "templateFor",
+            "items": {
+                "oneOf": [
+                    {
+                        "$ref": "../references/CollectionSweepRef.json"
+                    },
+                    {
+                        "$ref": "../references/DatasetRef.json"
+                    }
+                ]
+            }
+        }
+    },
+    "additionalProperties": false
+}

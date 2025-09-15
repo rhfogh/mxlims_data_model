@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .MxProcessing import MxProcessing
     from .PlateWell import PlateWell
     from .ReflectionSet import ReflectionSet
+    from .VolumeScan import VolumeScan
 
 class WellDrop(WellDropData, LogisticalSample):
     """MXLIMS pydantic model class for WellDrop
@@ -74,19 +75,20 @@ class WellDrop(WellDropData, LogisticalSample):
         self._set_link_1n_rev("Dataset", "logistical_sample_id", values)
 
     @property
-    def jobs(self) -> list[Union[MxExperiment, MxProcessing]]:
+    def jobs(self) -> list[Union[MxExperiment, MxProcessing, VolumeScan]]:
         """getter for WellDrop.jobs list"""
         return self._get_link_1n("Job", "logistical_sample_id")
 
     @jobs.setter
-    def jobs(self, values: list[Union[MxExperiment, MxProcessing]]):
+    def jobs(self, values: list[Union[MxExperiment, MxProcessing, VolumeScan]]):
         """setter for WellDrop.jobs list"""
         from .MxExperiment import MxExperiment
+        from .VolumeScan import VolumeScan
         from .MxProcessing import MxProcessing
 
         for obj in values:
-            if not isinstance(obj, Union[MxExperiment, MxProcessing]):
-                raise ValueError("%s is not of type Union[MxExperiment, MxProcessing]" % obj)
+            if not isinstance(obj, Union[MxExperiment, MxProcessing, VolumeScan]):
+                raise ValueError("%s is not of type Union[MxExperiment, MxProcessing, VolumeScan]" % obj)
         self._set_link_1n_rev("Job", "logistical_sample_id", values)
 
     @property

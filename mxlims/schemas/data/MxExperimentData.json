@@ -19,7 +19,7 @@
         },
         "experimentLocation": {
             "type": "string",
-            "description": "Experiment strategy indicator",
+            "description": "Place where experiment is performed",
             "examples": [
                 "SOLEIL PX2",
                 "ESRF MASSIF-1"

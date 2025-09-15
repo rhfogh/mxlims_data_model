@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .Pin import Pin
     from .PinPosition import PinPosition
     from .PlateWell import PlateWell
+    from .VolumeScan import VolumeScan
     from .WellDrop import WellDrop
 
 class CollectionSweep(CollectionSweepData, Dataset):
@@ -87,25 +88,26 @@ class CollectionSweep(CollectionSweepData, Dataset):
         return self._get_link_n1("Job", "source_id")
 
     @property
-    def template_for(self) -> list[MxExperiment]:
+    def template_for(self) -> list[Union[MxExperiment, VolumeScan]]:
         """getter for CollectionSweep.template_for list"""
         return self._get_link_nn_rev("Job", "template_data_ids")
 
     @template_for.setter
-    def template_for(self, values: list[MxExperiment]):
+    def template_for(self, values: list[Union[MxExperiment, VolumeScan]]):
         """setter for CollectionSweep.template_for list"""
         from .MxExperiment import MxExperiment
+        from .VolumeScan import VolumeScan
 
         for obj in values:
-            if not isinstance(obj, MxExperiment):
-                raise ValueError("%s is not of type MxExperiment" % obj)
+            if not isinstance(obj, Union[MxExperiment, VolumeScan]):
+                raise ValueError("%s is not of type Union[MxExperiment, VolumeScan]" % obj)
         self._set_link_nn_rev("Job", "template_data_ids", values)
 
-    def append_template_for(self, value: MxExperiment):
+    def append_template_for(self, value: Union[MxExperiment, VolumeScan]):
         """append to CollectionSweep.template_for list"""
         value.append_template_data(self)
 
-    def remove_template_for(self, value: MxExperiment):
+    def remove_template_for(self, value: Union[MxExperiment, VolumeScan]):
         """remove from CollectionSweep.template_for list"""
         value.remove_template_data(self)
     

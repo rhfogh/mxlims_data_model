@@ -35,7 +35,7 @@ class MxExperimentData(BaseModel):
     experiment_location: Optional[str] = Field(
         None,
         alias="experimentLocation",
-        description="Experiment strategy indicator",
+        description="Place where experiment is performed",
         examples=["SOLEIL PX2", "ESRF MASSIF-1"],
         title="Experiment Location",
     )

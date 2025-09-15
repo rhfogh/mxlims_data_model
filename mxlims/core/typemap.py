@@ -21,6 +21,7 @@ from mxlims.pydantic.datatypes.ImageRegion import ImageRegion
 from mxlims.pydantic.datatypes.Person import Person
 from mxlims.pydantic.datatypes.PlateRegion import PlateRegion
 from mxlims.pydantic.datatypes.PlateType import PlateType
+from mxlims.pydantic.datatypes.PointCloud import PointCloud
 from mxlims.pydantic.datatypes.ReflectionStatistics import ReflectionStatistics
 from mxlims.pydantic.datatypes.ResolutionCutoffs import ResolutionCutoffs
 from mxlims.pydantic.datatypes.SampleComponent import SampleComponent
@@ -263,6 +264,21 @@ typemap = {
     ('Shipment', 'trackingDevice', 'deviceType'): str,
     ('Shipment', 'trackingDevice', 'humanTrackingUrl'): str,
     ('Shipment', 'trackingDevice', 'identifier'): str,
+    ('VolumeScan', 'annotation'): str,
+    ('VolumeScan', 'boundingBoxShape'): str,
+    ('VolumeScan', 'boundingBoxSize'): List[float],
+    ('VolumeScan', 'endTime'): str,
+    ('VolumeScan', 'experimentType'): str,
+    ('VolumeScan', 'jobStatus'): str,
+    ('VolumeScan', 'resultVolume'): PointCloud,
+    ('VolumeScan', 'resultVolume', 'points'): List[List[float]],
+    ('VolumeScan', 'resultVolume', 'volumeType'): str,
+    ('VolumeScan', 'searchVolume'): PointCloud,
+    ('VolumeScan', 'searchVolume', 'points'): List[List[float]],
+    ('VolumeScan', 'searchVolume', 'volumeType'): str,
+    ('VolumeScan', 'startTime'): str,
+    ('VolumeScan', 'stepCount'): int,
+    ('VolumeScan', 'subVolumes'): List[PointCloud],
     ('WellDrop', 'annotation'): str,
     ('WellDrop', 'dropNumber'): int,
     ('WellDrop', 'name'): str,
