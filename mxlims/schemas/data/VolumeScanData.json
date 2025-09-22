@@ -14,12 +14,13 @@
             ],
             "title": "Volume scan experiment type"
         },
-        "stepCount": {
-            "minimum": 2,
-            "type": "integer",
-            "default": 2,
-            "description": "Number of steps (typically mesh scans) to use ",
-            "title": "Scan step Count"
+        "rotationAngles" : {
+            "items": {
+                "type": "float"
+            },
+            "type": "array",
+            "description": "List of axis (omega) values to use for volume scan, in degrees",
+            "title": "RotationAngles"
         },
         "searchVolume": {
             "allOf": [

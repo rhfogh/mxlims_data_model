@@ -3,11 +3,11 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Any, List, Optional
 
 from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import Field, conint
+from pydantic import Field
 
 from ..datatypes.PointCloud import Rectangle
 
@@ -24,11 +24,11 @@ class VolumeScanData(BaseModel):
         examples=["Xray.centring", "Xray.recentring", "Xray.exploration"],
         title="Volume scan experiment type",
     )
-    step_count: Optional[conint(ge=2)] = Field(
-        2,
-        alias="stepCount",
-        description="Number of steps (typically mesh scans) to use ",
-        title="Scan step Count",
+    rotation_angles: Optional[List[Any]] = Field(
+        None,
+        alias="rotationAngles",
+        description="List of axis (omega) values to use for volume scan, in degrees",
+        title="RotationAngles",
     )
     search_volume: Optional[Rectangle] = Field(
         None,
@@ -59,6 +59,6 @@ class VolumeScanData(BaseModel):
     sub_volumes: Optional[List[Rectangle]] = Field(
         None,
         alias="subVolumes",
-        description="List of individual subvolumes selected from resultVolume",
+        description="List of individual compact subvolumes selected from resultVolume",
         title="Subvolumes",
     )

@@ -107,7 +107,7 @@
         "possibleTwinning": {
             "type": "boolean",
             "default": false,
-            "description": "ARe there data to indicate that the crystal might be twinned?",
+            "description": "Are there data to indicate that the crystal might be twinned?",
             "title": "Possible Twinning"
         },
         "twinFraction": {

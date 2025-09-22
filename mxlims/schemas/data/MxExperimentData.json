@@ -64,12 +64,6 @@
             "description": "Priority of experiment - smaller number higher priority",
             "title": "Priority"
         },
-        "energy": {
-            "exclusiveMinimum": 0.0,
-            "type": "number",
-            "description": "Desired energy of the beam in eV",
-            "title": "Energy"
-        },
         "doseBudget": {
             "exclusiveMinimum": 0.0,
             "type": "number",
