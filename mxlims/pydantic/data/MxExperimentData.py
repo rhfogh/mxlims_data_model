@@ -74,9 +74,6 @@ class MxExperimentData(BaseModel):
         description="Priority of experiment - smaller number higher priority",
         title="Priority",
     )
-    energy: Optional[PositiveFloat] = Field(
-        None, description="Desired energy of the beam in eV", title="Energy"
-    )
     dose_budget: Optional[PositiveFloat] = Field(
         None,
         alias="doseBudget",

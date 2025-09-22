@@ -1,5 +1,11 @@
 ## Changes in version 0.6.8
 
+- Added VolumeScan Job for X-ray centring
+- - Added docs/XrayCentring.pdf
+- Removed MxExperiment.energy as it duplicated CollectionSweep.energy
+
+## Changes in version 0.6.7
+
 - ExperimentData.priority added
 - PinData.loopType added (NB should be made enum)
 - PinData.holderLength added

@@ -114,7 +114,7 @@ class ReflectionSetData(BaseModel):
     possible_twinning: Optional[bool] = Field(
         False,
         alias="possibleTwinning",
-        description="ARe there data to indicate that the crystal might be twinned?",
+        description="Are there data to indicate that the crystal might be twinned?",
         title="Possible Twinning",
     )
     twin_fraction: Optional[confloat(ge=0.0, le=1.0)] = Field(

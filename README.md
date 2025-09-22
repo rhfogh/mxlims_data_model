@@ -9,6 +9,8 @@ classes and html documentation generated therefrom.
 
 For general documentation see docs/Overview.pdf
 
+For  an account of the modeling and use of X-ray centring, see docs/XrayCentring.pdf
+
 docs/examples contain example JSON files (not necessarily from the very latest version)
 and mapping files, showing the mapping between MXLIMS and other formats.
 
