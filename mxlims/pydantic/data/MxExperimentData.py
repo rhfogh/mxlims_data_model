@@ -74,6 +74,12 @@ class MxExperimentData(BaseModel):
         description="Priority of experiment - smaller number higher priority",
         title="Priority",
     )
+    sample_group: Optional[str] = Field(
+        None,
+        alias="sampleGroup",
+        description="Experiments within the same sampleGroup should only be executed until one of them achieves the required resolution etc.",
+        title="Sample group",
+    )
     dose_budget: Optional[PositiveFloat] = Field(
         None,
         alias="doseBudget",

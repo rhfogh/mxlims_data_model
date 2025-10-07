@@ -3,6 +3,7 @@
 - Added VolumeScan Job for X-ray centring
 - - Added docs/XrayCentring.pdf
 - Removed MxExperiment.energy as it duplicated CollectionSweep.energy
+- Added MxExperiment.sampleGroup to group samples where only one needs to succeed.
 
 ## Changes in version 0.6.7
 

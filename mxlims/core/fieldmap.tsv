@@ -82,6 +82,7 @@ MxExperiment.priority	int	Priority of experiment - smaller number higher priorit
 MxExperiment.radiationDose	float	Total radiation dose absorbed during experiment,
 MxExperiment.radiationSensitivity	float	Predicted relative radiation sensitivity of sample at target wavelength.,
 MxExperiment.requiredResolution	float	The minimum resolution required to carry on with the experiment,
+MxExperiment.sampleGroup	str	Experiments within the same sampleGroup should only be executed until one of them achieves the required resolution etc.,
 MxExperiment.selectedSpaceGroupName	str	Name of space group, as determined during characterisation. Names may include alternative settings. Matches mmCIF item symmetry.space_group_name_H-M (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_symmetry.space_group_name_H-M.html).,
 MxExperiment.selectedUnitCell.a	float	A axis length (A),
 MxExperiment.selectedUnitCell.alpha	float	alpha angle (degree),

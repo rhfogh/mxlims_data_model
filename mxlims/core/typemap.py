@@ -116,6 +116,7 @@ typemap = {
     ('MxExperiment', 'radiationDose'): float,
     ('MxExperiment', 'radiationSensitivity'): float,
     ('MxExperiment', 'requiredResolution'): float,
+    ('MxExperiment', 'sampleGroup'): str,
     ('MxExperiment', 'selectedSpaceGroupName'): str,
     ('MxExperiment', 'selectedUnitCell'): UnitCell,
     ('MxExperiment', 'selectedUnitCell', 'a'): float,
