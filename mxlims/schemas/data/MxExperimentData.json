@@ -64,6 +64,11 @@
             "description": "Priority of experiment - smaller number higher priority",
             "title": "Priority"
         },
+        "sampleGroup": {
+            "type": "string",
+            "title": "Sample group",
+            "description": "Experiments within the same sampleGroup should only be executed until one of them achieves the required resolution etc."
+        },
         "doseBudget": {
             "exclusiveMinimum": 0.0,
             "type": "number",
