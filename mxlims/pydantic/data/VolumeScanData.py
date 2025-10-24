@@ -9,7 +9,7 @@ from mxlims.impl.MxlimsBase import BaseModel
 
 from pydantic import Field
 
-from ..datatypes.PointCloud import Rectangle
+from ..datatypes.PointCloud import PointCloud
 
 
 class VolumeScanData(BaseModel):
@@ -27,10 +27,10 @@ class VolumeScanData(BaseModel):
     rotation_angles: Optional[List[Any]] = Field(
         None,
         alias="rotationAngles",
-        description="List of axis (omega) values to use for volume scan, in degrees",
+        description="List of omega offsets from the starting omega position to use for volume scan, in degrees",
         title="RotationAngles",
     )
-    search_volume: Optional[Rectangle] = Field(
+    search_volume: Optional[PointCloud] = Field(
         None,
         alias="searchVolume",
         description="Volume to search (input), defined in goniostat coordinate system (centringX, centringY, phiY)",
@@ -39,7 +39,7 @@ class VolumeScanData(BaseModel):
     bounding_box_size: Optional[List[float]] = Field(
         None,
         alias="boundingBoxSize",
-        description="The size of the bounding box to scan in microscope coordinate system (horizontal, vertical, beam0",
+        description="The size of the bounding box to scan in microscope coordinate system (horizontal, vertical, beam). The bounding box is centred on the intersection between the omega axis and the beam.",
         max_length=3,
         min_length=3,
         title="Bounding Box Size",
@@ -50,13 +50,13 @@ class VolumeScanData(BaseModel):
         description="The shape of the bounding box used.",
         title="Bounding Box Shape",
     )
-    result_volume: Optional[Rectangle] = Field(
+    result_volume: Optional[PointCloud] = Field(
         None,
         alias="resultVolume",
         description="Volume of all active points found",
         title="Result Volume",
     )
-    sub_volumes: Optional[List[Rectangle]] = Field(
+    sub_volumes: Optional[List[PointCloud]] = Field(
         None,
         alias="subVolumes",
         description="List of individual compact subvolumes selected from resultVolume",

@@ -1,3 +1,9 @@
+## Changes in version 0.6.9
+
+- Refactored VolumeScan after discussion, adding ScannedPoint class.
+- Minor improvements to Overview file
+- Constrained resolution to be a positive number
+
 ## Changes in version 0.6.8
 
 - Added VolumeScan Job for X-ray centring

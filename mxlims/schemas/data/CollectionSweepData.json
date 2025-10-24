@@ -76,6 +76,7 @@
             "title": "Transmission"
         },
         "resolution": {
+            "exclusiveMinimum": 0.0,
             "type": "number",
             "description": "Resolution that the sweep was intended to measureFor offset or unusual detectors this may *not* determine the detector distanceThe actual detector distance can be found in axisPositionsStart",
             "title": "Resolution"

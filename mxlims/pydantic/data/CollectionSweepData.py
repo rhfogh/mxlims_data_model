@@ -85,7 +85,7 @@ class CollectionSweepData(BaseModel):
     transmission: Optional[confloat(le=100.0, gt=0.0)] = Field(
         None, description="Transmission setting in %", title="Transmission"
     )
-    resolution: Optional[float] = Field(
+    resolution: Optional[PositiveFloat] = Field(
         None,
         description="Resolution that the sweep was intended to measureFor offset or unusual detectors this may *not* determine the detector distanceThe actual detector distance can be found in axisPositionsStart",
         title="Resolution",
