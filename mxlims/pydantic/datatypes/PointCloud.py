@@ -3,22 +3,20 @@
 
 from __future__ import annotations
 
-from typing import List, Literal
+from typing import List
 
 from mxlims.impl.MxlimsBase import BaseModel
 
 from pydantic import Field
 
+from .ScannedPoint import ScannedPoint
 
-class Rectangle(BaseModel):
+
+class PointCloud(BaseModel):
     """
-    <A rectangular region marked on an image or in absolute plate space. The box is defined by two points on diagonally opposite corners, with its edges parallel to the X and Y axes. Ensure that the two X values are not equal, and that the two Y values are not equal.
+    A cloud (list) of scanned points
     """
 
-    volume_type: Literal["pointCloud"] = Field(
-        "pointCloud",
-        alias="volumeType",
-        description="Type of volume representation",
-        title="Volume Type",
+    points: List[ScannedPoint] = Field(
+        ..., description="List of points making up the PointCloud", title="Points list"
     )
-    points: List[List[float]] = Field(..., title="Points list")

@@ -19,7 +19,7 @@
                 "type": "float"
             },
             "type": "array",
-            "description": "List of axis (omega) values to use for volume scan, in degrees",
+            "description": "List of omega offsets from the starting omega position to use for volume scan, in degrees",
             "title": "RotationAngles"
         },
         "searchVolume": {
@@ -38,7 +38,7 @@
             "maxItems": 3,
             "minItems": 3,
             "type": "array",
-            "description": "The size of the bounding box to scan in microscope coordinate system (horizontal, vertical, beam0",
+            "description": "The size of the bounding box to scan in microscope coordinate system (horizontal, vertical, beam). The bounding box is centred on the intersection between the omega axis and the beam.",
             "title": "Bounding Box Size"
         },
         "boundingBoxShape": {

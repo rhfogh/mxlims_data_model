@@ -1,0 +1,37 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "type": "object",
+    "title": "ScannedPoint",
+    "description": "Scanned point in sample, given in goniostat coordinate system at omega==kappa==phi==0",
+    "properties": {
+        "coordinates": {
+            "type": "array",
+            "title": "Point coordinates (sampX, sampY, sampZ)",
+            "items": {
+                "type": "number",
+                "maxItems": 3,
+                "minItems": 3
+            }
+        },
+        "intensity": {
+            "type": "number",
+            "title": "Intensity",
+            "description":"Measured intensity at point, in arbitrary units"
+        },
+        "resolution": {
+            "exclusiveMinimum": 0.0,
+            "type": "number",
+            "description": "Resolution observed at the scanned point",
+            "title": "Resolution"
+        },
+        "spotCount": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "description": "Number of spots observed at the scanned point",
+            "title": "Spot count"
+        }
+    },
+    "required": [
+        "coordinates"
+    ]
+}
