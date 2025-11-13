@@ -1,3 +1,7 @@
+**## Changes in version 0.6.10
+
+- Removed version from MxlimsObject and put it in the new BaseMessageData instead
+
 ## Changes in version 0.6.9
 
 - Refactored VolumeScan after discussion, adding ScannedPoint class.

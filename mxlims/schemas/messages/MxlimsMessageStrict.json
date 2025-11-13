@@ -3,6 +3,11 @@
     "description": "Message containing all possible objects, by type",
     "title": "MxlimsMessageStrict",
     "type": "object",
+    "allOf": [
+        {
+            "$ref": "BaseMessageData.json"
+        }
+    ],
     "properties": {
         "CollectionSweep": {
             "description": "idString:object dictionary of CollectionSweeps.",

@@ -375,6 +375,7 @@ class BaseMessage(BaseModel):
             exclude_none=True,
             serialize_as_any=True,
         )
+        print ('@~@~ MESSAGE', message_str)
         message_json = json.loads(message_str)
         to_export_json(message_json)
         message_file.write_text(json.dumps(message_json, indent=4))
@@ -397,13 +398,19 @@ def to_export_json(message_dict: dict) -> None:
     Conversion is done in-place"""
     uuid_to_id = {}
     for tag, dd1 in message_dict.items():
-        if dd1:
+        if tag == "version":
+            # Special case - the only non-dictionary property
+            continue
+        elif dd1:
             for tag2, dd2 in dd1.items():
                 uuid_to_id[dd2["uuid"]]= (dd2["mxlimsType"], f"#/{tag}/{tag2}")
 
     for tag, objdict in list(message_dict.items()):
         if not objdict:
             message_dict.pop(tag)
+        elif tag == "version":
+            # Special case - the only non-dictionary property
+            continue
         refdict = LINK_SPECIFICATION.get(tag)
         for uid,obj in objdict.items():
             for linkdict in refdict["links"].values():
@@ -475,12 +482,16 @@ def to_import_json(
     """
     for tag, objdict in list(message_dict.items()):
         # Add uuid for objects lacking them
+        if tag == "version":
+            continue
         for obj in objdict.values():
             if not obj.get("uuid"):
                 if tag in CORETYPES:
                     raise ValueError(f"{tag} stub lacks uuid")
                 obj["uuid"] = str(uuid.uuid1())
     for tag, objdict in list(message_dict.items()):
+        if tag == "version":
+            continue
         refdict = LINK_SPECIFICATION.get(tag)
         for obj in objdict.values():
             # Convert link references to foreign-key uuid values
@@ -510,6 +521,8 @@ def to_import_json(
 
     for tag, objdict in list(message_dict.items()):
         # handle uuid clashes between new and existing objects
+        if tag == "version":
+            continue
         for tag2, new_obj in objdict.items():
             old_obj = MxlimsImplementation.get_object_by_uuid(new_obj["uuid"])
             if old_obj is not None:

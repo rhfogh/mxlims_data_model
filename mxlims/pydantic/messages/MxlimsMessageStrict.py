@@ -5,8 +5,6 @@ from __future__ import annotations
 
 from typing import Dict, Optional
 
-from mxlims.impl.MxlimsBase import BaseMessage
-
 from pydantic import Field
 
 from ..objects.CollectionSweep import CollectionSweep
@@ -28,9 +26,10 @@ from ..objects.ReflectionSet import ReflectionSet
 from ..objects.Shipment import Shipment
 from ..objects.VolumeScan import VolumeScan
 from ..objects.WellDrop import WellDrop
+from .BaseMessageData import BaseMessageData
 
 
-class MxlimsMessageStrict(BaseMessage):
+class MxlimsMessageStrict(BaseMessageData):
     """
     Message containing all possible objects, by type
     """

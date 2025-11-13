@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Dict, List, Literal, Optional
+from typing import Any, Dict, List, Optional
 from uuid import UUID
 
 from mxlims.impl.MxlimsBase import BaseModel
@@ -18,9 +18,6 @@ class MxlimsObjectData(BaseModel):
     Base object for all MXLIMS objects: Job, Dataset, Sample, and LogisticalSample
     """
 
-    version: Literal["0.6.9"] = Field(
-        "0.6.9", description="MXLIMS version for current model", title="Version"
-    )
     mxlims_type: str = Field(
         ...,
         alias="mxlimsType",
