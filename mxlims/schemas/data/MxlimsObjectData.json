@@ -4,12 +4,6 @@
     "title": "MxlimsObjectData",
     "type": "object",
     "properties": {
-        "version": {
-            "const": "0.6.9",
-            "description": "MXLIMS version for current model",
-            "title": "Version",
-            "type": "string"
-        },
         "mxlimsType": {
             "description": "The type of the MXLIMS object. Fixed for each subtype schema",
             "title": "MxlimsType",

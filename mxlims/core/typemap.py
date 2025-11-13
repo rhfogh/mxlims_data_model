@@ -17,15 +17,24 @@
 
 from typing import Any, Dict, List
 
+from mxlims.pydantic.datatypes.Circle import Circle
+from mxlims.pydantic.datatypes.DropImage import DropImage
+from mxlims.pydantic.datatypes.DropImageData import DropImageData
+from mxlims.pydantic.datatypes.DropImageUrl import DropImageUrl
 from mxlims.pydantic.datatypes.ImageRegion import ImageRegion
+from mxlims.pydantic.datatypes.Line import Line
 from mxlims.pydantic.datatypes.Person import Person
 from mxlims.pydantic.datatypes.PlateRegion import PlateRegion
 from mxlims.pydantic.datatypes.PlateType import PlateType
+from mxlims.pydantic.datatypes.Point import Point
 from mxlims.pydantic.datatypes.PointCloud import PointCloud
+from mxlims.pydantic.datatypes.Polygon import Polygon
+from mxlims.pydantic.datatypes.Rectangle import Rectangle
 from mxlims.pydantic.datatypes.ReflectionStatistics import ReflectionStatistics
 from mxlims.pydantic.datatypes.ResolutionCutoffs import ResolutionCutoffs
 from mxlims.pydantic.datatypes.SampleComponent import SampleComponent
 from mxlims.pydantic.datatypes.Scan import Scan
+from mxlims.pydantic.datatypes.ScannedPoint import ScannedPoint
 from mxlims.pydantic.datatypes.Tensor import Tensor
 from mxlims.pydantic.datatypes.TrackingDevice import TrackingDevice
 from mxlims.pydantic.datatypes.UnitCell import UnitCell

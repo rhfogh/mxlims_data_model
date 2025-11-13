@@ -145,6 +145,7 @@ def ingest_row(data_dict: Dict[str, Any], scheme:str, result_mode: bool=False
         if val == "":
             val = None
         steps = mapping.get(tag)
+        print ('@~@~ tag, steps', tag, steps)
         if steps:
             # Note unmapped items remain in data_dict for use in later adjustment
             last = steps[-1]
@@ -185,7 +186,10 @@ def ingest_row(data_dict: Dict[str, Any], scheme:str, result_mode: bool=False
 
     # All data have now been passed to MxlimsObject inputs (length == 1)
     # Make them
-    for tpl, dd0 in partials_dict[1].items():
+    print ('@~@~ pdict', sorted(partials_dict.items()))
+    for tpl0 in partials_dict[1].items():
+        print ('@~@~ tpl0', tpl0)
+        tpl, dd0 = tpl0
         mxlims_type = tpl[0]
         mxlimsobj = getattr(
             import_module(f"mxlims.pydantic.objects.{mxlims_type}"), mxlims_type
@@ -584,7 +588,7 @@ Conversion between simple spreadsheet data and MXLIMS json data""",
     )
     parser.add_argument(
         "--output",
-        metavar="input",
+        metavar="output",
         default=None,
         help="Output file. Defaults to input file with modified extension",
     )
