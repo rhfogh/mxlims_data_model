@@ -21,18 +21,33 @@
             "format": "uuid",
             "pattern":"^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
         },
-        "namespacedExtensions": {
-            "description": "List of extensions to metadata, each defined in a NamespacedExtension schema",
-            "items": {
-                "$ref": "../data/NamespacedExtensionData.json"
-            },
-            "title": "Namespaced Extensions",
-            "type": "array"
-        },
         "extensions": {
-            "description": "Keyword-value dictionary string:Any of extensions. Use is accepted but discouraged",
+            "description": "Keyword-value dictionary string:object of extensions. The key must be a valid domain name pointing to the site 'owning' the extensions, but need bw resovable.",
             "title": "Extensions",
-            "type": "object"
+            "type": "object",
+            "additionalProperties": {
+                "type": "object",
+                "pattern": "^(?i)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$"
+            }
+        },
+        "identifiers": {
+            "description": "Keyword-value dictionary string:string of site-specific object indentifiers. The key must be a valid domain name pointing to the site 'owning' the extensions, but need bw resovable.",
+            "title": "Identifiers",
+            "type": "object",
+            "additionalProperties": {
+                "type": "string",
+                "pattern": "^(?i)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$"
+            }
+        },
+        "urls": {
+            "description": "Keyword-value dictionary string:urlstring of site-specific object urls. The key must be a valid domain name pointing to the site 'owning' the extensions, but need bw resovable.",
+            "title": "Urls",
+            "type": "object",
+            "additionalProperties": {
+                "type": "string",
+                "pattern": "^(?i)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$",
+                "format": "url"
+            }
         },
         "annotation": {
             "type": "string",

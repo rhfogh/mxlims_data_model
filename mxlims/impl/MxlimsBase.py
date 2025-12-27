@@ -375,7 +375,6 @@ class BaseMessage(BaseModel):
             exclude_none=True,
             serialize_as_any=True,
         )
-        print ('@~@~ MESSAGE', message_str)
         message_json = json.loads(message_str)
         to_export_json(message_json)
         message_file.write_text(json.dumps(message_json, indent=4))

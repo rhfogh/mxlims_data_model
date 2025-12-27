@@ -21,13 +21,39 @@
                 }
             ]
         },
+        "smiles": {
+            "type": "string",
+            "description": "Smile string defining component",
+            "title": "Smiles"
+        },
+        "selfies": {
+            "type": "string",
+            "description": "Selfies string defining component",
+            "title": "Smiles"
+        },
+        "sequence": {
+            "type": "string",
+            "description": "Sequence string defining component",
+            "title": "Smiles"
+        },
         "identifiers": {
-            "additionalProperties": {
-                "type": "string"
-            },
-            "description": "Dictionary str:str of contextName: identifier. ContextName will typically refer to a LIMS, database, or web site but could also be e.g. 'smiles' or 'sequence'",
+            "description": "Keyword-value dictionary string:string of site-specific object indentifiers. The key must be a valid domain name pointing to the site 'owning' the extensions, but need bw resovable.",
             "title": "Identifiers",
-            "type": "object"
+            "type": "object",
+            "additionalProperties": {
+                "type": "string",
+                "pattern": "^(?i)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$"
+            }
+        },
+        "urls": {
+            "description": "Keyword-value dictionary string:urlstring of site-specific object urls. The key must be a valid domain name pointing to the site 'owning' the extensions, but need bw resovable.",
+            "title": "Urls",
+            "type": "object",
+            "additionalProperties": {
+                "type": "string",
+                "pattern": "^(?i)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$",
+                "format": "url"
+            }
         }
     },
     "additionalProperties": false

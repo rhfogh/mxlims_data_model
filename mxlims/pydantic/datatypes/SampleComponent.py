@@ -7,7 +7,7 @@ from typing import Dict, Optional
 
 from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import ConfigDict, Field
+from pydantic import ConfigDict, Field, constr
 
 from .SampleComponentRole import SampleComponentRole
 
@@ -29,8 +29,36 @@ class SampleComponent(BaseModel):
         None, description="Human readable name of component", title="Name"
     )
     role: Optional[SampleComponentRole] = None
-    identifiers: Optional[Dict[str, str]] = Field(
+    smiles: Optional[str] = Field(
+        None, description="Smile string defining component", title="Smiles"
+    )
+    selfies: Optional[str] = Field(
+        None, description="Selfies string defining component", title="Smiles"
+    )
+    sequence: Optional[str] = Field(
+        None, description="Sequence string defining component", title="Smiles"
+    )
+    identifiers: Optional[
+        Dict[
+            str,
+            constr(
+                pattern=r"^(?i)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$"
+            ),
+        ]
+    ] = Field(
         None,
-        description="Dictionary str:str of contextName: identifier. ContextName will typically refer to a LIMS, database, or web site but could also be e.g. 'smiles' or 'sequence'",
+        description="Keyword-value dictionary string:string of site-specific object indentifiers. The key must be a valid domain name pointing to the site 'owning' the extensions, but need bw resovable.",
         title="Identifiers",
+    )
+    urls: Optional[
+        Dict[
+            str,
+            constr(
+                pattern=r"^(?i)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$"
+            ),
+        ]
+    ] = Field(
+        None,
+        description="Keyword-value dictionary string:urlstring of site-specific object urls. The key must be a valid domain name pointing to the site 'owning' the extensions, but need bw resovable.",
+        title="Urls",
     )

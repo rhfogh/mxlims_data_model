@@ -133,6 +133,108 @@
         </div>
     </div>
 </div>
+<div class="accordion" id="accordionsmiles">
+    <div class="card">
+        <div class="card-header" id="headingsmiles">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#smiles"
+                        aria-expanded="" aria-controls="smiles" onclick="setAnchor('#smiles')"><span class="property-name">smiles</span></button>
+            </h2>
+        </div>
+
+        <div id="smiles"
+             class="collapse property-definition-div" aria-labelledby="headingsmiles"
+             data-parent="#accordionsmiles">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#smiles" onclick="anchorLink('smiles')">smiles</a></div><h4>Smiles</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>Smile string defining component</p>
+</span>
+        
+
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionselfies">
+    <div class="card">
+        <div class="card-header" id="headingselfies">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#selfies"
+                        aria-expanded="" aria-controls="selfies" onclick="setAnchor('#selfies')"><span class="property-name">selfies</span></button>
+            </h2>
+        </div>
+
+        <div id="selfies"
+             class="collapse property-definition-div" aria-labelledby="headingselfies"
+             data-parent="#accordionselfies">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#selfies" onclick="anchorLink('selfies')">selfies</a></div><h4>Smiles</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>Selfies string defining component</p>
+</span>
+        
+
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionsequence">
+    <div class="card">
+        <div class="card-header" id="headingsequence">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#sequence"
+                        aria-expanded="" aria-controls="sequence" onclick="setAnchor('#sequence')"><span class="property-name">sequence</span></button>
+            </h2>
+        </div>
+
+        <div id="sequence"
+             class="collapse property-definition-div" aria-labelledby="headingsequence"
+             data-parent="#accordionsequence">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#sequence" onclick="anchorLink('sequence')">sequence</a></div><h4>Smiles</h4><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="description"><p>Sequence string defining component</p>
+</span>
+        
+
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
 <div class="accordion" id="accordionidentifiers">
     <div class="card">
         <div class="card-header" id="headingidentifiers">
@@ -155,7 +257,7 @@
             />
         </svg>
     <a href="#identifiers" onclick="anchorLink('identifiers')">identifiers</a></div><h4>Identifiers</h4><span class="badge badge-dark value-type">Type: object</span><br/>
-<span class="description"><p>Dictionary str:str of contextName: identifier. ContextName will typically refer to a LIMS, database, or web site but could also be e.g. 'smiles' or 'sequence'</p>
+<span class="description"><p>Keyword-value dictionary string:string of site-specific object indentifiers. The key must be a valid domain name pointing to the site 'owning' the extensions, but need bw resovable.</p>
 </span>
         
 
@@ -192,7 +294,81 @@
             />
         </svg>
     <a href="#identifiers_additionalProperties" onclick="anchorLink('identifiers_additionalProperties')">additionalProperties</a></div><span class="badge badge-dark value-type">Type: string</span><br/>
+<span class="pattern-value" id="identifiers_additionalProperties_pattern">Must match regular expression: <code>^(?i)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$</code></span>
+        
 
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionurls">
+    <div class="card">
+        <div class="card-header" id="headingurls">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#urls"
+                        aria-expanded="" aria-controls="urls" onclick="setAnchor('#urls')"><span class="property-name">urls</span></button>
+            </h2>
+        </div>
+
+        <div id="urls"
+             class="collapse property-definition-div" aria-labelledby="headingurls"
+             data-parent="#accordionurls">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#urls" onclick="anchorLink('urls')">urls</a></div><h4>Urls</h4><span class="badge badge-dark value-type">Type: object</span><br/>
+<span class="description"><p>Keyword-value dictionary string:urlstring of site-specific object urls. The key must be a valid domain name pointing to the site 'owning' the extensions, but need bw resovable.</p>
+</span>
+        
+
+        
+        
+
+        
+<div class="accordion" id="accordionurls_additionalProperties">
+    <div class="card">
+        <div class="card-header" id="headingurls_additionalProperties">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#urls_additionalProperties"
+                        aria-expanded="" aria-controls="urls_additionalProperties" onclick="setAnchor('#urls_additionalProperties')"><em><span class="property-name">Additional Properties</span></em></button>
+            </h2>
+        </div>
+
+        <div id="urls_additionalProperties"
+             class="collapse property-definition-div" aria-labelledby="headingurls_additionalProperties"
+             data-parent="#accordionurls_additionalProperties">
+            <div class="card-body pl-5"><p class="additional-properties">Each additional property must conform to the following schema</p>
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#urls" onclick="anchorLink('urls')">urls</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#urls_additionalProperties" onclick="anchorLink('urls_additionalProperties')">additionalProperties</a></div><span class="badge badge-dark value-type">Type: string</span><span class="badge badge-info value-type">Format: url</span><br/>
+<span class="pattern-value" id="urls_additionalProperties_pattern">Must match regular expression: <code>^(?i)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$</code></span>
         
 
         

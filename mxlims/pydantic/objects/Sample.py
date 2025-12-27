@@ -43,12 +43,17 @@ class Sample(SampleData, MxlimsObject):
         description="uuid for medium making up Sample",
         title="mediumId",
     )
-    main_component_id: Optional[UUID] = Field(
+    parent_sample_id: Optional[UUID] = Field(
         None,
-        alias="mainComponentId",
-        description="uuid for main component (e.g. macromolecule) making up Sample",
-        title="mainComponentId",
+        alias="parentSampleId",
+        description="uuid for parent sample, used e.g. for macromolecule sample to which various ligands are added",
+        title="parentSampleId",
     )
+    @property
+    def child_samples(self) -> list[Sample]:
+        """Abstract superclass - dummy getter for Sample.child_samples list"""
+        return []
+
     @property
     def jobs(self) -> list[Job]:
         """Abstract superclass - dummy getter for Sample.jobs list"""
@@ -60,16 +65,6 @@ class Sample(SampleData, MxlimsObject):
         return []
 
     @property
-    def main_component(self) -> Optional[Sample]:
-        """Abstract superclass - dummy getter for Sample.main_component"""
-        return None
-
-    @property
-    def main_samples(self) -> list[Sample]:
-        """Abstract superclass - dummy getter for Sample.main_samples list"""
-        return []
-
-    @property
     def medium(self) -> Optional[Sample]:
         """Abstract superclass - dummy getter for Sample.medium"""
         return None
@@ -78,3 +73,8 @@ class Sample(SampleData, MxlimsObject):
     def medium_samples(self) -> list[Sample]:
         """Abstract superclass - dummy getter for Sample.medium_samples list"""
         return []
+
+    @property
+    def parent_sample(self) -> Optional[Sample]:
+        """Abstract superclass - dummy getter for Sample.parent_sample"""
+        return None

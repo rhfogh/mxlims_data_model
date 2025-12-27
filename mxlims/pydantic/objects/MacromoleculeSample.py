@@ -69,21 +69,6 @@ class MacromoleculeSample(MacromoleculeSampleData, Sample):
         self._set_link_1n_rev("LogisticalSample", "sample_id", values)
 
     @property
-    def main_component(self) -> Optional[Macromolecule]:
-        """getter for MacromoleculeSample.main_component"""
-        return self._get_link_n1("Sample", "main_component_id")
-
-    @main_component.setter
-    def main_component(self, value: Optional[Macromolecule]):
-        """setter for MacromoleculeSample.main_component"""
-        from .Macromolecule import Macromolecule
-
-        if value is None or isinstance(value, Macromolecule):
-            self._set_link_n1("Sample", "main_component_id", value)
-        else:
-            raise ValueError("main_component must be of type Macromolecule or None")
-
-    @property
     def medium(self) -> Optional[Medium]:
         """getter for MacromoleculeSample.medium"""
         return self._get_link_n1("Sample", "medium_id")
@@ -97,3 +82,18 @@ class MacromoleculeSample(MacromoleculeSampleData, Sample):
             self._set_link_n1("Sample", "medium_id", value)
         else:
             raise ValueError("medium must be of type Medium or None")
+
+    @property
+    def parent_sample(self) -> Optional[Macromolecule]:
+        """getter for MacromoleculeSample.parent_sample"""
+        return self._get_link_n1("Sample", "parent_sample_id")
+
+    @parent_sample.setter
+    def parent_sample(self, value: Optional[Macromolecule]):
+        """setter for MacromoleculeSample.parent_sample"""
+        from .Macromolecule import Macromolecule
+
+        if value is None or isinstance(value, Macromolecule):
+            self._set_link_n1("Sample", "parent_sample_id", value)
+        else:
+            raise ValueError("parent_sample must be of type Macromolecule or None")

@@ -22,16 +22,16 @@ class Macromolecule(MacromoleculeData, Sample):
     )
     
     @property
-    def main_samples(self) -> list[MacromoleculeSample]:
-        """getter for Macromolecule.main_samples list"""
-        return self._get_link_1n("Sample", "main_component_id")
+    def child_samples(self) -> list[MacromoleculeSample]:
+        """getter for Macromolecule.child_samples list"""
+        return self._get_link_1n("Sample", "parent_sample_id")
 
-    @main_samples.setter
-    def main_samples(self, values: list[MacromoleculeSample]):
-        """setter for Macromolecule.main_samples list"""
+    @child_samples.setter
+    def child_samples(self, values: list[MacromoleculeSample]):
+        """setter for Macromolecule.child_samples list"""
         from .MacromoleculeSample import MacromoleculeSample
 
         for obj in values:
             if not isinstance(obj, MacromoleculeSample):
                 raise ValueError("%s is not of type MacromoleculeSample" % obj)
-        self._set_link_1n_rev("Sample", "main_component_id", values)
+        self._set_link_1n_rev("Sample", "parent_sample_id", values)
