@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import List, Optional
 
 from pydantic import Field
 
@@ -29,9 +29,4 @@ class SampleData(MxlimsObjectData):
     )
     components: Optional[List[SampleComponent]] = Field(
         None, description="Other components of Sample", title="Sample components"
-    )
-    identifiers: Optional[Dict[str, str]] = Field(
-        None,
-        description="Dictionary str:str of contextName: identifier. ContextName will typically refer to a LIMS, database, or web site but could also be e.g. 'smiles' or 'sequence'",
-        title="Identifiers",
     )

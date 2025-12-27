@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Optional
 
 from mxlims.impl.MxlimsBase import BaseModel
 
@@ -34,11 +34,6 @@ class ShipmentData(BaseModel):
     )
     lab_contact_return: Optional[Person] = Field(
         None, alias="labContactReturn", description="Lab contact for return"
-    )
-    identifiers: Optional[Dict[str, str]] = Field(
-        None,
-        description="Dictionary str:str of contextName: identifier. ContextName will typically refer to a LIMS, database, or web site but could also be e.g. 'smiles' or 'sequence'",
-        title="Identifiers",
     )
     tracking_device: Optional[TrackingDevice] = Field(
         None, alias="trackingDevice", description="Shipment tracking device"

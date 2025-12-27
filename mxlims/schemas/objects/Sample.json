@@ -19,10 +19,10 @@
                 }
             ]
         },
-        "mainComponentRef": {
+        "parentSampleRef": {
             "allOf": [
                 {
-                    "reverseLinkName": "mainSamples"
+                    "reverseLinkName": "childSamples"
                 },
                 {
                     "$ref": "../references/SampleRef.json"

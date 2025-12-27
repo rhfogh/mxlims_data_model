@@ -28,10 +28,10 @@
                 }
             ]
         },
-        "mainComponentRef": {
+        "parentSampleRef": {
             "allOf": [
                 {
-                    "reverseLinkName": "mainSamples"
+                    "reverseLinkName": "childSamples"
                 },
                 {
                     "$ref": "../references/MacromoleculeRef.json"

@@ -31,7 +31,6 @@ def generate_fields(dirname: Optional[str] = None) -> None :
     datatypes = {}
     for tag, dd1 in sorted(schemadata["datatypes"].items()):
         props = dd1.get("properties")
-        print ('@~@~ DATATYPE', tag, bool(props), dd1.get("type"))
         if dd1.get("type") == "object" and not tag.endswith("Stub"):
             import_types.add(tag)
         if props:
@@ -72,21 +71,15 @@ def generate_fields(dirname: Optional[str] = None) -> None :
                     desc = dd4.get("description", "-")
                     datatype = datatypes.get(typ2)
                     typemap[fulltag1] = typ2
-                    print ('@~@~', typ, typ2, datatype, dd4.get("basetype"))
                     if datatype:
                         # import_types.add(typ2)
                         for tag3, prop in datatype.items():
                             fulltag2 = ".".join((fulltag1, tag3))
                             typ3 = prop.get("type", "NOTYPE")
                             desc = prop.get("description", "-")
-                            print ('@~@~ XXX', tag3, typ3)
                             typemap[fulltag2] = typ3
                             fieldmap[fulltag2] = (typ3, desc)
                     else:
-                        for name in dd4["basetype"].split("|"):
-                            print ('@~@~ BSTYPE', name, name in datatypes)
-                            # if name in datatypes:
-                            #     import_types.add(name)
                         fieldmap[fulltag1] = (typ2, desc)
 
     outfile = mxlims_dir / "mxlims" / "core" / "fieldmap.tsv"

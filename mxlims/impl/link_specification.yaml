@@ -406,7 +406,7 @@ Job:
       link_ref_name: sampleRef
       linkname: sample
       read_only: false
-      reverselink: &id064
+      reverselink: &id065
         basetypename: Job
         cardinality: multiple
         linkname: jobs
@@ -467,7 +467,7 @@ LogisticalSample:
       link_ref_name: sampleRef
       linkname: sample
       read_only: false
-      reverselink: &id065
+      reverselink: &id066
         basetypename: LogisticalSample
         cardinality: multiple
         linkname: logistical_samples
@@ -481,19 +481,19 @@ Macromolecule:
   classname: Macromolecule
   corename: Sample
   links:
-    main_samples: &id036
+    child_samples: &id036
       basetypename: Sample
       cardinality: multiple
-      linkname: main_samples
-      reverselink: &id038
+      linkname: child_samples
+      reverselink: &id039
         basetypename: Sample
         cardinality: single
-        link_id_name: main_component_id
-        link_ref_name: mainComponentRef
-        linkname: main_component
+        link_id_name: parent_sample_id
+        link_ref_name: parentSampleRef
+        linkname: parent_sample
         read_only: false
         reverselink: *id036
-        reversename: main_samples
+        reversename: child_samples
         typenames:
           - Macromolecule
       typenames:
@@ -522,8 +522,7 @@ MacromoleculeSample:
         - VolumeScan
         - MxProcessing
     logistical_samples: *id009
-    main_component: *id038
-    medium: &id039
+    medium: &id038
       basetypename: Sample
       cardinality: single
       link_id_name: medium_id
@@ -534,12 +533,13 @@ MacromoleculeSample:
         basetypename: Sample
         cardinality: multiple
         linkname: medium_samples
-        reverselink: *id039
+        reverselink: *id038
         typenames:
           - MacromoleculeSample
       reversename: medium_samples
       typenames:
         - Medium
+    parent_sample: *id039
 Medium:
   classname: Medium
   corename: Sample
@@ -971,44 +971,44 @@ Sample:
   classname: Sample
   corename: Sample
   links:
-    jobs: *id064
-    logistical_samples: *id065
-    main_component: &id066
+    child_samples: &id064
       basetypename: Sample
-      cardinality: single
-      link_id_name: main_component_id
-      link_ref_name: mainComponentRef
-      linkname: main_component
-      read_only: false
-      reverselink: &id067
+      cardinality: multiple
+      linkname: child_samples
+      reverselink: &id069
         basetypename: Sample
-        cardinality: multiple
-        linkname: main_samples
-        reverselink: *id066
+        cardinality: single
+        link_id_name: parent_sample_id
+        link_ref_name: parentSampleRef
+        linkname: parent_sample
+        read_only: false
+        reverselink: *id064
+        reversename: child_samples
         typenames:
           - Sample
-      reversename: main_samples
       typenames:
         - Sample
-    main_samples: *id067
-    medium: &id068
+    jobs: *id065
+    logistical_samples: *id066
+    medium: &id067
       basetypename: Sample
       cardinality: single
       link_id_name: medium_id
       link_ref_name: mediumRef
       linkname: medium
       read_only: false
-      reverselink: &id069
+      reverselink: &id068
         basetypename: Sample
         cardinality: multiple
         linkname: medium_samples
-        reverselink: *id068
+        reverselink: *id067
         typenames:
           - Sample
       reversename: medium_samples
       typenames:
         - Sample
-    medium_samples: *id069
+    medium_samples: *id068
+    parent_sample: *id069
 Shipment:
   classname: Shipment
   corename: LogisticalSample

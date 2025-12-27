@@ -1,6 +1,10 @@
 **## Changes in version 0.6.10
 
-- Removed version from MxlimsObject and put it in the new BaseMessageData instead
+- Removed version field from MxlimsObject and put it in the new BaseMessageData instead
+- Removed namespacedExtensions and changed extentions to be namespaced with domain names as key
+- Added ids and urls to MxlimsObject, with domain  names as keys, replacing identifiers
+- removed identifiers property from all schemas
+- Added smiles, selfies, and sequence to SampleComponent
 
 ## Changes in version 0.6.9
 

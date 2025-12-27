@@ -175,6 +175,7 @@ def extract_object_schemas(schema_dir: Path) -> dict:
     data = {}
     for fpath in (schema_dir / "data").iterdir():
         dataname = fpath.stem
+        print ('Loading file:', fpath)
         with fpath.open(encoding="utf-8") as fp0:
             data[dataname] = json.load(fp0)
 
