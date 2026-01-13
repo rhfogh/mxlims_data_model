@@ -75,7 +75,7 @@ def import_spreadsheet(
     """
     with open(filepath, "r") as fp0:
         data = [line.split(sep=separator) for line in fp0 if line.strip()]
-    if len(data) <= 2:
+    if len(data) < 2:
         raise ValueError("MXLIMS requires at least header and data row")
     header = data.pop(0)
     if header[0][0] == "#":
@@ -89,7 +89,11 @@ def import_spreadsheet(
         ingest_row(dict(zip(header, ll0)), scheme, result_mode=result_mode)
 
 def export_spreadsheet(
-        object_list:List[MxlimsObject], scheme:str, filepath:Path, separator="\t"
+        object_list:List[MxlimsObject],
+        scheme:str,
+        version_str:str,
+        filepath:Path,
+        separator="\t"
 ):
     """Simplified export to spreadsheet-type file (e.g. comma- or tab-separated)
 
@@ -109,11 +113,12 @@ def export_spreadsheet(
 
     :param object_list: MXLIMS objects determining what to export
     :param scheme: format and mapping to use, e.g. maxiv, soleil, ...
+    :param version_str: version string for MXLIMS version
     :param filepath: Path of file to export to
     :param separator: Field separator in output file
     :return:
     """
-    header, rows = generate_spreadsheet_data(object_list, scheme)
+    header, rows = generate_spreadsheet_data(object_list, scheme, version_str)
     lines = [separator.join(header)]
     for row in rows:
         lines.append(separator.join(str(row.get(tag, "")) for tag in header))
@@ -216,7 +221,7 @@ def link_mxlims_objects(result: Dict[str, MxlimsObject], result_mode:bool= False
     sample = result.get("MacromoleculeSample")
     if sample:
         sample.medium = result.get("Medium")
-        sample.main_component = result.get("Macromolecule")
+        sample.parent_sample = result.get("Macromolecule")
 
     # Set up LogisticalSamples
     logistical_samples = list(
@@ -255,7 +260,8 @@ def link_mxlims_objects(result: Dict[str, MxlimsObject], result_mode:bool= False
             dataset.logistical_sample = leaf_container
         if mx_experiment is not None:
             if result_mode:
-                dataset.source = mx_experiment
+                # dataset.source = mx_experiment
+                dataset._set_link_n1("Job", "source_id", mx_experiment)
             else:
                 mx_experiment.template_data = [dataset]
     dataset = result.get("ReflectionSet")
@@ -264,13 +270,14 @@ def link_mxlims_objects(result: Dict[str, MxlimsObject], result_mode:bool= False
             dataset.logistical_sample = leaf_container
         if mx_processing is not None:
             if result_mode:
-                dataset.source = mx_processing
+                # dataset.source = mx_processing
+                dataset._set_link_n1("Job", "source_id", mx_processing)
             else:
                 mx_processing.template_data = [dataset]
 
 
 def generate_spreadsheet_data(
-        object_list:List[MxlimsObject], scheme:str
+        object_list:List[MxlimsObject], scheme:str, version_str:str,
 ) -> Tuple[list, List[dict]]:
     """Export spreadsheet-type file (e.g. comma- or tab-separated)
 
@@ -278,9 +285,10 @@ def generate_spreadsheet_data(
 
     :param object_list: MXLIMS objects determining what to export
     :param scheme: format and mapping to use, e.g. maxiv, soleil, ...
+    :param version_str: Version string for MXLIMS version, ...
     :return:
     """
-    version_dir = get_version_dir(scheme, version.parse(object_list[0].version))
+    version_dir = get_version_dir(scheme, version.parse(version_str))
     dirname = version_dir.stem
     mapping : Dict[str, list[str]] = read_mapping(version_dir, to_snake_case=True)
     adjust_row = getattr(
@@ -491,9 +499,9 @@ def expand_sample(source: Sample) -> dict[str, MxlimsObject]:
     """
     result = {}
     result[source.mxlims_type] = source
-    main_component = source.main_component
-    if main_component and main_component.mxlims_type not in result:
-        result[main_component.mxlims_type] = main_component
+    parent_sample = source.parent_sample
+    if parent_sample and parent_sample.mxlims_type not in result:
+        result[parent_sample.mxlims_type] = parent_sample
     medium = source.medium
     if medium and medium.mxlims_type not in result:
         result[medium.mxlims_type] = medium
@@ -531,10 +539,11 @@ def do_conversion(
                 )
         else:
             outpath = inpath.with_suffix(".tsv")
-        MxlimsMessageStrict.from_message_file(inpath)
+        message = MxlimsMessageStrict.from_message_file(inpath)
         export_spreadsheet(
             MxlimsObject.get_all_jobs(),
             scheme=scheme,
+            version_str=message.version,
             filepath=outpath,
             separator=separator
         )
