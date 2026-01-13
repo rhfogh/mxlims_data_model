@@ -5,6 +5,7 @@
 - Added ids and urls to MxlimsObject, with domain  names as keys, replacing identifiers
 - removed identifiers property from all schemas
 - Added smiles, selfies, and sequence to SampleComponent
+- Renamed SAmple.mainComponent link to Sample.parentSample
 
 ## Changes in version 0.6.9
 
