@@ -352,7 +352,7 @@ class BaseMessage(BaseModel):
 
         """
         temp_message = cls()
-        message_dict= json.loads(message_path.read_text())
+        message_dict = json.loads(message_path.read_text())
         to_import_json(message_dict, uuid_clash_mode=uuid_clash_mode)
         for tag in message_dict:
             snaketag = camel_to_snake(tag)
