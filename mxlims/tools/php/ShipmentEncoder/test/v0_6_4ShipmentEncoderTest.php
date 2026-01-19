@@ -16,7 +16,7 @@ class v0_6_4ShipmentEncoderTest extends TestCase {
 			}
 			$version = str_replace('_', '.', $matches[0]);
 			$this->version = $version;
-			include_once '../src/' . $className . '.php';
+			include_once __DIR__.'/../src/' . $className . '.php';
 			$fullClassName = 'mxlims\tools\php\ShipmentEncoder\src\\' . $className;
 			$this->encoder = new $fullClassName();
 	}
