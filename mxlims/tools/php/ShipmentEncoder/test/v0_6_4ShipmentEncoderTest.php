@@ -2,6 +2,14 @@
 
 namespace mxlims\tools\php\ShipmentEncoder\test;
 
+require __DIR__ . '/../../vendor/opis/json-schema-2.6.0/autoload.php';
+require __DIR__ . '/../../vendor/opis/uri-1.1.0/autoload.php';
+
+use Opis\JsonSchema\SchemaLoader;
+use Opis\JsonSchema\Validator;
+use Opis\JsonSchema\Errors\ValidationError;
+use Opis\Uri\Uri;
+
 use PHPUnit\Framework\TestCase;
 use Throwable;
 
@@ -803,8 +811,8 @@ class v0_6_4ShipmentEncoderTest extends TestCase {
 		$this->encoder->setLabContactOutbound('Bob', 'bob@bob.com');
 		$this->encoder->setLabContactReturn('Bob', 'bob@bob.com');
 		$json=$this->encoder->encodeToJSON();
-		$this->validateIndividualJsonElementsAgainstSchema($json);
-		$this->validateShipmentMessageJsonAgainstSchema($json);
+		$this->assertTrue($this->validateIndividualJsonElementsAgainstSchema($json), 'At least one element failed schema validation');
+		$this->assertTrue($this->validateShipmentMessageJsonAgainstSchema($json), 'All elements validated but the whole message failed schema validation');
 	}
 
 	/**
@@ -820,8 +828,8 @@ class v0_6_4ShipmentEncoderTest extends TestCase {
 		$macromolecule = $this->encoder->addMacromoleculeToShipment('TEST');
 		$this->encoder->addSampleToMultiPositionPin($pin['index'], 1, $macromolecule['index'], 'TEST_9098A01d1c1');
 		$json=$this->encoder->encodeToJSON();
-		$this->validateIndividualJsonElementsAgainstSchema($json);
-		$this->validateShipmentMessageJsonAgainstSchema($json);
+		$this->assertTrue($this->validateIndividualJsonElementsAgainstSchema($json), 'At least one element failed schema validation');
+		$this->assertTrue($this->validateShipmentMessageJsonAgainstSchema($json), 'All elements validated but the whole message failed schema validation');
 	}
 
 	/**
@@ -834,16 +842,18 @@ class v0_6_4ShipmentEncoderTest extends TestCase {
 		$region=$this->encoder->addPointDropRegionByPlateDropIndex($drop['index'], 100, 200);
 		$this->encoder->addCrystalToDropRegion($region['index'], 'CRYSTAL_NAME');
 		$json=$this->encoder->encodeToJSON(true);
-		$this->validateIndividualJsonElementsAgainstSchema($json);
-		$this->validateShipmentMessageJsonAgainstSchema($json);
+		$this->assertTrue($this->validateIndividualJsonElementsAgainstSchema($json), 'At least one element failed schema validation');
+		$this->assertTrue($this->validateShipmentMessageJsonAgainstSchema($json), 'All elements validated but the whole message failed schema validation');
 	}
 
+	public static string $fileWithSchemaVersion=__DIR__.'/../../../../schemas/data/MxlimsObjectData.json';
+	public static array $pathToVersion=['properties','version','const']; //Where to find the version number in the above file
 	/**
 	 * @throws \Exception
 	 */
-	public function checkEncoderVersionMatchesLocalSchemaVersion(){
+	public function checkEncoderVersionMatchesLocalSchemaVersion(): void {
 		$encoderVersion = $this->encoder->getVersion();
-		$objectSchema = @file_get_contents(__DIR__ . '/../../../../schemas/data/MxlimsObjectData.json');
+		$objectSchema = @file_get_contents(static::$fileWithSchemaVersion);
 		if (!$objectSchema) {
 			throw new \Exception('Could not open ShipmentMessage schema to determine version number');
 		}
@@ -851,7 +861,13 @@ class v0_6_4ShipmentEncoderTest extends TestCase {
 		if (!$objectSchema) {
 			throw new \Exception('Could not parse ShipmentMessage schema');
 		}
-		$schemaVersion = $objectSchema['properties']['version']['const'];
+		$schemaVersion = $objectSchema;
+		foreach(static::$pathToVersion as $level) {
+			if(!isset($schemaVersion[$level])){
+				$this->markTestSkipped("Could not determine local MXLIMS schema version from ".static::$fileWithSchemaVersion.'['.implode('][',static::$pathToVersion).']');
+			}
+			$schemaVersion=$schemaVersion[$level];
+		}
 		if ($schemaVersion !== $encoderVersion) {
 			$this->markTestSkipped("Version mismatch: Local MXLIMS schema copy $schemaVersion does not match generated shipment $encoderVersion. Cannot validate against schema.");
 		}
@@ -859,41 +875,24 @@ class v0_6_4ShipmentEncoderTest extends TestCase {
 
 	/**
 	 * @param $json
-	 * @return void
-	 * @throws \Exception
+	 * @return bool
 	 */
-	public function validateShipmentMessageJsonAgainstSchema($json): void {
-		$this->validateJsonAgainstSchema($json, 'messages/ShipmentMessage.json');
+	public function validateShipmentMessageJsonAgainstSchema($json): bool {
+		return $this->validateJsonAgainstSchema($json, 'messages/ShipmentMessage.json');
 	}
 
-	public function validateJsonAgainstSchema( $json, $schemaFile): void {
 
-		$this->checkEncoderVersionMatchesLocalSchemaVersion();
-		$jsonPath=str_replace('/', DIRECTORY_SEPARATOR,__DIR__.'/test.json');
-		$schemaPath=str_replace('/', DIRECTORY_SEPARATOR,__DIR__.'/../../../../schemas/'.$schemaFile);
-		if(!@file_put_contents($jsonPath, $json)){
-			$this->fail('Could not write test JSON to disk for parsing');
-		}
-		$command=@file_get_contents(__DIR__.'/SchemaValidationCommand');
-		if(!$command){ $this->markTestSkipped('No SchemaValidationCommand file found'); }
-		$command=str_replace('{{$jsonFile}}', $jsonPath, $command);
-		$command=str_replace('{{$schemaFile}}', $schemaPath, $command);
-		$result=(exec($command));
-		$acceptableResults=['True'];
-		if(!in_array($result, $acceptableResults)){
-			echo "========\nInvalid JSON\n$json\n========";
-		}
-		$this->assertContains($result, $acceptableResults);
-	}
 
 	/**
 	 * @throws \Exception
 	 */
-	public function validateIndividualJsonElementsAgainstSchema($json): void {
+	public function validateIndividualJsonElementsAgainstSchema($json): bool {
 		$this->checkEncoderVersionMatchesLocalSchemaVersion();
 		$schemaDir=str_replace('/',DIRECTORY_SEPARATOR,__DIR__.'/../../../../schemas/');
 		$array=json_decode($json, true);
+		$isValid=true;
 		foreach(array_keys($array) as $objectType){
+			if('version'===$objectType){ continue; }
 			if(!isset($array[$objectType])){
 				throw new \Exception("JSON does not contain $objectType, or it is empty");
 			}
@@ -908,8 +907,115 @@ class v0_6_4ShipmentEncoderTest extends TestCase {
 			$keys=array_keys($objects);
 			$obj=$objects[end($keys)];
 			$json=json_encode($obj, JSON_PRETTY_PRINT);
-			$this->validateJsonAgainstSchema($json, $schemaFile);
+			if(!$this->validateJsonAgainstSchema($json, $schemaFile)){ $isValid=false; }
 		}
+		return $isValid;
+	}
+
+	function validateJsonAgainstSchema(string $jsonString, string $schemaPath): bool {
+		$rootSchemaPath=rtrim(str_replace('\\','/',realpath(__DIR__.'/../../../../schemas/')),'/').'/'.$schemaPath;
+		return $this->opis_validateJsonAgainstSchema($jsonString, $rootSchemaPath);
+	}
+
+	/**
+	 * Validate JSON string against a root JSON Schema (Draft-07) with all relative $refs.
+	 * DO NOT ATTEMPT TO "OPTIMISE" THIS GHASTLY MESS. Opis' API is "special". Every line here
+	 * is necessary, and you WILL break it if you try to make it rational and sane. HERE BE DRAGONS.
+	 *
+	 * @param string $jsonString JSON string to validate
+	 * @param string $rootSchemaPath Path to root schema on disk
+	 * @return bool True if valid, false otherwise
+	 * @throws \RuntimeException on invalid JSON or missing schema
+	 */
+	function opis_validateJsonAgainstSchema(string $jsonString, string $rootSchemaPath): bool {
+		// Normalize root schema path
+		$rootSchemaPath = realpath($rootSchemaPath);
+		if (!$rootSchemaPath) {
+			throw new \RuntimeException("Root schema file not found: $rootSchemaPath");
+		}
+		$rootSchemaPath = str_replace('\\','/',$rootSchemaPath);
+
+		// Load JSON input
+		$jsonData = json_decode($jsonString);
+		if (!$jsonData) {
+			throw new \RuntimeException('Invalid JSON input');
+		}
+
+		// Loader and validator
+		$loader = new SchemaLoader();
+		$validator = new Validator($loader);
+
+		// Internal helper: load a schema file and all relative $refs
+		$loadSchemaFile = function(string $path) use ($loader, &$loadSchemaFile) {
+			$path = realpath($path);
+			if (!$path) {
+				throw new \RuntimeException("Schema file not found: $path");
+			}
+			$path = str_replace('\\','/',$path);
+
+			$schema = json_decode(file_get_contents($path));
+			if (!$schema) {
+				throw new \RuntimeException("Invalid JSON schema at $path");
+			}
+
+			// Base URI for this schema
+			$uri = new Uri([
+				'scheme' => 'file',
+				'host'   => null,
+				'path'   => $path
+			]);
+
+			// Load schema into loader
+			$loader->loadObjectSchema($schema, $uri);
+
+			// Preload all relative $refs recursively
+			$dir = dirname($path);
+			$queue = [$schema];
+			while ($q = array_shift($queue)) {
+				if (is_object($q) || is_array($q)) {
+					foreach ($q as $k => $v) {
+						if ($k === '$ref' && is_string($v) && !preg_match('#^[a-z]+://#i', $v)) {
+							$refPath = $dir.'/'.$v;
+							if (file_exists($refPath)) {
+								$loadSchemaFile($refPath);
+							}
+						} elseif (is_object($v) || is_array($v)) {
+							$queue[] = $v;
+						}
+					}
+				}
+			}
+		};
+
+		// Load root schema + all relative refs
+		$loadSchemaFile($rootSchemaPath);
+
+		// Get the root schema object for validation
+		$rootSchemaJson = json_decode(file_get_contents($rootSchemaPath));
+		$rootUri = new Uri([
+			'scheme'=>'file',
+			'host'=>null,
+			'path'=>$rootSchemaPath
+		]);
+		$rootSchema = $loader->loadObjectSchema($rootSchemaJson, $rootUri);
+
+		// Validate
+		$result = $validator->validate($jsonData, $rootSchema);
+
+		if ($result->isValid()) {
+			return true;
+		}
+
+		// Recursive error printing for Opis 2.6.0
+		$printError = function(ValidationError $error, string $prefix='') use (&$printError) {
+			echo $prefix . $error->keyword() . ': ' . $error->message() . PHP_EOL;
+			foreach ($error->subErrors() as $sub) {
+				$printError($sub, $prefix.'  ');
+			}
+		};
+
+		$printError($result->error());
+		return false;
 	}
 
 }
