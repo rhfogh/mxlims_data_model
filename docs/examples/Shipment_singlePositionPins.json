@@ -1,4 +1,5 @@
 {
+  "version": "0.6.10",
   "Shipment": {
     "Shipment1": {
       "proposalCode": "mx4025",
@@ -10,7 +11,6 @@
         "name": "Alice",
         "phoneNumber":"123"
       },
-      "version": "0.6.4",
       "mxlimsType": "Shipment",
       "uuid": "0196f23d-0f3c-2c96-b3d1-b908984ec709"
     }
@@ -19,7 +19,6 @@
     "Dewar1": {
       "barcode": "DLS-MX-1234",
       "containerRef": { "$ref": "#/Shipment/Shipment1" },
-      "version": "0.6.4",
       "mxlimsType": "Dewar",
       "uuid": "0196f23a-dce0-2560-baac-f1b23ec9e0cb"
     }
@@ -28,7 +27,6 @@
     "Puck1": {
       "numberPositions": 16,
       "containerRef": { "$ref": "#/Dewar/Dewar1" },
-      "version": "0.6.4",
       "mxlimsType": "Puck",
       "uuid": "0196f23a-dce0-2560-baac-f1b23ec9e0aa"
     }
@@ -39,7 +37,6 @@
       "positionInPuck": 1,
       "containerRef": { "$ref": "#/Puck/Puck1" },
       "sampleRef": { "$ref": "#/MacromoleculeSample/MacromoleculeSample1" },
-      "version": "0.6.4",
       "mxlimsType": "Pin",
       "uuid": "0196f23a-dce0-2560-baac-f1b23ec9e0dd"
     }
@@ -47,7 +44,6 @@
   "Macromolecule":{
     "Macromolecule1": {
       "acronym": "LMTIM",
-      "version": "0.6.4",
       "mxlimsType": "Macromolecule",
       "uuid": "0196f23a-dce0-2560-baac-f1b23ec9e055"
     }
@@ -56,7 +52,6 @@
     "MacromoleculeSample1": {
       "name": "LMTIM_9098A01d1c1",
       "macromoleculeRef": { "$ref":"#/Macromolecule/Macromolecule1" },
-      "version": "0.6.4",
       "mxlimsType": "MacromoleculeSample",
       "uuid": "0196f23a-dce0-2560-baac-f1b23ec9e022"
     }
