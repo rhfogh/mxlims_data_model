@@ -2,6 +2,8 @@
 
 namespace mxlims\tools\php\ShipmentEncoder\src;
 
+use Exception;
+
 include_once __DIR__.'/ShipmentEncoderInterface.php';
 
 class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
@@ -23,11 +25,11 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 	 * @param string $mxlimsType The type of object.
 	 * @param string|null $uuid A pre-existing UUID for the object. If not supplied, one will be generated.
 	 * @return array The base object.
-	 * @throws \Exception if $mxlimsType is not alphanumeric or does not start with a capital letter
+	 * @throws Exception if $mxlimsType is not alphanumeric or does not start with a capital letter
 	 */
 	public function getBaseObject(string $mxlimsType, ?string $uuid=null): array {
 		if(!preg_match('/^[A-Z][a-zA-Z0-9]+$/', $mxlimsType)){
-			throw new \Exception("Bad mxlimsType $mxlimsType");
+			throw new Exception("Bad mxlimsType $mxlimsType");
 		}
 		if(!$uuid){
 			$uuid=$this->generateUuid();
@@ -75,7 +77,7 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 		$parts=explode('\\', get_called_class());
 		$className=end($parts);
 		if(!preg_match('/\d+_\d+_\d+/', $className, $matches)){
-			throw new \Exception('Cannot determine version from class name');
+			throw new Exception('Cannot determine version from class name');
 		}
 		$version=str_replace('_','.',$matches[0]);
 		$this->version=$version;
@@ -96,26 +98,26 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 
 	/**
 	 * @see ShipmentEncoderInterface::getByJsonPath()
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function getByJsonPath(string|array $path): ?array {
 		if(is_array($path)){
 			if(isset($path['$ref'])){
 				$path=$path['$ref'];
 			} else {
-				throw new \Exception('No $ref property');
+				throw new Exception('No $ref property');
 			}
 		}
 		if (!str_starts_with($path,'#/')) {
-			throw new \Exception('JSON path must start with #/');
+			throw new Exception('JSON path must start with #/');
 		}
 		$path = substr($path, 2);
 		$parts = explode('/', $path);
 		if (2 !== count($parts)) {
-			throw new \Exception('Too many parts in JSON path');
+			throw new Exception('Too many parts in JSON path');
 		}
 		if (!str_starts_with($parts[1], $parts[0]) && !(int)substr($parts[1], strlen($parts[0]))) {
-			throw new \Exception('JSON path must be in the form #/ObjectType/ObjectType123');
+			throw new Exception('JSON path must be in the form #/ObjectType/ObjectType123');
 		}
 		$index=(int)substr($parts[1], strlen($parts[0]));
 		return $this->get($parts[0], $index);
@@ -123,20 +125,20 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 
 	/**
 	 * @see ShipmentEncoderInterface::createShipment()
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function createShipment(string $proposalCode, ?int $sessionNumber=null, ?string $uuid=null): array {
 		if(!empty($this->shipmentMessage)){
-			throw new \Exception("Shipment already added to message");
+			throw new Exception("Shipment already added to message");
 		}
 		if(!preg_match('/^[0-9A-Za-z]+$/', $proposalCode)){
-			throw new \Exception("Bad proposal code $proposalCode");
+			throw new Exception("Bad proposal code $proposalCode");
 		}
 		$shipment=$this->getBaseObject('Shipment', $uuid);
 		$shipment['proposalCode']=$proposalCode;
 		if(!empty($sessionNumber)){
 			if($sessionNumber<1){
-				throw new \Exception("Session number must be a positive number");
+				throw new Exception("Session number must be a positive number");
 			}
 			$shipment['sessionNumber'] = $sessionNumber;
 		}
@@ -147,7 +149,7 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 
 	/**
 	 * @see ShipmentEncoderInterface::setLabContactOutbound()
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function setLabContactOutbound(string $name, ?string $emailAddress=null, ?string $phoneNumber=null): array {
 		return $this->setLabContact('Outbound', $name, $emailAddress, $phoneNumber);
@@ -155,7 +157,7 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 
 	/**
 	 * @see ShipmentEncoderInterface::setLabContactReturn()
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function setLabContactReturn(string $name, ?string $emailAddress=null, ?string $phoneNumber=null): array {
 		return $this->setLabContact('Return', $name, $emailAddress, $phoneNumber);
@@ -163,11 +165,11 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 
 	/**
 	 * @see ShipmentEncoderInterface::addMacromoleculeToShipment()
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function addMacromoleculeToShipment(string $acronym, ?string $uuid=null): array {
 		if(empty($acronym)){
-			throw new \Exception('Acronym cannot be empty.');
+			throw new Exception('Acronym cannot be empty.');
 		}
 		$macromolecule=$this->getBaseObject('Macromolecule', $uuid);
 		$macromolecule['acronym']=$acronym;
@@ -183,13 +185,13 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 	 * @param string|null $emailAddress The lab contact's email address.
 	 * @param string|null $phoneNumber The lab contact's phone number.
 	 * @return array The lab contact.
-	 * @throws \Exception if name is empty, or if both email address and phone number are empty.
-	 * @throws \Exception if direction is not "Outbound" or "Return".
+	 * @throws Exception if name is empty, or if both email address and phone number are empty.
+	 * @throws Exception if direction is not "Outbound" or "Return".
 	 * */
 	public function setLabContact(string $direction, string $name, ?string $emailAddress, ?string $phoneNumber): array {
-		if('Outbound'!==$direction && 'Return'!==$direction){ throw new \Exception('Bad lab contact direction'); }
-		if(empty($name)){ throw new \Exception("Name cannot be empty"); }
-		if(empty($emailAddress) && empty($phoneNumber)){ throw new \Exception("Email or phone number must be provided"); }
+		if('Outbound'!==$direction && 'Return'!==$direction){ throw new Exception('Bad lab contact direction'); }
+		if(empty($name)){ throw new Exception("Name cannot be empty"); }
+		if(empty($emailAddress) && empty($phoneNumber)){ throw new Exception("Email or phone number must be provided"); }
 		$labContact=[ 'name'=>$name ];
 		if($phoneNumber){ $labContact['phoneNumber']=$phoneNumber; }
 		if($emailAddress){ $labContact['emailAddress']=$emailAddress; }
@@ -208,21 +210,25 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 		if(!isset($this->shipmentMessage[$type])){
 			$this->shipmentMessage[$type]=[];
 		}
-		$index=count($this->shipmentMessage[$type])+1;
-		$this->shipmentMessage[$type][$type.$index]=$object;
-		$object['index']=$index;
+		if(isset($object['index'])){
+			$this->shipmentMessage[$type][$type.$object['index']]=$object;
+		} else {
+			$index=count($this->shipmentMessage[$type])+1;
+			$this->shipmentMessage[$type][$type.$index]=$object;
+			$object['index']=$index;
+		}
 	}
 
 	/**
 	 * @see ShipmentEncoderInterface::addDewarToShipment()
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function addDewarToShipment(?string $barcode = null, ?string $uuid = null): array {
 		if(!isset($this->shipmentMessage['Shipment'])){
-			throw new \Exception("Call createShipment() before addDewarToShipment()");
+			throw new Exception("Call createShipment() before addDewarToShipment()");
 		}
 		if(array_key_exists("Plate", $this->shipmentMessage)){
-			throw new \Exception("Shipment contains Plates, cannot add Dewar");
+			throw new Exception("Shipment contains Plates, cannot add Dewar");
 		}
 		$dewar=$this->getBaseObject('Dewar', $uuid);
 		if(!empty($barcode)){
@@ -235,13 +241,13 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 
 	/**
 	 * @see ShipmentEncoderInterface::addPuckToDewar()
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function addPuckToDewar(int $dewarIndex, string $barcode, int $numPositions, string $uuid = null): array {
 		if(!$this->get('Dewar',$dewarIndex)){
-			throw new \Exception("No dewar with index $dewarIndex");
+			throw new Exception("No dewar with index $dewarIndex");
 		}
-		if($numPositions<1){ throw new \Exception("Number of positions must be a positive integer"); }
+		if($numPositions<1){ throw new Exception("Number of positions must be a positive integer"); }
 		$puck=$this->getBaseObject('Puck', $uuid);
 		$puck['containerRef']=['$ref'=>'#/Dewar/Dewar'.$dewarIndex];
 		$puck['numberPositions']=$numPositions;
@@ -252,28 +258,28 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 
 	/**
 	 * @see ShipmentEncoderInterface::addSinglePinSampleToPuck()
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function addSinglePinSampleToPuck(int $puckIndex, int $puckPosition, int $macromoleculeIndex, string $sampleName, ?string $pinBarcode=null, ?string $pinUuid=null, ?string $sampleUuid=null): array {
 		$puck=$this->get('Puck',$puckIndex);
-		if(isset($this->shipmentMessage['MultiPin'])){ throw new \Exception("Cannot mix multi-position pins and traditional loops"); }
-		if(!$puck){ throw new \Exception("No puck with index $puckIndex"); }
-		if(!$this->get('Macromolecule',$macromoleculeIndex)){ throw new \Exception("No macromolecule with index $macromoleculeIndex"); }
-		if($puckPosition<1 || $puckPosition>$puck['numberPositions']){ throw new \Exception("Puck position must be between 1 and {$puck['numberPositions']}"); }
+		if(isset($this->shipmentMessage['MultiPin'])){ throw new Exception("Cannot mix multi-position pins and traditional loops"); }
+		if(!$puck){ throw new Exception("No puck with index $puckIndex"); }
+		if(!$this->get('Macromolecule',$macromoleculeIndex)){ throw new Exception("No macromolecule with index $macromoleculeIndex"); }
+		if($puckPosition<1 || $puckPosition>$puck['numberPositions']){ throw new Exception("Puck position must be between 1 and {$puck['numberPositions']}"); }
 		if(isset($this->shipmentMessage['Pin'])){
 			foreach($this->shipmentMessage['Pin'] as $pin){
 				if($pin['positionInPuck']===$puckPosition && $pin['containerRef']['$ref']==='#/Puck/Puck'.$puckIndex){
-					throw new \Exception("Puck index $puckIndex position $puckPosition is already filled");
+					throw new Exception("Puck index $puckIndex position $puckPosition is already filled");
 				}
 				if(!empty($pinBarcode) && $pinBarcode===$pin['barcode']){
-					throw new \Exception('Shipment already contains a pin with barcode '.$pinBarcode);
+					throw new Exception('Shipment already contains a pin with barcode '.$pinBarcode);
 				}
 			}
 		}
 		if(isset($this->shipmentMessage['MacromoleculeSample'])){
 			foreach($this->shipmentMessage['MacromoleculeSample'] as $sample){
 				if($sampleName===$sample['name']){
-					throw new \Exception('Shipment already contains a sample with name '.$pinBarcode);
+					throw new Exception('Shipment already contains a sample with name '.$pinBarcode);
 				}
 			}
 		}
@@ -295,19 +301,19 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 
 	/**
 	 * @see ShipmentEncoderInterface::addSinglePositionPinToPuck()
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function addSinglePositionPinToPuck(int $puckIndex, int $puckPosition, ?string $barcode=null, ?string $uuid=null, ?string $sampleUuid=null): array {
 		$puck=$this->get('Puck',$puckIndex);
 		if(isset($this->shipmentMessage['MultiPin'])){
-			throw new \Exception('Shipment contains multi-position pin. Cannot add single-position pins.');
+			throw new Exception('Shipment contains multi-position pin. Cannot add single-position pins.');
 		}
 		if(!$puck){
-			throw new \Exception("No puck with index $puckIndex");
+			throw new Exception("No puck with index $puckIndex");
 		}
 		$puckPositions=$puck['numberPositions'];
 		if($puckPosition<1 || $puckPosition>$puckPositions){
-			throw new \Exception("Position in puck must be between 1 and $puckPositions");
+			throw new Exception("Position in puck must be between 1 and $puckPositions");
 		}
 		$pin=$this->getBaseObject('Pin', $uuid);
 		$pin['positionInPuck']=$puckPosition;
@@ -318,7 +324,7 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 		if(isset($this->shipmentMessage['Pin'])){
 			foreach($this->shipmentMessage['Pin'] as $existing){
 				if($existing['containerRef']['$ref']==='#/Puck/Puck'.$puckIndex && $existing['positionInPuck']===$puckPosition){
-					throw new \Exception('Puck position is already filled');
+					throw new Exception('Puck position is already filled');
 				}
 			}
 		}
@@ -328,22 +334,22 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 
 	/**
 	 * @see ShipmentEncoderInterface::addMultiPositionPinToPuck()
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function addMultiPositionPinToPuck(int $puckIndex, int $puckPosition, int $numPositions, ?string $barcode=null, ?string $uuid=null): array {
 		$puck=$this->get('Puck',$puckIndex);
 		if(isset($this->shipmentMessage['Pin'])){
-			throw new \Exception('Shipment contains single-position pin. Cannot add multi-position pins.');
+			throw new Exception('Shipment contains single-position pin. Cannot add multi-position pins.');
 		}
 		if(!$puck){
-			throw new \Exception("No puck with index $puckIndex");
+			throw new Exception("No puck with index $puckIndex");
 		}
 		if($numPositions<1){
-			throw new \Exception('Number of positions must be a positive integer');
+			throw new Exception('Number of positions must be a positive integer');
 		}
 		$puckPositions=$puck['numberPositions'];
 		if($puckPosition<1 || $puckPosition>$puckPositions){
-			throw new \Exception("Position in puck must be between 1 and $puckPositions");
+			throw new Exception("Position in puck must be between 1 and $puckPositions");
 		}
 		$pin=$this->getBaseObject('MultiPin', $uuid);
 		$pin['positionInPuck']=$puckPosition;
@@ -355,7 +361,7 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 		if(isset($this->shipmentMessage['MultiPin'])){
 			foreach($this->shipmentMessage['MultiPin'] as $existing){
 				if($existing['containerRef']['$ref']==='#/Puck/Puck'.$puckIndex && $existing['positionInPuck']===$puckPosition){
-					throw new \Exception('Puck position is already filled');
+					throw new Exception('Puck position is already filled');
 				}
 			}
 		}
@@ -365,26 +371,26 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 
 	/**
 	 * @see ShipmentEncoderInterface::addSampleToMultiPositionPin()
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function addSampleToMultiPositionPin(int $pinIndex, int $pinPosition, int $macromoleculeIndex, string $sampleName, ?string $sampleUuid=null): array {
 		if(!$this->get('MultiPin',$pinIndex)){
-			throw new \Exception('No pin with index '.$pinIndex);
+			throw new Exception('No pin with index '.$pinIndex);
 		}
 		if(!$this->get('Macromolecule',$macromoleculeIndex)){
-			throw new \Exception('No macromolecule with index '.$pinIndex);
+			throw new Exception('No macromolecule with index '.$pinIndex);
 		}
 		if(isset($this->shipmentMessage['PinPosition'])){
 			foreach ($this->shipmentMessage['PinPosition'] as $existing){
 				if($existing['positionInPin']===$pinPosition && $existing['containerRef']['$ref']==='#/MultiPin/MultiPin'.$pinIndex){
-					throw new \Exception('Pin position is already filled');
+					throw new Exception('Pin position is already filled');
 				}
 			}
 		}
 		if(isset($this->shipmentMessage['MacromoleculeSample'])){
 			foreach ($this->shipmentMessage['MacromoleculeSample'] as $existing){
 				if($existing['name']===$sampleName){
-					throw new \Exception('Sample name already exists in shipment');
+					throw new Exception('Sample name already exists in shipment');
 				}
 			}
 		}
@@ -405,26 +411,26 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 
 	/**
 	 * @see ShipmentEncoderInterface::addPlateToShipment()
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function addPlateToShipment(string $barcode, int $rows, int $columns, int $subPositions, ?string $dropMapping=null, ?string $uuid = null): array {
 		if(!isset($this->shipmentMessage['Shipment'])){
-			throw new \Exception("Call createShipment() before addPlateToShipment()");
+			throw new Exception("Call createShipment() before addPlateToShipment()");
 		}
 		if(array_key_exists("Dewar", $this->shipmentMessage)){
-			throw new \Exception("Shipment contains Dewars, cannot add Plate");
+			throw new Exception("Shipment contains Dewars, cannot add Plate");
 		}
-		if(empty($barcode)){ throw new \Exception("Barcode cannot be empty"); }
+		if(empty($barcode)){ throw new Exception("Barcode cannot be empty"); }
 		if(isset($this->shipmentMessage['Plate'])){
 			foreach ($this->shipmentMessage['Plate'] as $existing) {
 				if($existing['barcode']===$barcode){
-					throw new \Exception("Plate with barcode $barcode already in shipment");
+					throw new Exception("Plate with barcode $barcode already in shipment");
 				}
 			}
 		}
-		if($rows<1){ throw new \Exception("Rows must be a positive number"); }
-		if($columns<1){ throw new \Exception("Columns must be a positive number"); }
-		if($subPositions<1){ throw new \Exception("Sub positions must be a positive number"); }
+		if($rows<1){ throw new Exception("Rows must be a positive number"); }
+		if($columns<1){ throw new Exception("Columns must be a positive number"); }
+		if($subPositions<1){ throw new Exception("Sub positions must be a positive number"); }
 		if(empty($dropMapping)){
 			//Default drop mapping - sub-wells across the top in numerical order, reservoir below
 			$part1='';
@@ -435,7 +441,7 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 			}
 			$dropMapping=$part1.','.$part2;
 		}
-		if(!preg_match('/^[\dR,]+$/',$dropMapping)){ throw new \Exception("Mapping is not valid"); }
+		if(!preg_match('/^[\dR,]+$/',$dropMapping)){ throw new Exception("Mapping is not valid"); }
 		$plate=$this->getBaseObject('Plate', $uuid);
 		$plate['barcode']=$barcode;
 		$plate['containerRef']=['$ref'=>'#/Shipment/Shipment1'];
@@ -451,23 +457,23 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 
 	/**
 	 * @see ShipmentEncoderInterface::addWellToPlate()
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function addWellToPlate(int $plateIndex, int $rowNumber, int $columnNumber, ?string $uuid=null): array {
 		$plate=$this->get('Plate',$plateIndex);
 		if(!$plate){
-			throw new \Exception('No plate with index '.$plateIndex);
+			throw new Exception('No plate with index '.$plateIndex);
 		}
 		if($rowNumber<1 || $rowNumber>$plate['plateType']['numberRows']){
-			throw new \Exception('Row number must be between 1 and '.$plate['plateType']['numberRows']);
+			throw new Exception('Row number must be between 1 and '.$plate['plateType']['numberRows']);
 		}
 		if($columnNumber<1 || $columnNumber>$plate['plateType']['numberColumns']){
-			throw new \Exception('Column number must be between 1 and '.$plate['plateType']['numberColumns']);
+			throw new Exception('Column number must be between 1 and '.$plate['plateType']['numberColumns']);
 		}
 		if(isset($this->shipmentMessage['PlateWell'])){
 			foreach ($this->shipmentMessage['PlateWell'] as $existing){
 				if($existing['rowNumber']===$rowNumber && $existing['columnNumber']===$columnNumber && $existing['containerRef']['$ref']==='#/Plate/Plate'.$plateIndex){
-					throw new \Exception('Well already exists');
+					throw new Exception('Well already exists');
 				}
 			}
 		}
@@ -481,33 +487,33 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 
 	/**
 	 * @see ShipmentEncoderInterface::addDropToPlateWell()
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function addDropToPlateWell(int $wellIndex, int $dropNumber, int $macromoleculeIndex, ?string $name=null, ?string $uuid=null): array {
 		$well=$this->get('PlateWell',$wellIndex);
 		$macromolecule=$this->get('Macromolecule',$macromoleculeIndex);
 		if(!$well){
-			throw new \Exception('No well with index '.$wellIndex);
+			throw new Exception('No well with index '.$wellIndex);
 		}
 		if(!$macromolecule){
-			throw new \Exception('No macromolecule with index '.$macromoleculeIndex);
+			throw new Exception('No macromolecule with index '.$macromoleculeIndex);
 		}
 		$plateIndex=preg_replace('/\D/', '', $well['containerRef']['$ref']);
 		$plate=$this->get('Plate', (int)$plateIndex);
 		if(!$plate){
 				//Safety, shouldn't be possible
-				throw new \Exception('No plate with index '.$plateIndex);
+				throw new Exception('No plate with index '.$plateIndex);
 		}
 		if($dropNumber<1 || $dropNumber>$plate['plateType']['numberSubPositions']){
-			throw new \Exception('Drop number must be between 1 and '.$plate['plateType']['numberSubPositions']);
+			throw new Exception('Drop number must be between 1 and '.$plate['plateType']['numberSubPositions']);
 		}
 		if(isset($this->shipmentMessage['WellDrop'])){
 			foreach($this->shipmentMessage['WellDrop'] as $existing){
 				if($dropNumber==$existing['dropNumber'] && $existing['containerRef']['$ref']==='#/PlateWell/PlateWell'.$wellIndex){
-					throw new \Exception('This well drop already exists');
+					throw new Exception('This well drop already exists');
 				}
 				if($existing['name']===$name){
-					throw new \Exception('A well drop with this name already exists');
+					throw new Exception('A well drop with this name already exists');
 				}
 			}
 		}
@@ -532,11 +538,11 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 
 	/**
 	 * @see ShipmentEncoderInterface::getPlateWellByPosition()
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function getPlateWellByPosition(int $plateIndex, int $rowNumber, int $columnNumber): ?array {
 		if(!isset($this->shipmentMessage['Plate']['Plate'.$plateIndex])){
-			throw new \Exception('No plate with index '.$plateIndex);
+			throw new Exception('No plate with index '.$plateIndex);
 		}
 		$foundWell=null;
 		if(!isset($this->shipmentMessage['PlateWell'])){ return null; }
@@ -552,7 +558,7 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 
 	/**
 	 * @see ShipmentEncoderInterface::getWellDropByPosition()
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function getWellDropByPosition(int $plateIndex, int $rowNumber, int $columnNumber, int $dropNumber): ?array {
 		$well=$this->getPlateWellByPosition($plateIndex, $rowNumber, $dropNumber);
@@ -583,22 +589,22 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 	 * @param string|null $imageUrl
 	 * @param string|null $imageData
 	 * @return array
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function addDropRegion(int $dropIndex, array $region, ?string $imageMimeType=null, ?string $imageUrl=null, ?string $imageData=null): array {
 		if(!empty($imageUrl) && !empty($imageData)) {
-			throw new \Exception('Cannot specify both imageUrl and imageData; leave both empty for plate coordinates in microns');
+			throw new Exception('Cannot specify both imageUrl and imageData; leave both empty for plate coordinates in microns');
 		} else if(!empty($imageUrl) || !empty($imageData)){
 			if(!empty($imageUrl) && false===filter_var($imageUrl, FILTER_VALIDATE_URL)){
-				throw new \Exception('Bad image URL '.$imageUrl);
+				throw new Exception('Bad image URL '.$imageUrl);
 			}
 			if(empty($imageMimeType)){
-				throw new \Exception('No image MIME type set');
+				throw new Exception('No image MIME type set');
 			} else if(!str_starts_with($imageMimeType, 'image/')){
-				throw new \Exception('Bad image MIME type');
+				throw new Exception('Bad image MIME type');
 			}
 		} else if(!empty($imageMimeType)) {
-			throw new \Exception('Do not set image MIME type for plate co-ordinates');
+			throw new Exception('Do not set image MIME type for plate co-ordinates');
 		}
 		$dropRegion=$this->getBaseObject('DropRegion');
 		$dropRegion['containerRef']=['$ref'=>'#/WellDrop/WellDrop'.$dropIndex];
@@ -627,10 +633,10 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 
 	/**
 	 * @see ShipmentEncoderInterface::addPointDropRegionByPlateDropIndex()
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function addPointDropRegionByPlateDropIndex(int $dropIndex, int $x, int $y, ?string $imageMimeType=null, ?string $imageUrl=null, ?string $imageData=null): array {
-		if($x<0 || $y<0){ throw new \Exception('x and y cannot be negative'); }
+		if($x<0 || $y<0){ throw new Exception('x and y cannot be negative'); }
 		$point=[
 			'regionType'=>'point',
 			'x'=>$x,
@@ -641,11 +647,11 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 
 	/**
 	 * @see ShipmentEncoderInterface::addCrystalToDropRegion()
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function addCrystalToDropRegion(int $dropRegionIndex, string $name, ?string $uuid=null): array {
 		$dropRegion=$this->get('DropRegion', $dropRegionIndex);
-		if(!$dropRegion){ throw new \Exception('No DropRegion with index '.$dropRegionIndex); }
+		if(!$dropRegion){ throw new Exception('No DropRegion with index '.$dropRegionIndex); }
 		$crystal=$this->getBaseObject('Crystal', $uuid);
 		$crystal['name']=$name;
 		$wellDrop=$this->getByJsonPath($dropRegion['containerRef']);
@@ -662,14 +668,14 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 	 * @param string $parentType The parent type.
 	 * @param string $childType The child type.
 	 * @return void if all parents are referred to by at least one child.
-	 * @throws \Exception if none of the parent type are present.
-	 * @throws \Exception if none of the child type are present.
-	 * @throws \Exception if any parent is not referred to by at least one child.
+	 * @throws Exception if none of the parent type are present.
+	 * @throws Exception if none of the child type are present.
+	 * @throws Exception if any parent is not referred to by at least one child.
 	 */
 	public function validateAllParentsHaveChild(string $parentType, string $childType): void {
-		if(!isset($this->shipmentMessage[$parentType])){ throw new \Exception("No {$parentType}s in the shipment"); }
-		if(!isset($this->shipmentMessage[$childType])){ throw new \Exception("No {$childType}s in the shipment"); }
-		if(!isset($this->shipmentMessage[$childType][$childType.'1'])){ throw new \Exception("No {$childType}1 in the shipment"); }
+		if(!isset($this->shipmentMessage[$parentType])){ throw new Exception("No {$parentType}s in the shipment"); }
+		if(!isset($this->shipmentMessage[$childType])){ throw new Exception("No {$childType}s in the shipment"); }
+		if(!isset($this->shipmentMessage[$childType][$childType.'1'])){ throw new Exception("No {$childType}1 in the shipment"); }
 		$parentKeys=[];
 		$referenceKey='';
 		foreach ($this->shipmentMessage[$childType][$childType.'1'] as $k=>$v) {
@@ -681,7 +687,7 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 				}
 			}
 		}
-		if(''===$referenceKey) { throw new \Exception("Cannot determine child property that refers to $parentType in $childType"); }
+		if(''===$referenceKey) { throw new Exception("Cannot determine child property that refers to $parentType in $childType"); }
 
 		foreach ($this->shipmentMessage[$childType] as $child) {
 			$parentKey=(explode('/', $child[$referenceKey]['$ref']))[2]; // "#/Dewar/Dewar1"
@@ -690,28 +696,28 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 		$parentKeys=array_unique($parentKeys);
 		foreach(array_keys($this->shipmentMessage[$parentType]) as $toCheck){
 			if(!in_array($toCheck, $parentKeys)){
-				throw new \Exception("$toCheck is not referred to by any $childType");
+				throw new Exception("$toCheck is not referred to by any $childType");
 			}
 			if(count($parentKeys)!==count($this->shipmentMessage[$parentType])){
-				throw new \Exception("Count mismatch - number of {$parentType}s does not match number of {$parentType}s referred to by {$childType}s");
+				throw new Exception("Count mismatch - number of {$parentType}s does not match number of {$parentType}s referred to by {$childType}s");
 			}
 		}
 	}
 
 	/**
 	 * @see ShipmentEncoderInterface::validate()
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function validate(): bool {
 		$shipment=$this->get('Shipment',1);
 		$dewar1=$this->get('Dewar',1);
 		$plate1=$this->get('Plate',1);
 		$macromolecule1=$this->get('Macromolecule',1);
-		if(!$shipment){ throw new \Exception("No shipment"); }
-		if(!isset($shipment['labContactOutbound'])){ throw new \Exception("No outbound lab contact"); }
-		if(!isset($shipment['labContactReturn'])){ throw new \Exception("No return lab contact"); }
-		if(!$dewar1 && !$plate1){ throw new \Exception("No Dewars or Plates in the shipment"); }
-		if(!$macromolecule1){ throw new \Exception("No Macromolecules in the shipment"); }
+		if(!$shipment){ throw new Exception("No shipment"); }
+		if(!isset($shipment['labContactOutbound'])){ throw new Exception("No outbound lab contact"); }
+		if(!isset($shipment['labContactReturn'])){ throw new Exception("No return lab contact"); }
+		if(!$dewar1 && !$plate1){ throw new Exception("No Dewars or Plates in the shipment"); }
+		if(!$macromolecule1){ throw new Exception("No Macromolecules in the shipment"); }
 
 		if($dewar1){
 			$this->validateAllParentsHaveChild('Dewar','Puck');
@@ -725,7 +731,7 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 				$this->validateAllParentsHaveChild('MultiPin','PinPosition');
 				$this->validateAllParentsHaveChild('MacromoleculeSample','PinPosition');
 			} else {
-				throw new \Exception("No Pins or MultiPins in the shipment");
+				throw new Exception("No Pins or MultiPins in the shipment");
 			}
 		} else {
 			$this->validateAllParentsHaveChild('Plate','PlateWell');
@@ -737,18 +743,18 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 		if(isset($this->shipmentMessage['Dewar'])){
 			if(isset($this->shipmentMessage['Pin'])){
 				if(!isset($this->shipmentMessage['MacromoleculeSample'])){
-					throw new \Exception("No samples in the shipment");
+					throw new Exception("No samples in the shipment");
 				}
 			} else if(isset($this->shipmentMessage['MultiPin'])){
 				if(!isset($this->shipmentMessage['MacromoleculeSample'])){
-					throw new \Exception("No samples in the shipment");
+					throw new Exception("No samples in the shipment");
 				}
 			} else {
-				throw new \Exception("No pins in the shipment");
+				throw new Exception("No pins in the shipment");
 			}
 		} else if(isset($this->shipmentMessage['Plate'])){
 			if(!isset($this->shipmentMessage['Crystal'])){
-				throw new \Exception("No crystal in the shipment");
+				throw new Exception("No crystal in the shipment");
 			}
 		}
 		return true;
@@ -756,7 +762,7 @@ class v0_6_4ShipmentEncoder implements ShipmentEncoderInterface {
 
 	/**
 	 * @see ShipmentEncoderInterface::validate()
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function encodeToJSON(bool $prettyPrint=false): string {
 		$this->validate();

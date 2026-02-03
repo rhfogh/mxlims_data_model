@@ -1,3 +1,4 @@
+
 {
     "$schema": "https://json-schema.org/draft-07/schema",
     "description": "DropImage, containing url pointing to image.",
@@ -8,6 +9,16 @@
             "$ref": "../datatypes/DropImage.json"
         }
     ],
-    "required": ["url"],
-    "additionalProperties": false
+    "properties": {
+        "url": {
+            "type": "string",
+            "description": "A URL where the image can be found ('file', 'http', ...). It is assumed that no further authentication is needed to read this image.",
+            "format": "uri"
+        },
+        "data": {
+            "type": "null",
+            "description": "data values are not allowed in this class; must be null or absent"
+        }
+    },
+    "required": ["url"]
 }

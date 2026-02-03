@@ -8,6 +8,7 @@ require __DIR__ . '/../../vendor/opis/uri-1.1.0/autoload.php';
 use Opis\JsonSchema\SchemaLoader;
 use Opis\JsonSchema\Validator;
 use Opis\JsonSchema\Errors\ValidationError;
+use Opis\JsonSchema\Errors\ErrorFormatter;
 use Opis\Uri\Uri;
 
 use PHPUnit\Framework\TestCase;
@@ -846,6 +847,23 @@ class v0_6_4ShipmentEncoderTest extends TestCase {
 		$this->assertTrue($this->validateShipmentMessageJsonAgainstSchema($json), 'All elements validated but the whole message failed schema validation');
 	}
 
+	/**
+	 * @throws \Exception
+	 */
+	public function testExampleShipmentJsonValidatesAgainstSchema() {
+		$examplesDir=realpath(__DIR__.'/../../../../../docs/examples/');
+		$this->assertDirectoryExists($examplesDir);
+		$examples=['Shipment_plates','Shipment_singlePositionPins','Shipment_multiPositionPins'];
+		foreach ($examples as $example){
+			$path=rtrim($examplesDir,'/').'/'.$example.'.json';
+			self::assertFileExists($path);
+			$json=@file_get_contents($path);
+			self::assertNotFalse($json, "Could not open $path");
+			$this->assertTrue($this->validateIndividualJsonElementsAgainstSchema($json), $example.': At least one element failed schema validation');
+			$this->assertTrue($this->validateShipmentMessageJsonAgainstSchema($json), $example.': All elements validated but the whole message failed schema validation');
+		}
+	}
+
 	public static string $fileWithSchemaVersion=__DIR__.'/../../../../schemas/data/MxlimsObjectData.json';
 	public static array $pathToVersion=['properties','version','const']; //Where to find the version number in the above file
 	/**
@@ -905,9 +923,14 @@ class v0_6_4ShipmentEncoderTest extends TestCase {
 			}
 			$objects=$array[$objectType];
 			$keys=array_keys($objects);
-			$obj=$objects[end($keys)];
-			$json=json_encode($obj, JSON_PRETTY_PRINT);
-			if(!$this->validateJsonAgainstSchema($json, $schemaFile)){ $isValid=false; }
+			foreach($keys as $key){
+				$obj=$objects[$key];
+				$json=json_encode($obj, JSON_PRETTY_PRINT);
+				if(!$this->validateJsonAgainstSchema($json, $schemaFile)){
+					echo "$objectType/$key did not validate against schema\n";
+					$isValid=false;
+				}
+			}
 		}
 		return $isValid;
 	}
@@ -919,8 +942,8 @@ class v0_6_4ShipmentEncoderTest extends TestCase {
 
 	/**
 	 * Validate JSON string against a root JSON Schema (Draft-07) with all relative $refs.
-	 * DO NOT ATTEMPT TO "OPTIMISE" THIS GHASTLY MESS. Opis' API is "special". Every line here
-	 * is necessary, and you WILL break it if you try to make it rational and sane. HERE BE DRAGONS.
+	 * DO NOT ATTEMPT TO "OPTIMISE" THIS GHASTLY MESS. Opis' API is "special". It even made ChatGPT cry.
+	 * Every line here is necessary, and you WILL break it if you try to make it rational and sane. HERE BE DRAGONS.
 	 *
 	 * @param string $jsonString JSON string to validate
 	 * @param string $rootSchemaPath Path to root schema on disk
@@ -1006,15 +1029,43 @@ class v0_6_4ShipmentEncoderTest extends TestCase {
 			return true;
 		}
 
-		// Recursive error printing for Opis 2.6.0
-		$printError = function(ValidationError $error, string $prefix='') use (&$printError) {
-			echo $prefix . $error->keyword() . ': ' . $error->message() . PHP_EOL;
+		$printLeafErrors = function (ValidationError $error) use (&$printLeafErrors) {
+
+			if (count($error->subErrors()) === 0) {
+
+				// Build message with placeholders replaced
+				$message = $error->message();
+				foreach ($error->args() as $key => $value) {
+					if (is_array($value)) {
+						$value = implode(', ', $value);
+					} elseif (is_object($value)) {
+						$value = json_encode($value);
+					}
+					$message = str_replace('{' . $key . '}', (string)$value, $message);
+				}
+
+				// Build JSON Pointer from path segments (Opis 2.6.0)
+				$path = $error->data()->path();
+				if (empty($path)) {
+					$pointer = '<root>';
+				} else {
+					$escaped = array_map(
+						fn($p) => str_replace(['~','/'], ['~0','~1'], (string)$p),
+						$path
+					);
+					$pointer = '/' . implode('/', $escaped);
+				}
+
+				echo /*$pointer ': '.*/ $message . PHP_EOL;
+				return;
+			}
+
 			foreach ($error->subErrors() as $sub) {
-				$printError($sub, $prefix.'  ');
+				$printLeafErrors($sub);
 			}
 		};
 
-		$printError($result->error());
+		$printLeafErrors($result->error());
 		return false;
 	}
 
