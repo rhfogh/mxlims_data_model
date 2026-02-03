@@ -45,9 +45,68 @@ class v0_6_10ShipmentEncoder extends v0_6_7ShipmentEncoder {
 		}
 		return [
 			'mxlimsType' => $mxlimsType,
-//			'version' => $this->getVersion(),
 			'uuid' => $uuid
 		];
+	}
+
+	/**
+	 * @param array $mxlimsObject The MXLIMS object.
+	 * @param string $domainName Uniquely identifies the site where this URL is relevant. The whole subdomain.domain.tld need not resolve, but the domain.tld part should resolve.
+	 * @param string|int $identifier Am identifier pointing to this object in some LIMS related to (but not necessarily at) $domainName.
+	 * @param string $url A URL pointing to this object in some LIMS related to (but not necessarily at) $domainName.
+	 * @return array
+	 * @throws \Exception
+	 */
+	public function addIdentifierAndUrlToObject(array $mxlimsObject, string $domainName, string|int $identifier, string $url): array {
+		$this->addIdentifierOrUrlToObject($mxlimsObject, $domainName, $identifier, 'identifier');
+		return $this->addIdentifierOrUrlToObject($mxlimsObject, $domainName, $url, 'url');
+	}
+
+	/**
+	 * @param array $mxlimsObject The MXLIMS object.
+	 * @param string $domainName Uniquely identifies the site where this URL is relevant. The whole subdomain.domain.tld need not resolve, but the domain.tld part should resolve.
+	 * @param string|int $identifier Am identifier pointing to this object in some LIMS related to (but not necessarily at) $domainName.
+	 * @throws \Exception
+	 */
+	public function addIdentifierToObject(array $mxlimsObject, string $domainName, string|int $identifier): array {
+		return $this->addIdentifierOrUrlToObject($mxlimsObject, $domainName, $identifier, 'identifier');
+	}
+
+	/**
+	 * @param array $mxlimsObject The MXLIMS object.
+	 * @param string $domainName Uniquely identifies the site where this URL is relevant. The whole subdomain.domain.tld need not resolve, but the domain.tld part should resolve.
+	 * @param string $url A URL pointing to this object in some LIMS related to (but not necessarily at) $domainName.
+	 * @return array
+	 * @throws \Exception
+	 */
+	public function addUrlToObject(array $mxlimsObject, string $domainName, string $url): array {
+		return $this->addIdentifierOrUrlToObject($mxlimsObject, $domainName, $url, 'url');
+	}
+
+	/**
+	 * @throws \Exception
+	 */
+	private function addIdentifierOrUrlToObject(array $mxlimsObject, string $domainName, string|int $identifierOrUrl, string $which): array {
+		if(!isset($mxlimsObject['mxlimsType'])){ throw new \Exception('No mxlimsType key on object, cannot determine type'); }
+		if(!isset($mxlimsObject['index'])){ throw new \Exception('No index key on object, cannot determine index'); }
+		$mxlimsType=$mxlimsObject['mxlimsType'];
+		$index=$mxlimsObject['index'];
+		$acceptableTypes=['identifier','url'];
+		if(!in_array($which, $acceptableTypes)){
+			throw new \Exception('Unacceptable type, must be one of ['.implode(',', $acceptableTypes).']');
+		}
+		if(!preg_match('/^(?i)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$/', $domainName)){
+			throw new \Exception("Bad domain name $domainName");
+		}
+		$object=$this->get($mxlimsType, $index);
+		if(!$object){ throw new \Exception("No $mxlimsType with index $index"); }
+		$which=$which.'s';
+		if(!isset($object[$which])){
+			$object[$which]=[];
+		}
+		$object[$which][$domainName]=$identifierOrUrl;
+		$this->setObjectToMessage($object);
+		return $object;
 	}
 
 }
