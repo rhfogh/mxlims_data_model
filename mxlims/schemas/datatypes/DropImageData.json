@@ -8,6 +8,15 @@
             "$ref": "../datatypes/DropImage.json"
         }
     ],
-    "required": ["data"],
-    "additionalProperties": false
+    "properties": {
+        "data": {
+            "type": "string",
+            "description": "The image, UUencoded."
+        },
+        "url": {
+            "type": "null",
+            "description": "url values are not allowed in this class; must be null or absent"
+        }
+    },
+    "required": [ "data" ]
 }

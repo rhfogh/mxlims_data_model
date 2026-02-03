@@ -24,14 +24,7 @@
             ]
         },
         "image": {
-            "oneOf": [
-                {
-                    "$ref": "../datatypes/DropImageData.json"
-                },
-                {
-                    "$ref": "../datatypes/DropImageUrl.json"
-                }
-            ]
+            "$ref": "../datatypes/DropImage.json"
         },
         "units": {
             "description": "The units of the region's co-ordinates.",
