@@ -8,7 +8,7 @@ from typing import Optional
 
 from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import AnyUrl, Field
+from pydantic import Field
 
 from .ImageLightType import ImageLightType
 from .ImageMimeType import ImageMimetype
@@ -30,8 +30,3 @@ class DropImage(BaseModel):
         description="The date and time when the image was captured. This is to be specified in UTC and conform to ISO 8601.",
         examples=["2024-04-24T14:30:16Z", "20240424T143016Z"],
     )
-    url: Optional[AnyUrl] = Field(
-        None,
-        description="A URL where the image can be found ('file', 'http', ...). It is assumed that no further authentication is needed to read this image.",
-    )
-    data: Optional[str] = Field(None, description="The image, UUencoded.")
