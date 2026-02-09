@@ -1,0 +1,13 @@
+{
+  "image":{
+    "mimeType":"image/jpeg",
+    "url": "https://www.icebear.fi/",
+    "data": "some UUencoded data would be here"
+  },
+  "region":{
+    "regionType":"point",
+    "x":785,
+    "y":400
+  },
+  "units":"pixel"
+}
