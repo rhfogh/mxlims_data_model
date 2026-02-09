@@ -148,7 +148,7 @@ class v0_6_10ShipmentEncoderTest extends v0_6_7ShipmentEncoderTest {
 	 */
 	public function testImageRegionDropImageInvalidWithoutUrlAndData() {
 		$schemaPath = 'datatypes/ImageRegion.json';
-		$jsonPath= 'invalid/DropRegion_DropImageNoUrlNoData.json';
+		$jsonPath= 'invalid/ImageRegion_DropImageNoUrlNoData.json';
 		$this->assertFalse($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImage in ImageRegion should not be valid with neither url nor data');
 	}
 
@@ -157,7 +157,7 @@ class v0_6_10ShipmentEncoderTest extends v0_6_7ShipmentEncoderTest {
 	 */
 	public function testImageRegionDropImageValidWithUrlWithoutData() {
 		$schemaPath = 'datatypes/ImageRegion.json';
-		$jsonPath= 'valid/DropRegion_DropImageHasUrlNoData.json';
+		$jsonPath= 'valid/ImageRegion_DropImageHasUrlNoData.json';
 		$this->assertTrue($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImage in ImageRegion should be valid with url and no data');
 	}
 
@@ -166,7 +166,7 @@ class v0_6_10ShipmentEncoderTest extends v0_6_7ShipmentEncoderTest {
 	 */
 	public function testImageRegionDropImageValidWithoutUrlWithData() {
 		$schemaPath = 'datatypes/ImageRegion.json';
-		$jsonPath= 'valid/DropRegion_DropImageNoUrlHasData.json';
+		$jsonPath= 'valid/ImageRegion_DropImageNoUrlHasData.json';
 		$this->assertTrue($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImage in ImageRegion should be valid with data and no url');
 	}
 
@@ -175,7 +175,7 @@ class v0_6_10ShipmentEncoderTest extends v0_6_7ShipmentEncoderTest {
 	 */
 	public function testImageRegionDropImageInvalidWithUrlAndData() {
 		$schemaPath = 'datatypes/ImageRegion.json';
-		$jsonPath= 'invalid/DropRegion_DropImageHasUrlHasData.json';
+		$jsonPath= 'invalid/ImageRegion_DropImageHasUrlHasData.json';
 		$this->assertFalse($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImage in ImageRegion should not be valid with both url and data');
 	}
 
