@@ -935,6 +935,20 @@ class v0_6_4ShipmentEncoderTest extends TestCase {
 		return $isValid;
 	}
 
+	/**
+	 * @param string $testJsonPath The path of the test JSON from  mxlims/test/json/, e.g., "valid/validJson.json"
+	 * @param string $schemaPath The path of the schema file to validate against, from mxlims/schemas, e.g., "datatypes/ImageRegion.json"
+	 * @return bool
+	 * @throws \Exception
+	 */
+	function validateTestJsonFileAgainstSchema(string $testJsonPath, string $schemaPath): bool {
+		$testJsonPath=rtrim(str_replace('\\','/',realpath(__DIR__.'/../../../../test/json/')),'/').'/'.ltrim($testJsonPath, '/');
+		if(!@file_exists($testJsonPath)){ throw new \Exception("$testJsonPath does not exist"); }
+		$jsonString=@file_get_contents($testJsonPath);
+		if(!$jsonString){ throw new \Exception("Could not open test JSON for reading: $testJsonPath"); }
+		return $this->validateJsonAgainstSchema($jsonString, $schemaPath);
+	}
+
 	function validateJsonAgainstSchema(string $jsonString, string $schemaPath): bool {
 		$rootSchemaPath=rtrim(str_replace('\\','/',realpath(__DIR__.'/../../../../schemas/')),'/').'/'.$schemaPath;
 		return $this->opis_validateJsonAgainstSchema($jsonString, $rootSchemaPath);
