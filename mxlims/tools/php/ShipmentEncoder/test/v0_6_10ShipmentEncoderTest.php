@@ -107,73 +107,76 @@ class v0_6_10ShipmentEncoderTest extends v0_6_7ShipmentEncoderTest {
 	}
 
 
+	/**
+	 * @throws \Exception
+	 */
 	public function testDropImageInvalidWithoutUrlAndData() {
 		$schemaPath = 'datatypes/DropImage.json';
-		$obj = json_decode('{ "mimeType":"image/jpeg" }', true);
-		$this->assertFalse($this->validateJsonAgainstSchema(json_encode($obj), $schemaPath), 'DropImage should not be valid with neither url nor data');
+		$jsonPath= 'invalid/DropImage_NoUrlNoData.json';
+		$this->assertFalse($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImage should not be valid with neither url nor data');
 	}
 
+	/**
+	 * @throws \Exception
+	 */
 	public function testDropImageValidWithUrlWithoutData() {
 		$schemaPath = 'datatypes/DropImage.json';
-		$obj = json_decode('{ "mimeType":"image/jpeg" }', true);
-		$obj['url'] = "https://icebear.fi";
-		$this->assertTrue($this->validateJsonAgainstSchema(json_encode($obj), $schemaPath), 'DropImage should be valid with url but not data');
+		$jsonPath= 'valid/DropImage_HasUrlNoData.json';
+		$this->assertTrue($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImage should be valid with url but not data');
 	}
 
+	/**
+	 * @throws \Exception
+	 */
 	public function testDropImageValidWithoutUrlWithData() {
 		$schemaPath = 'datatypes/DropImage.json';
-		$obj = json_decode('{ "mimeType":"image/jpeg" }', true);
-		$obj['data'] = "Some image data here";
-		$this->assertTrue($this->validateJsonAgainstSchema(json_encode($obj), $schemaPath), 'DropImage should be valid with data but not url');
+		$jsonPath= 'valid/DropImage_NoUrlHasData.json';
+		$this->assertTrue($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImage should be valid with data but not url');
 	}
 
+	/**
+	 * @throws \Exception
+	 */
 	public function testDropImageInvalidWithUrlAndData() {
 		$schemaPath = 'datatypes/DropImage.json';
-		$obj = json_decode('{ "mimeType":"image/jpeg" }', true);
-		$this->assertFalse($this->validateJsonAgainstSchema(json_encode($obj), $schemaPath), 'DropImage should not be valid with neither url nor data');
-		$obj['url'] = "https://icebear.fi";
-		$obj['data'] = "Some image data here";
-		$this->assertFalse($this->validateJsonAgainstSchema(json_encode($obj), $schemaPath), 'DropImage should not be valid with both url and data');
+		$jsonPath= 'invalid/DropImage_HasUrlHasData.json';
+		$this->assertFalse($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImage should not be valid with both url and data');
 	}
 
-	private string $imageRegionJson = '{
-			"image":{
-			  "mimeType":"image/jpeg"
-			},
-			"region":{
-			  "regionType":"point",
-			  "x":785,
-			  "y":400
-			},
-			"units":"pixel"
-	    }';
-
+	/**
+	 * @throws \Exception
+	 */
 	public function testImageRegionDropImageInvalidWithoutUrlAndData() {
 		$schemaPath = 'datatypes/ImageRegion.json';
-		$obj = json_decode($this->imageRegionJson, true);
-		$this->assertFalse($this->validateJsonAgainstSchema(json_encode($obj), $schemaPath), 'DropImage in ImageRegion should not be valid with neither url nor data');
+		$jsonPath= 'invalid/DropRegion_DropImageNoUrlNoData.json';
+		$this->assertFalse($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImage in ImageRegion should not be valid with neither url nor data');
 	}
 
+	/**
+	 * @throws \Exception
+	 */
 	public function testImageRegionDropImageValidWithUrlWithoutData() {
 		$schemaPath = 'datatypes/ImageRegion.json';
-		$obj = json_decode($this->imageRegionJson, true);
-		$obj['image']['url'] = "https://icebear.fi";
-		$this->assertTrue($this->validateJsonAgainstSchema(json_encode($obj), $schemaPath), 'DropImage in ImageRegion should be valid with url and no data');
+		$jsonPath= 'valid/DropRegion_DropImageHasUrlNoData.json';
+		$this->assertTrue($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImage in ImageRegion should be valid with url and no data');
 	}
 
+	/**
+	 * @throws \Exception
+	 */
 	public function testImageRegionDropImageValidWithoutUrlWithData() {
 		$schemaPath = 'datatypes/ImageRegion.json';
-		$obj = json_decode($this->imageRegionJson, true);
-		$obj['image']['data'] = "Some image data here";
-		$this->assertTrue($this->validateJsonAgainstSchema(json_encode($obj), $schemaPath), 'DropImage in ImageRegion should be valid with data and no url');
+		$jsonPath= 'valid/DropRegion_DropImageNoUrlHasData.json';
+		$this->assertTrue($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImage in ImageRegion should be valid with data and no url');
 	}
 
+	/**
+	 * @throws \Exception
+	 */
 	public function testImageRegionDropImageInvalidWithUrlAndData() {
 		$schemaPath = 'datatypes/ImageRegion.json';
-		$obj = json_decode($this->imageRegionJson, true);
-		$obj['image']['url'] = "https://icebear.fi";
-		$obj['image']['data'] = "Some image data here";
-		$this->assertFalse($this->validateJsonAgainstSchema(json_encode($obj), $schemaPath), 'DropImage in ImageRegion should not be valid with both url and data');
+		$jsonPath= 'invalid/DropRegion_DropImageHasUrlHasData.json';
+		$this->assertFalse($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImage in ImageRegion should not be valid with both url and data');
 	}
 
 }
