@@ -1,0 +1,11 @@
+{
+  "image":{
+    "mimeType":"image/jpeg"
+  },
+  "region":{
+    "regionType":"point",
+    "x":785,
+    "y":400
+  },
+  "units":"pixel"
+}
