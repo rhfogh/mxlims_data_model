@@ -28,7 +28,7 @@ class ImageRegion(BaseModel):
         extra="forbid",
     )
     region: Union[Point, Circle, Line, Rectangle, Polygon]
-    image: Union[DropImageData, DropImageUrl]
+    image: Union[DropImageUrl, DropImageData]
     units: ImageRegionUnit = Field(
         ..., description="The units of the region's co-ordinates."
     )

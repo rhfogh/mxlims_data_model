@@ -1,5 +1,5 @@
 ---
-name: mxlims_data_model
+name: mxlims
 channels:
   - conda-forge
 dependencies:
@@ -11,5 +11,8 @@ dependencies:
       - yamllint
       - packaging
       - json-schema-for-humans
-      - datamodel-code-generator
+      - check-jsonschema
+      - ruamel.yaml==0.17.21
+      - pydantic==2.8.2
+      - datamodel-code-generator==0.37.0
       - --editable /home/rhfogh/pycharm/mxlims_data_model

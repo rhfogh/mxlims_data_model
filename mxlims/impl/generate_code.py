@@ -57,8 +57,8 @@ def generate_mxlims(dirname: Optional[str] = None) -> None :
         # We need yaml because of circular references
         yaml.dump(object_dicts, fp0)
 
-    import pprint
-    pprint.pprint(object_dicts)
+    # import pprint
+    # pprint.pprint(object_dicts)
     make_json_references(
         mxlims_dir / "mxlims" / "schemas" / "references", object_dicts
     )
