@@ -13,8 +13,8 @@
             "type": "string",
             "description": "A URL where the image can be found ('file', 'http', ...). It is assumed that no further authentication is needed to read this image.",
             "format": "uri"
-        }
+        },
+        "data": false
     },
-    "required": ["url"],
-    "additionalProperties": false
+    "required": ["url"]
 }

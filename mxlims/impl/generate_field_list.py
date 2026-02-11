@@ -36,7 +36,9 @@ def generate_fields(dirname: Optional[str] = None) -> None :
         if props:
             datatypes[tag] = dd2 = {}
             for name, dd3 in props.items():
-                dd2[name] = get_type_desc(dd3, schemadata["datatypes"])
+                if not isinstance(dd3, bool):
+                    # NB dd3 can be false, to signify 'not set'
+                    dd2[name] = get_type_desc(dd3, schemadata["datatypes"])
 
     # Create Data dictionaries
     data = {}
@@ -51,7 +53,9 @@ def generate_fields(dirname: Optional[str] = None) -> None :
                 },
             }
             for name, dd3 in props.items():
-                dd2[name] = get_type_desc(dd3, schemadata["datatypes"])
+                if not isinstance(dd3, bool):
+                    # NB dd3 can be false, to signify 'not set'
+                    dd2[name] = get_type_desc(dd3, schemadata["datatypes"])
 
     typemap = {}
     fieldmap = {}
