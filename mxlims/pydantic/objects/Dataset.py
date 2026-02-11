@@ -10,6 +10,7 @@ from ..data.DatasetData import DatasetData
 if TYPE_CHECKING:
     from .Job import Job
     from .LogisticalSample import LogisticalSample
+    from typing_extensions import Self
 
 class Dataset(DatasetData, MxlimsObject):
     """MXLIMS pydantic model class for Dataset
@@ -86,3 +87,9 @@ class Dataset(DatasetData, MxlimsObject):
     def template_for(self) -> list[Job]:
         """Abstract superclass - dummy getter for Dataset.template_for list"""
         return []
+
+    @model_validator(mode='after')
+    def source_and_derivedFrom_are_mutually_exclusive(self) -> Self:
+        if self.source_id is not None and self.derived_from_id is not None:
+            raise ValueError("source and derivedFrom are mutually exclusive")
+        return self

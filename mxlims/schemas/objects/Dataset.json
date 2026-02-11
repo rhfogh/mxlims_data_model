@@ -42,18 +42,20 @@
             ]
         }
     },
-    "not": {
-        "oneOf": [
-            {
-                "required": [
-                    "sourceRef"
-                ]
-            },
-            {
-                "required": [
-                    "derivedFromRef"
-                ]
-            }
-        ]
-    }
+    "anyOf": [
+      {
+          "not": {
+              "required": [
+                  "sourceRef"
+              ]
+          }
+      },
+      {
+          "not": {
+              "required": [
+                "derivedFromRef"
+              ]
+          }
+      }
+    ]
 }

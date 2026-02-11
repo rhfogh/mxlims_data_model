@@ -320,6 +320,9 @@ from ..data.{classname}Data import {classname}Data
                     txtlist.append(
                         f"    from .{typename} import {typename}\n"
                     )
+            if classname == "Dataset":
+                # HACK, used for sourceId/derivedFromId validator
+                txtlist.append("    from typing_extensions import Self\n")
 
         txtlist.append(f'''
 class {classname}({classname}Data, MxlimsObject):
@@ -379,6 +382,23 @@ class {classname}({classname}Data, MxlimsObject):
                     txtlist.extend(pydantic_dummy_multiple_link(
                         classname=classname, linkdict=linkdict)
                     )
+        if corename == "Dataset":
+            # NBNB HACK
+            # This introduces teh constraint that a DAtaset cannot have both sourceId
+            # and derivedFromId at eth same time
+            # This is set separately in the JSONSchema specification, but because
+            # of limitations in datamodel-code-generator it is not possible to
+            # convert this limit to Pydantic (if-then-else is ignored by the generator,
+            # and anyOf, oneOf etc. trigger undesirable changes in the Pydantic code
+            txtlist.append(
+"""
+    @model_validator(mode='after')
+    def source_and_derivedFrom_are_mutually_exclusive(self) -> Self:
+        if self.source_id is not None and self.derived_from_id is not None:
+            raise ValueError("source and derivedFrom are mutually exclusive")
+        return self
+"""
+            )
 
     else:
 

@@ -26,18 +26,34 @@
             "pattern":"^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
         }
     },
-    "not": {
-        "oneOf": [
-            {
-                "required": [
-                    "sourceId"
-                ]
-            },
-            {
-                "required": [
-                    "derivedFromId"
-                ]
-            }
-        ]
-    }
+    "allOf": [
+      {
+        "if": {
+          "required": [
+            "sourceId"
+          ]
+        },
+        "then": {
+          "not": {
+            "required": [
+              "derivedFromId"
+            ]
+          }
+        }
+      },
+      {
+        "if": {
+          "required": [
+            "derivedFromId"
+          ]
+        },
+        "then": {
+          "not": {
+            "required": [
+              "sourceId"
+            ]
+          }
+        }
+      }
+    ]
 }
