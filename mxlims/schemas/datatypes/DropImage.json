@@ -28,7 +28,16 @@
           "2024-04-24T14:30:16Z",
           "20240424T143016Z"
         ]
-      }
+      },
+        "data": {
+            "type": "string",
+            "description": "The image, UUencoded."
+        },
+        "url": {
+            "type": "string",
+            "description": "A URL where the image can be found ('file', 'http', ...). It is assumed that no further authentication is needed to read this image.",
+            "format": "uri"
+        }
     },
     "allOf": [
       {
