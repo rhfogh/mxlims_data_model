@@ -4,31 +4,61 @@
     "title": "DropImage",
     "description": "An image of a crystallization drop.",
     "properties": {
-        "mimeType": {
-            "allOf": [
-                {
-                    "$ref": "../datatypes/ImageMimeType.json"
-                }
-            ],
-            "description": "The MIME type of the image."
-        },
-        "lightType": {
-            "allOf": [
-                {
-                    "$ref": "../datatypes/ImageLightType.json"
-                }
-            ],
-            "description": "The light used to capture the image."
-        },
-        "timestamp": {
-            "format": "date-time",
-            "type": "string",
-            "description": "The date and time when the image was captured. This is to be specified in UTC and conform to ISO 8601.",
-            "examples": [
-                "2024-04-24T14:30:16Z",
-                "20240424T143016Z"
-            ]
-        }
+      "mimeType": {
+        "allOf": [
+          {
+            "$ref": "../datatypes/ImageMimeType.json"
+          }
+        ],
+        "description": "The MIME type of the image."
+      },
+      "lightType": {
+        "allOf": [
+          {
+            "$ref": "../datatypes/ImageLightType.json"
+          }
+        ],
+        "description": "The light used to capture the image."
+      },
+      "timestamp": {
+        "format": "date-time",
+        "type": "string",
+        "description": "The date and time when the image was captured. This is to be specified in UTC and conform to ISO 8601.",
+        "examples": [
+          "2024-04-24T14:30:16Z",
+          "20240424T143016Z"
+        ]
+      }
     },
+    "allOf": [
+      {
+        "if": {
+          "required": [
+            "data"
+          ]
+        },
+        "then": {
+          "not": {
+            "required": [
+              "url"
+            ]
+          }
+        }
+      },
+      {
+        "if": {
+          "not": {
+            "required": [
+              "data"
+            ]
+          }
+        },
+        "then": {
+          "required": [
+            "url"
+          ]
+        }
+      }
+    ],
     "required": ["mimeType"]
 }
