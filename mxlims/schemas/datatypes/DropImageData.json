@@ -9,10 +9,6 @@
         }
     ],
     "properties": {
-        "data": {
-            "type": "string",
-            "description": "The image, UUencoded."
-        },
         "url": false
     },
     "required": ["data"]

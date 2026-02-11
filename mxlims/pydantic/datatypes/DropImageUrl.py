@@ -15,8 +15,8 @@ class DropImageUrl(DropImage):
     DropImage, containing url pointing to image.
     """
 
+    data: Optional[Any] = None
     url: AnyUrl = Field(
         ...,
         description="A URL where the image can be found ('file', 'http', ...). It is assumed that no further authentication is needed to read this image.",
     )
-    data: Optional[Any] = None

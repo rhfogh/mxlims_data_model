@@ -15,5 +15,5 @@ class DropImageData(DropImage):
     DropImage, containing image as attached data.
     """
 
-    data: str = Field(..., description="The image, UUencoded.")
     url: Optional[Any] = None
+    data: str = Field(..., description="The image, UUencoded.")
