@@ -12,8 +12,8 @@
         "data": {
             "type": "string",
             "description": "The image, UUencoded."
-        }
+        },
+        "url": false
     },
-    "required": ["data"],
-    "additionalProperties": false
+    "required": ["data"]
 }

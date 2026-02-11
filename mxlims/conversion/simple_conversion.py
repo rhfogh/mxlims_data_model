@@ -150,7 +150,6 @@ def ingest_row(data_dict: Dict[str, Any], scheme:str, result_mode: bool=False
         if val == "":
             val = None
         steps = mapping.get(tag)
-        print ('@~@~ tag, steps', tag, steps)
         if steps:
             # Note unmapped items remain in data_dict for use in later adjustment
             last = steps[-1]
@@ -191,9 +190,7 @@ def ingest_row(data_dict: Dict[str, Any], scheme:str, result_mode: bool=False
 
     # All data have now been passed to MxlimsObject inputs (length == 1)
     # Make them
-    print ('@~@~ pdict', sorted(partials_dict.items()))
     for tpl0 in partials_dict[1].items():
-        print ('@~@~ tpl0', tpl0)
         tpl, dd0 = tpl0
         mxlims_type = tpl[0]
         mxlimsobj = getattr(

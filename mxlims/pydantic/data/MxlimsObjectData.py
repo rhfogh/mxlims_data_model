@@ -33,7 +33,7 @@ class MxlimsObjectData(BaseModel):
     )
     extensions: Optional[Dict[str, Dict[str, Any]]] = Field(
         None,
-        description="Keyword-value dictionary string:object of extensions. The key must be a valid domain name pointing to the site 'owning' the extensions, but need bw resovable.",
+        description="Keyword-value dictionary string:object of extensions. The key must be a valid domain name pointing to the site 'owning' the extensions, but need bw resolvable.",
         title="Extensions",
     )
     identifiers: Optional[
@@ -45,7 +45,7 @@ class MxlimsObjectData(BaseModel):
         ]
     ] = Field(
         None,
-        description="Keyword-value dictionary string:string of site-specific object indentifiers. The key must be a valid domain name pointing to the site 'owning' the extensions, but need bw resovable.",
+        description="Keyword-value dictionary string:string of site-specific object identifiers. The key must be a valid domain name pointing to the site 'owning' the extensions, but need bw resolvable.",
         title="Identifiers",
     )
     urls: Optional[
@@ -57,7 +57,7 @@ class MxlimsObjectData(BaseModel):
         ]
     ] = Field(
         None,
-        description="Keyword-value dictionary string:urlstring of site-specific object urls. The key must be a valid domain name pointing to the site 'owning' the extensions, but need bw resovable.",
+        description="Keyword-value dictionary string:urlstring of site-specific object urls. The key must be a valid domain name pointing to the site 'owning' the extensions, but need bw resolvable.",
         title="Urls",
     )
     annotation: Optional[str] = Field(None, description="Comment or annotation.")
