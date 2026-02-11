@@ -89,6 +89,5 @@
                 "$ref": "../references/CollectionSweepRef.json"
             }
         }
-    },
-    "additionalProperties": false
+    }
 }
