@@ -1,0 +1,14 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "mimeType": {
+        "allOf": [
+          {
+            "$ref": "../schem/ImageMimeType.json"
+          }
+        ]
+      }
+    },
+    "required": ["mimeType"]
+}

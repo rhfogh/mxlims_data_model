@@ -11,7 +11,7 @@ dependencies:
       - yamllint
       - packaging
       - json-schema-for-humans
-      - check-jsonschema
+      - jsonschema
       - ruamel.yaml==0.17.21
       - pydantic==2.8.2
       - datamodel-code-generator==0.37.0

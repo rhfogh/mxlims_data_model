@@ -24,21 +24,35 @@ __author__ = "Rasmus H Fogh"
 
 
 import json
-import os
+import jsonschema
 from pathlib import Path
+from referencing import Registry, Resource
+from referencing.exceptions import NoSuchResource
 from ruamel.yaml import YAML
-import subprocess
-from subprocess import CalledProcessError
-from typing import Optional, List
-
-from mxlims.impl.MxlimsBase import camel_to_snake, CORETYPES
-from mxlims.impl.generate_field_list import generate_fields
+import traceback
 
 # pure=True uses yaml version 1.2, with fewer gotchas for strange type conversions
 yaml = YAML(typ="safe", pure=True)
 # The following are not needed for load, but define the default style.
 yaml.default_flow_style = False
 yaml.indent(mapping=2, sequence=4, offset=2)
+
+SCHEMAS = Path(__file__).parent.parent / "schemas"
+def retrieve_from_filesystem(uri: str):
+    print ('@~@~ uri', uri)
+    if not uri.startswith("../"):
+        print ('@~@~ uri wrong', uri)
+        raise NoSuchResource(ref=uri)
+    path = SCHEMAS / Path(uri.removeprefix("../"))
+    print ('@~@~ uri, path', path)
+    contents = json.loads(path.read_text())
+    print('@~@~', contents)
+    return Resource.from_contents(contents)
+
+from urllib.parse import urldefrag
+
+registry = Registry(retrieve=retrieve_from_filesystem)
+
 
 def validate_file_path(fpath: Path) -> bool:
     """Validate JSON test file against matching schema
@@ -67,17 +81,21 @@ def test_valid(fpath: Path, schemaname: str, typdir: str, valstr: str) -> bool:
     """Validate fpath against typdir schema schemaname"""
     schemafile = Path(__file__).resolve().parent.parent / "schemas" / typdir / schemaname
     validity = (valstr == "valid")
-    commands = ["check-jsonschema", "--schemafile", schemafile.as_posix(), fpath.as_posix()]
-    result = subprocess.run(commands)
-    if validity == (not result.returncode):
-        return True
-    else:
-        # Validation failed
-        print (
-            '\nValidation failed for %s'
-            % "/".join((typdir, valstr, fpath.name))
-        )
+    # commands = ["check-jsonschema", "--schemafile", schemafile.as_posix(), fpath.as_posix()]
+    try:
+        schema = json.load(open(schemafile))
+        jsonschema.validate(instance=json.load(open(fpath)), schema=schema, registry=registry)
+    except jsonschema.SchemaError as e:
+        print("\nSCHEMA Error")
+        raise e
+        print(traceback.format_exc())
         return False
+    except jsonschema.ValidationError as e:
+        print("\nVALIDATION ERROR")
+        raise e
+        print(traceback.format_exc())
+        return not validity
+
 
 if __name__ == "__main__":
 
