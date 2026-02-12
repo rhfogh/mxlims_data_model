@@ -1,4 +1,5 @@
 {
+    "$id": "https://mxlims.org/schemas/datatypes/SampleStub.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Uuid container, used for Uuid-only links to Samples in messages",
     "title": "SampleStub",

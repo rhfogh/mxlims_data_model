@@ -1,4 +1,5 @@
 {
+    "$id": "https://mxlims.org/schemas/data/PinPositionData.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "An independent Position within a Pin where crystals can be located.",
     "title": "PinPositionData",

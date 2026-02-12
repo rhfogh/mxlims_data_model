@@ -1,4 +1,5 @@
 {
+    "$id": "https://mxlims.org/schemas/data/DropRegionData.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "A region in a well drop where crystals may be found",
     "title": "DropRegionData",

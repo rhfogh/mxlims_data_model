@@ -1,4 +1,5 @@
 {
+    "$id": "https://mxlims.org/schemas/objects/Medium.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Sample defining the medium (buffer, solvent,...) of another sample",
     "title": "Medium",

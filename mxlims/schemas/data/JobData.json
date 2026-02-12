@@ -1,4 +1,5 @@
 {
+    "$id": "https://mxlims.org/schemas/data/JobData.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Base class for MXLIMS Jobs - an experiment or calculation producing Datasets",
     "title": "Job Data",

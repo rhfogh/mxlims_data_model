@@ -1,4 +1,5 @@
 {
+    "$id": "https://mxlims.org/schemas/datatypes/ImageRegionUnit.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Allowed units for image region images",
     "title": "ImageRegionUnit",

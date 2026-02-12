@@ -1,4 +1,5 @@
 {
+    "$id": "https://mxlims.org/schemas/messages/BaseMessageData.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Base data object for all MXLIMS messages",
     "title": "BaseMessageData",

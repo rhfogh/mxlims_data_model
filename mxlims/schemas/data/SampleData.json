@@ -1,4 +1,5 @@
 {
+    "$id": "https://mxlims.org/schemas/data/SampleData.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Base class for MXLIMS Prepared Samples describing Sample content",
     "title": "Sample Data",

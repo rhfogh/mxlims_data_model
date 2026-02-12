@@ -1,4 +1,5 @@
 {
+    "$id": "https://mxlims.org/schemas/datatypes/JobStub.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Uuid container, used for Uuid-only links to Jobs in messages",
     "title": "JobStub",

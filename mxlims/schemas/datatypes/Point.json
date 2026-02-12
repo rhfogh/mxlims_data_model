@@ -1,4 +1,5 @@
 {
+    "$id": "https://mxlims.org/schemas/datatypes/Point.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "A point marked on an image or in absolute plate space.",
     "type": "object",

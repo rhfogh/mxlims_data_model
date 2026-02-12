@@ -1,4 +1,5 @@
 {
+    "$id": "https://mxlims.org/schemas/objects/LogisticalSample.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Logistical Sample core vlass.",
     "title": "LogisticalSample",

@@ -1,4 +1,5 @@
 {
+    "$id": "https://mxlims.org/schemas/datatypes/SpaceGroupName.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Space group names for all space groups, including synonyms and non-standard settings",
     "title": "SpaceGroupName",

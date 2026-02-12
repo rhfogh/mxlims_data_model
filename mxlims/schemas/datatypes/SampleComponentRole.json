@@ -1,4 +1,5 @@
 {
+    "$id": "https://mxlims.org/schemas/datatypes/SampleComponentRole.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Role for SampleComponent. For crystallographic screening, 'target' is the macromolecule and 'ligand' is screened compound",
     "title": "SampleComponentRole",
