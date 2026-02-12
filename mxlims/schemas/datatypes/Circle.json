@@ -1,4 +1,5 @@
 {
+    "$id": "https://mxlims.org/schemas/datatypes/Circle.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "A circle marked on an image or in absolute plate space.",
     "type": "object",

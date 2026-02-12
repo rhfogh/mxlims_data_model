@@ -1,4 +1,5 @@
 {
+    "$id": "https://mxlims.org/schemas/datatypes/SpaceGroupNameChiral.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Canonic space group names for chiral space groups",
     "title": "SpaceGroupNameChiral",

@@ -1,4 +1,5 @@
 {
+    "$id": "https://mxlims.org/schemas/data/MxlimsObjectData.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Base object for all MXLIMS objects: Job, Dataset, Sample, and LogisticalSample",
     "title": "MxlimsObjectData",

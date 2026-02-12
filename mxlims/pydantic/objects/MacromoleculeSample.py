@@ -40,8 +40,8 @@ class MacromoleculeSample(MacromoleculeSampleData, Sample):
     def jobs(self, values: list[Union[MxExperiment, MxProcessing, VolumeScan]]):
         """setter for MacromoleculeSample.jobs list"""
         from .MxExperiment import MxExperiment
-        from .VolumeScan import VolumeScan
         from .MxProcessing import MxProcessing
+        from .VolumeScan import VolumeScan
 
         for obj in values:
             if not isinstance(obj, Union[MxExperiment, MxProcessing, VolumeScan]):
@@ -58,10 +58,10 @@ class MacromoleculeSample(MacromoleculeSampleData, Sample):
         """setter for MacromoleculeSample.logistical_samples list"""
         from .Crystal import Crystal
         from .DropRegion import DropRegion
-        from .Pin import Pin
-        from .PlateWell import PlateWell
-        from .PinPosition import PinPosition
         from .WellDrop import WellDrop
+        from .Pin import Pin
+        from .PinPosition import PinPosition
+        from .PlateWell import PlateWell
 
         for obj in values:
             if not isinstance(obj, Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]):

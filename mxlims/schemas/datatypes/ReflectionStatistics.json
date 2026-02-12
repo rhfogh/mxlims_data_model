@@ -1,4 +1,5 @@
 {
+    "$id": "https://mxlims.org/schemas/datatypes/ReflectionStatistics.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Reflection statistics for a shell (or all) of reflections",
     "title": "ReflectionStatistics",

@@ -1,4 +1,5 @@
 {
+    "$id": "https://mxlims.org/schemas/core/LogisticalSample.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Base class for MXLIMS Logistical Samples\n\ndescribing Sample containers and locations\n(from Dewars and Plates to drops, pins and crystals)",
     "title": "LogisticalSample",
