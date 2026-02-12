@@ -1,4 +1,5 @@
 {
+    "$id": "https://mxlims.org/schemas/objects/Job.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Job core class",
     "title": "Job",

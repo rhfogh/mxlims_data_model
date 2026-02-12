@@ -692,29 +692,30 @@ def make_json_references(output_dir: Path, object_dicts:dict[str:dict]):
     """
 
     jsonref_file_template = """{{
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
-        "description": "Reference to {classname}",
-        "title": "{classname}Ref",
-        "type": "object",
-        "properties": {{
-            "mxlimsType": {{
-                "description": "The type of the MXLIMS object referred to.",
-                "title": "MxlimsType",
-                "type": "string",
-                "const": "{classname}"
-            }},
-            "$ref": {{
-                "description": "JSON reference to object in std. message, using uuid-based links.",
-                "title": "JSONreference",
-                "type": "string",
-                "pattern": "^#/{classname}/{classname}[1-9][0-9]*$"
-            }}
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://mxlims.org/schemas/references/{classname}Ref.json",
+    "description": "Reference to {classname}",
+    "title": "{classname}Ref",
+    "type": "object",
+    "properties": {{
+        "mxlimsType": {{
+            "description": "The type of the MXLIMS object referred to.",
+            "title": "MxlimsType",
+            "type": "string",
+            "const": "{classname}"
         }},
-        "required": [
-            "$ref"
-        ],
-        "additionalProperties": false
-    }}
+        "$ref": {{
+            "description": "JSON reference to object in std. message, using uuid-based links.",
+            "title": "JSONreference",
+            "type": "string",
+            "pattern": "^#/{classname}/{classname}[1-9][0-9]*$"
+        }}
+    }},
+    "required": [
+        "$ref"
+    ],
+    "additionalProperties": false
+}}
     """
 
     for fp0 in output_dir.iterdir():

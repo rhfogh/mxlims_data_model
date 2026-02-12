@@ -1,4 +1,5 @@
     {
+    "$id": "https://mxlims.org/schemas/objects/WellDrop.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "A drop in a well in a crystallization plate with typed JSON containment lists",
     "title": "WellDrop",

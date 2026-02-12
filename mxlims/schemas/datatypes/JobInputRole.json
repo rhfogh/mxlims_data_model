@@ -1,4 +1,5 @@
 {
+    "$id": "https://mxlims.org/schemas/datatypes/JobInputRole.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Job input role, for the DB JobInputLink table",
     "title": "JobInputRole",

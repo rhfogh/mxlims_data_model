@@ -1,4 +1,5 @@
 {
+    "$id": "https://mxlims.org/schemas/datatypes/PlateRegion.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "title": "PlateRegion",
     "description": "A region defined in absolute plate space.",

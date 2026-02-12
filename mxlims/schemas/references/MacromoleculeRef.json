@@ -1,25 +1,26 @@
 {
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
-        "description": "Reference to Macromolecule",
-        "title": "MacromoleculeRef",
-        "type": "object",
-        "properties": {
-            "mxlimsType": {
-                "description": "The type of the MXLIMS object referred to.",
-                "title": "MxlimsType",
-                "type": "string",
-                "const": "Macromolecule"
-            },
-            "$ref": {
-                "description": "JSON reference to object in std. message, using uuid-based links.",
-                "title": "JSONreference",
-                "type": "string",
-                "pattern": "^#/Macromolecule/Macromolecule[1-9][0-9]*$"
-            }
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://mxlims.org/schemas/references/MacromoleculeRef.json",
+    "description": "Reference to Macromolecule",
+    "title": "MacromoleculeRef",
+    "type": "object",
+    "properties": {
+        "mxlimsType": {
+            "description": "The type of the MXLIMS object referred to.",
+            "title": "MxlimsType",
+            "type": "string",
+            "const": "Macromolecule"
         },
-        "required": [
-            "$ref"
-        ],
-        "additionalProperties": false
-    }
+        "$ref": {
+            "description": "JSON reference to object in std. message, using uuid-based links.",
+            "title": "JSONreference",
+            "type": "string",
+            "pattern": "^#/Macromolecule/Macromolecule[1-9][0-9]*$"
+        }
+    },
+    "required": [
+        "$ref"
+    ],
+    "additionalProperties": false
+}
     

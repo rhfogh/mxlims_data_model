@@ -1,4 +1,5 @@
 {
+    "$id": "https://mxlims.org/schemas/objects/MacromoleculeSample.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Sample consisting of a macromolecule in a medium, with additional components",
     "title": "MacromoleculeSample",

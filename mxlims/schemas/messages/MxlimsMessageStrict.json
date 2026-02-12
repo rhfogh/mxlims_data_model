@@ -1,4 +1,5 @@
 {
+    "$id": "https://mxlims.org/schemas/messages/MxlimsMessageStrict.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Message containing all possible objects, by type",
     "title": "MxlimsMessageStrict",

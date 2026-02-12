@@ -1,4 +1,5 @@
 {
+    "$id": "https://mxlims.org/schemas/datatypes/ReflectionFileType.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Name for file type, used in ReflectionSet class",
     "title": "ReflectionFileType",

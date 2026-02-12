@@ -1,4 +1,5 @@
 { 
+    "$id": "https://mxlims.org/schemas/messages/ShipmentMessage.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Message containing a shipment of either frozen crystals or crystallization plates",
     "title": "ShipmentMessage",
