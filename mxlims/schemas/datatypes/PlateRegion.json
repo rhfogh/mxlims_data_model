@@ -1,5 +1,5 @@
 {
-    "$schema": "https://json-schema.org/draft-07/schema",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "title": "PlateRegion",
     "description": "A region defined in absolute plate space.",
     "comment": "Intended for plates with fiducial marks and a clear origin",

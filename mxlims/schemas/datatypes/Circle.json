@@ -1,5 +1,5 @@
 {
-    "$schema": "https://json-schema.org/draft-07/schema",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "A circle marked on an image or in absolute plate space.",
     "type": "object",
     "title": "Circle",

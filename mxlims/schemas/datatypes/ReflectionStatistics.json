@@ -1,5 +1,5 @@
 {
-    "$schema": "https://json-schema.org/draft-07/schema",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Reflection statistics for a shell (or all) of reflections",
     "title": "ReflectionStatistics",
     "type": "object",

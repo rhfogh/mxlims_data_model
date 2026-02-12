@@ -1,0 +1,11 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "description": "DropImage, containing image as attached data.",
+    "title": "DropImageData",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../schem/DropImage.json"
+        }
+    ]
+}
