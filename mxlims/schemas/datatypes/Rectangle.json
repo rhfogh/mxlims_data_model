@@ -1,5 +1,5 @@
 {
-    "$schema": "https://json-schema.org/draft-07/schema",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "type": "object",
     "title": "Rectangle",
     "description": "<A rectangular region marked on an image or in absolute plate space. The box is defined by two points on diagonally opposite corners, with its edges parallel to the X and Y axes. Ensure that the two X values are not equal, and that the two Y values are not equal.",

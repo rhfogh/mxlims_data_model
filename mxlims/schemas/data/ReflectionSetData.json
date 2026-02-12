@@ -1,5 +1,5 @@
 {
-    "$schema": "https://json-schema.org/draft-07/schema",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Set of processed reflections, possibly merged or scaled, as might be stored within a MTZ or mmCIF reflection file",
     "title": "ReflectionSetData",
     "type": "object",

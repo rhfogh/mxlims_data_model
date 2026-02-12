@@ -692,7 +692,7 @@ def make_json_references(output_dir: Path, object_dicts:dict[str:dict]):
     """
 
     jsonref_file_template = """{{
-        "$schema": "https://json-schema.org/draft-07/schema",
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
         "description": "Reference to {classname}",
         "title": "{classname}Ref",
         "type": "object",

@@ -1,5 +1,5 @@
 {
-    "$schema": "https://json-schema.org/draft-07/schema",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "DropImage, containing image as attached data.",
     "title": "DropImageData",
     "type": "object",
@@ -11,5 +11,6 @@
     "properties": {
         "url": false
     },
-    "required": ["data"]
+    "required": ["data"],
+    "unevaluatedProperties": false
 }

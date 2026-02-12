@@ -1,5 +1,5 @@
 {
-    "$schema": "https://json-schema.org/draft-07/schema",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Crystallography Processing calculation, with typed JSON containment lists",
     "title": "MxProcessing",
     "type": "object",
@@ -89,5 +89,6 @@
                 "$ref": "../references/CollectionSweepRef.json"
             }
         }
-    }
+    },
+    "unevaluatedProperties": false
 }
