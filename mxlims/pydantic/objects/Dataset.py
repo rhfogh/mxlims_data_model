@@ -2,7 +2,7 @@
 #  filename Dataset.py
 
 from __future__ import annotations
-from pydantic import Field
+from pydantic import Field, model_validator
 from typing import List, Literal, Optional, TYPE_CHECKING
 from uuid import UUID, uuid1
 from mxlims.core.MxlimsObject import MxlimsObject
