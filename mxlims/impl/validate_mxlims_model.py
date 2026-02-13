@@ -27,31 +27,44 @@ import json
 import jsonschema
 from pathlib import Path
 from referencing import Registry, Resource
-from referencing.exceptions import NoSuchResource
-from ruamel.yaml import YAML
+from referencing.jsonschema import DRAFT202012
 import traceback
 
-# pure=True uses yaml version 1.2, with fewer gotchas for strange type conversions
-yaml = YAML(typ="safe", pure=True)
-# The following are not needed for load, but define the default style.
-yaml.default_flow_style = False
-yaml.indent(mapping=2, sequence=4, offset=2)
+MXLIMS_DIR = Path(__file__).parent.parent
 
-SCHEMAS = Path(__file__).parent.parent / "schemas"
-def retrieve_from_filesystem(uri: str):
-    print ('@~@~ uri', uri)
-    if not uri.startswith("../"):
-        print ('@~@~ uri wrong', uri)
-        raise NoSuchResource(ref=uri)
-    path = SCHEMAS / Path(uri.removeprefix("../"))
-    print ('@~@~ uri, path', path)
-    contents = json.loads(path.read_text())
-    print('@~@~', contents)
-    return Resource.from_contents(contents)
+def create_registry_from_directory(
+        schema_dir=None, base_uri="https://mxlims.org/schemas/"
+):
+    """
+    Recursively load all schemas from directory and subdirectories
+    """
 
-from urllib.parse import urldefrag
+    if schema_dir is None:
+        schema_dir = MXLIMS_DIR / "schemas"
+    registry = Registry()
 
-registry = Registry(retrieve=retrieve_from_filesystem)
+    # Use rglob to recursively find all .json files
+    for schema_file in schema_dir.rglob("*.json"):
+        with open(schema_file, 'r') as f:
+            schema = json.load(f)
+
+        # Get relative path with forward slashes
+        relative_path = schema_file.relative_to(schema_dir)
+        relative_uri = str(relative_path).replace('\\', '/')  # Important for Windows!
+
+        # Create absolute URI matching the $id pattern
+        absolute_uri = base_uri + relative_uri
+
+        resource = Resource.from_contents(schema, default_specification=DRAFT202012)
+
+        # Register with the full path URI
+        registry = registry.with_resource(uri=absolute_uri, resource=resource)
+
+        # Also register with the $id from the schema if present
+        if '$id' in schema:
+            registry = registry.with_resource(uri=schema['$id'], resource=resource)
+
+    return registry
 
 
 def validate_file_path(fpath: Path) -> bool:
@@ -62,22 +75,33 @@ def validate_file_path(fpath: Path) -> bool:
     valstr = parents[0].stem
     typdir = parents[1].stem
     schemaname = fpath.stem.split("_")[0] + ".json"
-    passed = test_valid(fpath, schemaname, typdir, valstr)
+    registry = create_registry_from_directory()
+    passed = test_valid(fpath, registry, schemaname, typdir, valstr)
     if passed:
         print("Validation passed")
 
 def validate_all() -> None:
     """Validate schemas against all test files in directory tree"""
     basedir = Path(__file__).resolve().parent.parent / "test" / "json"
+    registry = create_registry_from_directory()
     for typdir in ("datatypes", "objects", "messages"):
         for valstr in ("valid", "invalid"):
             dir1 = basedir / typdir / valstr
             for fpath in dir1.iterdir():
                 schemaname = fpath.stem.split("_")[0] + ".json"
-                test_valid(fpath, schemaname, typdir, valstr)
+                test_passed = test_valid(fpath, registry, schemaname, typdir, valstr)
+                if test_passed:
+                    txt = "passed"
+                else:
+                    txt = "FAILED"
+                filename = fpath.relative_to(basedir).as_posix()
+                print (f"Test {txt} for {filename}")
+
     print ("\nAll other tests passed")
 
-def test_valid(fpath: Path, schemaname: str, typdir: str, valstr: str) -> bool:
+def test_valid(
+        fpath: Path, registry: Registry, schemaname: str, typdir: str, valstr: str
+) -> bool:
     """Validate fpath against typdir schema schemaname"""
     schemafile = Path(__file__).resolve().parent.parent / "schemas" / typdir / schemaname
     validity = (valstr == "valid")
@@ -87,14 +111,14 @@ def test_valid(fpath: Path, schemaname: str, typdir: str, valstr: str) -> bool:
         jsonschema.validate(instance=json.load(open(fpath)), schema=schema, registry=registry)
     except jsonschema.SchemaError as e:
         print("\nSCHEMA Error")
-        raise e
         print(traceback.format_exc())
         return False
     except jsonschema.ValidationError as e:
-        print("\nVALIDATION ERROR")
-        raise e
-        print(traceback.format_exc())
+        if validity:
+            print("\nVALIDATION ERROR")
+            print(traceback.format_exc())
         return not validity
+    return validity
 
 
 if __name__ == "__main__":
