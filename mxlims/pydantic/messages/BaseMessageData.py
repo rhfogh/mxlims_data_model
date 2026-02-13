@@ -15,6 +15,6 @@ class BaseMessageData(BaseMessage):
     Base data object for all MXLIMS messages
     """
 
-    version: Literal["0.6.10"] = Field(
-        "0.6.10", description="MXLIMS version for current model", title="Version"
+    version: Literal["0.6.11"] = Field(
+        "0.6.11", description="MXLIMS version for current model", title="Version"
     )
