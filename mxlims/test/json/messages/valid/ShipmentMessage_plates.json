@@ -1,0 +1,96 @@
+{
+  "version": "0.6.11",
+  "Shipment": {
+    "Shipment1": {
+      "proposalCode": "mx4025",
+      "sessionNumber":3,
+      "annotation": "Example of an MXLIMS plate shipment",
+      "labContactOutbound": {
+        "name": "Bob",
+        "emailAddress": "bob@bob.bogus"
+      },
+      "labContactReturn": {
+        "name": "Alice",
+        "phoneNumber": "123"
+      },
+      "mxlimsType": "Shipment",
+      "uuid": "4a96f23d-0f3c-2c96-b3d1-b908984ec709"
+    }
+  },
+  "Plate": {
+    "Plate1": {
+      "barcode": "9098",
+      "plateType": {
+        "numberRows": 8,
+        "numberColumns": 12,
+        "numberSubPositions": 3,
+        "dropMapping": "12,3R"
+      },
+      "containerRef": { "$ref": "#/Shipment/Shipment1" },
+      "mxlimsType": "Plate",
+      "uuid": "4a96f23a-dce0-2560-baac-f1b23ec9e0cb"
+    }
+  },
+  "PlateWell": {
+    "PlateWell1": {
+      "rowNumber": 1,
+      "columnNumber": 1,
+      "containerRef": { "$ref": "#/Plate/Plate1" },
+      "mxlimsType": "PlateWell",
+      "uuid": "4a96f23a-dce0-2560-baac-f1b23ec9e0aa"
+    }
+  },
+  "WellDrop": {
+    "WellDrop1": {
+      "dropNumber": 1,
+      "name": "9098_A01_1",
+      "containerRef": { "$ref": "#/PlateWell/PlateWell1" },
+      "sampleRef": { "$ref": "#/MacromoleculeSample/MacromoleculeSample1" },
+      "mxlimsType": "WellDrop",
+      "uuid": "4a96f23a-dce0-2560-baac-f1b23ec9e0dd"
+    }
+  },
+  "Macromolecule":{
+    "Macromolecule1": {
+      "acronym": "LMTIM",
+      "mxlimsType": "Macromolecule",
+      "uuid": "0196f23a-dce0-2560-baac-f1b23ec9e055"
+    }
+  },
+  "MacromoleculeSample": {
+    "MacromoleculeSample1": {
+      "name": "LMTIM_9098A01d1",
+      "parentSampleRef": { "$ref":"#/Macromolecule/Macromolecule1" },
+      "mxlimsType": "MacromoleculeSample",
+      "uuid": "4a96f23a-dce0-2560-baac-f1b23ec9e022"
+    }
+  },
+  "DropRegion":{
+    "DropRegion1":{
+      "containerRef":{ "$ref":"#/WellDrop/WellDrop1" },
+      "region":{
+        "image":{
+          "url":"https://demo.icebox.icebear.fi/device/ImageView/3644060/12cb8660f8f904ee7f4c5160a3565bbaa222c761710fe83b1115e2c058b3",
+          "mimeType":"image/jpeg"
+        },
+        "region":{
+          "regionType":"point",
+          "x":785,
+          "y":400
+        },
+        "units":"pixel"
+      },
+      "mxlimsType": "DropRegion",
+      "uuid": "4a96f23a-beef-2560-baac-f1b23ec9e420"
+    }
+  },
+  "Crystal":{
+    "Crystal1":{
+      "name": "LMTIM_9098A01d1c1",
+      "containerRef":{ "$ref":"#/DropRegion/DropRegion1" },
+      "sampleRef":{ "$ref":"#/MacromoleculeSample/MacromoleculeSample1" },
+      "mxlimsType": "Crystal",
+      "uuid": "4a96f23a-dce0-2560-baac-f1b23ec9e066"
+    }
+  }
+}

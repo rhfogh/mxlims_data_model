@@ -5,7 +5,7 @@
       "mimeType": {
         "allOf": [
           {
-            "$ref": "../schem/ImageMimeType.json"
+            "$ref": "ImageMimeType.json"
           }
         ]
       }

@@ -5,7 +5,7 @@
     "type": "object",
     "allOf": [
         {
-            "$ref": "../schem/DropImage.json"
+            "$ref": "DropImage.json"
         }
     ]
 }
