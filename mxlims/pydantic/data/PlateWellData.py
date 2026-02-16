@@ -3,8 +3,6 @@
 
 from __future__ import annotations
 
-from typing import Optional
-
 from mxlims.impl.MxlimsBase import BaseModel
 
 from pydantic import Field, PositiveInt
@@ -25,7 +23,7 @@ class PlateWellData(BaseModel):
         alias="columnNumber",
         description="<The column number of this well. This is 1-based, so should match the column labels on the plate. This should be validated against the plateType's columns property.",
     )
-    name: Optional[str] = Field(
+    name: str | None = Field(
         None,
         description="A human-friendly well identifier. If present, this should be validated to ensure that it refers to the correct row and column.",
         examples=["H1", "C03"],

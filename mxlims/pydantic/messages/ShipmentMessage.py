@@ -3,9 +3,9 @@
 
 from __future__ import annotations
 
-from typing import Any, Optional
+from typing import Any
 
-from pydantic import Field
+from pydantic import ConfigDict, Field
 
 from .MxlimsMessageStrict import MxlimsMessageStrict
 
@@ -15,16 +15,19 @@ class ShipmentMessage(MxlimsMessageStrict):
     Message containing a shipment of either frozen crystals or crystallization plates
     """
 
+    model_config = ConfigDict(
+        extra="forbid",
+    )
     shipment: Any = Field(..., alias="Shipment")
-    plate: Optional[Any] = Field(default_factory=dict, alias="Plate")
-    plate_well: Optional[Any] = Field(default_factory=dict, alias="PlateWell")
-    well_drop: Optional[Any] = Field(default_factory=dict, alias="WellDrop")
-    drop_region: Optional[Any] = Field(default_factory=dict, alias="DropRegion")
-    dewar: Optional[Any] = Field(default_factory=dict, alias="Dewar")
-    puck: Optional[Any] = Field(default_factory=dict, alias="Puck")
-    multi_pin: Optional[Any] = Field(default_factory=dict, alias="MultiPin")
-    pin: Optional[Any] = Field(default_factory=dict, alias="Pin")
-    pin_position: Optional[Any] = Field(default_factory=dict, alias="PinPosition")
+    plate: Any | None = Field(default_factory=dict, alias="Plate")
+    plate_well: Any | None = Field(default_factory=dict, alias="PlateWell")
+    well_drop: Any | None = Field(default_factory=dict, alias="WellDrop")
+    drop_region: Any | None = Field(default_factory=dict, alias="DropRegion")
+    dewar: Any | None = Field(default_factory=dict, alias="Dewar")
+    puck: Any | None = Field(default_factory=dict, alias="Puck")
+    multi_pin: Any | None = Field(default_factory=dict, alias="MultiPin")
+    pin: Any | None = Field(default_factory=dict, alias="Pin")
+    pin_position: Any | None = Field(default_factory=dict, alias="PinPosition")
     macromolecule_sample: Any = Field(..., alias="MacromoleculeSample")
     macromolecule: Any = Field(..., alias="Macromolecule")
-    crystal: Optional[Any] = Field(default_factory=dict, alias="Crystal")
+    crystal: Any | None = Field(default_factory=dict, alias="Crystal")

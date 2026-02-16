@@ -4,7 +4,6 @@
 from __future__ import annotations
 
 from datetime import datetime
-from typing import Optional
 
 from mxlims.impl.MxlimsBase import BaseModel
 
@@ -22,16 +21,16 @@ class DropImage(BaseModel):
     mime_type: ImageMimetype = Field(
         ..., alias="mimeType", description="The MIME type of the image."
     )
-    light_type: Optional[ImageLightType] = Field(
+    light_type: ImageLightType | None = Field(
         None, alias="lightType", description="The light used to capture the image."
     )
-    timestamp: Optional[datetime] = Field(
+    timestamp: datetime | None = Field(
         None,
         description="The date and time when the image was captured. This is to be specified in UTC and conform to ISO 8601.",
         examples=["2024-04-24T14:30:16Z", "20240424T143016Z"],
     )
-    data: Optional[str] = Field(None, description="The image, UUencoded.")
-    url: Optional[AnyUrl] = Field(
+    data: str | None = Field(None, description="The image, UUencoded.")
+    url: AnyUrl | None = Field(
         None,
         description="A URL where the image can be found ('file', 'http', ...). It is assumed that no further authentication is needed to read this image.",
     )

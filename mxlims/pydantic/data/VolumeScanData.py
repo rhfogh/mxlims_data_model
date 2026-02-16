@@ -3,13 +3,13 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Optional
+from typing import Any
 
 from mxlims.impl.MxlimsBase import BaseModel
 
 from pydantic import Field
 
-from ..datatypes.PointCloud import PointCloud
+from ..datatypes.PointCloud import PointCloud as PointCloud_1
 
 
 class VolumeScanData(BaseModel):
@@ -17,26 +17,26 @@ class VolumeScanData(BaseModel):
     Sample volume scan for centring or crystal detection
     """
 
-    experiment_type: Optional[str] = Field(
+    experiment_type: str | None = Field(
         None,
         alias="experimentType",
         description="Type of VolumeScan",
         examples=["Xray.centring", "Xray.recentring", "Xray.exploration"],
         title="Volume scan experiment type",
     )
-    rotation_angles: Optional[List[Any]] = Field(
+    rotation_angles: list[Any] | None = Field(
         None,
         alias="rotationAngles",
         description="List of omega offsets from the starting omega position to use for volume scan, in degrees",
         title="RotationAngles",
     )
-    search_volume: Optional[PointCloud] = Field(
+    search_volume: PointCloud_1 | None = Field(
         None,
         alias="searchVolume",
         description="Volume to search (input), defined in goniostat coordinate system (centringX, centringY, phiY)",
         title="Search Volume",
     )
-    bounding_box_size: Optional[List[float]] = Field(
+    bounding_box_size: list[float] | None = Field(
         None,
         alias="boundingBoxSize",
         description="The size of the bounding box to scan in microscope coordinate system (horizontal, vertical, beam). The bounding box is centred on the intersection between the omega axis and the beam.",
@@ -44,19 +44,19 @@ class VolumeScanData(BaseModel):
         min_length=3,
         title="Bounding Box Size",
     )
-    bounding_box_shape: Optional[str] = Field(
+    bounding_box_shape: str | None = Field(
         "Box",
         alias="boundingBoxShape",
         description="The shape of the bounding box used.",
         title="Bounding Box Shape",
     )
-    result_volume: Optional[PointCloud] = Field(
+    result_volume: PointCloud_1 | None = Field(
         None,
         alias="resultVolume",
         description="Volume of all active points found",
         title="Result Volume",
     )
-    sub_volumes: Optional[List[PointCloud]] = Field(
+    sub_volumes: list[PointCloud_1] | None = Field(
         None,
         alias="subVolumes",
         description="List of individual compact subvolumes selected from resultVolume",

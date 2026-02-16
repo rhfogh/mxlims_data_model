@@ -3,9 +3,9 @@
 
 from __future__ import annotations
 
-from typing import Any, Optional
+from typing import Any
 
-from pydantic import AnyUrl, Field
+from pydantic import AnyUrl, ConfigDict, Field
 
 from .DropImage import DropImage
 
@@ -15,7 +15,10 @@ class DropImageUrl(DropImage):
     DropImage, containing url pointing to image.
     """
 
-    data: Optional[Any] = None
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    data: Any | None = None
     url: AnyUrl = Field(
         ...,
         description="A URL where the image can be found ('file', 'http', ...). It is assumed that no further authentication is needed to read this image.",
