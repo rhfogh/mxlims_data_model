@@ -1,0 +1,78 @@
+{
+  "version": "0.6.11",
+  "Shipment": {
+    "Shipment1": {
+      "proposalCode": "mx4025",
+      "labContactOutbound": {
+        "name": "Bob",
+        "emailAddress": "bob@bob.bogus"
+      },
+      "labContactReturn": {
+        "name": "Alice",
+        "phoneNumber":"123"
+      },
+      "mxlimsType": "Shipment",
+      "uuid": "2296f23d-0f3c-2c96-b3d1-b908984ec709"
+    }
+  },
+  "Dewar": {
+    "Dewar1": {
+      "containerRef": { "$ref": "#/Shipment/Shipment1" },
+      "mxlimsType": "Dewar",
+      "uuid": "2296f23a-dce0-2560-baac-f1b23ec9e0cb"
+    }
+  },
+  "Puck": {
+    "Puck1": {
+      "numberPositions": 16,
+      "containerRef": { "$ref": "#/Dewar/Dewar1" },
+      "mxlimsType": "Puck",
+      "uuid": "2296f23a-dce0-2560-baac-f1b23ec9e0aa"
+    }
+  },
+  "MultiPin": {
+    "MultiPin1": {
+      "numberPositions": 8,
+      "positionInPuck": 1,
+      "containerRef": { "$ref": "#/Puck/Puck1" },
+      "mxlimsType": "MultiPin",
+      "uuid": "2296f23a-dce0-2560-baac-f1b23ec9e0dd"
+    }
+  },
+  "PinPosition": {
+    "PinPosition1": {
+      "positionInPin": 1,
+      "containerRef": { "$ref": "#/MultiPin/MultiPin1" },
+      "sampleRef": { "$ref": "#/MacromoleculeSample/MacromoleculeSample1" },
+      "mxlimsType": "PinPosition",
+      "uuid": "2296f23a-dce0-2560-baac-f1b23ec9e011"
+    },
+    "PinPosition2": {
+      "positionInPin": 2,
+      "containerRef": { "$ref": "#/MultiPin/MultiPin1" },
+      "sampleRef": { "$ref": "#/MacromoleculeSample/MacromoleculeSample1" },
+      "mxlimsType": "PinPosition",
+      "uuid": "2296f23a-dce0-2560-baac-f1b23ec9e044"
+    }
+  },
+  "Macromolecule":{
+    "Macromolecule1": {
+      "acronym": "LMTIM",
+      "mxlimsType": "Macromolecule",
+      "uuid": "0196f23a-dce0-2560-baac-f1b23ec9e055"
+    }
+  },
+  "MacromoleculeSample": {
+    "MacromoleculeSample1": {
+      "name": "LMTIM_9098A01d2c3",
+      "parentSampleRef": { "$ref":"#/Macromolecule/Macromolecule1" },
+      "mxlimsType": "MacromoleculeSample",
+      "uuid": "2296f23a-dce0-2560-baac-f1b23ec9e022",
+      "components": [
+        {
+          "sequence": "CGT CAT GCA TCA TCA GCT AGC TAG CAT CAT CGA TCA CTG ACG TAC TAC GTC AGT CGA TGC TGA CAA"
+        }
+      ]
+    }
+  }
+}

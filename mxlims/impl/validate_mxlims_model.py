@@ -146,7 +146,8 @@ MXLIMS model validation and test. Assumes standard directory structure""",
 
     testfile = options_dict["testfile"]
     if testfile:
-        validate_file_path(Path(testfile).resolve())
+        fpath = Path(testfile).resolve()
+        validate_file_path(fpath)
+
     else:
         validate_all()
-
