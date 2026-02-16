@@ -112,6 +112,7 @@ CollectionSweep:
       typenames:
         - MxExperiment
         - VolumeScan
+  noExtraProperties: true
 Crystal:
   classname: Crystal
   corename: LogisticalSample
@@ -207,6 +208,7 @@ Crystal:
       reversename: logistical_samples
       typenames:
         - MacromoleculeSample
+  noExtraProperties: true
 Dataset:
   classname: Dataset
   corename: Dataset
@@ -365,6 +367,7 @@ Dewar:
           - Dewar
       typenames:
         - Puck
+  noExtraProperties: true
 DropRegion:
   classname: DropRegion
   corename: LogisticalSample
@@ -400,6 +403,7 @@ DropRegion:
       reversename: logistical_samples
       typenames:
         - MacromoleculeSample
+  noExtraProperties: true
 Job:
   classname: Job
   corename: Job
@@ -523,6 +527,7 @@ Macromolecule:
           - Macromolecule
       typenames:
         - MacromoleculeSample
+  noExtraProperties: true
 MacromoleculeSample:
   classname: MacromoleculeSample
   corename: Sample
@@ -565,11 +570,13 @@ MacromoleculeSample:
       typenames:
         - Medium
     parent_sample: *id039
+  noExtraProperties: true
 Medium:
   classname: Medium
   corename: Sample
   links:
     medium_samples: *id040
+  noExtraProperties: true
 MultiPin:
   classname: MultiPin
   corename: LogisticalSample
@@ -619,6 +626,7 @@ MultiPin:
           - MultiPin
       typenames:
         - PinPosition
+  noExtraProperties: true
 MxExperiment:
   classname: MxExperiment
   corename: Job
@@ -720,6 +728,7 @@ MxExperiment:
       reversename: template_for
       typenames:
         - CollectionSweep
+  noExtraProperties: true
 MxProcessing:
   classname: MxProcessing
   corename: Job
@@ -807,6 +816,7 @@ MxProcessing:
       reversename: template_for
       typenames:
         - ReflectionSet
+  noExtraProperties: true
 Pin:
   classname: Pin
   corename: LogisticalSample
@@ -847,6 +857,7 @@ Pin:
       reversename: logistical_samples
       typenames:
         - MacromoleculeSample
+  noExtraProperties: true
 PinPosition:
   classname: PinPosition
   corename: LogisticalSample
@@ -887,6 +898,7 @@ PinPosition:
       reversename: logistical_samples
       typenames:
         - MacromoleculeSample
+  noExtraProperties: true
 Plate:
   classname: Plate
   corename: LogisticalSample
@@ -909,6 +921,7 @@ Plate:
           - Plate
       typenames:
         - PlateWell
+  noExtraProperties: true
 PlateWell:
   classname: PlateWell
   corename: LogisticalSample
@@ -949,12 +962,14 @@ PlateWell:
         - MxProcessing
         - VolumeScan
     sample: *id058
+  noExtraProperties: true
 Puck:
   classname: Puck
   corename: LogisticalSample
   links:
     container: *id059
     contents: *id041
+  noExtraProperties: true
 ReflectionSet:
   classname: ReflectionSet
   corename: Dataset
@@ -982,6 +997,7 @@ ReflectionSet:
     reference_for: *id043
     source: *id062
     template_for: *id063
+  noExtraProperties: true
 Sample:
   classname: Sample
   corename: Sample
@@ -1024,11 +1040,13 @@ Sample:
         - Sample
     medium_samples: *id068
     parent_sample: *id069
+  noExtraProperties: true
 Shipment:
   classname: Shipment
   corename: LogisticalSample
   links:
     contents: *id018
+  noExtraProperties: true
 VolumeScan:
   classname: VolumeScan
   corename: Job
@@ -1037,6 +1055,7 @@ VolumeScan:
     sample: *id070
     started_from: *id071
     template_data: *id072
+  noExtraProperties: true
 WellDrop:
   classname: WellDrop
   corename: LogisticalSample
@@ -1071,3 +1090,4 @@ WellDrop:
       reversename: logistical_samples
       typenames:
         - MacromoleculeSample
+  noExtraProperties: true

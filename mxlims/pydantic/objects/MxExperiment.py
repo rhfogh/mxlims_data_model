@@ -2,7 +2,7 @@
 #  filename MxExperiment.py
 
 from __future__ import annotations
-from pydantic import Field
+from pydantic import ConfigDict, Field
 from typing import Any, Literal, Optional, Union, TYPE_CHECKING
 from ..objects.Job import Job
 from ..data.MxExperimentData import MxExperimentData
@@ -30,6 +30,10 @@ class MxExperiment(MxExperimentData, Job):
         frozen=True,
     )
     
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+        
     @property
     def logistical_sample(self) -> Optional[Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]]:
         """getter for MxExperiment.logistical_sample"""

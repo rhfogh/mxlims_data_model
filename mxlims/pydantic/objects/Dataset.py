@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 class Dataset(DatasetData, MxlimsObject):
     """MXLIMS pydantic model class for Dataset
     """
-        
+
     mxlims_base_type: Literal["Dataset"] = Field(
         "Dataset",
         alias="mxlimsBaseType",

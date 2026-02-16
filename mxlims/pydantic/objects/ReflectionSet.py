@@ -2,7 +2,7 @@
 #  filename ReflectionSet.py
 
 from __future__ import annotations
-from pydantic import Field
+from pydantic import ConfigDict, Field
 from typing import Any, Literal, Optional, Union, TYPE_CHECKING
 from ..objects.Dataset import Dataset
 from ..data.ReflectionSetData import ReflectionSetData
@@ -28,6 +28,10 @@ class ReflectionSet(ReflectionSetData, Dataset):
         frozen=True,
     )
     
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+        
     @property
     def derived_datasets(self) -> list[ReflectionSet]:
         """getter for ReflectionSet.derived_datasets list"""
