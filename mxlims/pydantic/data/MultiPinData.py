@@ -3,8 +3,6 @@
 
 from __future__ import annotations
 
-from typing import Optional
-
 from mxlims.impl.MxlimsBase import BaseModel
 
 from pydantic import Field, PositiveInt
@@ -15,7 +13,7 @@ class MultiPinData(BaseModel):
     A Pin mounted on a puck with several slots for crystals.
     """
 
-    barcode: Optional[str] = Field(None, description="The Pin barcode or RFID code")
+    barcode: str | None = Field(None, description="The Pin barcode or RFID code")
     number_positions: PositiveInt = Field(
         ...,
         alias="numberPositions",

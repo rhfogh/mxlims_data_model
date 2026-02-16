@@ -3,8 +3,6 @@
 
 from __future__ import annotations
 
-from typing import Optional
-
 from mxlims.impl.MxlimsBase import BaseModel
 
 from pydantic import ConfigDict, Field
@@ -19,9 +17,9 @@ class Person(BaseModel):
         extra="forbid",
     )
     name: str = Field(..., description="The person's full name.")
-    email_address: Optional[str] = Field(
+    email_address: str | None = Field(
         None, alias="emailAddress", description="The person's email address."
     )
-    phone_number: Optional[str] = Field(
+    phone_number: str | None = Field(
         None, alias="phoneNumber", description="The person's phone number."
     )

@@ -38,16 +38,16 @@ class Dataset(DatasetData, MxlimsObject):
         frozen=True
     )
 
-    source_id: Optional[UUID] = Field(
+    source_id: UUID | None = Field(
         None, alias="sourceId", description="uuid for Dataset source", title="SourceId"
     )
-    derived_from_id: Optional[UUID] = Field(
+    derived_from_id: UUID | None = Field(
         None,
         alias="derivedFromId",
         description="uuid for Dataset from which Dataset is derived",
         title="DerivedFromId",
     )
-    logistical_sample_id: Optional[UUID] = Field(
+    logistical_sample_id: UUID | None = Field(
         None,
         alias="logisticalSampleId",
         description="uuid for LogisticalSample related to Dataset",

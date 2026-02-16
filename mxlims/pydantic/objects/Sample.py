@@ -37,13 +37,13 @@ class Sample(SampleData, MxlimsObject):
         frozen=True
     )
 
-    medium_id: Optional[UUID] = Field(
+    medium_id: UUID | None = Field(
         None,
         alias="mediumId",
         description="uuid for medium making up Sample",
         title="mediumId",
     )
-    parent_sample_id: Optional[UUID] = Field(
+    parent_sample_id: UUID | None = Field(
         None,
         alias="parentSampleId",
         description="uuid for parent sample, used e.g. for macromolecule sample to which various ligands are added",

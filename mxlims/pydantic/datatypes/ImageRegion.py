@@ -3,8 +3,6 @@
 
 from __future__ import annotations
 
-from typing import Union
-
 from mxlims.impl.MxlimsBase import BaseModel
 
 from pydantic import ConfigDict, Field
@@ -27,8 +25,8 @@ class ImageRegion(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    region: Union[Point, Circle, Line, Rectangle, Polygon]
-    image: Union[DropImageUrl, DropImageData]
+    region: Point | Circle | Line | Rectangle | Polygon
+    image: DropImageUrl | DropImageData
     units: ImageRegionUnit = Field(
         ..., description="The units of the region's co-ordinates."
     )

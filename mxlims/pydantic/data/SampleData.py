@@ -3,11 +3,9 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
-
 from pydantic import Field
 
-from ..datatypes.SampleComponent import SampleComponent
+from ..datatypes.SampleComponent import SampleComponent as SampleComponent_1
 from .MxlimsObjectData import MxlimsObjectData
 
 
@@ -16,17 +14,15 @@ class SampleData(MxlimsObjectData):
     Base class for MXLIMS Prepared Samples describing Sample content
     """
 
-    name: Optional[str] = Field(
-        None, description="Sample human-readable name or acronym."
-    )
-    acronym: Optional[str] = Field(
+    name: str | None = Field(None, description="Sample human-readable name or acronym.")
+    acronym: str | None = Field(
         None, description="Acronym - short synonym for Sample", title="Acronym"
     )
-    campaign_name: Optional[str] = Field(
+    campaign_name: str | None = Field(
         None,
         alias="campaignName",
         description="String identifier / name for campaign of which Sample is part.",
     )
-    components: Optional[List[SampleComponent]] = Field(
+    components: list[SampleComponent_1] | None = Field(
         None, description="Other components of Sample", title="Sample components"
     )

@@ -8,7 +8,15 @@ from uuid import UUID
 
 from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import ConfigDict, Field
+from pydantic import ConfigDict, Field, RootModel
+
+
+class MxlimsBaseType(RootModel[Literal["Job"]]):
+    root: Literal["Job"] = Field(
+        "Job",
+        description="The type of the MXLIMS core object referred to. restricted in specific cases",
+        title="MxlimsBaseType",
+    )
 
 
 class JobStub(BaseModel):

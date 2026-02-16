@@ -3,8 +3,6 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
-
 from mxlims.impl.MxlimsBase import BaseModel
 
 from pydantic import Field, PositiveFloat, PositiveInt
@@ -15,18 +13,18 @@ class ScannedPoint(BaseModel):
     Scanned point in sample, given in goniostat coordinate system at omega==kappa==phi==0
     """
 
-    coordinates: List[float] = Field(
+    coordinates: list[float] = Field(
         ..., title="Point coordinates (sampX, sampY, sampZ)"
     )
-    intensity: Optional[float] = Field(
+    intensity: float | None = Field(
         None,
         description="Measured intensity at point, in arbitrary units",
         title="Intensity",
     )
-    resolution: Optional[PositiveFloat] = Field(
+    resolution: PositiveFloat | None = Field(
         None, description="Resolution observed at the scanned point", title="Resolution"
     )
-    spot_count: Optional[PositiveInt] = Field(
+    spot_count: PositiveInt | None = Field(
         None,
         alias="spotCount",
         description="Number of spots observed at the scanned point",

@@ -3,8 +3,6 @@
 
 from __future__ import annotations
 
-from typing import Optional
-
 from mxlims.impl.MxlimsBase import BaseModel
 
 from pydantic import ConfigDict, Field, PositiveInt
@@ -18,7 +16,7 @@ class PlateType(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    name: Optional[str] = Field(
+    name: str | None = Field(
         None,
         description="The name of the plate type.",
         examples=["Greiner 1-drop square"],

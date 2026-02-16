@@ -3,8 +3,6 @@
 
 from __future__ import annotations
 
-from typing import List
-
 from mxlims.impl.MxlimsBase import BaseModel
 
 from pydantic import ConfigDict, Field
@@ -18,14 +16,14 @@ class Tensor(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    eigenvalues: List[float] = Field(
+    eigenvalues: list[float] = Field(
         ...,
         description="Eigenvalues of tensor",
         max_length=3,
         min_length=3,
         title="Eigenvalues",
     )
-    eigenvectors: List[List[float]] = Field(
+    eigenvectors: list[list[float]] = Field(
         ...,
         description="Eigenvectors (3D unit vectors) of tensor, in same order as eigenvalues",
         max_length=3,

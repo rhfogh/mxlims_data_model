@@ -3,8 +3,6 @@
 
 from __future__ import annotations
 
-from typing import Optional
-
 from mxlims.impl.MxlimsBase import BaseModel
 
 from pydantic import Field
@@ -18,12 +16,12 @@ class PlateData(BaseModel):
     A crystallization plate
     """
 
-    barcode: Optional[str] = Field(
+    barcode: str | None = Field(
         None, description="The plate barcode or other identifier"
     )
-    plate_type: Optional[PlateType] = Field(
+    plate_type: PlateType | None = Field(
         None, alias="plateType", description="Plate type description object"
     )
-    tracking_device: Optional[TrackingDevice] = Field(
+    tracking_device: TrackingDevice | None = Field(
         None, alias="trackingDevice", description="Plate tracking device"
     )

@@ -38,35 +38,35 @@ class Job(JobData, MxlimsObject):
         frozen=True
     )
 
-    sample_id: Optional[UUID] = Field(
+    sample_id: UUID | None = Field(
         None, alias="sampleId", description="uuid for related sample", title="SampleId"
     )
-    started_from_id: Optional[UUID] = Field(
+    started_from_id: UUID | None = Field(
         None,
         alias="startedFromId",
         description="uuid for JOPb from which this Job was started",
         title="StartedFromId",
     )
-    logistical_sample_id: Optional[UUID] = Field(
+    logistical_sample_id: UUID | None = Field(
         None,
         alias="logisticalSampleId",
         description="uuid for LogisticalSample related to Job",
         title="LogisticalSampleId",
     )
-    reference_data_ids: Optional[List[UUID]] = Field(
-        default_factory=list,
+    reference_data_ids: list[UUID] | None = Field(
+        None,
         alias="referenceDataIds",
         description="uuid for reference Datasets",
         title="ReferenceDataId",
     )
-    template_data_ids: Optional[List[UUID]] = Field(
-        default_factory=list,
+    template_data_ids: list[UUID] | None = Field(
+        None,
         alias="templateDataIds",
         description="uuid for template Datasets",
         title="TemplateDataId",
     )
-    input_data_ids: Optional[List[UUID]] = Field(
-        default_factory=list,
+    input_data_ids: list[UUID] | None = Field(
+        None,
         alias="inputDataIds",
         description="uuid for input Datasets",
         title="InputDataId",

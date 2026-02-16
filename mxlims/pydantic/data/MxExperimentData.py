@@ -3,8 +3,6 @@
 
 from __future__ import annotations
 
-from typing import Optional
-
 from mxlims.impl.MxlimsBase import BaseModel
 
 from pydantic import Field, NonNegativeInt, PositiveFloat, PositiveInt, confloat
@@ -18,7 +16,7 @@ class MxExperimentData(BaseModel):
     Crystallography experiment, producing data
     """
 
-    experiment_strategy: Optional[str] = Field(
+    experiment_strategy: str | None = Field(
         None,
         alias="experimentStrategy",
         description="Experiment strategy indicator",
@@ -32,108 +30,108 @@ class MxExperimentData(BaseModel):
         ],
         title="Experiment Strategy",
     )
-    experiment_location: Optional[str] = Field(
+    experiment_location: str | None = Field(
         None,
         alias="experimentLocation",
         description="Place where experiment is performed",
         examples=["SOLEIL PX2", "ESRF MASSIF-1"],
         title="Experiment Location",
     )
-    expected_resolution: Optional[PositiveFloat] = Field(
+    expected_resolution: PositiveFloat | None = Field(
         None,
         alias="expectedResolution",
         description="The resolution expected in the experiment - for positioning the detector and setting up the experiment",
         title="Expected Resolution",
     )
-    required_resolution: Optional[PositiveFloat] = Field(
+    required_resolution: PositiveFloat | None = Field(
         None,
         alias="requiredResolution",
         description="The minimum resolution required to carry on with the experiment",
         title="Required Resolution",
     )
-    target_completeness: Optional[confloat(le=100.0, gt=0.0)] = Field(
+    target_completeness: confloat(le=100.0, gt=0.0) | None = Field(
         None,
         alias="targetCompleteness",
         description="Minimal completeness expected from experiment",
         title="Target Completeness",
     )
-    target_multiplicity: Optional[PositiveFloat] = Field(
+    target_multiplicity: PositiveFloat | None = Field(
         None,
         alias="targetMultiplicity",
         description="Minimal multiplicity expected from experiment",
         title="Target Multiplicity",
     )
-    aimed_total_range: Optional[PositiveFloat] = Field(
+    aimed_total_range: PositiveFloat | None = Field(
         None,
         alias="aimedTotalRange",
         description="The desired total experiment length (in degrees rotated) ",
         title="Aimed Total Range",
     )
-    priority: Optional[PositiveInt] = Field(
+    priority: PositiveInt | None = Field(
         None,
         description="Priority of experiment - smaller number higher priority",
         title="Priority",
     )
-    sample_group: Optional[str] = Field(
+    sample_group: str | None = Field(
         None,
         alias="sampleGroup",
         description="Experiments within the same sampleGroup should only be executed until one of them achieves the required resolution etc.",
         title="Sample group",
     )
-    dose_budget: Optional[PositiveFloat] = Field(
+    dose_budget: PositiveFloat | None = Field(
         None,
         alias="doseBudget",
         description="Dose (MGy) to be used in experiment",
         title="Dose Budget",
     )
-    radiation_sensitivity: Optional[confloat(le=1.0, gt=0.0)] = Field(
+    radiation_sensitivity: confloat(le=1.0, gt=0.0) | None = Field(
         None,
         alias="radiationSensitivity",
         description="Predicted relative radiation sensitivity of sample at target wavelength.",
         title="Radiation Sensitivity",
     )
-    snapshot_count: Optional[NonNegativeInt] = Field(
+    snapshot_count: NonNegativeInt | None = Field(
         0,
         alias="snapshotCount",
         description="Number of snapshots to acquire after each (re)centring",
         title="Snapshot Count",
     )
-    wedge_width: Optional[PositiveFloat] = Field(
+    wedge_width: PositiveFloat | None = Field(
         None,
         alias="wedgeWidth",
         description="Wedge width (in degrees) to use for interleaving",
         title="Wedge Width",
     )
-    measured_flux: Optional[PositiveFloat] = Field(
+    measured_flux: PositiveFloat | None = Field(
         None,
         alias="measuredFlux",
         description="Measured value of beam flux in photons/s",
         title="Measured Flux",
     )
-    radiation_dose: Optional[PositiveFloat] = Field(
+    radiation_dose: PositiveFloat | None = Field(
         None,
         alias="radiationDose",
         description="Total radiation dose absorbed during experiment",
         title="Radiation Dose",
     )
-    expected_space_group_name: Optional[SpaceGroupName] = Field(
+    expected_space_group_name: SpaceGroupName | None = Field(
         None,
         alias="expectedSpaceGroupName",
         description="Name of space group expected to be present. Names may include alternative settings. Matches mmCIF item symmetry.space_group_name_H-M (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_symmetry.space_group_name_H-M.html).",
         title="Space Group Name",
     )
-    expected_unit_cell: Optional[UnitCell] = Field(
+    expected_unit_cell: UnitCell | None = Field(
         None,
         alias="expectedUnitCell",
         description="Unit cell of crystal expected to be present.",
     )
-    selected_space_group_name: Optional[SpaceGroupName] = Field(
+    selected_space_group_name: SpaceGroupName | None = Field(
         None,
         alias="selectedSpaceGroupName",
         description="Name of space group, as determined during characterisation. Names may include alternative settings. Matches mmCIF item symmetry.space_group_name_H-M (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_symmetry.space_group_name_H-M.html).",
         title="Space Group Name",
     )
-    selected_unit_cell: Optional[UnitCell] = Field(
+    selected_unit_cell: UnitCell | None = Field(
         None,
         alias="selectedUnitCell",
         description="Unit cell of crystal, as determined during characterisation.",

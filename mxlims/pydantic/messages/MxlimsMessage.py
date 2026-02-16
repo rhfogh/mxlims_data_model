@@ -3,14 +3,14 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from pydantic import ConfigDict, Field
 
-from pydantic import Field
-
-from ..datatypes.DatasetStub import DatasetStub
-from ..datatypes.JobStub import JobStub
-from ..datatypes.LogisticalSampleStub import LogisticalSampleStub
-from ..datatypes.SampleStub import SampleStub
+from ..datatypes.DatasetStub import DatasetStub as DatasetStub_1
+from ..datatypes.JobStub import JobStub as JobStub_1
+from ..datatypes.LogisticalSampleStub import (
+    LogisticalSampleStub as LogisticalSampleStub_1,
+)
+from ..datatypes.SampleStub import SampleStub as SampleStub_1
 from .MxlimsMessageStrict import MxlimsMessageStrict
 
 
@@ -19,25 +19,28 @@ class MxlimsMessage(MxlimsMessageStrict):
     Message containing all possible objects, by type
     """
 
-    dataset: Optional[Dict[str, DatasetStub]] = Field(
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    dataset: dict[str, DatasetStub_1] | None = Field(
         default_factory=dict,
         alias="Dataset",
         description="idString:object dictionary of Dataset stubs.",
         title="Datasets",
     )
-    job: Optional[Dict[str, JobStub]] = Field(
+    job: dict[str, JobStub_1] | None = Field(
         default_factory=dict,
         alias="Job",
         description="idString:object dictionary of Job stubs.",
         title="Jobs",
     )
-    logistical_sample: Optional[Dict[str, LogisticalSampleStub]] = Field(
+    logistical_sample: dict[str, LogisticalSampleStub_1] | None = Field(
         default_factory=dict,
         alias="LogisticalSample",
         description="idString:object dictionary of LogisticalSample stubs.",
         title="LogisticalSamples",
     )
-    sample: Optional[Dict[str, SampleStub]] = Field(
+    sample: dict[str, SampleStub_1] | None = Field(
         default_factory=dict,
         alias="Sample",
         description="idString:object dictionary of Sample stubs.",

@@ -3,8 +3,6 @@
 
 from __future__ import annotations
 
-from typing import Optional
-
 from mxlims.impl.MxlimsBase import BaseModel
 
 from pydantic import ConfigDict, Field, NonNegativeFloat, confloat
@@ -18,24 +16,24 @@ class ResolutionCutoffs(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    r_merge: Optional[NonNegativeFloat] = Field(
+    r_merge: NonNegativeFloat | None = Field(
         None, alias="R_merge", description="R merge", title="R(merge)"
     )
-    r_meas: Optional[NonNegativeFloat] = Field(
+    r_meas: NonNegativeFloat | None = Field(
         None, alias="R_meas", description="R meas", title="R_meas"
     )
-    r_pim: Optional[NonNegativeFloat] = Field(
+    r_pim: NonNegativeFloat | None = Field(
         None, alias="R_pim", description="R pim", title="R_pim"
     )
-    i_over_sig_i: Optional[float] = Field(
+    i_over_sig_i: float | None = Field(
         None, alias="I_over_SigI", description="Average I / sigma(I)", title="I/SigI"
     )
-    cc_one_half: Optional[confloat(ge=-1.0, le=-1.0)] = Field(
+    cc_one_half: confloat(ge=-1.0, le=-1.0) | None = Field(
         None, alias="CC_one_half", description="CC 1/2", title="CC(1/2)"
     )
-    cc_ano: Optional[confloat(ge=-1.0, le=-1.0)] = Field(
+    cc_ano: confloat(ge=-1.0, le=-1.0) | None = Field(
         None, alias="CC_ano", description="CC_ano", title="CC_ano"
     )
-    sig_ano: Optional[float] = Field(
+    sig_ano: float | None = Field(
         None, alias="SigAno", description="SigAno", title="SigAno"
     )
