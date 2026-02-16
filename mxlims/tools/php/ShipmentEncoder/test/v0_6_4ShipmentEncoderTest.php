@@ -12,9 +12,11 @@ use Opis\JsonSchema\Errors\ErrorFormatter;
 use Opis\Uri\Uri;
 
 use PHPUnit\Framework\TestCase;
-use Throwable;
 
 class v0_6_4ShipmentEncoderTest extends TestCase {
+
+	protected mixed $encoder;
+	private string $version;
 
 	public function setUp(): void {
 			$parts = explode('\\', get_called_class());
@@ -850,18 +852,41 @@ class v0_6_4ShipmentEncoderTest extends TestCase {
 	/**
 	 * @throws \Exception
 	 */
-	public function testExampleShipmentJsonValidatesAgainstSchema() {
+	public function testExamplePlateShipmentJsonValidatesAgainstSchema() {
 		$examplesDir=realpath(__DIR__.'/../../../../../docs/examples/');
 		$this->assertDirectoryExists($examplesDir);
-		$examples=['Shipment_plates','Shipment_singlePositionPins','Shipment_multiPositionPins'];
-		foreach ($examples as $example){
-			$path=rtrim($examplesDir,'/').'/'.$example.'.json';
-			self::assertFileExists($path);
-			$json=@file_get_contents($path);
-			self::assertNotFalse($json, "Could not open $path");
-			$this->assertTrue($this->validateIndividualJsonElementsAgainstSchema($json), $example.': At least one element failed schema validation');
-			$this->assertTrue($this->validateShipmentMessageJsonAgainstSchema($json), $example.': All elements validated but the whole message failed schema validation');
-		}
+		$path=rtrim($examplesDir,'/').'/Shipment_plates.json';
+		self::assertFileExists($path);
+		$json=@file_get_contents($path);
+		self::assertNotFalse($json, "Could not open $path");
+		$this->assertTrue($this->validateIndividualJsonElementsAgainstSchema($json), 'Shipment_plates: At least one element failed schema validation');
+		$this->assertTrue($this->validateShipmentMessageJsonAgainstSchema($json), 'Shipment_plates: All elements validated but the whole message failed schema validation');
+	}
+	/**
+	 * @throws \Exception
+	 */
+	public function testExamplePinShipmentJsonValidatesAgainstSchema() {
+		$examplesDir=realpath(__DIR__.'/../../../../../docs/examples/');
+		$this->assertDirectoryExists($examplesDir);
+		$path=rtrim($examplesDir,'/').'/Shipment_singlePositionPins.json';
+		self::assertFileExists($path);
+		$json=@file_get_contents($path);
+		self::assertNotFalse($json, "Could not open $path");
+		$this->assertTrue($this->validateIndividualJsonElementsAgainstSchema($json), 'Shipment_singlePositionPins: At least one element failed schema validation');
+		$this->assertTrue($this->validateShipmentMessageJsonAgainstSchema($json), 'Shipment_singlePositionPins: All elements validated but the whole message failed schema validation');
+	}
+	/**
+	 * @throws \Exception
+	 */
+	public function testExampleMultiPositionPinShipmentJsonValidatesAgainstSchema() {
+		$examplesDir=realpath(__DIR__.'/../../../../../docs/examples/');
+		$this->assertDirectoryExists($examplesDir);
+		$path=rtrim($examplesDir,'/').'/Shipment_multiPositionPins.json';
+		self::assertFileExists($path);
+		$json=@file_get_contents($path);
+		self::assertNotFalse($json, "Could not open $path");
+		$this->assertTrue($this->validateIndividualJsonElementsAgainstSchema($json), 'Shipment_multiPositionPins: At least one element failed schema validation');
+		$this->assertTrue($this->validateShipmentMessageJsonAgainstSchema($json), 'Shipment_multiPositionPins: All elements validated but the whole message failed schema validation');
 	}
 
 	public static string $fileWithSchemaVersion=__DIR__.'/../../../../schemas/data/MxlimsObjectData.json';
