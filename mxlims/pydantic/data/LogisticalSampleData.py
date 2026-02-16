@@ -3,8 +3,6 @@
 
 from __future__ import annotations
 
-from typing import Optional
-
 from pydantic import Field
 
 from .MxlimsObjectData import MxlimsObjectData
@@ -18,4 +16,4 @@ class LogisticalSampleData(MxlimsObjectData):
     (from Dewars and Plates to drops, pins and crystals)
     """
 
-    name: Optional[str] = Field(None, description="Human-readable name.")
+    name: str | None = Field(None, description="Human-readable name.")

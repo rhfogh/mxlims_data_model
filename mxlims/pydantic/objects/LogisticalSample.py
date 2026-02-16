@@ -38,13 +38,13 @@ class LogisticalSample(LogisticalSampleData, MxlimsObject):
         frozen=True
     )
 
-    sample_id: Optional[UUID] = Field(
+    sample_id: UUID | None = Field(
         None,
         alias="sampleId",
         description="uuid for constituent sample",
         title="SampleId",
     )
-    container_id: Optional[UUID] = Field(
+    container_id: UUID | None = Field(
         None,
         alias="containerId",
         description="uuid for LogisticalSample container",

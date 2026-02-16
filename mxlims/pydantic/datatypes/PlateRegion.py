@@ -3,8 +3,6 @@
 
 from __future__ import annotations
 
-from typing import Union
-
 from mxlims.impl.MxlimsBase import BaseModel
 
 from pydantic import ConfigDict, Field
@@ -25,7 +23,7 @@ class PlateRegion(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    region: Union[Point, Circle, Line, Rectangle, Polygon]
+    region: Point | Circle | Line | Rectangle | Polygon
     units: PlateRegionUnit = Field(
         ..., description="The units of the region's co-ordinates."
     )

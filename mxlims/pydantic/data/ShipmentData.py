@@ -3,8 +3,6 @@
 
 from __future__ import annotations
 
-from typing import Optional
-
 from mxlims.impl.MxlimsBase import BaseModel
 
 from pydantic import Field, PositiveInt
@@ -24,17 +22,17 @@ class ShipmentData(BaseModel):
         description="The proposal number at the receiving facility.",
         examples=["mx1234"],
     )
-    session_number: Optional[PositiveInt] = Field(
+    session_number: PositiveInt | None = Field(
         None,
         alias="sessionNumber",
         description="The session number within the proposal. If this property is not set, the shipment is for unattended collection.",
     )
-    lab_contact_outbound: Optional[Person] = Field(
+    lab_contact_outbound: Person | None = Field(
         None, alias="labContactOutbound", description="Lab contact outbound"
     )
-    lab_contact_return: Optional[Person] = Field(
+    lab_contact_return: Person | None = Field(
         None, alias="labContactReturn", description="Lab contact for return"
     )
-    tracking_device: Optional[TrackingDevice] = Field(
+    tracking_device: TrackingDevice | None = Field(
         None, alias="trackingDevice", description="Shipment tracking device"
     )

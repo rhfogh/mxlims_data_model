@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from typing import List, Literal
+from typing import Literal
 
 from mxlims.impl.MxlimsBase import BaseModel
 
@@ -20,4 +20,4 @@ class Rectangle(BaseModel):
     region_type: Literal["rectangle"] = Field(
         "rectangle", alias="regionType", description="Type of region"
     )
-    points: List[Point] = Field(..., max_length=2, min_length=2)
+    points: list[Point] = Field(..., max_length=2, min_length=2)

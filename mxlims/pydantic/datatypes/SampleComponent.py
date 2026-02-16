@@ -3,8 +3,6 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
-
 from mxlims.impl.MxlimsBase import BaseModel
 
 from pydantic import ConfigDict, Field, constr
@@ -20,44 +18,46 @@ class SampleComponent(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    acronym: Optional[str] = Field(
+    acronym: str | None = Field(
         None,
         description="Acronym - short synonym of component (e.g. 'lig1'",
         title="Acronym",
     )
-    name: Optional[str] = Field(
+    name: str | None = Field(
         None, description="Human readable name of component", title="Name"
     )
-    role: Optional[SampleComponentRole] = None
-    smiles: Optional[str] = Field(
+    role: SampleComponentRole | None = None
+    smiles: str | None = Field(
         None, description="Smile string defining component", title="Smiles"
     )
-    selfies: Optional[str] = Field(
+    selfies: str | None = Field(
         None, description="Selfies string defining component", title="Smiles"
     )
-    sequence: Optional[str] = Field(
+    sequence: str | None = Field(
         None, description="Sequence string defining component", title="Smiles"
     )
-    identifiers: Optional[
-        Dict[
+    identifiers: (
+        dict[
             str,
             constr(
                 pattern=r"^(?i)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$"
             ),
         ]
-    ] = Field(
+        | None
+    ) = Field(
         None,
         description="Keyword-value dictionary string:string of site-specific object indentifiers. The key must be a valid domain name pointing to the site 'owning' the extensions, but need bw resovable.",
         title="Identifiers",
     )
-    urls: Optional[
-        Dict[
+    urls: (
+        dict[
             str,
             constr(
                 pattern=r"^(?i)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$"
             ),
         ]
-    ] = Field(
+        | None
+    ) = Field(
         None,
         description="Keyword-value dictionary string:urlstring of site-specific object urls. The key must be a valid domain name pointing to the site 'owning' the extensions, but need bw resovable.",
         title="Urls",

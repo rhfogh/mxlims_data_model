@@ -3,20 +3,11 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
-
 from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import (
-    Field,
-    NonNegativeInt,
-    PositiveFloat,
-    PositiveInt,
-    RootModel,
-    confloat,
-)
+from pydantic import Field, NonNegativeInt, PositiveFloat, PositiveInt, confloat
 
-from ..datatypes.Scan import Scan
+from ..datatypes.Scan import Scan as Scan_1
 
 
 class CollectionSweepData(BaseModel):
@@ -24,54 +15,54 @@ class CollectionSweepData(BaseModel):
     Crystallographic sweep data set, containing images
     """
 
-    sweep_type: Optional[str] = Field(
+    sweep_type: str | None = Field(
         "simple",
         alias="sweepType",
         description="Type of sweep: 'simple', 'mesh', 'line', 'helical, 'xray_centring'. Should be made into an enumeration",
         title="Sweep Type",
     )
-    exposure_time: Optional[PositiveFloat] = Field(
+    exposure_time: PositiveFloat | None = Field(
         None,
         alias="exposureTime",
         description="Exposure time in seconds",
         title="Exposure Time",
     )
-    image_width: Optional[PositiveFloat] = Field(
+    image_width: PositiveFloat | None = Field(
         None,
         alias="imageWidth",
         description="Width of a single image, along scanAxis. For rotational axes in degrees, for translations in mm.",
         title="Image Width",
     )
-    number_images: Optional[PositiveInt] = Field(
+    number_images: PositiveInt | None = Field(
         None,
         alias="numberImages",
         description="Number of images from start to end of sweep.Defines image numbering and final axis position. NB Only certain parts of the sweep may be acquired (see 'scans'),so the total number of images acquired may be less.",
         title="Number Images",
     )
-    overlap: Optional[float] = Field(
+    overlap: float | None = Field(
         None,
         description="Overlap between successive images, in units of imageWidth. May be negative for non-contiguous images.",
         title="Overlap",
     )
-    number_triggers: Optional[NonNegativeInt] = Field(
+    number_triggers: NonNegativeInt | None = Field(
         None,
         alias="numberTriggers",
         description="Number of triggers. Instruction to detector - does not modify effect of other parameters.",
         title="Number Triggers",
     )
-    number_images_per_trigger: Optional[NonNegativeInt] = Field(
+    number_images_per_trigger: NonNegativeInt | None = Field(
         None,
         alias="numberImagesPerTrigger",
         description="Number of images per trigger. Instruction to detector - does not modify effect of other parameters.",
         title="Number Images Per Trigger",
     )
-    number_lines: Optional[NonNegativeInt] = Field(
+    number_lines: NonNegativeInt | None = Field(
         None,
         alias="numberLines",
         description="Number of scanned lines used for mesh scans. Must divide numberImages",
         title="Number Lines",
     )
-    mesh_range: Optional[List[PositiveFloat]] = Field(
+    mesh_range: list[PositiveFloat] | None = Field(
         None,
         alias="meshRange",
         description="Mesh scan range (horizontal, vertical) in mm",
@@ -79,24 +70,24 @@ class CollectionSweepData(BaseModel):
         min_length=2,
         title="Mesh Range",
     )
-    energy: Optional[PositiveFloat] = Field(
+    energy: PositiveFloat | None = Field(
         None, description="Energy of the beam in eV", title="Energy"
     )
-    transmission: Optional[confloat(le=100.0, gt=0.0)] = Field(
+    transmission: confloat(le=100.0, gt=0.0) | None = Field(
         None, description="Transmission setting in %", title="Transmission"
     )
-    resolution: Optional[PositiveFloat] = Field(
+    resolution: PositiveFloat | None = Field(
         None,
         description="Resolution that the sweep was intended to measureFor offset or unusual detectors this may *not* determine the detector distanceThe actual detector distance can be found in axisPositionsStart",
         title="Resolution",
     )
-    detector_roi_mode: Optional[str] = Field(
+    detector_roi_mode: str | None = Field(
         None,
         alias="detectorRoiMode",
         description="Region-of-interest mode of detector. Should be made into an enumeration",
         title="Detector Roi Mode",
     )
-    beam_position: Optional[List[float]] = Field(
+    beam_position: list[float] | None = Field(
         None,
         alias="beamPosition",
         description="x,y position of the beam on the detector in pixels",
@@ -104,7 +95,7 @@ class CollectionSweepData(BaseModel):
         min_length=2,
         title="Beam Position",
     )
-    beam_size: Optional[List[PositiveFloat]] = Field(
+    beam_size: list[PositiveFloat] | None = Field(
         None,
         alias="beamSize",
         description="x,y size of the beam on the detector in mm",
@@ -112,38 +103,38 @@ class CollectionSweepData(BaseModel):
         min_length=2,
         title="Beam Size",
     )
-    beam_shape: Optional[str] = Field(
+    beam_shape: str | None = Field(
         None,
         alias="beamShape",
         description="Shape of the beam. NBNB Should be an enumeration",
         examples=["unknown", "rectangular", "ellipsoid"],
         title="Beam Shape",
     )
-    detector_type: Optional[str] = Field(
+    detector_type: str | None = Field(
         None,
         alias="detectorType",
         description="Type of detector, using enumeration of mmCIF items diffrn_detector.type (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_diffrn_detector.type.html)",
         title="Detector Type",
     )
-    detector_binning_mode: Optional[str] = Field(
+    detector_binning_mode: str | None = Field(
         None,
         alias="detectorBinningMode",
         description="Binning mode of detector. Should be made into an enumeration",
         title="Detector Binning Mode",
     )
-    axis_positions_start: Optional[Dict[str, float]] = Field(
+    axis_positions_start: dict[str, float] | None = Field(
         None,
         alias="axisPositionsStart",
         description="Dictionary string:float with starting position of all axes, rotations or translations, including detector distance, by name. Units are mm for distances, degrees for angles NBNB do we use internal motor names (e.g. 'phi'), or std. names (e.g. 'omega')?",
         title="Axis Positions Start",
     )
-    axis_positions_end: Optional[Dict[str, float]] = Field(
+    axis_positions_end: dict[str, float] | None = Field(
         None,
         alias="axisPositionsEnd",
         description="Dictionary string:float with final position of scanned axes as for axisPositionsStart. scanAxis position is NOT given here, but is calculated from imageWidth, overlap, numberImages, and axisPositionsStartNB scans may be acquired out of order, so this determines the limits of the sweep, not the temporal start and end points",
         title="Axis Positions End",
     )
-    scan_axis: Optional[str] = Field(
+    scan_axis: str | None = Field(
         "omega",
         alias="scanAxis",
         description="Name of main scanned axis. Other axes may be scanned in parallel.For mesh scans name of fastest scanned axis",
@@ -163,29 +154,29 @@ class CollectionSweepData(BaseModel):
         ],
         title="Scan Axis",
     )
-    scans: Optional[List[Scan]] = Field(
+    scans: list[Scan_1] | None = Field(
         None,
         description="List of Scans i.e. subdivisions of CollectionSweep. NB Scans need not be contiguous or in order or add up to entire sweep",
         title="Scans",
     )
-    file_type: Optional[str] = Field(
+    file_type: str | None = Field(
         None,
         alias="fileType",
         description="Type of file.",
         examples=["mini-cbf", "imgCIF", "FullCBF", "HDF5", "MarCCD"],
         title="File Type",
     )
-    prefix: Optional[str] = Field(
+    prefix: str | None = Field(
         None,
         description="Input parameter - used to build the fine name template.",
         title="Prefix",
     )
-    filename_template: Optional[str] = Field(
+    filename_template: str | None = Field(
         None,
         alias="filenameTemplate",
         description="File name template,  includes prefix, suffix, run number, and a slot where image number can be filled in.",
         title="Filename Template",
     )
-    path: Optional[str] = Field(
+    path: str | None = Field(
         None, description="Path to directory containing image files.", title="Path"
     )

@@ -3,13 +3,11 @@
 
 from __future__ import annotations
 
-from typing import List
-
 from mxlims.impl.MxlimsBase import BaseModel
 
 from pydantic import Field
 
-from .ScannedPoint import ScannedPoint
+from .ScannedPoint import ScannedPoint as ScannedPoint_1
 
 
 class PointCloud(BaseModel):
@@ -17,6 +15,6 @@ class PointCloud(BaseModel):
     A cloud (list) of scanned points
     """
 
-    points: List[ScannedPoint] = Field(
+    points: list[ScannedPoint_1] = Field(
         ..., description="List of points making up the PointCloud", title="Points list"
     )

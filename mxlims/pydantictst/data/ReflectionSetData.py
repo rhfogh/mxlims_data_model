@@ -3,16 +3,14 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
-
 from mxlims.impl.MxlimsBase import BaseModel
 from pydantic import Field
 
-from ..datatypes.FooStats import FooStats
+from ..datatypes.FooStats import FooStats as FooStats_1
 
 
 class ReflectionSetData(BaseModel):
-    foo_stats_overall: Optional[FooStats] = Field(None, alias="fooStatsOverall")
-    foo_stats_shells: Optional[List[FooStats]] = Field(
+    foo_stats_overall: FooStats | None = Field(None, alias="fooStatsOverall")
+    foo_stats_shells: list[FooStats_1] | None = Field(
         None, alias="fooStatsShells", title="Foo Stats Shells"
     )

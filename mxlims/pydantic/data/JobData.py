@@ -4,7 +4,6 @@
 from __future__ import annotations
 
 from datetime import datetime
-from typing import Optional
 
 from pydantic import Field
 
@@ -17,19 +16,19 @@ class JobData(MxlimsObjectData):
     Base class for MXLIMS Jobs - an experiment or calculation producing Datasets
     """
 
-    start_time: Optional[datetime] = Field(
+    start_time: datetime | None = Field(
         None,
         alias="startTime",
         description="Actual starting time for job or calculation, ",
         title="Start Time",
     )
-    end_time: Optional[datetime] = Field(
+    end_time: datetime | None = Field(
         None,
         alias="endTime",
         description="Actual finishing time for job or calculation, ",
         title="End Time",
     )
-    job_status: Optional[JobStatus] = Field(
+    job_status: JobStatus | None = Field(
         None,
         alias="jobStatus",
         description="Status of job - enumerated, ",

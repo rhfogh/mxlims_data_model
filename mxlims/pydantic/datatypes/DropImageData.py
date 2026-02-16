@@ -3,9 +3,9 @@
 
 from __future__ import annotations
 
-from typing import Any, Optional
+from typing import Any
 
-from pydantic import Field
+from pydantic import ConfigDict, Field
 
 from .DropImage import DropImage
 
@@ -15,5 +15,8 @@ class DropImageData(DropImage):
     DropImage, containing image as attached data.
     """
 
-    url: Optional[Any] = None
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    url: Any | None = None
     data: str = Field(..., description="The image, UUencoded.")

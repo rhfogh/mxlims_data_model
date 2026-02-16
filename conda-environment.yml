@@ -14,5 +14,5 @@ dependencies:
       - jsonschema
       - ruamel.yaml==0.17.21
       - pydantic==2.8.2
-      - datamodel-code-generator==0.37.0
+      - datamodel-code-generator==0.54.0
       - --editable /home/rhfogh/pycharm/mxlims_data_model
