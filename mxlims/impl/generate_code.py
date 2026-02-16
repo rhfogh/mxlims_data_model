@@ -188,6 +188,9 @@ def extract_object_schemas(schema_dir: Path) -> dict:
         result[classname] = objdict = {}
         objdict["links"] = {}
 
+        if obj.get("unevaluatedProperties") == False:
+            objdict["noExtraProperties"] = True
+
         # Read class-level info
         for dd1 in obj["allOf"]:
             # These are inherited data, specific and abstract superclass
@@ -291,6 +294,12 @@ def make_pydantic_object(pydantic_dir: Path, objdict: dict) -> None:
     :param objdict:
     :return:
     """
+
+    if objdict.get("noExtraProperties"):
+        config_dict_str = "ConfigDict, "
+    else:
+        config_dict_str = ""
+
     all_types_set = set()
     for linkdict in objdict["links"].values():
         all_types_set.update(linkdict["typenames"])
@@ -308,7 +317,7 @@ def make_pydantic_object(pydantic_dir: Path, objdict: dict) -> None:
 #  filename {classname}.py
 
 from __future__ import annotations
-from pydantic import Field{validator_str}
+from pydantic import {config_dict_str}Field{validator_str}
 from typing import List, Literal, Optional, TYPE_CHECKING
 from uuid import UUID, uuid1
 from mxlims.core.MxlimsObject import MxlimsObject
@@ -332,7 +341,16 @@ from ..data.{classname}Data import {classname}Data
 class {classname}({classname}Data, MxlimsObject):
     """MXLIMS pydantic model class for {classname}
     """
-        
+'''
+    )
+        if objdict.get("noExtraProperties"):
+            txtlist.append(f'''
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+        ''')
+
+        txtlist.append(f'''
     mxlims_base_type: Literal["{classname}"] = Field(
         "{classname}",
         alias="mxlimsBaseType",
@@ -412,7 +430,7 @@ class {classname}({classname}Data, MxlimsObject):
 #  filename {classname}.py
 
 from __future__ import annotations
-from pydantic import Field
+from pydantic import {config_dict_str}Field
 from typing import Any, Literal, Optional, Union, TYPE_CHECKING
 from ..objects.{corename} import {corename}
 from ..data.{classname}Data import {classname}Data
@@ -443,6 +461,12 @@ class {classname}({classname}Data, {corename}):
         frozen=True,
     )
     ''')
+        if objdict.get("noExtraProperties"):
+            txtlist.append(f'''
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+        ''')
 
         # Add API properties for links
         for dummy, linkdict in sorted(objdict["links"].items()):

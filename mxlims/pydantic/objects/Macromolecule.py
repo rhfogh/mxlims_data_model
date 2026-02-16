@@ -2,7 +2,7 @@
 #  filename Macromolecule.py
 
 from __future__ import annotations
-from pydantic import Field
+from pydantic import ConfigDict, Field
 from typing import Any, Literal, Optional, Union, TYPE_CHECKING
 from ..objects.Sample import Sample
 from ..data.MacromoleculeData import MacromoleculeData
@@ -21,6 +21,10 @@ class Macromolecule(MacromoleculeData, Sample):
         frozen=True,
     )
     
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+        
     @property
     def child_samples(self) -> list[MacromoleculeSample]:
         """getter for Macromolecule.child_samples list"""

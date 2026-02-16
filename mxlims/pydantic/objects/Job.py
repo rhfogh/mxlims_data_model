@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 class Job(JobData, MxlimsObject):
     """MXLIMS pydantic model class for Job
     """
-        
+
     mxlims_base_type: Literal["Job"] = Field(
         "Job",
         alias="mxlimsBaseType",

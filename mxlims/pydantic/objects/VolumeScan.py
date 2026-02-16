@@ -2,7 +2,7 @@
 #  filename VolumeScan.py
 
 from __future__ import annotations
-from pydantic import Field
+from pydantic import ConfigDict, Field
 from typing import Any, Literal, Optional, Union, TYPE_CHECKING
 from ..objects.Job import Job
 from ..data.VolumeScanData import VolumeScanData
@@ -29,6 +29,10 @@ class VolumeScan(VolumeScanData, Job):
         frozen=True,
     )
     
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+        
     @property
     def logistical_sample(self) -> Optional[Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]]:
         """getter for VolumeScan.logistical_sample"""
