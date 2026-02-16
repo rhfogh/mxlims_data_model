@@ -2,7 +2,7 @@
 #  filename Sample.py
 
 from __future__ import annotations
-from pydantic import Field
+from pydantic import ConfigDict, Field
 from typing import List, Literal, Optional, TYPE_CHECKING
 from uuid import UUID, uuid1
 from mxlims.core.MxlimsObject import MxlimsObject
@@ -14,6 +14,10 @@ if TYPE_CHECKING:
 class Sample(SampleData, MxlimsObject):
     """MXLIMS pydantic model class for Sample
     """
+
+    model_config = ConfigDict(
+        extra="forbid",
+    )
         
     mxlims_base_type: Literal["Sample"] = Field(
         "Sample",

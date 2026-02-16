@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 class LogisticalSample(LogisticalSampleData, MxlimsObject):
     """MXLIMS pydantic model class for LogisticalSample
     """
-        
+
     mxlims_base_type: Literal["LogisticalSample"] = Field(
         "LogisticalSample",
         alias="mxlimsBaseType",

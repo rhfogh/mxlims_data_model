@@ -2,7 +2,7 @@
 #  filename Medium.py
 
 from __future__ import annotations
-from pydantic import Field
+from pydantic import ConfigDict, Field
 from typing import Any, Literal, Optional, Union, TYPE_CHECKING
 from ..objects.Sample import Sample
 from ..data.MediumData import MediumData
@@ -21,6 +21,10 @@ class Medium(MediumData, Sample):
         frozen=True,
     )
     
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+        
     @property
     def medium_samples(self) -> list[MacromoleculeSample]:
         """getter for Medium.medium_samples list"""
