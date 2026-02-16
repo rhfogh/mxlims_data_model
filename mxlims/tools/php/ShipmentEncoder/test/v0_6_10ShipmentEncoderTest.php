@@ -112,7 +112,7 @@ class v0_6_10ShipmentEncoderTest extends v0_6_7ShipmentEncoderTest {
 	 */
 	public function testDropImageInvalidWithoutUrlAndData() {
 		$schemaPath = 'datatypes/DropImage.json';
-		$jsonPath= 'invalid/DropImage_NoUrlNoData.json';
+		$jsonPath= 'datatypes/invalid/DropImage_NoUrlNoData.json';
 		$this->assertFalse($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImage should not be valid with neither url nor data');
 	}
 
@@ -121,7 +121,7 @@ class v0_6_10ShipmentEncoderTest extends v0_6_7ShipmentEncoderTest {
 	 */
 	public function testDropImageValidWithUrlWithoutData() {
 		$schemaPath = 'datatypes/DropImage.json';
-		$jsonPath= 'valid/DropImage_HasUrlNoData.json';
+		$jsonPath= 'datatypes/valid/DropImage_HasUrlNoData.json';
 		$this->assertTrue($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImage should be valid with url but not data');
 	}
 
@@ -130,7 +130,7 @@ class v0_6_10ShipmentEncoderTest extends v0_6_7ShipmentEncoderTest {
 	 */
 	public function testDropImageValidWithoutUrlWithData() {
 		$schemaPath = 'datatypes/DropImage.json';
-		$jsonPath= 'valid/DropImage_NoUrlHasData.json';
+		$jsonPath= 'datatypes/valid/DropImage_NoUrlHasData.json';
 		$this->assertTrue($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImage should be valid with data but not url');
 	}
 
@@ -139,7 +139,7 @@ class v0_6_10ShipmentEncoderTest extends v0_6_7ShipmentEncoderTest {
 	 */
 	public function testDropImageInvalidWithUrlAndData() {
 		$schemaPath = 'datatypes/DropImage.json';
-		$jsonPath= 'invalid/DropImage_HasUrlHasData.json';
+		$jsonPath= 'datatypes/invalid/DropImage_HasUrlHasData.json';
 		$this->assertFalse($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImage should not be valid with both url and data');
 	}
 
@@ -148,7 +148,7 @@ class v0_6_10ShipmentEncoderTest extends v0_6_7ShipmentEncoderTest {
 	 */
 	public function testImageRegionDropImageInvalidWithoutUrlAndData() {
 		$schemaPath = 'datatypes/ImageRegion.json';
-		$jsonPath= 'invalid/ImageRegion_DropImageNoUrlNoData.json';
+		$jsonPath= 'datatypes/invalid/ImageRegion_DropImageNoUrlNoData.json';
 		$this->assertFalse($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImage in ImageRegion should not be valid with neither url nor data');
 	}
 
@@ -157,7 +157,7 @@ class v0_6_10ShipmentEncoderTest extends v0_6_7ShipmentEncoderTest {
 	 */
 	public function testImageRegionDropImageValidWithUrlWithoutData() {
 		$schemaPath = 'datatypes/ImageRegion.json';
-		$jsonPath= 'valid/ImageRegion_DropImageHasUrlNoData.json';
+		$jsonPath= 'datatypes/valid/ImageRegion_DropImageHasUrlNoData.json';
 		$this->assertTrue($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImage in ImageRegion should be valid with url and no data');
 	}
 
@@ -166,7 +166,7 @@ class v0_6_10ShipmentEncoderTest extends v0_6_7ShipmentEncoderTest {
 	 */
 	public function testImageRegionDropImageValidWithoutUrlWithData() {
 		$schemaPath = 'datatypes/ImageRegion.json';
-		$jsonPath= 'valid/ImageRegion_DropImageNoUrlHasData.json';
+		$jsonPath= 'datatypes/valid/ImageRegion_DropImageNoUrlHasData.json';
 		$this->assertTrue($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImage in ImageRegion should be valid with data and no url');
 	}
 
@@ -175,8 +175,80 @@ class v0_6_10ShipmentEncoderTest extends v0_6_7ShipmentEncoderTest {
 	 */
 	public function testImageRegionDropImageInvalidWithUrlAndData() {
 		$schemaPath = 'datatypes/ImageRegion.json';
-		$jsonPath= 'invalid/ImageRegion_DropImageHasUrlHasData.json';
+		$jsonPath= 'datatypes/invalid/ImageRegion_DropImageHasUrlHasData.json';
 		$this->assertFalse($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImage in ImageRegion should not be valid with both url and data');
+	}
+
+	/**
+	 * @throws \Exception
+	 */
+	public function testDropImageDataInvalidWithUrlAndData() {
+		$schemaPath = 'datatypes/DropImageData.json';
+		$jsonPath= 'datatypes/invalid/DropImageData_HasUrlHasData.json';
+		$this->assertFalse($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImageData should not be valid with url and data');
+	}
+
+	/**
+	 * @throws \Exception
+	 */
+	public function testDropImageDataInvalidWithUrlWithoutData() {
+		$schemaPath = 'datatypes/DropImageData.json';
+		$jsonPath= 'datatypes/invalid/DropImageData_HasUrlNoData.json';
+		$this->assertFalse($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImageData should not be valid with url and no data');
+	}
+
+	/**
+	 * @throws \Exception
+	 */
+	public function testDropImageDataInvalidWithoutUrlAndData() {
+		$schemaPath = 'datatypes/DropImageData.json';
+		$jsonPath= 'datatypes/invalid/DropImageData_NoUrlNoData.json';
+		$this->assertFalse($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImageData should not be valid with no url and no data');
+	}
+
+	/**
+	 * @throws \Exception
+	 */
+	public function testDropImageUrlInvalidWithUrlAndData() {
+		$schemaPath = 'datatypes/DropImageUrl.json';
+		$jsonPath= 'datatypes/invalid/DropImageUrl_HasUrlHasData.json';
+		$this->assertFalse($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImageUrl should not be valid with url and data');
+	}
+
+	/**
+	 * @throws \Exception
+	 */
+	public function testDropImageUrlInvalidWithUrlWithoutData() {
+		$schemaPath = 'datatypes/DropImageUrl.json';
+		$jsonPath= 'datatypes/invalid/DropImageUrl_NoUrlHasData.json';
+		$this->assertFalse($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImageUrl should not be valid with data and no url');
+	}
+
+	/**
+	 * @throws \Exception
+	 */
+	public function testDropImageUrlInvalidWithoutUrlAndData() {
+		$schemaPath = 'datatypes/DropImageUrl.json';
+		$jsonPath= 'datatypes/invalid/DropImageUrl_NoUrlNoData.json';
+		$this->assertFalse($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImageUrl should not be valid with no url and no data');
+	}
+
+	/**
+	 * @throws \Exception
+	 */
+	public function testDropImageUrlValidWithUrlWithoutData() {
+		$schemaPath = 'datatypes/DropImageUrl.json';
+		$jsonPath= 'datatypes/valid/DropImageUrl_HasUrlNoData.json';
+		$this->assertTrue($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImageUrl should not be invalid with url and no data');
+	}
+
+	/**
+	 * @throws \Exception
+	 */
+	public function testDropImageDataValidWithDataWithoutUrl() {
+		$schemaPath = 'datatypes/DropImageData.json';
+		$jsonPath= 'datatypes/valid/DropImageData_NoUrlHasData.json';
+		$this->assertTrue($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImageData should not be invalid with data and no url');
 	}
 
 }
