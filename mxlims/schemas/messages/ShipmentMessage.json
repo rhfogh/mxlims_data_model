@@ -45,7 +45,7 @@
         },
         "MacromoleculeSample":{
             "additionalProperties": {
-                "required":["name","macromoleculeRef"],
+                "required":["name","parentSampleRef"],
                 "properties":{
                    "macromolecule":{ "required":["acronym"] }
                 }
