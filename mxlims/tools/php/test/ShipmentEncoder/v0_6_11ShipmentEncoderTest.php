@@ -2,13 +2,11 @@
 
 namespace mxlims\tools\php\test\ShipmentEncoder;
 
-require __DIR__ . '/../../vendor/opis/json-schema-2.6.0/autoload.php';
-require __DIR__ . '/../../vendor/opis/uri-1.1.0/autoload.php';
+require_once __DIR__ . '/../../src/Utils/Utils.php';
 
-use Opis\JsonSchema\Errors\ValidationError;
-use Opis\JsonSchema\SchemaLoader;
-use Opis\JsonSchema\Validator;
-use Opis\Uri\Uri;
+
+use Exception;
+use mxlims\tools\php\src\Utils\Utils;
 use PHPUnit\Framework\TestCase;
 
 class v0_6_11ShipmentEncoderTest extends TestCase {
@@ -842,7 +840,7 @@ class v0_6_11ShipmentEncoderTest extends TestCase {
 
 
 	/**
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function testSinglePinJsonValidatesAgainstSchema() {
 		$this->encoder->createShipment('mx4025', 4);
@@ -853,12 +851,12 @@ class v0_6_11ShipmentEncoderTest extends TestCase {
 		$this->encoder->setLabContactOutbound('Bob', 'bob@bob.com');
 		$this->encoder->setLabContactReturn('Bob', 'bob@bob.com');
 		$json=$this->encoder->encodeToJSON();
-		$this->assertTrue($this->validateIndividualJsonElementsAgainstSchema($json), 'At least one element failed schema validation');
+		$this->assertTrue(Utils::validateIndividualJsonElementsAgainstSchema($json), 'At least one element failed schema validation');
 		$this->assertTrue($this->validateShipmentMessageJsonAgainstSchema($json), 'All elements validated but the whole message failed schema validation');
 	}
 
 	/**
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function testMultiPinJsonValidatesAgainstSchema() {
 		$this->encoder->createShipment('mx4025', 4);
@@ -870,12 +868,12 @@ class v0_6_11ShipmentEncoderTest extends TestCase {
 		$macromolecule = $this->encoder->addMacromoleculeToShipment('TEST');
 		$this->encoder->addSampleToMultiPositionPin($pin['index'], 1, $macromolecule['index'], 'TEST_9098A01d1c1');
 		$json=$this->encoder->encodeToJSON();
-		$this->assertTrue($this->validateIndividualJsonElementsAgainstSchema($json), 'At least one element failed schema validation');
+		$this->assertTrue(Utils::validateIndividualJsonElementsAgainstSchema($json), 'At least one element failed schema validation');
 		$this->assertTrue($this->validateShipmentMessageJsonAgainstSchema($json), 'All elements validated but the whole message failed schema validation');
 	}
 
 	/**
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function testPlateJsonValidatesAgainstSchema() {
 		$drop=$this->createPlateAndDrop();
@@ -884,62 +882,22 @@ class v0_6_11ShipmentEncoderTest extends TestCase {
 		$region=$this->encoder->addPointDropRegionByPlateDropIndex($drop['index'], 100, 200);
 		$this->encoder->addCrystalToDropRegion($region['index'], 'CRYSTAL_NAME');
 		$json=$this->encoder->encodeToJSON(true);
-		$this->assertTrue($this->validateIndividualJsonElementsAgainstSchema($json), 'At least one element failed schema validation');
+		$this->assertTrue(Utils::validateIndividualJsonElementsAgainstSchema($json), 'At least one element failed schema validation');
 		$this->assertTrue($this->validateShipmentMessageJsonAgainstSchema($json), 'All elements validated but the whole message failed schema validation');
 	}
 
 	/**
-	 * @throws \Exception
-	 */
-	public function testExamplePlateShipmentJsonValidatesAgainstSchema() {
-		$examplesDir=realpath(__DIR__.'/../../../../../docs/examples/');
-		$this->assertDirectoryExists($examplesDir);
-		$path=rtrim($examplesDir,'/').'/Shipment_plates.json';
-		self::assertFileExists($path);
-		$json=@file_get_contents($path);
-		self::assertNotFalse($json, "Could not open $path");
-		$this->assertTrue($this->validateIndividualJsonElementsAgainstSchema($json), 'Shipment_plates: At least one element failed schema validation');
-		$this->assertTrue($this->validateShipmentMessageJsonAgainstSchema($json), 'Shipment_plates: All elements validated but the whole message failed schema validation');
-	}
-	/**
-	 * @throws \Exception
-	 */
-	public function testExamplePinShipmentJsonValidatesAgainstSchema() {
-		$examplesDir=realpath(__DIR__.'/../../../../../docs/examples/');
-		$this->assertDirectoryExists($examplesDir);
-		$path=rtrim($examplesDir,'/').'/Shipment_singlePositionPins.json';
-		self::assertFileExists($path);
-		$json=@file_get_contents($path);
-		self::assertNotFalse($json, "Could not open $path");
-		$this->assertTrue($this->validateIndividualJsonElementsAgainstSchema($json), 'Shipment_singlePositionPins: At least one element failed schema validation');
-		$this->assertTrue($this->validateShipmentMessageJsonAgainstSchema($json), 'Shipment_singlePositionPins: All elements validated but the whole message failed schema validation');
-	}
-	/**
-	 * @throws \Exception
-	 */
-	public function testExampleMultiPositionPinShipmentJsonValidatesAgainstSchema() {
-		$examplesDir=realpath(__DIR__.'/../../../../../docs/examples/');
-		$this->assertDirectoryExists($examplesDir);
-		$path=rtrim($examplesDir,'/').'/Shipment_multiPositionPins.json';
-		self::assertFileExists($path);
-		$json=@file_get_contents($path);
-		self::assertNotFalse($json, "Could not open $path");
-		$this->assertTrue($this->validateIndividualJsonElementsAgainstSchema($json), 'Shipment_multiPositionPins: At least one element failed schema validation');
-		$this->assertTrue($this->validateShipmentMessageJsonAgainstSchema($json), 'Shipment_multiPositionPins: All elements validated but the whole message failed schema validation');
-	}
-
-	/**
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function checkEncoderVersionMatchesLocalSchemaVersion(): void {
 		$encoderVersion = $this->encoder->getVersion();
 		$objectSchema = @file_get_contents(static::$fileWithSchemaVersion);
 		if (!$objectSchema) {
-			throw new \Exception('Could not open ShipmentMessage schema to determine version number');
+			throw new Exception('Could not open ShipmentMessage schema to determine version number');
 		}
 		$objectSchema = json_decode($objectSchema, true);
 		if (!$objectSchema) {
-			throw new \Exception('Could not parse ShipmentMessage schema');
+			throw new Exception('Could not parse ShipmentMessage schema');
 		}
 		$schemaVersion = $objectSchema;
 		foreach(static::$pathToVersion as $level) {
@@ -956,353 +914,11 @@ class v0_6_11ShipmentEncoderTest extends TestCase {
 	/**
 	 * @param $json
 	 * @return bool
+	 * @throws Exception
 	 */
 	public function validateShipmentMessageJsonAgainstSchema($json): bool {
-		return $this->validateJsonAgainstSchema($json, 'messages/ShipmentMessage.json');
-	}
-
-
-
-	/**
-	 * @throws \Exception
-	 */
-	public function validateIndividualJsonElementsAgainstSchema($json): bool {
 		$this->checkEncoderVersionMatchesLocalSchemaVersion();
-		$schemaDir=str_replace('/',DIRECTORY_SEPARATOR,__DIR__.'/../../../../schemas/');
-		$array=json_decode($json, true);
-		$isValid=true;
-		foreach(array_keys($array) as $objectType){
-			if('version'===$objectType){ continue; }
-			if(!isset($array[$objectType])){
-				throw new \Exception("JSON does not contain $objectType, or it is empty");
-			}
-			if(file_exists($schemaDir.'data'.DIRECTORY_SEPARATOR.$objectType.'.json')){
-				$schemaFile='data'.DIRECTORY_SEPARATOR.$objectType.'.json';
-			} else if(file_exists($schemaDir.'objects'.DIRECTORY_SEPARATOR.$objectType.'.json')){
-				$schemaFile='objects'.DIRECTORY_SEPARATOR.$objectType.'.json';
-			} else {
-				throw new \Exception("Cannot find $objectType.json in schemas/data or schemas/objects");
-			}
-			$objects=$array[$objectType];
-			$keys=array_keys($objects);
-			foreach($keys as $key){
-				$obj=$objects[$key];
-				$json=json_encode($obj, JSON_PRETTY_PRINT);
-				if(!$this->validateJsonAgainstSchema($json, $schemaFile)){
-					echo "$objectType/$key did not validate against schema\n";
-					$isValid=false;
-				}
-			}
-		}
-		return $isValid;
-	}
-
-	/**
-	 * @param string $testJsonPath The path of the test JSON from  mxlims/test/json/, e.g., "valid/validJson.json"
-	 * @param string $schemaPath The path of the schema file to validate against, from mxlims/schemas, e.g., "datatypes/ImageRegion.json"
-	 * @return bool
-	 * @throws \Exception
-	 */
-	function validateTestJsonFileAgainstSchema(string $testJsonPath, string $schemaPath): bool {
-		$testJsonPath=rtrim(str_replace('\\','/',realpath(__DIR__.'/../../../../test/json/')),'/').'/'.ltrim($testJsonPath, '/');
-		if(!@file_exists($testJsonPath)){ throw new \Exception("$testJsonPath does not exist"); }
-		$jsonString=@file_get_contents($testJsonPath);
-		if(!$jsonString){ throw new \Exception("Could not open test JSON for reading: $testJsonPath"); }
-		return $this->validateJsonAgainstSchema($jsonString, $schemaPath);
-	}
-
-	function validateJsonAgainstSchema(string $jsonString, string $schemaPath): bool {
-		$rootSchemaPath=rtrim(str_replace('\\','/',realpath(__DIR__.'/../../../../schemas/')),'/').'/'.$schemaPath;
-		return $this->opis_validateJsonAgainstSchema($jsonString, $rootSchemaPath);
-	}
-
-	/**
-	 * Validate JSON string against a root JSON Schema (Draft-07) with all relative $refs.
-	 * DO NOT ATTEMPT TO "OPTIMISE" THIS GHASTLY MESS. Opis' API is "special". It even made ChatGPT cry.
-	 * Every line here is necessary, and you WILL break it if you try to make it rational and sane. HERE BE DRAGONS.
-	 *
-	 * @param string $jsonString JSON string to validate
-	 * @param string $rootSchemaPath Path to root schema on disk
-	 * @return bool True if valid, false otherwise
-	 * @throws \RuntimeException on invalid JSON or missing schema
-	 */
-	function opis_validateJsonAgainstSchema(string $jsonString, string $rootSchemaPath): bool {
-		// Normalize root schema path
-		$rootSchemaPath = realpath($rootSchemaPath);
-		if (!$rootSchemaPath) {
-			throw new \RuntimeException("Root schema file not found: $rootSchemaPath");
-		}
-		$rootSchemaPath = str_replace('\\','/',$rootSchemaPath);
-
-		// Load JSON input
-		$jsonData = json_decode($jsonString);
-		if (!$jsonData) {
-			throw new \RuntimeException('Invalid JSON input');
-		}
-
-		// Loader and validator
-		$loader = new SchemaLoader();
-		$validator = new Validator($loader);
-
-		// Internal helper: load a schema file and all relative $refs
-		$loadSchemaFile = function(string $path) use ($loader, &$loadSchemaFile) {
-			$path = realpath($path);
-			if (!$path) {
-				throw new \RuntimeException("Schema file not found: $path");
-			}
-			$path = str_replace('\\','/',$path);
-
-			$schema = json_decode(file_get_contents($path));
-			if (!$schema) {
-				throw new \RuntimeException("Invalid JSON schema at $path");
-			}
-
-			// Base URI for this schema
-			$uri = new Uri([
-				'scheme' => 'file',
-				'host'   => null,
-				'path'   => $path
-			]);
-
-			// Load schema into loader
-			$loader->loadObjectSchema($schema, $uri);
-
-			// Preload all relative $refs recursively
-			$dir = dirname($path);
-			$queue = [$schema];
-			while ($q = array_shift($queue)) {
-				if (is_object($q) || is_array($q)) {
-					foreach ($q as $k => $v) {
-						if ($k === '$ref' && is_string($v) && !preg_match('#^[a-z]+://#i', $v)) {
-							$refPath = $dir.'/'.$v;
-							if (file_exists($refPath)) {
-								$loadSchemaFile($refPath);
-							}
-						} elseif (is_object($v) || is_array($v)) {
-							$queue[] = $v;
-						}
-					}
-				}
-			}
-		};
-
-		// Load root schema + all relative refs
-		$loadSchemaFile($rootSchemaPath);
-
-		// Get the root schema object for validation
-		$rootSchemaJson = json_decode(file_get_contents($rootSchemaPath));
-		$rootUri = new Uri([
-			'scheme'=>'file',
-			'host'=>null,
-			'path'=>$rootSchemaPath
-		]);
-		$rootSchema = $loader->loadObjectSchema($rootSchemaJson, $rootUri);
-
-		// Validate
-		$result = $validator->validate($jsonData, $rootSchema);
-
-		if ($result->isValid()) {
-			return true;
-		}
-
-		$printLeafErrors = function (ValidationError $error) use (&$printLeafErrors) {
-
-			if (count($error->subErrors()) === 0) {
-
-				// Build message with placeholders replaced
-				$message = $error->message();
-				foreach ($error->args() as $key => $value) {
-					if (is_array($value)) {
-						$value = implode(', ', $value);
-					} elseif (is_object($value)) {
-						$value = json_encode($value);
-					}
-					$message = str_replace('{' . $key . '}', (string)$value, $message);
-				}
-
-				// Build JSON Pointer from path segments (Opis 2.6.0)
-				$path = $error->data()->path();
-				if (empty($path)) {
-					$pointer = '<root>';
-				} else {
-					$escaped = array_map(
-						fn($p) => str_replace(['~','/'], ['~0','~1'], (string)$p),
-						$path
-					);
-					$pointer = '/' . implode('/', $escaped);
-				}
-
-				echo /*$pointer ': '.*/ $message . PHP_EOL;
-				return;
-			}
-
-			foreach ($error->subErrors() as $sub) {
-				$printLeafErrors($sub);
-			}
-		};
-
-		$printLeafErrors($result->error());
-		return false;
-	}
-
-	/**
-	 * @throws \Exception
-	 * @TODO Move to test class dedicated to verifying that test snippets are valid/invalid as appropriate
-	 */
-	public function testDropImageInvalidWithoutUrlAndData() {
-		$schemaPath = 'datatypes/DropImage.json';
-		$jsonPath= 'datatypes/invalid/DropImage_NoUrlNoData.json';
-		$this->assertFalse($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImage should not be valid with neither url nor data');
-	}
-
-	/**
-	 * @throws \Exception
-	 * @TODO Move to test class dedicated to verifying that test snippets are valid/invalid as appropriate
-	 */
-	public function testDropImageValidWithUrlWithoutData() {
-		$schemaPath = 'datatypes/DropImage.json';
-		$jsonPath= 'datatypes/valid/DropImage_HasUrlNoData.json';
-		$this->assertTrue($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImage should be valid with url but not data');
-	}
-
-	/**
-	 * @throws \Exception
-	 * @TODO Move to test class dedicated to verifying that test snippets are valid/invalid as appropriate
-	 */
-	public function testDropImageValidWithoutUrlWithData() {
-		$schemaPath = 'datatypes/DropImage.json';
-		$jsonPath= 'datatypes/valid/DropImage_NoUrlHasData.json';
-		$this->assertTrue($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImage should be valid with data but not url');
-	}
-
-	/**
-	 * @throws \Exception
-	 * @TODO Move to test class dedicated to verifying that test snippets are valid/invalid as appropriate
-	 */
-	public function testDropImageInvalidWithUrlAndData() {
-		$schemaPath = 'datatypes/DropImage.json';
-		$jsonPath= 'datatypes/invalid/DropImage_HasUrlHasData.json';
-		$this->assertFalse($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImage should not be valid with both url and data');
-	}
-
-	/**
-	 * @throws \Exception
-	 * @TODO Move to test class dedicated to verifying that test snippets are valid/invalid as appropriate
-	 */
-	public function testImageRegionDropImageInvalidWithoutUrlAndData() {
-		$schemaPath = 'datatypes/ImageRegion.json';
-		$jsonPath= 'datatypes/invalid/ImageRegion_DropImageNoUrlNoData.json';
-		$this->assertFalse($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImage in ImageRegion should not be valid with neither url nor data');
-	}
-
-	/**
-	 * @throws \Exception
-	 * @TODO Move to test class dedicated to verifying that test snippets are valid/invalid as appropriate
-	 */
-	public function testImageRegionDropImageValidWithUrlWithoutData() {
-		$schemaPath = 'datatypes/ImageRegion.json';
-		$jsonPath= 'datatypes/valid/ImageRegion_DropImageHasUrlNoData.json';
-		$this->assertTrue($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImage in ImageRegion should be valid with url and no data');
-	}
-
-	/**
-	 * @throws \Exception
-	 * @TODO Move to test class dedicated to verifying that test snippets are valid/invalid as appropriate
-	 */
-	public function testImageRegionDropImageValidWithoutUrlWithData() {
-		$schemaPath = 'datatypes/ImageRegion.json';
-		$jsonPath= 'datatypes/valid/ImageRegion_DropImageNoUrlHasData.json';
-		$this->assertTrue($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImage in ImageRegion should be valid with data and no url');
-	}
-
-	/**
-	 * @throws \Exception
-	 * @TODO Move to test class dedicated to verifying that test snippets are valid/invalid as appropriate
-	 */
-	public function testImageRegionDropImageInvalidWithUrlAndData() {
-		$schemaPath = 'datatypes/ImageRegion.json';
-		$jsonPath= 'datatypes/invalid/ImageRegion_DropImageHasUrlHasData.json';
-		$this->assertFalse($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImage in ImageRegion should not be valid with both url and data');
-	}
-
-	/**
-	 * @throws \Exception
-	 * @TODO Move to test class dedicated to verifying that test snippets are valid/invalid as appropriate
-	 */
-	public function testDropImageDataInvalidWithUrlAndData() {
-		$schemaPath = 'datatypes/DropImageData.json';
-		$jsonPath= 'datatypes/invalid/DropImageData_HasUrlHasData.json';
-		$this->assertFalse($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImageData should not be valid with url and data');
-	}
-
-	/**
-	 * @throws \Exception
-	 * @TODO Move to test class dedicated to verifying that test snippets are valid/invalid as appropriate
-	 */
-	public function testDropImageDataInvalidWithUrlWithoutData() {
-		$schemaPath = 'datatypes/DropImageData.json';
-		$jsonPath= 'datatypes/invalid/DropImageData_HasUrlNoData.json';
-		$this->assertFalse($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImageData should not be valid with url and no data');
-	}
-
-	/**
-	 * @throws \Exception
-	 * @TODO Move to test class dedicated to verifying that test snippets are valid/invalid as appropriate
-	 */
-	public function testDropImageDataInvalidWithoutUrlAndData() {
-		$schemaPath = 'datatypes/DropImageData.json';
-		$jsonPath= 'datatypes/invalid/DropImageData_NoUrlNoData.json';
-		$this->assertFalse($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImageData should not be valid with no url and no data');
-	}
-
-	/**
-	 * @throws \Exception
-	 * @TODO Move to test class dedicated to verifying that test snippets are valid/invalid as appropriate
-	 */
-	public function testDropImageUrlInvalidWithUrlAndData() {
-		$schemaPath = 'datatypes/DropImageUrl.json';
-		$jsonPath= 'datatypes/invalid/DropImageUrl_HasUrlHasData.json';
-		$this->assertFalse($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImageUrl should not be valid with url and data');
-	}
-
-	/**
-	 * @throws \Exception
-	 * @TODO Move to test class dedicated to verifying that test snippets are valid/invalid as appropriate
-	 */
-	public function testDropImageUrlInvalidWithUrlWithoutData() {
-		$schemaPath = 'datatypes/DropImageUrl.json';
-		$jsonPath= 'datatypes/invalid/DropImageUrl_NoUrlHasData.json';
-		$this->assertFalse($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImageUrl should not be valid with data and no url');
-	}
-
-	/**
-	 * @throws \Exception
-	 * @TODO Move to test class dedicated to verifying that test snippets are valid/invalid as appropriate
-	 */
-	public function testDropImageUrlInvalidWithoutUrlAndData() {
-		$schemaPath = 'datatypes/DropImageUrl.json';
-		$jsonPath= 'datatypes/invalid/DropImageUrl_NoUrlNoData.json';
-		$this->assertFalse($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImageUrl should not be valid with no url and no data');
-	}
-
-	/**
-	 * @throws \Exception
-	 * @TODO Move to test class dedicated to verifying that test snippets are valid/invalid as appropriate
-	 */
-	public function testDropImageUrlValidWithUrlWithoutData() {
-		$schemaPath = 'datatypes/DropImageUrl.json';
-		$jsonPath= 'datatypes/valid/DropImageUrl_HasUrlNoData.json';
-		$this->assertTrue($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImageUrl should not be invalid with url and no data');
-	}
-
-	/**
-	 * @throws \Exception
-	 * @TODO Move to test class dedicated to verifying that test snippets are valid/invalid as appropriate
-	 */
-	public function testDropImageDataValidWithDataWithoutUrl() {
-		$schemaPath = 'datatypes/DropImageData.json';
-		$jsonPath= 'datatypes/valid/DropImageData_NoUrlHasData.json';
-		$this->assertTrue($this->validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), 'DropImageData should not be invalid with data and no url');
+		return Utils::validateJsonAgainstSchema($json, 'messages/ShipmentMessage.json');
 	}
 
 
