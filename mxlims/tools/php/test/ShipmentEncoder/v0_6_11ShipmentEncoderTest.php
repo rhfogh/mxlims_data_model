@@ -373,7 +373,7 @@ class v0_6_11ShipmentEncoderTest extends TestCase {
 		$ret = $this->encoder->addSampleToMultiPositionPin($pin['index'], 1, $macromolecule['index'], 'TEST_9098A01d1c1');
 		$this->assertArrayHasKey('MacromoleculeSample', $ret);
 		$this->assertEquals('TEST_9098A01d1c1', $ret['MacromoleculeSample']['name']);
-		$this->assertEquals('#/Macromolecule/Macromolecule' . $macromolecule['index'], $ret['MacromoleculeSample']['macromoleculeRef']['$ref']);
+		$this->assertEquals('#/Macromolecule/Macromolecule' . $macromolecule['index'], $ret['MacromoleculeSample']['parentSampleRef']['$ref']);
 		$this->assertArrayHasKey('PinPosition', $ret);
 		$this->assertEquals(1, $ret['PinPosition']['positionInPin']);
 		$this->assertEquals('#/MacromoleculeSample/MacromoleculeSample' . $ret['MacromoleculeSample']['index'], $ret['PinPosition']['sampleRef']['$ref']);
@@ -497,7 +497,7 @@ class v0_6_11ShipmentEncoderTest extends TestCase {
 		$ret = $this->encoder->addDropToPlateWell($well['index'], 1, 1);
 		$this->assertArrayHasKey('MacromoleculeSample', $ret);
 		$this->assertArrayHasKey('WellDrop', $ret);
-		$this->assertEquals('#/Macromolecule/Macromolecule' . $macromolecule['index'], $ret['MacromoleculeSample']['macromoleculeRef']['$ref']);
+		$this->assertEquals('#/Macromolecule/Macromolecule' . $macromolecule['index'], $ret['MacromoleculeSample']['parentSampleRef']['$ref']);
 		$this->assertEquals('BARCODE1234_D07_1', $ret['WellDrop']['name']);
 		$this->assertEquals('#/PlateWell/PlateWell' . $well['index'], $ret['WellDrop']['containerRef']['$ref']);
 		$this->assertEquals('#/MacromoleculeSample/MacromoleculeSample' . $ret['MacromoleculeSample']['index'], $ret['WellDrop']['sampleRef']['$ref']);
@@ -516,7 +516,7 @@ class v0_6_11ShipmentEncoderTest extends TestCase {
 		$this->assertArrayHasKey('MacromoleculeSample', $ret);
 		$this->assertArrayHasKey('index', $ret['MacromoleculeSample']);
 		$this->assertArrayHasKey('index', $ret['WellDrop']);
-		$this->assertEquals('#/Macromolecule/Macromolecule' . $macromolecule['index'], $ret['MacromoleculeSample']['macromoleculeRef']['$ref']);
+		$this->assertEquals('#/Macromolecule/Macromolecule' . $macromolecule['index'], $ret['MacromoleculeSample']['parentSampleRef']['$ref']);
 		$this->assertEquals('BARCODE1234_D07_2', $ret['WellDrop']['name']);
 		$this->assertEquals('#/PlateWell/PlateWell' . $well['index'], $ret['WellDrop']['containerRef']['$ref']);
 		$this->assertEquals('#/MacromoleculeSample/MacromoleculeSample' . $ret['MacromoleculeSample']['index'], $ret['WellDrop']['sampleRef']['$ref']);
