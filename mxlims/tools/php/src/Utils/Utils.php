@@ -10,6 +10,7 @@ use Opis\JsonSchema\Errors\ValidationError;
 use Opis\JsonSchema\SchemaLoader;
 use Opis\JsonSchema\Validator;
 use Opis\Uri\Uri;
+use RuntimeException;
 
 class Utils {
 
@@ -21,20 +22,20 @@ class Utils {
 	 * @param string $jsonString JSON string to validate
 	 * @param string $rootSchemaPath Path to root schema on disk
 	 * @return bool True if valid, false otherwise
-	 * @throws \RuntimeException on invalid JSON or missing schema
+	 * @throws RuntimeException on invalid JSON or missing schema
 	 */
 	public static function opis_validateJsonAgainstSchema(string $jsonString, string $rootSchemaPath): bool {
 		// Normalize root schema path
 		$rootSchemaPath = realpath($rootSchemaPath);
 		if (!$rootSchemaPath) {
-			throw new \RuntimeException("Root schema file not found: $rootSchemaPath");
+			throw new RuntimeException("Root schema file not found: $rootSchemaPath");
 		}
 		$rootSchemaPath = str_replace('\\', '/', $rootSchemaPath);
 
 		// Load JSON input
 		$jsonData = json_decode($jsonString);
 		if (!$jsonData) {
-			throw new \RuntimeException('Invalid JSON input');
+			throw new RuntimeException('Invalid JSON input');
 		}
 
 		// Loader and validator
@@ -45,13 +46,13 @@ class Utils {
 		$loadSchemaFile = function (string $path) use ($loader, &$loadSchemaFile) {
 			$path = realpath($path);
 			if (!$path) {
-				throw new \RuntimeException("Schema file not found: $path");
+				throw new RuntimeException("Schema file not found: $path");
 			}
 			$path = str_replace('\\', '/', $path);
 
 			$schema = json_decode(file_get_contents($path));
 			if (!$schema) {
-				throw new \RuntimeException("Invalid JSON schema at $path");
+				throw new RuntimeException("Invalid JSON schema at $path");
 			}
 
 			// Base URI for this schema
@@ -118,6 +119,7 @@ class Utils {
 				}
 
 				// Build JSON Pointer from path segments (Opis 2.6.0)
+				/* Doesn't work...
 				$path = $error->data()->path();
 				if (empty($path)) {
 					$pointer = '<root>';
@@ -128,7 +130,7 @@ class Utils {
 					);
 					$pointer = '/' . implode('/', $escaped);
 				}
-
+				*/
 				echo /*$pointer ': '.*/ $message . PHP_EOL;
 				return;
 			}
@@ -151,16 +153,16 @@ class Utils {
 	 * @param string $testJsonPath The path of the test JSON from  mxlims/test/json/, e.g., "valid/validJson.json"
 	 * @param string $schemaPath The path of the schema file to validate against, from mxlims/schemas, e.g., "datatypes/ImageRegion.json"
 	 * @return bool
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public static function validateTestJsonFileAgainstSchema(string $testJsonPath, string $schemaPath): bool {
 		$testJsonPath = rtrim(str_replace('\\', '/', realpath(__DIR__ . '/../../../../test/json/')), '/') . '/' . ltrim($testJsonPath, '/');
 		if (!@file_exists($testJsonPath)) {
-			throw new \Exception("$testJsonPath does not exist");
+			throw new Exception("$testJsonPath does not exist");
 		}
 		$jsonString = @file_get_contents($testJsonPath);
 		if (!$jsonString) {
-			throw new \Exception("Could not open test JSON for reading: $testJsonPath");
+			throw new Exception("Could not open test JSON for reading: $testJsonPath");
 		}
 		return Utils::validateJsonAgainstSchema($jsonString, $schemaPath);
 	}

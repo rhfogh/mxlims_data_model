@@ -69,6 +69,7 @@ class v0_6_11ShipmentEncoder implements ShipmentEncoderInterface {
 
 
 	/**
+	 * @throws Exception
 	 * @see ShipmentEncoderInterface::getVersion()
 	 */
 	public function getVersion(): string {

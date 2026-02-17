@@ -7,12 +7,14 @@ require_once __DIR__ . '/../../src/Utils/Utils.php';
 use Exception;
 use PHPUnit\Framework\TestCase;
 use mxlims\tools\php\src\Utils\Utils;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
 
 class TestJsonTest extends TestCase {
 
 	public static function getTestJsonFiles(): array {
 		$path=realpath(__DIR__).'/../../../../test/json';
-		$rii = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path));
+		$rii = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path));
 		$files = array();
 		foreach ($rii as $file){
 			if (!$file->isDir()) {
