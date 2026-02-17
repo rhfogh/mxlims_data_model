@@ -1,6 +1,8 @@
 <?php
 namespace mxlims\tools\php\src\ShipmentEncoder;
 
+use Exception;
+
 interface ShipmentEncoderInterface {
 
 	/**
@@ -20,7 +22,7 @@ interface ShipmentEncoderInterface {
 	/**
 	 * Gets an object in the shipment message by its JSON path.
 	 * @param string|array $path. Either a path in the form "#/ObjectType/ObjectType123", or an array with a $ref property whose value is a JSON path in that form.
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function getByJsonPath(string|array $path): ?array;
 
@@ -30,7 +32,7 @@ interface ShipmentEncoderInterface {
 	 * @param int|null $sessionNumber The number of the session within the proposal, or null for unattended/mail-in collection.
 	 * @param string|null $uuid The UUID for the shipment. If not provided, this will be generated automatically.
 	 * @return array The shipment.
-	 * @throws \Exception if $proposalName isn't alphanumeric.
+	 * @throws Exception if $proposalName isn't alphanumeric.
 	 */
 	public function createShipment(string $proposalCode, int $sessionNumber=null, string $uuid=null): array;
 
@@ -40,7 +42,7 @@ interface ShipmentEncoderInterface {
 	 * @param string|null $emailAddress The lab contact's email address.
 	 * @param string|null $phoneNumber The lab contact's phone number.
 	 * @return array The lab contact.
-	 * @throws \Exception if name is empty, or if both email address and phone number are empty.
+	 * @throws Exception if name is empty, or if both email address and phone number are empty.
 	 */
 	public function setLabContactOutbound(string $name, string $emailAddress=null, string $phoneNumber=null): array;
 
@@ -50,7 +52,7 @@ interface ShipmentEncoderInterface {
 	 * @param string|null $emailAddress The lab contact's email address.
 	 * @param string|null $phoneNumber The lab contact's phone number.
 	 * @return array The lab contact.
-	 * @throws \Exception if name is empty, or if both email address and phone number are empty.
+	 * @throws Exception if name is empty, or if both email address and phone number are empty.
 	 */
 	public function setLabContactReturn(string $name, string $emailAddress=null, string $phoneNumber=null): array;
 
@@ -58,7 +60,7 @@ interface ShipmentEncoderInterface {
 	 * Adds a macromolecule to the shipment.
 	 * @param string $acronym The protein acronym (which identifies the macromolecule in the synchrotron's safety systems).
 	 * @param string|null $uuid A pre-existing UUID for this macromolecule. If not supplied, one will be generated.
-	 * @throws \Exception if the acronym is empty.
+	 * @throws Exception if the acronym is empty.
 	 */
 	public function addMacromoleculeToShipment(string $acronym, ?string $uuid=null): array;
 
@@ -67,7 +69,7 @@ interface ShipmentEncoderInterface {
 	 * @param string|null $barcode The dewar barcode.
 	 * @param string|null $uuid An existing UUID for the dewar. If not supplied, one will be generated.
 	 * @return array
-	 * @throws \Exception if there are Plates in the Shipment
+	 * @throws Exception if there are Plates in the Shipment
 	 */
 	public function addDewarToShipment(string $barcode=null, ?string $uuid=null): array;
 
@@ -78,7 +80,7 @@ interface ShipmentEncoderInterface {
 	 * @param int $numPositions The number of pin positions in the puck.
 	 * @param string|null $uuid An existing UUID for the puck. If not supplied, one will be generated.
 	 * @return array The puck.
-	 * @throws \Exception if the dewar cannot be found, or if $numPositions is not positive.
+	 * @throws Exception if the dewar cannot be found, or if $numPositions is not positive.
 	 */
 	public function addPuckToDewar(int $dewarIndex, string $barcode, int $numPositions, ?string $uuid=null): array;
 
@@ -92,10 +94,10 @@ interface ShipmentEncoderInterface {
 	 * @param string|null $pinUuid An existing UUID for the pin. If not specified, one will be generated.
 	 * @param string|null $sampleUuid An existing UUID for the sample. If not specified, one will be generated.
 	 * @return array An array containing the sample and the pin.
-	 * @throws \Exception if the specified Puck or Macromolecule do not exist.
-	 * @throws \Exception if there are already multi-position pins in the shipment.
-	 * @throws \Exception if the puck position is out of range.
-	 * @throws \Exception if the position is already occupied.
+	 * @throws Exception if the specified Puck or Macromolecule do not exist.
+	 * @throws Exception if there are already multi-position pins in the shipment.
+	 * @throws Exception if the puck position is out of range.
+	 * @throws Exception if the position is already occupied.
 	 */
 	public function addSinglePinSampleToPuck(int $puckIndex, int $puckPosition, int $macromoleculeIndex, string $sampleName, ?string $pinBarcode=null, ?string $pinUuid=null, ?string $sampleUuid=null): array;
 
@@ -106,10 +108,10 @@ interface ShipmentEncoderInterface {
 	 * @param string|null $barcode The pin barcode.
 	 * @param string|null $uuid A previously-set UUID for the pin; if not supplied, one will be generated.
 	 * @return array The pin.
-	 * @throws \Exception if shipment already contains a multi-position pin.
-	 * @throws \Exception if puck does not exist in shipment.
-	 * @throws \Exception if number of pin positions is not a positive integer.
-	 * @throws \Exception if position in puck is out of range, or already filled.
+	 * @throws Exception if shipment already contains a multi-position pin.
+	 * @throws Exception if puck does not exist in shipment.
+	 * @throws Exception if number of pin positions is not a positive integer.
+	 * @throws Exception if position in puck is out of range, or already filled.
 	 */
 	public function addSinglePositionPinToPuck(int $puckIndex, int $puckPosition, ?string $barcode=null, ?string $uuid=null): array;
 
@@ -121,10 +123,10 @@ interface ShipmentEncoderInterface {
 	 * @param string|null $barcode The pin barcode.
 	 * @param string|null $uuid A previously-set UUID for the pin; if not supplied, one will be generated.
 	 * @return array The pin.
-	 * @throws \Exception if shipment already contains a single-position pin.
-	 * @throws \Exception if puck does not exist in shipment.
-	 * @throws \Exception if number of pin positions is not a positive integer.
-	 * @throws \Exception if position in puck is out of range, or already filled.
+	 * @throws Exception if shipment already contains a single-position pin.
+	 * @throws Exception if puck does not exist in shipment.
+	 * @throws Exception if number of pin positions is not a positive integer.
+	 * @throws Exception if position in puck is out of range, or already filled.
 	 */
 	public function addMultiPositionPinToPuck(int $puckIndex, int $puckPosition, int $numPositions, ?string $barcode=null, ?string $uuid=null): array;
 
@@ -136,9 +138,9 @@ interface ShipmentEncoderInterface {
 	 * @param string $sampleName The name of the sample.
 	 * @param string|null $sampleUuid An existing UUID for the sample. If not supplied, one will be generated.
 	 * @return array An array containing the PinPosition and MacromoleculeSample.
-	 * @throws \Exception if pin or macromolecule does not exist.
-	 * @throws \Exception if pin position is already filled.
-	 * @throws \Exception if sample name already exists.
+	 * @throws Exception if pin or macromolecule does not exist.
+	 * @throws Exception if pin position is already filled.
+	 * @throws Exception if sample name already exists.
 	 */
 	public function addSampleToMultiPositionPin(int $pinIndex, int $pinPosition, int $macromoleculeIndex, string $sampleName, string $sampleUuid=null): array;
 
@@ -151,9 +153,9 @@ interface ShipmentEncoderInterface {
 	 * @param string|null $dropMapping A string describing the sender's mapping of drop numbers to well sub-positions. By default, this places drops above the reservoir in increasing drop number order from left to right.
 	 * @param string|null $uuid An existing UUID for the plate. If not provided, one will be generated.
 	 * @return array The plate.
-	 * @throws \Exception if barcode is not provided.
-	 * @throws \Exception if there is a Dewar in the shipment.
-	 * @throws \Exception if $rows, $columns or $subPositions are not positive integers.
+	 * @throws Exception if barcode is not provided.
+	 * @throws Exception if there is a Dewar in the shipment.
+	 * @throws Exception if $rows, $columns or $subPositions are not positive integers.
 	 */
 	public function addPlateToShipment(string $barcode, int $rows, int $columns, int $subPositions, ?string $dropMapping=null, ?string $uuid = null): array;
 
@@ -163,9 +165,9 @@ interface ShipmentEncoderInterface {
 	 * @param int $columnNumber The column number of the well.
 	 * @param string|null $uuid An existing UUID for the well; if not provided, one will be generated.
 	 * @return array The well.
-	 * @throws \Exception if the plate does not exist.
-	 * @throws \Exception if $rowNumber or $columnNumber are out of range for the plate type.
-	 * @throws \Exception if a well at this plate position already exists.
+	 * @throws Exception if the plate does not exist.
+	 * @throws Exception if $rowNumber or $columnNumber are out of range for the plate type.
+	 * @throws Exception if a well at this plate position already exists.
 	 */
 	public function addWellToPlate(int $plateIndex, int $rowNumber, int $columnNumber, ?string $uuid=null): array;
 
@@ -177,11 +179,11 @@ interface ShipmentEncoderInterface {
 	 * @param string|null $name The name of the drop. Default is, e.g., "BARCODE_A01_3" for a drop in sub-position 3 of the top left well of plate with barcode "BARCODE".
 	 * @param string|null $uuid An existing UUID for the well. If not supplied, one will be generated.
 	 * @return array An array containing WellDrop and MacromoleculeSample.
-	 * @throws \Exception if there is no well with the specified index.
-	 * @throws \Exception if there is no macromolecule with the specified index.
-	 * @throws \Exception if the drop number is out of range for the plate type.
-	 * @throws \Exception if the well drop already exists.
-	 * @throws \Exception if the name already exists.
+	 * @throws Exception if there is no well with the specified index.
+	 * @throws Exception if there is no macromolecule with the specified index.
+	 * @throws Exception if the drop number is out of range for the plate type.
+	 * @throws Exception if the well drop already exists.
+	 * @throws Exception if the name already exists.
 	 */
 	public function addDropToPlateWell(int $wellIndex, int $dropNumber, int $macromoleculeIndex, ?string $name=null, ?string $uuid=null): array;
 
@@ -191,7 +193,7 @@ interface ShipmentEncoderInterface {
 	 * @param int $rowNumber
 	 * @param int $columnNumber
 	 * @return array|null
-	 * @throws \Exception if no plate with index $plateIndex is found.
+	 * @throws Exception if no plate with index $plateIndex is found.
 	 */
 	public function getPlateWellByPosition(int $plateIndex, int $rowNumber, int $columnNumber): ?array;
 
@@ -202,7 +204,7 @@ interface ShipmentEncoderInterface {
 	 * @param int $columnNumber
 	 * @param int $dropNumber
 	 * @return array|null
-	 * @throws \Exception if no plate with index $plateIndex is found.
+	 * @throws Exception if no plate with index $plateIndex is found.
 	 */
 	public function getWellDropByPosition(int $plateIndex, int $rowNumber, int $columnNumber, int $dropNumber): ?array;
 
@@ -221,7 +223,7 @@ interface ShipmentEncoderInterface {
 	 * @param string|null $imageUrl
 	 * @param string|null $imageData
 	 * @return array
-	 * @throws \Exception if $x or $y is negative, or if addDropRegion throws an Exception.
+	 * @throws Exception if $x or $y is negative, or if addDropRegion throws an Exception.
 	 */
 	public function addPointDropRegionByPlateDropIndex(int $dropIndex, int $x, int $y, ?string $imageMimeType=null, ?string $imageUrl=null, ?string $imageData=null): array;
 
@@ -231,14 +233,14 @@ interface ShipmentEncoderInterface {
 	 * @param string $name The name of the crystal.
 	 * @param string|null $uuid An existing UUID for the crystal. If not specified, one will be generated.
 	 * @return array The crystal object.
-	 * @throws \Exception if the specified drop region does not exist in the shipment.
+	 * @throws Exception if the specified drop region does not exist in the shipment.
 	 */
 	public function addCrystalToDropRegion(int $dropRegionIndex, string $name, ?string $uuid=null): array;
 
 	/**
 	 * Validates the shipment.
 	 * @return bool true if shipment is valid.
-	 * @throws \Exception if shipment is not valid - see the exception message for details.
+	 * @throws Exception if shipment is not valid - see the exception message for details.
 	 */
 	public function validate(): bool;
 
@@ -246,7 +248,7 @@ interface ShipmentEncoderInterface {
 	 * Returns an MXLIMS-formatted ShipmentMessage.
 	 * @param bool $prettyPrint Whether to format the JSON to make it more human-readable.
 	 * @return string The shipment, encoded as JSON in MXLIMS format.
-	 * @throws \Exception if shipment does not validate.
+	 * @throws Exception if shipment does not validate.
 	 */
 	public function encodeToJson(bool $prettyPrint=false): string;
 }
