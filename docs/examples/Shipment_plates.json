@@ -1,10 +1,10 @@
 {
-  "version": "0.6.10",
+  "version": "0.6.11",
   "Shipment": {
     "Shipment1": {
       "proposalCode": "mx4025",
       "sessionNumber":3,
-      "comment": "Example of an MXLIMS plate shipment",
+      "annotation": "Example of an MXLIMS plate shipment",
       "labContactOutbound": {
         "name": "Bob",
         "emailAddress": "bob@bob.bogus"
@@ -60,7 +60,7 @@
   "MacromoleculeSample": {
     "MacromoleculeSample1": {
       "name": "LMTIM_9098A01d1",
-      "macromoleculeRef": { "$ref":"#/Macromolecule/Macromolecule1" },
+      "parentSampleRef": { "$ref":"#/Macromolecule/Macromolecule1" },
       "mxlimsType": "MacromoleculeSample",
       "uuid": "4a96f23a-dce0-2560-baac-f1b23ec9e022"
     }

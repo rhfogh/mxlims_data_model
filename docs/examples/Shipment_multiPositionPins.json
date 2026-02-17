@@ -1,5 +1,5 @@
 {
-  "version": "0.6.10",
+  "version": "0.6.11",
   "Shipment": {
     "Shipment1": {
       "proposalCode": "mx4025",
@@ -65,10 +65,14 @@
   "MacromoleculeSample": {
     "MacromoleculeSample1": {
       "name": "LMTIM_9098A01d2c3",
-      "macromoleculeRef": { "$ref":"#/Macromolecule/Macromolecule1" },
+      "parentSampleRef": { "$ref":"#/Macromolecule/Macromolecule1" },
       "mxlimsType": "MacromoleculeSample",
       "uuid": "2296f23a-dce0-2560-baac-f1b23ec9e022",
-      "dnaSequence": "CGT CAT GCA TCA TCA GCT AGC TAG CAT CAT CGA TCA CTG ACG TAC TAC GTC AGT CGA TGC TGA CAA"
+      "components": [
+        {
+          "sequence": "CGT CAT GCA TCA TCA GCT AGC TAG CAT CAT CGA TCA CTG ACG TAC TAC GTC AGT CGA TGC TGA CAA"
+        }
+      ]
     }
   }
 }
