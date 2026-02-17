@@ -289,7 +289,7 @@ class v0_6_11ShipmentEncoder implements ShipmentEncoderInterface {
 		$pin=$this->getBaseObject('Pin', $pinUuid);
 		if(!empty($pinBarcode)){ $pin['barcode']=$pinBarcode; }
 		$sample=$this->getBaseObject('MacromoleculeSample', $sampleUuid);
-		$sample['macromoleculeRef']=['$ref'=>'#/Macromolecule/Macromolecule'.$macromoleculeIndex];
+		$sample['parentSampleRef']=['$ref'=>'#/Macromolecule/Macromolecule'.$macromoleculeIndex];
 		$sample['name']=$sampleName;
 		$this->setObjectToMessage($sample);
 		$pin['positionInPuck']=$puckPosition;
@@ -398,7 +398,7 @@ class v0_6_11ShipmentEncoder implements ShipmentEncoderInterface {
 			}
 		}
 		$sample=$this->getBaseObject('MacromoleculeSample', $sampleUuid);
-		$sample['macromoleculeRef']=['$ref'=>'#/Macromolecule/Macromolecule'.$macromoleculeIndex];
+		$sample['parentSampleRef']=['$ref'=>'#/Macromolecule/Macromolecule'.$macromoleculeIndex];
 		$sample['name']=$sampleName;
 		$this->setObjectToMessage($sample);
 		$position=$this->getBaseObject('PinPosition');
@@ -525,7 +525,7 @@ class v0_6_11ShipmentEncoder implements ShipmentEncoderInterface {
 		}
 		$sample=$this->getBaseObject('MacromoleculeSample', $uuid);
 		$sample['name']=$name;
-		$sample['macromoleculeRef']=['$ref'=>'#/Macromolecule/Macromolecule'.$macromoleculeIndex];
+		$sample['parentSampleRef']=['$ref'=>'#/Macromolecule/Macromolecule'.$macromoleculeIndex];
 		$this->setObjectToMessage($sample);
 		$drop=$this->getBaseObject('WellDrop');
 		$drop['name']=$name;
