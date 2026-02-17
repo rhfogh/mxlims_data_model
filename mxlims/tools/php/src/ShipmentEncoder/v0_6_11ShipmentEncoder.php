@@ -1,6 +1,6 @@
 <?php
 
-namespace mxlims\tools\php\ShipmentEncoder\src;
+namespace mxlims\tools\php\src\ShipmentEncoder;
 
 use Exception;
 
