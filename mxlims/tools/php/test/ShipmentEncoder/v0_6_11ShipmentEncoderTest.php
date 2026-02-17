@@ -1,6 +1,6 @@
 <?php
 
-namespace mxlims\tools\php\ShipmentEncoder\test;
+namespace mxlims\tools\php\test\ShipmentEncoder;
 
 require __DIR__ . '/../../vendor/opis/json-schema-2.6.0/autoload.php';
 require __DIR__ . '/../../vendor/opis/uri-1.1.0/autoload.php';
@@ -29,8 +29,8 @@ class v0_6_11ShipmentEncoderTest extends TestCase {
 		}
 		$version = str_replace('_', '.', $matches[0]);
 		$this->version = $version;
-		include_once __DIR__.'/../src/' . $className . '.php';
-		$fullClassName = 'mxlims\tools\php\ShipmentEncoder\src\\' . $className;
+		include_once __DIR__.'/../../src/ShipmentEncoder/' . $className . '.php';
+		$fullClassName = 'mxlims\tools\php\src\ShipmentEncoder\\' . $className;
 		$this->encoder = new $fullClassName();
 	}
 
