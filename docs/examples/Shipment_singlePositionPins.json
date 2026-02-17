@@ -1,5 +1,5 @@
 {
-  "version": "0.6.10",
+  "version": "0.6.11",
   "Shipment": {
     "Shipment1": {
       "proposalCode": "mx4025",
@@ -33,7 +33,6 @@
   },
   "Pin": {
     "Pin1": {
-      "numberPositions": 1,
       "positionInPuck": 1,
       "containerRef": { "$ref": "#/Puck/Puck1" },
       "sampleRef": { "$ref": "#/MacromoleculeSample/MacromoleculeSample1" },
@@ -51,7 +50,7 @@
   "MacromoleculeSample": {
     "MacromoleculeSample1": {
       "name": "LMTIM_9098A01d1c1",
-      "macromoleculeRef": { "$ref":"#/Macromolecule/Macromolecule1" },
+      "parentSampleRef": { "$ref":"#/Macromolecule/Macromolecule1" },
       "mxlimsType": "MacromoleculeSample",
       "uuid": "0196f23a-dce0-2560-baac-f1b23ec9e022"
     }
