@@ -1,11 +1,18 @@
-**## Changes in version 0.6.10
+## Changes in version 0.6.11
+- Upgraded to JSONschema version 2020-12
+- Upgraded datamodel-code-generator to version 0.54.0, giving newer Python syntax
+- Changed validation code to use jsonschema package
+- Properly implemented XOR-type constraints when only one of two fields can be set
+- Added testing code and found and fixed some b ugs in schgemas and/or example files
+
+## Changes in version 0.6.10
 
 - Removed version field from MxlimsObject and put it in the new BaseMessageData instead
-- Removed namespacedExtensions and changed extentions to be namespaced with domain names as key
+- Removed namespacedExtensions and changed extensions to be namespaced with domain names as key
 - Added ids and urls to MxlimsObject, with domain  names as keys, replacing identifiers
 - removed identifiers property from all schemas
 - Added smiles, selfies, and sequence to SampleComponent
-- Renamed SAmple.mainComponent link to Sample.parentSample
+- Renamed Sample.mainComponent link to Sample.parentSample
 
 ## Changes in version 0.6.9
 
