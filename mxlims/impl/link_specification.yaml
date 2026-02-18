@@ -25,7 +25,7 @@ CollectionSweep:
       basetypename: Job
       cardinality: multiple
       linkname: input_for
-      reverselink: &id046
+      reverselink: &id048
         basetypename: Dataset
         cardinality: multiple
         link_id_name: input_data_ids
@@ -38,36 +38,21 @@ CollectionSweep:
           - CollectionSweep
       typenames:
         - MxProcessing
-    logistical_sample:
+    logistical_sample: &id004
       basetypename: LogisticalSample
       cardinality: single
       link_id_name: logistical_sample_id
       link_ref_name: logisticalSampleRef
       linkname: logistical_sample
       read_only: false
-      reverselink: &id004
+      reverselink: &id021
         basetypename: Dataset
         cardinality: multiple
         linkname: datasets
-        reverselink: &id008
-          basetypename: LogisticalSample
-          cardinality: single
-          link_id_name: logistical_sample_id
-          link_ref_name: logisticalSampleRef
-          linkname: logistical_sample
-          read_only: false
-          reverselink: *id004
-          reversename: datasets
-          typenames:
-            - Crystal
-            - Pin
-            - PinPosition
-            - PlateWell
-            - WellDrop
-            - DropRegion
+        reverselink: *id004
         typenames:
-          - CollectionSweep
           - ReflectionSet
+          - CollectionSweep
       reversename: datasets
       typenames:
         - Crystal
@@ -98,7 +83,7 @@ CollectionSweep:
       basetypename: Job
       cardinality: multiple
       linkname: template_for
-      reverselink: &id072
+      reverselink: &id047
         basetypename: Dataset
         cardinality: multiple
         link_id_name: template_data_ids
@@ -110,8 +95,8 @@ CollectionSweep:
         typenames:
           - CollectionSweep
       typenames:
-        - MxExperiment
         - VolumeScan
+        - MxExperiment
   noExtraProperties: true
 Crystal:
   classname: Crystal
@@ -124,7 +109,7 @@ Crystal:
       link_ref_name: containerRef
       linkname: container
       read_only: false
-      reverselink: &id021
+      reverselink: &id020
         basetypename: LogisticalSample
         cardinality: multiple
         linkname: contents
@@ -140,15 +125,15 @@ Crystal:
       basetypename: Dataset
       cardinality: multiple
       linkname: datasets
-      reverselink: *id008
+      reverselink: *id004
       typenames:
-        - CollectionSweep
         - ReflectionSet
+        - CollectionSweep
     jobs:
       basetypename: Job
       cardinality: multiple
       linkname: jobs
-      reverselink: &id009
+      reverselink: &id008
         basetypename: LogisticalSample
         cardinality: single
         link_id_name: logistical_sample_id
@@ -159,11 +144,11 @@ Crystal:
           basetypename: Job
           cardinality: multiple
           linkname: jobs
-          reverselink: *id009
+          reverselink: *id008
           typenames:
+            - VolumeScan
             - MxExperiment
             - MxProcessing
-            - VolumeScan
         reversename: jobs
         typenames:
           - Crystal
@@ -173,9 +158,9 @@ Crystal:
           - WellDrop
           - DropRegion
       typenames:
+        - VolumeScan
         - MxExperiment
         - MxProcessing
-        - VolumeScan
     sample:
       basetypename: Sample
       cardinality: single
@@ -183,28 +168,28 @@ Crystal:
       link_ref_name: sampleRef
       linkname: sample
       read_only: false
-      reverselink: &id010
+      reverselink: &id009
         basetypename: LogisticalSample
         cardinality: multiple
         linkname: logistical_samples
-        reverselink: &id058
+        reverselink: &id056
           basetypename: Sample
           cardinality: single
           link_id_name: sample_id
           link_ref_name: sampleRef
           linkname: sample
           read_only: false
-          reverselink: *id010
+          reverselink: *id009
           reversename: logistical_samples
           typenames:
             - MacromoleculeSample
         typenames:
-          - Crystal
-          - DropRegion
-          - WellDrop
-          - Pin
           - PinPosition
           - PlateWell
+          - WellDrop
+          - Crystal
+          - DropRegion
+          - Pin
       reversename: logistical_samples
       typenames:
         - MacromoleculeSample
@@ -213,26 +198,26 @@ Dataset:
   classname: Dataset
   corename: Dataset
   links:
-    derived_datasets: &id011
+    derived_datasets: &id010
       basetypename: Dataset
       cardinality: multiple
       linkname: derived_datasets
       read_only: true
-      reverselink: &id012
+      reverselink: &id011
         basetypename: Dataset
         cardinality: single
         link_id_name: derived_from_id
         link_ref_name: derivedFromRef
         linkname: derived_from
         read_only: true
-        reverselink: *id011
+        reverselink: *id010
         reversename: derived_datasets
         typenames:
           - Dataset
       typenames:
         - Dataset
-    derived_from: *id012
-    input_for: &id013
+    derived_from: *id011
+    input_for: &id012
       basetypename: Job
       cardinality: multiple
       linkname: input_for
@@ -243,13 +228,13 @@ Dataset:
         link_ref_name: inputDataRefs
         linkname: input_data
         read_only: false
-        reverselink: *id013
+        reverselink: *id012
         reversename: input_for
         typenames:
           - Dataset
       typenames:
         - Job
-    logistical_sample: &id014
+    logistical_sample: &id013
       basetypename: LogisticalSample
       cardinality: single
       link_id_name: logistical_sample_id
@@ -260,13 +245,13 @@ Dataset:
         basetypename: Dataset
         cardinality: multiple
         linkname: datasets
-        reverselink: *id014
+        reverselink: *id013
         typenames:
           - Dataset
       reversename: datasets
       typenames:
         - LogisticalSample
-    reference_for: &id015
+    reference_for: &id014
       basetypename: Job
       cardinality: multiple
       linkname: reference_for
@@ -277,13 +262,13 @@ Dataset:
         link_ref_name: referenceDataRefs
         linkname: reference_data
         read_only: false
-        reverselink: *id015
+        reverselink: *id014
         reversename: reference_for
         typenames:
           - Dataset
       typenames:
         - Job
-    source: &id016
+    source: &id015
       basetypename: Job
       cardinality: single
       link_id_name: source_id
@@ -295,13 +280,13 @@ Dataset:
         cardinality: multiple
         linkname: results
         read_only: true
-        reverselink: *id016
+        reverselink: *id015
         typenames:
           - Dataset
       reversename: results
       typenames:
         - Job
-    template_for: &id017
+    template_for: &id016
       basetypename: Job
       cardinality: multiple
       linkname: template_for
@@ -312,7 +297,7 @@ Dataset:
         link_ref_name: templateDataRefs
         linkname: template_data
         read_only: false
-        reverselink: *id017
+        reverselink: *id016
         reversename: template_for
         typenames:
           - Dataset
@@ -322,46 +307,36 @@ Dewar:
   classname: Dewar
   corename: LogisticalSample
   links:
-    container:
+    container: &id017
       basetypename: LogisticalSample
       cardinality: single
       link_id_name: container_id
       link_ref_name: containerRef
       linkname: container
       read_only: false
-      reverselink: &id018
+      reverselink: &id058
         basetypename: LogisticalSample
         cardinality: multiple
         linkname: contents
-        reverselink: &id054
-          basetypename: LogisticalSample
-          cardinality: single
-          link_id_name: container_id
-          link_ref_name: containerRef
-          linkname: container
-          read_only: false
-          reverselink: *id018
-          reversename: contents
-          typenames:
-            - Shipment
+        reverselink: *id017
         typenames:
-          - Dewar
           - Plate
+          - Dewar
       reversename: contents
       typenames:
         - Shipment
-    contents: &id019
+    contents: &id018
       basetypename: LogisticalSample
       cardinality: multiple
       linkname: contents
-      reverselink: &id059
+      reverselink: &id062
         basetypename: LogisticalSample
         cardinality: single
         link_id_name: container_id
         link_ref_name: containerRef
         linkname: container
         read_only: false
-        reverselink: *id019
+        reverselink: *id018
         reversename: contents
         typenames:
           - Dewar
@@ -372,7 +347,7 @@ DropRegion:
   classname: DropRegion
   corename: LogisticalSample
   links:
-    container: &id020
+    container: &id019
       basetypename: LogisticalSample
       cardinality: single
       link_id_name: container_id
@@ -383,14 +358,14 @@ DropRegion:
         basetypename: LogisticalSample
         cardinality: multiple
         linkname: contents
-        reverselink: *id020
+        reverselink: *id019
         typenames:
           - DropRegion
       reversename: contents
       typenames:
         - WellDrop
-    contents: *id021
-    datasets: *id004
+    contents: *id020
+    datasets: *id021
     jobs: *id022
     sample:
       basetypename: Sample
@@ -399,7 +374,7 @@ DropRegion:
       link_ref_name: sampleRef
       linkname: sample
       read_only: false
-      reverselink: *id010
+      reverselink: *id009
       reversename: logistical_samples
       typenames:
         - MacromoleculeSample
@@ -435,7 +410,7 @@ Job:
       link_ref_name: sampleRef
       linkname: sample
       read_only: false
-      reverselink: &id065
+      reverselink: &id068
         basetypename: Job
         cardinality: multiple
         linkname: jobs
@@ -496,7 +471,7 @@ LogisticalSample:
       link_ref_name: sampleRef
       linkname: sample
       read_only: false
-      reverselink: &id066
+      reverselink: &id069
         basetypename: LogisticalSample
         cardinality: multiple
         linkname: logistical_samples
@@ -536,7 +511,7 @@ MacromoleculeSample:
       basetypename: Job
       cardinality: multiple
       linkname: jobs
-      reverselink: &id070
+      reverselink: &id051
         basetypename: Sample
         cardinality: single
         link_id_name: sample_id
@@ -548,10 +523,10 @@ MacromoleculeSample:
         typenames:
           - MacromoleculeSample
       typenames:
+        - VolumeScan
         - MxExperiment
         - MxProcessing
-        - VolumeScan
-    logistical_samples: *id010
+    logistical_samples: *id009
     medium: &id038
       basetypename: Sample
       cardinality: single
@@ -592,7 +567,7 @@ MultiPin:
         basetypename: LogisticalSample
         cardinality: multiple
         linkname: contents
-        reverselink: &id052
+        reverselink: &id055
           basetypename: LogisticalSample
           cardinality: single
           link_id_name: container_id
@@ -613,7 +588,7 @@ MultiPin:
       basetypename: LogisticalSample
       cardinality: multiple
       linkname: contents
-      reverselink: &id053
+      reverselink: &id057
         basetypename: LogisticalSample
         cardinality: single
         link_id_name: container_id
@@ -658,7 +633,7 @@ MxExperiment:
         basetypename: Job
         cardinality: multiple
         linkname: reference_for
-        reverselink: &id047
+        reverselink: &id049
           basetypename: Dataset
           cardinality: multiple
           link_id_name: reference_data_ids
@@ -687,53 +662,350 @@ MxExperiment:
       reversename: jobs
       typenames:
         - MacromoleculeSample
-    started_from:
+    started_from: &id045
       basetypename: Job
       cardinality: single
       link_id_name: started_from_id
       link_ref_name: startedFromRef
       linkname: started_from
       read_only: true
-      reverselink: &id045
+      reverselink: &id046
         basetypename: Job
         cardinality: multiple
         linkname: subjobs
         read_only: true
-        reverselink: &id071
-          basetypename: Job
-          cardinality: single
-          link_id_name: started_from_id
-          link_ref_name: startedFromRef
-          linkname: started_from
-          read_only: true
-          reverselink: *id045
-          reversename: subjobs
-          typenames:
-            - MxExperiment
+        reverselink: *id045
         typenames:
-          - MxExperiment
           - VolumeScan
+          - MxExperiment
       reversename: subjobs
       typenames:
         - MxExperiment
-    subjobs: *id045
-    template_data:
+    subjobs: *id046
+    template_data: *id047
+  noExtraProperties: true
+MxProcessing:
+  classname: MxProcessing
+  corename: Job
+  links:
+    input_data: *id048
+    logistical_sample: *id008
+    reference_data: *id049
+    results: &id050
+      basetypename: Dataset
+      cardinality: multiple
+      linkname: results
+      read_only: true
+      reverselink: &id065
+        basetypename: Job
+        cardinality: single
+        link_id_name: source_id
+        link_ref_name: sourceRef
+        linkname: source
+        read_only: true
+        reverselink: *id050
+        reversename: results
+        typenames:
+          - MxProcessing
+      typenames:
+        - ReflectionSet
+    sample: *id051
+    started_from: &id052
+      basetypename: Job
+      cardinality: single
+      link_id_name: started_from_id
+      link_ref_name: startedFromRef
+      linkname: started_from
+      read_only: true
+      reverselink: &id053
+        basetypename: Job
+        cardinality: multiple
+        linkname: subjobs
+        read_only: true
+        reverselink: *id052
+        typenames:
+          - MxProcessing
+      reversename: subjobs
+      typenames:
+        - MxProcessing
+    subjobs: *id053
+    template_data: &id054
       basetypename: Dataset
       cardinality: multiple
       link_id_name: template_data_ids
       link_ref_name: templateDataRefs
       linkname: template_data
       read_only: false
-      reverselink: *id006
+      reverselink: &id066
+        basetypename: Job
+        cardinality: multiple
+        linkname: template_for
+        reverselink: *id054
+        typenames:
+          - MxProcessing
       reversename: template_for
       typenames:
-        - CollectionSweep
+        - ReflectionSet
   noExtraProperties: true
-MxProcessing:
-  classname: MxProcessing
+Pin:
+  classname: Pin
+  corename: LogisticalSample
+  links:
+    container: *id055
+    contents:
+      basetypename: LogisticalSample
+      cardinality: multiple
+      linkname: contents
+      reverselink: *id007
+      typenames:
+        - Crystal
+    datasets:
+      basetypename: Dataset
+      cardinality: multiple
+      linkname: datasets
+      reverselink: *id004
+      typenames:
+        - ReflectionSet
+        - CollectionSweep
+    jobs:
+      basetypename: Job
+      cardinality: multiple
+      linkname: jobs
+      reverselink: *id008
+      typenames:
+        - VolumeScan
+        - MxExperiment
+        - MxProcessing
+    sample: *id056
+  noExtraProperties: true
+PinPosition:
+  classname: PinPosition
+  corename: LogisticalSample
+  links:
+    container: *id057
+    contents:
+      basetypename: LogisticalSample
+      cardinality: multiple
+      linkname: contents
+      reverselink: *id007
+      typenames:
+        - Crystal
+    datasets:
+      basetypename: Dataset
+      cardinality: multiple
+      linkname: datasets
+      reverselink: *id004
+      typenames:
+        - ReflectionSet
+        - CollectionSweep
+    jobs:
+      basetypename: Job
+      cardinality: multiple
+      linkname: jobs
+      reverselink: *id008
+      typenames:
+        - VolumeScan
+        - MxExperiment
+        - MxProcessing
+    sample:
+      basetypename: Sample
+      cardinality: single
+      link_id_name: sample_id
+      link_ref_name: sampleRef
+      linkname: sample
+      read_only: false
+      reverselink: *id009
+      reversename: logistical_samples
+      typenames:
+        - MacromoleculeSample
+  noExtraProperties: true
+Plate:
+  classname: Plate
+  corename: LogisticalSample
+  links:
+    container:
+      basetypename: LogisticalSample
+      cardinality: single
+      link_id_name: container_id
+      link_ref_name: containerRef
+      linkname: container
+      read_only: false
+      reverselink: *id058
+      reversename: contents
+      typenames:
+        - Shipment
+    contents: &id059
+      basetypename: LogisticalSample
+      cardinality: multiple
+      linkname: contents
+      reverselink: &id060
+        basetypename: LogisticalSample
+        cardinality: single
+        link_id_name: container_id
+        link_ref_name: containerRef
+        linkname: container
+        read_only: false
+        reverselink: *id059
+        reversename: contents
+        typenames:
+          - Plate
+      typenames:
+        - PlateWell
+  noExtraProperties: true
+PlateWell:
+  classname: PlateWell
+  corename: LogisticalSample
+  links:
+    container: *id060
+    contents: &id061
+      basetypename: LogisticalSample
+      cardinality: multiple
+      linkname: contents
+      reverselink: &id073
+        basetypename: LogisticalSample
+        cardinality: single
+        link_id_name: container_id
+        link_ref_name: containerRef
+        linkname: container
+        read_only: false
+        reverselink: *id061
+        reversename: contents
+        typenames:
+          - PlateWell
+      typenames:
+        - WellDrop
+    datasets:
+      basetypename: Dataset
+      cardinality: multiple
+      linkname: datasets
+      reverselink: *id004
+      typenames:
+        - ReflectionSet
+        - CollectionSweep
+    jobs:
+      basetypename: Job
+      cardinality: multiple
+      linkname: jobs
+      reverselink: *id008
+      typenames:
+        - VolumeScan
+        - MxExperiment
+        - MxProcessing
+    sample:
+      basetypename: Sample
+      cardinality: single
+      link_id_name: sample_id
+      link_ref_name: sampleRef
+      linkname: sample
+      read_only: false
+      reverselink: *id009
+      reversename: logistical_samples
+      typenames:
+        - MacromoleculeSample
+  noExtraProperties: true
+Puck:
+  classname: Puck
+  corename: LogisticalSample
+  links:
+    container: *id062
+    contents: *id041
+  noExtraProperties: true
+ReflectionSet:
+  classname: ReflectionSet
+  corename: Dataset
+  links:
+    derived_datasets: &id063
+      basetypename: Dataset
+      cardinality: multiple
+      linkname: derived_datasets
+      read_only: true
+      reverselink: &id064
+        basetypename: Dataset
+        cardinality: single
+        link_id_name: derived_from_id
+        link_ref_name: derivedFromRef
+        linkname: derived_from
+        read_only: true
+        reverselink: *id063
+        reversename: derived_datasets
+        typenames:
+          - ReflectionSet
+      typenames:
+        - ReflectionSet
+    derived_from: *id064
+    logistical_sample:
+      basetypename: LogisticalSample
+      cardinality: single
+      link_id_name: logistical_sample_id
+      link_ref_name: logisticalSampleRef
+      linkname: logistical_sample
+      read_only: false
+      reverselink: *id021
+      reversename: datasets
+      typenames:
+        - Crystal
+        - Pin
+        - PinPosition
+        - PlateWell
+        - WellDrop
+        - DropRegion
+    reference_for: *id043
+    source: *id065
+    template_for: *id066
+  noExtraProperties: true
+Sample:
+  classname: Sample
+  corename: Sample
+  links:
+    child_samples: &id067
+      basetypename: Sample
+      cardinality: multiple
+      linkname: child_samples
+      reverselink: &id072
+        basetypename: Sample
+        cardinality: single
+        link_id_name: parent_sample_id
+        link_ref_name: parentSampleRef
+        linkname: parent_sample
+        read_only: false
+        reverselink: *id067
+        reversename: child_samples
+        typenames:
+          - Sample
+      typenames:
+        - Sample
+    jobs: *id068
+    logistical_samples: *id069
+    medium: &id070
+      basetypename: Sample
+      cardinality: single
+      link_id_name: medium_id
+      link_ref_name: mediumRef
+      linkname: medium
+      read_only: false
+      reverselink: &id071
+        basetypename: Sample
+        cardinality: multiple
+        linkname: medium_samples
+        reverselink: *id070
+        typenames:
+          - Sample
+      reversename: medium_samples
+      typenames:
+        - Sample
+    medium_samples: *id071
+    parent_sample: *id072
+  noExtraProperties: true
+Shipment:
+  classname: Shipment
+  corename: LogisticalSample
+  links:
+    contents: *id058
+  noExtraProperties: true
+VolumeScan:
+  classname: VolumeScan
   corename: Job
   links:
-    input_data: *id046
     logistical_sample:
       basetypename: LogisticalSample
       cardinality: single
@@ -750,25 +1022,6 @@ MxProcessing:
         - PlateWell
         - WellDrop
         - DropRegion
-    reference_data: *id047
-    results: &id048
-      basetypename: Dataset
-      cardinality: multiple
-      linkname: results
-      read_only: true
-      reverselink: &id062
-        basetypename: Job
-        cardinality: single
-        link_id_name: source_id
-        link_ref_name: sourceRef
-        linkname: source
-        read_only: true
-        reverselink: *id048
-        reversename: results
-        typenames:
-          - MxProcessing
-      typenames:
-        - ReflectionSet
     sample:
       basetypename: Sample
       cardinality: single
@@ -780,281 +1033,28 @@ MxProcessing:
       reversename: jobs
       typenames:
         - MacromoleculeSample
-    started_from: &id049
+    started_from:
       basetypename: Job
       cardinality: single
       link_id_name: started_from_id
       link_ref_name: startedFromRef
       linkname: started_from
       read_only: true
-      reverselink: &id050
-        basetypename: Job
-        cardinality: multiple
-        linkname: subjobs
-        read_only: true
-        reverselink: *id049
-        typenames:
-          - MxProcessing
+      reverselink: *id046
       reversename: subjobs
       typenames:
-        - MxProcessing
-    subjobs: *id050
-    template_data: &id051
+        - MxExperiment
+    template_data:
       basetypename: Dataset
       cardinality: multiple
       link_id_name: template_data_ids
       link_ref_name: templateDataRefs
       linkname: template_data
       read_only: false
-      reverselink: &id063
-        basetypename: Job
-        cardinality: multiple
-        linkname: template_for
-        reverselink: *id051
-        typenames:
-          - MxProcessing
+      reverselink: *id006
       reversename: template_for
       typenames:
-        - ReflectionSet
-  noExtraProperties: true
-Pin:
-  classname: Pin
-  corename: LogisticalSample
-  links:
-    container: *id052
-    contents:
-      basetypename: LogisticalSample
-      cardinality: multiple
-      linkname: contents
-      reverselink: *id007
-      typenames:
-        - Crystal
-    datasets:
-      basetypename: Dataset
-      cardinality: multiple
-      linkname: datasets
-      reverselink: *id008
-      typenames:
         - CollectionSweep
-        - ReflectionSet
-    jobs:
-      basetypename: Job
-      cardinality: multiple
-      linkname: jobs
-      reverselink: *id009
-      typenames:
-        - MxExperiment
-        - MxProcessing
-        - VolumeScan
-    sample:
-      basetypename: Sample
-      cardinality: single
-      link_id_name: sample_id
-      link_ref_name: sampleRef
-      linkname: sample
-      read_only: false
-      reverselink: *id010
-      reversename: logistical_samples
-      typenames:
-        - MacromoleculeSample
-  noExtraProperties: true
-PinPosition:
-  classname: PinPosition
-  corename: LogisticalSample
-  links:
-    container: *id053
-    contents:
-      basetypename: LogisticalSample
-      cardinality: multiple
-      linkname: contents
-      reverselink: *id007
-      typenames:
-        - Crystal
-    datasets:
-      basetypename: Dataset
-      cardinality: multiple
-      linkname: datasets
-      reverselink: *id008
-      typenames:
-        - CollectionSweep
-        - ReflectionSet
-    jobs:
-      basetypename: Job
-      cardinality: multiple
-      linkname: jobs
-      reverselink: *id009
-      typenames:
-        - MxExperiment
-        - MxProcessing
-        - VolumeScan
-    sample:
-      basetypename: Sample
-      cardinality: single
-      link_id_name: sample_id
-      link_ref_name: sampleRef
-      linkname: sample
-      read_only: false
-      reverselink: *id010
-      reversename: logistical_samples
-      typenames:
-        - MacromoleculeSample
-  noExtraProperties: true
-Plate:
-  classname: Plate
-  corename: LogisticalSample
-  links:
-    container: *id054
-    contents: &id055
-      basetypename: LogisticalSample
-      cardinality: multiple
-      linkname: contents
-      reverselink: &id056
-        basetypename: LogisticalSample
-        cardinality: single
-        link_id_name: container_id
-        link_ref_name: containerRef
-        linkname: container
-        read_only: false
-        reverselink: *id055
-        reversename: contents
-        typenames:
-          - Plate
-      typenames:
-        - PlateWell
-  noExtraProperties: true
-PlateWell:
-  classname: PlateWell
-  corename: LogisticalSample
-  links:
-    container: *id056
-    contents: &id057
-      basetypename: LogisticalSample
-      cardinality: multiple
-      linkname: contents
-      reverselink: &id073
-        basetypename: LogisticalSample
-        cardinality: single
-        link_id_name: container_id
-        link_ref_name: containerRef
-        linkname: container
-        read_only: false
-        reverselink: *id057
-        reversename: contents
-        typenames:
-          - PlateWell
-      typenames:
-        - WellDrop
-    datasets:
-      basetypename: Dataset
-      cardinality: multiple
-      linkname: datasets
-      reverselink: *id008
-      typenames:
-        - CollectionSweep
-        - ReflectionSet
-    jobs:
-      basetypename: Job
-      cardinality: multiple
-      linkname: jobs
-      reverselink: *id009
-      typenames:
-        - MxExperiment
-        - MxProcessing
-        - VolumeScan
-    sample: *id058
-  noExtraProperties: true
-Puck:
-  classname: Puck
-  corename: LogisticalSample
-  links:
-    container: *id059
-    contents: *id041
-  noExtraProperties: true
-ReflectionSet:
-  classname: ReflectionSet
-  corename: Dataset
-  links:
-    derived_datasets: &id060
-      basetypename: Dataset
-      cardinality: multiple
-      linkname: derived_datasets
-      read_only: true
-      reverselink: &id061
-        basetypename: Dataset
-        cardinality: single
-        link_id_name: derived_from_id
-        link_ref_name: derivedFromRef
-        linkname: derived_from
-        read_only: true
-        reverselink: *id060
-        reversename: derived_datasets
-        typenames:
-          - ReflectionSet
-      typenames:
-        - ReflectionSet
-    derived_from: *id061
-    logistical_sample: *id008
-    reference_for: *id043
-    source: *id062
-    template_for: *id063
-  noExtraProperties: true
-Sample:
-  classname: Sample
-  corename: Sample
-  links:
-    child_samples: &id064
-      basetypename: Sample
-      cardinality: multiple
-      linkname: child_samples
-      reverselink: &id069
-        basetypename: Sample
-        cardinality: single
-        link_id_name: parent_sample_id
-        link_ref_name: parentSampleRef
-        linkname: parent_sample
-        read_only: false
-        reverselink: *id064
-        reversename: child_samples
-        typenames:
-          - Sample
-      typenames:
-        - Sample
-    jobs: *id065
-    logistical_samples: *id066
-    medium: &id067
-      basetypename: Sample
-      cardinality: single
-      link_id_name: medium_id
-      link_ref_name: mediumRef
-      linkname: medium
-      read_only: false
-      reverselink: &id068
-        basetypename: Sample
-        cardinality: multiple
-        linkname: medium_samples
-        reverselink: *id067
-        typenames:
-          - Sample
-      reversename: medium_samples
-      typenames:
-        - Sample
-    medium_samples: *id068
-    parent_sample: *id069
-  noExtraProperties: true
-Shipment:
-  classname: Shipment
-  corename: LogisticalSample
-  links:
-    contents: *id018
-  noExtraProperties: true
-VolumeScan:
-  classname: VolumeScan
-  corename: Job
-  links:
-    logistical_sample: *id009
-    sample: *id070
-    started_from: *id071
-    template_data: *id072
   noExtraProperties: true
 WellDrop:
   classname: WellDrop
@@ -1066,19 +1066,19 @@ WellDrop:
       basetypename: Dataset
       cardinality: multiple
       linkname: datasets
-      reverselink: *id008
+      reverselink: *id004
       typenames:
-        - CollectionSweep
         - ReflectionSet
+        - CollectionSweep
     jobs:
       basetypename: Job
       cardinality: multiple
       linkname: jobs
-      reverselink: *id009
+      reverselink: *id008
       typenames:
+        - VolumeScan
         - MxExperiment
         - MxProcessing
-        - VolumeScan
     sample:
       basetypename: Sample
       cardinality: single
@@ -1086,7 +1086,7 @@ WellDrop:
       link_ref_name: sampleRef
       linkname: sample
       read_only: false
-      reverselink: *id010
+      reverselink: *id009
       reversename: logistical_samples
       typenames:
         - MacromoleculeSample
