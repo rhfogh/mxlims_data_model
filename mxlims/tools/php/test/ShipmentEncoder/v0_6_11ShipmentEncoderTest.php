@@ -702,7 +702,6 @@ class v0_6_11ShipmentEncoderTest extends TestCase {
 		$this->assertArrayHasKey('urls', $shipment);
 		$this->assertArrayHasKey('test.icebear.fi', $shipment['urls']);
 		$this->assertEquals('https://test.icebear.fi/shipment/1', $shipment['urls']['test.icebear.fi']);
-		var_dump($shipment);
 	}
 
 	public function testValidateNoShipment() {
