@@ -70,8 +70,8 @@ class DropRegion(DropRegionData, LogisticalSample):
     @datasets.setter
     def datasets(self, values: list[Union[CollectionSweep, ReflectionSet]]):
         """setter for DropRegion.datasets list"""
-        from .CollectionSweep import CollectionSweep
         from .ReflectionSet import ReflectionSet
+        from .CollectionSweep import CollectionSweep
 
         for obj in values:
             if not isinstance(obj, Union[CollectionSweep, ReflectionSet]):
@@ -86,9 +86,9 @@ class DropRegion(DropRegionData, LogisticalSample):
     @jobs.setter
     def jobs(self, values: list[Union[MxExperiment, MxProcessing, VolumeScan]]):
         """setter for DropRegion.jobs list"""
+        from .VolumeScan import VolumeScan
         from .MxExperiment import MxExperiment
         from .MxProcessing import MxProcessing
-        from .VolumeScan import VolumeScan
 
         for obj in values:
             if not isinstance(obj, Union[MxExperiment, MxProcessing, VolumeScan]):

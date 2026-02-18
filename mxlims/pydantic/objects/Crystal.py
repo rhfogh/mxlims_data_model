@@ -58,8 +58,8 @@ class Crystal(CrystalData, LogisticalSample):
     @datasets.setter
     def datasets(self, values: list[Union[CollectionSweep, ReflectionSet]]):
         """setter for Crystal.datasets list"""
-        from .CollectionSweep import CollectionSweep
         from .ReflectionSet import ReflectionSet
+        from .CollectionSweep import CollectionSweep
 
         for obj in values:
             if not isinstance(obj, Union[CollectionSweep, ReflectionSet]):
@@ -74,9 +74,9 @@ class Crystal(CrystalData, LogisticalSample):
     @jobs.setter
     def jobs(self, values: list[Union[MxExperiment, MxProcessing, VolumeScan]]):
         """setter for Crystal.jobs list"""
+        from .VolumeScan import VolumeScan
         from .MxExperiment import MxExperiment
         from .MxProcessing import MxProcessing
-        from .VolumeScan import VolumeScan
 
         for obj in values:
             if not isinstance(obj, Union[MxExperiment, MxProcessing, VolumeScan]):
