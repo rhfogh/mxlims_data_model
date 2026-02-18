@@ -67,14 +67,19 @@ def create_registry_from_directory(
     return registry
 
 
-def validate_file_path(fpath: Path) -> bool:
+def validate_file_path(fpath: Path, schema:str=None) -> bool:
     """Validate JSON test file against matching schema
 
     Standard naming conventions and directory structure are assumed"""
-    parents = fpath.parents
-    valstr = parents[0].stem
-    typdir = parents[1].stem
-    schemaname = fpath.stem.split("_")[0] + ".json"
+    if schema is None:
+        parents = fpath.parents
+        valstr = parents[0].stem
+        typdir = parents[1].stem
+        schemaname = fpath.stem.split("_")[0] + ".json"
+    else:
+        valstr = "valid"
+        typdir, schemaname = schema.split("/")
+        schemaname += ".json"
     registry = create_registry_from_directory()
     passed = test_valid(fpath, registry, schemaname, typdir, valstr)
     if passed:
@@ -138,7 +143,20 @@ MXLIMS model validation and test. Assumes standard directory structure""",
         "--testfile",
         metavar="testfile",
         default=None,
-        help="JSON file to test - if not set validate all files\n",
+        help="""JSON file to test - if not set, validate all files
+        If the file is not one of the standard test files the schemaname is required
+        """,
+    )
+
+    parser.add_argument(
+        "--schema",
+        metavar="schema",
+        default=None,
+        help="""JSON schema to test against,
+    e.g. 'messages/ShipmentMessage' or 'datatypes/UnitCell'.
+    If not set the schema name is deduced from the testfile name,
+    assuming that it is one of the standard testfiles in the standard location.
+        """,
     )
 
     argsobj = parser.parse_args()
@@ -147,7 +165,7 @@ MXLIMS model validation and test. Assumes standard directory structure""",
     testfile = options_dict["testfile"]
     if testfile:
         fpath = Path(testfile).resolve()
-        validate_file_path(fpath)
+        validate_file_path(fpath, schema=options_dict.get("schema"))
 
     else:
         validate_all()
