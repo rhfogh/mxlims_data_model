@@ -164,6 +164,23 @@ class Utils {
 		if (!$jsonString) {
 			throw new Exception("Could not open test JSON for reading: $testJsonPath");
 		}
+		if(!json_decode($jsonString)){
+			if(str_contains($jsonString, '/../../')){
+				$testJsonPath=realpath(implode('/', explode('/', $testJsonPath, -1)).'/'.$jsonString);
+				if(!$testJsonPath){ throw new Exception("$testJsonPath is a symlink but it does not resolve"); }
+				$jsonString = @file_get_contents($testJsonPath);
+				if (!$jsonString) {
+					throw new Exception("Could not open test JSON for reading: $testJsonPath");
+				}
+				if(!json_decode($jsonString)){
+					throw new Exception("$testJsonPath is a symlink that resolves but does not point to valid JSON");
+				}
+
+			} else {
+				throw new Exception("$testJsonPath is neither valid JSON nor a path to valid JSON");
+			}
+		}
+
 		return Utils::validateJsonAgainstSchema($jsonString, $schemaPath);
 	}
 
