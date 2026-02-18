@@ -34,8 +34,8 @@ class Shipment(ShipmentData, LogisticalSample):
     @contents.setter
     def contents(self, values: list[Union[Dewar, Plate]]):
         """setter for Shipment.contents list"""
-        from .Dewar import Dewar
         from .Plate import Plate
+        from .Dewar import Dewar
 
         for obj in values:
             if not isinstance(obj, Union[Dewar, Plate]):
