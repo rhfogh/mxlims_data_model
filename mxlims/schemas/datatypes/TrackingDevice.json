@@ -21,13 +21,13 @@
             "type": "string",
             "description": "A URL where a human can, for example, see the device location on a map.",
             "format": "uri",
-            "pattern": "^https?://"
+            "pattern": "^https?://(?:[a-zA-Z0-9\\-]+\\.)+[a-zA-Z]{2,}(?::\\d+)?(?:/[^\\s]*)?$"
         },
         "apiTrackingUrl": {
             "type": "string",
             "description": "A URL where a computer can, for example, obtain the device's last known latitude and longitude.",
             "format": "uri",
-            "pattern": "^https?://"
+            "pattern": "^https?://(?:[a-zA-Z0-9\\-]+\\.)+[a-zA-Z]{2,}(?::\\d+)?(?:/[^\\s]*)?$"
         }
     },
     "required": [

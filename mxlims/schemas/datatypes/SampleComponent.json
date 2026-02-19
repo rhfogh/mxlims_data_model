@@ -38,7 +38,7 @@
             "title": "Smiles"
         },
         "identifiers": {
-            "description": "Keyword-value dictionary string:string of site-specific object identifiers. The key must be a valid domain name pointing to the site 'owning' the extensions, but need bw resolvable.",
+            "description": "Keyword-value dictionary string:string of site-specific object identifiers. The key must be a valid domain name pointing to the site 'owning' the extensions, but need not be resolvable.",
             "title": "Identifiers",
             "type": "object",
             "patternProperties": {
@@ -49,16 +49,17 @@
             "additionalProperties": false
         },
         "urls": {
-            "description": "Keyword-value dictionary string:urlstring of site-specific object urls. The key must be a valid domain name pointing to the site 'owning' the extensions, but need bw resolvable.",
+            "description": "Keyword-value dictionary string:urlstring of site-specific object urls. The key must be a valid domain name pointing to the site 'owning' the extensions, but need not be resolvable.",
             "title": "Urls",
             "type": "object",
-            "patternProperties": {
-                "^(?i)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$": {
-                    "type": "string",
-                    "format": "url"
-                }
+            "propertyNames": {
+              "pattern":  "^(?i)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$"
             },
-            "additionalProperties": false
+            "additionalProperties": {
+              "type": "string",
+              "pattern": "^https?://(?:[a-zA-Z0-9\\-]+\\.)+[a-zA-Z]{2,}(?::\\d+)?(?:/[^\\s]*)?$",
+              "format": "uri"
+            }
         }
     },
     "additionalProperties": false

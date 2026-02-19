@@ -8,7 +8,7 @@ from uuid import UUID
 
 from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import Field, constr
+from pydantic import AnyUrl, Field, constr
 
 
 class MxlimsObjectData(BaseModel):
@@ -41,7 +41,7 @@ class MxlimsObjectData(BaseModel):
         | None
     ) = Field(
         None,
-        description="Keyword-value dictionary string:object of extensions. The key must be a valid domain name pointing to the site 'owning' the extensions, but need bw resolvable.",
+        description="Keyword-value dictionary string:object of extensions. The key must be a valid domain name pointing to the site 'owning' the extensions, but need not be resolvable.",
         title="Extensions",
     )
     identifiers: (
@@ -54,7 +54,7 @@ class MxlimsObjectData(BaseModel):
         | None
     ) = Field(
         None,
-        description="Keyword-value dictionary string:string of site-specific object identifiers. The key must be a valid domain name pointing to the site 'owning' the extensions, but need bw resolvable.",
+        description="Keyword-value dictionary string:string of site-specific object identifiers. The key must be a valid domain name pointing to the site 'owning' the extensions, but need not be resolvable.",
         title="Identifiers",
     )
     urls: (
@@ -62,12 +62,12 @@ class MxlimsObjectData(BaseModel):
             constr(
                 pattern=r"^(?i)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$"
             ),
-            str,
+            AnyUrl,
         ]
         | None
     ) = Field(
         None,
-        description="Keyword-value dictionary string:urlstring of site-specific object urls. The key must be a valid domain name pointing to the site 'owning' the extensions, but need bw resolvable.",
+        description="Keyword-value dictionary string:urlstring of site-specific object urls. The key must be a valid domain name pointing to the site 'owning' the extensions, but need not be resolvable.",
         title="Urls",
     )
     annotation: str | None = Field(None, description="Comment or annotation.")
