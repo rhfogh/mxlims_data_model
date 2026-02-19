@@ -1,0 +1,19 @@
+{
+  "mxlimsType": "Shipment",
+  "uuid": "019c75cf-aa56-2f7e-b418-b35962363f35",
+  "proposalCode": "MX20250367",
+  "labContactOutbound": {
+    "name": "OUL Icebear Administrator",
+    "emailAddress": "formulatrix@oulu.fi"
+  },
+  "labContactReturn": {
+    "name": "OUL Icebear Administrator",
+    "emailAddress": "formulatrix@oulu.fi"
+  },
+  "identifiers": {
+    "oulu.icebox.icebear.fi": "28464588"
+  },
+  "urls": {
+    "oulu.icebox.icebear.fi": "https:\/\/oulu.icebox.icebear.fi\/shipment\/28464588"
+  }
+}
