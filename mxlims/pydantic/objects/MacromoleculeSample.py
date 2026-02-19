@@ -43,9 +43,9 @@ class MacromoleculeSample(MacromoleculeSampleData, Sample):
     @jobs.setter
     def jobs(self, values: list[Union[MxExperiment, MxProcessing, VolumeScan]]):
         """setter for MacromoleculeSample.jobs list"""
-        from .VolumeScan import VolumeScan
         from .MxExperiment import MxExperiment
         from .MxProcessing import MxProcessing
+        from .VolumeScan import VolumeScan
 
         for obj in values:
             if not isinstance(obj, Union[MxExperiment, MxProcessing, VolumeScan]):
@@ -60,12 +60,12 @@ class MacromoleculeSample(MacromoleculeSampleData, Sample):
     @logistical_samples.setter
     def logistical_samples(self, values: list[Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]]):
         """setter for MacromoleculeSample.logistical_samples list"""
-        from .PinPosition import PinPosition
-        from .PlateWell import PlateWell
-        from .WellDrop import WellDrop
         from .Crystal import Crystal
         from .DropRegion import DropRegion
         from .Pin import Pin
+        from .PinPosition import PinPosition
+        from .PlateWell import PlateWell
+        from .WellDrop import WellDrop
 
         for obj in values:
             if not isinstance(obj, Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]):

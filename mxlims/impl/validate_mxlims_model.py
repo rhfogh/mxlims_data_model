@@ -31,6 +31,7 @@ from referencing.jsonschema import DRAFT202012
 import traceback
 
 MXLIMS_DIR = Path(__file__).parent.parent
+from mxlims import __version__ as VERSION
 
 def create_registry_from_directory(
         schema_dir=None, base_uri="https://mxlims.org/schemas/"
@@ -67,33 +68,47 @@ def create_registry_from_directory(
     return registry
 
 
-def validate_file_path(fpath: Path, schema:str=None) -> bool:
+def validate_file_path(fpath: Path, schema:str=None, valid=True) -> bool:
     """Validate JSON test file against matching schema
 
-    Standard naming conventions and directory structure are assumed"""
+    If schema is None is assumed that the file is in the standard test file tree
+    with standard naming conventions, and the 'valid; parameter is ignored
+
+    :param fpath: test file to validate
+    :param schema: schema to validate against - string like e.g. 'datatypes/UnitCell'
+    :param valid: Should file validate as valid?
+    :return: """
     if schema is None:
-        parents = fpath.parents
-        valstr = parents[0].stem
-        typdir = parents[1].stem
-        schemaname = fpath.stem.split("_")[0] + ".json"
+        parts = fpath.parts
+        valstr = parts[-2]
+        schemaname = parts[-3] + ".json"
+        typdir = parts[-4]
     else:
-        valstr = "valid"
+        valstr = "valid" if valid else "invalid"
         typdir, schemaname = schema.split("/")
         schemaname += ".json"
     registry = create_registry_from_directory()
     passed = test_valid(fpath, registry, schemaname, typdir, valstr)
     if passed:
         print("Validation passed")
+    else:
+        print("Validation FAILED")
+    return passed
 
 def validate_all() -> None:
-    """Validate schemas against all test files in directory tree"""
+    """Validate schemas against all test files in directory tree
+
+    Takes in files in .../all/ and in directory matching current version"""
     basedir = Path(__file__).resolve().parent.parent / "test" / "json"
     registry = create_registry_from_directory()
-    for typdir in ("datatypes", "objects", "messages"):
-        for valstr in ("valid", "invalid"):
-            dir1 = basedir / typdir / valstr
-            for fpath in dir1.iterdir():
-                schemaname = fpath.stem.split("_")[0] + ".json"
+    for top in ("all", "v" + VERSION):
+        topdir = basedir / top
+        if topdir.is_dir():
+            for fpath in topdir.rglob("*.json"):
+                parts = fpath.parts
+                valstr = parts[-2]
+                schemaname = parts[-3] + ".json"
+                typdir = parts[-4]
                 test_passed = test_valid(fpath, registry, schemaname, typdir, valstr)
                 if test_passed:
                     txt = "passed"
@@ -110,7 +125,6 @@ def test_valid(
     """Validate fpath against typdir schema schemaname"""
     schemafile = Path(__file__).resolve().parent.parent / "schemas" / typdir / schemaname
     validity = (valstr == "valid")
-    # commands = ["check-jsonschema", "--schemafile", schemafile.as_posix(), fpath.as_posix()]
     try:
         schema = json.load(open(schemafile))
         jsonschema.validate(instance=json.load(open(fpath)), schema=schema, registry=registry)

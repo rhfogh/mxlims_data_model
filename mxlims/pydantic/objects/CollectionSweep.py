@@ -99,8 +99,8 @@ class CollectionSweep(CollectionSweepData, Dataset):
     @template_for.setter
     def template_for(self, values: list[Union[MxExperiment, VolumeScan]]):
         """setter for CollectionSweep.template_for list"""
-        from .VolumeScan import VolumeScan
         from .MxExperiment import MxExperiment
+        from .VolumeScan import VolumeScan
 
         for obj in values:
             if not isinstance(obj, Union[MxExperiment, VolumeScan]):

@@ -116,7 +116,7 @@ class ReflectionSetData(BaseModel):
         description="The calculated twin fraction of the crystal",
         title="Twin fraction",
     )
-    reflection_statistics_overall: ReflectionStatistics_1 | None = Field(
+    reflection_statistics_overall: ReflectionStatistics | None = Field(
         None,
         alias="reflectionStatisticsOverall",
         description="Reflection statistics for all processed reflections",

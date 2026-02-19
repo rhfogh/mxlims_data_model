@@ -31,17 +31,25 @@ class MxlimsObjectData(BaseModel):
     uuid: UUID | None = Field(
         None, description="Permanent unique identifier string", title="Uuid"
     )
-    extensions: dict[str, dict[str, Any]] | None = Field(
+    extensions: (
+        dict[
+            constr(
+                pattern=r"^(?i)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$"
+            ),
+            dict[str, Any],
+        ]
+        | None
+    ) = Field(
         None,
         description="Keyword-value dictionary string:object of extensions. The key must be a valid domain name pointing to the site 'owning' the extensions, but need bw resolvable.",
         title="Extensions",
     )
     identifiers: (
         dict[
-            str,
             constr(
                 pattern=r"^(?i)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$"
             ),
+            str,
         ]
         | None
     ) = Field(
@@ -51,10 +59,10 @@ class MxlimsObjectData(BaseModel):
     )
     urls: (
         dict[
-            str,
             constr(
                 pattern=r"^(?i)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$"
             ),
+            str,
         ]
         | None
     ) = Field(
