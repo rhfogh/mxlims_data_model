@@ -30,7 +30,7 @@ class VolumeScanData(BaseModel):
         description="List of omega offsets from the starting omega position to use for volume scan, in degrees",
         title="RotationAngles",
     )
-    search_volume: PointCloud | None = Field(
+    search_volume: PointCloud_1 | None = Field(
         None,
         alias="searchVolume",
         description="Volume to search (input), defined in goniostat coordinate system (centringX, centringY, phiY)",
@@ -50,7 +50,7 @@ class VolumeScanData(BaseModel):
         description="The shape of the bounding box used.",
         title="Bounding Box Shape",
     )
-    result_volume: PointCloud | None = Field(
+    result_volume: PointCloud_1 | None = Field(
         None,
         alias="resultVolume",
         description="Volume of all active points found",

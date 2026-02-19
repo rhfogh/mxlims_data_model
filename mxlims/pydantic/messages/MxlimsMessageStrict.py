@@ -18,7 +18,7 @@ from ..objects.MxProcessing import MxProcessing as MxProcessing_1
 from ..objects.Pin import Pin as Pin_1
 from ..objects.PinPosition import PinPosition as PinPosition_1
 from ..objects.Plate import Plate as Plate_1
-from ..objects.PlateWell import LogisticalSampleData as LogisticalSampleData_1
+from ..objects.PlateWell import PlateWell as PlateWell_1
 from ..objects.Puck import Puck as Puck_1
 from ..objects.ReflectionSet import ReflectionSet as ReflectionSet_1
 from ..objects.Shipment import Shipment as Shipment_1
@@ -110,7 +110,7 @@ class MxlimsMessageStrict(BaseMessageData):
         description="idString:object dictionary of Plates.",
         title="Plates",
     )
-    plate_well: dict[str, LogisticalSampleData_1] | None = Field(
+    plate_well: dict[str, PlateWell_1] | None = Field(
         default_factory=dict,
         alias="PlateWell",
         description="idString:object dictionary of PlateWells.",
