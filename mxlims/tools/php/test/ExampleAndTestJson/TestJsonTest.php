@@ -80,7 +80,7 @@ class TestJsonTest extends TestCase {
 		$parts=explode('/', $parts[0], 2);
 		$schemaPath=$parts[1].'.json';
 
-		$message="$jsonPath should be ".($expectValid?'valid':'invalid')." against $schemaPath but was ".($expectValid?'invalid':'valid');
+		$message="test/json/$jsonPath should be ".($expectValid?'valid':'invalid')." against schemas/$schemaPath but was ".($expectValid?'invalid':'valid');
 		$this->assertEquals($expectValid, Utils::validateTestJsonFileAgainstSchema($jsonPath, $schemaPath), $message);
 	}
 
