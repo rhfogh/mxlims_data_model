@@ -159,6 +159,9 @@ def ingest_row(data_dict: Dict[str, Any], scheme:str, result_mode: bool=False
             partials_dict[length] = dd0
             dd1 = dd0.get(partial, {})
             dd0[partial] = dd1
+            typ = typemap.get(tuple(steps))
+            if typ:
+                val = typ(val)
             dd1[last] = val
 
     for length, dd0 in sorted(partials_dict.items(), reverse=True)[:-1]:

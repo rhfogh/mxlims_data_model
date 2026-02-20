@@ -5,7 +5,7 @@ from __future__ import annotations
 
 from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import AnyUrl, ConfigDict, Field
+from pydantic import HttpUrl, ConfigDict, Field
 
 from .TrackingDeviceType import TrackingDeviceType
 
@@ -24,12 +24,12 @@ class TrackingDevice(BaseModel):
     device_type: TrackingDeviceType = Field(
         ..., alias="deviceType", description="The type of tracking device."
     )
-    human_tracking_url: AnyUrl | None = Field(
+    human_tracking_url: HttpUrl | None = Field(
         None,
         alias="humanTrackingUrl",
         description="A URL where a human can, for example, see the device location on a map.",
     )
-    api_tracking_url: AnyUrl | None = Field(
+    api_tracking_url: HttpUrl | None = Field(
         None,
         alias="apiTrackingUrl",
         description="A URL where a computer can, for example, obtain the device's last known latitude and longitude.",

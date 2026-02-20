@@ -499,8 +499,8 @@
                     "experiment_strategy": "gphl.mad2wvl.basic"
                 }
             },
-            "startTime": "2026-01-12T19:12:00.397370",
-            "endTime": "2026-01-12T19:29:56.707162",
+            "startTime": "2026-01-12T19:12:00.397370Z",
+            "endTime": "2026-01-12T19:29:56.707162Z",
             "experimentStrategy": "gphl.mad2wvl.basic",
             "expectedResolution": 1.7,
             "radiationSensitivity": 1.0,

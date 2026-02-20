@@ -5,7 +5,7 @@ from __future__ import annotations
 
 from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import AnyUrl, ConfigDict, Field, constr
+from pydantic import HttpUrl, ConfigDict, Field, constr
 
 from .SampleComponentRole import SampleComponentRole
 
@@ -54,7 +54,7 @@ class SampleComponent(BaseModel):
             constr(
                 pattern=r"^(?i)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$"
             ),
-            AnyUrl,
+            HttpUrl,
         ]
         | None
     ) = Field(

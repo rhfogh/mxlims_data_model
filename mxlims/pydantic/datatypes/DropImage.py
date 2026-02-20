@@ -3,11 +3,9 @@
 
 from __future__ import annotations
 
-from datetime import datetime
-
 from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import AnyUrl, Field
+from pydantic import HttpUrl, AwareDatetime, Field
 
 from .ImageLightType import ImageLightType
 from .ImageMimeType import ImageMimetype
@@ -24,13 +22,13 @@ class DropImage(BaseModel):
     light_type: ImageLightType | None = Field(
         None, alias="lightType", description="The light used to capture the image."
     )
-    timestamp: datetime | None = Field(
+    timestamp: AwareDatetime | None = Field(
         None,
         description="The date and time when the image was captured. This is to be specified in UTC and conform to ISO 8601.",
         examples=["2024-04-24T14:30:16Z", "20240424T143016Z"],
     )
     data: str | None = Field(None, description="The image, UUencoded.")
-    url: AnyUrl | None = Field(
+    url: HttpUrl | None = Field(
         None,
-        description="A URL where the image can be found ('file', 'http', ...). It is assumed that no further authentication is needed to read this image.",
+        description="A URL where the image can be found ('http' ot 'https'). It is assumed that no further authentication is needed to read this image.",
     )

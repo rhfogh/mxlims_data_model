@@ -3,9 +3,7 @@
 
 from __future__ import annotations
 
-from datetime import datetime
-
-from pydantic import Field
+from pydantic import AwareDatetime, Field
 
 from ..datatypes.JobStatus import JobStatus
 from .MxlimsObjectData import MxlimsObjectData
@@ -16,13 +14,13 @@ class JobData(MxlimsObjectData):
     Base class for MXLIMS Jobs - an experiment or calculation producing Datasets
     """
 
-    start_time: datetime | None = Field(
+    start_time: AwareDatetime | None = Field(
         None,
         alias="startTime",
         description="Actual starting time for job or calculation, ",
         title="Start Time",
     )
-    end_time: datetime | None = Field(
+    end_time: AwareDatetime | None = Field(
         None,
         alias="endTime",
         description="Actual finishing time for job or calculation, ",

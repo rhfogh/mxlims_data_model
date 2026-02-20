@@ -8,7 +8,7 @@ from uuid import UUID
 
 from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import AnyUrl, Field, constr
+from pydantic import HttpUrl, Field, constr
 
 
 class MxlimsObjectData(BaseModel):
@@ -62,7 +62,7 @@ class MxlimsObjectData(BaseModel):
             constr(
                 pattern=r"^(?i)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$"
             ),
-            AnyUrl,
+            HttpUrl,
         ]
         | None
     ) = Field(

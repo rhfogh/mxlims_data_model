@@ -99,7 +99,7 @@ def generate_mxlims(dirname: Optional[str] = None) -> None :
         "3.10",
         "--snake-case-field",
         "--output-datetime-class",
-        "datetime",
+        "AwareDatetime",
         "--use-exact-imports",
         "--capitalise-enum-members",
         "--use-title-as-name",
@@ -141,8 +141,18 @@ def generate_mxlims(dirname: Optional[str] = None) -> None :
     # Generate MXLIMS Message classes
     generate_message_classes(mxlims_dir)
 
+    # Post-process pydantic classes - first st up to replace AnyUrl by HttpUrl
+    for fpath in pydantic_dir.rglob("*.py"):
+        post_process_pydantic_file(fpath)
+
     # Regenerate field name mappings
     generate_fields(mxlims_dir)
+
+def post_process_pydantic_file(fpath: Path):
+        text = open(fpath).read()
+        if "AnyUrl" in text:
+            text = text.replace("AnyUrl", "HttpUrl")
+            open(fpath, "w").write(text)
 
 def generate_message_classes(mxlims_dir: Path) -> None:
     """ Adjust and re-write MxlimsMessage classes

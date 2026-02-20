@@ -114,6 +114,7 @@ def generate_fields(dirname: Optional[str] = None) -> None :
 # Concatenated field strings can be used to address dictionaries. E.g.
 # Macromolecule.identifiers.SwissProt maps to Macromolecule.identifiers["SwissProt"]
 
+from pydantic import AwareDatetime, HttpUrl
 from typing import Any, Dict, List
 
 """)
@@ -135,7 +136,9 @@ def get_type_desc(adict: dict, datatypes: dict) -> Dict[str, str]:
         "number": "float",
         "boolean": "bool",
         "string": "str",
-        "array": "List"
+        "array": "List",
+        "AwareDatetime": "datetime",
+        "HttpUrl": "str"
     }
 
     basetype = None

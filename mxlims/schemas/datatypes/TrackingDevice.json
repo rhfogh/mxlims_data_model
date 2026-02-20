@@ -18,16 +18,20 @@
             "description": "The type of tracking device."
         },
         "humanTrackingUrl": {
-            "type": "string",
-            "description": "A URL where a human can, for example, see the device location on a map.",
-            "format": "uri",
-            "pattern": "^https?://(?:[a-zA-Z0-9\\-]+\\.)+[a-zA-Z]{2,}(?::\\d+)?(?:/[^\\s]*)?$"
+            "allOf": [
+                {
+                    "$ref": "../core/BasicTypes.json#/$defs/HttpUrl"
+                }
+            ],
+            "description": "A URL where a human can, for example, see the device location on a map."
         },
         "apiTrackingUrl": {
-            "type": "string",
-            "description": "A URL where a computer can, for example, obtain the device's last known latitude and longitude.",
-            "format": "uri",
-            "pattern": "^https?://(?:[a-zA-Z0-9\\-]+\\.)+[a-zA-Z]{2,}(?::\\d+)?(?:/[^\\s]*)?$"
+            "allOf": [
+                {
+                    "$ref": "../core/BasicTypes.json#/$defs/HttpUrl"
+                }
+            ],
+            "description": "A URL where a computer can, for example, obtain the device's last known latitude and longitude."
         }
     },
     "required": [
