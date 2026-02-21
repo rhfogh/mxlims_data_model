@@ -3,14 +3,25 @@
 
 from __future__ import annotations
 
-from typing import Any
-
 from pydantic import ConfigDict, Field
 
-from .MxlimsMessageStrict import MxlimsMessageStrict
+from ..objects.Crystal import Crystal
+from ..objects.Dewar import Dewar
+from ..objects.DropRegion import DropRegion
+from ..objects.Macromolecule import Macromolecule
+from ..objects.MacromoleculeSample import MacromoleculeSample
+from ..objects.MultiPin import MultiPin
+from ..objects.Pin import Pin
+from ..objects.PinPosition import PinPosition
+from ..objects.Plate import Plate
+from ..objects.PlateWell import PlateWell
+from ..objects.Puck import Puck
+from ..objects.Shipment import Shipment
+from ..objects.WellDrop import WellDrop
+from .BaseMessageData import BaseMessageData
 
 
-class ShipmentMessage(MxlimsMessageStrict):
+class ShipmentMessage(BaseMessageData):
     """
     Message containing a shipment of either frozen crystals or crystallization plates
     """
@@ -18,16 +29,18 @@ class ShipmentMessage(MxlimsMessageStrict):
     model_config = ConfigDict(
         extra="forbid",
     )
-    shipment: Any = Field(..., alias="Shipment")
-    plate: Any | None = Field(default_factory=dict, alias="Plate")
-    plate_well: Any | None = Field(default_factory=dict, alias="PlateWell")
-    well_drop: Any | None = Field(default_factory=dict, alias="WellDrop")
-    drop_region: Any | None = Field(default_factory=dict, alias="DropRegion")
-    dewar: Any | None = Field(default_factory=dict, alias="Dewar")
-    puck: Any | None = Field(default_factory=dict, alias="Puck")
-    multi_pin: Any | None = Field(default_factory=dict, alias="MultiPin")
-    pin: Any | None = Field(default_factory=dict, alias="Pin")
-    pin_position: Any | None = Field(default_factory=dict, alias="PinPosition")
-    macromolecule_sample: Any = Field(..., alias="MacromoleculeSample")
-    macromolecule: Any = Field(..., alias="Macromolecule")
-    crystal: Any | None = Field(default_factory=dict, alias="Crystal")
+    shipment: dict[str, Shipment] = Field(..., alias="Shipment")
+    plate: dict[str, Plate] | None = Field(default_factory=dict, alias="Plate")
+    plate_well: dict[str, PlateWell] | None = Field(default_factory=dict, alias="PlateWell")
+    well_drop: dict[str, WellDrop] | None = Field(default_factory=dict, alias="WellDrop")
+    drop_region: dict[str, DropRegion] | None = Field(default_factory=dict, alias="DropRegion")
+    dewar: dict[str, Dewar] | None = Field(default_factory=dict, alias="Dewar")
+    puck: dict[str, Puck] | None = Field(default_factory=dict, alias="Puck")
+    multi_pin: dict[str, MultiPin] | None = Field(default_factory=dict, alias="MultiPin")
+    pin: dict[str, Pin] | None = Field(default_factory=dict, alias="Pin")
+    pin_position: dict[str, PinPosition] | None = Field(default_factory=dict, alias="PinPosition")
+    macromolecule_sample: dict[str, MacromoleculeSample] = Field(
+        ..., alias="MacromoleculeSample"
+    )
+    macromolecule: dict[str, Macromolecule] = Field(..., alias="Macromolecule")
+    crystal: dict[str, Crystal] | None = Field(default_factory=dict, alias="Crystal")

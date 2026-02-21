@@ -1,4 +1,4 @@
-{ 
+{
     "$id": "https://mxlims.org/schemas/messages/ShipmentMessage.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Message containing a shipment of either frozen crystals or crystallization plates",
@@ -6,90 +6,244 @@
     "type": "object",
     "allOf": [
         {
-            "$ref": "../messages/MxlimsMessageStrict.json"
+            "$ref": "../messages/BaseMessageData.json"
         }
     ],
-    "properties":{
-        "Shipment":{
-            "maxProperties":1,
-            "additionalProperties": { 
-                "required":["labContactOutbound","labContactReturn"]
+    "properties": {
+        "Shipment": {
+            "allOf": [
+                {
+                    "$ref": "../messages/MxlimsMessageStrict.json#/properties/Shipment"
+                }
+            ],
+            "maxProperties": 1,
+            "additionalProperties": {
+                "required": [
+                    "labContactOutbound",
+                    "labContactReturn"
+                ]
             }
         },
-        "Plate":{
-            "additionalProperties": { "required":["containerRef","barcode","plateType"] }
-        },
-        "PlateWell":{
-            "additionalProperties": { "required":["containerRef"] }
-        },
-        "WellDrop":{
-            "additionalProperties": { "required":["containerRef"] }
-        },
-        "DropRegion":{
-            "additionalProperties": { "required":["containerRef"] }
-        },
-        "Dewar":{
-            "additionalProperties": { "required":["containerRef"] }
-        },
-        "Puck":{
-            "additionalProperties": { "required":["containerRef"] }
-        },
-        "MultiPin":{
-            "additionalProperties": { "required":["containerRef"] }
-        },
-        "Pin":{
-            "additionalProperties": { "required":["containerRef"] }
-        },
-        "PinPosition":{
-            "additionalProperties": { "required":["containerRef","sampleRef"] }
-        },
-        "MacromoleculeSample":{
+        "Plate": {
+            "allOf": [
+                {
+                    "$ref": "../messages/MxlimsMessageStrict.json#/properties/Plate"
+                }
+            ],
             "additionalProperties": {
-                "required":["name","parentSampleRef"],
-                "properties":{
-                   "macromolecule":{ "required":["acronym"] }
+                "required": [
+                    "containerRef",
+                    "barcode",
+                    "plateType"
+                ]
+            }
+        },
+        "PlateWell": {
+            "allOf": [
+                {
+                    "$ref": "../messages/MxlimsMessageStrict.json#/properties/PlateWell"
+                }
+            ],
+            "additionalProperties": {
+                "required": [
+                    "containerRef"
+                ]
+            }
+        },
+        "WellDrop": {
+            "allOf": [
+                {
+                    "$ref": "../messages/MxlimsMessageStrict.json#/properties/WellDrop"
+                }
+            ],
+            "additionalProperties": {
+                "required": [
+                    "containerRef"
+                ]
+            }
+        },
+        "DropRegion": {
+            "allOf": [
+                {
+                    "$ref": "../messages/MxlimsMessageStrict.json#/properties/DropRegion"
+                }
+            ],
+            "additionalProperties": {
+                "required": [
+                    "containerRef"
+                ]
+            }
+        },
+        "Dewar": {
+            "allOf": [
+                {
+                    "$ref": "../messages/MxlimsMessageStrict.json#/properties/Dewar"
+                }
+            ],
+            "additionalProperties": {
+                "required": [
+                    "containerRef"
+                ]
+            }
+        },
+        "Puck": {
+            "allOf": [
+                {
+                    "$ref": "../messages/MxlimsMessageStrict.json#/properties/Puck"
+                }
+            ],
+            "additionalProperties": {
+                "required": [
+                    "containerRef"
+                ]
+            }
+        },
+        "MultiPin": {
+            "allOf": [
+                {
+                    "$ref": "../messages/MxlimsMessageStrict.json#/properties/MultiPin"
+                }
+            ],
+            "additionalProperties": {
+                "required": [
+                    "containerRef"
+                ]
+            }
+        },
+        "Pin": {
+            "allOf": [
+                {
+                    "$ref": "../messages/MxlimsMessageStrict.json#/properties/Pin"
+                }
+            ],
+            "additionalProperties": {
+                "required": [
+                    "containerRef"
+                ]
+            }
+        },
+        "PinPosition": {
+            "allOf": [
+                {
+                    "$ref": "../messages/MxlimsMessageStrict.json#/properties/PinPosition"
+                }
+            ],
+            "additionalProperties": {
+                "required": [
+                    "containerRef",
+                    "sampleRef"
+                ]
+            }
+        },
+        "MacromoleculeSample": {
+            "allOf": [
+                {
+                    "$ref": "../messages/MxlimsMessageStrict.json#/properties/MacromoleculeSample"
+                }
+            ],
+            "additionalProperties": {
+                "required": [
+                    "name",
+                    "parentSampleRef"
+                ],
+                "properties": {
+                    "macromolecule": {
+                        "required": [
+                            "acronym"
+                        ]
+                    }
                 }
             }
         },
-        "Macromolecule":{
+        "Macromolecule": {
+            "allOf": [
+                {
+                    "$ref": "../messages/MxlimsMessageStrict.json#/properties/Macromolecule"
+                }
+            ],
             "additionalProperties": {
-                "required":["acronym"]
+                "required": [
+                    "acronym"
+                ]
             }
         },
-        "Crystal":{
-            "additionalProperties": { "required":["containerRef","sampleRef","name"] }
+        "Crystal": {
+            "allOf": [
+                {
+                    "$ref": "../messages/MxlimsMessageStrict.json#/properties/Crystal"
+                }
+            ],
+            "additionalProperties": {
+                "required": [
+                    "containerRef",
+                    "sampleRef",
+                    "name"
+                ]
+            }
         }
     },
-    "required":["Shipment","MacromoleculeSample", "Macromolecule"],
-    "oneOf":[
+    "required": [
+        "Shipment",
+        "MacromoleculeSample",
+        "Macromolecule"
+    ],
+    "oneOf": [
         {
-           "$comment":"This is a frozen-crystal shipment of dewars, pucks and pins",
-           "required":["Dewar","Puck"],
-           "oneOf":[
-               {
-                   "$comment":"All pins are traditional one-position loops. PinPositions are not required and are therefore invalid, but Pins must have a sampleRef",
-                   "required":["Pin"],
-                   "properties":{
-                       "PinPosition": false,
-                       "Pin":{
-                           "additionalProperties":{
-                               "required":["sampleRef"]
-                           }
-                       }
-                   }
-               },
-               {
-                   "$comment":"At least one pin is multi-position. All pins (even single-position pins) must be declared as MultiPins, and PinPositions are required",
-                   "required":["MultiPin","PinPosition"],
-                   "properties":{
-                       "Pin":false
-                   }
-               }
-           ]
+            "$comment": "This is a frozen-crystal shipment of dewars, pucks and traditional one-position loops. PinPositions are not allowed, and Pins must have a sampleRef",
+            "title": "PinShipment",
+            "required": [
+                "Dewar",
+                "Puck",
+                "Pin"
+            ],
+            "properties": {
+                "MultiPin": false,
+                "PinPosition": false,
+                "Plate": false,
+                "PlateWell": false,
+                "WellDrop": false,
+                "DropRegion": false,
+                "Pin": {
+                    "additionalProperties": {
+                        "required": [
+                            "sampleRef"
+                        ]
+                    }
+                }
+            }
         },
         {
-           "$comment":"This is a shipment of plates", 
-           "required":["Plate","PlateWell","WellDrop","DropRegion","Crystal"]
+            "$comment": "This is a frozen-crystal shipment of dewars, pucks and multi-position pins. Single-position actual pins must be declared as MultiPins with one pin position, and PinPositions are required",
+            "title": "MultiPinShipment",
+            "required": [
+                "Dewar",
+                "Puck",
+                "MultiPin",
+                "PinPosition"
+            ],
+            "properties": {
+                "Pin": false,
+                "Plate": false,
+                "PlateWell": false,
+                "WellDrop": false,
+                "DropRegion": false
+            }
+        },
+        {
+            "$comment": "This is a shipment of plates",
+            "title": "PlateShipment",
+            "required": [
+                "Plate",
+                "PlateWell",
+                "WellDrop",
+                "DropRegion",
+                "Crystal"
+            ],
+            "properties": {
+                "Pin": false,
+                "MultiPin": false,
+                "PinPosition": false
+            }
         }
     ],
     "unevaluatedProperties": false
