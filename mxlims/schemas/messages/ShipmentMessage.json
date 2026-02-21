@@ -240,6 +240,8 @@
                 "Crystal"
             ],
             "properties": {
+                "Dewar": false,
+                "Puck": false,
                 "Pin": false,
                 "MultiPin": false,
                 "PinPosition": false
