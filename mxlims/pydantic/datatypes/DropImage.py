@@ -5,17 +5,20 @@ from __future__ import annotations
 
 from mxlims.impl.MxlimsBase import BaseModel
 
-from pydantic import HttpUrl, AwareDatetime, Field
+from pydantic import HttpUrl, AwareDatetime, ConfigDict, Field
 
 from .ImageLightType import ImageLightType
 from .ImageMimeType import ImageMimetype
 
 
-class DropImage(BaseModel):
+class DropImageData(BaseModel):
     """
     An image of a crystallization drop.
     """
 
+    model_config = ConfigDict(
+        extra="forbid",
+    )
     mime_type: ImageMimetype = Field(
         ..., alias="mimeType", description="The MIME type of the image."
     )
@@ -27,8 +30,29 @@ class DropImage(BaseModel):
         description="The date and time when the image was captured. This is to be specified in UTC and conform to ISO 8601.",
         examples=["2024-04-24T14:30:16Z", "20240424T143016Z"],
     )
-    data: str | None = Field(None, description="The image, UUencoded.")
-    url: HttpUrl | None = Field(
+    data: str = Field(..., description="The image, UUencoded.")
+
+
+class DropImageUrl(BaseModel):
+    """
+    An image of a crystallization drop.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    mime_type: ImageMimetype = Field(
+        ..., alias="mimeType", description="The MIME type of the image."
+    )
+    light_type: ImageLightType | None = Field(
+        None, alias="lightType", description="The light used to capture the image."
+    )
+    timestamp: AwareDatetime | None = Field(
         None,
+        description="The date and time when the image was captured. This is to be specified in UTC and conform to ISO 8601.",
+        examples=["2024-04-24T14:30:16Z", "20240424T143016Z"],
+    )
+    url: HttpUrl = Field(
+        ...,
         description="A URL where the image can be found ('http' ot 'https'). It is assumed that no further authentication is needed to read this image.",
     )

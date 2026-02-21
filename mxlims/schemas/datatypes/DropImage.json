@@ -32,51 +32,40 @@
                 "2024-04-24T14:30:16Z",
                 "20240424T143016Z"
             ]
-        },
-        "data": {
-            "type": "string",
-            "description": "The image, UUencoded."
-        },
-        "url": {
-            "allOf": [
-                {
-                    "$ref": "../core/BasicTypes.json#/$defs/HttpUrl"
-                }
-            ],
-            "description": "A URL where the image can be found ('http' ot 'https'). It is assumed that no further authentication is needed to read this image."
         }
     },
-    "allOf": [
+    "oneOf": [
         {
-            "if": {
-                "required": [
-                    "data"
-                ]
-            },
-            "then": {
-                "not": {
-                    "required": [
-                        "url"
-                    ]
+            "title": "DropImageData",
+            "properties": {
+                "data": {
+                    "type": "string",
+                    "description": "The image, UUencoded."
                 }
-            }
+            },
+            "required": [
+                "data"
+            ]
         },
         {
-            "if": {
-                "not": {
-                    "required": [
-                        "data"
-                    ]
+            "title": "DropImageUrl",
+            "properties": {
+                "url": {
+                    "allOf": [
+                        {
+                            "$ref": "../core/BasicTypes.json#/$defs/HttpUrl"
+                        }
+                    ],
+                    "description": "A URL where the image can be found ('http' ot 'https'). It is assumed that no further authentication is needed to read this image."
                 }
             },
-            "then": {
-                "required": [
-                    "url"
-                ]
-            }
+            "required": [
+                "url"
+            ]
         }
     ],
     "required": [
         "mimeType"
-    ]
+    ],
+    "unevaluatedProperties": false
 }
