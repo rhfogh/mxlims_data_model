@@ -9,3 +9,6 @@
 - The constraints in ShipmentMessage.json are not carried over into ShipmentMessage.py
   so that seemingly valid Pydantic structures for this class may not convert to 
   valid JSON. 
+- The generation of typemap.py does not handle DropImage (and other oneOf-using objects)
+  correctly. For now teh typemap must be fixed by hand after generation.
+  
