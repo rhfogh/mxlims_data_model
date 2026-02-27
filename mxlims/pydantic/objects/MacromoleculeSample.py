@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from pydantic import ConfigDict, Field
-from typing import Any, Literal, Optional, Union, TYPE_CHECKING
+from typing import Any, Literal, Union, TYPE_CHECKING
 from ..objects.Sample import Sample
 from ..data.MacromoleculeSampleData import MacromoleculeSampleData
 if TYPE_CHECKING:
@@ -73,12 +73,12 @@ class MacromoleculeSample(MacromoleculeSampleData, Sample):
         self._set_link_1n_rev("LogisticalSample", "sample_id", values)
 
     @property
-    def medium(self) -> Optional[Medium]:
+    def medium(self) -> Medium | None:
         """getter for MacromoleculeSample.medium"""
         return self._get_link_n1("Sample", "medium_id")
 
     @medium.setter
-    def medium(self, value: Optional[Medium]):
+    def medium(self, value: Medium | None):
         """setter for MacromoleculeSample.medium"""
         from .Medium import Medium
 
@@ -88,12 +88,12 @@ class MacromoleculeSample(MacromoleculeSampleData, Sample):
             raise ValueError("medium must be of type Medium or None")
 
     @property
-    def parent_sample(self) -> Optional[Macromolecule]:
+    def parent_sample(self) -> Macromolecule | None:
         """getter for MacromoleculeSample.parent_sample"""
         return self._get_link_n1("Sample", "parent_sample_id")
 
     @parent_sample.setter
-    def parent_sample(self, value: Optional[Macromolecule]):
+    def parent_sample(self, value: Macromolecule | None):
         """setter for MacromoleculeSample.parent_sample"""
         from .Macromolecule import Macromolecule
 

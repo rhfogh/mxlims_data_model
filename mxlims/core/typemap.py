@@ -19,6 +19,7 @@ from pydantic import AwareDatetime, HttpUrl
 from typing import Any, Dict, List
 
 from mxlims.pydantic.datatypes.Circle import Circle
+from mxlims.pydantic.datatypes.DropImage import DropImage
 from mxlims.pydantic.datatypes.ImageRegion import ImageRegion
 from mxlims.pydantic.datatypes.Line import Line
 from mxlims.pydantic.datatypes.Person import Person

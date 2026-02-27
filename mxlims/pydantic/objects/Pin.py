@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from pydantic import ConfigDict, Field
-from typing import Any, Literal, Optional, Union, TYPE_CHECKING
+from typing import Any, Literal, Union, TYPE_CHECKING
 from ..objects.LogisticalSample import LogisticalSample
 from ..data.PinData import PinData
 if TYPE_CHECKING:
@@ -33,12 +33,12 @@ class Pin(PinData, LogisticalSample):
     )
         
     @property
-    def container(self) -> Optional[Puck]:
+    def container(self) -> Puck | None:
         """getter for Pin.container"""
         return self._get_link_n1("LogisticalSample", "container_id")
 
     @container.setter
-    def container(self, value: Optional[Puck]):
+    def container(self, value: Puck | None):
         """setter for Pin.container"""
         from .Puck import Puck
 
@@ -96,12 +96,12 @@ class Pin(PinData, LogisticalSample):
         self._set_link_1n_rev("Job", "logistical_sample_id", values)
 
     @property
-    def sample(self) -> Optional[MacromoleculeSample]:
+    def sample(self) -> MacromoleculeSample | None:
         """getter for Pin.sample"""
         return self._get_link_n1("Sample", "sample_id")
 
     @sample.setter
-    def sample(self, value: Optional[MacromoleculeSample]):
+    def sample(self, value: MacromoleculeSample | None):
         """setter for Pin.sample"""
         from .MacromoleculeSample import MacromoleculeSample
 

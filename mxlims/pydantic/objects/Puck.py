@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from pydantic import ConfigDict, Field
-from typing import Any, Literal, Optional, Union, TYPE_CHECKING
+from typing import Any, Literal, Union, TYPE_CHECKING
 from ..objects.LogisticalSample import LogisticalSample
 from ..data.PuckData import PuckData
 if TYPE_CHECKING:
@@ -28,12 +28,12 @@ class Puck(PuckData, LogisticalSample):
     )
         
     @property
-    def container(self) -> Optional[Dewar]:
+    def container(self) -> Dewar | None:
         """getter for Puck.container"""
         return self._get_link_n1("LogisticalSample", "container_id")
 
     @container.setter
-    def container(self, value: Optional[Dewar]):
+    def container(self, value: Dewar | None):
         """setter for Puck.container"""
         from .Dewar import Dewar
 

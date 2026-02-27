@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from pydantic import ConfigDict, Field
-from typing import Any, Literal, Optional, Union, TYPE_CHECKING
+from typing import Any, Literal, Union, TYPE_CHECKING
 from ..objects.Dataset import Dataset
 from ..data.CollectionSweepData import CollectionSweepData
 if TYPE_CHECKING:
@@ -39,7 +39,7 @@ class CollectionSweep(CollectionSweepData, Dataset):
         return self._get_link_1n("Dataset", "derived_from_id")
 
     @property
-    def derived_from(self) -> Optional[CollectionSweep]:
+    def derived_from(self) -> CollectionSweep | None:
         """getter for CollectionSweep.derived_from"""
         return self._get_link_n1("Dataset", "derived_from_id")
 
@@ -67,12 +67,12 @@ class CollectionSweep(CollectionSweepData, Dataset):
         value.remove_input_data(self)
     
     @property
-    def logistical_sample(self) -> Optional[Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]]:
+    def logistical_sample(self) -> Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop] | None:
         """getter for CollectionSweep.logistical_sample"""
         return self._get_link_n1("LogisticalSample", "logistical_sample_id")
 
     @logistical_sample.setter
-    def logistical_sample(self, value: Optional[Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]]):
+    def logistical_sample(self, value: Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop] | None):
         """setter for CollectionSweep.logistical_sample"""
         from .Crystal import Crystal
         from .Pin import Pin
@@ -87,7 +87,7 @@ class CollectionSweep(CollectionSweepData, Dataset):
             raise ValueError("logistical_sample must be of type Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop] or None")
 
     @property
-    def source(self) -> Optional[MxExperiment]:
+    def source(self) -> MxExperiment | None:
         """getter for CollectionSweep.source"""
         return self._get_link_n1("Job", "source_id")
 

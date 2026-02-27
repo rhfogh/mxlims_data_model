@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from pydantic import ConfigDict, Field
-from typing import Any, Literal, Optional, Union, TYPE_CHECKING
+from typing import Any, Literal, Union, TYPE_CHECKING
 from ..objects.LogisticalSample import LogisticalSample
 from ..data.DropRegionData import DropRegionData
 if TYPE_CHECKING:
@@ -33,12 +33,12 @@ class DropRegion(DropRegionData, LogisticalSample):
     )
         
     @property
-    def container(self) -> Optional[WellDrop]:
+    def container(self) -> WellDrop | None:
         """getter for DropRegion.container"""
         return self._get_link_n1("LogisticalSample", "container_id")
 
     @container.setter
-    def container(self, value: Optional[WellDrop]):
+    def container(self, value: WellDrop | None):
         """setter for DropRegion.container"""
         from .WellDrop import WellDrop
 
@@ -96,12 +96,12 @@ class DropRegion(DropRegionData, LogisticalSample):
         self._set_link_1n_rev("Job", "logistical_sample_id", values)
 
     @property
-    def sample(self) -> Optional[MacromoleculeSample]:
+    def sample(self) -> MacromoleculeSample | None:
         """getter for DropRegion.sample"""
         return self._get_link_n1("Sample", "sample_id")
 
     @sample.setter
-    def sample(self, value: Optional[MacromoleculeSample]):
+    def sample(self, value: MacromoleculeSample | None):
         """setter for DropRegion.sample"""
         from .MacromoleculeSample import MacromoleculeSample
 

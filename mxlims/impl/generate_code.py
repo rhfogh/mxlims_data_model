@@ -28,7 +28,6 @@ from pathlib import Path
 from ruamel.yaml import YAML
 import subprocess
 from subprocess import CalledProcessError
-from typing import Optional, List
 
 from mxlims.impl.MxlimsBase import camel_to_snake, CORETYPES
 from mxlims.impl.generate_field_list import generate_fields
@@ -39,7 +38,7 @@ yaml = YAML(typ="safe", pure=True)
 yaml.default_flow_style = False
 yaml.indent(mapping=2, sequence=4, offset=2)
 
-def generate_mxlims(dirname: Optional[str] = None) -> None :
+def generate_mxlims(dirname: str | None = None) -> None :
     """
     Generate MXLIMS references JSON files and objects/ pydantic files
 
@@ -328,7 +327,7 @@ def make_pydantic_object(pydantic_dir: Path, objdict: dict) -> None:
 
 from __future__ import annotations
 from pydantic import {config_dict_str}Field{validator_str}
-from typing import List, Literal, Optional, TYPE_CHECKING
+from typing import Literal, TYPE_CHECKING
 from uuid import UUID, uuid1
 from mxlims.core.MxlimsObject import MxlimsObject
 from ..data.{classname}Data import {classname}Data
@@ -376,7 +375,7 @@ class {classname}({classname}Data, MxlimsObject):
         title="MxlimsType",
         frozen=True,
     )
-    uuid: Optional[UUID] = Field(
+    uuid: UUID | None = Field(
         default_factory=uuid1,
         description="Permanent unique identifier string",
         title="Uuid",
@@ -388,7 +387,7 @@ class {classname}({classname}Data, MxlimsObject):
         text1 = text.split('"""')[-1]
         lines = text1.splitlines()
         for ii in range(len(lines)):
-            if "List[UUID]" in lines[ii]:
+            if "list[UUID]" in lines[ii]:
                 lines[ii+1] = lines[ii+1].replace("None", "default_factory=list")
         txtlist.append("\n".join(lines))
         fp1.unlink()
@@ -441,7 +440,7 @@ class {classname}({classname}Data, MxlimsObject):
 
 from __future__ import annotations
 from pydantic import {config_dict_str}Field
-from typing import Any, Literal, Optional, Union, TYPE_CHECKING
+from typing import Any, Literal, Union, TYPE_CHECKING
 from ..objects.{corename} import {corename}
 from ..data.{classname}Data import {classname}Data
 """,
@@ -504,7 +503,7 @@ class {classname}({classname}Data, {corename}):
     with fpath.open("w", encoding="utf-8") as fp0:
         fp0.writelines(txtlist)
 
-def pydantic_single_link(classname: str, linkdict:dict) -> List[str]:
+def pydantic_single_link(classname: str, linkdict:dict) -> list[str]:
     linkname = linkdict["linkname"]
     link_id_name = linkdict["link_id_name"]
     basetypename = linkdict["basetypename"]
@@ -515,7 +514,7 @@ def pydantic_single_link(classname: str, linkdict:dict) -> List[str]:
         linktype = f"Union[{', '.join(sorted(typenames))}]"
     result = [f'''
     @property
-    def {linkname}(self) -> Optional[{linktype}]:
+    def {linkname}(self) -> {linktype} | None:
         """getter for {classname}.{linkname}"""
         return self._get_link_n1("{basetypename}", "{link_id_name}")
 '''
@@ -524,7 +523,7 @@ def pydantic_single_link(classname: str, linkdict:dict) -> List[str]:
         result.append(
             f'''
     @{linkname}.setter
-    def {linkname}(self, value: Optional[{linktype}]):
+    def {linkname}(self, value: {linktype} | None):
         """setter for {classname}.{linkname}"""
 '''
         )
@@ -540,7 +539,7 @@ def pydantic_single_link(classname: str, linkdict:dict) -> List[str]:
         )
     #
     return result
-def pydantic_dummy_single_link(classname: str, linkdict:dict) -> List[str]:
+def pydantic_dummy_single_link(classname: str, linkdict:dict) -> list[str]:
     linkname = linkdict["linkname"]
     typenames = linkdict["typenames"]
     if len(typenames) == 1:
@@ -549,7 +548,7 @@ def pydantic_dummy_single_link(classname: str, linkdict:dict) -> List[str]:
         linktype = f"Union[{', '.join(sorted(typenames))}]"
     result = [f'''
     @property
-    def {linkname}(self) -> Optional[{linktype}]:
+    def {linkname}(self) -> {linktype} | None:
         """Abstract superclass - dummy getter for {classname}.{linkname}"""
         return None
 '''
@@ -557,7 +556,7 @@ def pydantic_dummy_single_link(classname: str, linkdict:dict) -> List[str]:
     #
     return result
 
-def pydantic_multiple_link(classname: str, linkdict:dict) -> List[str]:
+def pydantic_multiple_link(classname: str, linkdict:dict) -> list[str]:
     linkname = linkdict["linkname"]
     link_id_name = linkdict["link_id_name"]
     basetypename = linkdict["basetypename"]
@@ -621,7 +620,7 @@ def pydantic_multiple_link(classname: str, linkdict:dict) -> List[str]:
     #
     return result
 
-def pydantic_dummy_multiple_link(classname: str, linkdict:dict) -> List[str]:
+def pydantic_dummy_multiple_link(classname: str, linkdict:dict) -> list[str]:
     linkname = linkdict["linkname"]
     typenames = linkdict["typenames"]
     if len(typenames) == 1:
@@ -640,7 +639,7 @@ def pydantic_dummy_multiple_link(classname: str, linkdict:dict) -> List[str]:
     return result
 
 
-def pydantic_multiple_reverse_link(classname: str, linkdict:dict) -> List[str]:
+def pydantic_multiple_reverse_link(classname: str, linkdict:dict) -> list[str]:
     linkname = linkdict["linkname"]
     basetypename = linkdict["basetypename"]
     typenames = linkdict["typenames"]

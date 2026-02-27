@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from pydantic import Field
-from typing import List, Literal, Optional, TYPE_CHECKING
+from typing import Literal, TYPE_CHECKING
 from uuid import UUID, uuid1
 from mxlims.core.MxlimsObject import MxlimsObject
 from ..data.JobData import JobData
@@ -31,7 +31,7 @@ class Job(JobData, MxlimsObject):
         title="MxlimsType",
         frozen=True,
     )
-    uuid: Optional[UUID] = Field(
+    uuid: UUID | None = Field(
         default_factory=uuid1,
         description="Permanent unique identifier string",
         title="Uuid",
@@ -54,19 +54,19 @@ class Job(JobData, MxlimsObject):
         title="LogisticalSampleId",
     )
     reference_data_ids: list[UUID] | None = Field(
-        None,
+        default_factory=list,
         alias="referenceDataIds",
         description="uuid for reference Datasets",
         title="ReferenceDataId",
     )
     template_data_ids: list[UUID] | None = Field(
-        None,
+        default_factory=list,
         alias="templateDataIds",
         description="uuid for template Datasets",
         title="TemplateDataId",
     )
     input_data_ids: list[UUID] | None = Field(
-        None,
+        default_factory=list,
         alias="inputDataIds",
         description="uuid for input Datasets",
         title="InputDataId",
@@ -77,7 +77,7 @@ class Job(JobData, MxlimsObject):
         return []
 
     @property
-    def logistical_sample(self) -> Optional[LogisticalSample]:
+    def logistical_sample(self) -> LogisticalSample | None:
         """Abstract superclass - dummy getter for Job.logistical_sample"""
         return None
 
@@ -92,12 +92,12 @@ class Job(JobData, MxlimsObject):
         return []
 
     @property
-    def sample(self) -> Optional[Sample]:
+    def sample(self) -> Sample | None:
         """Abstract superclass - dummy getter for Job.sample"""
         return None
 
     @property
-    def started_from(self) -> Optional[Job]:
+    def started_from(self) -> Job | None:
         """Abstract superclass - dummy getter for Job.started_from"""
         return None
 

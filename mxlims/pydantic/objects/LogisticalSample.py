@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from pydantic import Field
-from typing import List, Literal, Optional, TYPE_CHECKING
+from typing import Literal, TYPE_CHECKING
 from uuid import UUID, uuid1
 from mxlims.core.MxlimsObject import MxlimsObject
 from ..data.LogisticalSampleData import LogisticalSampleData
@@ -31,7 +31,7 @@ class LogisticalSample(LogisticalSampleData, MxlimsObject):
         title="MxlimsType",
         frozen=True,
     )
-    uuid: Optional[UUID] = Field(
+    uuid: UUID | None = Field(
         default_factory=uuid1,
         description="Permanent unique identifier string",
         title="Uuid",
@@ -51,7 +51,7 @@ class LogisticalSample(LogisticalSampleData, MxlimsObject):
         title="containerId",
     )
     @property
-    def container(self) -> Optional[LogisticalSample]:
+    def container(self) -> LogisticalSample | None:
         """Abstract superclass - dummy getter for LogisticalSample.container"""
         return None
 
@@ -71,6 +71,6 @@ class LogisticalSample(LogisticalSampleData, MxlimsObject):
         return []
 
     @property
-    def sample(self) -> Optional[Sample]:
+    def sample(self) -> Sample | None:
         """Abstract superclass - dummy getter for LogisticalSample.sample"""
         return None

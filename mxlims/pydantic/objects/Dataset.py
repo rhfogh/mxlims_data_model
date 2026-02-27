@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from pydantic import Field, model_validator
-from typing import List, Literal, Optional, TYPE_CHECKING
+from typing import Literal, TYPE_CHECKING
 from uuid import UUID, uuid1
 from mxlims.core.MxlimsObject import MxlimsObject
 from ..data.DatasetData import DatasetData
@@ -31,7 +31,7 @@ class Dataset(DatasetData, MxlimsObject):
         title="MxlimsType",
         frozen=True,
     )
-    uuid: Optional[UUID] = Field(
+    uuid: UUID | None = Field(
         default_factory=uuid1,
         description="Permanent unique identifier string",
         title="Uuid",
@@ -59,7 +59,7 @@ class Dataset(DatasetData, MxlimsObject):
         return []
 
     @property
-    def derived_from(self) -> Optional[Dataset]:
+    def derived_from(self) -> Dataset | None:
         """Abstract superclass - dummy getter for Dataset.derived_from"""
         return None
 
@@ -69,7 +69,7 @@ class Dataset(DatasetData, MxlimsObject):
         return []
 
     @property
-    def logistical_sample(self) -> Optional[LogisticalSample]:
+    def logistical_sample(self) -> LogisticalSample | None:
         """Abstract superclass - dummy getter for Dataset.logistical_sample"""
         return None
 
@@ -79,7 +79,7 @@ class Dataset(DatasetData, MxlimsObject):
         return []
 
     @property
-    def source(self) -> Optional[Job]:
+    def source(self) -> Job | None:
         """Abstract superclass - dummy getter for Dataset.source"""
         return None
 

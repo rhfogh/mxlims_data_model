@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from pydantic import ConfigDict, Field
-from typing import List, Literal, Optional, TYPE_CHECKING
+from typing import Literal, TYPE_CHECKING
 from uuid import UUID, uuid1
 from mxlims.core.MxlimsObject import MxlimsObject
 from ..data.SampleData import SampleData
@@ -34,7 +34,7 @@ class Sample(SampleData, MxlimsObject):
         title="MxlimsType",
         frozen=True,
     )
-    uuid: Optional[UUID] = Field(
+    uuid: UUID | None = Field(
         default_factory=uuid1,
         description="Permanent unique identifier string",
         title="Uuid",
@@ -69,7 +69,7 @@ class Sample(SampleData, MxlimsObject):
         return []
 
     @property
-    def medium(self) -> Optional[Sample]:
+    def medium(self) -> Sample | None:
         """Abstract superclass - dummy getter for Sample.medium"""
         return None
 
@@ -79,6 +79,6 @@ class Sample(SampleData, MxlimsObject):
         return []
 
     @property
-    def parent_sample(self) -> Optional[Sample]:
+    def parent_sample(self) -> Sample | None:
         """Abstract superclass - dummy getter for Sample.parent_sample"""
         return None

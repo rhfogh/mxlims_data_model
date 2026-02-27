@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from pydantic import ConfigDict, Field
-from typing import Any, Literal, Optional, Union, TYPE_CHECKING
+from typing import Any, Literal, Union, TYPE_CHECKING
 from ..objects.LogisticalSample import LogisticalSample
 from ..data.MultiPinData import MultiPinData
 if TYPE_CHECKING:
@@ -27,12 +27,12 @@ class MultiPin(MultiPinData, LogisticalSample):
     )
         
     @property
-    def container(self) -> Optional[Puck]:
+    def container(self) -> Puck | None:
         """getter for MultiPin.container"""
         return self._get_link_n1("LogisticalSample", "container_id")
 
     @container.setter
-    def container(self, value: Optional[Puck]):
+    def container(self, value: Puck | None):
         """setter for MultiPin.container"""
         from .Puck import Puck
 

@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from pydantic import ConfigDict, Field
-from typing import Any, Literal, Optional, Union, TYPE_CHECKING
+from typing import Any, Literal, Union, TYPE_CHECKING
 from ..objects.Job import Job
 from ..data.MxProcessingData import MxProcessingData
 if TYPE_CHECKING:
@@ -67,12 +67,12 @@ class MxProcessing(MxProcessingData, Job):
             raise ValueError("%s is not of type CollectionSweep" % value)
 
     @property
-    def logistical_sample(self) -> Optional[Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]]:
+    def logistical_sample(self) -> Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop] | None:
         """getter for MxProcessing.logistical_sample"""
         return self._get_link_n1("LogisticalSample", "logistical_sample_id")
 
     @logistical_sample.setter
-    def logistical_sample(self, value: Optional[Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]]):
+    def logistical_sample(self, value: Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop] | None):
         """setter for MxProcessing.logistical_sample"""
         from .Crystal import Crystal
         from .Pin import Pin
@@ -125,12 +125,12 @@ class MxProcessing(MxProcessingData, Job):
         return self._get_link_1n("Dataset", "source_id")
 
     @property
-    def sample(self) -> Optional[MacromoleculeSample]:
+    def sample(self) -> MacromoleculeSample | None:
         """getter for MxProcessing.sample"""
         return self._get_link_n1("Sample", "sample_id")
 
     @sample.setter
-    def sample(self, value: Optional[MacromoleculeSample]):
+    def sample(self, value: MacromoleculeSample | None):
         """setter for MxProcessing.sample"""
         from .MacromoleculeSample import MacromoleculeSample
 
@@ -140,7 +140,7 @@ class MxProcessing(MxProcessingData, Job):
             raise ValueError("sample must be of type MacromoleculeSample or None")
 
     @property
-    def started_from(self) -> Optional[MxProcessing]:
+    def started_from(self) -> MxProcessing | None:
         """getter for MxProcessing.started_from"""
         return self._get_link_n1("Job", "started_from_id")
 

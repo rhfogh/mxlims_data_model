@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from pydantic import ConfigDict, Field
-from typing import Any, Literal, Optional, Union, TYPE_CHECKING
+from typing import Any, Literal, Union, TYPE_CHECKING
 from ..objects.Job import Job
 from ..data.VolumeScanData import VolumeScanData
 if TYPE_CHECKING:
@@ -34,12 +34,12 @@ class VolumeScan(VolumeScanData, Job):
     )
         
     @property
-    def logistical_sample(self) -> Optional[Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]]:
+    def logistical_sample(self) -> Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop] | None:
         """getter for VolumeScan.logistical_sample"""
         return self._get_link_n1("LogisticalSample", "logistical_sample_id")
 
     @logistical_sample.setter
-    def logistical_sample(self, value: Optional[Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop]]):
+    def logistical_sample(self, value: Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop] | None):
         """setter for VolumeScan.logistical_sample"""
         from .Crystal import Crystal
         from .Pin import Pin
@@ -54,12 +54,12 @@ class VolumeScan(VolumeScanData, Job):
             raise ValueError("logistical_sample must be of type Union[Crystal, DropRegion, Pin, PinPosition, PlateWell, WellDrop] or None")
 
     @property
-    def sample(self) -> Optional[MacromoleculeSample]:
+    def sample(self) -> MacromoleculeSample | None:
         """getter for VolumeScan.sample"""
         return self._get_link_n1("Sample", "sample_id")
 
     @sample.setter
-    def sample(self, value: Optional[MacromoleculeSample]):
+    def sample(self, value: MacromoleculeSample | None):
         """setter for VolumeScan.sample"""
         from .MacromoleculeSample import MacromoleculeSample
 
@@ -69,7 +69,7 @@ class VolumeScan(VolumeScanData, Job):
             raise ValueError("sample must be of type MacromoleculeSample or None")
 
     @property
-    def started_from(self) -> Optional[MxExperiment]:
+    def started_from(self) -> MxExperiment | None:
         """getter for VolumeScan.started_from"""
         return self._get_link_n1("Job", "started_from_id")
 
