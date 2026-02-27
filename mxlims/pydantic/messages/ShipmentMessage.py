@@ -14,7 +14,7 @@ from ..objects.MultiPin import MultiPin
 from ..objects.Pin import Pin
 from ..objects.PinPosition import PinPosition
 from ..objects.Plate import Plate
-from ..objects.PlateWell import LogisticalSampleData
+from ..objects.PlateWell import PlateWell
 from ..objects.Puck import Puck
 from ..objects.Shipment import Shipment
 from ..objects.WellDrop import WellDrop
@@ -31,7 +31,7 @@ class ShipmentMessage(BaseMessageData):
     )
     shipment: dict[str, Shipment] = Field(..., alias="Shipment")
     plate: dict[str, Plate] | None = Field(default_factory=dict, alias="Plate")
-    plate_well: dict[str, LogisticalSampleData] | None = Field(default_factory=dict, alias="PlateWell")
+    plate_well: dict[str, PlateWell] | None = Field(default_factory=dict, alias="PlateWell")
     well_drop: dict[str, WellDrop] | None = Field(default_factory=dict, alias="WellDrop")
     drop_region: dict[str, DropRegion] | None = Field(default_factory=dict, alias="DropRegion")
     dewar: dict[str, Dewar] | None = Field(default_factory=dict, alias="Dewar")
@@ -39,8 +39,8 @@ class ShipmentMessage(BaseMessageData):
     multi_pin: dict[str, MultiPin] | None = Field(default_factory=dict, alias="MultiPin")
     pin: dict[str, Pin] | None = Field(default_factory=dict, alias="Pin")
     pin_position: dict[str, PinPosition] | None = Field(default_factory=dict, alias="PinPosition")
-    macromolecule_sample: dict[str, MacromoleculeSample_1] = Field(
+    macromolecule_sample: dict[str, MacromoleculeSample] = Field(
         ..., alias="MacromoleculeSample"
     )
-    macromolecule: dict[str, Macromolecule_1] = Field(..., alias="Macromolecule")
+    macromolecule: dict[str, Macromolecule] = Field(..., alias="Macromolecule")
     crystal: dict[str, Crystal] | None = Field(default_factory=dict, alias="Crystal")
