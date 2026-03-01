@@ -7,14 +7,16 @@ from mxlims.impl.MxlimsBase import BaseModel
 
 from pydantic import Field, NonNegativeInt, PositiveFloat, PositiveInt, confloat
 
-from ..datatypes.PdbxSignalType import PdbxSignalType
-from ..datatypes.ReflectionBinningMode import ReflectionBinningMode
-from ..datatypes.ReflectionFileType import ReflectionFileType
+from ..datatypes.Enumerations import (
+    PdbxSignalType,
+    ReflectionBinningMode,
+    ReflectionFileType,
+    SpaceGroupName,
+)
 from ..datatypes.ReflectionStatistics import (
     ReflectionStatistics as ReflectionStatistics_1,
 )
 from ..datatypes.ResolutionCutoffs import ResolutionCutoffs
-from ..datatypes.SpaceGroupName import SpaceGroupName
 from ..datatypes.Tensor import Tensor
 from ..datatypes.UnitCell import UnitCell
 

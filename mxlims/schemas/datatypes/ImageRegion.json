@@ -29,7 +29,7 @@
         },
         "units": {
             "description": "The units of the region's co-ordinates.",
-            "$ref": "../datatypes/ImageRegionUnit.json"
+            "$ref": "../datatypes/Enumerations.json/#/$defs/ImageRegionUnit"
         }
     },
     "required": [

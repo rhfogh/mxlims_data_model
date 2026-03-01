@@ -31,7 +31,7 @@
         "jobStatus": {
             "allOf": [
                 {
-                    "$ref": "../datatypes/JobStatus.json"
+                    "$ref": "../datatypes/Enumerations.json/#/$defs/JobStatus"
                 }
             ],
             "description": "Status of job - enumerated, ",

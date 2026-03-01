@@ -8,8 +8,8 @@ from mxlims.impl.MxlimsBase import BaseModel
 from pydantic import ConfigDict, Field
 
 from .Circle import Circle
+from .Enumerations import PlateRegionUnit
 from .Line import Line
-from .PlateRegionUnit import PlateRegionUnit
 from .Point import Point
 from .Polygon import Polygon
 from .Rectangle import Rectangle

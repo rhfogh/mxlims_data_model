@@ -7,8 +7,7 @@ from mxlims.impl.MxlimsBase import BaseModel
 
 from pydantic import HttpUrl, AwareDatetime, ConfigDict, Field
 
-from .ImageLightType import ImageLightType
-from .ImageMimeType import ImageMimetype
+from .Enumerations import ImageLightType, ImageMimeType
 
 
 class DropImageData(BaseModel):
@@ -19,7 +18,7 @@ class DropImageData(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    mime_type: ImageMimetype = Field(
+    mime_type: ImageMimeType = Field(
         ..., alias="mimeType", description="The MIME type of the image."
     )
     light_type: ImageLightType | None = Field(
@@ -41,7 +40,7 @@ class DropImageUrl(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    mime_type: ImageMimetype = Field(
+    mime_type: ImageMimeType = Field(
         ..., alias="mimeType", description="The MIME type of the image."
     )
     light_type: ImageLightType | None = Field(

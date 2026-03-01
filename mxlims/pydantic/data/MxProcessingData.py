@@ -7,7 +7,7 @@ from mxlims.impl.MxlimsBase import BaseModel
 
 from pydantic import Field
 
-from ..datatypes.SpaceGroupName import SpaceGroupName
+from ..datatypes.Enumerations import SpaceGroupName
 from ..datatypes.UnitCell import UnitCell
 
 

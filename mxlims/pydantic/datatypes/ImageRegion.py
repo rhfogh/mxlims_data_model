@@ -9,7 +9,7 @@ from pydantic import ConfigDict, Field
 
 from .Circle import Circle
 from .DropImage import DropImageData, DropImageUrl
-from .ImageRegionUnit import ImageRegionUnit
+from .Enumerations import ImageRegionUnit
 from .Line import Line
 from .Point import Point
 from .Polygon import Polygon

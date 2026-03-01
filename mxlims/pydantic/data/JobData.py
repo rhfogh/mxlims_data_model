@@ -5,7 +5,7 @@ from __future__ import annotations
 
 from pydantic import AwareDatetime, Field
 
-from ..datatypes.JobStatus import JobStatus
+from ..datatypes.Enumerations import JobStatus
 from .MxlimsObjectData import MxlimsObjectData
 
 

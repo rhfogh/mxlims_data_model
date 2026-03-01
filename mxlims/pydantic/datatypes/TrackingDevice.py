@@ -7,7 +7,7 @@ from mxlims.impl.MxlimsBase import BaseModel
 
 from pydantic import HttpUrl, ConfigDict, Field
 
-from .TrackingDeviceType import TrackingDeviceType
+from .Enumerations import TrackingDeviceType
 
 
 class TrackingDevice(BaseModel):

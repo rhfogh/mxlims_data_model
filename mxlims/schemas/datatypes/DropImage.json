@@ -8,7 +8,7 @@
         "mimeType": {
             "allOf": [
                 {
-                    "$ref": "../datatypes/ImageMimeType.json"
+                    "$ref": "../datatypes/Enumerations.json/#/$defs/ImageMimeType"
                 }
             ],
             "description": "The MIME type of the image."
@@ -16,7 +16,7 @@
         "lightType": {
             "allOf": [
                 {
-                    "$ref": "../datatypes/ImageLightType.json"
+                    "$ref": "../datatypes/Enumerations.json/#/$defs/ImageLightType"
                 }
             ],
             "description": "The light used to capture the image."

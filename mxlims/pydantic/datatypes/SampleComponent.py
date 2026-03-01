@@ -7,7 +7,7 @@ from mxlims.impl.MxlimsBase import BaseModel
 
 from pydantic import HttpUrl, ConfigDict, Field, constr
 
-from .SampleComponentRole import SampleComponentRole
+from .Enumerations import SampleComponentRole
 
 
 class SampleComponent(BaseModel):
