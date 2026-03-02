@@ -12,7 +12,7 @@
         "deviceType": {
             "allOf": [
                 {
-                    "$ref": "../datatypes/Enumerations.json/#/$defs/TrackingDeviceType"
+                    "$ref": "../datatypes/Enumerations.json#/$defs/TrackingDeviceType"
                 }
             ],
             "description": "The type of tracking device."

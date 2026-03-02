@@ -19,7 +19,19 @@ from pydantic import AwareDatetime, HttpUrl
 from typing import Any, Dict, List
 
 from mxlims.pydantic.datatypes.Circle import Circle
-from mxlims.pydantic.datatypes.DropImage import DropImage
+from mxlims.pydantic.datatypes.Enumerations import ImageLightType
+from mxlims.pydantic.datatypes.Enumerations import ImageMimeType
+from mxlims.pydantic.datatypes.Enumerations import ImageRegionUnit
+from mxlims.pydantic.datatypes.Enumerations import JobInputRole
+from mxlims.pydantic.datatypes.Enumerations import JobStatus
+from mxlims.pydantic.datatypes.Enumerations import PdbxSignalType
+from mxlims.pydantic.datatypes.Enumerations import PlateRegionUnit
+from mxlims.pydantic.datatypes.Enumerations import ReflectionBinningMode
+from mxlims.pydantic.datatypes.Enumerations import ReflectionFileType
+from mxlims.pydantic.datatypes.Enumerations import SampleComponentRole
+from mxlims.pydantic.datatypes.Enumerations import SpaceGroupName
+from mxlims.pydantic.datatypes.Enumerations import SpaceGroupNameChiral
+from mxlims.pydantic.datatypes.Enumerations import TrackingDeviceType
 from mxlims.pydantic.datatypes.ImageRegion import ImageRegion
 from mxlims.pydantic.datatypes.Line import Line
 from mxlims.pydantic.datatypes.Person import Person

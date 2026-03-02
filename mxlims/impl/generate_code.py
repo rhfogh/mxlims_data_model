@@ -292,6 +292,24 @@ def extract_object_schemas(schema_dir: Path) -> dict:
                     linkdict["reverselink"] = revlinkdict
                 # NB there will always have been one typename so revobjdict is non-empty
                 linkdict["basetypename"] = revobjdict["corename"]
+
+    # Put in null records for removed -to-many links (e.g. MxExperiment.inputData
+    for name, objdict in result.items():
+        corename = objdict["corename"]
+        if corename != name:
+            coredict = result[corename]
+            for coretag, coredd in coredict["links"].items():
+                if (
+                    coredd.get("cardinality") == "multiple"
+                    and coredd["reverselink"].get("cardinality") == "multiple"
+                    and coretag not in objdict["links"]
+                ):
+                    # This is a -to-many link that is suppressed. Add blocker record
+                    objdict["links"][coretag] = {
+                        "basetypename": corename,
+                        "cardinality": None,
+                        "linkname": coretag,
+                    }
     #
     return result
 
@@ -311,7 +329,8 @@ def make_pydantic_object(pydantic_dir: Path, objdict: dict) -> None:
 
     all_types_set = set()
     for linkdict in objdict["links"].values():
-        all_types_set.update(linkdict["typenames"])
+        if linkdict.get("cardinality"):
+            all_types_set.update(linkdict["typenames"])
     all_type_names = sorted(all_types_set)
     classname = objdict["classname"]
     corename = objdict["corename"]
@@ -400,7 +419,7 @@ class {classname}({classname}Data, MxlimsObject):
                     txtlist.extend(
                         pydantic_dummy_single_link(classname=classname, linkdict=linkdict)
                     )
-                else:
+                elif cardinality == "multiple":
                     txtlist.extend(
                         pydantic_dummy_multiple_link(classname=classname, linkdict=linkdict)
                     )
@@ -409,7 +428,7 @@ class {classname}({classname}Data, MxlimsObject):
                     raise ValueError(
                         "Unsupported reverse single link found for {classname}.{linkname}"
                     )
-                else:
+                elif cardinality == "multiple":
                     txtlist.extend(pydantic_dummy_multiple_link(
                         classname=classname, linkdict=linkdict)
                     )
@@ -485,7 +504,7 @@ class {classname}({classname}Data, {corename}):
                     txtlist.extend(
                         pydantic_single_link(classname=classname, linkdict=linkdict)
                     )
-                else:
+                elif cardinality == "multiple":
                     txtlist.extend(
                         pydantic_multiple_link(classname=classname, linkdict=linkdict)
                     )
@@ -494,7 +513,7 @@ class {classname}({classname}Data, {corename}):
                     raise ValueError(
                         "Unsupported reverse single link found for {classname}.{linkname}"
                     )
-                else:
+                elif cardinality == "multiple":
                     txtlist.extend(pydantic_multiple_reverse_link(
                         classname=classname, linkdict=linkdict)
                     )

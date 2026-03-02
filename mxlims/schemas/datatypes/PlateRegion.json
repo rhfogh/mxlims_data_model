@@ -27,7 +27,7 @@
         },
         "units": {
             "description": "The units of the region's co-ordinates.",
-            "$ref": "../datatypes/Enumerations.json/#/$defs/PlateRegionUnit"
+            "$ref": "../datatypes/Enumerations.json#/$defs/PlateRegionUnit"
         }
     },
     "required": [

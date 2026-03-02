@@ -18,7 +18,7 @@
         "role": {
             "allOf": [
                 {
-                    "$ref": "../datatypes/Enumerations.json/#/$defs/SampleComponentRole"
+                    "$ref": "../datatypes/Enumerations.json#/$defs/SampleComponentRole"
                 }
             ]
         },

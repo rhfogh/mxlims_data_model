@@ -24,21 +24,36 @@ def generate_fields(dirname: Optional[str] = None) -> None :
         for fpath in (schema_dir / tag).iterdir():
             name = fpath.stem
             with fpath.open(encoding="utf-8") as fp0:
-                dd1[name] = json.load(fp0)
+                content = json.load(fp0)
+                if "oneOf" in content:
+                    # Multiple types e.g. DropImage
+                    props = content["properties"]
+                    for subtype in content["oneOf"]:
+                        subname = subtype["title"]
+                        subtype["properties"] = props.copy().update(
+                            subtype["properties"]
+                        )
+                        dd1[subname] = subtype
+                else:
+                    dd1[name] = content
 
     # Create Datatype dictionaries
     import_types = set()
     datatypes = {}
     for tag, dd1 in sorted(schemadata["datatypes"].items()):
         props = dd1.get("properties")
+        defs = dd1.get("$defs")
         if dd1.get("type") == "object" and not tag.endswith("Stub"):
-            import_types.add(tag)
+            import_types.add((tag, tag))
         if props:
             datatypes[tag] = dd2 = {}
             for name, dd3 in props.items():
                 if not isinstance(dd3, bool):
                     # NB dd3 can be false, to signify 'not set'
                     dd2[name] = get_type_desc(dd3, schemadata["datatypes"])
+        elif defs:
+            for name in defs:
+                import_types.add((tag, name))
 
     # Create Data dictionaries
     data = {}
@@ -119,8 +134,8 @@ from typing import Any, Dict, List
 
 """)
         fp.writelines(
-            "from mxlims.pydantic.datatypes.{name} import {name}\n".format(name=name)
-            for name in sorted(import_types)
+            "from mxlims.pydantic.datatypes.%s import %s\n" % tpl
+            for tpl in sorted(import_types)
         )
         fp.write("\ntypemap = {\n")
         fp.writelines(

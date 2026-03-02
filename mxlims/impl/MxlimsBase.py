@@ -33,10 +33,10 @@ from pydantic import BaseModel as PydanticBaseModel
 from ruamel.yaml import YAML
 
 if TYPE_CHECKING:
-    from .Dataset import Dataset
-    from Job import Job
-    from .LogisticalSample import LogisticalSample
-    from .Sample import Sample
+    from ..pydantic.objects.Dataset import Dataset
+    from ..pydantic.objects.Job import Job
+    from ..pydantic.objects.LogisticalSample import LogisticalSample
+    from ..pydantic.objects.Sample import Sample
 
 yaml = YAML(typ="safe", pure=True)
 # The following are not needed for load, but define the default style.
@@ -440,7 +440,7 @@ def to_export_json(message_dict: dict) -> None:
                                         "mxlimsBaseType": base_type,
                                         "uuid": str(link_uid)
                                     }
-                    else:
+                    elif linkdict["cardinality"] == "multiple":
                         # Multiple link - link_uid is a list
                         if link_uid:
                             obj[linkdict["link_ref_name"]] = reflist = []
@@ -466,6 +466,9 @@ def to_export_json(message_dict: dict) -> None:
                                             "uuid": str(luid),
                                         }
                                 reflist.append(newref)
+                    else:
+                        # Link should be skipped - e.g. MxExperiment.inputDataIds
+                        pass
 
 
 def to_import_json(

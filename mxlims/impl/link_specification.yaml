@@ -76,6 +76,10 @@ CollectionSweep:
         - PlateWell
         - WellDrop
         - DropRegion
+    reference_for:
+      basetypename: Dataset
+      cardinality: null
+      linkname: reference_for
     source: &id005
       basetypename: Job
       cardinality: single
@@ -631,6 +635,10 @@ MxExperiment:
   classname: MxExperiment
   corename: Job
   links:
+    input_data:
+      basetypename: Job
+      cardinality: null
+      linkname: input_data
     logistical_sample:
       basetypename: LogisticalSample
       cardinality: single
@@ -1003,6 +1011,10 @@ ReflectionSet:
       typenames:
         - ReflectionSet
     derived_from: *id060
+    input_for:
+      basetypename: Dataset
+      cardinality: null
+      linkname: input_for
     logistical_sample: *id008
     reference_for: *id043
     source: *id061
@@ -1061,7 +1073,15 @@ VolumeScan:
   classname: VolumeScan
   corename: Job
   links:
+    input_data:
+      basetypename: Job
+      cardinality: null
+      linkname: input_data
     logistical_sample: *id009
+    reference_data:
+      basetypename: Job
+      cardinality: null
+      linkname: reference_data
     sample: *id069
     started_from: *id070
     template_data: *id071
