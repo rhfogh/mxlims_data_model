@@ -208,7 +208,6 @@ def extract_object_schemas(schema_dir: Path) -> dict:
                 if not reference.endswith("Data.json"):
                     raise ValueError("/data/ json file names must end with 'Data.json'")
                 dataname = Path(reference).stem
-                dd2 = data[dataname]
                 if dataname[:-4] in CORETYPES:
                     objdict["corename"] = dataname[:-4]
                 else:
@@ -309,6 +308,7 @@ def extract_object_schemas(schema_dir: Path) -> dict:
                         "basetypename": corename,
                         "cardinality": None,
                         "linkname": coretag,
+                        "link_id_name": coredd["linkname"] + "_ids"
                     }
     #
     return result

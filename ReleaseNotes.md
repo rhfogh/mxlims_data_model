@@ -1,9 +1,16 @@
+## Changes in version 0.6.12
+- Refactored datatypes to put all enumerations into Enumerations.json
+- Reorganised test directories to support parallel testing of different versions
+- Fixed bugs in handling suppressed many-to-many links in Pydantic export
+- Fixed bugs arising from recent check-ins
+- Started tagging superseded versions
+
 ## Changes in version 0.6.11
 - Upgraded to JSONschema version 2020-12
 - Upgraded datamodel-code-generator to version 0.54.0, giving newer Python syntax
 - Changed validation code to use jsonschema package
 - Properly implemented XOR-type constraints when only one of two fields can be set
-- Added testing code and found and fixed some b ugs in schgemas and/or example files
+- Added testing code and found and fixed some bugs in schemas and/or example files
 
 ## Changes in version 0.6.10
 

@@ -79,6 +79,7 @@ CollectionSweep:
     reference_for:
       basetypename: Dataset
       cardinality: null
+      link_id_name: reference_for_ids
       linkname: reference_for
     source: &id005
       basetypename: Job
@@ -638,6 +639,7 @@ MxExperiment:
     input_data:
       basetypename: Job
       cardinality: null
+      link_id_name: input_data_ids
       linkname: input_data
     logistical_sample:
       basetypename: LogisticalSample
@@ -1014,6 +1016,7 @@ ReflectionSet:
     input_for:
       basetypename: Dataset
       cardinality: null
+      link_id_name: input_for_ids
       linkname: input_for
     logistical_sample: *id008
     reference_for: *id043
@@ -1076,11 +1079,13 @@ VolumeScan:
     input_data:
       basetypename: Job
       cardinality: null
+      link_id_name: input_data_ids
       linkname: input_data
     logistical_sample: *id009
     reference_data:
       basetypename: Job
       cardinality: null
+      link_id_name: reference_data_ids
       linkname: reference_data
     sample: *id069
     started_from: *id070

@@ -3,7 +3,7 @@
     "CollectionSweep": {
         "CollectionSweep1": {
             "mxlimsType": "CollectionSweep",
-            "uuid": "a4a4aca1-366c-4cd5-8c5b-4b8098be1518",
+            "uuid": "6ebc33b5-3b71-40e2-8a9c-0a03d6ec6b96",
             "role": "Characterisation",
             "sweepType": "simple",
             "exposureTime": 0.02,
@@ -12,7 +12,7 @@
             "numberTriggers": 0,
             "numberImagesPerTrigger": 0,
             "energy": 12.4,
-            "transmission": 7.199,
+            "transmission": 7.200000000000001,
             "resolution": 3.70003271512822,
             "detectorRoiMode": "0",
             "beamPosition": [
@@ -26,11 +26,11 @@
             "beamShape": "ellipse",
             "axisPositionsStart": {
                 "omega": 0.0,
-                "kappa": 5.9455666261420905,
-                "kappa_phi": 7.240792774082863,
-                "phiy": 3.8886009420591368,
-                "sampx": 3.680671385684159,
-                "sampy": 0.48094794816075376,
+                "kappa": 6.563978255095867,
+                "kappa_phi": 8.557954377011107,
+                "phiy": 0.7957046539641102,
+                "sampx": 5.506856410843704,
+                "sampy": 8.31605306044199,
                 "detector_distance": 416.77
             },
             "axisPositionsEnd": {
@@ -77,8 +77,8 @@
             ],
             "fileType": "cbf",
             "prefix": "4k61",
-            "filenameTemplate": "4k61_3_%04d.cbf",
-            "path": "/home/rhfogh/calc/mxcube_data/visitor/id2310424/mxcubetest/20240615/RAW_DATA/4k61/4k61_002/characterisation",
+            "filenameTemplate": "4k61_1_%04d.cbf",
+            "path": "/home/rhfogh/calc/mxcube_data/visitor/id2310424/mxcubetest/20240615/RAW_DATA/4k61/4k61_001/characterisation",
             "logisticalSampleRef": {
                 "$ref": "#/Crystal/Crystal1"
             },
@@ -88,7 +88,7 @@
         },
         "CollectionSweep2": {
             "mxlimsType": "CollectionSweep",
-            "uuid": "39d1711b-e55a-40e5-97a1-0c103579b2cf",
+            "uuid": "76e0376f-ccba-4ded-bd1d-f8465ed6584b",
             "role": "Result",
             "sweepType": "simple",
             "exposureTime": 0.02,
@@ -97,7 +97,7 @@
             "numberTriggers": 0,
             "numberImagesPerTrigger": 0,
             "energy": 12.4,
-            "transmission": 5.1318,
+            "transmission": 5.1275,
             "resolution": 3.70003271512822,
             "detectorRoiMode": "0",
             "beamPosition": [
@@ -113,9 +113,9 @@
                 "omega": -142.000000000043,
                 "kappa": 0.0,
                 "kappa_phi": 0.0,
-                "phiy": 3.8728216288515895,
-                "sampx": 3.6759576705898196,
-                "sampy": 0.4815025028777349,
+                "phiy": 0.7957046539641102,
+                "sampx": 5.506856410843704,
+                "sampy": 8.31605306044199,
                 "detector_distance": 416.77
             },
             "axisPositionsEnd": {
@@ -132,8 +132,8 @@
             ],
             "fileType": "cbf",
             "prefix": "4k61_G1B1",
-            "filenameTemplate": "4k61_G1B1_4_%04d.cbf",
-            "path": "/home/rhfogh/calc/mxcube_data/visitor/id2310424/mxcubetest/20240615/RAW_DATA/4k61/4k61_002/main",
+            "filenameTemplate": "4k61_G1B1_2_%04d.cbf",
+            "path": "/home/rhfogh/calc/mxcube_data/visitor/id2310424/mxcubetest/20240615/RAW_DATA/4k61/4k61_001/main",
             "logisticalSampleRef": {
                 "$ref": "#/Crystal/Crystal1"
             },
@@ -145,7 +145,7 @@
     "Crystal": {
         "Crystal1": {
             "mxlimsType": "Crystal",
-            "uuid": "5713bba4-1631-11f1-8675-c4474e33fb12",
+            "uuid": "0cf84f3e-170e-11f1-8d35-c4474e33fb12",
             "name": "matr1_6",
             "sampleRef": {
                 "$ref": "#/MacromoleculeSample/MacromoleculeSample1"
@@ -155,14 +155,14 @@
     "MacromoleculeSample": {
         "MacromoleculeSample1": {
             "mxlimsType": "MacromoleculeSample",
-            "uuid": "5713b4a6-1631-11f1-8675-c4474e33fb12",
+            "uuid": "0cf84c14-170e-11f1-8d35-c4474e33fb12",
             "name": "4k61"
         }
     },
     "MxExperiment": {
         "MxExperiment1": {
             "mxlimsType": "MxExperiment",
-            "uuid": "bf8ddb4d-851a-43da-962c-ebd7379fda82",
+            "uuid": "33473f70-1de8-4166-a87f-4ec3273ee4e3",
             "extensions": {
                 "workflow.gphl.co": {
                     "strategy_type": "native",
@@ -176,15 +176,14 @@
                     "experiment_strategy": "gphl.native.minimal"
                 }
             },
-            "startTime": "2026-03-02T12:14:19.531264Z",
-            "endTime": "2026-03-02T12:23:27.471340Z",
-            "inputDataIds": [],
+            "startTime": "2026-03-03T14:34:13.977533Z",
+            "endTime": "2026-03-03T14:43:03.451565Z",
             "experimentStrategy": "gphl.native.minimal",
             "expectedResolution": 1.7,
             "radiationSensitivity": 1.0,
             "snapshotCount": 0,
-            "measuredFlux": 230187238957.9205,
-            "radiationDose": 10.4994,
+            "measuredFlux": 230145508411.28183,
+            "radiationDose": 10.4992,
             "expectedSpaceGroupName": "I4",
             "expectedUnitCell": {
                 "a": 86.75,
