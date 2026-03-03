@@ -4,7 +4,6 @@
 from __future__ import annotations
 
 from mxlims.impl.MxlimsBase import BaseModel
-
 from pydantic import ConfigDict, Field, PositiveInt
 
 

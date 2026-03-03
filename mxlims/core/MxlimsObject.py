@@ -2,11 +2,10 @@
 
 from __future__ import annotations
 from typing import Any
-from mxlims.impl.MxlimsBase import MxlimsImplementation, BaseModel
+from mxlims.impl.MxlimsImplementation import MxlimsImplementation
 
-class MxlimsObject(BaseModel, MxlimsImplementation):
+class MxlimsObject(MxlimsImplementation):
     """MXLIMS pydantic model top level superclass
     """
     def __init__(self, **data: Any) -> None:
-        super().__init__(**data)
-        MxlimsImplementation.__init__(self)
+        MxlimsImplementation.__init__(self, **data)

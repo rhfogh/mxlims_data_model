@@ -4,7 +4,6 @@
 from __future__ import annotations
 
 from mxlims.impl.MxlimsBase import BaseModel
-
 from pydantic import Field, NonNegativeInt, PositiveFloat, PositiveInt, confloat
 
 from ..datatypes.Scan import Scan as Scan_1

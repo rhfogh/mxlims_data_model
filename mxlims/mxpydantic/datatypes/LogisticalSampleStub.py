@@ -7,7 +7,6 @@ from typing import Literal
 from uuid import UUID
 
 from mxlims.impl.MxlimsBase import BaseModel
-
 from pydantic import ConfigDict, Field, RootModel
 
 

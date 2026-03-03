@@ -29,7 +29,8 @@ from ruamel.yaml import YAML
 import subprocess
 from subprocess import CalledProcessError
 
-from mxlims.impl.MxlimsBase import camel_to_snake, CORETYPES
+from mxlims.impl.MxlimsBase import camel_to_snake
+from mxlims.impl.MxlimsImplementation import CORETYPES
 from mxlims.impl.generate_field_list import generate_fields
 
 # pure=True uses yaml version 1.2, with fewer gotchas for strange type conversions
@@ -173,6 +174,7 @@ def generate_message_classes(mxlims_dir: Path) -> None:
                 continue
             text = fp0.read_text()
             text = text.replace("BaseModel", "BaseMessage")
+            text = text.replace("MxlimsBase","MxlimsImplementation")
             text = text.replace("None,", "default_factory=dict,")
             fp0.write_text(text)
 

@@ -3,7 +3,7 @@
     "CollectionSweep": {
         "CollectionSweep1": {
             "mxlimsType": "CollectionSweep",
-            "uuid": "25868e44-c529-40cf-8474-9e1dd5e8ce13",
+            "uuid": "4980599b-4a4f-4e0e-8bb0-be44faf96f51",
             "role": "Characterisation",
             "sweepType": "simple",
             "exposureTime": 0.02,
@@ -12,7 +12,7 @@
             "numberTriggers": 0,
             "numberImagesPerTrigger": 0,
             "energy": 12.4,
-            "transmission": 7.2007,
+            "transmission": 7.198200000000001,
             "resolution": 3.70003271512822,
             "detectorRoiMode": "0",
             "beamPosition": [
@@ -28,9 +28,9 @@
                 "omega": 0.0,
                 "kappa": 0.0,
                 "kappa_phi": 0.0,
-                "phiy": 0.7957046539641102,
-                "sampx": 5.506856410843704,
-                "sampy": 8.31605306044199,
+                "phiy": 4.2863433661626,
+                "sampx": 8.764559104220849,
+                "sampy": 5.277165591852286,
                 "detector_distance": 416.77
             },
             "axisPositionsEnd": {
@@ -88,7 +88,7 @@
         },
         "CollectionSweep2": {
             "mxlimsType": "CollectionSweep",
-            "uuid": "47acbe08-e50e-4cd6-9d0c-1a15e6b7275b",
+            "uuid": "e798d6c6-ead6-4347-8b4e-1244af3ef78d",
             "role": "Result",
             "sweepType": "simple",
             "exposureTime": 0.02,
@@ -97,7 +97,7 @@
             "numberTriggers": 0,
             "numberImagesPerTrigger": 0,
             "energy": 12.4,
-            "transmission": 1.2586,
+            "transmission": 1.2585,
             "resolution": 3.70003271512822,
             "detectorRoiMode": "0",
             "beamPosition": [
@@ -110,33 +110,39 @@
             ],
             "beamShape": "ellipse",
             "axisPositionsStart": {
-                "omega": 7.00150032092583,
-                "kappa": 79.0331698826296,
-                "kappa_phi": 69.0048671310684,
+                "omega": 7.00149244815729,
+                "kappa": 79.0331859638029,
+                "kappa_phi": 69.0034189527253,
                 "detector_distance": 416.77
             },
             "axisPositionsEnd": {
-                "omega": 187.00150032092583
+                "omega": 187.00149244815728
             },
             "scanAxis": "omega",
             "scans": [
                 {
-                    "scanPositionStart": 7.00150032092583,
+                    "scanPositionStart": 7.00149244815729,
                     "firstImageNumber": 1,
-                    "numberImages": 360,
+                    "numberImages": 240,
                     "ordinal": 6
                 },
                 {
-                    "scanPositionStart": 79.00150032092583,
-                    "firstImageNumber": 361,
-                    "numberImages": 360,
+                    "scanPositionStart": 55.00149244815729,
+                    "firstImageNumber": 241,
+                    "numberImages": 240,
                     "ordinal": 8
                 },
                 {
-                    "scanPositionStart": 151.00150032092583,
+                    "scanPositionStart": 103.0014924481573,
+                    "firstImageNumber": 481,
+                    "numberImages": 240,
+                    "ordinal": 10
+                },
+                {
+                    "scanPositionStart": 151.00149244815728,
                     "firstImageNumber": 721,
                     "numberImages": 180,
-                    "ordinal": 10
+                    "ordinal": 12
                 }
             ],
             "fileType": "cbf",
@@ -152,7 +158,7 @@
         },
         "CollectionSweep3": {
             "mxlimsType": "CollectionSweep",
-            "uuid": "0c52e4bb-8cd2-4208-8f72-24b50b2ae01a",
+            "uuid": "2b2109e3-e1dd-4e85-991d-e18980ce36b8",
             "role": "Result",
             "sweepType": "simple",
             "exposureTime": 0.02,
@@ -161,7 +167,7 @@
             "numberTriggers": 0,
             "numberImagesPerTrigger": 0,
             "energy": 12.41,
-            "transmission": 1.2586,
+            "transmission": 1.2585,
             "resolution": 3.70003271512822,
             "detectorRoiMode": "0",
             "beamPosition": [
@@ -174,33 +180,39 @@
             ],
             "beamShape": "ellipse",
             "axisPositionsStart": {
-                "omega": 7.00150032092583,
-                "kappa": 79.0331698826296,
-                "kappa_phi": 69.0048671310684,
+                "omega": 7.00149244815729,
+                "kappa": 79.0331859638029,
+                "kappa_phi": 69.0034189527253,
                 "detector_distance": 416.77
             },
             "axisPositionsEnd": {
-                "omega": 187.00150032092583
+                "omega": 187.00149244815728
             },
             "scanAxis": "omega",
             "scans": [
                 {
-                    "scanPositionStart": 7.00150032092583,
+                    "scanPositionStart": 7.00149244815729,
                     "firstImageNumber": 1,
-                    "numberImages": 360,
+                    "numberImages": 240,
                     "ordinal": 7
                 },
                 {
-                    "scanPositionStart": 79.00150032092583,
-                    "firstImageNumber": 361,
-                    "numberImages": 360,
+                    "scanPositionStart": 55.00149244815729,
+                    "firstImageNumber": 241,
+                    "numberImages": 240,
                     "ordinal": 9
                 },
                 {
-                    "scanPositionStart": 151.00150032092583,
+                    "scanPositionStart": 103.0014924481573,
+                    "firstImageNumber": 481,
+                    "numberImages": 240,
+                    "ordinal": 11
+                },
+                {
+                    "scanPositionStart": 151.00149244815728,
                     "firstImageNumber": 721,
                     "numberImages": 180,
-                    "ordinal": 11
+                    "ordinal": 13
                 }
             ],
             "fileType": "cbf",
@@ -216,7 +228,7 @@
         },
         "CollectionSweep4": {
             "mxlimsType": "CollectionSweep",
-            "uuid": "f5bd473d-c321-444b-b79a-681fbaa16a04",
+            "uuid": "55d92851-4c9e-40ce-a3ef-5a784e1b250d",
             "role": "Result",
             "sweepType": "simple",
             "exposureTime": 0.02,
@@ -225,7 +237,7 @@
             "numberTriggers": 0,
             "numberImagesPerTrigger": 0,
             "energy": 12.4,
-            "transmission": 1.2586,
+            "transmission": 1.2585,
             "resolution": 3.70003271512822,
             "detectorRoiMode": "0",
             "beamPosition": [
@@ -238,21 +250,21 @@
             ],
             "beamShape": "ellipse",
             "axisPositionsStart": {
-                "omega": 173.797248908226,
-                "kappa": 79.0418538994263,
-                "kappa_phi": -110.999384281631,
+                "omega": 173.797256781538,
+                "kappa": 79.0418378173555,
+                "kappa_phi": -111.000816713894,
                 "detector_distance": 416.77
             },
             "axisPositionsEnd": {
-                "omega": 202.59724890822602
+                "omega": 202.397256781538
             },
             "scanAxis": "omega",
             "scans": [
                 {
-                    "scanPositionStart": 173.797248908226,
+                    "scanPositionStart": 173.797256781538,
                     "firstImageNumber": 913,
-                    "numberImages": 144,
-                    "ordinal": 12
+                    "numberImages": 143,
+                    "ordinal": 14
                 }
             ],
             "fileType": "cbf",
@@ -268,7 +280,7 @@
         },
         "CollectionSweep5": {
             "mxlimsType": "CollectionSweep",
-            "uuid": "7924f321-8d16-4040-a839-9db221cbff7d",
+            "uuid": "08528924-9c74-42a2-879d-45966a43f993",
             "role": "Result",
             "sweepType": "simple",
             "exposureTime": 0.02,
@@ -277,7 +289,7 @@
             "numberTriggers": 0,
             "numberImagesPerTrigger": 0,
             "energy": 12.41,
-            "transmission": 1.2586,
+            "transmission": 1.2585,
             "resolution": 3.70003271512822,
             "detectorRoiMode": "0",
             "beamPosition": [
@@ -290,21 +302,21 @@
             ],
             "beamShape": "ellipse",
             "axisPositionsStart": {
-                "omega": 173.797248908226,
-                "kappa": 79.0418538994263,
-                "kappa_phi": -110.999384281631,
+                "omega": 173.797256781538,
+                "kappa": 79.0418378173555,
+                "kappa_phi": -111.000816713894,
                 "detector_distance": 416.77
             },
             "axisPositionsEnd": {
-                "omega": 202.59724890822602
+                "omega": 202.397256781538
             },
             "scanAxis": "omega",
             "scans": [
                 {
-                    "scanPositionStart": 173.797248908226,
+                    "scanPositionStart": 173.797256781538,
                     "firstImageNumber": 913,
-                    "numberImages": 144,
-                    "ordinal": 13
+                    "numberImages": 143,
+                    "ordinal": 15
                 }
             ],
             "fileType": "cbf",
@@ -320,7 +332,7 @@
         },
         "CollectionSweep6": {
             "mxlimsType": "CollectionSweep",
-            "uuid": "5a532c6b-fd66-4432-a76f-df7f3875a6c7",
+            "uuid": "16eb6702-65d1-48da-8fbc-f08e086c4d21",
             "role": "Result",
             "sweepType": "simple",
             "exposureTime": 0.02,
@@ -329,7 +341,7 @@
             "numberTriggers": 0,
             "numberImagesPerTrigger": 0,
             "energy": 12.4,
-            "transmission": 1.2586,
+            "transmission": 1.2585,
             "resolution": 3.70003271512822,
             "detectorRoiMode": "0",
             "beamPosition": [
@@ -342,33 +354,39 @@
             ],
             "beamShape": "ellipse",
             "axisPositionsStart": {
-                "omega": -8.6027510917739,
-                "kappa": 79.0418538994263,
-                "kappa_phi": -110.999384281631,
+                "omega": -8.60274321846231,
+                "kappa": 79.0418378173555,
+                "kappa_phi": -111.000816713894,
                 "detector_distance": 416.77
             },
             "axisPositionsEnd": {
-                "omega": 173.7972489082261
+                "omega": 173.59725678153768
             },
             "scanAxis": "omega",
             "scans": [
                 {
-                    "scanPositionStart": -8.6027510917739,
+                    "scanPositionStart": -8.60274321846231,
                     "firstImageNumber": 1,
-                    "numberImages": 360,
-                    "ordinal": 14
-                },
-                {
-                    "scanPositionStart": 63.3972489082261,
-                    "firstImageNumber": 361,
-                    "numberImages": 360,
+                    "numberImages": 240,
                     "ordinal": 16
                 },
                 {
-                    "scanPositionStart": 135.3972489082261,
-                    "firstImageNumber": 721,
-                    "numberImages": 192,
+                    "scanPositionStart": 39.39725678153769,
+                    "firstImageNumber": 241,
+                    "numberImages": 240,
                     "ordinal": 18
+                },
+                {
+                    "scanPositionStart": 87.39725678153769,
+                    "firstImageNumber": 481,
+                    "numberImages": 240,
+                    "ordinal": 20
+                },
+                {
+                    "scanPositionStart": 135.3972567815377,
+                    "firstImageNumber": 721,
+                    "numberImages": 191,
+                    "ordinal": 22
                 }
             ],
             "fileType": "cbf",
@@ -384,7 +402,7 @@
         },
         "CollectionSweep7": {
             "mxlimsType": "CollectionSweep",
-            "uuid": "b3fa7ede-06e8-4da6-b1a0-e940055a1c12",
+            "uuid": "34364db9-0d5f-44a8-aa5f-7da50ba99b5d",
             "role": "Result",
             "sweepType": "simple",
             "exposureTime": 0.02,
@@ -393,7 +411,7 @@
             "numberTriggers": 0,
             "numberImagesPerTrigger": 0,
             "energy": 12.41,
-            "transmission": 1.2586,
+            "transmission": 1.2585,
             "resolution": 3.70003271512822,
             "detectorRoiMode": "0",
             "beamPosition": [
@@ -406,33 +424,39 @@
             ],
             "beamShape": "ellipse",
             "axisPositionsStart": {
-                "omega": -8.6027510917739,
-                "kappa": 79.0418538994263,
-                "kappa_phi": -110.999384281631,
+                "omega": -8.60274321846231,
+                "kappa": 79.0418378173555,
+                "kappa_phi": -111.000816713894,
                 "detector_distance": 416.77
             },
             "axisPositionsEnd": {
-                "omega": 173.7972489082261
+                "omega": 173.59725678153768
             },
             "scanAxis": "omega",
             "scans": [
                 {
-                    "scanPositionStart": -8.6027510917739,
+                    "scanPositionStart": -8.60274321846231,
                     "firstImageNumber": 1,
-                    "numberImages": 360,
-                    "ordinal": 15
-                },
-                {
-                    "scanPositionStart": 63.3972489082261,
-                    "firstImageNumber": 361,
-                    "numberImages": 360,
+                    "numberImages": 240,
                     "ordinal": 17
                 },
                 {
-                    "scanPositionStart": 135.3972489082261,
-                    "firstImageNumber": 721,
-                    "numberImages": 192,
+                    "scanPositionStart": 39.39725678153769,
+                    "firstImageNumber": 241,
+                    "numberImages": 240,
                     "ordinal": 19
+                },
+                {
+                    "scanPositionStart": 87.39725678153769,
+                    "firstImageNumber": 481,
+                    "numberImages": 240,
+                    "ordinal": 21
+                },
+                {
+                    "scanPositionStart": 135.3972567815377,
+                    "firstImageNumber": 721,
+                    "numberImages": 191,
+                    "ordinal": 23
                 }
             ],
             "fileType": "cbf",
@@ -450,7 +474,7 @@
     "Crystal": {
         "Crystal1": {
             "mxlimsType": "Crystal",
-            "uuid": "8c5dc5fa-170f-11f1-8d35-c4474e33fb12",
+            "uuid": "733ae6e4-174a-11f1-8bd5-c4474e33fb12",
             "name": "matr1_6",
             "sampleRef": {
                 "$ref": "#/MacromoleculeSample/MacromoleculeSample1"
@@ -460,14 +484,14 @@
     "MacromoleculeSample": {
         "MacromoleculeSample1": {
             "mxlimsType": "MacromoleculeSample",
-            "uuid": "8c5dc348-170f-11f1-8d35-c4474e33fb12",
+            "uuid": "733ae39c-174a-11f1-8bd5-c4474e33fb12",
             "name": "4k61"
         }
     },
     "MxExperiment": {
         "MxExperiment1": {
             "mxlimsType": "MxExperiment",
-            "uuid": "a1b30d0b-b46a-4fd9-b070-d3430ecd7621",
+            "uuid": "3b5b8750-4f0c-44d2-bb09-bbf948ab0cda",
             "extensions": {
                 "workflow.gphl.co": {
                     "strategy_type": "phasing",
@@ -481,14 +505,14 @@
                     "experiment_strategy": "gphl.mad2wvl.basic"
                 }
             },
-            "startTime": "2026-03-03T14:44:57.209870Z",
-            "endTime": "2026-03-03T15:03:43.081229Z",
+            "startTime": "2026-03-03T21:46:35.345325Z",
+            "endTime": "2026-03-03T22:06:45.340982Z",
             "experimentStrategy": "gphl.mad2wvl.basic",
             "expectedResolution": 1.7,
             "radiationSensitivity": 1.0,
             "snapshotCount": 0,
-            "measuredFlux": 117982126833.76727,
-            "radiationDose": 10.5003,
+            "measuredFlux": 117997871678.58223,
+            "radiationDose": 10.4967,
             "expectedSpaceGroupName": "I4",
             "expectedUnitCell": {
                 "a": 86.75,

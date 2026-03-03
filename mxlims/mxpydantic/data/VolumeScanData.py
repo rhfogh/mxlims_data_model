@@ -6,7 +6,6 @@ from __future__ import annotations
 from typing import Any
 
 from mxlims.impl.MxlimsBase import BaseModel
-
 from pydantic import Field
 
 from ..datatypes.PointCloud import PointCloud as PointCloud_1

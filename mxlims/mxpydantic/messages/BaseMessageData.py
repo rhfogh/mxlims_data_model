@@ -5,8 +5,7 @@ from __future__ import annotations
 
 from typing import Literal
 
-from mxlims.impl.MxlimsBase import BaseMessage
-
+from mxlims.impl.MxlimsImplementation import BaseMessage
 from pydantic import Field, RootModel
 
 

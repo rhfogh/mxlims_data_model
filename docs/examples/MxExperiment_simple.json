@@ -3,7 +3,7 @@
     "CollectionSweep": {
         "CollectionSweep1": {
             "mxlimsType": "CollectionSweep",
-            "uuid": "6ebc33b5-3b71-40e2-8a9c-0a03d6ec6b96",
+            "uuid": "99cf884a-63a0-483e-8721-9265c6d3adef",
             "role": "Characterisation",
             "sweepType": "simple",
             "exposureTime": 0.02,
@@ -12,7 +12,7 @@
             "numberTriggers": 0,
             "numberImagesPerTrigger": 0,
             "energy": 12.4,
-            "transmission": 7.200000000000001,
+            "transmission": 7.198800000000001,
             "resolution": 3.70003271512822,
             "detectorRoiMode": "0",
             "beamPosition": [
@@ -26,11 +26,11 @@
             "beamShape": "ellipse",
             "axisPositionsStart": {
                 "omega": 0.0,
-                "kappa": 6.563978255095867,
-                "kappa_phi": 8.557954377011107,
-                "phiy": 0.7957046539641102,
-                "sampx": 5.506856410843704,
-                "sampy": 8.31605306044199,
+                "kappa": 0.4618060992421657,
+                "kappa_phi": 5.9284817494856705,
+                "phiy": 4.2863433661626,
+                "sampx": 8.764559104220849,
+                "sampy": 5.277165591852286,
                 "detector_distance": 416.77
             },
             "axisPositionsEnd": {
@@ -88,7 +88,7 @@
         },
         "CollectionSweep2": {
             "mxlimsType": "CollectionSweep",
-            "uuid": "76e0376f-ccba-4ded-bd1d-f8465ed6584b",
+            "uuid": "55971f06-d385-451e-98ac-e145dfa9ecc8",
             "role": "Result",
             "sweepType": "simple",
             "exposureTime": 0.02,
@@ -97,7 +97,7 @@
             "numberTriggers": 0,
             "numberImagesPerTrigger": 0,
             "energy": 12.4,
-            "transmission": 5.1275,
+            "transmission": 5.129200000000001,
             "resolution": 3.70003271512822,
             "detectorRoiMode": "0",
             "beamPosition": [
@@ -113,9 +113,9 @@
                 "omega": -142.000000000043,
                 "kappa": 0.0,
                 "kappa_phi": 0.0,
-                "phiy": 0.7957046539641102,
-                "sampx": 5.506856410843704,
-                "sampy": 8.31605306044199,
+                "phiy": 4.2863433661626,
+                "sampx": 8.764559104220849,
+                "sampy": 5.277165591852286,
                 "detector_distance": 416.77
             },
             "axisPositionsEnd": {
@@ -145,7 +145,7 @@
     "Crystal": {
         "Crystal1": {
             "mxlimsType": "Crystal",
-            "uuid": "0cf84f3e-170e-11f1-8d35-c4474e33fb12",
+            "uuid": "07124d1e-1749-11f1-8bd5-c4474e33fb12",
             "name": "matr1_6",
             "sampleRef": {
                 "$ref": "#/MacromoleculeSample/MacromoleculeSample1"
@@ -155,14 +155,14 @@
     "MacromoleculeSample": {
         "MacromoleculeSample1": {
             "mxlimsType": "MacromoleculeSample",
-            "uuid": "0cf84c14-170e-11f1-8d35-c4474e33fb12",
+            "uuid": "0712492c-1749-11f1-8bd5-c4474e33fb12",
             "name": "4k61"
         }
     },
     "MxExperiment": {
         "MxExperiment1": {
             "mxlimsType": "MxExperiment",
-            "uuid": "33473f70-1de8-4166-a87f-4ec3273ee4e3",
+            "uuid": "46678c33-ff56-4ba3-97d7-993f4c44794b",
             "extensions": {
                 "workflow.gphl.co": {
                     "strategy_type": "native",
@@ -176,14 +176,14 @@
                     "experiment_strategy": "gphl.native.minimal"
                 }
             },
-            "startTime": "2026-03-03T14:34:13.977533Z",
-            "endTime": "2026-03-03T14:43:03.451565Z",
+            "startTime": "2026-03-03T21:36:24.388559Z",
+            "endTime": "2026-03-03T21:45:37.943328Z",
             "experimentStrategy": "gphl.native.minimal",
             "expectedResolution": 1.7,
             "radiationSensitivity": 1.0,
             "snapshotCount": 0,
-            "measuredFlux": 230145508411.28183,
-            "radiationDose": 10.4992,
+            "measuredFlux": 230028493494.86478,
+            "radiationDose": 10.4995,
             "expectedSpaceGroupName": "I4",
             "expectedUnitCell": {
                 "a": 86.75,

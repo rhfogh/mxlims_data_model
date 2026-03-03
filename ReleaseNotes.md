@@ -3,6 +3,7 @@
 - Reorganised test directories to support parallel testing of different versions
 - Fixed bugs in handling suppressed many-to-many links in Pydantic export
 - Fixed bugs arising from recent check-ins
+- Reorganised top pydantic classes and renamed some directories to disambiguate imports
 - Started tagging superseded versions
 
 ## Changes in version 0.6.11

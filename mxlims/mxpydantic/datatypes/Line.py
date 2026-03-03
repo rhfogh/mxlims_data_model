@@ -6,7 +6,6 @@ from __future__ import annotations
 from typing import Literal
 
 from mxlims.impl.MxlimsBase import BaseModel
-
 from pydantic import ConfigDict, Field, RootModel
 
 from .Point import Point

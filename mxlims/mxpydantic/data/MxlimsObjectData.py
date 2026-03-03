@@ -7,7 +7,6 @@ from typing import Any
 from uuid import UUID
 
 from mxlims.impl.MxlimsBase import BaseModel
-
 from pydantic import HttpUrl, Field, constr
 
 
