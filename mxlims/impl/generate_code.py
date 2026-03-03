@@ -77,7 +77,7 @@ def generate_mxlims(dirname: str | None = None) -> None :
 
     # Remove old pydantic files
     for subdir in ("data", "datatypes", "messages", "references"):
-        for fp0 in (mxlims_dir / "mxlims" / "pydantic" / subdir).iterdir():
+        for fp0 in (mxlims_dir / "mxlims" / "mxpydantic" / subdir).iterdir():
             if fp0.is_file():
                 os.remove(fp0)
 
@@ -108,7 +108,7 @@ def generate_mxlims(dirname: str | None = None) -> None :
         "--input",
         "mxlims/schemas",
         "--output",
-        "mxlims/pydantic",
+        "mxlims/mxpydantic",
     ]
     try:
         subprocess.run(
@@ -124,18 +124,24 @@ def generate_mxlims(dirname: str | None = None) -> None :
 
     # # Temporary HACK
     # # TBD replace with fully generated core classes
-    # jobfile = mxlims_dir / "mxlims" / "pydantic" / "core" / "Job.py"
+    # jobfile = mxlims_dir / "mxlims" / "mxpydantic" / "core" / "Job.py"
     # text = jobfile.read_text()
     # text = text.replace("...", "default_factory=list")
     # jobfile.write_text(text)
 
     # Generate final Pydantic objects
-    pydantic_dir = mxlims_dir / "mxlims" / "pydantic"
+    pydantic_dir = mxlims_dir / "mxlims" / "mxpydantic"
     for fp0 in (pydantic_dir / "objects").iterdir():
         if fp0.is_file():
             os.remove(fp0)
     for classname, objdict in object_dicts.items():
         make_pydantic_object(pydantic_dir, objdict)
+    for fp0 in (pydantic_dir / "core").iterdir():
+        if fp0.is_file():
+            os.remove(fp0)
+    for fp0 in (pydantic_dir / "references").iterdir():
+        if fp0.is_file():
+            os.remove(fp0)
 
     # Generate MXLIMS Message classes
     generate_message_classes(mxlims_dir)
@@ -159,7 +165,7 @@ def generate_message_classes(mxlims_dir: Path) -> None:
     :param mxlims_dir:
     :return:
     """
-    input_dir = mxlims_dir / "mxlims" / "pydantic" / "messages"
+    input_dir = mxlims_dir / "mxlims" / "mxpydantic" / "messages"
     for fp0 in input_dir.iterdir():
         if fp0.is_file():
             classname = fp0.stem
@@ -173,7 +179,7 @@ def generate_message_classes(mxlims_dir: Path) -> None:
 def extract_object_schemas(schema_dir: Path) -> dict:
     """Extract model specification schemas and convert to data for code generation
 
-    See .../mxlims_data_model/mlxlims/pydantic/linl_specification.yaml
+    See .../mxlims_data_model/mlxlims/mxpydantic/linl_specification.yaml
     for the structure of the data produced here.
 
     reverse links (those not depending on uuid stored in this object)
@@ -317,7 +323,7 @@ def extract_object_schemas(schema_dir: Path) -> dict:
 def make_pydantic_object(pydantic_dir: Path, objdict: dict) -> None:
     """ Generate and output final object pydantic file
 
-    :param pydantic_dir_dir:
+    :param pydantic_dir:
     :param objdict:
     :return:
     """
@@ -739,7 +745,7 @@ def pydantic_multiple_reverse_link(classname: str, linkdict:dict) -> list[str]:
     #
     return result
 
-def make_json_references(output_dir: Path, object_dicts:dict[str:dict]):
+def make_json_references(output_dir: Path, object_dicts:dict[str,dict]):
     """
 
     :param output_dir:

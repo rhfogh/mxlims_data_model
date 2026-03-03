@@ -3,16 +3,14 @@ import json
 from typing import Dict, Optional
 from pathlib import Path
 
-def generate_fields(dirname: Optional[str] = None) -> None :
+def generate_fields(mxlims_dir: Optional[Path] = None) -> None :
     """
     Generate tab-separated table of model fields
 
-    :param dirname: path to mxlims working directory
+    :param mxlims_dir: path to mxlims working directory
     :return:
     """
-    if dirname:
-        mxlims_dir = Path(dirname)
-    else:
+    if not mxlims_dir:
         mxlims_dir = Path.cwd()
 
     schema_dir = mxlims_dir / "mxlims" / "schemas"
@@ -134,7 +132,7 @@ from typing import Any, Dict, List
 
 """)
         fp.writelines(
-            "from mxlims.pydantic.datatypes.%s import %s\n" % tpl
+            "from mxlims.mxpydantic.datatypes.%s import %s\n" % tpl
             for tpl in sorted(import_types)
         )
         fp.write("\ntypemap = {\n")
@@ -258,5 +256,5 @@ MXLIMS code generation helper. Assumes standard directory structure""",
 
     argsobj = parser.parse_args()
     options_dict = vars(argsobj)
-
-    field_data = generate_fields(**options_dict)
+    mxlims_dir = Path(options_dict["dirname"])
+    generate_fields(mxlims_dir)

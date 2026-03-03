@@ -3,9 +3,8 @@
 from __future__ import annotations
 from typing import Any
 from mxlims.impl.MxlimsBase import MxlimsImplementation, BaseModel
-from mxlims.pydantic.data.MxlimsObjectData import MxlimsObjectData
 
-class MxlimsObject(MxlimsObjectData, BaseModel, MxlimsImplementation):
+class MxlimsObject(BaseModel, MxlimsImplementation):
     """MXLIMS pydantic model top level superclass
     """
     def __init__(self, **data: Any) -> None:

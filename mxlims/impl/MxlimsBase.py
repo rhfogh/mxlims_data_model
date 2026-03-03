@@ -17,6 +17,7 @@ You should have received a copy of the GNU Lesser General Public License
 along with this file. If not, see <https://www.gnu.org/licenses/>.
 """
 from __future__ import annotations
+from mxlims.mxpydantic.data.MxlimsObjectData import MxlimsObjectData
 
 __copyright__ = """ Copyright © 2024 -  2025 MXLIMS collaboration."""
 __license__ = "LGPLv3+"
@@ -33,10 +34,10 @@ from pydantic import BaseModel as PydanticBaseModel
 from ruamel.yaml import YAML
 
 if TYPE_CHECKING:
-    from ..pydantic.objects.Dataset import Dataset
-    from ..pydantic.objects.Job import Job
-    from ..pydantic.objects.LogisticalSample import LogisticalSample
-    from ..pydantic.objects.Sample import Sample
+    from ..mxpydantic.objects.Dataset import Dataset
+    from ..mxpydantic.objects.Job import Job
+    from ..mxpydantic.objects.LogisticalSample import LogisticalSample
+    from ..mxpydantic.objects.Sample import Sample
 
 yaml = YAML(typ="safe", pure=True)
 # The following are not needed for load, but define the default style.
@@ -70,7 +71,7 @@ class BaseModel(PydanticBaseModel):
         use_enum_values = True
         validation_error_cause = True
 
-class MxlimsImplementation:
+class MxlimsImplementation(MxlimsObjectData):
 
     # Class-level container for implementation of access-object-by-id
     _objects_by_id: ClassVar[dict] = {
@@ -123,10 +124,11 @@ class MxlimsImplementation:
         :param uuid:
         :return:
         """
+        result = None
         if basetypename is None:
             for dd1 in  cls._objects_by_id.values():
                 result = dd1.get(uuid)
-                if result  is not None:
+                if result is not None:
                     break
         else:
             result = cls._objects_by_id[basetypename].get(uuid)
@@ -344,7 +346,7 @@ class BaseMessage(BaseModel):
 
         Args:
             message_path: Path to message JSON file
-            merge_mode: In case of uuid clash should incoming objects replace or defer to existing
+            uuid_clash_mode: In case of uuid clash should incoming objects replace or defer to existing
             merge_links: Should -to-many links be merged between incoming and existing objects
                          Relevant only for Job,inputData, job,referenceData, and Job,templateData
 
@@ -365,7 +367,7 @@ class BaseMessage(BaseModel):
     def export_message(self, message_file: Path):
         """ Export message to message_file
 
-        :param message_path:
+        :param message_file:
         :return:
         """
         # The stringification is needed because model_dump_json required for UUID
@@ -448,24 +450,24 @@ def to_export_json(message_dict: dict) -> None:
                                 tpl = uuid_to_id.get(luid)
                                 if tpl:
                                     # The linked-to object is in the message
-                                    newref = {
-                                        "$ref": tpl[1]
-                                    }
+                                    reflist.append({"$ref": tpl[1]})
                                 else:
                                     base_type = linkdict["basetypename"]
                                     if base_type in message_dict:
                                         # Object not in message.
                                         # Put Stub link, if allowed
                                         target_dict = message_dict[base_type]
-                                        newref = {
-                                            "$ref": f"/{base_type}/{base_type}{len(target_dict)}",
-                                        }
+                                        reflist.append(
+                                            {
+                                            "$ref":
+                                            f"/{base_type}/{base_type}{len(target_dict)}",
+                                            }
+                                        )
                                         # And add stub to the message
                                         target_dict[str(luid)] = {
                                             "mxlimsBaseType": base_type,
                                             "uuid": str(luid),
                                         }
-                                reflist.append(newref)
                     else:
                         # Link should be skipped - e.g. MxExperiment.inputDataIds
                         pass
@@ -480,6 +482,7 @@ def to_import_json(
     Conversion is done in-place
 
     :param message_dict: schema-compliant JSON message
+    :param uuid_clash_mode: Switch for dealing with loaded uid clashing with existing
     :return:
     """
     for tag, objdict in list(message_dict.items()):

@@ -34,14 +34,14 @@ from typing import List
 
 from mxlims.core.typemap import typemap
 from mxlims.impl.MxlimsBase import camel_to_snake
-from mxlims.pydantic.messages.MxlimsMessageStrict import MxlimsMessageStrict
+from mxlims.mxpydantic.messages.MxlimsMessageStrict import MxlimsMessageStrict
 
 from mxlims.core.MxlimsObject import MxlimsObject
 from typing import Any, Dict, Optional, Tuple
-from mxlims.pydantic.objects.Dataset import Dataset
-from mxlims.pydantic.objects.Job import Job
-from mxlims.pydantic.objects.LogisticalSample import LogisticalSample
-from mxlims.pydantic.objects.Sample import Sample
+from mxlims.mxpydantic.objects.Dataset import Dataset
+from mxlims.mxpydantic.objects.Job import Job
+from mxlims.mxpydantic.objects.LogisticalSample import LogisticalSample
+from mxlims.mxpydantic.objects.Sample import Sample
 
 
 __copyright__ = """ Copyright © 2024 -  2025 MXLIMS collaboration."""
@@ -197,7 +197,7 @@ def ingest_row(data_dict: Dict[str, Any], scheme:str, result_mode: bool=False
         tpl, dd0 = tpl0
         mxlims_type = tpl[0]
         mxlimsobj = getattr(
-            import_module(f"mxlims.pydantic.objects.{mxlims_type}"), mxlims_type
+            import_module(f"mxlims.mxpydantic.objects.{mxlims_type}"), mxlims_type
         )
         result[mxlims_type] = mxlimsobj(**dd0)
     #
