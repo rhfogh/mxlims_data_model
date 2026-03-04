@@ -5,7 +5,7 @@ from __future__ import annotations
 
 from pydantic import Field
 
-from ..datatypes.SampleComponent import SampleComponent as SampleComponent_1
+from ..datatypes.SampleComponent import SampleComponent
 from .MxlimsObjectData import MxlimsObjectData
 
 
@@ -23,6 +23,6 @@ class SampleData(MxlimsObjectData):
         alias="campaignName",
         description="String identifier / name for campaign of which Sample is part.",
     )
-    components: list[SampleComponent_1] | None = Field(
+    components: list[SampleComponent] | None = Field(
         None, description="Other components of Sample", title="Sample components"
     )

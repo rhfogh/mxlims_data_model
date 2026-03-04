@@ -12,9 +12,7 @@ from ..datatypes.Enumerations import (
     ReflectionFileType,
     SpaceGroupName,
 )
-from ..datatypes.ReflectionStatistics import (
-    ReflectionStatistics as ReflectionStatistics_1,
-)
+from ..datatypes.ReflectionStatistics import ReflectionStatistics
 from ..datatypes.ResolutionCutoffs import ResolutionCutoffs
 from ..datatypes.Tensor import Tensor
 from ..datatypes.UnitCell import UnitCell
@@ -117,12 +115,12 @@ class ReflectionSetData(BaseModel):
         description="The calculated twin fraction of the crystal",
         title="Twin fraction",
     )
-    reflection_statistics_overall: ReflectionStatistics_1 | None = Field(
+    reflection_statistics_overall: ReflectionStatistics | None = Field(
         None,
         alias="reflectionStatisticsOverall",
         description="Reflection statistics for all processed reflections",
     )
-    reflection_statistics_shells: list[ReflectionStatistics_1] | None = Field(
+    reflection_statistics_shells: list[ReflectionStatistics] | None = Field(
         None,
         alias="reflectionStatisticsShells",
         description="Reflection statistics per resolution shell",

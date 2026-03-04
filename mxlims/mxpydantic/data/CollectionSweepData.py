@@ -6,7 +6,7 @@ from __future__ import annotations
 from mxlims.impl.MxlimsBase import BaseModel
 from pydantic import Field, NonNegativeInt, PositiveFloat, PositiveInt, confloat
 
-from ..datatypes.Scan import Scan as Scan_1
+from ..datatypes.Scan import Scan
 
 
 class CollectionSweepData(BaseModel):
@@ -153,7 +153,7 @@ class CollectionSweepData(BaseModel):
         ],
         title="Scan Axis",
     )
-    scans: list[Scan_1] | None = Field(
+    scans: list[Scan] | None = Field(
         None,
         description="List of Scans i.e. subdivisions of CollectionSweep. NB Scans need not be contiguous or in order or add up to entire sweep",
         title="Scans",

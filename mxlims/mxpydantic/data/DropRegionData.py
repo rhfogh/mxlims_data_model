@@ -6,8 +6,8 @@ from __future__ import annotations
 from mxlims.impl.MxlimsBase import BaseModel
 from pydantic import Field
 
-from ..datatypes.ImageRegion import ImageRegion as ImageRegion_1
-from ..datatypes.PlateRegion import PlateRegion as PlateRegion_1
+from ..datatypes.ImageRegion import ImageRegion
+from ..datatypes.PlateRegion import PlateRegion
 
 
 class DropRegionData(BaseModel):
@@ -15,7 +15,7 @@ class DropRegionData(BaseModel):
     A region in a well drop where crystals may be found
     """
 
-    region: ImageRegion_1 | PlateRegion_1 = Field(
+    region: ImageRegion | PlateRegion = Field(
         ...,
         description="The region data (either ImageRegion or PlateRegion).",
         title="Region",

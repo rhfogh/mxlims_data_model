@@ -8,8 +8,8 @@ from pydantic import ConfigDict, Field
 from ..objects.Crystal import Crystal
 from ..objects.Dewar import Dewar
 from ..objects.DropRegion import DropRegion
-from ..objects.Macromolecule import Macromolecule
-from ..objects.MacromoleculeSample import MacromoleculeSample
+from ..objects.Macromolecule import Macromolecule as Macromolecule_1
+from ..objects.MacromoleculeSample import MacromoleculeSample as MacromoleculeSample_1
 from ..objects.MultiPin import MultiPin
 from ..objects.Pin import Pin
 from ..objects.PinPosition import PinPosition
@@ -39,8 +39,8 @@ class ShipmentMessage(BaseMessageData):
     multi_pin: dict[str, MultiPin] | None = Field(default_factory=dict, alias="MultiPin")
     pin: dict[str, Pin] | None = Field(default_factory=dict, alias="Pin")
     pin_position: dict[str, PinPosition] | None = Field(default_factory=dict, alias="PinPosition")
-    macromolecule_sample: dict[str, MacromoleculeSample] = Field(
+    macromolecule_sample: dict[str, MacromoleculeSample_1] = Field(
         ..., alias="MacromoleculeSample"
     )
-    macromolecule: dict[str, Macromolecule] = Field(..., alias="Macromolecule")
+    macromolecule: dict[str, Macromolecule_1] = Field(..., alias="Macromolecule")
     crystal: dict[str, Crystal] | None = Field(default_factory=dict, alias="Crystal")

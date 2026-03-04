@@ -5,25 +5,25 @@ from __future__ import annotations
 
 from pydantic import Field
 
-from ..objects.CollectionSweep import CollectionSweep as CollectionSweep_1
-from ..objects.Crystal import Crystal as Crystal_1
-from ..objects.Dewar import Dewar as Dewar_1
-from ..objects.DropRegion import DropRegion as DropRegion_1
-from ..objects.Macromolecule import Macromolecule as Macromolecule_2
-from ..objects.MacromoleculeSample import MacromoleculeSample as MacromoleculeSample_2
-from ..objects.Medium import Medium as Medium_1
-from ..objects.MultiPin import MultiPin as MultiPin_1
-from ..objects.MxExperiment import MxExperiment as MxExperiment_1
-from ..objects.MxProcessing import MxProcessing as MxProcessing_1
-from ..objects.Pin import Pin as Pin_1
-from ..objects.PinPosition import PinPosition as PinPosition_1
-from ..objects.Plate import Plate as Plate_1
-from ..objects.PlateWell import PlateWell as PlateWell_1
-from ..objects.Puck import Puck as Puck_1
-from ..objects.ReflectionSet import ReflectionSet as ReflectionSet_1
-from ..objects.Shipment import Shipment as Shipment_1
-from ..objects.VolumeScan import VolumeScan as VolumeScan_1
-from ..objects.WellDrop import WellDrop as WellDrop_1
+from ..objects.CollectionSweep import CollectionSweep
+from ..objects.Crystal import Crystal
+from ..objects.Dewar import Dewar
+from ..objects.DropRegion import DropRegion
+from ..objects.Macromolecule import Macromolecule as Macromolecule_1
+from ..objects.MacromoleculeSample import MacromoleculeSample as MacromoleculeSample_1
+from ..objects.Medium import Medium
+from ..objects.MultiPin import MultiPin
+from ..objects.MxExperiment import MxExperiment
+from ..objects.MxProcessing import MxProcessing
+from ..objects.Pin import Pin
+from ..objects.PinPosition import PinPosition
+from ..objects.Plate import Plate
+from ..objects.PlateWell import PlateWell
+from ..objects.Puck import Puck
+from ..objects.ReflectionSet import ReflectionSet
+from ..objects.Shipment import Shipment
+from ..objects.VolumeScan import VolumeScan
+from ..objects.WellDrop import WellDrop
 from .BaseMessageData import BaseMessageData
 
 
@@ -32,115 +32,115 @@ class MxlimsMessageStrict(BaseMessageData):
     Message containing all possible objects, by type
     """
 
-    collection_sweep: dict[str, CollectionSweep_1] | None = Field(
+    collection_sweep: dict[str, CollectionSweep] | None = Field(
         default_factory=dict,
         alias="CollectionSweep",
         description="idString:object dictionary of CollectionSweeps.",
         title="CollectionSweeps",
     )
-    crystal: dict[str, Crystal_1] | None = Field(
+    crystal: dict[str, Crystal] | None = Field(
         default_factory=dict,
         alias="Crystal",
         description="idString:object dictionary of Crystals.",
         title="Crystals",
     )
-    dewar: dict[str, Dewar_1] | None = Field(
+    dewar: dict[str, Dewar] | None = Field(
         default_factory=dict,
         alias="Dewar",
         description="idString:object dictionary of Dewars.",
         title="Dewars",
     )
-    drop_region: dict[str, DropRegion_1] | None = Field(
+    drop_region: dict[str, DropRegion] | None = Field(
         default_factory=dict,
         alias="DropRegion",
         description="idString:object dictionary of DropRegions.",
         title="DropRegions",
     )
-    macromolecule: dict[str, Macromolecule_2] | None = Field(
+    macromolecule: dict[str, Macromolecule_1] | None = Field(
         default_factory=dict,
         alias="Macromolecule",
         description="idString:object dictionary of Macromolecule (reference sample) objects.",
         title="Macromolecule",
     )
-    macromolecule_sample: dict[str, MacromoleculeSample_2] | None = Field(
+    macromolecule_sample: dict[str, MacromoleculeSample_1] | None = Field(
         default_factory=dict,
         alias="MacromoleculeSample",
         description="idString:object dictionary of Macromolecule-containing sample objects.",
         title="MacromoleculeSample",
     )
-    medium: dict[str, Medium_1] | None = Field(
+    medium: dict[str, Medium] | None = Field(
         default_factory=dict,
         alias="Medium",
         description="idString:object dictionary of Medium (sample) objects.",
         title="Media",
     )
-    mx_experiment: dict[str, MxExperiment_1] | None = Field(
+    mx_experiment: dict[str, MxExperiment] | None = Field(
         default_factory=dict,
         alias="MxExperiment",
         description="idString:object dictionary of MxExperiments.",
         title="MxExperiments",
     )
-    mx_processing: dict[str, MxProcessing_1] | None = Field(
+    mx_processing: dict[str, MxProcessing] | None = Field(
         default_factory=dict,
         alias="MxProcessing",
         description="idString:object dictionary of MxProcessings.",
         title="MxProcessings",
     )
-    multi_pin: dict[str, MultiPin_1] | None = Field(
+    multi_pin: dict[str, MultiPin] | None = Field(
         default_factory=dict,
         alias="MultiPin",
         description="idString:object dictionary of MultiPins.",
         title="MultiPins",
     )
-    pin: dict[str, Pin_1] | None = Field(
+    pin: dict[str, Pin] | None = Field(
         default_factory=dict,
         alias="Pin",
         description="idString:object dictionary of Pins.",
         title="Pins",
     )
-    pin_position: dict[str, PinPosition_1] | None = Field(
+    pin_position: dict[str, PinPosition] | None = Field(
         default_factory=dict,
         alias="PinPosition",
         description="idString:object dictionary of PinPositions.",
         title="PinPositions",
     )
-    plate: dict[str, Plate_1] | None = Field(
+    plate: dict[str, Plate] | None = Field(
         default_factory=dict,
         alias="Plate",
         description="idString:object dictionary of Plates.",
         title="Plates",
     )
-    plate_well: dict[str, PlateWell_1] | None = Field(
+    plate_well: dict[str, PlateWell] | None = Field(
         default_factory=dict,
         alias="PlateWell",
         description="idString:object dictionary of PlateWells.",
         title="PlateWells",
     )
-    puck: dict[str, Puck_1] | None = Field(
+    puck: dict[str, Puck] | None = Field(
         default_factory=dict,
         alias="Puck",
         description="idString:object dictionary of Pucks.",
         title="Pucks",
     )
-    reflection_set: dict[str, ReflectionSet_1] | None = Field(
+    reflection_set: dict[str, ReflectionSet] | None = Field(
         default_factory=dict,
         alias="ReflectionSet",
         description="idString:object dictionary of ReflectionSets.",
         title="ReflectionSets",
     )
-    shipment: dict[str, Shipment_1] | None = Field(
+    shipment: dict[str, Shipment] | None = Field(
         default_factory=dict,
         alias="Shipment",
         description="idString:object dictionary of Shipments.",
         title="Shipments",
     )
-    volume_scan: dict[str, VolumeScan_1] | None = Field(
+    volume_scan: dict[str, VolumeScan] | None = Field(
         default_factory=dict,
         alias="VolumeScan",
         description="idString:object dictionary of VolumeScans.",
         title="VolumeScans",
     )
-    well_drop: dict[str, WellDrop_1] | None = Field(
+    well_drop: dict[str, WellDrop] | None = Field(
         default_factory=dict,
         alias="WellDrop",
         description="idString:object dictionary of WellDrops.",
