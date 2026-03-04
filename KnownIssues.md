@@ -1,5 +1,13 @@
 #  Known Issues
 
+## Version 0.6.12
+
+- The constraints in ShipmentMessage.json are not carried over into ShipmentMessage.py
+  so that seemingly valid Pydantic structures for this class may not convert to 
+  valid JSON. 
+- Import statements for PlateWell are handled wrong by datamodel_codegen
+  and must be fixed by hand. (Other codegen problems from 0.6.11 are now solved)
+
 ## Version 0.6.11
 
 - The Pydantic code generation machinery has some bugs that cause incorrect

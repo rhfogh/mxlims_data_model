@@ -5,6 +5,7 @@
 - Fixed bugs arising from recent check-ins
 - Reorganised top pydantic classes and renamed some directories to disambiguate imports
 - Started tagging superseded versions
+- Import names improved, adn manual-fix generation problems reduced with datamodel_codegen v0.54.1 
 
 ## Changes in version 0.6.11
 - Upgraded to JSONschema version 2020-12
