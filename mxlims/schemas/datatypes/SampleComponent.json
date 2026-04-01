@@ -42,7 +42,7 @@
             "title": "Identifiers",
             "type": "object",
             "patternProperties": {
-                "^(?i)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$": {
+                "(?i)^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$": {
                     "type": "string"
                 }
             },
@@ -53,7 +53,7 @@
             "title": "Urls",
             "type": "object",
             "propertyNames": {
-              "pattern":  "^(?i)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$"
+              "pattern":  "(?i)^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$"
             },
             "additionalProperties": {
                 "allOf": [

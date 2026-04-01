@@ -33,7 +33,7 @@ class MxlimsObjectData(BaseModel):
     extensions: (
         dict[
             constr(
-                pattern=r"^(?i)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$"
+                pattern=r"(?i)^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$"
             ),
             dict[str, Any],
         ]
@@ -46,7 +46,7 @@ class MxlimsObjectData(BaseModel):
     identifiers: (
         dict[
             constr(
-                pattern=r"^(?i)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$"
+                pattern=r"(?i)^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$"
             ),
             str,
         ]
@@ -59,7 +59,7 @@ class MxlimsObjectData(BaseModel):
     urls: (
         dict[
             constr(
-                pattern=r"^(?i)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$"
+                pattern=r"(?i)^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$"
             ),
             HttpUrl,
         ]
