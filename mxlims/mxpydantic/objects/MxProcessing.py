@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from pydantic import ConfigDict, Field
-from typing import Any, Literal, Union, TYPE_CHECKING
+from typing import Literal, Union, TYPE_CHECKING
 from ..objects.Job import Job
 from ..data.MxProcessingData import MxProcessingData
 if TYPE_CHECKING:

@@ -17,7 +17,6 @@ You should have received a copy of the GNU Lesser General Public License
 along with this file. If not, see <https://www.gnu.org/licenses/>.
 """
 from __future__ import annotations
-from mxlims.mxpydantic.data.MxlimsObjectData import MxlimsObjectData
 
 __copyright__ = """ Copyright © 2024 -  2025 MXLIMS collaboration."""
 __license__ = "LGPLv3+"
@@ -63,7 +62,7 @@ class UuidClashMode(enum.Enum):
     reject_new = "reject_new"
     error = "error"
 
-class MxlimsImplementation(MxlimsObjectData):
+class MxlimsImplementation(object):
 
     # Class-level container for implementation of access-object-by-id
     _objects_by_id: ClassVar[dict] = {
@@ -72,6 +71,12 @@ class MxlimsImplementation(MxlimsObjectData):
         "Sample": dict(),
         "LogisticalSample": dict(),
     }
+
+    # 'backup' dummy attributes, to avoid warnings and compensate for the fact that
+    # the attributes are defined in MxlimsObjectData,
+    # which we do nto want to import here to acvoid circularity
+    uuid = uuid.UUID(int=0)
+    mxlims_base_type = "MxlimsObject"
 
     def __init__(self, **data) -> None:
         super().__init__(**data)

@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from pydantic import ConfigDict, Field
-from typing import Any, Literal, Union, TYPE_CHECKING
+from typing import Literal, Union, TYPE_CHECKING
 from ..objects.LogisticalSample import LogisticalSample
 from ..data.PinData import PinData
 if TYPE_CHECKING:

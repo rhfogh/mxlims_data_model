@@ -95,6 +95,7 @@ def generate_mxlims(dirname: str | None = None) -> None :
         "--use-double-quotes",
         "--disable-timestamp",
         "--use-default",
+        # "--use-annotated",
         "--target-python-version",
         "3.10",
         "--snake-case-field",
@@ -176,6 +177,14 @@ def generate_message_classes(mxlims_dir: Path) -> None:
             text = text.replace("BaseModel", "BaseMessage")
             text = text.replace("MxlimsBase","MxlimsImplementation")
             text = text.replace("None,", "default_factory=dict,")
+            if "LogisticalSampleData" in text and "PlateWell" in text:
+                print (
+                    "WARNING - HACK - to compensate for code generator bug!")
+                print (
+                    "replacing 'LogisticalSampleData' with 'PlateWell' in %s.py"
+                    % classname
+                )
+                text = text.replace("LogisticalSampleData","PlateWell")
             fp0.write_text(text)
 
 def extract_object_schemas(schema_dir: Path) -> dict:
@@ -467,7 +476,7 @@ class {classname}({classname}Data, MxlimsObject):
 
 from __future__ import annotations
 from pydantic import {config_dict_str}Field
-from typing import Any, Literal, Union, TYPE_CHECKING
+from typing import Literal, Union, TYPE_CHECKING
 from ..objects.{corename} import {corename}
 from ..data.{classname}Data import {classname}Data
 """,
@@ -808,7 +817,7 @@ MXLIMS code generation. Assumes standard directory structure""",
         "--dirname",
         metavar="dirname",
         default=None,
-        help="Path to directory containing mxlims/ and docs/ subdirectory\n",
+        help="Path to directory containing mxlims/ and docs/ (default to CWD)\n",
     )
 
     argsobj = parser.parse_args()
