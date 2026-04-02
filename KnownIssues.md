@@ -6,7 +6,7 @@
   so that seemingly valid Pydantic structures for this class may not convert to 
   valid JSON. 
 - Import statements for PlateWell are handled wrong by datamodel_codegen
-  and must be fixed by hand. (Other codegen problems from 0.6.11 are now solved)
+  and must be fixed by a horrible hack. (Other codegen problems from 0.6.11 are now solved)
 
 ## Version 0.6.11
 
