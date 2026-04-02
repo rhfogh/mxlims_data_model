@@ -3,8 +3,10 @@
 
 from __future__ import annotations
 
+from typing import Annotated
+
 from mxlims.impl.MxlimsBase import BaseModel
-from pydantic import HttpUrl, ConfigDict, Field
+from pydantic import AnyUrl, ConfigDict, Field
 
 from .Enumerations import TrackingDeviceType
 
@@ -17,19 +19,27 @@ class TrackingDevice(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    identifier: str = Field(
-        ..., description="The device serial number or other globally unique identifier."
-    )
-    device_type: TrackingDeviceType = Field(
-        ..., alias="deviceType", description="The type of tracking device."
-    )
-    human_tracking_url: HttpUrl | None = Field(
-        None,
-        alias="humanTrackingUrl",
-        description="A URL where a human can, for example, see the device location on a map.",
-    )
-    api_tracking_url: HttpUrl | None = Field(
-        None,
-        alias="apiTrackingUrl",
-        description="A URL where a computer can, for example, obtain the device's last known latitude and longitude.",
-    )
+    identifier: Annotated[
+        str,
+        Field(
+            description="The device serial number or other globally unique identifier."
+        ),
+    ]
+    device_type: Annotated[
+        TrackingDeviceType,
+        Field(alias="deviceType", description="The type of tracking device."),
+    ]
+    human_tracking_url: Annotated[
+        AnyUrl | None,
+        Field(
+            alias="humanTrackingUrl",
+            description="A URL where a human can, for example, see the device location on a map.",
+        ),
+    ] = None
+    api_tracking_url: Annotated[
+        AnyUrl | None,
+        Field(
+            alias="apiTrackingUrl",
+            description="A URL where a computer can, for example, obtain the device's last known latitude and longitude.",
+        ),
+    ] = None

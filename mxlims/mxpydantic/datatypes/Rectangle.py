@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from typing import Literal
+from typing import Annotated, Literal
 
 from mxlims.impl.MxlimsBase import BaseModel
 from pydantic import Field
@@ -16,7 +16,7 @@ class Rectangle(BaseModel):
     <A rectangular region marked on an image or in absolute plate space. The box is defined by two points on diagonally opposite corners, with its edges parallel to the X and Y axes. Ensure that the two X values are not equal, and that the two Y values are not equal.
     """
 
-    region_type: Literal["rectangle"] = Field(
-        "rectangle", alias="regionType", description="Type of region"
-    )
-    points: list[Point] = Field(..., max_length=2, min_length=2)
+    region_type: Annotated[
+        Literal["rectangle"], Field(alias="regionType", description="Type of region")
+    ] = "rectangle"
+    points: Annotated[list[Point], Field(max_length=2, min_length=2)]

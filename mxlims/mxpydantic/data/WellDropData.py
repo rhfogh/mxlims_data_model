@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+from typing import Annotated
+
 from mxlims.impl.MxlimsBase import BaseModel
 from pydantic import Field, PositiveInt
 
@@ -12,8 +14,10 @@ class WellDropData(BaseModel):
     A drop in a well in a crystallization plate
     """
 
-    drop_number: PositiveInt = Field(
-        ...,
-        alias="dropNumber",
-        description="The drop number. This should be validated against the plateType's numberSubPositions property.",
-    )
+    drop_number: Annotated[
+        PositiveInt,
+        Field(
+            alias="dropNumber",
+            description="The drop number. This should be validated against the plateType's numberSubPositions property.",
+        ),
+    ]

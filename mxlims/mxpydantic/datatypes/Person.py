@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+from typing import Annotated
+
 from mxlims.impl.MxlimsBase import BaseModel
 from pydantic import ConfigDict, Field
 
@@ -15,10 +17,11 @@ class Person(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    name: str = Field(..., description="The person's full name.")
-    email_address: str | None = Field(
-        None, alias="emailAddress", description="The person's email address."
-    )
-    phone_number: str | None = Field(
-        None, alias="phoneNumber", description="The person's phone number."
-    )
+    name: Annotated[str, Field(description="The person's full name.")]
+    email_address: Annotated[
+        str | None,
+        Field(alias="emailAddress", description="The person's email address."),
+    ] = None
+    phone_number: Annotated[
+        str | None, Field(alias="phoneNumber", description="The person's phone number.")
+    ] = None

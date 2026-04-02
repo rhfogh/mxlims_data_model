@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+from typing import Annotated
+
 from mxlims.impl.MxlimsBase import BaseModel
 from pydantic import ConfigDict, Field, PositiveInt
 
@@ -20,26 +22,35 @@ class Scan(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    scan_position_start: float = Field(
-        ...,
-        alias="scanPositionStart",
-        description="Value of scan axis for the first image, in units matching axis type",
-        title="Scan Position Start",
-    )
-    first_image_number: int = Field(
-        ...,
-        alias="firstImageNumber",
-        description="Image number to use for first image",
-        title="First Image Number",
-    )
-    number_images: PositiveInt = Field(
-        ...,
-        alias="numberImages",
-        description="Number of images to acquire as part of the Scan.",
-        title="Number Images",
-    )
-    ordinal: int = Field(
-        ...,
-        description="Ordinal defining the ordering of all scans within the experiment (not just within the scan)",
-        title="Ordinal",
-    )
+    scan_position_start: Annotated[
+        float,
+        Field(
+            alias="scanPositionStart",
+            description="Value of scan axis for the first image, in units matching axis type",
+            title="Scan Position Start",
+        ),
+    ]
+    first_image_number: Annotated[
+        int,
+        Field(
+            alias="firstImageNumber",
+            description="Image number to use for first image",
+            title="First Image Number",
+        ),
+    ]
+    number_images: Annotated[
+        PositiveInt,
+        Field(
+            alias="numberImages",
+            description="Number of images to acquire as part of the Scan.",
+            gt=0,
+            title="Number Images",
+        ),
+    ]
+    ordinal: Annotated[
+        int,
+        Field(
+            description="Ordinal defining the ordering of all scans within the experiment (not just within the scan)",
+            title="Ordinal",
+        ),
+    ]

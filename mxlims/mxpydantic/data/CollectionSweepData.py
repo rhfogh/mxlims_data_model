@@ -3,10 +3,20 @@
 
 from __future__ import annotations
 
+from typing import Annotated
+
 from mxlims.impl.MxlimsBase import BaseModel
-from pydantic import Field, NonNegativeInt, PositiveFloat, PositiveInt, confloat
+from pydantic import Field, NonNegativeInt, PositiveFloat, PositiveInt, RootModel
 
 from ..datatypes.Scan import Scan
+
+
+class MeshRangeItem(RootModel[PositiveFloat]):
+    root: Annotated[PositiveFloat, Field(gt=0)]
+
+
+class BeamSizeItem(RootModel[PositiveFloat]):
+    root: Annotated[PositiveFloat, Field(gt=0)]
 
 
 class CollectionSweepData(BaseModel):
@@ -14,168 +24,226 @@ class CollectionSweepData(BaseModel):
     Crystallographic sweep data set, containing images
     """
 
-    sweep_type: str | None = Field(
-        "simple",
-        alias="sweepType",
-        description="Type of sweep: 'simple', 'mesh', 'line', 'helical, 'xray_centring'. Should be made into an enumeration",
-        title="Sweep Type",
-    )
-    exposure_time: PositiveFloat | None = Field(
-        None,
-        alias="exposureTime",
-        description="Exposure time in seconds",
-        title="Exposure Time",
-    )
-    image_width: PositiveFloat | None = Field(
-        None,
-        alias="imageWidth",
-        description="Width of a single image, along scanAxis. For rotational axes in degrees, for translations in mm.",
-        title="Image Width",
-    )
-    number_images: PositiveInt | None = Field(
-        None,
-        alias="numberImages",
-        description="Number of images from start to end of sweep.Defines image numbering and final axis position. NB Only certain parts of the sweep may be acquired (see 'scans'),so the total number of images acquired may be less.",
-        title="Number Images",
-    )
-    overlap: float | None = Field(
-        None,
-        description="Overlap between successive images, in units of imageWidth. May be negative for non-contiguous images.",
-        title="Overlap",
-    )
-    number_triggers: NonNegativeInt | None = Field(
-        None,
-        alias="numberTriggers",
-        description="Number of triggers. Instruction to detector - does not modify effect of other parameters.",
-        title="Number Triggers",
-    )
-    number_images_per_trigger: NonNegativeInt | None = Field(
-        None,
-        alias="numberImagesPerTrigger",
-        description="Number of images per trigger. Instruction to detector - does not modify effect of other parameters.",
-        title="Number Images Per Trigger",
-    )
-    number_lines: NonNegativeInt | None = Field(
-        None,
-        alias="numberLines",
-        description="Number of scanned lines used for mesh scans. Must divide numberImages",
-        title="Number Lines",
-    )
-    mesh_range: list[PositiveFloat] | None = Field(
-        None,
-        alias="meshRange",
-        description="Mesh scan range (horizontal, vertical) in mm",
-        max_length=2,
-        min_length=2,
-        title="Mesh Range",
-    )
-    energy: PositiveFloat | None = Field(
-        None, description="Energy of the beam in eV", title="Energy"
-    )
-    transmission: confloat(le=100.0, gt=0.0) | None = Field(
-        None, description="Transmission setting in %", title="Transmission"
-    )
-    resolution: PositiveFloat | None = Field(
-        None,
-        description="Resolution that the sweep was intended to measureFor offset or unusual detectors this may *not* determine the detector distanceThe actual detector distance can be found in axisPositionsStart",
-        title="Resolution",
-    )
-    detector_roi_mode: str | None = Field(
-        None,
-        alias="detectorRoiMode",
-        description="Region-of-interest mode of detector. Should be made into an enumeration",
-        title="Detector Roi Mode",
-    )
-    beam_position: list[float] | None = Field(
-        None,
-        alias="beamPosition",
-        description="x,y position of the beam on the detector in pixels",
-        max_length=2,
-        min_length=2,
-        title="Beam Position",
-    )
-    beam_size: list[PositiveFloat] | None = Field(
-        None,
-        alias="beamSize",
-        description="x,y size of the beam on the detector in mm",
-        max_length=2,
-        min_length=2,
-        title="Beam Size",
-    )
-    beam_shape: str | None = Field(
-        None,
-        alias="beamShape",
-        description="Shape of the beam. NBNB Should be an enumeration",
-        examples=["unknown", "rectangular", "ellipsoid"],
-        title="Beam Shape",
-    )
-    detector_type: str | None = Field(
-        None,
-        alias="detectorType",
-        description="Type of detector, using enumeration of mmCIF items diffrn_detector.type (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_diffrn_detector.type.html)",
-        title="Detector Type",
-    )
-    detector_binning_mode: str | None = Field(
-        None,
-        alias="detectorBinningMode",
-        description="Binning mode of detector. Should be made into an enumeration",
-        title="Detector Binning Mode",
-    )
-    axis_positions_start: dict[str, float] | None = Field(
-        None,
-        alias="axisPositionsStart",
-        description="Dictionary string:float with starting position of all axes, rotations or translations, including detector distance, by name. Units are mm for distances, degrees for angles NBNB do we use internal motor names (e.g. 'phi'), or std. names (e.g. 'omega')?",
-        title="Axis Positions Start",
-    )
-    axis_positions_end: dict[str, float] | None = Field(
-        None,
-        alias="axisPositionsEnd",
-        description="Dictionary string:float with final position of scanned axes as for axisPositionsStart. scanAxis position is NOT given here, but is calculated from imageWidth, overlap, numberImages, and axisPositionsStartNB scans may be acquired out of order, so this determines the limits of the sweep, not the temporal start and end points",
-        title="Axis Positions End",
-    )
-    scan_axis: str | None = Field(
-        "omega",
-        alias="scanAxis",
-        description="Name of main scanned axis. Other axes may be scanned in parallel.For mesh scans name of fastest scanned axis",
-        examples=[
-            "omega",
-            "kappa",
-            "phi",
-            "chi",
-            "twoTheta",
-            "sampleX",
-            "sampleY",
-            "sampleZ",
-            "detectorX",
-            "detectorY",
-            "horizontal",
-            "vertical",
-        ],
-        title="Scan Axis",
-    )
-    scans: list[Scan] | None = Field(
-        None,
-        description="List of Scans i.e. subdivisions of CollectionSweep. NB Scans need not be contiguous or in order or add up to entire sweep",
-        title="Scans",
-    )
-    file_type: str | None = Field(
-        None,
-        alias="fileType",
-        description="Type of file.",
-        examples=["mini-cbf", "imgCIF", "FullCBF", "HDF5", "MarCCD"],
-        title="File Type",
-    )
-    prefix: str | None = Field(
-        None,
-        description="Input parameter - used to build the fine name template.",
-        title="Prefix",
-    )
-    filename_template: str | None = Field(
-        None,
-        alias="filenameTemplate",
-        description="File name template,  includes prefix, suffix, run number, and a slot where image number can be filled in.",
-        title="Filename Template",
-    )
-    path: str | None = Field(
-        None, description="Path to directory containing image files.", title="Path"
-    )
+    sweep_type: Annotated[
+        str | None,
+        Field(
+            alias="sweepType",
+            description="Type of sweep: 'simple', 'mesh', 'line', 'helical, 'xray_centring'. Should be made into an enumeration",
+            title="Sweep Type",
+        ),
+    ] = "simple"
+    exposure_time: Annotated[
+        PositiveFloat | None,
+        Field(
+            alias="exposureTime",
+            description="Exposure time in seconds",
+            gt=0,
+            title="Exposure Time",
+        ),
+    ] = None
+    image_width: Annotated[
+        PositiveFloat | None,
+        Field(
+            alias="imageWidth",
+            description="Width of a single image, along scanAxis. For rotational axes in degrees, for translations in mm.",
+            gt=0,
+            title="Image Width",
+        ),
+    ] = None
+    number_images: Annotated[
+        PositiveInt | None,
+        Field(
+            alias="numberImages",
+            description="Number of images from start to end of sweep.Defines image numbering and final axis position. NB Only certain parts of the sweep may be acquired (see 'scans'),so the total number of images acquired may be less.",
+            gt=0,
+            title="Number Images",
+        ),
+    ] = None
+    overlap: Annotated[
+        float | None,
+        Field(
+            description="Overlap between successive images, in units of imageWidth. May be negative for non-contiguous images.",
+            title="Overlap",
+        ),
+    ] = None
+    number_triggers: Annotated[
+        NonNegativeInt | None,
+        Field(
+            alias="numberTriggers",
+            description="Number of triggers. Instruction to detector - does not modify effect of other parameters.",
+            ge=0,
+            title="Number Triggers",
+        ),
+    ] = None
+    number_images_per_trigger: Annotated[
+        NonNegativeInt | None,
+        Field(
+            alias="numberImagesPerTrigger",
+            description="Number of images per trigger. Instruction to detector - does not modify effect of other parameters.",
+            ge=0,
+            title="Number Images Per Trigger",
+        ),
+    ] = None
+    number_lines: Annotated[
+        NonNegativeInt | None,
+        Field(
+            alias="numberLines",
+            description="Number of scanned lines used for mesh scans. Must divide numberImages",
+            ge=0,
+            title="Number Lines",
+        ),
+    ] = None
+    mesh_range: Annotated[
+        list[MeshRangeItem] | None,
+        Field(
+            alias="meshRange",
+            description="Mesh scan range (horizontal, vertical) in mm",
+            max_length=2,
+            min_length=2,
+            title="Mesh Range",
+        ),
+    ] = None
+    energy: Annotated[
+        PositiveFloat | None,
+        Field(description="Energy of the beam in eV", gt=0, title="Energy"),
+    ] = None
+    transmission: Annotated[
+        PositiveFloat | None,
+        Field(
+            description="Transmission setting in %", gt=0, le=100, title="Transmission"
+        ),
+    ] = None
+    resolution: Annotated[
+        PositiveFloat | None,
+        Field(
+            description="Resolution that the sweep was intended to measureFor offset or unusual detectors this may *not* determine the detector distanceThe actual detector distance can be found in axisPositionsStart",
+            gt=0,
+            title="Resolution",
+        ),
+    ] = None
+    detector_roi_mode: Annotated[
+        str | None,
+        Field(
+            alias="detectorRoiMode",
+            description="Region-of-interest mode of detector. Should be made into an enumeration",
+            title="Detector Roi Mode",
+        ),
+    ] = None
+    beam_position: Annotated[
+        list[float] | None,
+        Field(
+            alias="beamPosition",
+            description="x,y position of the beam on the detector in pixels",
+            max_length=2,
+            min_length=2,
+            title="Beam Position",
+        ),
+    ] = None
+    beam_size: Annotated[
+        list[BeamSizeItem] | None,
+        Field(
+            alias="beamSize",
+            description="x,y size of the beam on the detector in mm",
+            max_length=2,
+            min_length=2,
+            title="Beam Size",
+        ),
+    ] = None
+    beam_shape: Annotated[
+        str | None,
+        Field(
+            alias="beamShape",
+            description="Shape of the beam. NBNB Should be an enumeration",
+            examples=["unknown", "rectangular", "ellipsoid"],
+            title="Beam Shape",
+        ),
+    ] = None
+    detector_type: Annotated[
+        str | None,
+        Field(
+            alias="detectorType",
+            description="Type of detector, using enumeration of mmCIF items diffrn_detector.type (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_diffrn_detector.type.html)",
+            title="Detector Type",
+        ),
+    ] = None
+    detector_binning_mode: Annotated[
+        str | None,
+        Field(
+            alias="detectorBinningMode",
+            description="Binning mode of detector. Should be made into an enumeration",
+            title="Detector Binning Mode",
+        ),
+    ] = None
+    axis_positions_start: Annotated[
+        dict[str, float] | None,
+        Field(
+            alias="axisPositionsStart",
+            description="Dictionary string:float with starting position of all axes, rotations or translations, including detector distance, by name. Units are mm for distances, degrees for angles NBNB do we use internal motor names (e.g. 'phi'), or std. names (e.g. 'omega')?",
+            title="Axis Positions Start",
+        ),
+    ] = None
+    axis_positions_end: Annotated[
+        dict[str, float] | None,
+        Field(
+            alias="axisPositionsEnd",
+            description="Dictionary string:float with final position of scanned axes as for axisPositionsStart. scanAxis position is NOT given here, but is calculated from imageWidth, overlap, numberImages, and axisPositionsStartNB scans may be acquired out of order, so this determines the limits of the sweep, not the temporal start and end points",
+            title="Axis Positions End",
+        ),
+    ] = None
+    scan_axis: Annotated[
+        str | None,
+        Field(
+            alias="scanAxis",
+            description="Name of main scanned axis. Other axes may be scanned in parallel.For mesh scans name of fastest scanned axis",
+            examples=[
+                "omega",
+                "kappa",
+                "phi",
+                "chi",
+                "twoTheta",
+                "sampleX",
+                "sampleY",
+                "sampleZ",
+                "detectorX",
+                "detectorY",
+                "horizontal",
+                "vertical",
+            ],
+            title="Scan Axis",
+        ),
+    ] = "omega"
+    scans: Annotated[
+        list[Scan] | None,
+        Field(
+            description="List of Scans i.e. subdivisions of CollectionSweep. NB Scans need not be contiguous or in order or add up to entire sweep",
+            title="Scans",
+        ),
+    ] = None
+    file_type: Annotated[
+        str | None,
+        Field(
+            alias="fileType",
+            description="Type of file.",
+            examples=["mini-cbf", "imgCIF", "FullCBF", "HDF5", "MarCCD"],
+            title="File Type",
+        ),
+    ] = None
+    prefix: Annotated[
+        str | None,
+        Field(
+            description="Input parameter - used to build the fine name template.",
+            title="Prefix",
+        ),
+    ] = None
+    filename_template: Annotated[
+        str | None,
+        Field(
+            alias="filenameTemplate",
+            description="File name template,  includes prefix, suffix, run number, and a slot where image number can be filled in.",
+            title="Filename Template",
+        ),
+    ] = None
+    path: Annotated[
+        str | None,
+        Field(description="Path to directory containing image files.", title="Path"),
+    ] = None

@@ -3,8 +3,17 @@
 
 from __future__ import annotations
 
+from typing import Annotated
+
 from mxlims.impl.MxlimsBase import BaseModel
-from pydantic import Field, NonNegativeInt, PositiveFloat, PositiveInt, confloat
+from pydantic import (
+    Field,
+    NonNegativeFloat,
+    NonNegativeInt,
+    PositiveFloat,
+    PositiveInt,
+    RootModel,
+)
 
 from ..datatypes.Enumerations import (
     PdbxSignalType,
@@ -18,169 +27,256 @@ from ..datatypes.Tensor import Tensor
 from ..datatypes.UnitCell import UnitCell
 
 
+class Wavelength(RootModel[PositiveFloat]):
+    root: Annotated[PositiveFloat, Field(gt=0)]
+
+
+class ResolutionRingsDetectedItemItem(RootModel[PositiveFloat]):
+    root: Annotated[PositiveFloat, Field(gt=0)]
+
+
+class ResolutionRingsDetectedItem(RootModel[list[ResolutionRingsDetectedItemItem]]):
+    root: Annotated[
+        list[ResolutionRingsDetectedItemItem], Field(max_length=2, min_length=2)
+    ]
+
+
+class ResolutionRingsExcludedItemItem(RootModel[PositiveFloat]):
+    root: Annotated[PositiveFloat, Field(gt=0)]
+
+
+class ResolutionRingsExcludedItem(RootModel[list[ResolutionRingsExcludedItemItem]]):
+    root: Annotated[
+        list[ResolutionRingsExcludedItemItem], Field(max_length=2, min_length=2)
+    ]
+
+
 class ReflectionSetData(BaseModel):
     """
     Set of processed reflections, possibly merged or scaled, as might be stored within a MTZ or mmCIF reflection file
     """
 
-    anisotropic_diffraction: bool | None = Field(
-        False,
-        alias="anisotropicDiffraction",
-        description="Is diffraction limit analysis based on anisotropic diffraction limits? True/False ",
-        title="Anisotropic Diffraction",
-    )
-    space_group_name: SpaceGroupName | None = Field(
-        None,
-        alias="spaceGroupName",
-        description="Name of space group, determined during processing. Names may include alternative settings. Matches mmCIF item symmetry.space_group_name_H-M (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_symmetry.space_group_name_H-M.html).",
-        title="Space Group Name",
-    )
-    refined_unit_cell: UnitCell | None = Field(
-        None,
-        alias="refinedUnitCell",
-        description="Unit cell of crystal, determined during processing.",
-    )
-    operational_resolution: float | None = Field(
-        None,
-        alias="operationalResolution",
-        description="Operational resolution (A) matching resolutionCutoffs.",
-        title="Operational Resolution",
-    )
-    diffraction_limits_estimated: Tensor | None = Field(
-        None,
-        alias="diffractionLimitsEstimated",
-        description="Principal axes lengths (A) of ellipsoid describing reciprocal space region containing observable reflections, regardless whether all have actually been observed. Matches mmCIF items reflns.pdbx_aniso_diffraction_limit_{1,2,3} (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_aniso_diffraction_limit_1.html)",
-    )
-    wavelengths: list[PositiveFloat] | None = Field(
-        None,
-        description="Wavelengths (A) at which reflections were measured",
-        title="Wavelengths",
-    )
-    iso_b_wilson_estimate: float | None = Field(
-        None,
-        alias="isoBWilsonEstimate",
-        description="estimated (isotropic) temperature factor from slope of Wilson plot, matches mmCIF item reflns.B_iso_Wilson_estimate (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.B_iso_Wilson_estimate.html)",
-        title="B Iso Wilson Estimate",
-    )
-    aniso_btensor: Tensor | None = Field(
-        None,
-        alias="anisoBtensor",
-        description="Anisotropic B tensor, matching mmCIF items reflns.pdbx_aniso_B_tensor_eigenvalue_{1,2,3} and reflns.pdbx_aniso_B_tensor_eigenvector_{1,2,3}_ortho[{1,2,3}] (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_aniso_B_tensor_eigenvalue_1.html)",
-    )
-    number_reflections: NonNegativeInt | None = Field(
-        None,
-        alias="numberReflections",
-        description="Total number of measured reflections, matches mmCIF item reflns.pdbx_number_measured_all (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_number_measured_all.html)",
-        title="Number of Reflections",
-    )
-    number_reflections_unique: NonNegativeInt | None = Field(
-        None,
-        alias="numberReflectionsUnique",
-        description="Total number of unique reflections, matches mmCIF item reflns.number_obs (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.number_obs.html)",
-        title="Number Reflections Unique",
-    )
-    h_index_range: list[int] | None = Field(
-        None,
-        alias="hIndexRange",
-        description="low and high limit on Miller index h, matches mmCIF item reflns.limit_h_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_h_min.html) and reflns.limit_h_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_h_max.html)",
-        max_length=2,
-        min_length=2,
-        title="H Index Range",
-    )
-    k_index_range: list[int] | None = Field(
-        None,
-        alias="kIndexRange",
-        description="low and high limit on Miller index k, matches mmCIF item reflns.limit_k_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_k_min.html) and reflns.limit_k_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_k_max.html)",
-        max_length=2,
-        min_length=2,
-        title="K Index Range",
-    )
-    l_index_range: list[int] | None = Field(
-        None,
-        alias="lIndexRange",
-        description="low and high limit on Miller index l, matches mmCIF item reflns.limit_l_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_l_min.html) and reflns.limit_l_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_l_max.html)",
-        max_length=2,
-        min_length=2,
-        title="L Index Range",
-    )
-    possible_twinning: bool | None = Field(
-        False,
-        alias="possibleTwinning",
-        description="Are there data to indicate that the crystal might be twinned?",
-        title="Possible Twinning",
-    )
-    twin_fraction: confloat(ge=0.0, le=1.0) | None = Field(
-        None,
-        alias="twinFraction",
-        description="The calculated twin fraction of the crystal",
-        title="Twin fraction",
-    )
-    reflection_statistics_overall: ReflectionStatistics | None = Field(
-        None,
-        alias="reflectionStatisticsOverall",
-        description="Reflection statistics for all processed reflections",
-    )
-    reflection_statistics_shells: list[ReflectionStatistics] | None = Field(
-        None,
-        alias="reflectionStatisticsShells",
-        description="Reflection statistics per resolution shell",
-        title="Reflection Statistics Shells",
-    )
-    signal_type: PdbxSignalType | None = Field(
-        None,
-        alias="signalType",
-        description="'local <I/sigmaI>', 'local wCC_half'; matches reflns.pdbx_signal_type (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_signal_type.html). Criterion for observability, as used in mmCIF refln.pdbx_signal_status (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_refln.pdbx_signal_status.html)",
-    )
-    signal_cutoff: float | None = Field(
-        None,
-        alias="signalCutoff",
-        description="Limiting value for signal calculation; matches reflns.pdbx_observed_signal_threshold (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_observed_signal_threshold.html). Cutoff for observability, as used in mmCIF refln.pdbx_signal_status (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_refln.pdbx_signal_status.html)",
-        title="Signal Cutoff",
-    )
-    resolution_cutoffs: ResolutionCutoffs | None = Field(
-        None,
-        alias="resolutionCutoffs",
-        description="Criteria used in determination of isotropic resolution cut-off (e.g. as implemented in MRFANA, https://github.com/githubgphl/MRFANA)",
-        title="Resolution Cutoffs",
-    )
-    binning_mode: ReflectionBinningMode | None = Field(
-        None,
-        alias="binningMode",
-        description="Binning mode for definition of resolution shells",
-    )
-    number_bins: PositiveInt | None = Field(
-        None, alias="numberBins", description="Number of bins", title="Number Bins"
-    )
-    reflections_per_bin: PositiveInt | None = Field(
-        None,
-        alias="reflectionsPerBin",
-        description="Number of reflections per bin",
-        title="Reflections Per Bin",
-    )
-    reflections_per_bin_per_sweep: PositiveInt | None = Field(
-        None,
-        alias="reflectionsPerBinPerSweep",
-        description="Number of reflections per bin per sweep (in multi-sweep experiment)",
-        title="Reflections Per Bin Per Sweep",
-    )
-    resolution_rings_detected: list[list[PositiveFloat]] | None = Field(
-        None,
-        alias="resolutionRingsDetected",
-        description="Resolution rings detected as originating from ice, powder diffraction etc.; given as a pair of floats (A) with decreasing value, i.e. low- and high-resolution limits",
-        title="Resolution Rings Detected",
-    )
-    resolution_rings_excluded: list[list[PositiveFloat]] | None = Field(
-        None,
-        alias="resolutionRingsExcluded",
-        description="Resolution rings excluded from calculation; given as a pair of floats (A) with decreasing value, i.e. low- and high-resolution limits)",
-        title="Resolution Rings Excluded",
-    )
-    file_type: ReflectionFileType | None = Field(
-        None, alias="fileType", description="Type of file"
-    )
-    filename: str | None = Field(None, description="File name.", title="Filename")
-    path: str | None = Field(
-        None,
-        description="Path to directory containing reflection set file (defined by filename).",
-        title="Path",
-    )
+    anisotropic_diffraction: Annotated[
+        bool | None,
+        Field(
+            alias="anisotropicDiffraction",
+            description="Is diffraction limit analysis based on anisotropic diffraction limits? True/False ",
+            title="Anisotropic Diffraction",
+        ),
+    ] = False
+    space_group_name: Annotated[
+        SpaceGroupName | None,
+        Field(
+            alias="spaceGroupName",
+            description="Name of space group, determined during processing. Names may include alternative settings. Matches mmCIF item symmetry.space_group_name_H-M (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_symmetry.space_group_name_H-M.html).",
+            title="Space Group Name",
+        ),
+    ] = None
+    refined_unit_cell: Annotated[
+        UnitCell | None,
+        Field(
+            alias="refinedUnitCell",
+            description="Unit cell of crystal, determined during processing.",
+        ),
+    ] = None
+    operational_resolution: Annotated[
+        float | None,
+        Field(
+            alias="operationalResolution",
+            description="Operational resolution (A) matching resolutionCutoffs.",
+            title="Operational Resolution",
+        ),
+    ] = None
+    diffraction_limits_estimated: Annotated[
+        Tensor | None,
+        Field(
+            alias="diffractionLimitsEstimated",
+            description="Principal axes lengths (A) of ellipsoid describing reciprocal space region containing observable reflections, regardless whether all have actually been observed. Matches mmCIF items reflns.pdbx_aniso_diffraction_limit_{1,2,3} (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_aniso_diffraction_limit_1.html)",
+        ),
+    ] = None
+    wavelengths: Annotated[
+        list[Wavelength] | None,
+        Field(
+            description="Wavelengths (A) at which reflections were measured",
+            title="Wavelengths",
+        ),
+    ] = None
+    iso_b_wilson_estimate: Annotated[
+        float | None,
+        Field(
+            alias="isoBWilsonEstimate",
+            description="estimated (isotropic) temperature factor from slope of Wilson plot, matches mmCIF item reflns.B_iso_Wilson_estimate (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.B_iso_Wilson_estimate.html)",
+            title="B Iso Wilson Estimate",
+        ),
+    ] = None
+    aniso_btensor: Annotated[
+        Tensor | None,
+        Field(
+            alias="anisoBtensor",
+            description="Anisotropic B tensor, matching mmCIF items reflns.pdbx_aniso_B_tensor_eigenvalue_{1,2,3} and reflns.pdbx_aniso_B_tensor_eigenvector_{1,2,3}_ortho[{1,2,3}] (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_aniso_B_tensor_eigenvalue_1.html)",
+        ),
+    ] = None
+    number_reflections: Annotated[
+        NonNegativeInt | None,
+        Field(
+            alias="numberReflections",
+            description="Total number of measured reflections, matches mmCIF item reflns.pdbx_number_measured_all (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_number_measured_all.html)",
+            ge=0,
+            title="Number of Reflections",
+        ),
+    ] = None
+    number_reflections_unique: Annotated[
+        NonNegativeInt | None,
+        Field(
+            alias="numberReflectionsUnique",
+            description="Total number of unique reflections, matches mmCIF item reflns.number_obs (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.number_obs.html)",
+            ge=0,
+            title="Number Reflections Unique",
+        ),
+    ] = None
+    h_index_range: Annotated[
+        list[int] | None,
+        Field(
+            alias="hIndexRange",
+            description="low and high limit on Miller index h, matches mmCIF item reflns.limit_h_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_h_min.html) and reflns.limit_h_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_h_max.html)",
+            max_length=2,
+            min_length=2,
+            title="H Index Range",
+        ),
+    ] = None
+    k_index_range: Annotated[
+        list[int] | None,
+        Field(
+            alias="kIndexRange",
+            description="low and high limit on Miller index k, matches mmCIF item reflns.limit_k_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_k_min.html) and reflns.limit_k_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_k_max.html)",
+            max_length=2,
+            min_length=2,
+            title="K Index Range",
+        ),
+    ] = None
+    l_index_range: Annotated[
+        list[int] | None,
+        Field(
+            alias="lIndexRange",
+            description="low and high limit on Miller index l, matches mmCIF item reflns.limit_l_min (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_l_min.html) and reflns.limit_l_max (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.limit_l_max.html)",
+            max_length=2,
+            min_length=2,
+            title="L Index Range",
+        ),
+    ] = None
+    possible_twinning: Annotated[
+        bool | None,
+        Field(
+            alias="possibleTwinning",
+            description="Are there data to indicate that the crystal might be twinned?",
+            title="Possible Twinning",
+        ),
+    ] = False
+    twin_fraction: Annotated[
+        NonNegativeFloat | None,
+        Field(
+            alias="twinFraction",
+            description="The calculated twin fraction of the crystal",
+            ge=0,
+            le=1,
+            title="Twin fraction",
+        ),
+    ] = None
+    reflection_statistics_overall: Annotated[
+        ReflectionStatistics | None,
+        Field(
+            alias="reflectionStatisticsOverall",
+            description="Reflection statistics for all processed reflections",
+        ),
+    ] = None
+    reflection_statistics_shells: Annotated[
+        list[ReflectionStatistics] | None,
+        Field(
+            alias="reflectionStatisticsShells",
+            description="Reflection statistics per resolution shell",
+            title="Reflection Statistics Shells",
+        ),
+    ] = None
+    signal_type: Annotated[
+        PdbxSignalType | None,
+        Field(
+            alias="signalType",
+            description="'local <I/sigmaI>', 'local wCC_half'; matches reflns.pdbx_signal_type (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_signal_type.html). Criterion for observability, as used in mmCIF refln.pdbx_signal_status (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_refln.pdbx_signal_status.html)",
+        ),
+    ] = None
+    signal_cutoff: Annotated[
+        float | None,
+        Field(
+            alias="signalCutoff",
+            description="Limiting value for signal calculation; matches reflns.pdbx_observed_signal_threshold (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns.pdbx_observed_signal_threshold.html). Cutoff for observability, as used in mmCIF refln.pdbx_signal_status (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_refln.pdbx_signal_status.html)",
+            title="Signal Cutoff",
+        ),
+    ] = None
+    resolution_cutoffs: Annotated[
+        ResolutionCutoffs | None,
+        Field(
+            alias="resolutionCutoffs",
+            description="Criteria used in determination of isotropic resolution cut-off (e.g. as implemented in MRFANA, https://github.com/githubgphl/MRFANA)",
+            title="Resolution Cutoffs",
+        ),
+    ] = None
+    binning_mode: Annotated[
+        ReflectionBinningMode | None,
+        Field(
+            alias="binningMode",
+            description="Binning mode for definition of resolution shells",
+        ),
+    ] = None
+    number_bins: Annotated[
+        PositiveInt | None,
+        Field(
+            alias="numberBins", description="Number of bins", gt=0, title="Number Bins"
+        ),
+    ] = None
+    reflections_per_bin: Annotated[
+        PositiveInt | None,
+        Field(
+            alias="reflectionsPerBin",
+            description="Number of reflections per bin",
+            gt=0,
+            title="Reflections Per Bin",
+        ),
+    ] = None
+    reflections_per_bin_per_sweep: Annotated[
+        PositiveInt | None,
+        Field(
+            alias="reflectionsPerBinPerSweep",
+            description="Number of reflections per bin per sweep (in multi-sweep experiment)",
+            gt=0,
+            title="Reflections Per Bin Per Sweep",
+        ),
+    ] = None
+    resolution_rings_detected: Annotated[
+        list[ResolutionRingsDetectedItem] | None,
+        Field(
+            alias="resolutionRingsDetected",
+            description="Resolution rings detected as originating from ice, powder diffraction etc.; given as a pair of floats (A) with decreasing value, i.e. low- and high-resolution limits",
+            title="Resolution Rings Detected",
+        ),
+    ] = None
+    resolution_rings_excluded: Annotated[
+        list[ResolutionRingsExcludedItem] | None,
+        Field(
+            alias="resolutionRingsExcluded",
+            description="Resolution rings excluded from calculation; given as a pair of floats (A) with decreasing value, i.e. low- and high-resolution limits)",
+            title="Resolution Rings Excluded",
+        ),
+    ] = None
+    file_type: Annotated[
+        ReflectionFileType | None, Field(alias="fileType", description="Type of file")
+    ] = None
+    filename: Annotated[
+        str | None, Field(description="File name.", title="Filename")
+    ] = None
+    path: Annotated[
+        str | None,
+        Field(
+            description="Path to directory containing reflection set file (defined by filename).",
+            title="Path",
+        ),
+    ] = None

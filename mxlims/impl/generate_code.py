@@ -95,7 +95,7 @@ def generate_mxlims(dirname: str | None = None) -> None :
         "--use-double-quotes",
         "--disable-timestamp",
         "--use-default",
-        # "--use-annotated",
+        "--use-annotated",
         "--target-python-version",
         "3.10",
         "--snake-case-field",
@@ -138,9 +138,9 @@ def generate_mxlims(dirname: str | None = None) -> None :
             os.remove(fp0)
     for classname, objdict in object_dicts.items():
         make_pydantic_object(pydantic_dir, objdict)
-    for fp0 in (pydantic_dir / "core").iterdir():
-        if fp0.is_file():
-            os.remove(fp0)
+    # for fp0 in (pydantic_dir / "core").iterdir():
+    #     if fp0.is_file():
+    #         os.remove(fp0)
     for fp0 in (pydantic_dir / "references").iterdir():
         if fp0.is_file():
             os.remove(fp0)
@@ -158,8 +158,9 @@ def generate_mxlims(dirname: str | None = None) -> None :
 def post_process_pydantic_file(fpath: Path):
         text = open(fpath).read()
         if "AnyUrl" in text:
+            print ('@~@~ AnyUrl in ', fpath)
             text = text.replace("AnyUrl", "HttpUrl")
-            open(fpath, "w").write(text)
+            # open(fpath, "w").write(text)
 
 def generate_message_classes(mxlims_dir: Path) -> None:
     """ Adjust and re-write MxlimsMessage classes
@@ -176,7 +177,7 @@ def generate_message_classes(mxlims_dir: Path) -> None:
             text = fp0.read_text()
             text = text.replace("BaseModel", "BaseMessage")
             text = text.replace("MxlimsBase","MxlimsImplementation")
-            text = text.replace("None,", "default_factory=dict,")
+            # text = text.replace("None,", "default_factory=dict,")
             if "LogisticalSampleData" in text and "PlateWell" in text:
                 print (
                     "WARNING - HACK - to compensate for code generator bug!")
@@ -363,7 +364,7 @@ def make_pydantic_object(pydantic_dir: Path, objdict: dict) -> None:
 
 from __future__ import annotations
 from pydantic import {config_dict_str}Field{validator_str}
-from typing import Literal, TYPE_CHECKING
+from typing import Annotated, Literal, TYPE_CHECKING
 from uuid import UUID, uuid1
 from mxlims.core.MxlimsObject import MxlimsObject
 from ..data.{classname}Data import {classname}Data

@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+from typing import Annotated
+
 from pydantic import Field
 
 from ..datatypes.SampleComponent import SampleComponent
@@ -14,15 +16,21 @@ class SampleData(MxlimsObjectData):
     Base class for MXLIMS Prepared Samples describing Sample content
     """
 
-    name: str | None = Field(None, description="Sample human-readable name or acronym.")
-    acronym: str | None = Field(
-        None, description="Acronym - short synonym for Sample", title="Acronym"
-    )
-    campaign_name: str | None = Field(
-        None,
-        alias="campaignName",
-        description="String identifier / name for campaign of which Sample is part.",
-    )
-    components: list[SampleComponent] | None = Field(
-        None, description="Other components of Sample", title="Sample components"
-    )
+    name: Annotated[
+        str | None, Field(description="Sample human-readable name or acronym.")
+    ] = None
+    acronym: Annotated[
+        str | None,
+        Field(description="Acronym - short synonym for Sample", title="Acronym"),
+    ] = None
+    campaign_name: Annotated[
+        str | None,
+        Field(
+            alias="campaignName",
+            description="String identifier / name for campaign of which Sample is part.",
+        ),
+    ] = None
+    components: Annotated[
+        list[SampleComponent] | None,
+        Field(description="Other components of Sample", title="Sample components"),
+    ] = None

@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+from typing import Annotated
+
 from pydantic import AwareDatetime, Field
 
 from ..datatypes.Enumerations import JobStatus
@@ -14,21 +16,29 @@ class JobData(MxlimsObjectData):
     Base class for MXLIMS Jobs - an experiment or calculation producing Datasets
     """
 
-    start_time: AwareDatetime | None = Field(
-        None,
-        alias="startTime",
-        description="Actual starting time for job or calculation, ",
-        title="Start Time",
-    )
-    end_time: AwareDatetime | None = Field(
-        None,
-        alias="endTime",
-        description="Actual finishing time for job or calculation, ",
-        title="End Time",
-    )
-    job_status: JobStatus | None = Field(
-        None,
-        alias="jobStatus",
-        description="Status of job - enumerated, ",
-        examples=["Template", "Ready", "Running", "Completed", "Failed", "Aborted"],
-    )
+    start_time: Annotated[
+        AwareDatetime | None,
+        Field(
+            alias="startTime",
+            description="Actual starting time for job or calculation, ",
+            pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?(Z|[+-]([01][0-9]|2[0-3]):[0-5][0-9])$",
+            title="Start Time",
+        ),
+    ] = None
+    end_time: Annotated[
+        AwareDatetime | None,
+        Field(
+            alias="endTime",
+            description="Actual finishing time for job or calculation, ",
+            pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?(Z|[+-]([01][0-9]|2[0-3]):[0-5][0-9])$",
+            title="End Time",
+        ),
+    ] = None
+    job_status: Annotated[
+        JobStatus | None,
+        Field(
+            alias="jobStatus",
+            description="Status of job - enumerated, ",
+            examples=["Template", "Ready", "Running", "Completed", "Failed", "Aborted"],
+        ),
+    ] = None

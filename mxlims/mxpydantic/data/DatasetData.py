@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+from typing import Annotated
+
 from pydantic import Field
 
 from .MxlimsObjectData import MxlimsObjectData
@@ -13,9 +15,11 @@ class DatasetData(MxlimsObjectData):
     Base class for MXLIMS Datasets
     """
 
-    role: str | None = Field(
-        None,
-        description="Role of Dataset relative to the source Job. Intended for filtering of Datasets",
-        examples=["Result", "Intermediate", "Characterisation", "Centring"],
-        title="Role",
-    )
+    role: Annotated[
+        str | None,
+        Field(
+            description="Role of Dataset relative to the source Job. Intended for filtering of Datasets",
+            examples=["Result", "Intermediate", "Characterisation", "Centring"],
+            title="Role",
+        ),
+    ] = None

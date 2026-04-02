@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+from typing import Annotated
+
 from pydantic import Field
 
 from ..objects.CollectionSweep import CollectionSweep
@@ -32,117 +34,153 @@ class MxlimsMessageStrict(BaseMessageData):
     Message containing all possible objects, by type
     """
 
-    collection_sweep: dict[str, CollectionSweep] | None = Field(
-        default_factory=dict,
-        alias="CollectionSweep",
-        description="idString:object dictionary of CollectionSweeps.",
-        title="CollectionSweeps",
-    )
-    crystal: dict[str, Crystal] | None = Field(
-        default_factory=dict,
-        alias="Crystal",
-        description="idString:object dictionary of Crystals.",
-        title="Crystals",
-    )
-    dewar: dict[str, Dewar] | None = Field(
-        default_factory=dict,
-        alias="Dewar",
-        description="idString:object dictionary of Dewars.",
-        title="Dewars",
-    )
-    drop_region: dict[str, DropRegion] | None = Field(
-        default_factory=dict,
-        alias="DropRegion",
-        description="idString:object dictionary of DropRegions.",
-        title="DropRegions",
-    )
-    macromolecule: dict[str, Macromolecule_1] | None = Field(
-        default_factory=dict,
-        alias="Macromolecule",
-        description="idString:object dictionary of Macromolecule (reference sample) objects.",
-        title="Macromolecule",
-    )
-    macromolecule_sample: dict[str, MacromoleculeSample_1] | None = Field(
-        default_factory=dict,
-        alias="MacromoleculeSample",
-        description="idString:object dictionary of Macromolecule-containing sample objects.",
-        title="MacromoleculeSample",
-    )
-    medium: dict[str, Medium] | None = Field(
-        default_factory=dict,
-        alias="Medium",
-        description="idString:object dictionary of Medium (sample) objects.",
-        title="Media",
-    )
-    mx_experiment: dict[str, MxExperiment] | None = Field(
-        default_factory=dict,
-        alias="MxExperiment",
-        description="idString:object dictionary of MxExperiments.",
-        title="MxExperiments",
-    )
-    mx_processing: dict[str, MxProcessing] | None = Field(
-        default_factory=dict,
-        alias="MxProcessing",
-        description="idString:object dictionary of MxProcessings.",
-        title="MxProcessings",
-    )
-    multi_pin: dict[str, MultiPin] | None = Field(
-        default_factory=dict,
-        alias="MultiPin",
-        description="idString:object dictionary of MultiPins.",
-        title="MultiPins",
-    )
-    pin: dict[str, Pin] | None = Field(
-        default_factory=dict,
-        alias="Pin",
-        description="idString:object dictionary of Pins.",
-        title="Pins",
-    )
-    pin_position: dict[str, PinPosition] | None = Field(
-        default_factory=dict,
-        alias="PinPosition",
-        description="idString:object dictionary of PinPositions.",
-        title="PinPositions",
-    )
-    plate: dict[str, Plate] | None = Field(
-        default_factory=dict,
-        alias="Plate",
-        description="idString:object dictionary of Plates.",
-        title="Plates",
-    )
-    plate_well: dict[str, PlateWell] | None = Field(
-        default_factory=dict,
-        alias="PlateWell",
-        description="idString:object dictionary of PlateWells.",
-        title="PlateWells",
-    )
-    puck: dict[str, Puck] | None = Field(
-        default_factory=dict,
-        alias="Puck",
-        description="idString:object dictionary of Pucks.",
-        title="Pucks",
-    )
-    reflection_set: dict[str, ReflectionSet] | None = Field(
-        default_factory=dict,
-        alias="ReflectionSet",
-        description="idString:object dictionary of ReflectionSets.",
-        title="ReflectionSets",
-    )
-    shipment: dict[str, Shipment] | None = Field(
-        default_factory=dict,
-        alias="Shipment",
-        description="idString:object dictionary of Shipments.",
-        title="Shipments",
-    )
-    volume_scan: dict[str, VolumeScan] | None = Field(
-        default_factory=dict,
-        alias="VolumeScan",
-        description="idString:object dictionary of VolumeScans.",
-        title="VolumeScans",
-    )
-    well_drop: dict[str, WellDrop] | None = Field(
-        default_factory=dict,
-        alias="WellDrop",
-        description="idString:object dictionary of WellDrops.",
-        title="WellDrops",
-    )
+    collection_sweep: Annotated[
+        dict[str, CollectionSweep] | None,
+        Field(
+            alias="CollectionSweep",
+            description="idString:object dictionary of CollectionSweeps.",
+            title="CollectionSweeps",
+        ),
+    ] = None
+    crystal: Annotated[
+        dict[str, Crystal] | None,
+        Field(
+            alias="Crystal",
+            description="idString:object dictionary of Crystals.",
+            title="Crystals",
+        ),
+    ] = None
+    dewar: Annotated[
+        dict[str, Dewar] | None,
+        Field(
+            alias="Dewar",
+            description="idString:object dictionary of Dewars.",
+            title="Dewars",
+        ),
+    ] = None
+    drop_region: Annotated[
+        dict[str, DropRegion] | None,
+        Field(
+            alias="DropRegion",
+            description="idString:object dictionary of DropRegions.",
+            title="DropRegions",
+        ),
+    ] = None
+    macromolecule: Annotated[
+        dict[str, Macromolecule_1] | None,
+        Field(
+            alias="Macromolecule",
+            description="idString:object dictionary of Macromolecule (reference sample) objects.",
+            title="Macromolecule",
+        ),
+    ] = None
+    macromolecule_sample: Annotated[
+        dict[str, MacromoleculeSample_1] | None,
+        Field(
+            alias="MacromoleculeSample",
+            description="idString:object dictionary of Macromolecule-containing sample objects.",
+            title="MacromoleculeSample",
+        ),
+    ] = None
+    medium: Annotated[
+        dict[str, Medium] | None,
+        Field(
+            alias="Medium",
+            description="idString:object dictionary of Medium (sample) objects.",
+            title="Media",
+        ),
+    ] = None
+    mx_experiment: Annotated[
+        dict[str, MxExperiment] | None,
+        Field(
+            alias="MxExperiment",
+            description="idString:object dictionary of MxExperiments.",
+            title="MxExperiments",
+        ),
+    ] = None
+    mx_processing: Annotated[
+        dict[str, MxProcessing] | None,
+        Field(
+            alias="MxProcessing",
+            description="idString:object dictionary of MxProcessings.",
+            title="MxProcessings",
+        ),
+    ] = None
+    multi_pin: Annotated[
+        dict[str, MultiPin] | None,
+        Field(
+            alias="MultiPin",
+            description="idString:object dictionary of MultiPins.",
+            title="MultiPins",
+        ),
+    ] = None
+    pin: Annotated[
+        dict[str, Pin] | None,
+        Field(
+            alias="Pin", description="idString:object dictionary of Pins.", title="Pins"
+        ),
+    ] = None
+    pin_position: Annotated[
+        dict[str, PinPosition] | None,
+        Field(
+            alias="PinPosition",
+            description="idString:object dictionary of PinPositions.",
+            title="PinPositions",
+        ),
+    ] = None
+    plate: Annotated[
+        dict[str, Plate] | None,
+        Field(
+            alias="Plate",
+            description="idString:object dictionary of Plates.",
+            title="Plates",
+        ),
+    ] = None
+    plate_well: Annotated[
+        dict[str, PlateWell] | None,
+        Field(
+            alias="PlateWell",
+            description="idString:object dictionary of PlateWells.",
+            title="PlateWells",
+        ),
+    ] = None
+    puck: Annotated[
+        dict[str, Puck] | None,
+        Field(
+            alias="Puck",
+            description="idString:object dictionary of Pucks.",
+            title="Pucks",
+        ),
+    ] = None
+    reflection_set: Annotated[
+        dict[str, ReflectionSet] | None,
+        Field(
+            alias="ReflectionSet",
+            description="idString:object dictionary of ReflectionSets.",
+            title="ReflectionSets",
+        ),
+    ] = None
+    shipment: Annotated[
+        dict[str, Shipment] | None,
+        Field(
+            alias="Shipment",
+            description="idString:object dictionary of Shipments.",
+            title="Shipments",
+        ),
+    ] = None
+    volume_scan: Annotated[
+        dict[str, VolumeScan] | None,
+        Field(
+            alias="VolumeScan",
+            description="idString:object dictionary of VolumeScans.",
+            title="VolumeScans",
+        ),
+    ] = None
+    well_drop: Annotated[
+        dict[str, WellDrop] | None,
+        Field(
+            alias="WellDrop",
+            description="idString:object dictionary of WellDrops.",
+            title="WellDrops",
+        ),
+    ] = None

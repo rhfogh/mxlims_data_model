@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from typing import Literal
+from typing import Annotated, Literal
 
 from mxlims.impl.MxlimsBase import BaseModel
 from pydantic import ConfigDict, Field, PositiveFloat, RootModel
@@ -12,9 +12,9 @@ from .Point import Point
 
 
 class RegionType(RootModel[Literal["circle"]]):
-    root: Literal["circle"] = Field(
-        "circle", description="Type of region", title="Region type"
-    )
+    root: Annotated[
+        Literal["circle"], Field(description="Type of region", title="Region type")
+    ] = "circle"
 
 
 class Circle(BaseModel):
@@ -25,8 +25,9 @@ class Circle(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    region_type: Literal["circle"] = Field(
-        "circle", alias="regionType", description="Type of region", title="Region type"
-    )
+    region_type: Annotated[
+        Literal["circle"],
+        Field(alias="regionType", description="Type of region", title="Region type"),
+    ] = "circle"
     center: Point
-    radius: PositiveFloat = Field(..., description="The radius of the circle.")
+    radius: Annotated[PositiveFloat, Field(description="The radius of the circle.")]

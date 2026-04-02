@@ -3,11 +3,13 @@
 
 from __future__ import annotations
 
-from typing import Any
+from typing import Annotated, Any
 from uuid import UUID
 
 from mxlims.impl.MxlimsBase import BaseModel
-from pydantic import HttpUrl, Field, constr
+from pydantic import Field, constr
+
+from ..core.BasicTypes import HttpUrl
 
 
 class MxlimsObjectData(BaseModel):
@@ -15,58 +17,69 @@ class MxlimsObjectData(BaseModel):
     Base object for all MXLIMS objects: Job, Dataset, Sample, and LogisticalSample
     """
 
-    mxlims_type: str = Field(
-        ...,
-        alias="mxlimsType",
-        description="The type of the MXLIMS object. Fixed for each subtype schema",
-        title="MxlimsType",
-    )
-    mxlims_base_type: str | None = Field(
-        None,
-        alias="mxlimsBaseType",
-        description="The core type of the MXLIMS object (Job, Dataset, Sample, or LogisticalSample). Fixed for each subtype schema",
-        title="MxlimsBaseType",
-    )
-    uuid: UUID | None = Field(
-        None, description="Permanent unique identifier string", title="Uuid"
-    )
-    extensions: (
+    mxlims_type: Annotated[
+        str,
+        Field(
+            alias="mxlimsType",
+            description="The type of the MXLIMS object. Fixed for each subtype schema",
+            title="MxlimsType",
+        ),
+    ]
+    mxlims_base_type: Annotated[
+        str | None,
+        Field(
+            alias="mxlimsBaseType",
+            description="The core type of the MXLIMS object (Job, Dataset, Sample, or LogisticalSample). Fixed for each subtype schema",
+            title="MxlimsBaseType",
+        ),
+    ] = None
+    uuid: Annotated[
+        UUID | None,
+        Field(
+            description="Permanent unique identifier string",
+            pattern="^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+            title="Uuid",
+        ),
+    ] = None
+    extensions: Annotated[
         dict[
             constr(
                 pattern=r"(?i)^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$"
             ),
             dict[str, Any],
         ]
-        | None
-    ) = Field(
-        None,
-        description="Keyword-value dictionary string:object of extensions. The key must be a valid domain name pointing to the site 'owning' the extensions, but need not be resolvable.",
-        title="Extensions",
-    )
-    identifiers: (
+        | None,
+        Field(
+            description="Keyword-value dictionary string:object of extensions. The key must be a valid domain name pointing to the site 'owning' the extensions, but need not be resolvable.",
+            title="Extensions",
+        ),
+    ] = None
+    identifiers: Annotated[
         dict[
             constr(
                 pattern=r"(?i)^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$"
             ),
             str,
         ]
-        | None
-    ) = Field(
-        None,
-        description="Keyword-value dictionary string:string of site-specific object identifiers. The key must be a valid domain name pointing to the site 'owning' the extensions, but need not be resolvable.",
-        title="Identifiers",
-    )
-    urls: (
+        | None,
+        Field(
+            description="Keyword-value dictionary string:string of site-specific object identifiers. The key must be a valid domain name pointing to the site 'owning' the extensions, but need not be resolvable.",
+            title="Identifiers",
+        ),
+    ] = None
+    urls: Annotated[
         dict[
             constr(
                 pattern=r"(?i)^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$"
             ),
             HttpUrl,
         ]
-        | None
-    ) = Field(
-        None,
-        description="Keyword-value dictionary string:urlstring of site-specific object urls. The key must be a valid domain name pointing to the site 'owning' the extensions, but need not be resolvable.",
-        title="Urls",
+        | None,
+        Field(
+            description="Keyword-value dictionary string:urlstring of site-specific object urls. The key must be a valid domain name pointing to the site 'owning' the extensions, but need not be resolvable.",
+            title="Urls",
+        ),
+    ] = None
+    annotation: Annotated[str | None, Field(description="Comment or annotation.")] = (
+        None
     )
-    annotation: str | None = Field(None, description="Comment or annotation.")

@@ -3,8 +3,14 @@
 
 from __future__ import annotations
 
+from typing import Annotated
+
 from mxlims.impl.MxlimsBase import BaseModel
-from pydantic import Field, PositiveFloat, PositiveInt
+from pydantic import Field, PositiveFloat, PositiveInt, RootModel
+
+
+class PointCoordinatesSampXSampYSampZItem(RootModel[float]):
+    root: Annotated[float, Field(max_length=3, min_length=3)]
 
 
 class ScannedPoint(BaseModel):
@@ -12,20 +18,31 @@ class ScannedPoint(BaseModel):
     Scanned point in sample, given in goniostat coordinate system at omega==kappa==phi==0
     """
 
-    coordinates: list[float] = Field(
-        ..., title="Point coordinates (sampX, sampY, sampZ)"
-    )
-    intensity: float | None = Field(
-        None,
-        description="Measured intensity at point, in arbitrary units",
-        title="Intensity",
-    )
-    resolution: PositiveFloat | None = Field(
-        None, description="Resolution observed at the scanned point", title="Resolution"
-    )
-    spot_count: PositiveInt | None = Field(
-        None,
-        alias="spotCount",
-        description="Number of spots observed at the scanned point",
-        title="Spot count",
-    )
+    coordinates: Annotated[
+        list[PointCoordinatesSampXSampYSampZItem],
+        Field(title="Point coordinates (sampX, sampY, sampZ)"),
+    ]
+    intensity: Annotated[
+        float | None,
+        Field(
+            description="Measured intensity at point, in arbitrary units",
+            title="Intensity",
+        ),
+    ] = None
+    resolution: Annotated[
+        PositiveFloat | None,
+        Field(
+            description="Resolution observed at the scanned point",
+            gt=0,
+            title="Resolution",
+        ),
+    ] = None
+    spot_count: Annotated[
+        PositiveInt | None,
+        Field(
+            alias="spotCount",
+            description="Number of spots observed at the scanned point",
+            gt=0,
+            title="Spot count",
+        ),
+    ] = None

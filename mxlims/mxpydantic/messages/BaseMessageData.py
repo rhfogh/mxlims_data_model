@@ -3,16 +3,17 @@
 
 from __future__ import annotations
 
-from typing import Literal
+from typing import Annotated, Literal
 
 from mxlims.impl.MxlimsImplementation import BaseMessage
 from pydantic import Field, RootModel
 
 
 class Version(RootModel[Literal["0.6.12"]]):
-    root: Literal["0.6.12"] = Field(
-        "0.6.12", description="MXLIMS version for current model", title="Version"
-    )
+    root: Annotated[
+        Literal["0.6.12"],
+        Field(description="MXLIMS version for current model", title="Version"),
+    ] = "0.6.12"
 
 
 class BaseMessageData(BaseMessage):
@@ -20,6 +21,7 @@ class BaseMessageData(BaseMessage):
     Base data object for all MXLIMS messages
     """
 
-    version: Literal["0.6.12"] = Field(
-        "0.6.12", description="MXLIMS version for current model", title="Version"
-    )
+    version: Annotated[
+        Literal["0.6.12"],
+        Field(description="MXLIMS version for current model", title="Version"),
+    ] = "0.6.12"

@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+from typing import Annotated
+
 from mxlims.impl.MxlimsBase import BaseModel
 from pydantic import Field, PositiveInt
 
@@ -12,22 +14,30 @@ class PinData(BaseModel):
     A Pin mounted on a puck with a single slot for crystals.
     """
 
-    barcode: str | None = Field(None, description="The Pin barcode or RFID code")
-    position_in_puck: PositiveInt | None = Field(
-        None,
-        alias="positionInPuck",
-        description="The puck position occupied by the pin. This should be validated against the puck's numberPositions property.",
-        examples=[16],
-    )
-    loop_type: str | None = Field(
-        None,
-        alias="loopType",
-        description="Type of loop. NB should be made into an enum",
-        title="Loop type",
-    )
-    holder_length: float | None = Field(
-        None,
-        alias="holderLength",
-        description="Holder length in mm",
-        title="Holder length",
-    )
+    barcode: Annotated[
+        str | None, Field(description="The Pin barcode or RFID code")
+    ] = None
+    position_in_puck: Annotated[
+        PositiveInt | None,
+        Field(
+            alias="positionInPuck",
+            description="The puck position occupied by the pin. This should be validated against the puck's numberPositions property.",
+            examples=[16],
+        ),
+    ] = None
+    loop_type: Annotated[
+        str | None,
+        Field(
+            alias="loopType",
+            description="Type of loop. NB should be made into an enum",
+            title="Loop type",
+        ),
+    ] = None
+    holder_length: Annotated[
+        float | None,
+        Field(
+            alias="holderLength",
+            description="Holder length in mm",
+            title="Holder length",
+        ),
+    ] = None

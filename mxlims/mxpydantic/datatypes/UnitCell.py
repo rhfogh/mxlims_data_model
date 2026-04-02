@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+from typing import Annotated
+
 from mxlims.impl.MxlimsBase import BaseModel
 from pydantic import ConfigDict, Field, PositiveFloat
 
@@ -18,9 +20,15 @@ class UnitCell(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    a: PositiveFloat = Field(..., description="A axis length (A)", title="A")
-    b: PositiveFloat = Field(..., description="B axis length (A)", title="B")
-    c: PositiveFloat = Field(..., description="C axis length (A)", title="C")
-    alpha: PositiveFloat = Field(..., description="alpha angle (degree)", title="Alpha")
-    beta: PositiveFloat = Field(..., description="beta angle (degree)", title="Beta")
-    gamma: PositiveFloat = Field(..., description="gamma angle (degree)", title="Gamma")
+    a: Annotated[PositiveFloat, Field(description="A axis length (A)", gt=0, title="A")]
+    b: Annotated[PositiveFloat, Field(description="B axis length (A)", gt=0, title="B")]
+    c: Annotated[PositiveFloat, Field(description="C axis length (A)", gt=0, title="C")]
+    alpha: Annotated[
+        PositiveFloat, Field(description="alpha angle (degree)", gt=0, title="Alpha")
+    ]
+    beta: Annotated[
+        PositiveFloat, Field(description="beta angle (degree)", gt=0, title="Beta")
+    ]
+    gamma: Annotated[
+        PositiveFloat, Field(description="gamma angle (degree)", gt=0, title="Gamma")
+    ]

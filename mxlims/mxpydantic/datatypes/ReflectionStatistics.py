@@ -3,15 +3,10 @@
 
 from __future__ import annotations
 
+from typing import Annotated
+
 from mxlims.impl.MxlimsBase import BaseModel
-from pydantic import (
-    ConfigDict,
-    Field,
-    NonNegativeFloat,
-    NonNegativeInt,
-    PositiveInt,
-    confloat,
-)
+from pydantic import ConfigDict, Field, NonNegativeFloat, NonNegativeInt, PositiveInt
 
 
 class ReflectionStatistics(BaseModel):
@@ -22,95 +17,151 @@ class ReflectionStatistics(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    resolution_limits: list[float] = Field(
-        ...,
-        alias="resolutionLimits",
-        description="lower, higher resolution limit of shell, matches mmCIF items reflns_shell.d_res_low (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.d_res_low.html) and reflns_shell.d_res_high (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.d_res_high.html)",
-        max_length=2,
-        min_length=2,
-        title="Resolution Limits",
-    )
-    number_observations: PositiveInt | None = Field(
-        None,
-        alias="numberObservations",
-        description="total number of observations, matches mmCIF item reflns_shell.number_measured_all (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.number_measured_all.html)",
-        title="Number Observations",
-    )
-    number_observations_unique: PositiveInt | None = Field(
-        None,
-        alias="numberObservationsUnique",
-        description="total number of unique observations, matches mmCIF item reflns_shell.number_unique_all (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.number_unique_all.html)",
-        title="Number Observations Unique",
-    )
-    number_reflections_rejected: NonNegativeInt | None = Field(
-        None,
-        alias="numberReflectionsRejected",
-        description="Number of rejected reflections within this resolution shell, matches mmCIF item reflns_shell.pdbx_rejects.html (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_rejects.html)",
-        title="Number Reflections Rejected",
-    )
-    chi_squared: NonNegativeFloat | None = Field(
-        None,
-        alias="chiSquared",
-        description="Chi-squared statistic for reflection shell, matches mmCIF item reflns_shell.pdbx_chi_squared (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_chi_squared.html)",
-        title="Chi Squared",
-    )
-    r_merge: NonNegativeFloat | None = Field(
-        None, alias="R_merge", description="R merge", title="R(merge)"
-    )
-    r_meas: NonNegativeFloat | None = Field(
-        None, alias="R_meas", description="R meas", title="R_meas"
-    )
-    r_pim: NonNegativeFloat | None = Field(
-        None, alias="R_pim", description="R pim", title="R_pim"
-    )
-    i_over_sig_i: float | None = Field(
-        None, alias="I_over_SigI", description="Average I / sigma(I)", title="I/SigI"
-    )
-    cc_one_half: confloat(ge=-1.0, le=-1.0) | None = Field(
-        None, alias="CC_one_half", description="CC 1/2", title="CC(1/2)"
-    )
-    cc_ano: confloat(ge=-1.0, le=-1.0) | None = Field(
-        None, alias="CC_ano", description="CC_ano", title="CC_ano"
-    )
-    sig_ano: float | None = Field(
-        None, alias="SigAno", description="SigAno", title="SigAno"
-    )
-    completeness: confloat(ge=0.0, le=100.0) | None = Field(
-        None, alias="Completeness", description="Completeness", title="Completeness"
-    )
-    completeness_spherical: confloat(ge=0.0, le=100.0) | None = Field(
-        None,
-        alias="CompletenessSpherical",
-        description="CompletenessSpherical",
-        title="CompletenessSpherical",
-    )
-    completeness_ellipsoidal: confloat(ge=0.0, le=100.0) | None = Field(
-        None,
-        alias="CompletenessEllipsoidal",
-        description="CompletenessEllipsoidal",
-        title="CompletenessEllipsoidal",
-    )
-    redundancy: NonNegativeFloat | None = Field(
-        None, alias="Redundancy", description="Redundancy", title="Redundancy"
-    )
-    completeness_ano: confloat(ge=0.0, le=100.0) | None = Field(
-        None,
-        alias="CompletenessAno",
-        description="CompletenessAno",
-        title="CompletenessAno",
-    )
-    completeness_ano_spherical: confloat(ge=0.0, le=100.0) | None = Field(
-        None,
-        alias="CompletenessAnoSpherical",
-        description="CompletenessAnoSpherical",
-        title="CompletenessAnoSpherical",
-    )
-    completeness_ano_ellipsoidal: confloat(ge=0.0, le=100.0) | None = Field(
-        None,
-        alias="CompletenessAnoEllipsoidal",
-        description="CompletenessAnoEllipsoidal",
-        title="CompletenessAnoEllipsoidal",
-    )
-    redundancy_ano: NonNegativeFloat | None = Field(
-        None, alias="RedundancyAno", description="RedundancyAno", title="RedundancyAno"
-    )
+    resolution_limits: Annotated[
+        list[float],
+        Field(
+            alias="resolutionLimits",
+            description="lower, higher resolution limit of shell, matches mmCIF items reflns_shell.d_res_low (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.d_res_low.html) and reflns_shell.d_res_high (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.d_res_high.html)",
+            max_length=2,
+            min_length=2,
+            title="Resolution Limits",
+        ),
+    ]
+    number_observations: Annotated[
+        PositiveInt | None,
+        Field(
+            alias="numberObservations",
+            description="total number of observations, matches mmCIF item reflns_shell.number_measured_all (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.number_measured_all.html)",
+            gt=0,
+            title="Number Observations",
+        ),
+    ] = None
+    number_observations_unique: Annotated[
+        PositiveInt | None,
+        Field(
+            alias="numberObservationsUnique",
+            description="total number of unique observations, matches mmCIF item reflns_shell.number_unique_all (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.number_unique_all.html)",
+            gt=0,
+            title="Number Observations Unique",
+        ),
+    ] = None
+    number_reflections_rejected: Annotated[
+        NonNegativeInt | None,
+        Field(
+            alias="numberReflectionsRejected",
+            description="Number of rejected reflections within this resolution shell, matches mmCIF item reflns_shell.pdbx_rejects.html (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_rejects.html)",
+            ge=0,
+            title="Number Reflections Rejected",
+        ),
+    ] = None
+    chi_squared: Annotated[
+        NonNegativeFloat | None,
+        Field(
+            alias="chiSquared",
+            description="Chi-squared statistic for reflection shell, matches mmCIF item reflns_shell.pdbx_chi_squared (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_reflns_shell.pdbx_chi_squared.html)",
+            ge=0,
+            title="Chi Squared",
+        ),
+    ] = None
+    r_merge: Annotated[
+        NonNegativeFloat | None,
+        Field(alias="R_merge", description="R merge", ge=0, title="R(merge)"),
+    ] = None
+    r_meas: Annotated[
+        NonNegativeFloat | None,
+        Field(alias="R_meas", description="R meas", ge=0, title="R_meas"),
+    ] = None
+    r_pim: Annotated[
+        NonNegativeFloat | None,
+        Field(alias="R_pim", description="R pim", ge=0, title="R_pim"),
+    ] = None
+    i_over_sig_i: Annotated[
+        float | None,
+        Field(alias="I_over_SigI", description="Average I / sigma(I)", title="I/SigI"),
+    ] = None
+    cc_one_half: Annotated[
+        float | None,
+        Field(
+            alias="CC_one_half", description="CC 1/2", ge=-1.0, le=-1.0, title="CC(1/2)"
+        ),
+    ] = None
+    cc_ano: Annotated[
+        float | None,
+        Field(alias="CC_ano", description="CC_ano", ge=-1.0, le=-1.0, title="CC_ano"),
+    ] = None
+    sig_ano: Annotated[
+        float | None, Field(alias="SigAno", description="SigAno", title="SigAno")
+    ] = None
+    completeness: Annotated[
+        NonNegativeFloat | None,
+        Field(
+            alias="Completeness",
+            description="Completeness",
+            ge=0,
+            le=100,
+            title="Completeness",
+        ),
+    ] = None
+    completeness_spherical: Annotated[
+        NonNegativeFloat | None,
+        Field(
+            alias="CompletenessSpherical",
+            description="CompletenessSpherical",
+            ge=0,
+            le=100,
+            title="CompletenessSpherical",
+        ),
+    ] = None
+    completeness_ellipsoidal: Annotated[
+        NonNegativeFloat | None,
+        Field(
+            alias="CompletenessEllipsoidal",
+            description="CompletenessEllipsoidal",
+            ge=0,
+            le=100,
+            title="CompletenessEllipsoidal",
+        ),
+    ] = None
+    redundancy: Annotated[
+        NonNegativeFloat | None,
+        Field(alias="Redundancy", description="Redundancy", ge=0, title="Redundancy"),
+    ] = None
+    completeness_ano: Annotated[
+        NonNegativeFloat | None,
+        Field(
+            alias="CompletenessAno",
+            description="CompletenessAno",
+            ge=0,
+            le=100,
+            title="CompletenessAno",
+        ),
+    ] = None
+    completeness_ano_spherical: Annotated[
+        NonNegativeFloat | None,
+        Field(
+            alias="CompletenessAnoSpherical",
+            description="CompletenessAnoSpherical",
+            ge=0,
+            le=100,
+            title="CompletenessAnoSpherical",
+        ),
+    ] = None
+    completeness_ano_ellipsoidal: Annotated[
+        NonNegativeFloat | None,
+        Field(
+            alias="CompletenessAnoEllipsoidal",
+            description="CompletenessAnoEllipsoidal",
+            ge=0,
+            le=100,
+            title="CompletenessAnoEllipsoidal",
+        ),
+    ] = None
+    redundancy_ano: Annotated[
+        NonNegativeFloat | None,
+        Field(
+            alias="RedundancyAno",
+            description="RedundancyAno",
+            ge=0,
+            title="RedundancyAno",
+        ),
+    ] = None

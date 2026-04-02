@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from pydantic import ConfigDict, Field
-from typing import Literal, TYPE_CHECKING
+from typing import Annotated, Literal, TYPE_CHECKING
 from uuid import UUID, uuid1
 from mxlims.core.MxlimsObject import MxlimsObject
 from ..data.SampleData import SampleData
@@ -41,18 +41,24 @@ class Sample(SampleData, MxlimsObject):
         frozen=True
     )
 
-    medium_id: UUID | None = Field(
-        None,
-        alias="mediumId",
-        description="uuid for medium making up Sample",
-        title="mediumId",
-    )
-    parent_sample_id: UUID | None = Field(
-        None,
-        alias="parentSampleId",
-        description="uuid for parent sample, used e.g. for macromolecule sample to which various ligands are added",
-        title="parentSampleId",
-    )
+    medium_id: Annotated[
+        UUID | None,
+        Field(
+            alias="mediumId",
+            description="uuid for medium making up Sample",
+            pattern="^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+            title="mediumId",
+        ),
+    ] = None
+    parent_sample_id: Annotated[
+        UUID | None,
+        Field(
+            alias="parentSampleId",
+            description="uuid for parent sample, used e.g. for macromolecule sample to which various ligands are added",
+            pattern="^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+            title="parentSampleId",
+        ),
+    ] = None
     @property
     def child_samples(self) -> list[Sample]:
         """Abstract superclass - dummy getter for Sample.child_samples list"""

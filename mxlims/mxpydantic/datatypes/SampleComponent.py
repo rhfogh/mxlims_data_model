@@ -3,9 +3,12 @@
 
 from __future__ import annotations
 
-from mxlims.impl.MxlimsBase import BaseModel
-from pydantic import HttpUrl, ConfigDict, Field, constr
+from typing import Annotated
 
+from mxlims.impl.MxlimsBase import BaseModel
+from pydantic import ConfigDict, Field, constr
+
+from ..core.BasicTypes import HttpUrl
 from .Enumerations import SampleComponentRole
 
 
@@ -17,47 +20,51 @@ class SampleComponent(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    acronym: str | None = Field(
-        None,
-        description="Acronym - short synonym of component (e.g. 'lig1'",
-        title="Acronym",
-    )
-    name: str | None = Field(
-        None, description="Human readable name of component", title="Name"
-    )
+    acronym: Annotated[
+        str | None,
+        Field(
+            description="Acronym - short synonym of component (e.g. 'lig1'",
+            title="Acronym",
+        ),
+    ] = None
+    name: Annotated[
+        str | None, Field(description="Human readable name of component", title="Name")
+    ] = None
     role: SampleComponentRole | None = None
-    smiles: str | None = Field(
-        None, description="Smile string defining component", title="Smiles"
-    )
-    selfies: str | None = Field(
-        None, description="Selfies string defining component", title="Smiles"
-    )
-    sequence: str | None = Field(
-        None, description="Sequence string defining component", title="Smiles"
-    )
-    identifiers: (
+    smiles: Annotated[
+        str | None, Field(description="Smile string defining component", title="Smiles")
+    ] = None
+    selfies: Annotated[
+        str | None,
+        Field(description="Selfies string defining component", title="Smiles"),
+    ] = None
+    sequence: Annotated[
+        str | None,
+        Field(description="Sequence string defining component", title="Smiles"),
+    ] = None
+    identifiers: Annotated[
         dict[
             constr(
                 pattern=r"(?i)^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$"
             ),
             str,
         ]
-        | None
-    ) = Field(
-        None,
-        description="Keyword-value dictionary string:string of site-specific object identifiers. The key must be a valid domain name pointing to the site 'owning' the extensions, but need not be resolvable.",
-        title="Identifiers",
-    )
-    urls: (
+        | None,
+        Field(
+            description="Keyword-value dictionary string:string of site-specific object identifiers. The key must be a valid domain name pointing to the site 'owning' the extensions, but need not be resolvable.",
+            title="Identifiers",
+        ),
+    ] = None
+    urls: Annotated[
         dict[
             constr(
                 pattern=r"(?i)^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$"
             ),
             HttpUrl,
         ]
-        | None
-    ) = Field(
-        None,
-        description="Keyword-value dictionary string:urlstring of site-specific object urls. The key must be a valid domain name pointing to the site 'owning' the extensions, but need not be resolvable.",
-        title="Urls",
-    )
+        | None,
+        Field(
+            description="Keyword-value dictionary string:urlstring of site-specific object urls. The key must be a valid domain name pointing to the site 'owning' the extensions, but need not be resolvable.",
+            title="Urls",
+        ),
+    ] = None

@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+from typing import Annotated
+
 from mxlims.impl.MxlimsBase import BaseModel
 from pydantic import ConfigDict, Field, PositiveInt
 
@@ -15,29 +17,39 @@ class PlateType(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    name: str | None = Field(
-        None,
-        description="The name of the plate type.",
-        examples=["Greiner 1-drop square"],
-    )
-    number_rows: PositiveInt = Field(
-        ...,
-        alias="numberRows",
-        description="The number of rows in the plate. For a typical 96-well plate, this will be 8.",
-    )
-    number_columns: PositiveInt = Field(
-        ...,
-        alias="numberColumns",
-        description="The number of columns in the plate. For a typical 96-well plate, this will be 12.",
-    )
-    number_sub_positions: PositiveInt = Field(
-        ...,
-        alias="numberSubPositions",
-        description="The number of sub-wells in the plate. For in-situ plates with no dividers, this should be the actual number of drops dispensed.",
-    )
-    drop_mapping: str = Field(
-        ...,
-        alias="dropMapping",
-        description="<p>The sender's numbering of the sub-wells. This can be used by the receiver to map the sender's well numbering onto their own.<p><p>It is an error if the sender and receiver disagree on the basic geometry (e.g., three drops across the top with a reservoir underneath). However, they can disagree on the drop order; this property is intended to help overcome such disagreements.</p>",
-        examples=["123,RRR", "23,1R"],
-    )
+    name: Annotated[
+        str | None,
+        Field(
+            description="The name of the plate type.",
+            examples=["Greiner 1-drop square"],
+        ),
+    ] = None
+    number_rows: Annotated[
+        PositiveInt,
+        Field(
+            alias="numberRows",
+            description="The number of rows in the plate. For a typical 96-well plate, this will be 8.",
+        ),
+    ]
+    number_columns: Annotated[
+        PositiveInt,
+        Field(
+            alias="numberColumns",
+            description="The number of columns in the plate. For a typical 96-well plate, this will be 12.",
+        ),
+    ]
+    number_sub_positions: Annotated[
+        PositiveInt,
+        Field(
+            alias="numberSubPositions",
+            description="The number of sub-wells in the plate. For in-situ plates with no dividers, this should be the actual number of drops dispensed.",
+        ),
+    ]
+    drop_mapping: Annotated[
+        str,
+        Field(
+            alias="dropMapping",
+            description="<p>The sender's numbering of the sub-wells. This can be used by the receiver to map the sender's well numbering onto their own.<p><p>It is an error if the sender and receiver disagree on the basic geometry (e.g., three drops across the top with a reservoir underneath). However, they can disagree on the drop order; this property is intended to help overcome such disagreements.</p>",
+            examples=["123,RRR", "23,1R"],
+        ),
+    ]

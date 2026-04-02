@@ -3,8 +3,14 @@
 
 from __future__ import annotations
 
+from typing import Annotated
+
 from mxlims.impl.MxlimsBase import BaseModel
-from pydantic import ConfigDict, Field
+from pydantic import ConfigDict, Field, RootModel
+
+
+class Eigenvector(RootModel[list[float]]):
+    root: Annotated[list[float], Field(max_length=3, min_length=3)]
 
 
 class Tensor(BaseModel):
@@ -15,17 +21,21 @@ class Tensor(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    eigenvalues: list[float] = Field(
-        ...,
-        description="Eigenvalues of tensor",
-        max_length=3,
-        min_length=3,
-        title="Eigenvalues",
-    )
-    eigenvectors: list[list[float]] = Field(
-        ...,
-        description="Eigenvectors (3D unit vectors) of tensor, in same order as eigenvalues",
-        max_length=3,
-        min_length=3,
-        title="Eigenvectors",
-    )
+    eigenvalues: Annotated[
+        list[float],
+        Field(
+            description="Eigenvalues of tensor",
+            max_length=3,
+            min_length=3,
+            title="Eigenvalues",
+        ),
+    ]
+    eigenvectors: Annotated[
+        list[Eigenvector],
+        Field(
+            description="Eigenvectors (3D unit vectors) of tensor, in same order as eigenvalues",
+            max_length=3,
+            min_length=3,
+            title="Eigenvectors",
+        ),
+    ]

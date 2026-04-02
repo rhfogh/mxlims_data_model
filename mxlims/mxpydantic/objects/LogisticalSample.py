@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from pydantic import Field
-from typing import Literal, TYPE_CHECKING
+from typing import Annotated, Literal, TYPE_CHECKING
 from uuid import UUID, uuid1
 from mxlims.core.MxlimsObject import MxlimsObject
 from ..data.LogisticalSampleData import LogisticalSampleData
@@ -38,18 +38,24 @@ class LogisticalSample(LogisticalSampleData, MxlimsObject):
         frozen=True
     )
 
-    sample_id: UUID | None = Field(
-        None,
-        alias="sampleId",
-        description="uuid for constituent sample",
-        title="SampleId",
-    )
-    container_id: UUID | None = Field(
-        None,
-        alias="containerId",
-        description="uuid for LogisticalSample container",
-        title="containerId",
-    )
+    sample_id: Annotated[
+        UUID | None,
+        Field(
+            alias="sampleId",
+            description="uuid for constituent sample",
+            pattern="^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+            title="SampleId",
+        ),
+    ] = None
+    container_id: Annotated[
+        UUID | None,
+        Field(
+            alias="containerId",
+            description="uuid for LogisticalSample container",
+            pattern="^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+            title="containerId",
+        ),
+    ] = None
     @property
     def container(self) -> LogisticalSample | None:
         """Abstract superclass - dummy getter for LogisticalSample.container"""

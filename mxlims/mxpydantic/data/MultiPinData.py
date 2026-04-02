@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+from typing import Annotated
+
 from mxlims.impl.MxlimsBase import BaseModel
 from pydantic import Field, PositiveInt
 
@@ -12,15 +14,21 @@ class MultiPinData(BaseModel):
     A Pin mounted on a puck with several slots for crystals.
     """
 
-    barcode: str | None = Field(None, description="The Pin barcode or RFID code")
-    number_positions: PositiveInt = Field(
-        ...,
-        alias="numberPositions",
-        description="The number of positions available in the Pin.",
-    )
-    position_in_puck: PositiveInt = Field(
-        ...,
-        alias="positionInPuck",
-        description="The puck position occupied by the pin. This should be validated against the puck's numberPositions property.",
-        examples=[16],
-    )
+    barcode: Annotated[
+        str | None, Field(description="The Pin barcode or RFID code")
+    ] = None
+    number_positions: Annotated[
+        PositiveInt,
+        Field(
+            alias="numberPositions",
+            description="The number of positions available in the Pin.",
+        ),
+    ]
+    position_in_puck: Annotated[
+        PositiveInt,
+        Field(
+            alias="positionInPuck",
+            description="The puck position occupied by the pin. This should be validated against the puck's numberPositions property.",
+            examples=[16],
+        ),
+    ]

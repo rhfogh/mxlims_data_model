@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from typing import Any
+from typing import Annotated, Any
 
 from mxlims.impl.MxlimsBase import BaseModel
 from pydantic import Field
@@ -16,48 +16,62 @@ class VolumeScanData(BaseModel):
     Sample volume scan for centring or crystal detection
     """
 
-    experiment_type: str | None = Field(
-        None,
-        alias="experimentType",
-        description="Type of VolumeScan",
-        examples=["Xray.centring", "Xray.recentring", "Xray.exploration"],
-        title="Volume scan experiment type",
-    )
-    rotation_angles: list[Any] | None = Field(
-        None,
-        alias="rotationAngles",
-        description="List of omega offsets from the starting omega position to use for volume scan, in degrees",
-        title="RotationAngles",
-    )
-    search_volume: PointCloud | None = Field(
-        None,
-        alias="searchVolume",
-        description="Volume to search (input), defined in goniostat coordinate system (centringX, centringY, phiY)",
-        title="Search Volume",
-    )
-    bounding_box_size: list[float] | None = Field(
-        None,
-        alias="boundingBoxSize",
-        description="The size of the bounding box to scan in microscope coordinate system (horizontal, vertical, beam). The bounding box is centred on the intersection between the omega axis and the beam.",
-        max_length=3,
-        min_length=3,
-        title="Bounding Box Size",
-    )
-    bounding_box_shape: str | None = Field(
-        "Box",
-        alias="boundingBoxShape",
-        description="The shape of the bounding box used.",
-        title="Bounding Box Shape",
-    )
-    result_volume: PointCloud | None = Field(
-        None,
-        alias="resultVolume",
-        description="Volume of all active points found",
-        title="Result Volume",
-    )
-    sub_volumes: list[PointCloud] | None = Field(
-        None,
-        alias="subVolumes",
-        description="List of individual compact subvolumes selected from resultVolume",
-        title="Subvolumes",
-    )
+    experiment_type: Annotated[
+        str | None,
+        Field(
+            alias="experimentType",
+            description="Type of VolumeScan",
+            examples=["Xray.centring", "Xray.recentring", "Xray.exploration"],
+            title="Volume scan experiment type",
+        ),
+    ] = None
+    rotation_angles: Annotated[
+        list[Any] | None,
+        Field(
+            alias="rotationAngles",
+            description="List of omega offsets from the starting omega position to use for volume scan, in degrees",
+            title="RotationAngles",
+        ),
+    ] = None
+    search_volume: Annotated[
+        PointCloud | None,
+        Field(
+            alias="searchVolume",
+            description="Volume to search (input), defined in goniostat coordinate system (centringX, centringY, phiY)",
+            title="Search Volume",
+        ),
+    ] = None
+    bounding_box_size: Annotated[
+        list[float] | None,
+        Field(
+            alias="boundingBoxSize",
+            description="The size of the bounding box to scan in microscope coordinate system (horizontal, vertical, beam). The bounding box is centred on the intersection between the omega axis and the beam.",
+            max_length=3,
+            min_length=3,
+            title="Bounding Box Size",
+        ),
+    ] = None
+    bounding_box_shape: Annotated[
+        str | None,
+        Field(
+            alias="boundingBoxShape",
+            description="The shape of the bounding box used.",
+            title="Bounding Box Shape",
+        ),
+    ] = "Box"
+    result_volume: Annotated[
+        PointCloud | None,
+        Field(
+            alias="resultVolume",
+            description="Volume of all active points found",
+            title="Result Volume",
+        ),
+    ] = None
+    sub_volumes: Annotated[
+        list[PointCloud] | None,
+        Field(
+            alias="subVolumes",
+            description="List of individual compact subvolumes selected from resultVolume",
+            title="Subvolumes",
+        ),
+    ] = None

@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+from typing import Annotated
+
 from mxlims.impl.MxlimsBase import BaseModel
 from pydantic import ConfigDict, Field
 
@@ -24,9 +26,10 @@ class ImageRegion(BaseModel):
         extra="forbid",
     )
     region: Point | Circle | Line | Rectangle | Polygon
-    image: DropImageData | DropImageUrl = Field(
-        ..., description="An image of a crystallization drop.", title="DropImage"
-    )
-    units: ImageRegionUnit = Field(
-        ..., description="The units of the region's co-ordinates."
-    )
+    image: Annotated[
+        DropImageData | DropImageUrl,
+        Field(description="An image of a crystallization drop.", title="DropImage"),
+    ]
+    units: Annotated[
+        ImageRegionUnit, Field(description="The units of the region's co-ordinates.")
+    ]

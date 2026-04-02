@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+from typing import Annotated
+
 from mxlims.impl.MxlimsBase import BaseModel
 from pydantic import Field
 
@@ -15,26 +17,34 @@ class MxProcessingData(BaseModel):
     Crystallography Processing calculation,
     """
 
-    program_name: str | None = Field(
-        None,
-        alias="programName",
-        description="Name of processing program",
-        title="Program name",
-    )
-    program_version: str | None = Field(
-        None,
-        alias="programVersion",
-        description="Version of processing program",
-        title="Program version",
-    )
-    space_group_name: SpaceGroupName | None = Field(
-        None,
-        alias="spaceGroupName",
-        description="Name of space group, to use for processing input. Names may include alternative settings. Matches mmCIF item symmetry.space_group_name_H-M (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_symmetry.space_group_name_H-M.html).",
-        title="Space Group Name",
-    )
-    unit_cell: UnitCell | None = Field(
-        None,
-        alias="unitCell",
-        description="Unit cell of crystal, to use for processing input.",
-    )
+    program_name: Annotated[
+        str | None,
+        Field(
+            alias="programName",
+            description="Name of processing program",
+            title="Program name",
+        ),
+    ] = None
+    program_version: Annotated[
+        str | None,
+        Field(
+            alias="programVersion",
+            description="Version of processing program",
+            title="Program version",
+        ),
+    ] = None
+    space_group_name: Annotated[
+        SpaceGroupName | None,
+        Field(
+            alias="spaceGroupName",
+            description="Name of space group, to use for processing input. Names may include alternative settings. Matches mmCIF item symmetry.space_group_name_H-M (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_symmetry.space_group_name_H-M.html).",
+            title="Space Group Name",
+        ),
+    ] = None
+    unit_cell: Annotated[
+        UnitCell | None,
+        Field(
+            alias="unitCell",
+            description="Unit cell of crystal, to use for processing input.",
+        ),
+    ] = None

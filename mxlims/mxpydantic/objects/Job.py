@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from pydantic import Field
-from typing import Literal, TYPE_CHECKING
+from typing import Annotated, Literal, TYPE_CHECKING
 from uuid import UUID, uuid1
 from mxlims.core.MxlimsObject import MxlimsObject
 from ..data.JobData import JobData
@@ -38,39 +38,57 @@ class Job(JobData, MxlimsObject):
         frozen=True
     )
 
-    sample_id: UUID | None = Field(
-        None, alias="sampleId", description="uuid for related sample", title="SampleId"
-    )
-    started_from_id: UUID | None = Field(
-        None,
-        alias="startedFromId",
-        description="uuid for JOPb from which this Job was started",
-        title="StartedFromId",
-    )
-    logistical_sample_id: UUID | None = Field(
-        None,
-        alias="logisticalSampleId",
-        description="uuid for LogisticalSample related to Job",
-        title="LogisticalSampleId",
-    )
-    reference_data_ids: list[UUID] | None = Field(
-        default_factory=list,
-        alias="referenceDataIds",
-        description="uuid for reference Datasets",
-        title="ReferenceDataId",
-    )
-    template_data_ids: list[UUID] | None = Field(
-        default_factory=list,
-        alias="templateDataIds",
-        description="uuid for template Datasets",
-        title="TemplateDataId",
-    )
-    input_data_ids: list[UUID] | None = Field(
-        default_factory=list,
-        alias="inputDataIds",
-        description="uuid for input Datasets",
-        title="InputDataId",
-    )
+    sample_id: Annotated[
+        UUID | None,
+        Field(
+            alias="sampleId",
+            description="uuid for related sample",
+            pattern="^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+            title="SampleId",
+        ),
+    ] = None
+    started_from_id: Annotated[
+        UUID | None,
+        Field(
+            alias="startedFromId",
+            description="uuid for JOPb from which this Job was started",
+            pattern="^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+            title="StartedFromId",
+        ),
+    ] = None
+    logistical_sample_id: Annotated[
+        UUID | None,
+        Field(
+            alias="logisticalSampleId",
+            description="uuid for LogisticalSample related to Job",
+            pattern="^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+            title="LogisticalSampleId",
+        ),
+    ] = None
+    reference_data_ids: Annotated[
+        list[ReferenceDataIdItem] | None,
+        Field(
+            alias="referenceDataIds",
+            description="uuid for reference Datasets",
+            title="ReferenceDataId",
+        ),
+    ] = None
+    template_data_ids: Annotated[
+        list[TemplateDataIdItem] | None,
+        Field(
+            alias="templateDataIds",
+            description="uuid for template Datasets",
+            title="TemplateDataId",
+        ),
+    ] = None
+    input_data_ids: Annotated[
+        list[InputDataIdItem] | None,
+        Field(
+            alias="inputDataIds",
+            description="uuid for input Datasets",
+            title="InputDataId",
+        ),
+    ] = None
     @property
     def input_data(self) -> list[Dataset]:
         """Abstract superclass - dummy getter for Job.input_data list"""

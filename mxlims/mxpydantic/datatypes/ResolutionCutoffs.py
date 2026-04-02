@@ -3,8 +3,10 @@
 
 from __future__ import annotations
 
+from typing import Annotated
+
 from mxlims.impl.MxlimsBase import BaseModel
-from pydantic import ConfigDict, Field, NonNegativeFloat, confloat
+from pydantic import ConfigDict, Field, NonNegativeFloat
 
 
 class ResolutionCutoffs(BaseModel):
@@ -15,24 +17,32 @@ class ResolutionCutoffs(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    r_merge: NonNegativeFloat | None = Field(
-        None, alias="R_merge", description="R merge", title="R(merge)"
-    )
-    r_meas: NonNegativeFloat | None = Field(
-        None, alias="R_meas", description="R meas", title="R_meas"
-    )
-    r_pim: NonNegativeFloat | None = Field(
-        None, alias="R_pim", description="R pim", title="R_pim"
-    )
-    i_over_sig_i: float | None = Field(
-        None, alias="I_over_SigI", description="Average I / sigma(I)", title="I/SigI"
-    )
-    cc_one_half: confloat(ge=-1.0, le=-1.0) | None = Field(
-        None, alias="CC_one_half", description="CC 1/2", title="CC(1/2)"
-    )
-    cc_ano: confloat(ge=-1.0, le=-1.0) | None = Field(
-        None, alias="CC_ano", description="CC_ano", title="CC_ano"
-    )
-    sig_ano: float | None = Field(
-        None, alias="SigAno", description="SigAno", title="SigAno"
-    )
+    r_merge: Annotated[
+        NonNegativeFloat | None,
+        Field(alias="R_merge", description="R merge", ge=0, title="R(merge)"),
+    ] = None
+    r_meas: Annotated[
+        NonNegativeFloat | None,
+        Field(alias="R_meas", description="R meas", ge=0, title="R_meas"),
+    ] = None
+    r_pim: Annotated[
+        NonNegativeFloat | None,
+        Field(alias="R_pim", description="R pim", ge=0, title="R_pim"),
+    ] = None
+    i_over_sig_i: Annotated[
+        float | None,
+        Field(alias="I_over_SigI", description="Average I / sigma(I)", title="I/SigI"),
+    ] = None
+    cc_one_half: Annotated[
+        float | None,
+        Field(
+            alias="CC_one_half", description="CC 1/2", ge=-1.0, le=-1.0, title="CC(1/2)"
+        ),
+    ] = None
+    cc_ano: Annotated[
+        float | None,
+        Field(alias="CC_ano", description="CC_ano", ge=-1.0, le=-1.0, title="CC_ano"),
+    ] = None
+    sig_ano: Annotated[
+        float | None, Field(alias="SigAno", description="SigAno", title="SigAno")
+    ] = None

@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+from typing import Annotated
+
 from mxlims.impl.MxlimsBase import BaseModel
 from pydantic import Field, PositiveInt
 
@@ -12,18 +14,24 @@ class PlateWellData(BaseModel):
     A well in a crystallization plate
     """
 
-    row_number: PositiveInt = Field(
-        ...,
-        alias="rowNumber",
-        description="<The row number of this well. This is 1-based, so row A is 1, row H is 8. This should be validated against the plateType's rows property.",
-    )
-    column_number: PositiveInt = Field(
-        ...,
-        alias="columnNumber",
-        description="<The column number of this well. This is 1-based, so should match the column labels on the plate. This should be validated against the plateType's columns property.",
-    )
-    name: str | None = Field(
-        None,
-        description="A human-friendly well identifier. If present, this should be validated to ensure that it refers to the correct row and column.",
-        examples=["H1", "C03"],
-    )
+    row_number: Annotated[
+        PositiveInt,
+        Field(
+            alias="rowNumber",
+            description="<The row number of this well. This is 1-based, so row A is 1, row H is 8. This should be validated against the plateType's rows property.",
+        ),
+    ]
+    column_number: Annotated[
+        PositiveInt,
+        Field(
+            alias="columnNumber",
+            description="<The column number of this well. This is 1-based, so should match the column labels on the plate. This should be validated against the plateType's columns property.",
+        ),
+    ]
+    name: Annotated[
+        str | None,
+        Field(
+            description="A human-friendly well identifier. If present, this should be validated to ensure that it refers to the correct row and column.",
+            examples=["H1", "C03"],
+        ),
+    ] = None

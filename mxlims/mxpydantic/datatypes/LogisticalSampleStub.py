@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from typing import Literal
+from typing import Annotated, Literal
 from uuid import UUID
 
 from mxlims.impl.MxlimsBase import BaseModel
@@ -11,11 +11,13 @@ from pydantic import ConfigDict, Field, RootModel
 
 
 class MxlimsBaseType(RootModel[Literal["LogisticalSample"]]):
-    root: Literal["LogisticalSample"] = Field(
-        "LogisticalSample",
-        description="The type of the MXLIMS core object referred to",
-        title="MxlimsBaseType",
-    )
+    root: Annotated[
+        Literal["LogisticalSample"],
+        Field(
+            description="The type of the MXLIMS core object referred to",
+            title="MxlimsBaseType",
+        ),
+    ] = "LogisticalSample"
 
 
 class LogisticalSampleStub(BaseModel):
@@ -26,14 +28,19 @@ class LogisticalSampleStub(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    mxlims_base_type: Literal["LogisticalSample"] = Field(
-        "LogisticalSample",
-        alias="mxlimsBaseType",
-        description="The type of the MXLIMS core object referred to",
-        title="MxlimsBaseType",
-    )
-    uuid: UUID = Field(
-        ...,
-        description="Permanent unique identifier string of object referred to",
-        title="Uuid",
-    )
+    mxlims_base_type: Annotated[
+        Literal["LogisticalSample"],
+        Field(
+            alias="mxlimsBaseType",
+            description="The type of the MXLIMS core object referred to",
+            title="MxlimsBaseType",
+        ),
+    ] = "LogisticalSample"
+    uuid: Annotated[
+        UUID,
+        Field(
+            description="Permanent unique identifier string of object referred to",
+            pattern="^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+            title="Uuid",
+        ),
+    ]

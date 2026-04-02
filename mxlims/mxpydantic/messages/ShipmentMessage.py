@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+from typing import Annotated
+
 from pydantic import ConfigDict, Field
 
 from ..objects.Crystal import Crystal
@@ -29,18 +31,24 @@ class ShipmentMessage(BaseMessageData):
     model_config = ConfigDict(
         extra="forbid",
     )
-    shipment: dict[str, Shipment] = Field(..., alias="Shipment")
-    plate: dict[str, Plate] | None = Field(default_factory=dict, alias="Plate")
-    plate_well: dict[str, PlateWell] | None = Field(default_factory=dict, alias="PlateWell")
-    well_drop: dict[str, WellDrop] | None = Field(default_factory=dict, alias="WellDrop")
-    drop_region: dict[str, DropRegion] | None = Field(default_factory=dict, alias="DropRegion")
-    dewar: dict[str, Dewar] | None = Field(default_factory=dict, alias="Dewar")
-    puck: dict[str, Puck] | None = Field(default_factory=dict, alias="Puck")
-    multi_pin: dict[str, MultiPin] | None = Field(default_factory=dict, alias="MultiPin")
-    pin: dict[str, Pin] | None = Field(default_factory=dict, alias="Pin")
-    pin_position: dict[str, PinPosition] | None = Field(default_factory=dict, alias="PinPosition")
-    macromolecule_sample: dict[str, MacromoleculeSample_1] = Field(
-        ..., alias="MacromoleculeSample"
+    shipment: Annotated[dict[str, Shipment], Field(alias="Shipment")]
+    plate: Annotated[dict[str, Plate] | None, Field(alias="Plate")] = None
+    plate_well: Annotated[
+        dict[str, PlateWell] | None, Field(alias="PlateWell")
+    ] = None
+    well_drop: Annotated[dict[str, WellDrop] | None, Field(alias="WellDrop")] = None
+    drop_region: Annotated[dict[str, DropRegion] | None, Field(alias="DropRegion")] = (
+        None
     )
-    macromolecule: dict[str, Macromolecule_1] = Field(..., alias="Macromolecule")
-    crystal: dict[str, Crystal] | None = Field(default_factory=dict, alias="Crystal")
+    dewar: Annotated[dict[str, Dewar] | None, Field(alias="Dewar")] = None
+    puck: Annotated[dict[str, Puck] | None, Field(alias="Puck")] = None
+    multi_pin: Annotated[dict[str, MultiPin] | None, Field(alias="MultiPin")] = None
+    pin: Annotated[dict[str, Pin] | None, Field(alias="Pin")] = None
+    pin_position: Annotated[
+        dict[str, PinPosition] | None, Field(alias="PinPosition")
+    ] = None
+    macromolecule_sample: Annotated[
+        dict[str, MacromoleculeSample_1], Field(alias="MacromoleculeSample")
+    ]
+    macromolecule: Annotated[dict[str, Macromolecule_1], Field(alias="Macromolecule")]
+    crystal: Annotated[dict[str, Crystal] | None, Field(alias="Crystal")] = None

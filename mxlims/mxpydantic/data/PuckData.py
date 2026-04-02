@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+from typing import Annotated
+
 from mxlims.impl.MxlimsBase import BaseModel
 from pydantic import Field, PositiveInt
 
@@ -12,18 +14,25 @@ class PuckData(BaseModel):
     A puck containing mounted crystals on pins.
     """
 
-    barcode: str | None = Field(None, description="The Puck barcode or RFID code")
-    position_in_dewar: PositiveInt | None = Field(
-        None,
-        alias="positionInDewar",
-        description="The Dewar position occupied by the puck. This should be validated against the Dewar's numberPositions property.",
-        examples=[10],
-    )
-    number_positions: PositiveInt | None = Field(
-        None,
-        alias="numberPositions",
-        description="The number of pin positions available.",
-    )
-    puck_type: str | None = Field(
-        None, alias="puckType", description="The Puck type (should be made an enum)"
-    )
+    barcode: Annotated[
+        str | None, Field(description="The Puck barcode or RFID code")
+    ] = None
+    position_in_dewar: Annotated[
+        PositiveInt | None,
+        Field(
+            alias="positionInDewar",
+            description="The Dewar position occupied by the puck. This should be validated against the Dewar's numberPositions property.",
+            examples=[10],
+        ),
+    ] = None
+    number_positions: Annotated[
+        PositiveInt | None,
+        Field(
+            alias="numberPositions",
+            description="The number of pin positions available.",
+        ),
+    ] = None
+    puck_type: Annotated[
+        str | None,
+        Field(alias="puckType", description="The Puck type (should be made an enum)"),
+    ] = None

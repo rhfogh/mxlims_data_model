@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from pydantic import Field, model_validator
-from typing import Literal, TYPE_CHECKING
+from typing import Annotated, Literal, TYPE_CHECKING
 from uuid import UUID, uuid1
 from mxlims.core.MxlimsObject import MxlimsObject
 from ..data.DatasetData import DatasetData
@@ -38,21 +38,33 @@ class Dataset(DatasetData, MxlimsObject):
         frozen=True
     )
 
-    source_id: UUID | None = Field(
-        None, alias="sourceId", description="uuid for Dataset source", title="SourceId"
-    )
-    derived_from_id: UUID | None = Field(
-        None,
-        alias="derivedFromId",
-        description="uuid for Dataset from which Dataset is derived",
-        title="DerivedFromId",
-    )
-    logistical_sample_id: UUID | None = Field(
-        None,
-        alias="logisticalSampleId",
-        description="uuid for LogisticalSample related to Dataset",
-        title="LogisticalSampleId",
-    )
+    source_id: Annotated[
+        UUID | None,
+        Field(
+            alias="sourceId",
+            description="uuid for Dataset source",
+            pattern="^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+            title="SourceId",
+        ),
+    ] = None
+    derived_from_id: Annotated[
+        UUID | None,
+        Field(
+            alias="derivedFromId",
+            description="uuid for Dataset from which Dataset is derived",
+            pattern="^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+            title="DerivedFromId",
+        ),
+    ] = None
+    logistical_sample_id: Annotated[
+        UUID | None,
+        Field(
+            alias="logisticalSampleId",
+            description="uuid for LogisticalSample related to Dataset",
+            pattern="^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+            title="LogisticalSampleId",
+        ),
+    ] = None
     @property
     def derived_datasets(self) -> list[Dataset]:
         """Abstract superclass - dummy getter for Dataset.derived_datasets list"""

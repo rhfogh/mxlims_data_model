@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+from typing import Annotated
+
 from pydantic import ConfigDict, Field
 
 from ..datatypes.DatasetStub import DatasetStub
@@ -20,27 +22,35 @@ class MxlimsMessage(MxlimsMessageStrict):
     model_config = ConfigDict(
         extra="forbid",
     )
-    dataset: dict[str, DatasetStub] | None = Field(
-        default_factory=dict,
-        alias="Dataset",
-        description="idString:object dictionary of Dataset stubs.",
-        title="Datasets",
-    )
-    job: dict[str, JobStub] | None = Field(
-        default_factory=dict,
-        alias="Job",
-        description="idString:object dictionary of Job stubs.",
-        title="Jobs",
-    )
-    logistical_sample: dict[str, LogisticalSampleStub] | None = Field(
-        default_factory=dict,
-        alias="LogisticalSample",
-        description="idString:object dictionary of LogisticalSample stubs.",
-        title="LogisticalSamples",
-    )
-    sample: dict[str, SampleStub] | None = Field(
-        default_factory=dict,
-        alias="Sample",
-        description="idString:object dictionary of Sample stubs.",
-        title="Samples",
-    )
+    dataset: Annotated[
+        dict[str, DatasetStub] | None,
+        Field(
+            alias="Dataset",
+            description="idString:object dictionary of Dataset stubs.",
+            title="Datasets",
+        ),
+    ] = None
+    job: Annotated[
+        dict[str, JobStub] | None,
+        Field(
+            alias="Job",
+            description="idString:object dictionary of Job stubs.",
+            title="Jobs",
+        ),
+    ] = None
+    logistical_sample: Annotated[
+        dict[str, LogisticalSampleStub] | None,
+        Field(
+            alias="LogisticalSample",
+            description="idString:object dictionary of LogisticalSample stubs.",
+            title="LogisticalSamples",
+        ),
+    ] = None
+    sample: Annotated[
+        dict[str, SampleStub] | None,
+        Field(
+            alias="Sample",
+            description="idString:object dictionary of Sample stubs.",
+            title="Samples",
+        ),
+    ] = None

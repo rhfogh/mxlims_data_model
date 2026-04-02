@@ -3,8 +3,10 @@
 
 from __future__ import annotations
 
+from typing import Annotated
+
 from mxlims.impl.MxlimsBase import BaseModel
-from pydantic import HttpUrl, AwareDatetime, ConfigDict, Field
+from pydantic import AnyUrl, AwareDatetime, ConfigDict, Field
 
 from .Enumerations import ImageLightType, ImageMimeType
 
@@ -17,18 +19,23 @@ class DropImageData(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    mime_type: ImageMimeType = Field(
-        ..., alias="mimeType", description="The MIME type of the image."
-    )
-    light_type: ImageLightType | None = Field(
-        None, alias="lightType", description="The light used to capture the image."
-    )
-    timestamp: AwareDatetime | None = Field(
-        None,
-        description="The date and time when the image was captured. This is to be specified in UTC and conform to ISO 8601.",
-        examples=["2024-04-24T14:30:16Z", "20240424T143016Z"],
-    )
-    data: str = Field(..., description="The image, UUencoded.")
+    mime_type: Annotated[
+        ImageMimeType,
+        Field(alias="mimeType", description="The MIME type of the image."),
+    ]
+    light_type: Annotated[
+        ImageLightType | None,
+        Field(alias="lightType", description="The light used to capture the image."),
+    ] = None
+    timestamp: Annotated[
+        AwareDatetime | None,
+        Field(
+            description="The date and time when the image was captured. This is to be specified in UTC and conform to ISO 8601.",
+            examples=["2024-04-24T14:30:16Z", "20240424T143016Z"],
+            pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?(Z|[+-]([01][0-9]|2[0-3]):[0-5][0-9])$",
+        ),
+    ] = None
+    data: Annotated[str, Field(description="The image, UUencoded.")]
 
 
 class DropImageUrl(BaseModel):
@@ -39,18 +46,25 @@ class DropImageUrl(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    mime_type: ImageMimeType = Field(
-        ..., alias="mimeType", description="The MIME type of the image."
-    )
-    light_type: ImageLightType | None = Field(
-        None, alias="lightType", description="The light used to capture the image."
-    )
-    timestamp: AwareDatetime | None = Field(
-        None,
-        description="The date and time when the image was captured. This is to be specified in UTC and conform to ISO 8601.",
-        examples=["2024-04-24T14:30:16Z", "20240424T143016Z"],
-    )
-    url: HttpUrl = Field(
-        ...,
-        description="A URL where the image can be found ('http' ot 'https'). It is assumed that no further authentication is needed to read this image.",
-    )
+    mime_type: Annotated[
+        ImageMimeType,
+        Field(alias="mimeType", description="The MIME type of the image."),
+    ]
+    light_type: Annotated[
+        ImageLightType | None,
+        Field(alias="lightType", description="The light used to capture the image."),
+    ] = None
+    timestamp: Annotated[
+        AwareDatetime | None,
+        Field(
+            description="The date and time when the image was captured. This is to be specified in UTC and conform to ISO 8601.",
+            examples=["2024-04-24T14:30:16Z", "20240424T143016Z"],
+            pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?(Z|[+-]([01][0-9]|2[0-3]):[0-5][0-9])$",
+        ),
+    ] = None
+    url: Annotated[
+        AnyUrl,
+        Field(
+            description="A URL where the image can be found ('http' ot 'https'). It is assumed that no further authentication is needed to read this image."
+        ),
+    ]

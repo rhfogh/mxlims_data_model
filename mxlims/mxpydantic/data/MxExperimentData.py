@@ -3,8 +3,10 @@
 
 from __future__ import annotations
 
+from typing import Annotated
+
 from mxlims.impl.MxlimsBase import BaseModel
-from pydantic import Field, NonNegativeInt, PositiveFloat, PositiveInt, confloat
+from pydantic import Field, NonNegativeInt, PositiveFloat, PositiveInt
 
 from ..datatypes.Enumerations import SpaceGroupName
 from ..datatypes.UnitCell import UnitCell
@@ -15,123 +17,175 @@ class MxExperimentData(BaseModel):
     Crystallography experiment, producing data
     """
 
-    experiment_strategy: str | None = Field(
-        None,
-        alias="experimentStrategy",
-        description="Experiment strategy indicator",
-        examples=[
-            "OSC",
-            "Helical",
-            "MXPressE",
-            "GPhL.native.basic",
-            "GPhL.SAD.advanced",
-            "GPhL.2wvlMAD.basic",
-        ],
-        title="Experiment Strategy",
-    )
-    experiment_location: str | None = Field(
-        None,
-        alias="experimentLocation",
-        description="Place where experiment is performed",
-        examples=["SOLEIL PX2", "ESRF MASSIF-1"],
-        title="Experiment Location",
-    )
-    expected_resolution: PositiveFloat | None = Field(
-        None,
-        alias="expectedResolution",
-        description="The resolution expected in the experiment - for positioning the detector and setting up the experiment",
-        title="Expected Resolution",
-    )
-    required_resolution: PositiveFloat | None = Field(
-        None,
-        alias="requiredResolution",
-        description="The minimum resolution required to carry on with the experiment",
-        title="Required Resolution",
-    )
-    target_completeness: confloat(le=100.0, gt=0.0) | None = Field(
-        None,
-        alias="targetCompleteness",
-        description="Minimal completeness expected from experiment",
-        title="Target Completeness",
-    )
-    target_multiplicity: PositiveFloat | None = Field(
-        None,
-        alias="targetMultiplicity",
-        description="Minimal multiplicity expected from experiment",
-        title="Target Multiplicity",
-    )
-    aimed_total_range: PositiveFloat | None = Field(
-        None,
-        alias="aimedTotalRange",
-        description="The desired total experiment length (in degrees rotated) ",
-        title="Aimed Total Range",
-    )
-    priority: PositiveInt | None = Field(
-        None,
-        description="Priority of experiment - smaller number higher priority",
-        title="Priority",
-    )
-    sample_group: str | None = Field(
-        None,
-        alias="sampleGroup",
-        description="Experiments within the same sampleGroup should only be executed until one of them achieves the required resolution etc.",
-        title="Sample group",
-    )
-    dose_budget: PositiveFloat | None = Field(
-        None,
-        alias="doseBudget",
-        description="Dose (MGy) to be used in experiment",
-        title="Dose Budget",
-    )
-    radiation_sensitivity: confloat(le=1.0, gt=0.0) | None = Field(
-        None,
-        alias="radiationSensitivity",
-        description="Predicted relative radiation sensitivity of sample at target wavelength.",
-        title="Radiation Sensitivity",
-    )
-    snapshot_count: NonNegativeInt | None = Field(
-        0,
-        alias="snapshotCount",
-        description="Number of snapshots to acquire after each (re)centring",
-        title="Snapshot Count",
-    )
-    wedge_width: PositiveFloat | None = Field(
-        None,
-        alias="wedgeWidth",
-        description="Wedge width (in degrees) to use for interleaving",
-        title="Wedge Width",
-    )
-    measured_flux: PositiveFloat | None = Field(
-        None,
-        alias="measuredFlux",
-        description="Measured value of beam flux in photons/s",
-        title="Measured Flux",
-    )
-    radiation_dose: PositiveFloat | None = Field(
-        None,
-        alias="radiationDose",
-        description="Total radiation dose absorbed during experiment",
-        title="Radiation Dose",
-    )
-    expected_space_group_name: SpaceGroupName | None = Field(
-        None,
-        alias="expectedSpaceGroupName",
-        description="Name of space group expected to be present. Names may include alternative settings. Matches mmCIF item symmetry.space_group_name_H-M (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_symmetry.space_group_name_H-M.html).",
-        title="Space Group Name",
-    )
-    expected_unit_cell: UnitCell | None = Field(
-        None,
-        alias="expectedUnitCell",
-        description="Unit cell of crystal expected to be present.",
-    )
-    selected_space_group_name: SpaceGroupName | None = Field(
-        None,
-        alias="selectedSpaceGroupName",
-        description="Name of space group, as determined during characterisation. Names may include alternative settings. Matches mmCIF item symmetry.space_group_name_H-M (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_symmetry.space_group_name_H-M.html).",
-        title="Space Group Name",
-    )
-    selected_unit_cell: UnitCell | None = Field(
-        None,
-        alias="selectedUnitCell",
-        description="Unit cell of crystal, as determined during characterisation.",
-    )
+    experiment_strategy: Annotated[
+        str | None,
+        Field(
+            alias="experimentStrategy",
+            description="Experiment strategy indicator",
+            examples=[
+                "OSC",
+                "Helical",
+                "MXPressE",
+                "GPhL.native.basic",
+                "GPhL.SAD.advanced",
+                "GPhL.2wvlMAD.basic",
+            ],
+            title="Experiment Strategy",
+        ),
+    ] = None
+    experiment_location: Annotated[
+        str | None,
+        Field(
+            alias="experimentLocation",
+            description="Place where experiment is performed",
+            examples=["SOLEIL PX2", "ESRF MASSIF-1"],
+            title="Experiment Location",
+        ),
+    ] = None
+    expected_resolution: Annotated[
+        PositiveFloat | None,
+        Field(
+            alias="expectedResolution",
+            description="The resolution expected in the experiment - for positioning the detector and setting up the experiment",
+            gt=0,
+            title="Expected Resolution",
+        ),
+    ] = None
+    required_resolution: Annotated[
+        PositiveFloat | None,
+        Field(
+            alias="requiredResolution",
+            description="The minimum resolution required to carry on with the experiment",
+            gt=0,
+            title="Required Resolution",
+        ),
+    ] = None
+    target_completeness: Annotated[
+        PositiveFloat | None,
+        Field(
+            alias="targetCompleteness",
+            description="Minimal completeness expected from experiment",
+            gt=0,
+            le=100,
+            title="Target Completeness",
+        ),
+    ] = None
+    target_multiplicity: Annotated[
+        PositiveFloat | None,
+        Field(
+            alias="targetMultiplicity",
+            description="Minimal multiplicity expected from experiment",
+            gt=0,
+            title="Target Multiplicity",
+        ),
+    ] = None
+    aimed_total_range: Annotated[
+        PositiveFloat | None,
+        Field(
+            alias="aimedTotalRange",
+            description="The desired total experiment length (in degrees rotated) ",
+            gt=0,
+            title="Aimed Total Range",
+        ),
+    ] = None
+    priority: Annotated[
+        PositiveInt | None,
+        Field(
+            description="Priority of experiment - smaller number higher priority",
+            gt=0,
+            title="Priority",
+        ),
+    ] = None
+    sample_group: Annotated[
+        str | None,
+        Field(
+            alias="sampleGroup",
+            description="Experiments within the same sampleGroup should only be executed until one of them achieves the required resolution etc.",
+            title="Sample group",
+        ),
+    ] = None
+    dose_budget: Annotated[
+        PositiveFloat | None,
+        Field(
+            alias="doseBudget",
+            description="Dose (MGy) to be used in experiment",
+            gt=0,
+            title="Dose Budget",
+        ),
+    ] = None
+    radiation_sensitivity: Annotated[
+        PositiveFloat | None,
+        Field(
+            alias="radiationSensitivity",
+            description="Predicted relative radiation sensitivity of sample at target wavelength.",
+            gt=0,
+            le=1,
+            title="Radiation Sensitivity",
+        ),
+    ] = None
+    snapshot_count: Annotated[
+        NonNegativeInt | None,
+        Field(
+            alias="snapshotCount",
+            description="Number of snapshots to acquire after each (re)centring",
+            ge=0,
+            title="Snapshot Count",
+        ),
+    ] = 0
+    wedge_width: Annotated[
+        PositiveFloat | None,
+        Field(
+            alias="wedgeWidth",
+            description="Wedge width (in degrees) to use for interleaving",
+            gt=0,
+            title="Wedge Width",
+        ),
+    ] = None
+    measured_flux: Annotated[
+        PositiveFloat | None,
+        Field(
+            alias="measuredFlux",
+            description="Measured value of beam flux in photons/s",
+            gt=0,
+            title="Measured Flux",
+        ),
+    ] = None
+    radiation_dose: Annotated[
+        PositiveFloat | None,
+        Field(
+            alias="radiationDose",
+            description="Total radiation dose absorbed during experiment",
+            gt=0,
+            title="Radiation Dose",
+        ),
+    ] = None
+    expected_space_group_name: Annotated[
+        SpaceGroupName | None,
+        Field(
+            alias="expectedSpaceGroupName",
+            description="Name of space group expected to be present. Names may include alternative settings. Matches mmCIF item symmetry.space_group_name_H-M (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_symmetry.space_group_name_H-M.html).",
+            title="Space Group Name",
+        ),
+    ] = None
+    expected_unit_cell: Annotated[
+        UnitCell | None,
+        Field(
+            alias="expectedUnitCell",
+            description="Unit cell of crystal expected to be present.",
+        ),
+    ] = None
+    selected_space_group_name: Annotated[
+        SpaceGroupName | None,
+        Field(
+            alias="selectedSpaceGroupName",
+            description="Name of space group, as determined during characterisation. Names may include alternative settings. Matches mmCIF item symmetry.space_group_name_H-M (https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_symmetry.space_group_name_H-M.html).",
+            title="Space Group Name",
+        ),
+    ] = None
+    selected_unit_cell: Annotated[
+        UnitCell | None,
+        Field(
+            alias="selectedUnitCell",
+            description="Unit cell of crystal, as determined during characterisation.",
+        ),
+    ] = None

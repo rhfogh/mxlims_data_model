@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from typing import Literal
+from typing import Annotated, Literal
 
 from mxlims.impl.MxlimsBase import BaseModel
 from pydantic import ConfigDict, Field, RootModel
@@ -12,9 +12,9 @@ from .Point import Point
 
 
 class RegionType(RootModel[Literal["line"]]):
-    root: Literal["line"] = Field(
-        "line", description="Type of region", title="Region type"
-    )
+    root: Annotated[
+        Literal["line"], Field(description="Type of region", title="Region type")
+    ] = "line"
 
 
 class Line(BaseModel):
@@ -25,7 +25,8 @@ class Line(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    region_type: Literal["line"] = Field(
-        "line", alias="regionType", description="Type of region", title="Region type"
-    )
-    points: list[Point] = Field(..., max_length=2, min_length=2)
+    region_type: Annotated[
+        Literal["line"],
+        Field(alias="regionType", description="Type of region", title="Region type"),
+    ] = "line"
+    points: Annotated[list[Point], Field(max_length=2, min_length=2)]
