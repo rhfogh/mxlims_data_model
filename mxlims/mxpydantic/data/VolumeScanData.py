@@ -3,8 +3,6 @@
 
 from __future__ import annotations
 
-from typing import Any
-
 from mxlims.impl.MxlimsBase import BaseModel
 from pydantic import Field
 
@@ -23,7 +21,7 @@ class VolumeScanData(BaseModel):
         examples=["Xray.centring", "Xray.recentring", "Xray.exploration"],
         title="Volume scan experiment type",
     )
-    rotation_angles: list[Any] | None = Field(
+    rotation_angles: list[float] | None = Field(
         None,
         alias="rotationAngles",
         description="List of omega offsets from the starting omega position to use for volume scan, in degrees",
@@ -32,7 +30,7 @@ class VolumeScanData(BaseModel):
     search_volume: PointCloud | None = Field(
         None,
         alias="searchVolume",
-        description="Volume to search (input), defined in goniostat coordinate system (centringX, centringY, phiY)",
+        description="Volume to search (input), including motor positions to use",
         title="Search Volume",
     )
     bounding_box_size: list[float] | None = Field(
@@ -54,10 +52,4 @@ class VolumeScanData(BaseModel):
         alias="resultVolume",
         description="Volume of all active points found",
         title="Result Volume",
-    )
-    sub_volumes: list[PointCloud] | None = Field(
-        None,
-        alias="subVolumes",
-        description="List of individual compact subvolumes selected from resultVolume",
-        title="Subvolumes",
     )

@@ -45,7 +45,6 @@ from mxlims.mxpydantic.datatypes.ReflectionStatistics import ReflectionStatistic
 from mxlims.mxpydantic.datatypes.ResolutionCutoffs import ResolutionCutoffs
 from mxlims.mxpydantic.datatypes.SampleComponent import SampleComponent
 from mxlims.mxpydantic.datatypes.Scan import Scan
-from mxlims.mxpydantic.datatypes.ScannedPoint import ScannedPoint
 from mxlims.mxpydantic.datatypes.Tensor import Tensor
 from mxlims.mxpydantic.datatypes.TrackingDevice import TrackingDevice
 from mxlims.mxpydantic.datatypes.UnitCell import UnitCell
@@ -286,12 +285,25 @@ typemap = {
     ('VolumeScan', 'experimentType'): str,
     ('VolumeScan', 'jobStatus'): JobStatus,
     ('VolumeScan', 'resultVolume'): PointCloud,
-    ('VolumeScan', 'resultVolume', 'points'): List[ScannedPoint],
+    ('VolumeScan', 'resultVolume', 'coordinates'): List[List[float]],
+    ('VolumeScan', 'resultVolume', 'dozorScores'): List[float],
+    ('VolumeScan', 'resultVolume', 'grouping'): List[int],
+    ('VolumeScan', 'resultVolume', 'intensities'): List[float],
+    ('VolumeScan', 'resultVolume', 'position'): Dict[str, float],
+    ('VolumeScan', 'resultVolume', 'reflectionCounts'): List[int],
+    ('VolumeScan', 'resultVolume', 'resolutions'): List[float],
+    ('VolumeScan', 'resultVolume', 'score'): float,
     ('VolumeScan', 'rotationAngles'): List[float],
     ('VolumeScan', 'searchVolume'): PointCloud,
-    ('VolumeScan', 'searchVolume', 'points'): List[ScannedPoint],
+    ('VolumeScan', 'searchVolume', 'coordinates'): List[List[float]],
+    ('VolumeScan', 'searchVolume', 'dozorScores'): List[float],
+    ('VolumeScan', 'searchVolume', 'grouping'): List[int],
+    ('VolumeScan', 'searchVolume', 'intensities'): List[float],
+    ('VolumeScan', 'searchVolume', 'position'): Dict[str, float],
+    ('VolumeScan', 'searchVolume', 'reflectionCounts'): List[int],
+    ('VolumeScan', 'searchVolume', 'resolutions'): List[float],
+    ('VolumeScan', 'searchVolume', 'score'): float,
     ('VolumeScan', 'startTime'): AwareDatetime,
-    ('VolumeScan', 'subVolumes'): List[PointCloud],
     ('WellDrop', 'annotation'): str,
     ('WellDrop', 'dropNumber'): int,
     ('WellDrop', 'name'): str,

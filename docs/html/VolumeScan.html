@@ -152,7 +152,7 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#allOf_i0_rotationAngles" onclick="anchorLink('allOf_i0_rotationAngles')">rotationAngles</a></div><h4>RotationAngles</h4><span class="badge badge-dark value-type">Type: array of float</span><br/>
+    <a href="#allOf_i0_rotationAngles" onclick="anchorLink('allOf_i0_rotationAngles')">rotationAngles</a></div><h4>RotationAngles</h4><span class="badge badge-dark value-type">Type: array of number</span><br/>
 <span class="description"><p>List of omega offsets from the starting omega position to use for volume scan, in degrees</p>
 </span>
         
@@ -193,7 +193,7 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#allOf_i0_rotationAngles_items" onclick="anchorLink('allOf_i0_rotationAngles_items')">rotationAngles items</a></div><span class="badge badge-dark value-type">Type: float</span><br/>
+    <a href="#allOf_i0_rotationAngles_items" onclick="anchorLink('allOf_i0_rotationAngles_items')">rotationAngles items</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
 
         
 
@@ -243,7 +243,7 @@
             />
         </svg>
     <a href="#allOf_i0_searchVolume" onclick="anchorLink('allOf_i0_searchVolume')">searchVolume</a></div><h4>Search Volume</h4><span class="badge badge-dark value-type">Type: object</span><br/>
-<span class="description"><p>Volume to search (input), defined in goniostat coordinate system (centringX, centringY, phiY)</p>
+<span class="description"><p>Volume to search (input), including motor positions to use</p>
 </span>
 
     
@@ -253,18 +253,18 @@
         
 
         
-<div class="accordion" id="accordionallOf_i0_searchVolume_points">
+<div class="accordion" id="accordionallOf_i0_searchVolume_position">
     <div class="card">
-        <div class="card-header" id="headingallOf_i0_searchVolume_points">
+        <div class="card-header" id="headingallOf_i0_searchVolume_position">
             <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i0_searchVolume_points"
-                        aria-expanded="" aria-controls="allOf_i0_searchVolume_points" onclick="setAnchor('#allOf_i0_searchVolume_points')"><span class="property-name">points</span> <span class="badge badge-warning required-property">Required</span></button>
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i0_searchVolume_position"
+                        aria-expanded="" aria-controls="allOf_i0_searchVolume_position" onclick="setAnchor('#allOf_i0_searchVolume_position')"><span class="property-name">position</span> <span class="badge badge-warning required-property">Required</span></button>
             </h2>
         </div>
 
-        <div id="allOf_i0_searchVolume_points"
-             class="collapse property-definition-div" aria-labelledby="headingallOf_i0_searchVolume_points"
-             data-parent="#accordionallOf_i0_searchVolume_points">
+        <div id="allOf_i0_searchVolume_position"
+             class="collapse property-definition-div" aria-labelledby="headingallOf_i0_searchVolume_position"
+             data-parent="#accordionallOf_i0_searchVolume_position">
             <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
@@ -295,8 +295,179 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#allOf_i0_searchVolume_points" onclick="anchorLink('allOf_i0_searchVolume_points')">points</a></div><h4>Points list</h4><span class="badge badge-dark value-type">Type: array</span><br/>
-<span class="description"><p>List of points making up the PointCloud</p>
+    <a href="#allOf_i0_searchVolume_position" onclick="anchorLink('allOf_i0_searchVolume_position')">position</a></div><h4>Position</h4><span class="badge badge-dark value-type">Type: object</span><br/>
+<span class="description"><p>Dictionary string:float with position of all axes, rotations or translations, by name. Units are mm for distances, degrees for angles. The position must specify a point that can be used for acquisition without further analysis</p>
+</span>
+        
+
+        
+        
+
+        
+<div class="accordion" id="accordionallOf_i0_searchVolume_position_additionalProperties">
+    <div class="card">
+        <div class="card-header" id="headingallOf_i0_searchVolume_position_additionalProperties">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i0_searchVolume_position_additionalProperties"
+                        aria-expanded="" aria-controls="allOf_i0_searchVolume_position_additionalProperties" onclick="setAnchor('#allOf_i0_searchVolume_position_additionalProperties')"><em><span class="property-name">Additional Properties</span></em></button>
+            </h2>
+        </div>
+
+        <div id="allOf_i0_searchVolume_position_additionalProperties"
+             class="collapse property-definition-div" aria-labelledby="headingallOf_i0_searchVolume_position_additionalProperties"
+             data-parent="#accordionallOf_i0_searchVolume_position_additionalProperties">
+            <div class="card-body pl-5"><p class="additional-properties">Each additional property must conform to the following schema</p>
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0" onclick="anchorLink('allOf_i0')">VolumeScanData</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume" onclick="anchorLink('allOf_i0_searchVolume')">searchVolume</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume_position" onclick="anchorLink('allOf_i0_searchVolume_position')">position</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume_position_additionalProperties" onclick="anchorLink('allOf_i0_searchVolume_position_additionalProperties')">additionalProperties</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
+
+        
+
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionallOf_i0_searchVolume_score">
+    <div class="card">
+        <div class="card-header" id="headingallOf_i0_searchVolume_score">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i0_searchVolume_score"
+                        aria-expanded="" aria-controls="allOf_i0_searchVolume_score" onclick="setAnchor('#allOf_i0_searchVolume_score')"><span class="property-name">score</span></button>
+            </h2>
+        </div>
+
+        <div id="allOf_i0_searchVolume_score"
+             class="collapse property-definition-div" aria-labelledby="headingallOf_i0_searchVolume_score"
+             data-parent="#accordionallOf_i0_searchVolume_score">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0" onclick="anchorLink('allOf_i0')">VolumeScanData</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume" onclick="anchorLink('allOf_i0_searchVolume')">searchVolume</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume_score" onclick="anchorLink('allOf_i0_searchVolume_score')">score</a></div><h4>Score</h4><span class="badge badge-dark value-type">Type: number</span><br/>
+<span class="description"><p>Quality score for pointcloud and its position, according to locally selected algorithm</p>
+</span>
+        
+
+        
+        <p><span class="badge badge-light restriction numeric-restriction" id="allOf_i0_searchVolume_score_number">Value must be greater or equal to <code>0.0</code> and lesser or equal to <code>1.0</code></span></p>
+
+        
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionallOf_i0_searchVolume_coordinates">
+    <div class="card">
+        <div class="card-header" id="headingallOf_i0_searchVolume_coordinates">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i0_searchVolume_coordinates"
+                        aria-expanded="" aria-controls="allOf_i0_searchVolume_coordinates" onclick="setAnchor('#allOf_i0_searchVolume_coordinates')"><span class="property-name">coordinates</span></button>
+            </h2>
+        </div>
+
+        <div id="allOf_i0_searchVolume_coordinates"
+             class="collapse property-definition-div" aria-labelledby="headingallOf_i0_searchVolume_coordinates"
+             data-parent="#accordionallOf_i0_searchVolume_coordinates">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0" onclick="anchorLink('allOf_i0')">VolumeScanData</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume" onclick="anchorLink('allOf_i0_searchVolume')">searchVolume</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume_coordinates" onclick="anchorLink('allOf_i0_searchVolume_coordinates')">coordinates</a></div><h4>Coordinates</h4><span class="badge badge-dark value-type">Type: array of array</span><br/>
+<span class="description"><p>Points of point cloud in coordinates of centring motor vectors, relative to the values given in the popsition</p>
 </span>
         
 
@@ -305,7 +476,7 @@
 
          <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
     <div class="card">
-        <div class="card-body items-definition" id="allOf_i0_searchVolume_points_items">
+        <div class="card-body items-definition" id="allOf_i0_searchVolume_coordinates_items">
             
 
     <div class="breadcrumbs">root
@@ -336,90 +507,23 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#allOf_i0_searchVolume_points" onclick="anchorLink('allOf_i0_searchVolume_points')">points</a>
+    <a href="#allOf_i0_searchVolume_coordinates" onclick="anchorLink('allOf_i0_searchVolume_coordinates')">coordinates</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#allOf_i0_searchVolume_points_items" onclick="anchorLink('allOf_i0_searchVolume_points_items')">ScannedPoint</a></div><h4>ScannedPoint</h4><span class="badge badge-dark value-type">Type: object</span><br/>
-<span class="description"><p>Scanned point in sample, given in goniostat coordinate system at omega==kappa==phi==0</p>
-</span>
+    <a href="#allOf_i0_searchVolume_coordinates_items" onclick="anchorLink('allOf_i0_searchVolume_coordinates_items')">coordinates items</a></div><span class="badge badge-dark value-type">Type: array of number</span><br/>
 
-    
         
 
         
         
 
-        
-<div class="accordion" id="accordionallOf_i0_searchVolume_points_items_coordinates">
+        <p><span class="badge badge-light restriction min-items-restriction" id="allOf_i0_searchVolume_coordinates_items_minItems">Must contain a minimum of <code>3</code> items</span></p><p><span class="badge badge-light restriction max-items-restriction" id="allOf_i0_searchVolume_coordinates_items_maxItems">Must contain a maximum of <code>3</code> items</span></p> <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
     <div class="card">
-        <div class="card-header" id="headingallOf_i0_searchVolume_points_items_coordinates">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i0_searchVolume_points_items_coordinates"
-                        aria-expanded="" aria-controls="allOf_i0_searchVolume_points_items_coordinates" onclick="setAnchor('#allOf_i0_searchVolume_points_items_coordinates')"><span class="property-name">coordinates</span> <span class="badge badge-warning required-property">Required</span></button>
-            </h2>
-        </div>
-
-        <div id="allOf_i0_searchVolume_points_items_coordinates"
-             class="collapse property-definition-div" aria-labelledby="headingallOf_i0_searchVolume_points_items_coordinates"
-             data-parent="#accordionallOf_i0_searchVolume_points_items_coordinates">
-            <div class="card-body pl-5">
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0" onclick="anchorLink('allOf_i0')">VolumeScanData</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0_searchVolume" onclick="anchorLink('allOf_i0_searchVolume')">searchVolume</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0_searchVolume_points" onclick="anchorLink('allOf_i0_searchVolume_points')">points</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0_searchVolume_points_items" onclick="anchorLink('allOf_i0_searchVolume_points_items')">ScannedPoint</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0_searchVolume_points_items_coordinates" onclick="anchorLink('allOf_i0_searchVolume_points_items_coordinates')">coordinates</a></div><h4>Point coordinates (sampX, sampY, sampZ)</h4><span class="badge badge-dark value-type">Type: array of number</span><br/>
-
-        
-
-        
-        
-
-         <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
-    <div class="card">
-        <div class="card-body items-definition" id="allOf_i0_searchVolume_points_items_coordinates_items">
+        <div class="card-body items-definition" id="allOf_i0_searchVolume_coordinates_items_items">
             
 
     <div class="breadcrumbs">root
@@ -450,28 +554,21 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#allOf_i0_searchVolume_points" onclick="anchorLink('allOf_i0_searchVolume_points')">points</a>
+    <a href="#allOf_i0_searchVolume_coordinates" onclick="anchorLink('allOf_i0_searchVolume_coordinates')">coordinates</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#allOf_i0_searchVolume_points_items" onclick="anchorLink('allOf_i0_searchVolume_points_items')">ScannedPoint</a>
+    <a href="#allOf_i0_searchVolume_coordinates_items" onclick="anchorLink('allOf_i0_searchVolume_coordinates_items')">coordinates items</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#allOf_i0_searchVolume_points_items_coordinates" onclick="anchorLink('allOf_i0_searchVolume_points_items_coordinates')">coordinates</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0_searchVolume_points_items_coordinates_items" onclick="anchorLink('allOf_i0_searchVolume_points_items_coordinates_items')">coordinates items</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
+    <a href="#allOf_i0_searchVolume_coordinates_items_items" onclick="anchorLink('allOf_i0_searchVolume_coordinates_items_items')">coordinates items items</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
 
         
 
@@ -479,24 +576,26 @@
         
 
         
+        </div>
+    </div>
         </div>
     </div>
             </div>
         </div>
     </div>
 </div>
-<div class="accordion" id="accordionallOf_i0_searchVolume_points_items_intensity">
+<div class="accordion" id="accordionallOf_i0_searchVolume_grouping">
     <div class="card">
-        <div class="card-header" id="headingallOf_i0_searchVolume_points_items_intensity">
+        <div class="card-header" id="headingallOf_i0_searchVolume_grouping">
             <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i0_searchVolume_points_items_intensity"
-                        aria-expanded="" aria-controls="allOf_i0_searchVolume_points_items_intensity" onclick="setAnchor('#allOf_i0_searchVolume_points_items_intensity')"><span class="property-name">intensity</span></button>
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i0_searchVolume_grouping"
+                        aria-expanded="" aria-controls="allOf_i0_searchVolume_grouping" onclick="setAnchor('#allOf_i0_searchVolume_grouping')"><span class="property-name">grouping</span></button>
             </h2>
         </div>
 
-        <div id="allOf_i0_searchVolume_points_items_intensity"
-             class="collapse property-definition-div" aria-labelledby="headingallOf_i0_searchVolume_points_items_intensity"
-             data-parent="#accordionallOf_i0_searchVolume_points_items_intensity">
+        <div id="allOf_i0_searchVolume_grouping"
+             class="collapse property-definition-div" aria-labelledby="headingallOf_i0_searchVolume_grouping"
+             data-parent="#accordionallOf_i0_searchVolume_grouping">
             <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
@@ -527,45 +626,80 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#allOf_i0_searchVolume_points" onclick="anchorLink('allOf_i0_searchVolume_points')">points</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0_searchVolume_points_items" onclick="anchorLink('allOf_i0_searchVolume_points_items')">ScannedPoint</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0_searchVolume_points_items_intensity" onclick="anchorLink('allOf_i0_searchVolume_points_items_intensity')">intensity</a></div><h4>Intensity</h4><span class="badge badge-dark value-type">Type: number</span><br/>
-<span class="description"><p>Measured intensity at point, in arbitrary units</p>
+    <a href="#allOf_i0_searchVolume_grouping" onclick="anchorLink('allOf_i0_searchVolume_grouping')">grouping</a></div><h4>Grouping</h4><span class="badge badge-dark value-type">Type: array of integer</span><br/>
+<span class="description"><p>Classification of points into subobjects. Value 0 is background, positive values 1..n are objects of integers (crystals)</p>
 </span>
         
 
         
         
 
+         <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
+    <div class="card">
+        <div class="card-body items-definition" id="allOf_i0_searchVolume_grouping_items">
+            
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0" onclick="anchorLink('allOf_i0')">VolumeScanData</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume" onclick="anchorLink('allOf_i0_searchVolume')">searchVolume</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume_grouping" onclick="anchorLink('allOf_i0_searchVolume_grouping')">grouping</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume_grouping_items" onclick="anchorLink('allOf_i0_searchVolume_grouping_items')">grouping items</a></div><span class="badge badge-dark value-type">Type: integer</span><br/>
+
         
+
+        
+        
+
+        
+        </div>
+    </div>
             </div>
         </div>
     </div>
 </div>
-<div class="accordion" id="accordionallOf_i0_searchVolume_points_items_resolution">
+<div class="accordion" id="accordionallOf_i0_searchVolume_intensities">
     <div class="card">
-        <div class="card-header" id="headingallOf_i0_searchVolume_points_items_resolution">
+        <div class="card-header" id="headingallOf_i0_searchVolume_intensities">
             <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i0_searchVolume_points_items_resolution"
-                        aria-expanded="" aria-controls="allOf_i0_searchVolume_points_items_resolution" onclick="setAnchor('#allOf_i0_searchVolume_points_items_resolution')"><span class="property-name">resolution</span></button>
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i0_searchVolume_intensities"
+                        aria-expanded="" aria-controls="allOf_i0_searchVolume_intensities" onclick="setAnchor('#allOf_i0_searchVolume_intensities')"><span class="property-name">intensities</span></button>
             </h2>
         </div>
 
-        <div id="allOf_i0_searchVolume_points_items_resolution"
-             class="collapse property-definition-div" aria-labelledby="headingallOf_i0_searchVolume_points_items_resolution"
-             data-parent="#accordionallOf_i0_searchVolume_points_items_resolution">
+        <div id="allOf_i0_searchVolume_intensities"
+             class="collapse property-definition-div" aria-labelledby="headingallOf_i0_searchVolume_intensities"
+             data-parent="#accordionallOf_i0_searchVolume_intensities">
             <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
@@ -596,45 +730,80 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#allOf_i0_searchVolume_points" onclick="anchorLink('allOf_i0_searchVolume_points')">points</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0_searchVolume_points_items" onclick="anchorLink('allOf_i0_searchVolume_points_items')">ScannedPoint</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0_searchVolume_points_items_resolution" onclick="anchorLink('allOf_i0_searchVolume_points_items_resolution')">resolution</a></div><h4>Resolution</h4><span class="badge badge-dark value-type">Type: number</span><br/>
-<span class="description"><p>Resolution observed at the scanned point</p>
+    <a href="#allOf_i0_searchVolume_intensities" onclick="anchorLink('allOf_i0_searchVolume_intensities')">intensities</a></div><h4>Intensities</h4><span class="badge badge-dark value-type">Type: array of number</span><br/>
+<span class="description"><p>Total intensity at points</p>
 </span>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="allOf_i0_searchVolume_points_items_resolution_number">Value must be strictly greater than <code>0.0</code></span></p>
+        
+
+         <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
+    <div class="card">
+        <div class="card-body items-definition" id="allOf_i0_searchVolume_intensities_items">
+            
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0" onclick="anchorLink('allOf_i0')">VolumeScanData</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume" onclick="anchorLink('allOf_i0_searchVolume')">searchVolume</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume_intensities" onclick="anchorLink('allOf_i0_searchVolume_intensities')">intensities</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume_intensities_items" onclick="anchorLink('allOf_i0_searchVolume_intensities_items')">intensities items</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
 
         
+
+        
+        
+
+        
+        </div>
+    </div>
             </div>
         </div>
     </div>
 </div>
-<div class="accordion" id="accordionallOf_i0_searchVolume_points_items_spotCount">
+<div class="accordion" id="accordionallOf_i0_searchVolume_resolutions">
     <div class="card">
-        <div class="card-header" id="headingallOf_i0_searchVolume_points_items_spotCount">
+        <div class="card-header" id="headingallOf_i0_searchVolume_resolutions">
             <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i0_searchVolume_points_items_spotCount"
-                        aria-expanded="" aria-controls="allOf_i0_searchVolume_points_items_spotCount" onclick="setAnchor('#allOf_i0_searchVolume_points_items_spotCount')"><span class="property-name">spotCount</span></button>
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i0_searchVolume_resolutions"
+                        aria-expanded="" aria-controls="allOf_i0_searchVolume_resolutions" onclick="setAnchor('#allOf_i0_searchVolume_resolutions')"><span class="property-name">resolutions</span></button>
             </h2>
         </div>
 
-        <div id="allOf_i0_searchVolume_points_items_spotCount"
-             class="collapse property-definition-div" aria-labelledby="headingallOf_i0_searchVolume_points_items_spotCount"
-             data-parent="#accordionallOf_i0_searchVolume_points_items_spotCount">
+        <div id="allOf_i0_searchVolume_resolutions"
+             class="collapse property-definition-div" aria-labelledby="headingallOf_i0_searchVolume_resolutions"
+             data-parent="#accordionallOf_i0_searchVolume_resolutions">
             <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
@@ -665,33 +834,270 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#allOf_i0_searchVolume_points" onclick="anchorLink('allOf_i0_searchVolume_points')">points</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0_searchVolume_points_items" onclick="anchorLink('allOf_i0_searchVolume_points_items')">ScannedPoint</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0_searchVolume_points_items_spotCount" onclick="anchorLink('allOf_i0_searchVolume_points_items_spotCount')">spotCount</a></div><h4>Spot count</h4><span class="badge badge-dark value-type">Type: integer</span><br/>
-<span class="description"><p>Number of spots observed at the scanned point</p>
+    <a href="#allOf_i0_searchVolume_resolutions" onclick="anchorLink('allOf_i0_searchVolume_resolutions')">resolutions</a></div><h4>Resolutions</h4><span class="badge badge-dark value-type">Type: array of number</span><br/>
+<span class="description"><p>Highest resolution at points</p>
 </span>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="allOf_i0_searchVolume_points_items_spotCount_number">Value must be strictly greater than <code>0</code></span></p>
+        
+
+         <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
+    <div class="card">
+        <div class="card-body items-definition" id="allOf_i0_searchVolume_resolutions_items">
+            
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0" onclick="anchorLink('allOf_i0')">VolumeScanData</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume" onclick="anchorLink('allOf_i0_searchVolume')">searchVolume</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume_resolutions" onclick="anchorLink('allOf_i0_searchVolume_resolutions')">resolutions</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume_resolutions_items" onclick="anchorLink('allOf_i0_searchVolume_resolutions_items')">resolutions items</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
 
         
+
+        
+        <p><span class="badge badge-light restriction numeric-restriction" id="allOf_i0_searchVolume_resolutions_items_number">Value must be strictly greater than <code>0</code></span></p>
+
+        
+        </div>
+    </div>
             </div>
         </div>
     </div>
 </div>
+<div class="accordion" id="accordionallOf_i0_searchVolume_reflectionCounts">
+    <div class="card">
+        <div class="card-header" id="headingallOf_i0_searchVolume_reflectionCounts">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i0_searchVolume_reflectionCounts"
+                        aria-expanded="" aria-controls="allOf_i0_searchVolume_reflectionCounts" onclick="setAnchor('#allOf_i0_searchVolume_reflectionCounts')"><span class="property-name">reflectionCounts</span></button>
+            </h2>
+        </div>
+
+        <div id="allOf_i0_searchVolume_reflectionCounts"
+             class="collapse property-definition-div" aria-labelledby="headingallOf_i0_searchVolume_reflectionCounts"
+             data-parent="#accordionallOf_i0_searchVolume_reflectionCounts">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0" onclick="anchorLink('allOf_i0')">VolumeScanData</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume" onclick="anchorLink('allOf_i0_searchVolume')">searchVolume</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume_reflectionCounts" onclick="anchorLink('allOf_i0_searchVolume_reflectionCounts')">reflectionCounts</a></div><h4>ReflectionCounts</h4><span class="badge badge-dark value-type">Type: array of integer</span><br/>
+<span class="description"><p>Number of reflections at points</p>
+</span>
+        
+
+        
+        
+
+         <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
+    <div class="card">
+        <div class="card-body items-definition" id="allOf_i0_searchVolume_reflectionCounts_items">
+            
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0" onclick="anchorLink('allOf_i0')">VolumeScanData</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume" onclick="anchorLink('allOf_i0_searchVolume')">searchVolume</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume_reflectionCounts" onclick="anchorLink('allOf_i0_searchVolume_reflectionCounts')">reflectionCounts</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume_reflectionCounts_items" onclick="anchorLink('allOf_i0_searchVolume_reflectionCounts_items')">reflectionCounts items</a></div><span class="badge badge-dark value-type">Type: integer</span><br/>
+
+        
+
+        
+        <p><span class="badge badge-light restriction numeric-restriction" id="allOf_i0_searchVolume_reflectionCounts_items_number">Value must be greater or equal to <code>0</code></span></p>
+
+        
+        </div>
+    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionallOf_i0_searchVolume_dozorScores">
+    <div class="card">
+        <div class="card-header" id="headingallOf_i0_searchVolume_dozorScores">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i0_searchVolume_dozorScores"
+                        aria-expanded="" aria-controls="allOf_i0_searchVolume_dozorScores" onclick="setAnchor('#allOf_i0_searchVolume_dozorScores')"><span class="property-name">dozorScores</span></button>
+            </h2>
+        </div>
+
+        <div id="allOf_i0_searchVolume_dozorScores"
+             class="collapse property-definition-div" aria-labelledby="headingallOf_i0_searchVolume_dozorScores"
+             data-parent="#accordionallOf_i0_searchVolume_dozorScores">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0" onclick="anchorLink('allOf_i0')">VolumeScanData</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume" onclick="anchorLink('allOf_i0_searchVolume')">searchVolume</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume_dozorScores" onclick="anchorLink('allOf_i0_searchVolume_dozorScores')">dozorScores</a></div><h4>DozorScores</h4><span class="badge badge-dark value-type">Type: array of number</span><br/>
+<span class="description"><p>Dozor score at points</p>
+</span>
+        
+
+        
+        
+
+         <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
+    <div class="card">
+        <div class="card-body items-definition" id="allOf_i0_searchVolume_dozorScores_items">
+            
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0" onclick="anchorLink('allOf_i0')">VolumeScanData</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume" onclick="anchorLink('allOf_i0_searchVolume')">searchVolume</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume_dozorScores" onclick="anchorLink('allOf_i0_searchVolume_dozorScores')">dozorScores</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume_dozorScores_items" onclick="anchorLink('allOf_i0_searchVolume_dozorScores_items')">dozorScores items</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
+
+        
+
+        
+        
+
+        
         </div>
     </div>
             </div>
@@ -886,18 +1292,18 @@
         
 
         
-<div class="accordion" id="accordionallOf_i0_searchVolume_points">
+<div class="accordion" id="accordionallOf_i0_searchVolume_position">
     <div class="card">
-        <div class="card-header" id="headingallOf_i0_searchVolume_points">
+        <div class="card-header" id="headingallOf_i0_searchVolume_position">
             <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i0_searchVolume_points"
-                        aria-expanded="" aria-controls="allOf_i0_searchVolume_points" onclick="setAnchor('#allOf_i0_searchVolume_points')"><span class="property-name">points</span> <span class="badge badge-warning required-property">Required</span></button>
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i0_searchVolume_position"
+                        aria-expanded="" aria-controls="allOf_i0_searchVolume_position" onclick="setAnchor('#allOf_i0_searchVolume_position')"><span class="property-name">position</span> <span class="badge badge-warning required-property">Required</span></button>
             </h2>
         </div>
 
-        <div id="allOf_i0_searchVolume_points"
-             class="collapse property-definition-div" aria-labelledby="headingallOf_i0_searchVolume_points"
-             data-parent="#accordionallOf_i0_searchVolume_points">
+        <div id="allOf_i0_searchVolume_position"
+             class="collapse property-definition-div" aria-labelledby="headingallOf_i0_searchVolume_position"
+             data-parent="#accordionallOf_i0_searchVolume_position">
             <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
@@ -928,8 +1334,179 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#allOf_i0_searchVolume_points" onclick="anchorLink('allOf_i0_searchVolume_points')">points</a></div><h4>Points list</h4><span class="badge badge-dark value-type">Type: array</span><br/>
-<span class="description"><p>List of points making up the PointCloud</p>
+    <a href="#allOf_i0_searchVolume_position" onclick="anchorLink('allOf_i0_searchVolume_position')">position</a></div><h4>Position</h4><span class="badge badge-dark value-type">Type: object</span><br/>
+<span class="description"><p>Dictionary string:float with position of all axes, rotations or translations, by name. Units are mm for distances, degrees for angles. The position must specify a point that can be used for acquisition without further analysis</p>
+</span>
+        
+
+        
+        
+
+        
+<div class="accordion" id="accordionallOf_i0_searchVolume_position_additionalProperties">
+    <div class="card">
+        <div class="card-header" id="headingallOf_i0_searchVolume_position_additionalProperties">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i0_searchVolume_position_additionalProperties"
+                        aria-expanded="" aria-controls="allOf_i0_searchVolume_position_additionalProperties" onclick="setAnchor('#allOf_i0_searchVolume_position_additionalProperties')"><em><span class="property-name">Additional Properties</span></em></button>
+            </h2>
+        </div>
+
+        <div id="allOf_i0_searchVolume_position_additionalProperties"
+             class="collapse property-definition-div" aria-labelledby="headingallOf_i0_searchVolume_position_additionalProperties"
+             data-parent="#accordionallOf_i0_searchVolume_position_additionalProperties">
+            <div class="card-body pl-5"><p class="additional-properties">Each additional property must conform to the following schema</p>
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0" onclick="anchorLink('allOf_i0')">VolumeScanData</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume" onclick="anchorLink('allOf_i0_searchVolume')">searchVolume</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume_position" onclick="anchorLink('allOf_i0_searchVolume_position')">position</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume_position_additionalProperties" onclick="anchorLink('allOf_i0_searchVolume_position_additionalProperties')">additionalProperties</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
+
+        
+
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionallOf_i0_searchVolume_score">
+    <div class="card">
+        <div class="card-header" id="headingallOf_i0_searchVolume_score">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i0_searchVolume_score"
+                        aria-expanded="" aria-controls="allOf_i0_searchVolume_score" onclick="setAnchor('#allOf_i0_searchVolume_score')"><span class="property-name">score</span></button>
+            </h2>
+        </div>
+
+        <div id="allOf_i0_searchVolume_score"
+             class="collapse property-definition-div" aria-labelledby="headingallOf_i0_searchVolume_score"
+             data-parent="#accordionallOf_i0_searchVolume_score">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0" onclick="anchorLink('allOf_i0')">VolumeScanData</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume" onclick="anchorLink('allOf_i0_searchVolume')">searchVolume</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume_score" onclick="anchorLink('allOf_i0_searchVolume_score')">score</a></div><h4>Score</h4><span class="badge badge-dark value-type">Type: number</span><br/>
+<span class="description"><p>Quality score for pointcloud and its position, according to locally selected algorithm</p>
+</span>
+        
+
+        
+        <p><span class="badge badge-light restriction numeric-restriction" id="allOf_i0_searchVolume_score_number">Value must be greater or equal to <code>0.0</code> and lesser or equal to <code>1.0</code></span></p>
+
+        
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionallOf_i0_searchVolume_coordinates">
+    <div class="card">
+        <div class="card-header" id="headingallOf_i0_searchVolume_coordinates">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i0_searchVolume_coordinates"
+                        aria-expanded="" aria-controls="allOf_i0_searchVolume_coordinates" onclick="setAnchor('#allOf_i0_searchVolume_coordinates')"><span class="property-name">coordinates</span></button>
+            </h2>
+        </div>
+
+        <div id="allOf_i0_searchVolume_coordinates"
+             class="collapse property-definition-div" aria-labelledby="headingallOf_i0_searchVolume_coordinates"
+             data-parent="#accordionallOf_i0_searchVolume_coordinates">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0" onclick="anchorLink('allOf_i0')">VolumeScanData</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume" onclick="anchorLink('allOf_i0_searchVolume')">searchVolume</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume_coordinates" onclick="anchorLink('allOf_i0_searchVolume_coordinates')">coordinates</a></div><h4>Coordinates</h4><span class="badge badge-dark value-type">Type: array of array</span><br/>
+<span class="description"><p>Points of point cloud in coordinates of centring motor vectors, relative to the values given in the popsition</p>
 </span>
         
 
@@ -938,7 +1515,7 @@
 
          <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
     <div class="card">
-        <div class="card-body items-definition" id="allOf_i0_searchVolume_points_items">
+        <div class="card-body items-definition" id="allOf_i0_searchVolume_coordinates_items">
             
 
     <div class="breadcrumbs">root
@@ -969,90 +1546,23 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#allOf_i0_searchVolume_points" onclick="anchorLink('allOf_i0_searchVolume_points')">points</a>
+    <a href="#allOf_i0_searchVolume_coordinates" onclick="anchorLink('allOf_i0_searchVolume_coordinates')">coordinates</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#allOf_i0_searchVolume_points_items" onclick="anchorLink('allOf_i0_searchVolume_points_items')">ScannedPoint</a></div><h4>ScannedPoint</h4><span class="badge badge-dark value-type">Type: object</span><br/>
-<span class="description"><p>Scanned point in sample, given in goniostat coordinate system at omega==kappa==phi==0</p>
-</span>
+    <a href="#allOf_i0_searchVolume_coordinates_items" onclick="anchorLink('allOf_i0_searchVolume_coordinates_items')">coordinates items</a></div><span class="badge badge-dark value-type">Type: array of number</span><br/>
 
-    
         
 
         
         
 
-        
-<div class="accordion" id="accordionallOf_i0_searchVolume_points_items_coordinates">
+        <p><span class="badge badge-light restriction min-items-restriction" id="allOf_i0_searchVolume_coordinates_items_minItems">Must contain a minimum of <code>3</code> items</span></p><p><span class="badge badge-light restriction max-items-restriction" id="allOf_i0_searchVolume_coordinates_items_maxItems">Must contain a maximum of <code>3</code> items</span></p> <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
     <div class="card">
-        <div class="card-header" id="headingallOf_i0_searchVolume_points_items_coordinates">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i0_searchVolume_points_items_coordinates"
-                        aria-expanded="" aria-controls="allOf_i0_searchVolume_points_items_coordinates" onclick="setAnchor('#allOf_i0_searchVolume_points_items_coordinates')"><span class="property-name">coordinates</span> <span class="badge badge-warning required-property">Required</span></button>
-            </h2>
-        </div>
-
-        <div id="allOf_i0_searchVolume_points_items_coordinates"
-             class="collapse property-definition-div" aria-labelledby="headingallOf_i0_searchVolume_points_items_coordinates"
-             data-parent="#accordionallOf_i0_searchVolume_points_items_coordinates">
-            <div class="card-body pl-5">
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0" onclick="anchorLink('allOf_i0')">VolumeScanData</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0_searchVolume" onclick="anchorLink('allOf_i0_searchVolume')">searchVolume</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0_searchVolume_points" onclick="anchorLink('allOf_i0_searchVolume_points')">points</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0_searchVolume_points_items" onclick="anchorLink('allOf_i0_searchVolume_points_items')">ScannedPoint</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0_searchVolume_points_items_coordinates" onclick="anchorLink('allOf_i0_searchVolume_points_items_coordinates')">coordinates</a></div><h4>Point coordinates (sampX, sampY, sampZ)</h4><span class="badge badge-dark value-type">Type: array of number</span><br/>
-
-        
-
-        
-        
-
-         <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
-    <div class="card">
-        <div class="card-body items-definition" id="allOf_i0_searchVolume_points_items_coordinates_items">
+        <div class="card-body items-definition" id="allOf_i0_searchVolume_coordinates_items_items">
             
 
     <div class="breadcrumbs">root
@@ -1083,28 +1593,21 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#allOf_i0_searchVolume_points" onclick="anchorLink('allOf_i0_searchVolume_points')">points</a>
+    <a href="#allOf_i0_searchVolume_coordinates" onclick="anchorLink('allOf_i0_searchVolume_coordinates')">coordinates</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#allOf_i0_searchVolume_points_items" onclick="anchorLink('allOf_i0_searchVolume_points_items')">ScannedPoint</a>
+    <a href="#allOf_i0_searchVolume_coordinates_items" onclick="anchorLink('allOf_i0_searchVolume_coordinates_items')">coordinates items</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#allOf_i0_searchVolume_points_items_coordinates" onclick="anchorLink('allOf_i0_searchVolume_points_items_coordinates')">coordinates</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0_searchVolume_points_items_coordinates_items" onclick="anchorLink('allOf_i0_searchVolume_points_items_coordinates_items')">coordinates items</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
+    <a href="#allOf_i0_searchVolume_coordinates_items_items" onclick="anchorLink('allOf_i0_searchVolume_coordinates_items_items')">coordinates items items</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
 
         
 
@@ -1112,24 +1615,26 @@
         
 
         
+        </div>
+    </div>
         </div>
     </div>
             </div>
         </div>
     </div>
 </div>
-<div class="accordion" id="accordionallOf_i0_searchVolume_points_items_intensity">
+<div class="accordion" id="accordionallOf_i0_searchVolume_grouping">
     <div class="card">
-        <div class="card-header" id="headingallOf_i0_searchVolume_points_items_intensity">
+        <div class="card-header" id="headingallOf_i0_searchVolume_grouping">
             <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i0_searchVolume_points_items_intensity"
-                        aria-expanded="" aria-controls="allOf_i0_searchVolume_points_items_intensity" onclick="setAnchor('#allOf_i0_searchVolume_points_items_intensity')"><span class="property-name">intensity</span></button>
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i0_searchVolume_grouping"
+                        aria-expanded="" aria-controls="allOf_i0_searchVolume_grouping" onclick="setAnchor('#allOf_i0_searchVolume_grouping')"><span class="property-name">grouping</span></button>
             </h2>
         </div>
 
-        <div id="allOf_i0_searchVolume_points_items_intensity"
-             class="collapse property-definition-div" aria-labelledby="headingallOf_i0_searchVolume_points_items_intensity"
-             data-parent="#accordionallOf_i0_searchVolume_points_items_intensity">
+        <div id="allOf_i0_searchVolume_grouping"
+             class="collapse property-definition-div" aria-labelledby="headingallOf_i0_searchVolume_grouping"
+             data-parent="#accordionallOf_i0_searchVolume_grouping">
             <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
@@ -1160,218 +1665,8 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#allOf_i0_searchVolume_points" onclick="anchorLink('allOf_i0_searchVolume_points')">points</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0_searchVolume_points_items" onclick="anchorLink('allOf_i0_searchVolume_points_items')">ScannedPoint</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0_searchVolume_points_items_intensity" onclick="anchorLink('allOf_i0_searchVolume_points_items_intensity')">intensity</a></div><h4>Intensity</h4><span class="badge badge-dark value-type">Type: number</span><br/>
-<span class="description"><p>Measured intensity at point, in arbitrary units</p>
-</span>
-        
-
-        
-        
-
-        
-            </div>
-        </div>
-    </div>
-</div>
-<div class="accordion" id="accordionallOf_i0_searchVolume_points_items_resolution">
-    <div class="card">
-        <div class="card-header" id="headingallOf_i0_searchVolume_points_items_resolution">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i0_searchVolume_points_items_resolution"
-                        aria-expanded="" aria-controls="allOf_i0_searchVolume_points_items_resolution" onclick="setAnchor('#allOf_i0_searchVolume_points_items_resolution')"><span class="property-name">resolution</span></button>
-            </h2>
-        </div>
-
-        <div id="allOf_i0_searchVolume_points_items_resolution"
-             class="collapse property-definition-div" aria-labelledby="headingallOf_i0_searchVolume_points_items_resolution"
-             data-parent="#accordionallOf_i0_searchVolume_points_items_resolution">
-            <div class="card-body pl-5">
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0" onclick="anchorLink('allOf_i0')">VolumeScanData</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0_searchVolume" onclick="anchorLink('allOf_i0_searchVolume')">searchVolume</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0_searchVolume_points" onclick="anchorLink('allOf_i0_searchVolume_points')">points</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0_searchVolume_points_items" onclick="anchorLink('allOf_i0_searchVolume_points_items')">ScannedPoint</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0_searchVolume_points_items_resolution" onclick="anchorLink('allOf_i0_searchVolume_points_items_resolution')">resolution</a></div><h4>Resolution</h4><span class="badge badge-dark value-type">Type: number</span><br/>
-<span class="description"><p>Resolution observed at the scanned point</p>
-</span>
-        
-
-        
-        <p><span class="badge badge-light restriction numeric-restriction" id="allOf_i0_searchVolume_points_items_resolution_number">Value must be strictly greater than <code>0.0</code></span></p>
-
-        
-            </div>
-        </div>
-    </div>
-</div>
-<div class="accordion" id="accordionallOf_i0_searchVolume_points_items_spotCount">
-    <div class="card">
-        <div class="card-header" id="headingallOf_i0_searchVolume_points_items_spotCount">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i0_searchVolume_points_items_spotCount"
-                        aria-expanded="" aria-controls="allOf_i0_searchVolume_points_items_spotCount" onclick="setAnchor('#allOf_i0_searchVolume_points_items_spotCount')"><span class="property-name">spotCount</span></button>
-            </h2>
-        </div>
-
-        <div id="allOf_i0_searchVolume_points_items_spotCount"
-             class="collapse property-definition-div" aria-labelledby="headingallOf_i0_searchVolume_points_items_spotCount"
-             data-parent="#accordionallOf_i0_searchVolume_points_items_spotCount">
-            <div class="card-body pl-5">
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0" onclick="anchorLink('allOf_i0')">VolumeScanData</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0_searchVolume" onclick="anchorLink('allOf_i0_searchVolume')">searchVolume</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0_searchVolume_points" onclick="anchorLink('allOf_i0_searchVolume_points')">points</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0_searchVolume_points_items" onclick="anchorLink('allOf_i0_searchVolume_points_items')">ScannedPoint</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0_searchVolume_points_items_spotCount" onclick="anchorLink('allOf_i0_searchVolume_points_items_spotCount')">spotCount</a></div><h4>Spot count</h4><span class="badge badge-dark value-type">Type: integer</span><br/>
-<span class="description"><p>Number of spots observed at the scanned point</p>
-</span>
-        
-
-        
-        <p><span class="badge badge-light restriction numeric-restriction" id="allOf_i0_searchVolume_points_items_spotCount_number">Value must be strictly greater than <code>0</code></span></p>
-
-        
-            </div>
-        </div>
-    </div>
-</div>
-        </div>
-    </div>
-            </div>
-        </div>
-    </div>
-</div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="accordion" id="accordionallOf_i0_subVolumes">
-    <div class="card">
-        <div class="card-header" id="headingallOf_i0_subVolumes">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i0_subVolumes"
-                        aria-expanded="" aria-controls="allOf_i0_subVolumes" onclick="setAnchor('#allOf_i0_subVolumes')"><span class="property-name">subVolumes</span></button>
-            </h2>
-        </div>
-
-        <div id="allOf_i0_subVolumes"
-             class="collapse property-definition-div" aria-labelledby="headingallOf_i0_subVolumes"
-             data-parent="#accordionallOf_i0_subVolumes">
-            <div class="card-body pl-5">
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0" onclick="anchorLink('allOf_i0')">VolumeScanData</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#allOf_i0_subVolumes" onclick="anchorLink('allOf_i0_subVolumes')">subVolumes</a></div><h4>Subvolumes</h4><span class="badge badge-dark value-type">Type: array</span><br/>
-<span class="description"><p>List of individual compact subvolumes selected from resultVolume</p>
+    <a href="#allOf_i0_searchVolume_grouping" onclick="anchorLink('allOf_i0_searchVolume_grouping')">grouping</a></div><h4>Grouping</h4><span class="badge badge-dark value-type">Type: array of integer</span><br/>
+<span class="description"><p>Classification of points into subobjects. Value 0 is background, positive values 1..n are objects of integers (crystals)</p>
 </span>
         
 
@@ -1380,7 +1675,7 @@
 
          <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
     <div class="card">
-        <div class="card-body items-definition" id="allOf_i0_subVolumes_items">
+        <div class="card-body items-definition" id="allOf_i0_searchVolume_grouping_items">
             
 
     <div class="breadcrumbs">root
@@ -1404,18 +1699,450 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#allOf_i0_subVolumes" onclick="anchorLink('allOf_i0_subVolumes')">subVolumes</a>
+    <a href="#allOf_i0_searchVolume" onclick="anchorLink('allOf_i0_searchVolume')">searchVolume</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#allOf_i0_subVolumes_items" onclick="anchorLink('allOf_i0_subVolumes_items')">PointCloud</a></div><h4>PointCloud</h4><span class="badge badge-dark value-type">Type: object</span><br/>
-<span class="description"><p>A cloud (list) of scanned points</p>
-</span><a href="#allOf_i0_searchVolume" onclick="anchorLink('allOf_i0_searchVolume')" class="ref-link">Same definition as searchVolume</a>
+    <a href="#allOf_i0_searchVolume_grouping" onclick="anchorLink('allOf_i0_searchVolume_grouping')">grouping</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume_grouping_items" onclick="anchorLink('allOf_i0_searchVolume_grouping_items')">grouping items</a></div><span class="badge badge-dark value-type">Type: integer</span><br/>
+
+        
+
+        
+        
+
+        
         </div>
     </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionallOf_i0_searchVolume_intensities">
+    <div class="card">
+        <div class="card-header" id="headingallOf_i0_searchVolume_intensities">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i0_searchVolume_intensities"
+                        aria-expanded="" aria-controls="allOf_i0_searchVolume_intensities" onclick="setAnchor('#allOf_i0_searchVolume_intensities')"><span class="property-name">intensities</span></button>
+            </h2>
+        </div>
+
+        <div id="allOf_i0_searchVolume_intensities"
+             class="collapse property-definition-div" aria-labelledby="headingallOf_i0_searchVolume_intensities"
+             data-parent="#accordionallOf_i0_searchVolume_intensities">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0" onclick="anchorLink('allOf_i0')">VolumeScanData</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume" onclick="anchorLink('allOf_i0_searchVolume')">searchVolume</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume_intensities" onclick="anchorLink('allOf_i0_searchVolume_intensities')">intensities</a></div><h4>Intensities</h4><span class="badge badge-dark value-type">Type: array of number</span><br/>
+<span class="description"><p>Total intensity at points</p>
+</span>
+        
+
+        
+        
+
+         <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
+    <div class="card">
+        <div class="card-body items-definition" id="allOf_i0_searchVolume_intensities_items">
+            
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0" onclick="anchorLink('allOf_i0')">VolumeScanData</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume" onclick="anchorLink('allOf_i0_searchVolume')">searchVolume</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume_intensities" onclick="anchorLink('allOf_i0_searchVolume_intensities')">intensities</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume_intensities_items" onclick="anchorLink('allOf_i0_searchVolume_intensities_items')">intensities items</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
+
+        
+
+        
+        
+
+        
+        </div>
+    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionallOf_i0_searchVolume_resolutions">
+    <div class="card">
+        <div class="card-header" id="headingallOf_i0_searchVolume_resolutions">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i0_searchVolume_resolutions"
+                        aria-expanded="" aria-controls="allOf_i0_searchVolume_resolutions" onclick="setAnchor('#allOf_i0_searchVolume_resolutions')"><span class="property-name">resolutions</span></button>
+            </h2>
+        </div>
+
+        <div id="allOf_i0_searchVolume_resolutions"
+             class="collapse property-definition-div" aria-labelledby="headingallOf_i0_searchVolume_resolutions"
+             data-parent="#accordionallOf_i0_searchVolume_resolutions">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0" onclick="anchorLink('allOf_i0')">VolumeScanData</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume" onclick="anchorLink('allOf_i0_searchVolume')">searchVolume</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume_resolutions" onclick="anchorLink('allOf_i0_searchVolume_resolutions')">resolutions</a></div><h4>Resolutions</h4><span class="badge badge-dark value-type">Type: array of number</span><br/>
+<span class="description"><p>Highest resolution at points</p>
+</span>
+        
+
+        
+        
+
+         <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
+    <div class="card">
+        <div class="card-body items-definition" id="allOf_i0_searchVolume_resolutions_items">
+            
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0" onclick="anchorLink('allOf_i0')">VolumeScanData</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume" onclick="anchorLink('allOf_i0_searchVolume')">searchVolume</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume_resolutions" onclick="anchorLink('allOf_i0_searchVolume_resolutions')">resolutions</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume_resolutions_items" onclick="anchorLink('allOf_i0_searchVolume_resolutions_items')">resolutions items</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
+
+        
+
+        
+        <p><span class="badge badge-light restriction numeric-restriction" id="allOf_i0_searchVolume_resolutions_items_number">Value must be strictly greater than <code>0</code></span></p>
+
+        
+        </div>
+    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionallOf_i0_searchVolume_reflectionCounts">
+    <div class="card">
+        <div class="card-header" id="headingallOf_i0_searchVolume_reflectionCounts">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i0_searchVolume_reflectionCounts"
+                        aria-expanded="" aria-controls="allOf_i0_searchVolume_reflectionCounts" onclick="setAnchor('#allOf_i0_searchVolume_reflectionCounts')"><span class="property-name">reflectionCounts</span></button>
+            </h2>
+        </div>
+
+        <div id="allOf_i0_searchVolume_reflectionCounts"
+             class="collapse property-definition-div" aria-labelledby="headingallOf_i0_searchVolume_reflectionCounts"
+             data-parent="#accordionallOf_i0_searchVolume_reflectionCounts">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0" onclick="anchorLink('allOf_i0')">VolumeScanData</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume" onclick="anchorLink('allOf_i0_searchVolume')">searchVolume</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume_reflectionCounts" onclick="anchorLink('allOf_i0_searchVolume_reflectionCounts')">reflectionCounts</a></div><h4>ReflectionCounts</h4><span class="badge badge-dark value-type">Type: array of integer</span><br/>
+<span class="description"><p>Number of reflections at points</p>
+</span>
+        
+
+        
+        
+
+         <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
+    <div class="card">
+        <div class="card-body items-definition" id="allOf_i0_searchVolume_reflectionCounts_items">
+            
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0" onclick="anchorLink('allOf_i0')">VolumeScanData</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume" onclick="anchorLink('allOf_i0_searchVolume')">searchVolume</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume_reflectionCounts" onclick="anchorLink('allOf_i0_searchVolume_reflectionCounts')">reflectionCounts</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume_reflectionCounts_items" onclick="anchorLink('allOf_i0_searchVolume_reflectionCounts_items')">reflectionCounts items</a></div><span class="badge badge-dark value-type">Type: integer</span><br/>
+
+        
+
+        
+        <p><span class="badge badge-light restriction numeric-restriction" id="allOf_i0_searchVolume_reflectionCounts_items_number">Value must be greater or equal to <code>0</code></span></p>
+
+        
+        </div>
+    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionallOf_i0_searchVolume_dozorScores">
+    <div class="card">
+        <div class="card-header" id="headingallOf_i0_searchVolume_dozorScores">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#allOf_i0_searchVolume_dozorScores"
+                        aria-expanded="" aria-controls="allOf_i0_searchVolume_dozorScores" onclick="setAnchor('#allOf_i0_searchVolume_dozorScores')"><span class="property-name">dozorScores</span></button>
+            </h2>
+        </div>
+
+        <div id="allOf_i0_searchVolume_dozorScores"
+             class="collapse property-definition-div" aria-labelledby="headingallOf_i0_searchVolume_dozorScores"
+             data-parent="#accordionallOf_i0_searchVolume_dozorScores">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0" onclick="anchorLink('allOf_i0')">VolumeScanData</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume" onclick="anchorLink('allOf_i0_searchVolume')">searchVolume</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume_dozorScores" onclick="anchorLink('allOf_i0_searchVolume_dozorScores')">dozorScores</a></div><h4>DozorScores</h4><span class="badge badge-dark value-type">Type: array of number</span><br/>
+<span class="description"><p>Dozor score at points</p>
+</span>
+        
+
+        
+        
+
+         <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
+    <div class="card">
+        <div class="card-body items-definition" id="allOf_i0_searchVolume_dozorScores_items">
+            
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf" onclick="anchorLink('allOf')">allOf</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0" onclick="anchorLink('allOf_i0')">VolumeScanData</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume" onclick="anchorLink('allOf_i0_searchVolume')">searchVolume</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume_dozorScores" onclick="anchorLink('allOf_i0_searchVolume_dozorScores')">dozorScores</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#allOf_i0_searchVolume_dozorScores_items" onclick="anchorLink('allOf_i0_searchVolume_dozorScores_items')">dozorScores items</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
+
+        
+
+        
+        
+
+        
+        </div>
+    </div>
+            </div>
+        </div>
+    </div>
+</div>
             </div>
         </div>
     </div>

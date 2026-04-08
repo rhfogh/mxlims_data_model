@@ -4,16 +4,49 @@
 from __future__ import annotations
 
 from mxlims.impl.MxlimsBase import BaseModel
-from pydantic import Field
-
-from .ScannedPoint import ScannedPoint
+from pydantic import Field, NonNegativeInt, PositiveFloat, confloat
 
 
 class PointCloud(BaseModel):
     """
-    A cloud (list) of scanned points
+    A cloud of scanned points. Except for 'position' and 'score' attributes are lists of values, so that the n'th value of each together characterise the n'th point
     """
 
-    points: list[ScannedPoint] = Field(
-        ..., description="List of points making up the PointCloud", title="Points list"
+    position: dict[str, float] = Field(
+        ...,
+        description="Dictionary string:float with position of all axes, rotations or translations, by name. Units are mm for distances, degrees for angles. The position must specify a point that can be used for acquisition without further analysis",
+        title="Position",
+    )
+    score: confloat(ge=0.0, le=1.0) | None = Field(
+        None,
+        description="Quality score for pointcloud and its position, according to locally selected algorithm",
+        title="Score",
+    )
+    coordinates: list[list[float]] | None = Field(
+        None,
+        description="Points of point cloud in coordinates of centring motor vectors, relative to the values given in the popsition",
+        title="Coordinates",
+    )
+    grouping: list[int] | None = Field(
+        None,
+        description="Classification of points into subobjects. Value 0 is background, positive values 1..n are objects of integers (crystals)",
+        title="Grouping",
+    )
+    intensities: list[float] | None = Field(
+        None, description="Total intensity at points", title="Intensities"
+    )
+    resolutions: list[PositiveFloat] | None = Field(
+        None, description="Highest resolution at points", title="Resolutions"
+    )
+    reflection_counts: list[NonNegativeInt] | None = Field(
+        None,
+        alias="reflectionCounts",
+        description="Number of reflections at points",
+        title="ReflectionCounts",
+    )
+    dozor_scores: list[float] | None = Field(
+        None,
+        alias="dozorScores",
+        description="Dozor score at points",
+        title="DozorScores",
     )

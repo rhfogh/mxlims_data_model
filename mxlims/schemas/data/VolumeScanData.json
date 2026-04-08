@@ -17,7 +17,7 @@
         },
         "rotationAngles" : {
             "items": {
-                "type": "float"
+                "type": "number"
             },
             "type": "array",
             "description": "List of omega offsets from the starting omega position to use for volume scan, in degrees",
@@ -29,7 +29,7 @@
                     "$ref": "../datatypes/PointCloud.json"
                 }
             ],
-            "description": "Volume to search (input), defined in goniostat coordinate system (centringX, centringY, phiY)",
+            "description": "Volume to search (input), including motor positions to use",
             "title": "Search Volume"
         },
         "boundingBoxSize": {
@@ -60,14 +60,6 @@
             ],
             "description": "Volume of all active points found",
             "title": "Result Volume"
-        },
-        "subVolumes": {
-            "items": {
-                "$ref": "../datatypes/PointCloud.json"
-            },
-            "type": "array",
-            "description": "List of individual compact subvolumes selected from resultVolume",
-            "title": "Subvolumes"
         }
     }
 }

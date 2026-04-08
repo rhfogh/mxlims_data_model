@@ -18,7 +18,7 @@
 <body onload="anchorOnLoad();" id="root">
 
     <div class="breadcrumbs"></div> <h1>PointCloud</h1><span class="badge badge-dark value-type">Type: object</span><br/>
-<span class="description"><p>A cloud (list) of scanned points</p>
+<span class="description"><p>A cloud of scanned points. Except for 'position' and 'score' attributes are lists of values, so that the n'th value of each together characterise the n'th point</p>
 </span>
         
 
@@ -26,18 +26,18 @@
         
 
         
-<div class="accordion" id="accordionpoints">
+<div class="accordion" id="accordionposition">
     <div class="card">
-        <div class="card-header" id="headingpoints">
+        <div class="card-header" id="headingposition">
             <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#points"
-                        aria-expanded="" aria-controls="points" onclick="setAnchor('#points')"><span class="property-name">points</span> <span class="badge badge-warning required-property">Required</span></button>
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#position"
+                        aria-expanded="" aria-controls="position" onclick="setAnchor('#position')"><span class="property-name">position</span> <span class="badge badge-warning required-property">Required</span></button>
             </h2>
         </div>
 
-        <div id="points"
-             class="collapse property-definition-div" aria-labelledby="headingpoints"
-             data-parent="#accordionpoints">
+        <div id="position"
+             class="collapse property-definition-div" aria-labelledby="headingposition"
+             data-parent="#accordionposition">
             <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
@@ -47,8 +47,116 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#points" onclick="anchorLink('points')">points</a></div><h4>Points list</h4><span class="badge badge-dark value-type">Type: array</span><br/>
-<span class="description"><p>List of points making up the PointCloud</p>
+    <a href="#position" onclick="anchorLink('position')">position</a></div><h4>Position</h4><span class="badge badge-dark value-type">Type: object</span><br/>
+<span class="description"><p>Dictionary string:float with position of all axes, rotations or translations, by name. Units are mm for distances, degrees for angles. The position must specify a point that can be used for acquisition without further analysis</p>
+</span>
+        
+
+        
+        
+
+        
+<div class="accordion" id="accordionposition_additionalProperties">
+    <div class="card">
+        <div class="card-header" id="headingposition_additionalProperties">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#position_additionalProperties"
+                        aria-expanded="" aria-controls="position_additionalProperties" onclick="setAnchor('#position_additionalProperties')"><em><span class="property-name">Additional Properties</span></em></button>
+            </h2>
+        </div>
+
+        <div id="position_additionalProperties"
+             class="collapse property-definition-div" aria-labelledby="headingposition_additionalProperties"
+             data-parent="#accordionposition_additionalProperties">
+            <div class="card-body pl-5"><p class="additional-properties">Each additional property must conform to the following schema</p>
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#position" onclick="anchorLink('position')">position</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#position_additionalProperties" onclick="anchorLink('position_additionalProperties')">additionalProperties</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
+
+        
+
+        
+        
+
+        
+            </div>
+        </div>
+    </div>
+</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordionscore">
+    <div class="card">
+        <div class="card-header" id="headingscore">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#score"
+                        aria-expanded="" aria-controls="score" onclick="setAnchor('#score')"><span class="property-name">score</span></button>
+            </h2>
+        </div>
+
+        <div id="score"
+             class="collapse property-definition-div" aria-labelledby="headingscore"
+             data-parent="#accordionscore">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#score" onclick="anchorLink('score')">score</a></div><h4>Score</h4><span class="badge badge-dark value-type">Type: number</span><br/>
+<span class="description"><p>Quality score for pointcloud and its position, according to locally selected algorithm</p>
+</span>
+        
+
+        
+        <p><span class="badge badge-light restriction numeric-restriction" id="score_number">Value must be greater or equal to <code>0.0</code> and lesser or equal to <code>1.0</code></span></p>
+
+        
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordioncoordinates">
+    <div class="card">
+        <div class="card-header" id="headingcoordinates">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#coordinates"
+                        aria-expanded="" aria-controls="coordinates" onclick="setAnchor('#coordinates')"><span class="property-name">coordinates</span></button>
+            </h2>
+        </div>
+
+        <div id="coordinates"
+             class="collapse property-definition-div" aria-labelledby="headingcoordinates"
+             data-parent="#accordioncoordinates">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#coordinates" onclick="anchorLink('coordinates')">coordinates</a></div><h4>Coordinates</h4><span class="badge badge-dark value-type">Type: array of array</span><br/>
+<span class="description"><p>Points of point cloud in coordinates of centring motor vectors, relative to the values given in the popsition</p>
 </span>
         
 
@@ -57,7 +165,7 @@
 
          <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
     <div class="card">
-        <div class="card-body items-definition" id="points_items">
+        <div class="card-body items-definition" id="coordinates_items">
             
 
     <div class="breadcrumbs">root
@@ -67,69 +175,23 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#points" onclick="anchorLink('points')">points</a>
+    <a href="#coordinates" onclick="anchorLink('coordinates')">coordinates</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#points_items" onclick="anchorLink('points_items')">ScannedPoint</a></div><h4>ScannedPoint</h4><span class="badge badge-dark value-type">Type: object</span><br/>
-<span class="description"><p>Scanned point in sample, given in goniostat coordinate system at omega==kappa==phi==0</p>
-</span>
+    <a href="#coordinates_items" onclick="anchorLink('coordinates_items')">coordinates items</a></div><span class="badge badge-dark value-type">Type: array of number</span><br/>
 
-    
         
 
         
         
 
-        
-<div class="accordion" id="accordionpoints_items_coordinates">
+        <p><span class="badge badge-light restriction min-items-restriction" id="coordinates_items_minItems">Must contain a minimum of <code>3</code> items</span></p><p><span class="badge badge-light restriction max-items-restriction" id="coordinates_items_maxItems">Must contain a maximum of <code>3</code> items</span></p> <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
     <div class="card">
-        <div class="card-header" id="headingpoints_items_coordinates">
-            <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#points_items_coordinates"
-                        aria-expanded="" aria-controls="points_items_coordinates" onclick="setAnchor('#points_items_coordinates')"><span class="property-name">coordinates</span> <span class="badge badge-warning required-property">Required</span></button>
-            </h2>
-        </div>
-
-        <div id="points_items_coordinates"
-             class="collapse property-definition-div" aria-labelledby="headingpoints_items_coordinates"
-             data-parent="#accordionpoints_items_coordinates">
-            <div class="card-body pl-5">
-
-    <div class="breadcrumbs">root
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#points" onclick="anchorLink('points')">points</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#points_items" onclick="anchorLink('points_items')">ScannedPoint</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#points_items_coordinates" onclick="anchorLink('points_items_coordinates')">coordinates</a></div><h4>Point coordinates (sampX, sampY, sampZ)</h4><span class="badge badge-dark value-type">Type: array of number</span><br/>
-
-        
-
-        
-        
-
-         <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
-    <div class="card">
-        <div class="card-body items-definition" id="points_items_coordinates_items">
+        <div class="card-body items-definition" id="coordinates_items_items">
             
 
     <div class="breadcrumbs">root
@@ -139,28 +201,21 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#points" onclick="anchorLink('points')">points</a>
+    <a href="#coordinates" onclick="anchorLink('coordinates')">coordinates</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#points_items" onclick="anchorLink('points_items')">ScannedPoint</a>
+    <a href="#coordinates_items" onclick="anchorLink('coordinates_items')">coordinates items</a>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#points_items_coordinates" onclick="anchorLink('points_items_coordinates')">coordinates</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#points_items_coordinates_items" onclick="anchorLink('points_items_coordinates_items')">coordinates items</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
+    <a href="#coordinates_items_items" onclick="anchorLink('coordinates_items_items')">coordinates items items</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
 
         
 
@@ -168,24 +223,26 @@
         
 
         
+        </div>
+    </div>
         </div>
     </div>
             </div>
         </div>
     </div>
 </div>
-<div class="accordion" id="accordionpoints_items_intensity">
+<div class="accordion" id="accordiongrouping">
     <div class="card">
-        <div class="card-header" id="headingpoints_items_intensity">
+        <div class="card-header" id="headinggrouping">
             <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#points_items_intensity"
-                        aria-expanded="" aria-controls="points_items_intensity" onclick="setAnchor('#points_items_intensity')"><span class="property-name">intensity</span></button>
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#grouping"
+                        aria-expanded="" aria-controls="grouping" onclick="setAnchor('#grouping')"><span class="property-name">grouping</span></button>
             </h2>
         </div>
 
-        <div id="points_items_intensity"
-             class="collapse property-definition-div" aria-labelledby="headingpoints_items_intensity"
-             data-parent="#accordionpoints_items_intensity">
+        <div id="grouping"
+             class="collapse property-definition-div" aria-labelledby="headinggrouping"
+             data-parent="#accordiongrouping">
             <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
@@ -195,45 +252,59 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#points" onclick="anchorLink('points')">points</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#points_items" onclick="anchorLink('points_items')">ScannedPoint</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#points_items_intensity" onclick="anchorLink('points_items_intensity')">intensity</a></div><h4>Intensity</h4><span class="badge badge-dark value-type">Type: number</span><br/>
-<span class="description"><p>Measured intensity at point, in arbitrary units</p>
+    <a href="#grouping" onclick="anchorLink('grouping')">grouping</a></div><h4>Grouping</h4><span class="badge badge-dark value-type">Type: array of integer</span><br/>
+<span class="description"><p>Classification of points into subobjects. Value 0 is background, positive values 1..n are objects of integers (crystals)</p>
 </span>
         
 
         
         
 
+         <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
+    <div class="card">
+        <div class="card-body items-definition" id="grouping_items">
+            
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#grouping" onclick="anchorLink('grouping')">grouping</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#grouping_items" onclick="anchorLink('grouping_items')">grouping items</a></div><span class="badge badge-dark value-type">Type: integer</span><br/>
+
         
+
+        
+        
+
+        
+        </div>
+    </div>
             </div>
         </div>
     </div>
 </div>
-<div class="accordion" id="accordionpoints_items_resolution">
+<div class="accordion" id="accordionintensities">
     <div class="card">
-        <div class="card-header" id="headingpoints_items_resolution">
+        <div class="card-header" id="headingintensities">
             <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#points_items_resolution"
-                        aria-expanded="" aria-controls="points_items_resolution" onclick="setAnchor('#points_items_resolution')"><span class="property-name">resolution</span></button>
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#intensities"
+                        aria-expanded="" aria-controls="intensities" onclick="setAnchor('#intensities')"><span class="property-name">intensities</span></button>
             </h2>
         </div>
 
-        <div id="points_items_resolution"
-             class="collapse property-definition-div" aria-labelledby="headingpoints_items_resolution"
-             data-parent="#accordionpoints_items_resolution">
+        <div id="intensities"
+             class="collapse property-definition-div" aria-labelledby="headingintensities"
+             data-parent="#accordionintensities">
             <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
@@ -243,45 +314,59 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#points" onclick="anchorLink('points')">points</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#points_items" onclick="anchorLink('points_items')">ScannedPoint</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#points_items_resolution" onclick="anchorLink('points_items_resolution')">resolution</a></div><h4>Resolution</h4><span class="badge badge-dark value-type">Type: number</span><br/>
-<span class="description"><p>Resolution observed at the scanned point</p>
+    <a href="#intensities" onclick="anchorLink('intensities')">intensities</a></div><h4>Intensities</h4><span class="badge badge-dark value-type">Type: array of number</span><br/>
+<span class="description"><p>Total intensity at points</p>
 </span>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="points_items_resolution_number">Value must be strictly greater than <code>0.0</code></span></p>
+        
+
+         <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
+    <div class="card">
+        <div class="card-body items-definition" id="intensities_items">
+            
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#intensities" onclick="anchorLink('intensities')">intensities</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#intensities_items" onclick="anchorLink('intensities_items')">intensities items</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
 
         
+
+        
+        
+
+        
+        </div>
+    </div>
             </div>
         </div>
     </div>
 </div>
-<div class="accordion" id="accordionpoints_items_spotCount">
+<div class="accordion" id="accordionresolutions">
     <div class="card">
-        <div class="card-header" id="headingpoints_items_spotCount">
+        <div class="card-header" id="headingresolutions">
             <h2 class="mb-0">
-                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#points_items_spotCount"
-                        aria-expanded="" aria-controls="points_items_spotCount" onclick="setAnchor('#points_items_spotCount')"><span class="property-name">spotCount</span></button>
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#resolutions"
+                        aria-expanded="" aria-controls="resolutions" onclick="setAnchor('#resolutions')"><span class="property-name">resolutions</span></button>
             </h2>
         </div>
 
-        <div id="points_items_spotCount"
-             class="collapse property-definition-div" aria-labelledby="headingpoints_items_spotCount"
-             data-parent="#accordionpoints_items_spotCount">
+        <div id="resolutions"
+             class="collapse property-definition-div" aria-labelledby="headingresolutions"
+             data-parent="#accordionresolutions">
             <div class="card-body pl-5">
 
     <div class="breadcrumbs">root
@@ -291,33 +376,165 @@
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
             />
         </svg>
-    <a href="#points" onclick="anchorLink('points')">points</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#points_items" onclick="anchorLink('points_items')">ScannedPoint</a>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill-rule="evenodd"
-                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
-            />
-        </svg>
-    <a href="#points_items_spotCount" onclick="anchorLink('points_items_spotCount')">spotCount</a></div><h4>Spot count</h4><span class="badge badge-dark value-type">Type: integer</span><br/>
-<span class="description"><p>Number of spots observed at the scanned point</p>
+    <a href="#resolutions" onclick="anchorLink('resolutions')">resolutions</a></div><h4>Resolutions</h4><span class="badge badge-dark value-type">Type: array of number</span><br/>
+<span class="description"><p>Highest resolution at points</p>
 </span>
         
 
         
-        <p><span class="badge badge-light restriction numeric-restriction" id="points_items_spotCount_number">Value must be strictly greater than <code>0</code></span></p>
+        
+
+         <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
+    <div class="card">
+        <div class="card-body items-definition" id="resolutions_items">
+            
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#resolutions" onclick="anchorLink('resolutions')">resolutions</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#resolutions_items" onclick="anchorLink('resolutions_items')">resolutions items</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
 
         
+
+        
+        <p><span class="badge badge-light restriction numeric-restriction" id="resolutions_items_number">Value must be strictly greater than <code>0</code></span></p>
+
+        
+        </div>
+    </div>
             </div>
         </div>
     </div>
 </div>
+<div class="accordion" id="accordionreflectionCounts">
+    <div class="card">
+        <div class="card-header" id="headingreflectionCounts">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#reflectionCounts"
+                        aria-expanded="" aria-controls="reflectionCounts" onclick="setAnchor('#reflectionCounts')"><span class="property-name">reflectionCounts</span></button>
+            </h2>
+        </div>
+
+        <div id="reflectionCounts"
+             class="collapse property-definition-div" aria-labelledby="headingreflectionCounts"
+             data-parent="#accordionreflectionCounts">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#reflectionCounts" onclick="anchorLink('reflectionCounts')">reflectionCounts</a></div><h4>ReflectionCounts</h4><span class="badge badge-dark value-type">Type: array of integer</span><br/>
+<span class="description"><p>Number of reflections at points</p>
+</span>
+        
+
+        
+        
+
+         <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
+    <div class="card">
+        <div class="card-body items-definition" id="reflectionCounts_items">
+            
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#reflectionCounts" onclick="anchorLink('reflectionCounts')">reflectionCounts</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#reflectionCounts_items" onclick="anchorLink('reflectionCounts_items')">reflectionCounts items</a></div><span class="badge badge-dark value-type">Type: integer</span><br/>
+
+        
+
+        
+        <p><span class="badge badge-light restriction numeric-restriction" id="reflectionCounts_items_number">Value must be greater or equal to <code>0</code></span></p>
+
+        
+        </div>
+    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="accordion" id="accordiondozorScores">
+    <div class="card">
+        <div class="card-header" id="headingdozorScores">
+            <h2 class="mb-0">
+                <button class="btn btn-link property-name-button" type="button" data-toggle="collapse" data-target="#dozorScores"
+                        aria-expanded="" aria-controls="dozorScores" onclick="setAnchor('#dozorScores')"><span class="property-name">dozorScores</span></button>
+            </h2>
+        </div>
+
+        <div id="dozorScores"
+             class="collapse property-definition-div" aria-labelledby="headingdozorScores"
+             data-parent="#accordiondozorScores">
+            <div class="card-body pl-5">
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#dozorScores" onclick="anchorLink('dozorScores')">dozorScores</a></div><h4>DozorScores</h4><span class="badge badge-dark value-type">Type: array of number</span><br/>
+<span class="description"><p>Dozor score at points</p>
+</span>
+        
+
+        
+        
+
+         <span class="badge badge-info no-additional">No Additional Items</span><h4>Each item of this array must be:</h4>
+    <div class="card">
+        <div class="card-body items-definition" id="dozorScores_items">
+            
+
+    <div class="breadcrumbs">root
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#dozorScores" onclick="anchorLink('dozorScores')">dozorScores</a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+            />
+        </svg>
+    <a href="#dozorScores_items" onclick="anchorLink('dozorScores_items')">dozorScores items</a></div><span class="badge badge-dark value-type">Type: number</span><br/>
+
+        
+
+        
+        
+
+        
         </div>
     </div>
             </div>

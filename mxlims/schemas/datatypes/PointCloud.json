@@ -3,18 +3,80 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "type": "object",
     "title": "PointCloud",
-    "description": "A cloud (list) of scanned points",
+    "description": "A cloud of scanned points. Except for 'position' and 'score' attributes are lists of values, so that the n'th value of each together characterise the n'th point",
     "properties": {
-        "points": {
-            "type": "array",
-            "title": "Points list",
-            "items": {
-                "$ref": "../datatypes/ScannedPoint.json"
+        "position": {
+            "additionalProperties": {
+                "type": "number"
             },
-            "description": "List of points making up the PointCloud"
+            "description": "Dictionary string:float with position of all axes, rotations or translations, by name. Units are mm for distances, degrees for angles. The position must specify a point that can be used for acquisition without further analysis",
+            "title": "Position",
+            "type": "object"
+        },
+        "score": {
+            "type": "number",
+            "title": "Score",
+            "description": "Quality score for pointcloud and its position, according to locally selected algorithm",
+            "minimum": 0.0,
+            "maximum": 1.0
+        },
+        "coordinates": {
+            "description": "Points of point cloud in coordinates of centring motor vectors, relative to the values given in the popsition",
+            "items": {
+                "items": {
+                    "type": "number"
+                },
+                "maxItems": 3,
+                "minItems": 3,
+                "type": "array"
+            },
+            "title": "Coordinates",
+            "type": "array"
+        },
+        "grouping": {
+            "type": "array",
+            "title": "Grouping",
+            "description": "Classification of points into subobjects. Value 0 is background, positive values 1..n are objects of integers (crystals)",
+            "items": {
+                "type": "integer"
+            }
+        },
+        "intensities": {
+            "type": "array",
+            "title": "Intensities",
+            "description": "Total intensity at points",
+            "items": {
+                "type": "number"
+            }
+        },
+        "resolutions": {
+            "type": "array",
+            "title": "Resolutions",
+            "description": "Highest resolution at points",
+            "items": {
+                "type": "number",
+                "exclusiveMinimum": 0
+            }
+        },
+        "reflectionCounts": {
+            "type": "array",
+            "title": "ReflectionCounts",
+            "description": "Number of reflections at points",
+            "items": {
+                "type": "integer",
+                "minimum": 0
+            }
+        },
+        "dozorScores": {
+            "type": "array",
+            "title": "DozorScores",
+            "description": "Dozor score at points",
+            "items": {
+                "type": "number"
+            }
         }
     },
     "required": [
-        "points"
+        "position"
     ]
 }
