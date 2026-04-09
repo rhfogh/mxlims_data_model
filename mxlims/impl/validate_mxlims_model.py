@@ -134,8 +134,17 @@ def test_valid(
         return False
     except jsonschema.ValidationError as e:
         if validity:
+            mess = traceback.format_exc()
             print("\nVALIDATION ERROR")
-            print(traceback.format_exc())
+            print(mess)
+            if "Failed validating 'unevaluatedProperties'" in mess:
+                print (
+        """
+WARNING! 'unevaluatedProperties' error messages are often misleading.
+If the 'unexpected properties' listed do not look unexpected, the actual error is likely
+to be on one of the specific properties,  e.g. an integer value in a string-type slot.  
+        """
+                )
         return not validity
     return validity
 
