@@ -1,8 +1,8 @@
-## Chnges in vcersion 0.6.13
+## Changes in version 0.6.13
 - Improved validation message for unevaluatedProperties errors
 - Upgraded VolumeScan handling to new model
 
-## Changes in version 0.6.12
+## Changes in version 0.6.12 (Tagged v0.6.12)
 - Refactored datatypes to put all enumerations into Enumerations.json
 - Reorganised test directories to support parallel testing of different versions
 - Fixed bugs in handling suppressed many-to-many links in Pydantic export
@@ -11,13 +11,15 @@
 - Started tagging superseded versions
 - Import names improved, and manual-fix generation problems reduced with datamodel_codegen v0.54.1 
 - Cleaned up Pydantic imports (no functional change added 20260402)
+- Fixed version-sensitive test message files
 
-## Changes in version 0.6.11
+## Changes in version 0.6.11 (Tagged v0.6.11)
 - Upgraded to JSONschema version 2020-12
 - Upgraded datamodel-code-generator to version 0.54.0, giving newer Python syntax
 - Changed validation code to use jsonschema package
 - Properly implemented XOR-type constraints when only one of two fields can be set
 - Added testing code and found and fixed some bugs in schemas and/or example files
+- Fixed version-sensitive test message files
 
 ## Changes in version 0.6.10
 
