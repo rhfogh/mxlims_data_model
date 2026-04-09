@@ -1,1 +1,542 @@
-../../../../../../../docs/examples/MxExperiment_interleavedMAD.json
+{
+    "version": "0.6.12",
+    "CollectionSweep": {
+        "CollectionSweep1": {
+            "mxlimsType": "CollectionSweep",
+            "uuid": "4980599b-4a4f-4e0e-8bb0-be44faf96f51",
+            "role": "Characterisation",
+            "sweepType": "simple",
+            "exposureTime": 0.02,
+            "imageWidth": 0.1,
+            "overlap": 0.0,
+            "numberTriggers": 0,
+            "numberImagesPerTrigger": 0,
+            "energy": 12.4,
+            "transmission": 7.198200000000001,
+            "resolution": 3.70003271512822,
+            "detectorRoiMode": "0",
+            "beamPosition": [
+                1565.715,
+                1718.812154
+            ],
+            "beamSize": [
+                0.01,
+                0.01
+            ],
+            "beamShape": "ellipse",
+            "axisPositionsStart": {
+                "omega": 0.0,
+                "kappa": 0.0,
+                "kappa_phi": 0.0,
+                "phiy": 4.2863433661626,
+                "sampx": 8.764559104220849,
+                "sampy": 5.277165591852286,
+                "detector_distance": 416.77
+            },
+            "axisPositionsEnd": {
+                "omega": 181.2
+            },
+            "scanAxis": "omega",
+            "scans": [
+                {
+                    "scanPositionStart": 0.0,
+                    "firstImageNumber": 1,
+                    "numberImages": 12,
+                    "ordinal": 0
+                },
+                {
+                    "scanPositionStart": 36.0,
+                    "firstImageNumber": 361,
+                    "numberImages": 12,
+                    "ordinal": 1
+                },
+                {
+                    "scanPositionStart": 72.0,
+                    "firstImageNumber": 721,
+                    "numberImages": 12,
+                    "ordinal": 2
+                },
+                {
+                    "scanPositionStart": 108.0,
+                    "firstImageNumber": 1081,
+                    "numberImages": 12,
+                    "ordinal": 3
+                },
+                {
+                    "scanPositionStart": 144.0,
+                    "firstImageNumber": 1441,
+                    "numberImages": 12,
+                    "ordinal": 4
+                },
+                {
+                    "scanPositionStart": 180.0,
+                    "firstImageNumber": 1801,
+                    "numberImages": 12,
+                    "ordinal": 5
+                }
+            ],
+            "fileType": "cbf",
+            "prefix": "4k61",
+            "filenameTemplate": "4k61_3_%04d.cbf",
+            "path": "/home/rhfogh/calc/mxcube_data/visitor/id2310424/mxcubetest/20240615/RAW_DATA/4k61/4k61_002/characterisation",
+            "logisticalSampleRef": {
+                "$ref": "#/Crystal/Crystal1"
+            },
+            "sourceRef": {
+                "$ref": "#/MxExperiment/MxExperiment1"
+            }
+        },
+        "CollectionSweep2": {
+            "mxlimsType": "CollectionSweep",
+            "uuid": "e798d6c6-ead6-4347-8b4e-1244af3ef78d",
+            "role": "Result",
+            "sweepType": "simple",
+            "exposureTime": 0.02,
+            "imageWidth": 0.2,
+            "overlap": 0.0,
+            "numberTriggers": 0,
+            "numberImagesPerTrigger": 0,
+            "energy": 12.4,
+            "transmission": 1.2585,
+            "resolution": 3.70003271512822,
+            "detectorRoiMode": "0",
+            "beamPosition": [
+                1565.715,
+                1718.812154
+            ],
+            "beamSize": [
+                0.01,
+                0.01
+            ],
+            "beamShape": "ellipse",
+            "axisPositionsStart": {
+                "omega": 7.00149244815729,
+                "kappa": 79.0331859638029,
+                "kappa_phi": 69.0034189527253,
+                "detector_distance": 416.77
+            },
+            "axisPositionsEnd": {
+                "omega": 187.00149244815728
+            },
+            "scanAxis": "omega",
+            "scans": [
+                {
+                    "scanPositionStart": 7.00149244815729,
+                    "firstImageNumber": 1,
+                    "numberImages": 240,
+                    "ordinal": 6
+                },
+                {
+                    "scanPositionStart": 55.00149244815729,
+                    "firstImageNumber": 241,
+                    "numberImages": 240,
+                    "ordinal": 8
+                },
+                {
+                    "scanPositionStart": 103.0014924481573,
+                    "firstImageNumber": 481,
+                    "numberImages": 240,
+                    "ordinal": 10
+                },
+                {
+                    "scanPositionStart": 151.00149244815728,
+                    "firstImageNumber": 721,
+                    "numberImages": 180,
+                    "ordinal": 12
+                }
+            ],
+            "fileType": "cbf",
+            "prefix": "4k61_G1B1",
+            "filenameTemplate": "4k61_G1B1_4_%04d.cbf",
+            "path": "/home/rhfogh/calc/mxcube_data/visitor/id2310424/mxcubetest/20240615/RAW_DATA/4k61/4k61_002/main",
+            "logisticalSampleRef": {
+                "$ref": "#/Crystal/Crystal1"
+            },
+            "sourceRef": {
+                "$ref": "#/MxExperiment/MxExperiment1"
+            }
+        },
+        "CollectionSweep3": {
+            "mxlimsType": "CollectionSweep",
+            "uuid": "2b2109e3-e1dd-4e85-991d-e18980ce36b8",
+            "role": "Result",
+            "sweepType": "simple",
+            "exposureTime": 0.02,
+            "imageWidth": 0.2,
+            "overlap": 0.0,
+            "numberTriggers": 0,
+            "numberImagesPerTrigger": 0,
+            "energy": 12.41,
+            "transmission": 1.2585,
+            "resolution": 3.70003271512822,
+            "detectorRoiMode": "0",
+            "beamPosition": [
+                1565.715,
+                1718.812154
+            ],
+            "beamSize": [
+                0.01,
+                0.01
+            ],
+            "beamShape": "ellipse",
+            "axisPositionsStart": {
+                "omega": 7.00149244815729,
+                "kappa": 79.0331859638029,
+                "kappa_phi": 69.0034189527253,
+                "detector_distance": 416.77
+            },
+            "axisPositionsEnd": {
+                "omega": 187.00149244815728
+            },
+            "scanAxis": "omega",
+            "scans": [
+                {
+                    "scanPositionStart": 7.00149244815729,
+                    "firstImageNumber": 1,
+                    "numberImages": 240,
+                    "ordinal": 7
+                },
+                {
+                    "scanPositionStart": 55.00149244815729,
+                    "firstImageNumber": 241,
+                    "numberImages": 240,
+                    "ordinal": 9
+                },
+                {
+                    "scanPositionStart": 103.0014924481573,
+                    "firstImageNumber": 481,
+                    "numberImages": 240,
+                    "ordinal": 11
+                },
+                {
+                    "scanPositionStart": 151.00149244815728,
+                    "firstImageNumber": 721,
+                    "numberImages": 180,
+                    "ordinal": 13
+                }
+            ],
+            "fileType": "cbf",
+            "prefix": "4k61_G1B2",
+            "filenameTemplate": "4k61_G1B2_4_%04d.cbf",
+            "path": "/home/rhfogh/calc/mxcube_data/visitor/id2310424/mxcubetest/20240615/RAW_DATA/4k61/4k61_002/main",
+            "logisticalSampleRef": {
+                "$ref": "#/Crystal/Crystal1"
+            },
+            "sourceRef": {
+                "$ref": "#/MxExperiment/MxExperiment1"
+            }
+        },
+        "CollectionSweep4": {
+            "mxlimsType": "CollectionSweep",
+            "uuid": "55d92851-4c9e-40ce-a3ef-5a784e1b250d",
+            "role": "Result",
+            "sweepType": "simple",
+            "exposureTime": 0.02,
+            "imageWidth": 0.2,
+            "overlap": 0.0,
+            "numberTriggers": 0,
+            "numberImagesPerTrigger": 0,
+            "energy": 12.4,
+            "transmission": 1.2585,
+            "resolution": 3.70003271512822,
+            "detectorRoiMode": "0",
+            "beamPosition": [
+                1565.715,
+                1718.812154
+            ],
+            "beamSize": [
+                0.01,
+                0.01
+            ],
+            "beamShape": "ellipse",
+            "axisPositionsStart": {
+                "omega": 173.797256781538,
+                "kappa": 79.0418378173555,
+                "kappa_phi": -111.000816713894,
+                "detector_distance": 416.77
+            },
+            "axisPositionsEnd": {
+                "omega": 202.397256781538
+            },
+            "scanAxis": "omega",
+            "scans": [
+                {
+                    "scanPositionStart": 173.797256781538,
+                    "firstImageNumber": 913,
+                    "numberImages": 143,
+                    "ordinal": 14
+                }
+            ],
+            "fileType": "cbf",
+            "prefix": "4k61_G2B1",
+            "filenameTemplate": "4k61_G2B1_4_%04d.cbf",
+            "path": "/home/rhfogh/calc/mxcube_data/visitor/id2310424/mxcubetest/20240615/RAW_DATA/4k61/4k61_002/main",
+            "logisticalSampleRef": {
+                "$ref": "#/Crystal/Crystal1"
+            },
+            "sourceRef": {
+                "$ref": "#/MxExperiment/MxExperiment1"
+            }
+        },
+        "CollectionSweep5": {
+            "mxlimsType": "CollectionSweep",
+            "uuid": "08528924-9c74-42a2-879d-45966a43f993",
+            "role": "Result",
+            "sweepType": "simple",
+            "exposureTime": 0.02,
+            "imageWidth": 0.2,
+            "overlap": 0.0,
+            "numberTriggers": 0,
+            "numberImagesPerTrigger": 0,
+            "energy": 12.41,
+            "transmission": 1.2585,
+            "resolution": 3.70003271512822,
+            "detectorRoiMode": "0",
+            "beamPosition": [
+                1565.715,
+                1718.812154
+            ],
+            "beamSize": [
+                0.01,
+                0.01
+            ],
+            "beamShape": "ellipse",
+            "axisPositionsStart": {
+                "omega": 173.797256781538,
+                "kappa": 79.0418378173555,
+                "kappa_phi": -111.000816713894,
+                "detector_distance": 416.77
+            },
+            "axisPositionsEnd": {
+                "omega": 202.397256781538
+            },
+            "scanAxis": "omega",
+            "scans": [
+                {
+                    "scanPositionStart": 173.797256781538,
+                    "firstImageNumber": 913,
+                    "numberImages": 143,
+                    "ordinal": 15
+                }
+            ],
+            "fileType": "cbf",
+            "prefix": "4k61_G2B2",
+            "filenameTemplate": "4k61_G2B2_4_%04d.cbf",
+            "path": "/home/rhfogh/calc/mxcube_data/visitor/id2310424/mxcubetest/20240615/RAW_DATA/4k61/4k61_002/main",
+            "logisticalSampleRef": {
+                "$ref": "#/Crystal/Crystal1"
+            },
+            "sourceRef": {
+                "$ref": "#/MxExperiment/MxExperiment1"
+            }
+        },
+        "CollectionSweep6": {
+            "mxlimsType": "CollectionSweep",
+            "uuid": "16eb6702-65d1-48da-8fbc-f08e086c4d21",
+            "role": "Result",
+            "sweepType": "simple",
+            "exposureTime": 0.02,
+            "imageWidth": 0.2,
+            "overlap": 0.0,
+            "numberTriggers": 0,
+            "numberImagesPerTrigger": 0,
+            "energy": 12.4,
+            "transmission": 1.2585,
+            "resolution": 3.70003271512822,
+            "detectorRoiMode": "0",
+            "beamPosition": [
+                1565.715,
+                1718.812154
+            ],
+            "beamSize": [
+                0.01,
+                0.01
+            ],
+            "beamShape": "ellipse",
+            "axisPositionsStart": {
+                "omega": -8.60274321846231,
+                "kappa": 79.0418378173555,
+                "kappa_phi": -111.000816713894,
+                "detector_distance": 416.77
+            },
+            "axisPositionsEnd": {
+                "omega": 173.59725678153768
+            },
+            "scanAxis": "omega",
+            "scans": [
+                {
+                    "scanPositionStart": -8.60274321846231,
+                    "firstImageNumber": 1,
+                    "numberImages": 240,
+                    "ordinal": 16
+                },
+                {
+                    "scanPositionStart": 39.39725678153769,
+                    "firstImageNumber": 241,
+                    "numberImages": 240,
+                    "ordinal": 18
+                },
+                {
+                    "scanPositionStart": 87.39725678153769,
+                    "firstImageNumber": 481,
+                    "numberImages": 240,
+                    "ordinal": 20
+                },
+                {
+                    "scanPositionStart": 135.3972567815377,
+                    "firstImageNumber": 721,
+                    "numberImages": 191,
+                    "ordinal": 22
+                }
+            ],
+            "fileType": "cbf",
+            "prefix": "4k61_G2B1",
+            "filenameTemplate": "4k61_G2B1_4_%04d.cbf",
+            "path": "/home/rhfogh/calc/mxcube_data/visitor/id2310424/mxcubetest/20240615/RAW_DATA/4k61/4k61_002/main",
+            "logisticalSampleRef": {
+                "$ref": "#/Crystal/Crystal1"
+            },
+            "sourceRef": {
+                "$ref": "#/MxExperiment/MxExperiment1"
+            }
+        },
+        "CollectionSweep7": {
+            "mxlimsType": "CollectionSweep",
+            "uuid": "34364db9-0d5f-44a8-aa5f-7da50ba99b5d",
+            "role": "Result",
+            "sweepType": "simple",
+            "exposureTime": 0.02,
+            "imageWidth": 0.2,
+            "overlap": 0.0,
+            "numberTriggers": 0,
+            "numberImagesPerTrigger": 0,
+            "energy": 12.41,
+            "transmission": 1.2585,
+            "resolution": 3.70003271512822,
+            "detectorRoiMode": "0",
+            "beamPosition": [
+                1565.715,
+                1718.812154
+            ],
+            "beamSize": [
+                0.01,
+                0.01
+            ],
+            "beamShape": "ellipse",
+            "axisPositionsStart": {
+                "omega": -8.60274321846231,
+                "kappa": 79.0418378173555,
+                "kappa_phi": -111.000816713894,
+                "detector_distance": 416.77
+            },
+            "axisPositionsEnd": {
+                "omega": 173.59725678153768
+            },
+            "scanAxis": "omega",
+            "scans": [
+                {
+                    "scanPositionStart": -8.60274321846231,
+                    "firstImageNumber": 1,
+                    "numberImages": 240,
+                    "ordinal": 17
+                },
+                {
+                    "scanPositionStart": 39.39725678153769,
+                    "firstImageNumber": 241,
+                    "numberImages": 240,
+                    "ordinal": 19
+                },
+                {
+                    "scanPositionStart": 87.39725678153769,
+                    "firstImageNumber": 481,
+                    "numberImages": 240,
+                    "ordinal": 21
+                },
+                {
+                    "scanPositionStart": 135.3972567815377,
+                    "firstImageNumber": 721,
+                    "numberImages": 191,
+                    "ordinal": 23
+                }
+            ],
+            "fileType": "cbf",
+            "prefix": "4k61_G2B2",
+            "filenameTemplate": "4k61_G2B2_4_%04d.cbf",
+            "path": "/home/rhfogh/calc/mxcube_data/visitor/id2310424/mxcubetest/20240615/RAW_DATA/4k61/4k61_002/main",
+            "logisticalSampleRef": {
+                "$ref": "#/Crystal/Crystal1"
+            },
+            "sourceRef": {
+                "$ref": "#/MxExperiment/MxExperiment1"
+            }
+        }
+    },
+    "Crystal": {
+        "Crystal1": {
+            "mxlimsType": "Crystal",
+            "uuid": "733ae6e4-174a-11f1-8bd5-c4474e33fb12",
+            "name": "matr1_6",
+            "sampleRef": {
+                "$ref": "#/MacromoleculeSample/MacromoleculeSample1"
+            }
+        }
+    },
+    "MacromoleculeSample": {
+        "MacromoleculeSample1": {
+            "mxlimsType": "MacromoleculeSample",
+            "uuid": "733ae39c-174a-11f1-8bd5-c4474e33fb12",
+            "name": "4k61"
+        }
+    },
+    "MxExperiment": {
+        "MxExperiment1": {
+            "mxlimsType": "MxExperiment",
+            "uuid": "3b5b8750-4f0c-44d2-bb09-bbf948ab0cda",
+            "extensions": {
+                "workflow.gphl.co": {
+                    "strategy_type": "phasing",
+                    "angular_tolerance": 1.0,
+                    "clip_kappa": 1.0,
+                    "maximum_chi": 48.0,
+                    "allow_duplicate_orientations": 0,
+                    "delphi_block": 4.8,
+                    "stratcal_step": 0.6,
+                    "variant": "basic",
+                    "experiment_strategy": "gphl.mad2wvl.basic"
+                }
+            },
+            "startTime": "2026-03-03T21:46:35.345325Z",
+            "endTime": "2026-03-03T22:06:45.340982Z",
+            "experimentStrategy": "gphl.mad2wvl.basic",
+            "expectedResolution": 1.7,
+            "radiationSensitivity": 1.0,
+            "snapshotCount": 0,
+            "measuredFlux": 117997871678.58223,
+            "radiationDose": 10.4967,
+            "expectedSpaceGroupName": "I4",
+            "expectedUnitCell": {
+                "a": 86.75,
+                "b": 86.75,
+                "c": 85.6276,
+                "alpha": 90.0,
+                "beta": 90.0,
+                "gamma": 90.0
+            },
+            "selectedSpaceGroupName": "I4",
+            "selectedUnitCell": {
+                "a": 86.75,
+                "b": 86.75,
+                "c": 85.6276,
+                "alpha": 90.0,
+                "beta": 90.0,
+                "gamma": 90.0
+            },
+            "logisticalSampleRef": {
+                "$ref": "#/Crystal/Crystal1"
+            },
+            "sampleRef": {
+                "$ref": "#/MacromoleculeSample/MacromoleculeSample1"
+            }
+        }
+    }
+}
