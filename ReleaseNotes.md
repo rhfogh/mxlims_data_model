@@ -1,3 +1,7 @@
+## Chnges in vcersion 0.6.13
+- Improved validation message for unevaluatedProperties errors
+- Upgraded VolumeScan handling to new model
+
 ## Changes in version 0.6.12
 - Refactored datatypes to put all enumerations into Enumerations.json
 - Reorganised test directories to support parallel testing of different versions

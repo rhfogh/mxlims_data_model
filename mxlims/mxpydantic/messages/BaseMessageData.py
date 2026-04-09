@@ -9,9 +9,9 @@ from mxlims.impl.MxlimsImplementation import BaseMessage
 from pydantic import Field, RootModel
 
 
-class Version(RootModel[Literal["0.6.12"]]):
-    root: Literal["0.6.12"] = Field(
-        "0.6.12", description="MXLIMS version for current model", title="Version"
+class Version(RootModel[Literal["0.6.13"]]):
+    root: Literal["0.6.13"] = Field(
+        "0.6.13", description="MXLIMS version for current model", title="Version"
     )
 
 
@@ -20,6 +20,6 @@ class BaseMessageData(BaseMessage):
     Base data object for all MXLIMS messages
     """
 
-    version: Literal["0.6.12"] = Field(
-        "0.6.12", description="MXLIMS version for current model", title="Version"
+    version: Literal["0.6.13"] = Field(
+        "0.6.13", description="MXLIMS version for current model", title="Version"
     )
