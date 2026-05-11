@@ -20,7 +20,7 @@ class MxExperimentData(BaseModel):
         alias="experimentStrategy",
         description="Experiment strategy indicator",
         examples=[
-            "OSC",
+            "Rotation",
             "Helical",
             "MXPressE",
             "GPhL.native.basic",

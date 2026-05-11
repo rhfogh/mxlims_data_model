@@ -9,7 +9,7 @@
             "type": "string",
             "description": "Experiment strategy indicator",
             "examples": [
-                "OSC",
+                "Rotation",
                 "Helical",
                 "MXPressE",
                 "GPhL.native.basic",
