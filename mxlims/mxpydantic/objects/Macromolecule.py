@@ -5,6 +5,7 @@ from __future__ import annotations
 from pydantic import ConfigDict, Field
 from typing import Literal, Union, TYPE_CHECKING
 from ..objects.Sample import Sample
+from uuid import UUID
 from ..data.MacromoleculeData import MacromoleculeData
 if TYPE_CHECKING:
     from .MacromoleculeSample import MacromoleculeSample

@@ -5,6 +5,7 @@ from __future__ import annotations
 from pydantic import ConfigDict, Field
 from typing import Literal, Union, TYPE_CHECKING
 from ..objects.LogisticalSample import LogisticalSample
+from uuid import UUID
 from ..data.MultiPinData import MultiPinData
 if TYPE_CHECKING:
     from .PinPosition import PinPosition
