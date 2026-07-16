@@ -1,3 +1,7 @@
+## Changes in version 0.6.14
+- Renamed 'OSC' to 'Rotation' in CollectionSweep
+- Renamed 'overlap' to 'offset' in CollectionSweep
+
 ## Changes in version 0.6.13
 - Improved validation message for unevaluatedProperties errors
 - Upgraded VolumeScan handling to new model

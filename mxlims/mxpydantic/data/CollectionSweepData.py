@@ -38,10 +38,10 @@ class CollectionSweepData(BaseModel):
         description="Number of images from start to end of sweep.Defines image numbering and final axis position. NB Only certain parts of the sweep may be acquired (see 'scans'),so the total number of images acquired may be less.",
         title="Number Images",
     )
-    overlap: float | None = Field(
+    offset: float | None = Field(
         None,
-        description="Overlap between successive images, in units of imageWidth. May be negative for non-contiguous images.",
-        title="Overlap",
+        description="Separation between successive images, in units of imageWidth. May be negative for overlapping images.",
+        title="Offset",
     )
     number_triggers: NonNegativeInt | None = Field(
         None,

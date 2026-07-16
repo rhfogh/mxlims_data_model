@@ -18,7 +18,7 @@ CollectionSweep.numberImages	int	Number of images from start to end of sweep.Def
 CollectionSweep.numberImagesPerTrigger	int	Number of images per trigger. Instruction to detector - does not modify effect of other parameters.,
 CollectionSweep.numberLines	int	Number of scanned lines used for mesh scans. Must divide numberImages,
 CollectionSweep.numberTriggers	int	Number of triggers. Instruction to detector - does not modify effect of other parameters.,
-CollectionSweep.overlap	float	Overlap between successive images, in units of imageWidth. May be negative for non-contiguous images.,
+CollectionSweep.offset	float	Separation between successive images, in units of imageWidth. May be negative for overlapping images.,
 CollectionSweep.path	str	Path to directory containing image files.,
 CollectionSweep.prefix	str	Input parameter - used to build the fine name template.,
 CollectionSweep.resolution	float	Resolution that the sweep was intended to measureFor offset or unusual detectors this may *not* determine the detector distanceThe actual detector distance can be found in axisPositionsStart,
