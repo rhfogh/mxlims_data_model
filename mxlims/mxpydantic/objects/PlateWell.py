@@ -5,6 +5,7 @@ from __future__ import annotations
 from pydantic import ConfigDict, Field
 from typing import Literal, Union, TYPE_CHECKING
 from ..objects.LogisticalSample import LogisticalSample
+from uuid import UUID
 from ..data.PlateWellData import PlateWellData
 if TYPE_CHECKING:
     from .CollectionSweep import CollectionSweep

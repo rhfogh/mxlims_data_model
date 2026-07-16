@@ -478,6 +478,7 @@ from __future__ import annotations
 from pydantic import {config_dict_str}Field
 from typing import Literal, Union, TYPE_CHECKING
 from ..objects.{corename} import {corename}
+from uuid import UUID
 from ..data.{classname}Data import {classname}Data
 """,
         ]
