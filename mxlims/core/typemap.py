@@ -69,7 +69,7 @@ typemap = {
     ('CollectionSweep', 'numberImagesPerTrigger'): int,
     ('CollectionSweep', 'numberLines'): int,
     ('CollectionSweep', 'numberTriggers'): int,
-    ('CollectionSweep', 'overlap'): float,
+    ('CollectionSweep', 'offset'): float,
     ('CollectionSweep', 'path'): str,
     ('CollectionSweep', 'prefix'): str,
     ('CollectionSweep', 'resolution'): float,
