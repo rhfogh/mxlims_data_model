@@ -1,6 +1,6 @@
 Field	Type	Description
 CollectionSweep.annotation	str	Comment or annotation,
-CollectionSweep.axisPositionsEnd	Dict[str, float]	Dictionary string:float with final position of scanned axes as for axisPositionsStart. scanAxis position is NOT given here, but is calculated from imageWidth, overlap, numberImages, and axisPositionsStartNB scans may be acquired out of order, so this determines the limits of the sweep, not the temporal start and end points,
+CollectionSweep.axisPositionsEnd	Dict[str, float]	Dictionary string:float with final position of scanned axes as for axisPositionsStart. scanAxis position is NOT given here, but is calculated from imageWidth, offset, numberImages, and axisPositionsStartNB scans may be acquired out of order, so this determines the limits of the sweep, not the temporal start and end points,
 CollectionSweep.axisPositionsStart	Dict[str, float]	Dictionary string:float with starting position of all axes, rotations or translations, including detector distance, by name. Units are mm for distances, degrees for angles NBNB do we use internal motor names (e.g. 'phi'), or std. names (e.g. 'omega')?,
 CollectionSweep.beamPosition	List[float]	x,y position of the beam on the detector in pixels,
 CollectionSweep.beamShape	str	Shape of the beam. NBNB Should be an enumeration,
