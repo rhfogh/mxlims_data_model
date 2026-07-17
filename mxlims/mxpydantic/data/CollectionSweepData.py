@@ -130,7 +130,7 @@ class CollectionSweepData(BaseModel):
     axis_positions_end: dict[str, float] | None = Field(
         None,
         alias="axisPositionsEnd",
-        description="Dictionary string:float with final position of scanned axes as for axisPositionsStart. scanAxis position is NOT given here, but is calculated from imageWidth, overlap, numberImages, and axisPositionsStartNB scans may be acquired out of order, so this determines the limits of the sweep, not the temporal start and end points",
+        description="Dictionary string:float with final position of scanned axes as for axisPositionsStart. scanAxis position is NOT given here, but is calculated from imageWidth, offset, numberImages, and axisPositionsStartNB scans may be acquired out of order, so this determines the limits of the sweep, not the temporal start and end points",
         title="Axis Positions End",
     )
     scan_axis: str | None = Field(
