@@ -74,7 +74,7 @@ class MxlimsImplementation(object):
 
     # 'backup' dummy attributes, to avoid warnings and compensate for the fact that
     # the attributes are defined in MxlimsObjectData,
-    # which we do nto want to import here to acvoid circularity
+    # which we do not want to import here to avoid circularity
     uuid = uuid.UUID(int=0)
     mxlims_base_type = "MxlimsObject"
 

@@ -387,7 +387,7 @@ class {classname}({classname}Data, MxlimsObject):
     """MXLIMS pydantic model class for {classname}
     """
 '''
-    )
+        )
         if objdict.get("noExtraProperties"):
             txtlist.append(f'''
     model_config = ConfigDict(
