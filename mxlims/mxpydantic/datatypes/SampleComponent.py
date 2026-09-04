@@ -48,7 +48,15 @@ class SampleComponent(BaseModel):
         description="Keyword-value dictionary string:string of site-specific object identifiers. The key must be a valid domain name pointing to the site 'owning' the extensions, but need not be resolvable.",
         title="Identifiers",
     )
-    urls: dict[str, HttpUrl] | None = Field(
+    urls: (
+        dict[
+            constr(
+                pattern=r"(?i)^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$"
+            ),
+            HttpUrl,
+        ]
+        | None
+    ) = Field(
         None,
         description="Keyword-value dictionary string:urlstring of site-specific object urls. The key must be a valid domain name pointing to the site 'owning' the extensions, but need not be resolvable.",
         title="Urls",

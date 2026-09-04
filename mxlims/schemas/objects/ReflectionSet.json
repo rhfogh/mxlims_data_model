@@ -15,6 +15,7 @@
     "properties": {
         "mxlimsType": {
             "const": "ReflectionSet",
+            "default": "ReflectionSet",
             "description": "Type of MXLIMS object linked to.",
             "title": "MxlimsType",
             "type": "string"

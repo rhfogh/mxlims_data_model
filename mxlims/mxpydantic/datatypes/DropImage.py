@@ -4,7 +4,7 @@
 from __future__ import annotations
 
 from mxlims.impl.MxlimsBase import BaseModel
-from pydantic import HttpUrl, AwareDatetime, Field
+from pydantic import HttpUrl, AwareDatetime, ConfigDict, Field
 
 from .Enumerations import ImageLightType, ImageMimeType
 
@@ -14,6 +14,9 @@ class DropImageData(BaseModel):
     An image of a crystallization drop.
     """
 
+    model_config = ConfigDict(
+        extra="forbid",
+    )
     mime_type: ImageMimeType = Field(
         ..., alias="mimeType", description="The MIME type of the image."
     )
@@ -33,6 +36,9 @@ class DropImageUrl(BaseModel):
     An image of a crystallization drop.
     """
 
+    model_config = ConfigDict(
+        extra="forbid",
+    )
     mime_type: ImageMimeType = Field(
         ..., alias="mimeType", description="The MIME type of the image."
     )

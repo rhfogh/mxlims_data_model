@@ -5,12 +5,12 @@ from __future__ import annotations
 
 from pydantic import Field, RootModel
 
-from ..objects.CollectionSweep import CollectionSweep
+from ..objects.CollectionSweep import CollectionSweep1, CollectionSweep2
 from ..objects.Crystal import Crystal
 from ..objects.Dewar import Dewar
 from ..objects.DropRegion import DropRegion
-from ..objects.Macromolecule import Macromolecule as Macromolecule_1
-from ..objects.MacromoleculeSample import MacromoleculeSample as MacromoleculeSample_1
+from ..objects.Macromolecule import Macromolecule
+from ..objects.MacromoleculeSample import MacromoleculeSample
 from ..objects.Medium import Medium
 from ..objects.MultiPin import MultiPin
 from ..objects.MxExperiment import MxExperiment
@@ -20,11 +20,278 @@ from ..objects.PinPosition import PinPosition
 from ..objects.Plate import Plate
 from ..objects.PlateWell import PlateWell
 from ..objects.Puck import Puck
-from ..objects.ReflectionSet import ReflectionSet
+from ..objects.ReflectionSet import ReflectionSet1, ReflectionSet2
 from ..objects.Shipment import Shipment
 from ..objects.VolumeScan import VolumeScan
 from ..objects.WellDrop import WellDrop
 from .BaseMessageData import BaseMessageData
+
+
+class PlateWells1(RootModel[dict[str, PlateWell]]):
+    """
+    idString:object dictionary of PlateWells.
+    """
+
+    root: dict[str, PlateWell] = Field(..., min_length=1)
+
+
+class Macromolecules(RootModel[dict[str, Macromolecule]]):
+    root: dict[str, Macromolecule] = Field(
+        ...,
+        description="idString:object dictionary of Macromolecule (reference sample) objects.",
+        min_length=1,
+        title="Macromolecules",
+    )
+
+
+class MacromoleculeSamples(RootModel[dict[str, MacromoleculeSample]]):
+    root: dict[str, MacromoleculeSample] = Field(
+        ...,
+        description="idString:object dictionary of Macromolecule-containing sample objects.",
+        min_length=1,
+        title="MacromoleculeSamples",
+    )
+
+
+class Media(RootModel[dict[str, Medium]]):
+    root: dict[str, Medium] = Field(
+        ...,
+        description="idString:object dictionary of Medium (sample) objects.",
+        min_length=1,
+        title="Media",
+    )
+
+
+class MultiPins(RootModel[dict[str, MultiPin]]):
+    root: dict[str, MultiPin] = Field(
+        ...,
+        description="idString:object dictionary of MultiPins.",
+        min_length=1,
+        title="MultiPins",
+    )
+
+
+class PlateWells(RootModel[dict[str, PlateWell]]):
+    root: dict[str, PlateWell] = Field(
+        ...,
+        description="idString:object dictionary of PlateWells.",
+        min_length=1,
+        title="PlateWells",
+    )
+
+
+class Macromolecules1(RootModel[dict[str, Macromolecule]]):
+    """
+    idString:object dictionary of Macromolecule (reference sample) objects.
+    """
+
+    root: dict[str, Macromolecule] = Field(..., min_length=1)
+
+
+class MacromoleculeSamples1(RootModel[dict[str, MacromoleculeSample]]):
+    """
+    idString:object dictionary of Macromolecule-containing sample objects.
+    """
+
+    root: dict[str, MacromoleculeSample] = Field(..., min_length=1)
+
+
+class MultiPins1(RootModel[dict[str, MultiPin]]):
+    """
+    idString:object dictionary of MultiPins.
+    """
+
+    root: dict[str, MultiPin] = Field(..., min_length=1)
+
+
+class Pins1(RootModel[dict[str, Pin]]):
+    """
+    idString:object dictionary of Pins.
+    """
+
+    root: dict[str, Pin] = Field(..., min_length=1)
+
+
+class PinPositions1(RootModel[dict[str, PinPosition]]):
+    """
+    idString:object dictionary of PinPositions.
+    """
+
+    root: dict[str, PinPosition] = Field(..., min_length=1)
+
+
+class Pucks1(RootModel[dict[str, Puck]]):
+    """
+    idString:object dictionary of Pucks.
+    """
+
+    root: dict[str, Puck] = Field(..., min_length=1)
+
+
+class WellDrops1(RootModel[dict[str, WellDrop]]):
+    """
+    idString:object dictionary of WellDrops.
+    """
+
+    root: dict[str, WellDrop] = Field(..., min_length=1)
+
+
+class CollectionSweeps(RootModel[dict[str, CollectionSweep1 | CollectionSweep2]]):
+    root: dict[str, CollectionSweep1 | CollectionSweep2] = Field(
+        ...,
+        description="idString:object dictionary of CollectionSweeps.",
+        min_length=1,
+        title="CollectionSweeps",
+    )
+
+
+class Crystals(RootModel[dict[str, Crystal]]):
+    root: dict[str, Crystal] = Field(
+        ...,
+        description="idString:object dictionary of Crystals.",
+        min_length=1,
+        title="Crystals",
+    )
+
+
+class Dewars(RootModel[dict[str, Dewar]]):
+    root: dict[str, Dewar] = Field(
+        ...,
+        description="idString:object dictionary of Dewars.",
+        min_length=1,
+        title="Dewars",
+    )
+
+
+class MxExperiments(RootModel[dict[str, MxExperiment]]):
+    root: dict[str, MxExperiment] = Field(
+        ...,
+        description="idString:object dictionary of MxExperiments.",
+        min_length=1,
+        title="MxExperiments",
+    )
+
+
+class MxProcessings(RootModel[dict[str, MxProcessing]]):
+    root: dict[str, MxProcessing] = Field(
+        ...,
+        description="idString:object dictionary of MxProcessings.",
+        min_length=1,
+        title="MxProcessings",
+    )
+
+
+class Pins(RootModel[dict[str, Pin]]):
+    root: dict[str, Pin] = Field(
+        ...,
+        description="idString:object dictionary of Pins.",
+        min_length=1,
+        title="Pins",
+    )
+
+
+class PinPositions(RootModel[dict[str, PinPosition]]):
+    root: dict[str, PinPosition] = Field(
+        ...,
+        description="idString:object dictionary of PinPositions.",
+        min_length=1,
+        title="PinPositions",
+    )
+
+
+class Pucks(RootModel[dict[str, Puck]]):
+    root: dict[str, Puck] = Field(
+        ...,
+        description="idString:object dictionary of Pucks.",
+        min_length=1,
+        title="Pucks",
+    )
+
+
+class VolumeScans(RootModel[dict[str, VolumeScan]]):
+    root: dict[str, VolumeScan] = Field(
+        ...,
+        description="idString:object dictionary of VolumeScans.",
+        min_length=1,
+        title="VolumeScans",
+    )
+
+
+class WellDrops(RootModel[dict[str, WellDrop]]):
+    root: dict[str, WellDrop] = Field(
+        ...,
+        description="idString:object dictionary of WellDrops.",
+        min_length=1,
+        title="WellDrops",
+    )
+
+
+class Crystals1(RootModel[dict[str, Crystal]]):
+    """
+    idString:object dictionary of Crystals.
+    """
+
+    root: dict[str, Crystal] = Field(..., min_length=1)
+
+
+class Dewars1(RootModel[dict[str, Dewar]]):
+    """
+    idString:object dictionary of Dewars.
+    """
+
+    root: dict[str, Dewar] = Field(..., min_length=1)
+
+
+class Plates1(RootModel[dict[str, Plate]]):
+    """
+    idString:object dictionary of Plates.
+    """
+
+    root: dict[str, Plate] = Field(..., min_length=1)
+
+
+class Shipments1(RootModel[dict[str, Shipment]]):
+    """
+    idString:object dictionary of Shipments.
+    """
+
+    root: dict[str, Shipment] = Field(..., min_length=1)
+
+
+class Plates(RootModel[dict[str, Plate]]):
+    root: dict[str, Plate] = Field(
+        ...,
+        description="idString:object dictionary of Plates.",
+        min_length=1,
+        title="Plates",
+    )
+
+
+class ReflectionSets(RootModel[dict[str, ReflectionSet1 | ReflectionSet2]]):
+    root: dict[str, ReflectionSet1 | ReflectionSet2] = Field(
+        ...,
+        description="idString:object dictionary of ReflectionSets.",
+        min_length=1,
+        title="ReflectionSets",
+    )
+
+
+class Shipments(RootModel[dict[str, Shipment]]):
+    root: dict[str, Shipment] = Field(
+        ...,
+        description="idString:object dictionary of Shipments.",
+        min_length=1,
+        title="Shipments",
+    )
+
+
+class DropRegions(RootModel[dict[str, DropRegion]]):
+    root: dict[str, DropRegion] = Field(
+        ...,
+        description="idString:object dictionary of DropRegions.",
+        min_length=1,
+        title="DropRegions",
+    )
 
 
 class MxlimsMessageStrict(BaseMessageData):
@@ -32,117 +299,125 @@ class MxlimsMessageStrict(BaseMessageData):
     Message containing all possible objects, by type
     """
 
-    collection_sweep: dict[str, CollectionSweep] | None = Field(
+    collection_sweep: CollectionSweeps | None = Field(
         default_factory=dict,
         alias="CollectionSweep",
         description="idString:object dictionary of CollectionSweeps.",
         title="CollectionSweeps",
     )
-    crystal: dict[str, Crystal] | None = Field(
+    crystal: Crystals | None = Field(
         default_factory=dict,
         alias="Crystal",
         description="idString:object dictionary of Crystals.",
         title="Crystals",
     )
-    dewar: dict[str, Dewar] | None = Field(
+    dewar: Dewars | None = Field(
         default_factory=dict,
         alias="Dewar",
         description="idString:object dictionary of Dewars.",
         title="Dewars",
     )
-    drop_region: dict[str, DropRegion] | None = Field(
+    drop_region: DropRegions | None = Field(
         default_factory=dict,
         alias="DropRegion",
         description="idString:object dictionary of DropRegions.",
         title="DropRegions",
     )
-    macromolecule: dict[str, Macromolecule_1] | None = Field(
+    macromolecule: Macromolecules | None = Field(
         default_factory=dict,
         alias="Macromolecule",
         description="idString:object dictionary of Macromolecule (reference sample) objects.",
-        title="Macromolecule",
+        title="Macromolecules",
     )
-    macromolecule_sample: dict[str, MacromoleculeSample_1] | None = Field(
+    macromolecule_sample: MacromoleculeSamples | None = Field(
         default_factory=dict,
         alias="MacromoleculeSample",
         description="idString:object dictionary of Macromolecule-containing sample objects.",
-        title="MacromoleculeSample",
+        title="MacromoleculeSamples",
     )
-    medium: dict[str, Medium] | None = Field(
+    medium: Media | None = Field(
         default_factory=dict,
         alias="Medium",
         description="idString:object dictionary of Medium (sample) objects.",
         title="Media",
     )
-    mx_experiment: dict[str, MxExperiment] | None = Field(
+    mx_experiment: MxExperiments | None = Field(
         default_factory=dict,
         alias="MxExperiment",
         description="idString:object dictionary of MxExperiments.",
         title="MxExperiments",
     )
-    mx_processing: dict[str, MxProcessing] | None = Field(
+    mx_processing: MxProcessings | None = Field(
         default_factory=dict,
         alias="MxProcessing",
         description="idString:object dictionary of MxProcessings.",
         title="MxProcessings",
     )
-    multi_pin: dict[str, MultiPin] | None = Field(
+    multi_pin: MultiPins | None = Field(
         default_factory=dict,
         alias="MultiPin",
         description="idString:object dictionary of MultiPins.",
         title="MultiPins",
     )
-    pin: dict[str, Pin] | None = Field(
+    pin: Pins | None = Field(
         default_factory=dict,
         alias="Pin",
         description="idString:object dictionary of Pins.",
         title="Pins",
     )
-    pin_position: dict[str, PinPosition] | None = Field(
+    pin_position: PinPositions | None = Field(
         default_factory=dict,
         alias="PinPosition",
         description="idString:object dictionary of PinPositions.",
         title="PinPositions",
     )
-    plate: dict[str, Plate] | None = Field(
+    plate: Plates | None = Field(
         default_factory=dict,
         alias="Plate",
         description="idString:object dictionary of Plates.",
         title="Plates",
     )
-    plate_well: dict[str, PlateWell] | None = Field(
+    plate_well: PlateWells | None = Field(
         default_factory=dict,
         alias="PlateWell",
         description="idString:object dictionary of PlateWells.",
         title="PlateWells",
     )
-    puck: dict[str, Puck] | None = Field(
+    puck: Pucks | None = Field(
         default_factory=dict,
         alias="Puck",
         description="idString:object dictionary of Pucks.",
         title="Pucks",
     )
-    reflection_set: dict[str, ReflectionSet] | None = Field(
+    reflection_set: ReflectionSets | None = Field(
         default_factory=dict,
         alias="ReflectionSet",
         description="idString:object dictionary of ReflectionSets.",
         title="ReflectionSets",
     )
-    shipment: dict[str, Shipment] | None = Field(
+    shipment: Shipments | None = Field(
         default_factory=dict,
         alias="Shipment",
         description="idString:object dictionary of Shipments.",
         title="Shipments",
     )
-    volume_scan: dict[str, VolumeScan] | None = Field(
+    volume_scan: VolumeScans | None = Field(
         default_factory=dict,
         alias="VolumeScan",
         description="idString:object dictionary of VolumeScans.",
         title="VolumeScans",
     )
-    well_drop: dict[str, WellDrop] | None = Field(
+    well_drop: WellDrops | None = Field(
         default_factory=dict,
         alias="WellDrop",
         description="idString:object dictionary of WellDrops.",
         title="WellDrops",
     )
+
+
+class DropRegions1(RootModel[dict[str, DropRegion]]):
+    """
+    idString:object dictionary of DropRegions.
+    """
+
+    root: dict[str, DropRegion] = Field(..., min_length=1)

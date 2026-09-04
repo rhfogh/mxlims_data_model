@@ -109,6 +109,10 @@ def generate_mxlims(dirname: str | None = None) -> None :
         "--use-one-literal-as-default",
         "--use-non-positive-negative-number-constrained-types",
         "--collapse-root-models",
+        # "--collapse-root-models-name-strategy",
+        # "parent",
+        # "--use-root-model-type-alias",
+        # "--use-type-alias",
         "--input",
         "mxlims/schemas",
         "--output",
@@ -169,6 +173,7 @@ def generate_message_classes(mxlims_dir: Path) -> None:
     :param mxlims_dir:
     :return:
     """
+    emptyfield = ": Any | None = Field("
     input_dir = mxlims_dir / "mxlims" / "mxpydantic" / "messages"
     for fp0 in input_dir.iterdir():
         if fp0.is_file():
@@ -181,12 +186,23 @@ def generate_message_classes(mxlims_dir: Path) -> None:
             text = text.replace("None,", "default_factory=dict,")
             if "LogisticalSampleData" in text and "PlateWell" in text:
                 print (
-                    "WARNING - HACK - to compensate for code generator bug!")
+                    "WARNING - HACK - to compensate for code generator bug!"
+                )
                 print (
                     "replacing 'LogisticalSampleData' with 'PlateWell' in %s.py"
                     % classname
                 )
                 text = text.replace("LogisticalSampleData","PlateWell")
+            if emptyfield in text:
+                print (
+                    "WARNING - HACK. Removing disallowed fields from %s.py" % classname
+                )
+                lines = text.splitlines()
+                for iii, txt in enumerate(lines):
+                    if emptyfield in txt:
+                        lines[iii] = txt.replace("    ", "    # ", 1)
+                text = "\n".join(lines)
+
             fp0.write_text(text)
 
 def extract_object_schemas(schema_dir: Path) -> dict:
@@ -778,7 +794,8 @@ def make_json_references(output_dir: Path, object_dicts:dict[str,dict]):
             "description": "The type of the MXLIMS object referred to.",
             "title": "MxlimsType",
             "type": "string",
-            "const": "{classname}"
+            "const": "{classname}",
+            "default": "{classname}"
         }},
         "$ref": {{
             "description": "JSON reference to object in std. message, using uuid-based links.",

@@ -7,6 +7,7 @@
     "properties": {
         "regionType": {
             "const": "rectangle",
+            "default": "rectangle",
             "description": "Type of region",
             "type": "string"
         },

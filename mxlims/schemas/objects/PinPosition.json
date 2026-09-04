@@ -15,6 +15,7 @@
     "properties": {
         "mxlimsType": {
             "const": "PinPosition",
+            "default": "PinPosition",
             "description": "The type of MXLIMS object.",
             "title": "MxlimsType",
             "type": "string"

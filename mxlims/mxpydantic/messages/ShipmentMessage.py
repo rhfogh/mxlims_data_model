@@ -3,43 +3,106 @@
 
 from __future__ import annotations
 
-from pydantic import Field
+from typing import Any
 
-from ..objects import (
-    Crystal,
-    Dewar,
-    DropRegion,
-    Macromolecule,
-    MacromoleculeSample,
-    MultiPin,
-    Pin,
-    PinPosition,
-    Plate,
-    PlateWell,
-    Puck,
-    Shipment,
-    WellDrop,
-)
+from pydantic import ConfigDict, Field, RootModel
+
 from .BaseMessageData import BaseMessageData
+from .MxlimsMessageStrict import (
+    Crystals1,
+    Dewars1,
+    DropRegions1,
+    Macromolecules1,
+    MacromoleculeSamples1,
+    MultiPins1,
+    PinPositions1,
+    Pins1,
+    Plates1,
+    PlateWells1,
+    Pucks1,
+    Shipments1,
+    WellDrops1,
+)
 
 
-class ShipmentMessage(BaseMessageData):
+class PinShipment(BaseMessageData):
     """
     Message containing a shipment of either frozen crystals or crystallization plates
     """
 
-    shipment: dict[str, Shipment] = Field(..., alias="Shipment")
-    plate: dict[str, Plate] | None = Field(default_factory=dict, alias="Plate")
-    plate_well: dict[str, PlateWell] | None = Field(default_factory=dict, alias="PlateWell")
-    well_drop: dict[str, WellDrop] | None = Field(default_factory=dict, alias="WellDrop")
-    drop_region: dict[str, DropRegion] | None = Field(default_factory=dict, alias="DropRegion")
-    dewar: dict[str, Dewar] | None = Field(default_factory=dict, alias="Dewar")
-    puck: dict[str, Puck] | None = Field(default_factory=dict, alias="Puck")
-    multi_pin: dict[str, MultiPin] | None = Field(default_factory=dict, alias="MultiPin")
-    pin: dict[str, Pin] | None = Field(default_factory=dict, alias="Pin")
-    pin_position: dict[str, PinPosition] | None = Field(default_factory=dict, alias="PinPosition")
-    macromolecule_sample: dict[str, MacromoleculeSample_1] = Field(
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    shipment: Shipments1 = Field(..., alias="Shipment")
+    # plate: Any | None = Field(default_factory=dict, alias="Plate")
+    # plate_well: Any | None = Field(default_factory=dict, alias="PlateWell")
+    # well_drop: Any | None = Field(default_factory=dict, alias="WellDrop")
+    # drop_region: Any | None = Field(default_factory=dict, alias="DropRegion")
+    dewar: Dewars1 = Field(..., alias="Dewar")
+    puck: Pucks1 = Field(..., alias="Puck")
+    # multi_pin: Any | None = Field(default_factory=dict, alias="MultiPin")
+    pin: Pins1 = Field(..., alias="Pin")
+    # pin_position: Any | None = Field(default_factory=dict, alias="PinPosition")
+    macromolecule_sample: MacromoleculeSamples1 = Field(
         ..., alias="MacromoleculeSample"
     )
-    macromolecule: dict[str, Macromolecule_1] = Field(..., alias="Macromolecule")
-    crystal: dict[str, Crystal] | None = Field(default_factory=dict, alias="Crystal")
+    macromolecule: Macromolecules1 = Field(..., alias="Macromolecule")
+    crystal: Crystals1 | None = Field(default_factory=dict, alias="Crystal")
+
+
+class MultiPinShipment(BaseMessageData):
+    """
+    Message containing a shipment of either frozen crystals or crystallization plates
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    shipment: Shipments1 = Field(..., alias="Shipment")
+    # plate: Any | None = Field(default_factory=dict, alias="Plate")
+    # plate_well: Any | None = Field(default_factory=dict, alias="PlateWell")
+    # well_drop: Any | None = Field(default_factory=dict, alias="WellDrop")
+    # drop_region: Any | None = Field(default_factory=dict, alias="DropRegion")
+    dewar: Dewars1 = Field(..., alias="Dewar")
+    puck: Pucks1 = Field(..., alias="Puck")
+    multi_pin: MultiPins1 = Field(..., alias="MultiPin")
+    # pin: Any | None = Field(default_factory=dict, alias="Pin")
+    pin_position: PinPositions1 = Field(..., alias="PinPosition")
+    macromolecule_sample: MacromoleculeSamples1 = Field(
+        ..., alias="MacromoleculeSample"
+    )
+    macromolecule: Macromolecules1 = Field(..., alias="Macromolecule")
+    crystal: Crystals1 | None = Field(default_factory=dict, alias="Crystal")
+
+
+class PlateShipment(BaseMessageData):
+    """
+    Message containing a shipment of either frozen crystals or crystallization plates
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    shipment: Shipments1 = Field(..., alias="Shipment")
+    plate: Plates1 = Field(..., alias="Plate")
+    plate_well: PlateWells1 = Field(..., alias="PlateWell")
+    well_drop: WellDrops1 = Field(..., alias="WellDrop")
+    drop_region: DropRegions1 = Field(..., alias="DropRegion")
+    # dewar: Any | None = Field(default_factory=dict, alias="Dewar")
+    # puck: Any | None = Field(default_factory=dict, alias="Puck")
+    # multi_pin: Any | None = Field(default_factory=dict, alias="MultiPin")
+    # pin: Any | None = Field(default_factory=dict, alias="Pin")
+    # pin_position: Any | None = Field(default_factory=dict, alias="PinPosition")
+    macromolecule_sample: MacromoleculeSamples1 = Field(
+        ..., alias="MacromoleculeSample"
+    )
+    macromolecule: Macromolecules1 = Field(..., alias="Macromolecule")
+    crystal: Crystals1 = Field(..., alias="Crystal")
+
+
+class ShipmentMessage(RootModel[PinShipment | MultiPinShipment | PlateShipment]):
+    root: PinShipment | MultiPinShipment | PlateShipment = Field(
+        ...,
+        description="Message containing a shipment of either frozen crystals or crystallization plates",
+        title="ShipmentMessage",
+    )

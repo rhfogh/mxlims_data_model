@@ -4,14 +4,7 @@
 from __future__ import annotations
 
 from mxlims.impl.MxlimsBase import BaseModel
-from pydantic import (
-    Field,
-    NonNegativeInt,
-    PositiveFloat,
-    PositiveInt,
-    RootModel,
-    confloat,
-)
+from pydantic import Field, NonNegativeInt, PositiveFloat, PositiveInt, confloat
 
 from ..datatypes.Scan import Scan
 
@@ -140,7 +133,7 @@ class CollectionSweepData(BaseModel):
         description="Dictionary string:float with final position of scanned axes as for axisPositionsStart. scanAxis position is NOT given here, but is calculated from imageWidth, offset, numberImages, and axisPositionsStartNB scans may be acquired out of order, so this determines the limits of the sweep, not the temporal start and end points",
         title="Axis Positions End",
     )
-    scan_axis: str | None = Field(
+    scan_axis: str = Field(
         "omega",
         alias="scanAxis",
         description="Name of main scanned axis. Other axes may be scanned in parallel.For mesh scans name of fastest scanned axis",
