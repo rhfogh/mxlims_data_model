@@ -130,13 +130,6 @@ def generate_mxlims(dirname: str | None = None) -> None :
         print(exc.stdout.decode())
         raise
 
-    # # Temporary HACK
-    # # TBD replace with fully generated core classes
-    # jobfile = mxlims_dir / "mxlims" / "mxpydantic" / "core" / "Job.py"
-    # text = jobfile.read_text()
-    # text = text.replace("...", "default_factory=list")
-    # jobfile.write_text(text)
-
     # Generate final Pydantic objects
     pydantic_dir = mxlims_dir / "mxlims" / "mxpydantic"
     for fp0 in (pydantic_dir / "objects").iterdir():
@@ -193,6 +186,25 @@ def generate_message_classes(mxlims_dir: Path) -> None:
                     % classname
                 )
                 text = text.replace("LogisticalSampleData","PlateWell")
+            if "ReflectionSet1" in text:
+                print (
+                    "WARNING - HACK. Removing import bug for ReflectionSet from %s.py"
+                    % classname
+                )
+                text = text.replace("ReflectionSet1, ReflectionSet2","ReflectionSet")
+                text = text.replace("ReflectionSet1 | ReflectionSet2","ReflectionSet")
+            if "CollectionSweep1" in text:
+                print (
+                    "WARNING - HACK. Removing import bug for CollectionSweep from %s.py"
+                    % classname
+                )
+                text = text.replace(
+                    "CollectionSweep1, CollectionSweep2","CollectionSweep"
+                )
+                text = text.replace(
+                    "CollectionSweep1 | CollectionSweep2","CollectionSweep"
+                )
+
             if emptyfield in text:
                 print (
                     "WARNING - HACK. Removing disallowed fields from %s.py" % classname
