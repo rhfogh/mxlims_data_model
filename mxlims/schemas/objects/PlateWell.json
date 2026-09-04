@@ -15,6 +15,7 @@
     "properties": {
         "mxlimsType": {
             "const": "PlateWell",
+            "default": "PlateWell",
             "description": "The type of MXLIMS object.",
             "title": "MxlimsType",
             "type": "string"

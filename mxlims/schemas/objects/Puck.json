@@ -15,6 +15,7 @@
     "properties": {
         "mxlimsType": {
             "const": "Puck",
+            "default": "Puck",
             "description": "The type of MXLIMS object.",
             "title": "MxlimsType",
             "type": "string"

@@ -15,6 +15,7 @@
     "properties": {
         "mxlimsType": {
             "const": "WellDrop",
+            "default": "WellDrop",
             "description": "The type of MXLIMS object.",
             "title": "MxlimsType",
             "type": "string"

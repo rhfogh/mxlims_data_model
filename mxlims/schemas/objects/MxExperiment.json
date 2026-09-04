@@ -15,6 +15,7 @@
     "properties": {
         "mxlimsType": {
             "const": "MxExperiment",
+            "default": "MxExperiment",
             "description": "The type of MXLIMS object.",
             "title": "MxlimsType",
             "type": "string"

@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from pydantic import Field
+from pydantic import ConfigDict, Field, RootModel
 
 from ..datatypes.DatasetStub import DatasetStub
 from ..datatypes.JobStub import JobStub
@@ -12,30 +12,69 @@ from ..datatypes.SampleStub import SampleStub
 from .MxlimsMessageStrict import MxlimsMessageStrict
 
 
+class Datasets(RootModel[dict[str, DatasetStub]]):
+    root: dict[str, DatasetStub] = Field(
+        ...,
+        description="idString:object dictionary of Dataset stubs.",
+        min_length=1,
+        title="Datasets",
+    )
+
+
+class Jobs(RootModel[dict[str, JobStub]]):
+    root: dict[str, JobStub] = Field(
+        ...,
+        description="idString:object dictionary of Job stubs.",
+        min_length=1,
+        title="Jobs",
+    )
+
+
+class LogisticalSamples(RootModel[dict[str, LogisticalSampleStub]]):
+    root: dict[str, LogisticalSampleStub] = Field(
+        ...,
+        description="idString:object dictionary of LogisticalSample stubs.",
+        min_length=1,
+        title="LogisticalSamples",
+    )
+
+
+class Samples(RootModel[dict[str, SampleStub]]):
+    root: dict[str, SampleStub] = Field(
+        ...,
+        description="idString:object dictionary of Sample stubs.",
+        min_length=1,
+        title="Samples",
+    )
+
+
 class MxlimsMessage(MxlimsMessageStrict):
     """
     Message containing all possible objects, by type
     """
 
-    dataset: dict[str, DatasetStub] | None = Field(
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    dataset: Datasets | None = Field(
         default_factory=dict,
         alias="Dataset",
         description="idString:object dictionary of Dataset stubs.",
         title="Datasets",
     )
-    job: dict[str, JobStub] | None = Field(
+    job: Jobs | None = Field(
         default_factory=dict,
         alias="Job",
         description="idString:object dictionary of Job stubs.",
         title="Jobs",
     )
-    logistical_sample: dict[str, LogisticalSampleStub] | None = Field(
+    logistical_sample: LogisticalSamples | None = Field(
         default_factory=dict,
         alias="LogisticalSample",
         description="idString:object dictionary of LogisticalSample stubs.",
         title="LogisticalSamples",
     )
-    sample: dict[str, SampleStub] | None = Field(
+    sample: Samples | None = Field(
         default_factory=dict,
         alias="Sample",
         description="idString:object dictionary of Sample stubs.",

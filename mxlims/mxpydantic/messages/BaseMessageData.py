@@ -6,7 +6,13 @@ from __future__ import annotations
 from typing import Literal
 
 from mxlims.impl.MxlimsImplementation import BaseMessage
-from pydantic import Field
+from pydantic import Field, RootModel
+
+
+class Version(RootModel[Literal["0.6.14"]]):
+    root: Literal["0.6.14"] = Field(
+        "0.6.14", description="MXLIMS version for current model", title="Version"
+    )
 
 
 class BaseMessageData(BaseMessage):

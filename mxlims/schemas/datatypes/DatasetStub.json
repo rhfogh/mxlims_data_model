@@ -6,10 +6,11 @@
     "type": "object",
     "properties": {
         "mxlimsBaseType": {
+            "const": "Dataset",
+            "default": "Dataset",
             "description": "The type of the MXLIMS core object referred to",
             "title": "MxlimsBaseType",
-            "type": "string",
-            "const": "Dataset"
+            "type": "string"
         },
         "uuid": {
             "description": "Permanent unique identifier string of object referred to",

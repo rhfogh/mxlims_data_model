@@ -9,7 +9,8 @@
             "description": "The type of the MXLIMS object referred to.",
             "title": "MxlimsType",
             "type": "string",
-            "const": "Shipment"
+            "const": "Shipment",
+            "default": "Shipment"
         },
         "$ref": {
             "description": "JSON reference to object in std. message, using uuid-based links.",

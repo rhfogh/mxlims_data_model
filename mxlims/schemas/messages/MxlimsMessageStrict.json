@@ -48,7 +48,7 @@
         },
         "Macromolecule": {
             "description": "idString:object dictionary of Macromolecule (reference sample) objects.",
-            "title": "Macromolecule",
+            "title": "Macromolecules",
             "type": "object",
             "minProperties": 1,
             "additionalProperties": {
@@ -57,7 +57,7 @@
         },
         "MacromoleculeSample": {
             "description": "idString:object dictionary of Macromolecule-containing sample objects.",
-            "title": "MacromoleculeSample",
+            "title": "MacromoleculeSamples",
             "type": "object",
             "minProperties": 1,
             "additionalProperties": {
