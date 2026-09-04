@@ -12,7 +12,7 @@ if TYPE_CHECKING:
     from .MultiPin import MultiPin
     from .Pin import Pin
 
-class Puck(PuckData, LogisticalSample):
+class Puck(LogisticalSample, PuckData):
     """MXLIMS pydantic model class for Puck
     """
         

@@ -4,7 +4,14 @@
 from __future__ import annotations
 
 from mxlims.impl.MxlimsBase import BaseModel
-from pydantic import Field, NonNegativeInt, PositiveFloat, PositiveInt, confloat
+from pydantic import (
+    Field,
+    NonNegativeInt,
+    PositiveFloat,
+    PositiveInt,
+    RootModel,
+    confloat,
+)
 
 from ..datatypes.Enumerations import (
     PdbxSignalType,

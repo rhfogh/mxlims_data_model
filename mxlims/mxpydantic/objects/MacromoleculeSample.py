@@ -20,7 +20,7 @@ if TYPE_CHECKING:
     from .VolumeScan import VolumeScan
     from .WellDrop import WellDrop
 
-class MacromoleculeSample(MacromoleculeSampleData, Sample):
+class MacromoleculeSample(Sample, MacromoleculeSampleData):
     """MXLIMS pydantic model class for MacromoleculeSample
     """
         

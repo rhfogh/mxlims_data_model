@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from pydantic import ConfigDict, Field
+from pydantic import Field
 
 from ..datatypes.DatasetStub import DatasetStub
 from ..datatypes.JobStub import JobStub
@@ -17,9 +17,6 @@ class MxlimsMessage(MxlimsMessageStrict):
     Message containing all possible objects, by type
     """
 
-    model_config = ConfigDict(
-        extra="forbid",
-    )
     dataset: dict[str, DatasetStub] | None = Field(
         default_factory=dict,
         alias="Dataset",

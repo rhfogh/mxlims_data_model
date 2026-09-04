@@ -3,21 +3,23 @@
 
 from __future__ import annotations
 
-from pydantic import ConfigDict, Field
+from pydantic import Field
 
-from ..objects.Crystal import Crystal
-from ..objects.Dewar import Dewar
-from ..objects.DropRegion import DropRegion
-from ..objects.Macromolecule import Macromolecule as Macromolecule_1
-from ..objects.MacromoleculeSample import MacromoleculeSample as MacromoleculeSample_1
-from ..objects.MultiPin import MultiPin
-from ..objects.Pin import Pin
-from ..objects.PinPosition import PinPosition
-from ..objects.Plate import Plate
-from ..objects.PlateWell import PlateWell
-from ..objects.Puck import Puck
-from ..objects.Shipment import Shipment
-from ..objects.WellDrop import WellDrop
+from ..objects import (
+    Crystal,
+    Dewar,
+    DropRegion,
+    Macromolecule,
+    MacromoleculeSample,
+    MultiPin,
+    Pin,
+    PinPosition,
+    Plate,
+    PlateWell,
+    Puck,
+    Shipment,
+    WellDrop,
+)
 from .BaseMessageData import BaseMessageData
 
 
@@ -26,9 +28,6 @@ class ShipmentMessage(BaseMessageData):
     Message containing a shipment of either frozen crystals or crystallization plates
     """
 
-    model_config = ConfigDict(
-        extra="forbid",
-    )
     shipment: dict[str, Shipment] = Field(..., alias="Shipment")
     plate: dict[str, Plate] | None = Field(default_factory=dict, alias="Plate")
     plate_well: dict[str, PlateWell] | None = Field(default_factory=dict, alias="PlateWell")

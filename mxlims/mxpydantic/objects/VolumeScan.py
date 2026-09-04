@@ -18,7 +18,7 @@ if TYPE_CHECKING:
     from .PlateWell import PlateWell
     from .WellDrop import WellDrop
 
-class VolumeScan(VolumeScanData, Job):
+class VolumeScan(Job, VolumeScanData):
     """MXLIMS pydantic model class for VolumeScan
     """
         

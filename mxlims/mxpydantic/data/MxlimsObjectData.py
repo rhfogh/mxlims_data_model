@@ -30,15 +30,7 @@ class MxlimsObjectData(BaseModel):
     uuid: UUID | None = Field(
         None, description="Permanent unique identifier string", title="Uuid"
     )
-    extensions: (
-        dict[
-            constr(
-                pattern=r"(?i)^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$"
-            ),
-            dict[str, Any],
-        ]
-        | None
-    ) = Field(
+    extensions: dict[str, dict[str, Any]] | None = Field(
         None,
         description="Keyword-value dictionary string:object of extensions. The key must be a valid domain name pointing to the site 'owning' the extensions, but need not be resolvable.",
         title="Extensions",
@@ -56,15 +48,7 @@ class MxlimsObjectData(BaseModel):
         description="Keyword-value dictionary string:string of site-specific object identifiers. The key must be a valid domain name pointing to the site 'owning' the extensions, but need not be resolvable.",
         title="Identifiers",
     )
-    urls: (
-        dict[
-            constr(
-                pattern=r"(?i)^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$"
-            ),
-            HttpUrl,
-        ]
-        | None
-    ) = Field(
+    urls: dict[str, HttpUrl] | None = Field(
         None,
         description="Keyword-value dictionary string:urlstring of site-specific object urls. The key must be a valid domain name pointing to the site 'owning' the extensions, but need not be resolvable.",
         title="Urls",

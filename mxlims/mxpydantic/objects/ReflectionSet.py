@@ -17,7 +17,7 @@ if TYPE_CHECKING:
     from .PlateWell import PlateWell
     from .WellDrop import WellDrop
 
-class ReflectionSet(ReflectionSetData, Dataset):
+class ReflectionSet(Dataset, ReflectionSetData):
     """MXLIMS pydantic model class for ReflectionSet
     """
         

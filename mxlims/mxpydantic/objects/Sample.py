@@ -11,7 +11,7 @@ if TYPE_CHECKING:
     from .Job import Job
     from .LogisticalSample import LogisticalSample
 
-class Sample(SampleData, MxlimsObject):
+class Sample(MxlimsObject, SampleData):
     """MXLIMS pydantic model class for Sample
     """
 

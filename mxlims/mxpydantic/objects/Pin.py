@@ -17,7 +17,7 @@ if TYPE_CHECKING:
     from .ReflectionSet import ReflectionSet
     from .VolumeScan import VolumeScan
 
-class Pin(PinData, LogisticalSample):
+class Pin(LogisticalSample, PinData):
     """MXLIMS pydantic model class for Pin
     """
         

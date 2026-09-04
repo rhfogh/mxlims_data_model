@@ -11,7 +11,7 @@ if TYPE_CHECKING:
     from .Puck import Puck
     from .Shipment import Shipment
 
-class Dewar(DewarData, LogisticalSample):
+class Dewar(LogisticalSample, DewarData):
     """MXLIMS pydantic model class for Dewar
     """
         

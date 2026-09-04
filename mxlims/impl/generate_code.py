@@ -96,6 +96,8 @@ def generate_mxlims(dirname: str | None = None) -> None :
         "--disable-timestamp",
         "--use-default",
         # "--use-annotated",
+        "--use-union-operator",
+        "--use-standard-collections",
         "--target-python-version",
         "3.10",
         "--snake-case-field",
@@ -383,7 +385,7 @@ from ..data.{classname}Data import {classname}Data
                 txtlist.append("    from typing_extensions import Self\n")
 
         txtlist.append(f'''
-class {classname}({classname}Data, MxlimsObject):
+class {classname}(MxlimsObject, {classname}Data):
     """MXLIMS pydantic model class for {classname}
     """
 '''
@@ -495,7 +497,7 @@ from ..data.{classname}Data import {classname}Data
 
         # Add class definition
         txtlist.append(f'''
-class {classname}({classname}Data, {corename}):
+class {classname}({corename}, {classname}Data):
     """MXLIMS pydantic model class for {classname}
     """
         

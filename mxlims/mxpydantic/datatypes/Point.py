@@ -6,13 +6,7 @@ from __future__ import annotations
 from typing import Literal
 
 from mxlims.impl.MxlimsBase import BaseModel
-from pydantic import ConfigDict, Field, RootModel
-
-
-class RegionType(RootModel[Literal["point"]]):
-    root: Literal["point"] = Field(
-        "point", description="Type of region", title="Region type"
-    )
+from pydantic import ConfigDict, Field
 
 
 class Point(BaseModel):

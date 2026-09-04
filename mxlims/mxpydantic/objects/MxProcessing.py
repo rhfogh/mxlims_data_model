@@ -18,7 +18,7 @@ if TYPE_CHECKING:
     from .ReflectionSet import ReflectionSet
     from .WellDrop import WellDrop
 
-class MxProcessing(MxProcessingData, Job):
+class MxProcessing(Job, MxProcessingData):
     """MXLIMS pydantic model class for MxProcessing
     """
         

@@ -7,15 +7,7 @@ from typing import Literal
 from uuid import UUID
 
 from mxlims.impl.MxlimsBase import BaseModel
-from pydantic import ConfigDict, Field, RootModel
-
-
-class MxlimsBaseType(RootModel[Literal["Sample"]]):
-    root: Literal["Sample"] = Field(
-        "Sample",
-        description="The type of the MXLIMS core object referred to",
-        title="MxlimsBaseType",
-    )
+from pydantic import ConfigDict, Field
 
 
 class SampleStub(BaseModel):

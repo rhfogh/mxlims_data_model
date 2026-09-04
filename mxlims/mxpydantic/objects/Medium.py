@@ -10,7 +10,7 @@ from ..data.MediumData import MediumData
 if TYPE_CHECKING:
     from .MacromoleculeSample import MacromoleculeSample
 
-class Medium(MediumData, Sample):
+class Medium(Sample, MediumData):
     """MXLIMS pydantic model class for Medium
     """
         

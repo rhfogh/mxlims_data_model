@@ -10,7 +10,7 @@ from ..data.MacromoleculeData import MacromoleculeData
 if TYPE_CHECKING:
     from .MacromoleculeSample import MacromoleculeSample
 
-class Macromolecule(MacromoleculeData, Sample):
+class Macromolecule(Sample, MacromoleculeData):
     """MXLIMS pydantic model class for Macromolecule
     """
         

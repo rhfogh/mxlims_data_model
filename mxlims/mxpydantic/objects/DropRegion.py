@@ -17,7 +17,7 @@ if TYPE_CHECKING:
     from .VolumeScan import VolumeScan
     from .WellDrop import WellDrop
 
-class DropRegion(DropRegionData, LogisticalSample):
+class DropRegion(LogisticalSample, DropRegionData):
     """MXLIMS pydantic model class for DropRegion
     """
         

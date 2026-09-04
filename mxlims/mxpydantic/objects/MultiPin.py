@@ -11,7 +11,7 @@ if TYPE_CHECKING:
     from .PinPosition import PinPosition
     from .Puck import Puck
 
-class MultiPin(MultiPinData, LogisticalSample):
+class MultiPin(LogisticalSample, MultiPinData):
     """MXLIMS pydantic model class for MultiPin
     """
         
