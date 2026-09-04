@@ -18,7 +18,7 @@ if TYPE_CHECKING:
     from .VolumeScan import VolumeScan
     from .WellDrop import WellDrop
 
-class CollectionSweep(CollectionSweepData, Dataset):
+class CollectionSweep(Dataset, CollectionSweepData):
     """MXLIMS pydantic model class for CollectionSweep
     """
         

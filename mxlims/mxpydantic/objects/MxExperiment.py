@@ -19,7 +19,7 @@ if TYPE_CHECKING:
     from .VolumeScan import VolumeScan
     from .WellDrop import WellDrop
 
-class MxExperiment(MxExperimentData, Job):
+class MxExperiment(Job, MxExperimentData):
     """MXLIMS pydantic model class for MxExperiment
     """
         

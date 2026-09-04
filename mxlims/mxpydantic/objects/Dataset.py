@@ -12,7 +12,7 @@ if TYPE_CHECKING:
     from .LogisticalSample import LogisticalSample
     from typing_extensions import Self
 
-class Dataset(DatasetData, MxlimsObject):
+class Dataset(MxlimsObject, DatasetData):
     """MXLIMS pydantic model class for Dataset
     """
 

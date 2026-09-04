@@ -6,8 +6,8 @@ from __future__ import annotations
 from mxlims.impl.MxlimsBase import BaseModel
 from pydantic import ConfigDict, Field
 
+from . import DropImage
 from .Circle import Circle
-from .DropImage import DropImageData, DropImageUrl
 from .Enumerations import ImageRegionUnit
 from .Line import Line
 from .Point import Point
@@ -24,7 +24,7 @@ class ImageRegion(BaseModel):
         extra="forbid",
     )
     region: Point | Circle | Line | Rectangle | Polygon
-    image: DropImageData | DropImageUrl = Field(
+    image: DropImage.DropImageData | DropImage.DropImageUrl = Field(
         ..., description="An image of a crystallization drop.", title="DropImage"
     )
     units: ImageRegionUnit = Field(

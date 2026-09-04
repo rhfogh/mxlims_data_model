@@ -18,7 +18,7 @@ if TYPE_CHECKING:
     from .ReflectionSet import ReflectionSet
     from .VolumeScan import VolumeScan
 
-class Crystal(CrystalData, LogisticalSample):
+class Crystal(LogisticalSample, CrystalData):
     """MXLIMS pydantic model class for Crystal
     """
         

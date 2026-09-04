@@ -75,19 +75,24 @@ class MxlimsImplementation(object):
     # 'backup' dummy attributes, to avoid warnings and compensate for the fact that
     # the attributes are defined in MxlimsObjectData,
     # which we do not want to import here to avoid circularity
-    uuid = uuid.UUID(int=0)
-    mxlims_base_type = "MxlimsObject"
+    # uuid = uuid.UUID(int=0)
+    # mxlims_base_type = "MxlimsObject"
 
     def __init__(self, **data) -> None:
+        print ('@~@~ MxlimsImplementation init 1')
         super().__init__(**data)
+        print ('@~@~ MxlimsImplementation init 2')
         obj_by_id = self._objects_by_id[self.mxlims_base_type]
         myuid = self.uuid
+        print ('@~@~ MxlimsImplementation init 3')
         if myuid in obj_by_id:
             raise ValueError(
                 f"{self.mxlims_base_type} with uuid '{myuid}' already exists"
             )
         else:
+            print ('@~@~ MxlimsImplementation init 4')
             obj_by_id[myuid] = self
+        print ('@~@~ MxlimsImplementation init 5')
 
     @classmethod
     def get_all_jobs(cls) -> list[Job]:
@@ -238,6 +243,12 @@ class MxlimsImplementation(object):
         :return:
         """
         myuid = self.uuid
+        print ('@~@~ _get_link_1n', basetypename, id_field_name, myuid)
+        print ('@~@~ targets', list(
+            (obj.__class__.__name__, getattr(obj, id_field_name))
+            for obj in self._objects_by_id[basetypename].values()
+        ))
+
         result = list(
             obj
             for obj in self._objects_by_id[basetypename].values()
@@ -368,6 +379,7 @@ class BaseMessage(BaseModel):
         :param message_file:
         :return:
         """
+        print ('@~@~ ECPORTING', message_file)
         # The stringification is needed because model_dump_json required for UUID
         message_str = self.model_dump_json(
             indent=4,
@@ -377,7 +389,9 @@ class BaseMessage(BaseModel):
         )
         message_json = json.loads(message_str)
         to_export_json(message_json)
+        print ('@~@~ about to write')
         message_file.write_text(json.dumps(message_json, indent=4))
+        print ('@~@~ done write')
 
 
 def to_export_json(message_dict: dict) -> None:

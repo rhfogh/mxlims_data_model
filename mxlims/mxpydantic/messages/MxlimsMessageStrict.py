@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from pydantic import Field
+from pydantic import Field, RootModel
 
 from ..objects.CollectionSweep import CollectionSweep
 from ..objects.Crystal import Crystal

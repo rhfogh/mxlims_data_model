@@ -6,15 +6,9 @@ from __future__ import annotations
 from typing import Literal
 
 from mxlims.impl.MxlimsBase import BaseModel
-from pydantic import ConfigDict, Field, RootModel
+from pydantic import ConfigDict, Field
 
 from .Point import Point
-
-
-class RegionType(RootModel[Literal["polygon"]]):
-    root: Literal["polygon"] = Field(
-        "polygon", description="Type of region", title="Region type"
-    )
 
 
 class Polygon(BaseModel):

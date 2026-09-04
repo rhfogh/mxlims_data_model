@@ -17,7 +17,7 @@ if TYPE_CHECKING:
     from .ReflectionSet import ReflectionSet
     from .VolumeScan import VolumeScan
 
-class WellDrop(WellDropData, LogisticalSample):
+class WellDrop(LogisticalSample, WellDropData):
     """MXLIMS pydantic model class for WellDrop
     """
         
