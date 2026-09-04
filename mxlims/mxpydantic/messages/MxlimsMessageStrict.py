@@ -5,7 +5,7 @@ from __future__ import annotations
 
 from pydantic import Field, RootModel
 
-from ..objects.CollectionSweep import CollectionSweep1, CollectionSweep2
+from ..objects.CollectionSweep import CollectionSweep
 from ..objects.Crystal import Crystal
 from ..objects.Dewar import Dewar
 from ..objects.DropRegion import DropRegion
@@ -20,7 +20,7 @@ from ..objects.PinPosition import PinPosition
 from ..objects.Plate import Plate
 from ..objects.PlateWell import PlateWell
 from ..objects.Puck import Puck
-from ..objects.ReflectionSet import ReflectionSet1, ReflectionSet2
+from ..objects.ReflectionSet import ReflectionSet
 from ..objects.Shipment import Shipment
 from ..objects.VolumeScan import VolumeScan
 from ..objects.WellDrop import WellDrop
@@ -136,8 +136,8 @@ class WellDrops1(RootModel[dict[str, WellDrop]]):
     root: dict[str, WellDrop] = Field(..., min_length=1)
 
 
-class CollectionSweeps(RootModel[dict[str, CollectionSweep1 | CollectionSweep2]]):
-    root: dict[str, CollectionSweep1 | CollectionSweep2] = Field(
+class CollectionSweeps(RootModel[dict[str, CollectionSweep]]):
+    root: dict[str, CollectionSweep] = Field(
         ...,
         description="idString:object dictionary of CollectionSweeps.",
         min_length=1,
@@ -267,8 +267,8 @@ class Plates(RootModel[dict[str, Plate]]):
     )
 
 
-class ReflectionSets(RootModel[dict[str, ReflectionSet1 | ReflectionSet2]]):
-    root: dict[str, ReflectionSet1 | ReflectionSet2] = Field(
+class ReflectionSets(RootModel[dict[str, ReflectionSet]]):
+    root: dict[str, ReflectionSet] = Field(
         ...,
         description="idString:object dictionary of ReflectionSets.",
         min_length=1,

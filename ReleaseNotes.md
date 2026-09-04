@@ -1,6 +1,12 @@
 ## Changes in version 0.6.14
 - Renamed 'OSC' to 'Rotation' in CollectionSweep
 - Renamed 'overlap' to 'offset' in CollectionSweep
+- Upgraded to version 0.76.1 of datamodel-codegen, improving pydantic code.
+  This gives a more precise reflection of the model, including prohibition of
+  additional fields, and exact reflection of the different ShipmentMessages.
+  The code generation also adds some harmless but unnecessary
+  Python datatype classes.
+- Some minor bug fixes
 
 ## Changes in version 0.6.13
 - Improved validation message for unevaluatedProperties errors
