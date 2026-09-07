@@ -1,4 +1,4 @@
-## Changes in version 0.6.14
+## Changes in version 0.6.14 (Tagged 0.6.14)
 - Renamed 'OSC' to 'Rotation' in CollectionSweep
 - Renamed 'overlap' to 'offset' in CollectionSweep
 - Upgraded to version 0.76.1 of datamodel-codegen, improving pydantic code.
