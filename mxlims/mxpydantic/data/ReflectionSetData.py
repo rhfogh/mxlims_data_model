@@ -4,7 +4,14 @@
 from __future__ import annotations
 
 from mxlims.impl.MxlimsBase import BaseModel
-from pydantic import Field, NonNegativeInt, PositiveFloat, PositiveInt, confloat
+from pydantic import (
+    Field,
+    NonNegativeInt,
+    PositiveFloat,
+    PositiveInt,
+    RootModel,
+    confloat,
+)
 
 from ..datatypes.Enumerations import (
     PdbxSignalType,
@@ -16,6 +23,14 @@ from ..datatypes.ReflectionStatistics import ReflectionStatistics
 from ..datatypes.ResolutionCutoffs import ResolutionCutoffs
 from ..datatypes.Tensor import Tensor
 from ..datatypes.UnitCell import UnitCell
+
+
+class ReflectionStatisticsShells(RootModel[list[ReflectionStatistics]]):
+    root: list[ReflectionStatistics] = Field(
+        ...,
+        description="Reflection statistics per resolution shell",
+        title="Reflection Statistics Shells",
+    )
 
 
 class ReflectionSetData(BaseModel):
@@ -120,7 +135,7 @@ class ReflectionSetData(BaseModel):
         alias="reflectionStatisticsOverall",
         description="Reflection statistics for all processed reflections",
     )
-    reflection_statistics_shells: list[ReflectionStatistics] | None = Field(
+    reflection_statistics_shells: ReflectionStatisticsShells | None = Field(
         None,
         alias="reflectionStatisticsShells",
         description="Reflection statistics per resolution shell",
